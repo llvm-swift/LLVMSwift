@@ -75,6 +75,7 @@ internal func convertType(_ type: LLVMTypeRef) -> LLVMType {
 }
 
 public struct VoidType: LLVMType {
+  public init() {}
   public func asLLVM() -> LLVMTypeRef {
     return LLVMVoidType()
   }
@@ -82,6 +83,8 @@ public struct VoidType: LLVMType {
 
 public struct IntType: LLVMType {
   public let width: Int
+  
+  public init(width: Int) { self.width = width }
   
   public static let int1 = IntType(width: 1)
   public static let int8 = IntType(width: 8)
@@ -112,6 +115,12 @@ public struct IntType: LLVMType {
 public struct ArrayType: LLVMType {
   public let elementType: LLVMType
   public let count: Int
+  
+  public init(elementType: LLVMType, count: Int) {
+    self.elementType = elementType
+    self.count = count
+  }
+  
   public static func constant(_ values: [LLVMValue], type: LLVMType) -> LLVMValue {
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
@@ -126,12 +135,16 @@ public struct ArrayType: LLVMType {
 
 public struct MetadataType: LLVMType {
   internal let llvm: LLVMTypeRef
+  public init(llvm: LLVMTypeRef) {
+    self.llvm = llvm
+  }
   public func asLLVM() -> LLVMTypeRef {
     return llvm
   }
 }
 
 public struct LabelType: LLVMType {
+  public init() {}
   public func asLLVM() -> LLVMTypeRef {
     return LLVMLabelType()
   }
@@ -231,6 +244,7 @@ public class StructType: LLVMType {
 }
 
 public struct X86MMXType: LLVMType {
+  public init() {}
   public func asLLVM() -> LLVMTypeRef {
     return LLVMX86MMXType()
   }
@@ -238,6 +252,7 @@ public struct X86MMXType: LLVMType {
 
 public struct TokenType: LLVMType {
   internal let llvm: LLVMTypeRef
+  public init(llvm: LLVMTypeRef) { self.llvm = llvm }
   public func asLLVM() -> LLVMTypeRef {
     return llvm
   }
@@ -247,6 +262,11 @@ public struct VectorType: LLVMType {
   public let elementType: LLVMType
   public let count: Int
   
+  public init(elementType: LLVMType, count: Int) {
+    self.elementType = elementType
+    self.count = count
+  }
+
   public func asLLVM() -> LLVMTypeRef {
     return LLVMVectorType(elementType.asLLVM(), UInt32(count))
   }
