@@ -225,6 +225,18 @@ public class IRBuilder {
   public func addGlobal(_ name: String, type: LLVMType) -> Global {
     return Global(llvm: LLVMAddGlobal(module.llvm, type.asLLVM(), name))
   }
+    
+  public func addGlobalString(name: String, value: String) -> Global {
+    let length = value.utf8.count
+    
+    var global = addGlobal(name, type:
+      ArrayType(elementType: IntType.int8, count: length + 1))
+    
+    global.alignment = 1
+    global.initializer = value
+    
+    return global
+  }
   
   public func buildAlloca(type: LLVMType, name: String = "") -> LLVMValue {
     return LLVMBuildAlloca(llvm, type.asLLVM(), name)
