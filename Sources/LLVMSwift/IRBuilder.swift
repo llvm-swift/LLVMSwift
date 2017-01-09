@@ -1,12 +1,54 @@
 import cllvm
 
-
+/// Species the behavior that should occur on overflow during mathematical
+/// operations.
 public enum OverflowBehavior {
-  case `default`, noSignedWrap, noUnsignedWrap
+  /// The result value of the operator is the mathematical result modulo `2^n`,
+  /// where `n` is the bit width of the result.
+  case `default`
+  /// The result value of the operator is a poison value if signed overflow 
+  /// occurs.
+  case noSignedWrap
+  /// The result value of the operator is a poison value if unsigned overflow
+  /// occurs.
+  case noUnsignedWrap
 }
 
+/// The condition codes available for integer comparison instructions.
 public enum IntPredicate {
-  case eq, ne, ugt, uge, ult, ule, sgt, sge, slt, sle
+  /// Yields `true` if the operands are equal, false otherwise without sign
+  /// interpretation.
+  case eq
+  /// Yields `true` if the operands are unequal, false otherwise without sign
+  /// interpretation.
+  case ne
+
+  /// Interprets the operands as unsigned values and yields true if the first is
+  /// greater than the second.
+  case ugt
+  /// Interprets the operands as unsigned values and yields true if the first is
+  /// greater than or equal to the second.
+  case uge
+  /// Interprets the operands as unsigned values and yields true if the first is
+  /// less than the second.
+  case ult
+  /// Interprets the operands as unsigned values and yields true if the first is
+  /// less than or equal to the second.
+  case ule
+
+  /// Interprets the operands as signed values and yields true if the first is 
+  /// greater than the second.
+  case sgt
+  /// Interprets the operands as signed values and yields true if the first is
+  /// greater than or equal to the second.
+  case sge
+  /// Interprets the operands as signed values and yields true if the first is
+  /// less than the second.
+  case slt
+  /// Interprets the operands as signed values and yields true if the first is
+  /// less than or equal to the second.
+  case sle
+
   static let predicateMapping: [IntPredicate: LLVMIntPredicate] = [
     .eq: LLVMIntEQ, .ne: LLVMIntNE, .ugt: LLVMIntUGT, .uge: LLVMIntUGE,
     .ult: LLVMIntULT, .ule: LLVMIntULE, .sgt: LLVMIntSGT, .sge: LLVMIntSGE,
@@ -17,9 +59,40 @@ public enum IntPredicate {
   }
 }
 
+/// The condition codes available for floating comparison instructions.
 public enum RealPredicate {
-  case `false`, oeq, ogt, oge, olt, ole, one, ord, uno, ueq, ugt, uge, ult, ule
-  case une, `true`
+  /// No comparison, always returns `false`.
+  case `false`
+  /// Ordered and equal.
+  case oeq
+  /// Ordered greater than.
+  case ogt
+  /// Ordered greater than or equal.
+  case oge
+  /// Ordered less than.
+  case olt
+  /// Ordered less than or equal.
+  case ole
+  /// Ordered and not equal.
+  case one
+  /// Oredered (no nans).
+  case ord
+  /// Unordered (either nans).
+  case uno
+  /// Unordered or equal.
+  case ueq
+  /// Unordered or greater than.
+  case ugt
+  /// Unordered or greater than or equal.
+  case uge
+  /// Unordered or less than.
+  case ult
+  /// Unordered or less than or equal.
+  case ule
+  /// Unordered or not equal.
+  case une
+  /// No comparison, always returns `true`.
+  case `true`
   
   static let predicateMapping: [RealPredicate: LLVMRealPredicate] = [
     .false: LLVMRealPredicateFalse, .oeq: LLVMRealOEQ, .ogt: LLVMRealOGT,
