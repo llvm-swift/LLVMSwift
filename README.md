@@ -58,8 +58,8 @@ all its code generation.
 
 ## Authors
 
-Harlan Haskins ([@harlanhaskins](https://github.com/harlanhaskins))
-Robert Widnamm ([@CodaFi](https://github.com/CodaFi))
+- Harlan Haskins ([@harlanhaskins](https://github.com/harlanhaskins))
+- Robert Widnamm ([@CodaFi](https://github.com/CodaFi))
 
 ## License
 
