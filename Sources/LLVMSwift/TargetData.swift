@@ -105,6 +105,22 @@ public class TargetData {
     return Int(LLVMPreferredAlignmentOfType(llvm, type.asLLVM()))
   }
 
+  public func abiAlignment(of type: IRType) -> Int {
+    return Int(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  public func callFrameAlignment(of type: IRType) -> Int {
+    return Int(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  public func abiSize(of type: IRType) -> Int {
+    return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
+  }
+
+  public func storeSize(of type: IRType) -> Int {
+    return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
+  }
+
   /// Computes the pointer size for the platform, optionally in a given
   /// address space.
   ///
