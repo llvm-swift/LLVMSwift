@@ -1,6 +1,10 @@
 #!/usr/bin/env swift
 import Foundation
 
+#if os(Linux)
+  typealias Process = Task
+#endif
+
 /// Runs the specified program at the provided path.
 /// - parameter path: The full path of the executable you
 ///                   wish to run.
@@ -103,6 +107,6 @@ func makeFile() throws {
 do {
   try makeFile()
 } catch {
-  print("error: \(error)")
+//  print("error: \(error)")
   exit(-1)
 }
