@@ -1,37 +1,5 @@
 import cllvm
 
-public enum Attribute {
-  case zExt, sExt, noReturn, inReg, structRet, noUnwind, noAlias
-  case byVal, nest, readOnly, noInline, alwaysInline, optimizeForSize
-  case stackProtect, stackProtectReq, alignment, noCapture, noRedZone
-  case noImplicitFloat, naked, inlineHint, stackAlignment, returnsTwice
-  case uwTable, nonLazyBind
-  
-  /* FIXME: These attributes are currently not included in the C API as
-   a temporary measure until the API/ABI impact to the C API is understood
-   and the path forward agreed upon.
-   case sanitizeAddress, stackProtectStrong, cold, optimizeNone, inAlloca
-   case nonNull, jumpTable, convergent, safeStack, swiftSelf, swiftError
-   */
-  
-  private static let mapping: [Attribute: LLVMAttribute] = [
-    .zExt: LLVMZExtAttribute, .sExt: LLVMSExtAttribute, .noReturn: LLVMNoReturnAttribute,
-    .inReg: LLVMInRegAttribute, .structRet: LLVMStructRetAttribute, .noUnwind: LLVMNoUnwindAttribute,
-    .noAlias: LLVMNoAliasAttribute, .byVal: LLVMByValAttribute, .nest: LLVMNestAttribute,
-    .readOnly: LLVMReadOnlyAttribute, .noInline: LLVMNoInlineAttribute, .alwaysInline: LLVMAlwaysInlineAttribute,
-    .optimizeForSize: LLVMOptimizeForSizeAttribute, .stackProtect: LLVMStackProtectAttribute,
-    .stackProtectReq: LLVMStackProtectReqAttribute, .alignment: LLVMAlignment,
-    .noCapture: LLVMNoCaptureAttribute, .noRedZone: LLVMNoRedZoneAttribute,
-    .noImplicitFloat: LLVMNoImplicitFloatAttribute, .naked: LLVMNakedAttribute,
-    .inlineHint: LLVMInlineHintAttribute, .stackAlignment: LLVMStackAlignment,
-    .returnsTwice: LLVMReturnsTwice, .uwTable: LLVMUWTable, .nonLazyBind: LLVMNonLazyBind
-  ]
-  
-  public func asLLVM() -> LLVMAttribute {
-    return Attribute.mapping[self]!
-  }
-}
-
 public class Function: IRValue {
   internal let llvm: LLVMValueRef
   internal init(llvm: LLVMValueRef) {
@@ -105,14 +73,6 @@ public class Function: IRValue {
 
 public struct Parameter: IRValue {
   internal let llvm: LLVMValueRef
-  
-  func addAttribute(_ attr: Attribute) {
-    LLVMAddAttribute(asLLVM(), attr.asLLVM())
-  }
-  
-  func removeAttribute(_ attr: Attribute) {
-    LLVMRemoveAttribute(asLLVM(), attr.asLLVM())
-  }
   
   public func next() -> Parameter? {
     guard let param = LLVMGetNextParam(llvm) else { return nil }
