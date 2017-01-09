@@ -8,15 +8,15 @@ public extension IRType {
   public func null() -> IRValue {
     return LLVMConstNull(asLLVM())
   }
-  
+
   public func undef() -> IRValue {
     return LLVMGetUndef(asLLVM())
   }
-  
+
   public func constPointerNull() -> IRValue {
     return LLVMConstPointerNull(asLLVM())
   }
-  
+
   public func dump() {
     LLVMDumpType(asLLVM())
   }
@@ -83,30 +83,30 @@ public struct VoidType: IRType {
 
 public struct IntType: IRType {
   public let width: Int
-  
+
   public init(width: Int) { self.width = width }
-  
+
   public static let int1 = IntType(width: 1)
   public static let int8 = IntType(width: 8)
   public static let int16 = IntType(width: 16)
   public static let int32 = IntType(width: 32)
   public static let int64 = IntType(width: 64)
   public static let int128 = IntType(width: 128)
-  
+
   public func zero() -> IRValue {
     return null()
   }
-  
+
   public func constant<IntTy: Integer>(_ value: IntTy, signExtend: Bool = false) -> LLVMValueRef {
     return LLVMConstInt(asLLVM(),
                         unsafeBitCast(value.toIntMax(), to: UInt64.self),
                         signExtend.llvm)
   }
-  
+
   public func allOnes() -> IRValue {
     return LLVMConstAllOnes(asLLVM())
   }
-  
+
   public func asLLVM() -> LLVMTypeRef {
     return LLVMIntType(UInt32(width))
   }
@@ -115,19 +115,19 @@ public struct IntType: IRType {
 public struct ArrayType: IRType {
   public let elementType: IRType
   public let count: Int
-  
+
   public init(elementType: IRType, count: Int) {
     self.elementType = elementType
     self.count = count
   }
-  
+
   public static func constant(_ values: [IRValue], type: IRType) -> IRValue {
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
       return LLVMConstArray(type.asLLVM(), buf.baseAddress, UInt32(buf.count))
     }
   }
-  
+
   public func asLLVM() -> LLVMTypeRef {
     return LLVMArrayType(elementType.asLLVM(), UInt32(count))
   }
@@ -152,11 +152,11 @@ public struct LabelType: IRType {
 
 public enum FloatType: IRType {
   case half, float, double, x86FP80, fp128, ppcFP128
-  
+
   public func constant(_ value: Double) -> IRValue {
     return LLVMConstReal(asLLVM(), value)
   }
-  
+
   public func asLLVM() -> LLVMTypeRef {
     switch self {
     case .half: return LLVMHalfType()
@@ -176,9 +176,9 @@ public struct PointerType: IRType {
     self.pointee = pointee
     self.addressSpace = addressSpace
   }
-  
+
   public static let toVoid = PointerType(pointee: IntType.int8)
-  
+
   public func asLLVM() -> LLVMTypeRef {
     return LLVMPointerType(pointee.asLLVM(), UInt32(addressSpace))
   }
@@ -188,13 +188,13 @@ public struct FunctionType: IRType {
   public let argTypes: [IRType]
   public let returnType: IRType
   public let isVarArg: Bool
-  
+
   public init(argTypes: [IRType], returnType: IRType, isVarArg: Bool = false) {
     self.argTypes = argTypes
     self.returnType = returnType
     self.isVarArg = isVarArg
   }
-  
+
   public func asLLVM() -> LLVMTypeRef {
     var argIRTypes = argTypes.map { $0.asLLVM() as Optional }
     return argIRTypes.withUnsafeMutableBufferPointer { buf in
@@ -230,7 +230,7 @@ public class StructType: IRType {
       LLVMStructSetBody(asLLVM(), buf.baseAddress, UInt32(buf.count), isPacked.llvm)
     }
   }
-  
+
   public static func constant(values: [IRValue], isPacked: Bool = false) -> IRValue {
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
@@ -261,7 +261,7 @@ public struct TokenType: IRType {
 public struct VectorType: IRType {
   public let elementType: IRType
   public let count: Int
-  
+
   public init(elementType: IRType, count: Int) {
     self.elementType = elementType
     self.count = count
