@@ -105,6 +105,9 @@ public class TargetData {
     return Int(LLVMPreferredAlignmentOfType(llvm, type.asLLVM()))
   }
 
+  /// Computes the minimum ABI-required alignment for the specified type.
+  /// - parameter type: The type to whose ABI alignment you wish to compute.
+  /// - returns: The minimum ABI-required alignment for the specified type.
   public func abiAlignment(of type: IRType) -> Int {
     return Int(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
   }
@@ -113,12 +116,18 @@ public class TargetData {
     return Int(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
   }
 
+  /// Computes the ABI size of a type in bytes for a target.
+  /// - parameter type: The type to whose ABI size you wish to compute.
+  /// - returns: The ABI size for the specified type.
   public func abiSize(of type: IRType) -> Int {
     return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
   }
-
+  /// Computes the maximum number of bytes that may be overwritten by
+  /// storing the specified type.
+  /// - parameter type: The type to whose store size you wish to compute.
+  /// - returns: The store size of the type in the given target.
   public func storeSize(of type: IRType) -> Int {
-    return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
+    return Int(LLVMStoreSizeOfType(llvm, type.asLLVM()))
   }
 
   /// Computes the pointer size for the platform, optionally in a given
