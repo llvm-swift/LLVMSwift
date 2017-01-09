@@ -56,9 +56,10 @@ compiler projects!
 This project is used by [Trill](https://github.com/harlanhaskins/trill) for
 all its code generation.
 
-## Author
+## Authors
 
 Harlan Haskins ([@harlanhaskins](https://github.com/harlanhaskins))
+Robert Widnamm ([@CodaFi](https://github.com/CodaFi))
 
 ## License
 
