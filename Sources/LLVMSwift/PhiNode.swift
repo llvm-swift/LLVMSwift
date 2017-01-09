@@ -1,9 +1,9 @@
 import cllvm
 
-public struct PhiNode: LLVMValue {
+public struct PhiNode: IRValue {
   internal let llvm: LLVMValueRef
   
-  public func addIncoming(_ valueMap: [(LLVMValue, BasicBlock)]) {
+  public func addIncoming(_ valueMap: [(IRValue, BasicBlock)]) {
     var values = valueMap.map { $0.0.asLLVM() as Optional }
     var blocks = valueMap.map { $0.1.asLLVM() as Optional }
     
@@ -17,9 +17,9 @@ public struct PhiNode: LLVMValue {
     }
   }
   
-  public var incoming: [(LLVMValue, BasicBlock)] {
+  public var incoming: [(IRValue, BasicBlock)] {
     let count = Int(LLVMCountIncoming(llvm))
-    var values = [(LLVMValue, BasicBlock)]()
+    var values = [(IRValue, BasicBlock)]()
     for i in 0..<count {
       guard let value = incomingValue(at: i),
             let block = incomingBlock(at: i) else { continue }
@@ -28,7 +28,7 @@ public struct PhiNode: LLVMValue {
     return values
   }
   
-  public func incomingValue(at index: Int) -> LLVMValue? {
+  public func incomingValue(at index: Int) -> IRValue? {
     return LLVMGetIncomingValue(llvm, UInt32(index))
   }
   

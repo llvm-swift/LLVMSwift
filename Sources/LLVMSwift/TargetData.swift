@@ -92,7 +92,7 @@ public struct TargetData {
     public func offsetOfElement(_ element: Int, type: StructType) -> Int {
         return Int(LLVMOffsetOfElement(llvm, type.asLLVM(), UInt32(element)))
     }
-    public func sizeOfTypeInBits(_ type: LLVMType) -> Int {
+    public func sizeOfTypeInBits(_ type: IRType) -> Int {
         return Int(LLVMSizeOfTypeInBits(llvm, type.asLLVM()))
     }
 }

@@ -1,11 +1,11 @@
 import cllvm
 
-public protocol LLVMValue {
+public protocol IRValue {
   func asLLVM() -> LLVMValueRef
 }
 
-public extension LLVMValue {
-  public var type: LLVMType {
+public extension IRValue {
+  public var type: IRType {
     return convertType(LLVMTypeOf(asLLVM()))
   }
   
@@ -32,14 +32,14 @@ public extension LLVMValue {
     }
   }
   
-  public func constGEP(indices: [LLVMValue]) -> LLVMValue {
+  public func constGEP(indices: [IRValue]) -> IRValue {
     var idxs = indices.map { $0.asLLVM() as Optional }
     return idxs.withUnsafeMutableBufferPointer { buf in
       return LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count))
     }
   }
   
-  public func replaceAllUses(with value: LLVMValue) {
+  public func replaceAllUses(with value: IRValue) {
     LLVMReplaceAllUsesWith(asLLVM(), value.asLLVM())
   }
   
@@ -48,79 +48,79 @@ public extension LLVMValue {
   }
 }
 
-extension LLVMValueRef: LLVMValue {
+extension LLVMValueRef: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return self
   }
 }
 
-extension Int: LLVMValue {
+extension Int: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<Int>.size * 8).constant(self)
   }
 }
 
-extension Int8: LLVMValue {
+extension Int8: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<Int8>.size * 8).constant(self)
   }
 }
 
-extension Int16: LLVMValue {
+extension Int16: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<Int16>.size * 8).constant(self)
   }
 }
 
-extension Int32: LLVMValue {
+extension Int32: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<Int32>.size * 8).constant(self)
   }
 }
 
-extension Int64: LLVMValue {
+extension Int64: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<Int64>.size * 8).constant(self)
   }
 }
 
-extension UInt: LLVMValue {
+extension UInt: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<UInt>.size * 8).constant(self)
   }
 }
 
-extension UInt8: LLVMValue {
+extension UInt8: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<UInt8>.size * 8).constant(self)
   }
 }
 
-extension UInt16: LLVMValue {
+extension UInt16: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<UInt16>.size * 8).constant(self)
   }
 }
 
-extension UInt32: LLVMValue {
+extension UInt32: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<UInt32>.size * 8).constant(self)
   }
 }
 
-extension UInt64: LLVMValue {
+extension UInt64: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: MemoryLayout<UInt64>.size * 8).constant(self)
   }
 }
 
-extension Bool: LLVMValue {
+extension Bool: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return IntType(width: 1).constant(self ? 1 : 0)
   }
 }
 
-extension String: LLVMValue {
+extension String: IRValue {
   public func asLLVM() -> LLVMValueRef {
     return LLVMConstString(self, UInt32(self.utf8.count), 0)
   }

@@ -2,7 +2,7 @@ import cllvm
 
 // Automatically generated from the macros in llvm/Core.h
 
-public extension LLVMValue {
+public extension IRValue {
   public var isAArgument: Bool {
     return LLVMIsAArgument(asLLVM()) != nil
   }

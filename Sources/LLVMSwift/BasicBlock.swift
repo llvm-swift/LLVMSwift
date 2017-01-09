@@ -1,6 +1,6 @@
 import cllvm
 
-public struct BasicBlock: LLVMValue, Sequence {
+public struct BasicBlock: IRValue, Sequence {
     internal let llvm: LLVMBasicBlockRef
     public init(llvm: LLVMBasicBlockRef) {
         self.llvm = llvm
@@ -55,7 +55,7 @@ public struct BasicBlock: LLVMValue, Sequence {
     }
 }
 
-public struct Instruction: LLVMValue {
+public struct Instruction: IRValue {
     internal let llvm: LLVMValueRef
     
     public init(llvm: LLVMValueRef) {

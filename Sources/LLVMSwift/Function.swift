@@ -32,7 +32,7 @@ public enum Attribute {
   }
 }
 
-public class Function: LLVMValue {
+public class Function: IRValue {
   internal let llvm: LLVMValueRef
   internal init(llvm: LLVMValueRef) {
     self.llvm = llvm
@@ -78,7 +78,7 @@ public class Function: LLVMValue {
     return Parameter(llvm: value)
   }
   
-  public var parameters: [LLVMValue] {
+  public var parameters: [IRValue] {
     var current = firstParameter
     var params = [Parameter]()
     while let param = current {
@@ -103,7 +103,7 @@ public class Function: LLVMValue {
   }
 }
 
-public struct Parameter: LLVMValue {
+public struct Parameter: IRValue {
   internal let llvm: LLVMValueRef
   
   func addAttribute(_ attr: Attribute) {

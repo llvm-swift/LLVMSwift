@@ -1,19 +1,19 @@
 import cllvm
 
-public protocol LLVMType {
+public protocol IRType {
   func asLLVM() -> LLVMTypeRef
 }
 
-public extension LLVMType {
-  public func null() -> LLVMValue {
+public extension IRType {
+  public func null() -> IRValue {
     return LLVMConstNull(asLLVM())
   }
   
-  public func undef() -> LLVMValue {
+  public func undef() -> IRValue {
     return LLVMGetUndef(asLLVM())
   }
   
-  public func constPointerNull() -> LLVMValue {
+  public func constPointerNull() -> IRValue {
     return LLVMConstPointerNull(asLLVM())
   }
   
@@ -22,7 +22,7 @@ public extension LLVMType {
   }
 }
 
-internal func convertType(_ type: LLVMTypeRef) -> LLVMType {
+internal func convertType(_ type: LLVMTypeRef) -> IRType {
   switch LLVMGetTypeKind(type) {
   case LLVMVoidTypeKind:
     return VoidType()
@@ -38,7 +38,7 @@ internal func convertType(_ type: LLVMTypeRef) -> LLVMType {
     let width = LLVMGetIntTypeWidth(type)
     return IntType(width: Int(width))
   case LLVMFunctionTypeKind:
-    var params = [LLVMType]()
+    var params = [IRType]()
     let count = Int(LLVMCountParamTypes(type))
     let paramsPtr = UnsafeMutablePointer<LLVMTypeRef?>.allocate(capacity: count)
     defer { free(paramsPtr) }
@@ -74,14 +74,14 @@ internal func convertType(_ type: LLVMTypeRef) -> LLVMType {
   }
 }
 
-public struct VoidType: LLVMType {
+public struct VoidType: IRType {
   public init() {}
   public func asLLVM() -> LLVMTypeRef {
     return LLVMVoidType()
   }
 }
 
-public struct IntType: LLVMType {
+public struct IntType: IRType {
   public let width: Int
   
   public init(width: Int) { self.width = width }
@@ -93,7 +93,7 @@ public struct IntType: LLVMType {
   public static let int64 = IntType(width: 64)
   public static let int128 = IntType(width: 128)
   
-  public func zero() -> LLVMValue {
+  public func zero() -> IRValue {
     return null()
   }
   
@@ -103,7 +103,7 @@ public struct IntType: LLVMType {
                         signExtend.llvm)
   }
   
-  public func allOnes() -> LLVMValue {
+  public func allOnes() -> IRValue {
     return LLVMConstAllOnes(asLLVM())
   }
   
@@ -112,16 +112,16 @@ public struct IntType: LLVMType {
   }
 }
 
-public struct ArrayType: LLVMType {
-  public let elementType: LLVMType
+public struct ArrayType: IRType {
+  public let elementType: IRType
   public let count: Int
   
-  public init(elementType: LLVMType, count: Int) {
+  public init(elementType: IRType, count: Int) {
     self.elementType = elementType
     self.count = count
   }
   
-  public static func constant(_ values: [LLVMValue], type: LLVMType) -> LLVMValue {
+  public static func constant(_ values: [IRValue], type: IRType) -> IRValue {
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
       return LLVMConstArray(type.asLLVM(), buf.baseAddress, UInt32(buf.count))
@@ -133,7 +133,7 @@ public struct ArrayType: LLVMType {
   }
 }
 
-public struct MetadataType: LLVMType {
+public struct MetadataType: IRType {
   internal let llvm: LLVMTypeRef
   public init(llvm: LLVMTypeRef) {
     self.llvm = llvm
@@ -143,17 +143,17 @@ public struct MetadataType: LLVMType {
   }
 }
 
-public struct LabelType: LLVMType {
+public struct LabelType: IRType {
   public init() {}
   public func asLLVM() -> LLVMTypeRef {
     return LLVMLabelType()
   }
 }
 
-public enum FloatType: LLVMType {
+public enum FloatType: IRType {
   case half, float, double, x86FP80, fp128, ppcFP128
   
-  public func constant(_ value: Double) -> LLVMValue {
+  public func constant(_ value: Double) -> IRValue {
     return LLVMConstReal(asLLVM(), value)
   }
   
@@ -169,10 +169,10 @@ public enum FloatType: LLVMType {
   }
 }
 
-public struct PointerType: LLVMType {
-  public let pointee: LLVMType
+public struct PointerType: IRType {
+  public let pointee: IRType
   public let addressSpace: Int
-  public init(pointee: LLVMType, addressSpace: Int = 0) {
+  public init(pointee: IRType, addressSpace: Int = 0) {
     self.pointee = pointee
     self.addressSpace = addressSpace
   }
@@ -184,20 +184,20 @@ public struct PointerType: LLVMType {
   }
 }
 
-public struct FunctionType: LLVMType {
-  public let argTypes: [LLVMType]
-  public let returnType: LLVMType
+public struct FunctionType: IRType {
+  public let argTypes: [IRType]
+  public let returnType: IRType
   public let isVarArg: Bool
   
-  public init(argTypes: [LLVMType], returnType: LLVMType, isVarArg: Bool = false) {
+  public init(argTypes: [IRType], returnType: IRType, isVarArg: Bool = false) {
     self.argTypes = argTypes
     self.returnType = returnType
     self.isVarArg = isVarArg
   }
   
   public func asLLVM() -> LLVMTypeRef {
-    var argLLVMTypes = argTypes.map { $0.asLLVM() as Optional }
-    return argLLVMTypes.withUnsafeMutableBufferPointer { buf in
+    var argIRTypes = argTypes.map { $0.asLLVM() as Optional }
+    return argIRTypes.withUnsafeMutableBufferPointer { buf in
       return LLVMFunctionType(returnType.asLLVM(),
                               buf.baseAddress,
                               UInt32(buf.count),
@@ -206,14 +206,14 @@ public struct FunctionType: LLVMType {
   }
 }
 
-public class StructType: LLVMType {
+public class StructType: IRType {
   internal let llvm: LLVMTypeRef
 
   public init(llvm: LLVMTypeRef) {
     self.llvm = llvm
   }
 
-  public init(elementTypes: [LLVMType], isPacked: Bool = false, llvm: LLVMValueRef? = nil) {
+  public init(elementTypes: [IRType], isPacked: Bool = false, llvm: LLVMValueRef? = nil) {
     if let llvm = llvm {
       self.llvm = llvm
     } else {
@@ -224,14 +224,14 @@ public class StructType: LLVMType {
     }
   }
 
-  public func setBody(_ types: [LLVMType], isPacked: Bool = false) {
+  public func setBody(_ types: [IRType], isPacked: Bool = false) {
     var _types = types.map { $0.asLLVM() as Optional }
     _types.withUnsafeMutableBufferPointer { buf in
       LLVMStructSetBody(asLLVM(), buf.baseAddress, UInt32(buf.count), isPacked.llvm)
     }
   }
   
-  public static func constant(values: [LLVMValue], isPacked: Bool = false) -> LLVMValue {
+  public static func constant(values: [IRValue], isPacked: Bool = false) -> IRValue {
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
       return LLVMConstStruct(buf.baseAddress, UInt32(buf.count), isPacked.llvm)
@@ -243,14 +243,14 @@ public class StructType: LLVMType {
   }
 }
 
-public struct X86MMXType: LLVMType {
+public struct X86MMXType: IRType {
   public init() {}
   public func asLLVM() -> LLVMTypeRef {
     return LLVMX86MMXType()
   }
 }
 
-public struct TokenType: LLVMType {
+public struct TokenType: IRType {
   internal let llvm: LLVMTypeRef
   public init(llvm: LLVMTypeRef) { self.llvm = llvm }
   public func asLLVM() -> LLVMTypeRef {
@@ -258,11 +258,11 @@ public struct TokenType: LLVMType {
   }
 }
 
-public struct VectorType: LLVMType {
-  public let elementType: LLVMType
+public struct VectorType: IRType {
+  public let elementType: IRType
   public let count: Int
   
-  public init(elementType: LLVMType, count: Int) {
+  public init(elementType: IRType, count: Int) {
     self.elementType = elementType
     self.count = count
   }

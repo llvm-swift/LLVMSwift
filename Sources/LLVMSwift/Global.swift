@@ -1,6 +1,6 @@
 import cllvm
 
-public struct Global: LLVMValue {
+public struct Global: IRValue {
     internal let llvm: LLVMValueRef
     
     public var isExternallyInitialized: Bool {
@@ -8,7 +8,7 @@ public struct Global: LLVMValue {
         set { LLVMSetExternallyInitialized(llvm, newValue.llvm) }
     }
     
-    public var initializer: LLVMValue {
+    public var initializer: IRValue {
         get { return LLVMGetInitializer(asLLVM()) }
         set { LLVMSetInitializer(asLLVM(), newValue.asLLVM()) }
     }

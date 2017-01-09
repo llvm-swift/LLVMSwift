@@ -68,7 +68,7 @@ public final class Module {
     }
   }
   
-  public func type(named name: String) -> LLVMType? {
+  public func type(named name: String) -> IRType? {
     guard let type = LLVMGetTypeByName(llvm, name) else { return nil }
     return convertType(type)
   }

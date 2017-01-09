@@ -8,11 +8,11 @@ public struct Use {
         return Use(llvm: next)
     }
     
-    public func user() -> LLVMValue? {
+    public func user() -> IRValue? {
         return LLVMGetUser(llvm)
     }
     
-    public func usedValue() -> LLVMValue? {
+    public func usedValue() -> IRValue? {
         return LLVMGetUsedValue(llvm)
     }
 }

@@ -1,9 +1,9 @@
 import cllvm
 
-public struct Switch: LLVMValue {
+public struct Switch: IRValue {
     internal let llvm: LLVMValueRef
     
-    public func addCase(_ value: LLVMValue, _ block: BasicBlock) {
+    public func addCase(_ value: IRValue, _ block: BasicBlock) {
         LLVMAddCase(llvm, value.asLLVM(), block.asLLVM())
     }
     
