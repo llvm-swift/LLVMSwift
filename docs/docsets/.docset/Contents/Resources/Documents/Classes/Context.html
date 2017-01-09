@@ -14,7 +14,7 @@
     <a title="Context Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (35% documented)</p>
+        <p><a href="../index.html"> Docs</a> (51% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -217,7 +217,13 @@
         <section>
           <section class="section">
             <h1>Context</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Context</span></code></pre>
+
+                </div>
+              </div>
+            <p>A <code>Context</code> represents execution states for the core LLVM IR system.</p>
 
           </section>
           <section class="section task-group-section">
@@ -236,8 +242,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Retrieves the global context instance.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">global</span> <span class="o">=</span> <span class="kt">Context</span><span class="p">(</span><span class="nv">llvm</span><span class="p">:</span> <span class="kt">LLVMGetGlobalContext</span><span class="p">()</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -255,8 +269,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a <code>Context</code> object from an <code>LLVMContextRef</code> object.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">llvm</span><span class="p">:</span> <span class="kt">LLVMContextRef</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

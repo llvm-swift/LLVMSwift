@@ -14,7 +14,7 @@
     <a title="CodeModel Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (35% documented)</p>
+        <p><a href="../index.html"> Docs</a> (51% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -217,7 +217,19 @@
         <section>
           <section class="section">
             <h1>CodeModel</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CodeModel</span></code></pre>
+
+                </div>
+              </div>
+            <p>The model that generated code should follow.  Code Models enables particular
+styles of generated code that may be more suitable for each enumerated 
+domain.  Code Models differ in addressing (absolute versus position 
+independent), code size, data size and address range.</p>
+
+<p>Documentation of these modes paraphrases the <a href="https://software.intel.com/sites/default/files/article/402129/mpx-linux64-abi.pdf">Intel System V ABI AMD64
+Architecture Processor Supplement</a>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -236,12 +248,24 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Generated code will assume the default for a particular target architecture.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="err">`</span><span class="k">default</span><span class="err">`</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -255,12 +279,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Generated code will assume the default for JITed code on a particular 
+target architecture.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">jitDefault</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -274,12 +311,37 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The virtual address of code executed is known at link time. Additionally
+all symbols are known to be located in the virtual addresses in the range
+from 0 to 2^31 − 2^24 − 1 or from 0x00000000 to 0x7effffff.</p>
 
+<p>This allows the compiler to encode symbolic references with offsets in the
+range from −(2^31) to 2^24 or from 0x80000000 to 0x01000000 directly in
+the sign extended immediate operands, with offsets in the range from 0 to
+2^31 − 2^24 or from 0x00000000 to 0x7f000000 in the zero extended
+immediate operands and use instruction pointer relative addressing for the
+symbols with offsets in the range −(2^24) to 2^24 or 0xff000000 to
+0x01000000.</p>
+
+<p>This is the fastest code model and is suitable for the vast majority of
+programs.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">small</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -293,12 +355,33 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The kernel of an operating system is usually rather small but runs in the 
+negative half of the address space. So all symbols are defined to be in 
+the range from 2^64 − 2^31 to 2^64 − 2^24 or from 0xffffffff80000000 to 
+0xffffffffff000000.</p>
 
+<p>This code model has advantages similar to those of the small model, but 
+allows encoding of zero extended symbolic references only for offsets from
+2^31 to 2^31 + 2^24 or from 0x80000000 to 0x81000000. The range offsets 
+for sign extended reference changes to 0 to 2^31 + 2^24 or 0x00000000 to 
+0x81000000.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">kernel</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -312,12 +395,36 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>In the medium model, the data section is split into two parts — the data
+section still limited in the same way as in the small code model and the 
+large data section having no limits except for available addressing
+space. The program layout must be set in a way so that large data sections
+(.ldata, .lrodata, .lbss) come after the text and data sections.</p>
 
+<p>This model requires the compiler to use <code>movabs</code> instructions to access
+large static data and to load addresses into registers, but keeps the 
+advantages of the small code model for manipulation of addresses in the 
+small data and text sections (specially needed for branches).</p>
+
+<p>By default only data larger than 65535 bytes will be placed in the large 
+data section.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">medium</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -331,8 +438,27 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The large code model makes no assumptions about addresses and sizes of 
+sections.</p>
 
+<p>The compiler is required to use the movabs instruction, as in the medium 
+code model, even for dealing with addresses inside the text section. 
+Additionally, indirect branches are needed when branching to addresses 
+whose offset from the current instruction pointer is unknown.</p>
+
+<p>It is possible to avoid the limitation on the text section in the small 
+and medium models by breaking up the program into multiple shared 
+libraries, so this model is strictly only required if the text of a single
+function becomes larger than what the medium model allows.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">large</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -354,8 +480,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the underlying <code>LLVMCodeModel</code> associated with this
+code model.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMCodeModel</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

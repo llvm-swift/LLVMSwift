@@ -14,7 +14,7 @@
     <a title="Global Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (35% documented)</p>
+        <p><a href="../index.html"> Docs</a> (51% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -217,7 +217,15 @@
         <section>
           <section class="section">
             <h1>Global</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Global</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>A <code>Global</code> represents a region of memory allocated at compile time instead
+of at runtime.  A global variable must either have an initializer, or make
+reference to an external definition that has an initializer.</p>
 
           </section>
           <section class="section task-group-section">
@@ -236,8 +244,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns whether this global variable has no initializer because it makes
+reference to an initialized value in another translation unit.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isExternallyInitialized</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -245,9 +262,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9LLVMSwift6Global11initializerPS_7IRValue_"></a>
+                    <a name="/s:vV9LLVMSwift6Global11initializerGSqPS_7IRValue__"></a>
                     <a name="//apple_ref/swift/Property/initializer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9LLVMSwift6Global11initializerPS_7IRValue_">initializer</a>
+                    <a class="token" href="#/s:vV9LLVMSwift6Global11initializerGSqPS_7IRValue__">initializer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -255,8 +272,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Retrieves the initializer for this global variable, if it exists.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">initializer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -274,8 +299,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns whether this global variable is a constant, whether or not the
+final definition of the global is not.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isGlobalConstant</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -293,8 +327,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns whether this global variable is thread-local.  That is, returns
+if this variable is not shared by multiple threads.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isThreadLocal</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -312,8 +355,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Retrieves the underlying LLVM value object.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMValueRef</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

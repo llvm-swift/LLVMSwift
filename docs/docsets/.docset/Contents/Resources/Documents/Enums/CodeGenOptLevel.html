@@ -14,7 +14,7 @@
     <a title="CodeGenOptLevel Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (35% documented)</p>
+        <p><a href="../index.html"> Docs</a> (51% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -217,7 +217,15 @@
         <section>
           <section class="section">
             <h1>CodeGenOptLevel</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CodeGenOptLevel</span></code></pre>
+
+                </div>
+              </div>
+            <p>LLVM-provided high-level optimization levels.</p>
+
+<p>Each level has a specific goal and rationale.</p>
 
           </section>
           <section class="section task-group-section">
@@ -236,12 +244,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Disable as many optimizations as possible. This doesn&rsquo;t completely
+disable the optimizer in all cases, for example always_inline functions
+can be required to be inlined for correctness.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="k">none</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -255,12 +277,37 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Optimize quickly without destroying debuggability.</p>
 
+<p>This level is tuned to produce a result from the optimizer as quickly
+as possible and to avoid destroying debuggability. This tends to result
+in a very good development mode where the compiled code will be
+immediately executed as part of testing. As a consequence, where
+possible, we would like to produce efficient-to-execute code, but not
+if it significantly slows down compilation or would prevent even basic
+debugging of the resulting binary.</p>
+
+<p>As an example, complex loop transformations such as versioning,
+vectorization, or fusion might not make sense here due to the degree to
+which the executed code would differ from the source code, and the
+potential compile time cost.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">less</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -274,12 +321,39 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Optimize for fast execution as much as possible without triggering
+significant incremental compile time or code size growth.</p>
 
+<p>The key idea is that optimizations at this level should <q>pay for
+themselves</q>. So if an optimization increases compile time by 5% or
+increases code size by 5% for a particular benchmark, that benchmark
+should also be one which sees a 5% runtime improvement. If the compile
+time or code size penalties happen on average across a diverse range of
+LLVM users&rsquo; benchmarks, then the improvements should as well.</p>
+
+<p>And no matter what, the compile time needs to not grow superlinearly
+with the size of input to LLVM so that users can control the runtime of
+the optimizer in this mode.</p>
+
+<p>This is expected to be a good default optimization level for the vast
+majority of users.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="err">`</span><span class="k">default</span><span class="err">`</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -293,8 +367,29 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Optimize for fast execution as much as possible.</p>
 
+<p>This mode is significantly more aggressive in trading off compile time
+and code size to get execution time improvements. The core idea is that
+this mode should include any optimization that helps execution time on
+balance across a diverse collection of benchmarks, even if it increases
+code size or compile time for some benchmarks without corresponding
+improvements to execution time.</p>
+
+<p>Despite being willing to trade more compile time off to get improved
+execution time, this mode still tries to avoid superlinear growth in
+order to make even significantly slower compile times at least scale
+reasonably. This does not preclude very substantial constant factor
+costs though.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">aggressive</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -316,8 +411,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the underlying <code>LLVMCodeGenOptLevel</code> associated with this
+optimization level.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMCodeGenOptLevel</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
