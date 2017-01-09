@@ -104,8 +104,8 @@ public final class Module {
     }
   }
 
-  /// Creates a type with the given name in this module if that name does not
-  /// conflict with an existing type name.
+  /// Searches for and retrieves a type with the given name in this module if
+  /// that name references an existing type.
   ///
   /// - parameter name: The name of the type to create.
   ///
@@ -116,8 +116,8 @@ public final class Module {
     return convertType(type)
   }
 
-  /// Creates a function with the given name in this module if that name does 
-  /// not conflict with an existing type name.
+  /// Searches for and retrieves a function with the given name in this module 
+  /// if that name references an existing function.
   ///
   /// - parameter name: The name of the function to create.
   ///
