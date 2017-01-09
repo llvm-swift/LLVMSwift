@@ -1,0 +1,8 @@
+os: osx
+language: objective-c
+osx_image: xcode8
+before_install:
+  - cp ./cllvm.pc /usr/local/lib/pkgconfig/cllvm.pc 
+  - brew install llvm
+script:
+  - swift build	  
