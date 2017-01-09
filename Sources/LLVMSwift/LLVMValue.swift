@@ -56,67 +56,67 @@ extension LLVMValueRef: IRValue {
 
 extension Int: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<Int>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<Int>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension Int8: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<Int8>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<Int8>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension Int16: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<Int16>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<Int16>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension Int32: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<Int32>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<Int32>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension Int64: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<Int64>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<Int64>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension UInt: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<UInt>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<UInt>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension UInt8: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<UInt8>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<UInt8>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension UInt16: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<UInt16>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<UInt16>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension UInt32: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<UInt32>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<UInt32>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension UInt64: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: MemoryLayout<UInt64>.size * 8).constant(self)
+    return IntType(width: MemoryLayout<UInt64>.size * 8).constant(self).asLLVM()
   }
 }
 
 extension Bool: IRValue {
   public func asLLVM() -> LLVMValueRef {
-    return IntType(width: 1).constant(self ? 1 : 0)
+    return IntType(width: 1).constant(self ? 1 : 0).asLLVM()
   }
 }
 
