@@ -45,14 +45,14 @@ public class TargetData {
     return Int(LLVMSizeOfTypeInBits(llvm, type.asLLVM()))
   }
 
-  /// Computes the number of bits necessary to hold a value of the given type
-  /// for this target environment.
+  /// Computes the minimum ABI-required number of bits necessary to hold a value
+  /// of the given type for this target environment.
   ///
   /// - parameter type: The type to compute the size of.
   ///
-  /// - returns: The size of the type in bits.
-  public func abiSizeOfTypeInBits(_ type: IRType) -> Int {
-    return Int(LLVMSizeOfTypeInBits(llvm, type.asLLVM()))
+  /// - returns: The minimum ABI-required size of the type in bytes.
+  public func abiSizeOfType(_ type: IRType) -> Int {
+    return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
   }
 
   /// The current platform byte order, either big or little endian.
