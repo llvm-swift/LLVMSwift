@@ -150,22 +150,23 @@ public class TargetData {
 }
 
 public enum ByteOrder {
-  /// Little-endian byte order. In a little-endian platform, the highest-order
-  /// bits come at the end of the series of bytes, the least-significant byte
-  /// comes first in memory, so the 16-bit number 1234 would look like:
+  /// Little-endian byte order. In a little-endian platform, the _least_
+  /// significant bytes come before the _most_ significant bytes in a series, 
+  /// so the 16-bit number 1234 would look like:
   /// ```
-  /// 00000100 11010010
+  /// 11010010 00000100
   /// ^ lower  ^ higher order
   /// ```
   case littleEndian
 
-  /// Big-endian byte order. In a little-endian platform, the highest-order
-  /// bits come at the end of the series of bytes, the least-significant byte
-  /// comes first in memory, so the 16-bit number 257 would look like:
+  /// Big-endian byte order. In a big-endian platform, the _most_
+  /// significant bytes come before the _least_ significant bytes in a series,
+  /// so the 16-bit number 1234 would look like:
   /// ```
-  /// 11010010 00000100
-  /// ^ higher ^ lower order
+  /// 00000100 11010010
+  /// ^ higher  ^ lower order
   /// ```
+  /// Big-endian byte order is the most natural order for humans to understand.
   case bigEndian
 
   /// Converts this ByteOrder to the equivalent LLVMByteOrdering
