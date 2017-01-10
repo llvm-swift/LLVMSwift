@@ -1,297 +1,458 @@
 {
   "warnings": [
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 3,
-      "symbol": "Attribute",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 4,
-      "symbol": "Attribute.inReg",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 4,
-      "symbol": "Attribute.noAlias",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 4,
-      "symbol": "Attribute.noReturn",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 4,
-      "symbol": "Attribute.noUnwind",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 4,
-      "symbol": "Attribute.sExt",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 4,
-      "symbol": "Attribute.structRet",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 4,
-      "symbol": "Attribute.zExt",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 5,
-      "symbol": "Attribute.alwaysInline",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 5,
-      "symbol": "Attribute.byVal",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 5,
-      "symbol": "Attribute.nest",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 5,
-      "symbol": "Attribute.noInline",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 5,
-      "symbol": "Attribute.optimizeForSize",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 5,
-      "symbol": "Attribute.readOnly",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 6,
-      "symbol": "Attribute.alignment",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 6,
-      "symbol": "Attribute.noCapture",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 6,
-      "symbol": "Attribute.noRedZone",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 6,
-      "symbol": "Attribute.stackProtect",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 6,
-      "symbol": "Attribute.stackProtectReq",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 7,
-      "symbol": "Attribute.inlineHint",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 7,
-      "symbol": "Attribute.naked",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 7,
-      "symbol": "Attribute.noImplicitFloat",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 7,
-      "symbol": "Attribute.returnsTwice",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 7,
-      "symbol": "Attribute.stackAlignment",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 8,
-      "symbol": "Attribute.nonLazyBind",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 8,
-      "symbol": "Attribute.uwTable",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 30,
-      "symbol": "Attribute.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 35,
-      "symbol": "Function",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 41,
-      "symbol": "Function.entryBlock",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 46,
-      "symbol": "Function.firstBlock",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 51,
-      "symbol": "Function.lastBlock",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 56,
-      "symbol": "Function.basicBlocks",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 66,
-      "symbol": "Function.parameter(at:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 71,
-      "symbol": "Function.firstParameter",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 76,
-      "symbol": "Function.lastParameter",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 81,
-      "symbol": "Function.parameters",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
       "line": 91,
-      "symbol": "Function.appendBasicBlock(named:in:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "symbol": "OpCode.ret",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 93,
+      "symbol": "OpCode.br",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 95,
+      "symbol": "OpCode.switch",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 97,
+      "symbol": "OpCode.indirectBr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 99,
+      "symbol": "OpCode.invoke",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
       "line": 101,
-      "symbol": "Function.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "symbol": "OpCode.unreachable",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
       "line": 106,
-      "symbol": "Parameter",
-      "symbol_kind": "source.lang.swift.decl.struct",
+      "symbol": "OpCode.add",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 117,
-      "symbol": "Parameter.next()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 108,
+      "symbol": "OpCode.fadd",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 110,
+      "symbol": "OpCode.sub",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 112,
+      "symbol": "OpCode.fsub",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 114,
+      "symbol": "OpCode.mul",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 116,
+      "symbol": "OpCode.fmul",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 118,
+      "symbol": "OpCode.udiv",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 120,
+      "symbol": "OpCode.sdiv",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
       "line": 122,
-      "symbol": "Parameter.previous()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "symbol": "OpCode.fdiv",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/Function.swift",
-      "line": 127,
-      "symbol": "Parameter.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 124,
+      "symbol": "OpCode.urem",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 126,
+      "symbol": "OpCode.srem",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 128,
+      "symbol": "OpCode.frem",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 133,
+      "symbol": "OpCode.shl",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 135,
+      "symbol": "OpCode.lshr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 137,
+      "symbol": "OpCode.ashr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 139,
+      "symbol": "OpCode.and",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 141,
+      "symbol": "OpCode.or",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 143,
+      "symbol": "OpCode.xor",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 148,
+      "symbol": "OpCode.alloca",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 150,
+      "symbol": "OpCode.load",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 152,
+      "symbol": "OpCode.store",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 154,
+      "symbol": "OpCode.getElementPtr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 159,
+      "symbol": "OpCode.trunc",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 161,
+      "symbol": "OpCode.zext",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 163,
+      "symbol": "OpCode.sext",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 165,
+      "symbol": "OpCode.fpToUI",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 167,
+      "symbol": "OpCode.fpToSI",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 169,
+      "symbol": "OpCode.uiToFP",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 171,
+      "symbol": "OpCode.siToFP",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 173,
+      "symbol": "OpCode.fpTrunc",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 175,
+      "symbol": "OpCode.fpExt",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 177,
+      "symbol": "OpCode.ptrToInt",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 179,
+      "symbol": "OpCode.intToPtr",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 181,
+      "symbol": "OpCode.bitCast",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 183,
+      "symbol": "OpCode.addrSpaceCast",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 188,
+      "symbol": "OpCode.icmp",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 190,
+      "symbol": "OpCode.fcmp",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 192,
+      "symbol": "OpCode.PHI",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 194,
+      "symbol": "OpCode.call",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 196,
+      "symbol": "OpCode.select",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 198,
+      "symbol": "OpCode.userOp1",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 200,
+      "symbol": "OpCode.userOp2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 202,
+      "symbol": "OpCode.vaArg",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 204,
+      "symbol": "OpCode.extractElement",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 206,
+      "symbol": "OpCode.insertElement",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 208,
+      "symbol": "OpCode.shuffleVector",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 210,
+      "symbol": "OpCode.extractValue",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 212,
+      "symbol": "OpCode.insertValue",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 217,
+      "symbol": "OpCode.fence",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 219,
+      "symbol": "OpCode.atomicCmpXchg",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 221,
+      "symbol": "OpCode.atomicRMW",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 226,
+      "symbol": "OpCode.resume",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 228,
+      "symbol": "OpCode.landingPad",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 230,
+      "symbol": "OpCode.cleanupRet",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 232,
+      "symbol": "OpCode.catchRet",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 234,
+      "symbol": "OpCode.catchPad",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 236,
+      "symbol": "OpCode.cleanupPad",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/BasicBlock.swift",
+      "line": 238,
+      "symbol": "OpCode.catchSwitch",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/FloatType.swift",
+      "line": 5,
+      "symbol": "FloatType",
+      "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
@@ -309,1275 +470,568 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": null,
-      "symbol": "IRType",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 3,
-      "symbol": "IRType",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 4,
-      "symbol": "IRType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 8,
-      "symbol": "IRType.null()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 12,
-      "symbol": "IRType.undef()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 16,
-      "symbol": "IRType.constPointerNull()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 20,
-      "symbol": "IRType.dump()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 77,
-      "symbol": "VoidType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 78,
-      "symbol": "VoidType.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 79,
-      "symbol": "VoidType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 84,
-      "symbol": "IntType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 85,
-      "symbol": "IntType.width",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 87,
-      "symbol": "IntType.init(width:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 89,
-      "symbol": "IntType.int1",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 90,
-      "symbol": "IntType.int8",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 91,
-      "symbol": "IntType.int16",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 92,
-      "symbol": "IntType.int32",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 93,
-      "symbol": "IntType.int64",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 94,
-      "symbol": "IntType.int128",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 96,
-      "symbol": "IntType.zero()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 100,
-      "symbol": "IntType.constant(_:signExtend:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 106,
-      "symbol": "IntType.allOnes()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 110,
-      "symbol": "IntType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 115,
-      "symbol": "ArrayType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 116,
-      "symbol": "ArrayType.elementType",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 117,
-      "symbol": "ArrayType.count",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 119,
-      "symbol": "ArrayType.init(elementType:count:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 124,
-      "symbol": "ArrayType.constant(_:type:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 131,
-      "symbol": "ArrayType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 136,
-      "symbol": "MetadataType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 138,
-      "symbol": "MetadataType.init(llvm:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 141,
-      "symbol": "MetadataType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 146,
-      "symbol": "LabelType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 147,
-      "symbol": "LabelType.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 148,
-      "symbol": "LabelType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 153,
-      "symbol": "FloatType",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 154,
-      "symbol": "FloatType.double",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 154,
-      "symbol": "FloatType.float",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 154,
-      "symbol": "FloatType.fp128",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 154,
-      "symbol": "FloatType.half",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 154,
-      "symbol": "FloatType.ppcFP128",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 154,
-      "symbol": "FloatType.x86FP80",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 156,
-      "symbol": "FloatType.constant(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 160,
-      "symbol": "FloatType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 172,
-      "symbol": "PointerType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 173,
-      "symbol": "PointerType.pointee",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 174,
-      "symbol": "PointerType.addressSpace",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 175,
-      "symbol": "PointerType.init(pointee:addressSpace:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 180,
-      "symbol": "PointerType.toVoid",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 182,
-      "symbol": "PointerType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 187,
-      "symbol": "FunctionType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 188,
-      "symbol": "FunctionType.argTypes",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 189,
-      "symbol": "FunctionType.returnType",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 190,
-      "symbol": "FunctionType.isVarArg",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 192,
-      "symbol": "FunctionType.init(argTypes:returnType:isVarArg:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 198,
-      "symbol": "FunctionType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 209,
-      "symbol": "StructType",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 212,
-      "symbol": "StructType.init(llvm:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 216,
-      "symbol": "StructType.init(elementTypes:isPacked:llvm:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 227,
-      "symbol": "StructType.setBody(_:isPacked:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 234,
-      "symbol": "StructType.constant(values:isPacked:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 241,
-      "symbol": "StructType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 246,
-      "symbol": "X86MMXType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 247,
-      "symbol": "X86MMXType.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 248,
-      "symbol": "X86MMXType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 253,
-      "symbol": "TokenType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 255,
-      "symbol": "TokenType.init(llvm:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 256,
-      "symbol": "TokenType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 261,
-      "symbol": "VectorType",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 262,
-      "symbol": "VectorType.elementType",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 263,
-      "symbol": "VectorType.count",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 265,
-      "symbol": "VectorType.init(elementType:count:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMType.swift",
-      "line": 270,
-      "symbol": "VectorType.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 6,
       "symbol": "IRValue.isAArgument",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 9,
       "symbol": "IRValue.isABasicBlock",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 12,
       "symbol": "IRValue.isAInlineAsm",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 15,
       "symbol": "IRValue.isAUser",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 18,
       "symbol": "IRValue.isAConstant",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 21,
       "symbol": "IRValue.isABlockAddress",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 24,
       "symbol": "IRValue.isAConstantAggregateZero",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 27,
       "symbol": "IRValue.isAConstantArray",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 30,
       "symbol": "IRValue.isAConstantDataSequential",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 33,
       "symbol": "IRValue.isAConstantDataArray",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 36,
       "symbol": "IRValue.isAConstantDataVector",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 39,
       "symbol": "IRValue.isAConstantExpr",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 42,
       "symbol": "IRValue.isAConstantFP",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 45,
       "symbol": "IRValue.isAConstantInt",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 48,
       "symbol": "IRValue.isAConstantPointerNull",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 51,
       "symbol": "IRValue.isAConstantStruct",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 54,
       "symbol": "IRValue.isAConstantTokenNone",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 57,
       "symbol": "IRValue.isAConstantVector",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 60,
       "symbol": "IRValue.isAGlobalValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 63,
       "symbol": "IRValue.isAGlobalAlias",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 66,
       "symbol": "IRValue.isAGlobalObject",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 69,
       "symbol": "IRValue.isAFunction",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 72,
       "symbol": "IRValue.isAGlobalVariable",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 75,
       "symbol": "IRValue.isAUndefValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 78,
       "symbol": "IRValue.isAInstruction",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 81,
       "symbol": "IRValue.isABinaryOperator",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 84,
       "symbol": "IRValue.isACallInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 87,
       "symbol": "IRValue.isAIntrinsicInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 90,
       "symbol": "IRValue.isADbgInfoIntrinsic",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 93,
       "symbol": "IRValue.isADbgDeclareInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 96,
       "symbol": "IRValue.isAMemIntrinsic",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 99,
       "symbol": "IRValue.isAMemCpyInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 102,
       "symbol": "IRValue.isAMemMoveInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 105,
       "symbol": "IRValue.isAMemSetInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 108,
       "symbol": "IRValue.isACmpInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 111,
       "symbol": "IRValue.isAFCmpInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 114,
       "symbol": "IRValue.isAICmpInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 117,
       "symbol": "IRValue.isAExtractElementInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 120,
       "symbol": "IRValue.isAGetElementPtrInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 123,
       "symbol": "IRValue.isAInsertElementInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 126,
       "symbol": "IRValue.isAInsertValueInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 129,
       "symbol": "IRValue.isALandingPadInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 132,
       "symbol": "IRValue.isAPHINode",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 135,
       "symbol": "IRValue.isASelectInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 138,
       "symbol": "IRValue.isAShuffleVectorInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 141,
       "symbol": "IRValue.isAStoreInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 144,
       "symbol": "IRValue.isATerminatorInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 147,
       "symbol": "IRValue.isABranchInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 150,
       "symbol": "IRValue.isAIndirectBrInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 153,
       "symbol": "IRValue.isAInvokeInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 156,
       "symbol": "IRValue.isAReturnInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 159,
       "symbol": "IRValue.isASwitchInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 162,
       "symbol": "IRValue.isAUnreachableInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 165,
       "symbol": "IRValue.isAResumeInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 168,
       "symbol": "IRValue.isACleanupReturnInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 171,
       "symbol": "IRValue.isACatchReturnInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 174,
       "symbol": "IRValue.isAFuncletPadInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 177,
       "symbol": "IRValue.isACatchPadInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 180,
       "symbol": "IRValue.isACleanupPadInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 183,
       "symbol": "IRValue.isAUnaryInstruction",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 186,
       "symbol": "IRValue.isAAllocaInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 189,
       "symbol": "IRValue.isACastInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 192,
       "symbol": "IRValue.isAAddrSpaceCastInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 195,
       "symbol": "IRValue.isABitCastInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 198,
       "symbol": "IRValue.isAFPExtInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 201,
       "symbol": "IRValue.isAFPToSIInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 204,
       "symbol": "IRValue.isAFPToUIInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 207,
       "symbol": "IRValue.isAFPTruncInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 210,
       "symbol": "IRValue.isAIntToPtrInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 213,
       "symbol": "IRValue.isAPtrToIntInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 216,
       "symbol": "IRValue.isASExtInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 219,
       "symbol": "IRValue.isASIToFPInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 222,
       "symbol": "IRValue.isATruncInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 225,
       "symbol": "IRValue.isAUIToFPInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 228,
       "symbol": "IRValue.isAZExtInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 231,
       "symbol": "IRValue.isAExtractValueInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 234,
       "symbol": "IRValue.isALoadInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue+Kinds.swift",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/IRValue+Kinds.swift",
       "line": 237,
       "symbol": "IRValue.isAVAArgInst",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": null,
-      "symbol": "IRValue",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": null,
-      "symbol": "IRValue",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 3,
-      "symbol": "IRValue",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 4,
-      "symbol": "IRValue.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 8,
-      "symbol": "IRValue.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 12,
-      "symbol": "IRValue.alignment",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 17,
-      "symbol": "IRValue.isConstant",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 21,
-      "symbol": "IRValue.isUndef",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 25,
-      "symbol": "IRValue.name",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 35,
-      "symbol": "IRValue.constGEP(indices:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 42,
-      "symbol": "IRValue.replaceAllUses(with:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 46,
-      "symbol": "IRValue.dump()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 52,
-      "symbol": "LLVMValueRef.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 58,
-      "symbol": "Int.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 64,
-      "symbol": "Int8.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 70,
-      "symbol": "Int16.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 76,
-      "symbol": "Int32.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 82,
-      "symbol": "Int64.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 88,
-      "symbol": "UInt.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 94,
-      "symbol": "UInt8.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 100,
-      "symbol": "UInt16.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 106,
-      "symbol": "UInt32.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 112,
-      "symbol": "UInt64.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 118,
-      "symbol": "Bool.asLLVM()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/LLVMValue.swift",
-      "line": 124,
-      "symbol": "String.asLLVM()",
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/TargetData.swift",
+      "line": 115,
+      "symbol": "TargetData.callFrameAlignment(of:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/TargetData.swift",
-      "line": 23,
-      "symbol": "TargetMachineError",
+      "line": 152,
+      "symbol": "ByteOrder",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/TargetData.swift",
-      "line": 24,
-      "symbol": "TargetMachineError.couldNotEmit",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/TargetData.swift",
-      "line": 25,
-      "symbol": "TargetMachineError.couldNotEmitBitCode",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/TargetData.swift",
-      "line": 26,
-      "symbol": "TargetMachineError.invalidTriple",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/TargetData.swift",
-      "line": 27,
-      "symbol": "TargetMachineError.couldNotCreateTarget",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/TargetData.swift",
-      "line": 47,
+      "file": "/Users/harlan/Documents/Code/Swift/LLVMSwift/Sources/LLVMSwift/TargetMachine.swift",
+      "line": 71,
       "symbol": "Target.init(llvm:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

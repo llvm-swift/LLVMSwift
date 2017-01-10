@@ -14,7 +14,7 @@
     <a title="Module Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (51% documented)</p>
+        <p><a href="../index.html"> Docs</a> (71% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -46,10 +46,10 @@
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StructType.html">StructType</a>
+                <a href="../Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Target.html">Target</a>
+                <a href="../Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
@@ -60,7 +60,7 @@
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/Attribute.html">Attribute</a>
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -82,6 +82,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -189,10 +192,10 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Switch.html">Switch</a>
+                <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/TargetData.html">TargetData</a>
+                <a href="../Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -224,7 +227,7 @@
                 </div>
               </div>
             <p>A <code>Module</code> represents the top-level structure of an LLVM program. An LLVM
-module is effectively a translation unit or a collection of translation 
+module is effectively a translation unit or a collection of translation
 units merged together.</p>
 
           </section>
@@ -321,9 +324,9 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC9LLVMSwift6Module10dataLayoutVS_10TargetData"></a>
+                    <a name="/s:vC9LLVMSwift6Module10dataLayoutCS_10TargetData"></a>
                     <a name="//apple_ref/swift/Property/dataLayout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC9LLVMSwift6Module10dataLayoutVS_10TargetData">dataLayout</a>
+                    <a class="token" href="#/s:vC9LLVMSwift6Module10dataLayoutCS_10TargetData">dataLayout</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -338,7 +341,7 @@ units merged together.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dataLayout</span><span class="p">:</span> <span class="kt"><a href="../Structs/TargetData.html">TargetData</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dataLayout</span><span class="p">:</span> <span class="kt"><a href="../Classes/TargetData.html">TargetData</a></span></code></pre>
 
                         </div>
                       </div>
@@ -511,7 +514,7 @@ that name references an existing type.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Searches for and retrieves a function with the given name in this module 
+                        <p>Searches for and retrieves a function with the given name in this module
 if that name references an existing function.</p>
 
                       </div>
@@ -566,7 +569,7 @@ if that name references an existing function.</p>
                       <div class="abstract">
                         <p>Verifies that this module is valid, taking the specified action if not.
 If this module did not pass verification, a description of any invalid
-constructs is provided with the thrown 
+constructs is provided with the thrown
 <code><a href="../Enums/ModuleError.html#/s:FO9LLVMSwift11ModuleError22didNotPassVerificationFMS0_FSSS0_">ModuleError.didNotPassVerification</a></code> error.</p>
 
                       </div>
@@ -613,7 +616,7 @@ constructs is provided with the thrown
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

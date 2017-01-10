@@ -13,7 +13,7 @@
     <a title="Enums  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (51% documented)</p>
+        <p><a href="index.html"> Docs</a> (71% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -45,10 +45,10 @@
                 <a href="Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/StructType.html">StructType</a>
+                <a href="Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Target.html">Target</a>
+                <a href="Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/TargetMachine.html">TargetMachine</a>
@@ -59,7 +59,7 @@
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/Attribute.html">Attribute</a>
+                <a href="Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -81,6 +81,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -188,10 +191,10 @@
                 <a href="Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/Switch.html">Switch</a>
+                <a href="Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/TargetData.html">TargetData</a>
+                <a href="Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/TokenType.html">TokenType</a>
@@ -225,9 +228,44 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift9Attribute"></a>
-                    <a name="//apple_ref/swift/Enum/Attribute" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift9Attribute">Attribute</a>
+                    <a name="/s:O9LLVMSwift6OpCode"></a>
+                    <a name="//apple_ref/swift/Enum/OpCode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O9LLVMSwift6OpCode">OpCode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumerates the opcodes of instructions available in the LLVM IR language.</p>
+
+<p>The raw values of this enumeration <em>must</em> match those in
+<a href="https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h">llvm-c/Core.h</a>.</p>
+
+                        <a href="Enums/OpCode.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O9LLVMSwift9FloatType"></a>
+                    <a name="//apple_ref/swift/Enum/FloatType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O9LLVMSwift9FloatType">FloatType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -237,7 +275,7 @@
                       <div class="abstract">
                         <p>Undocumented</p>
 
-                        <a href="Enums/Attribute.html" class="slightly-smaller">See more</a>
+                        <a href="Enums/FloatType.html" class="slightly-smaller">See more</a>
                       </div>
                     </section>
                   </div>
@@ -338,30 +376,6 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift9FloatType"></a>
-                    <a name="//apple_ref/swift/Enum/FloatType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift9FloatType">FloatType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/FloatType.html" class="slightly-smaller">See more</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:O9LLVMSwift11ModuleError"></a>
                     <a name="//apple_ref/swift/Enum/ModuleError" class="dashAnchor"></a>
                     <a class="token" href="#/s:O9LLVMSwift11ModuleError">ModuleError</a>
@@ -372,7 +386,7 @@ operations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Represents the possible errors that can be thrown while interacting with a 
+                        <p>Represents the possible errors that can be thrown while interacting with a
 <code><a href="Classes/Module.html">Module</a></code> object.</p>
 
                         <a href="Enums/ModuleError.html" class="slightly-smaller">See more</a>
@@ -427,37 +441,9 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift15CodegenFileType"></a>
-                    <a name="//apple_ref/swift/Enum/CodegenFileType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift15CodegenFileType">CodegenFileType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The supported types of files codegen can produce.</p>
-
-                        <a href="Enums/CodegenFileType.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CodegenFileType</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:O9LLVMSwift18TargetMachineError"></a>
-                    <a name="//apple_ref/swift/Enum/TargetMachineError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift18TargetMachineError">TargetMachineError</a>
+                    <a name="/s:O9LLVMSwift9ByteOrder"></a>
+                    <a name="//apple_ref/swift/Enum/ByteOrder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O9LLVMSwift9ByteOrder">ByteOrder</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -467,7 +453,7 @@ operations.</p>
                       <div class="abstract">
                         <p>Undocumented</p>
 
-                        <a href="Enums/TargetMachineError.html" class="slightly-smaller">See more</a>
+                        <a href="Enums/ByteOrder.html" class="slightly-smaller">See more</a>
                       </div>
                     </section>
                   </div>
@@ -566,10 +552,70 @@ Architecture Processor Supplement</a>.</p>
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O9LLVMSwift15CodegenFileType"></a>
+                    <a name="//apple_ref/swift/Enum/CodegenFileType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O9LLVMSwift15CodegenFileType">CodegenFileType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The supported types of files codegen can produce.</p>
+
+                        <a href="Enums/CodegenFileType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CodegenFileType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O9LLVMSwift18TargetMachineError"></a>
+                    <a name="//apple_ref/swift/Enum/TargetMachineError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O9LLVMSwift18TargetMachineError">TargetMachineError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents one of a few errors that can be thrown by a <code><a href="Classes/TargetMachine.html">TargetMachine</a></code></p>
+
+                        <a href="Enums/TargetMachineError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TargetMachineError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

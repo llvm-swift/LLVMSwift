@@ -14,7 +14,7 @@
     <a title="TargetMachineError Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (51% documented)</p>
+        <p><a href="../index.html"> Docs</a> (71% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -46,10 +46,10 @@
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StructType.html">StructType</a>
+                <a href="../Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Target.html">Target</a>
+                <a href="../Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
@@ -60,7 +60,7 @@
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/Attribute.html">Attribute</a>
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -82,6 +82,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -189,10 +192,10 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Switch.html">Switch</a>
+                <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/TargetData.html">TargetData</a>
+                <a href="../Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -217,7 +220,13 @@
         <section>
           <section class="section">
             <h1>TargetMachineError</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TargetMachineError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                </div>
+              </div>
+            <p>Represents one of a few errors that can be thrown by a <code><a href="../Classes/TargetMachine.html">TargetMachine</a></code></p>
 
           </section>
           <section class="section task-group-section">
@@ -226,9 +235,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift18TargetMachineError12couldNotEmitFMS0_FSSS0_"></a>
+                    <a name="/s:FO9LLVMSwift18TargetMachineError12couldNotEmitFMS0_FTSSOS_15CodegenFileType_S0_"></a>
                     <a name="//apple_ref/swift/Element/couldNotEmit" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift18TargetMachineError12couldNotEmitFMS0_FSSS0_">couldNotEmit</a>
+                    <a class="token" href="#/s:FO9LLVMSwift18TargetMachineError12couldNotEmitFMS0_FTSSOS_15CodegenFileType_S0_">couldNotEmit</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -236,8 +245,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The target machine failed to emit the specified file type.
+This case also contains the message emitted by LLVM explaining the
+failure.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">couldNotEmit</span><span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt"><a href="../Enums/CodegenFileType.html">CodegenFileType</a></span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -259,8 +278,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The target machine failed to emit the bitcode for this module.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">couldNotEmitBitCode</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -282,8 +309,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The specified target triple was invalid.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">invalidTriple</span><span class="p">(</span><span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -305,8 +340,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The Target is could not be created.
+This case also contains the message emitted by LLVM explaining the
+failure.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">couldNotCreateTarget</span><span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -328,8 +373,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the underlying <code>LLVMCodeGenFileType</code> associated with this file 
-type.</p>
+                        <p>The Target is could not be created.
+This case also contains the message emitted by LLVM explaining the
+failure.</p>
 
                       </div>
                       <div class="declaration">
@@ -348,7 +394,7 @@ type.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

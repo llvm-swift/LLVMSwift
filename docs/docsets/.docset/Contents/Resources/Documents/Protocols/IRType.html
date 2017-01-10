@@ -14,7 +14,7 @@
     <a title="IRType Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (51% documented)</p>
+        <p><a href="../index.html"> Docs</a> (71% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -46,10 +46,10 @@
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StructType.html">StructType</a>
+                <a href="../Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Target.html">Target</a>
+                <a href="../Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
@@ -60,7 +60,7 @@
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/Attribute.html">Attribute</a>
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -82,6 +82,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -189,10 +192,10 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Switch.html">Switch</a>
+                <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/TargetData.html">TargetData</a>
+                <a href="../Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -217,7 +220,14 @@
         <section>
           <section class="section">
             <h1>IRType</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IRType</span></code></pre>
+
+                </div>
+              </div>
+            <p>An <code>IRType</code> is a type that is capable of lowering itself to an <code>LLVMTypeRef</code>
+object for use with LLVM&rsquo;s C API.</p>
 
           </section>
           <section class="section task-group-section">
@@ -236,8 +246,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Retrieves the underlying LLVM type object.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMTypeRef</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -262,8 +280,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the special <code>null</code> value for this type.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">null</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -284,8 +310,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the special LLVM <code>undef</code> value for this type.</p>
 
+<p>The <code>undef</code> value can be used anywhere a constant is expected, and
+indicates that the user of the value may receive an unspecified 
+bit-pattern.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">undef</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -306,8 +344,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns the special LLVM constant <code>null</code> pointer value for this type
+initialized to <code>null</code>.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">constPointerNull</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -328,8 +375,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Dumps a representation of this type to stderr.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dump</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -339,7 +394,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

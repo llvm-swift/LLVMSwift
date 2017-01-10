@@ -13,7 +13,7 @@
     <a title="Structs  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (51% documented)</p>
+        <p><a href="index.html"> Docs</a> (71% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -45,10 +45,10 @@
                 <a href="Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/StructType.html">StructType</a>
+                <a href="Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/Target.html">Target</a>
+                <a href="Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/TargetMachine.html">TargetMachine</a>
@@ -59,7 +59,7 @@
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/Attribute.html">Attribute</a>
+                <a href="Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -81,6 +81,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -188,10 +191,10 @@
                 <a href="Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/Switch.html">Switch</a>
+                <a href="Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/TargetData.html">TargetData</a>
+                <a href="Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/TokenType.html">TokenType</a>
@@ -225,6 +228,40 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:V9LLVMSwift9ArrayType"></a>
+                    <a name="//apple_ref/swift/Struct/ArrayType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift9ArrayType">ArrayType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>ArrayType</code> is a very simple derived type that arranges elements
+sequentially in memory. <code>ArrayType</code> requires a size (number of elements) and
+an underlying data type.</p>
+
+                        <a href="Structs/ArrayType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ArrayType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:V9LLVMSwift10BasicBlock"></a>
                     <a name="//apple_ref/swift/Struct/BasicBlock" class="dashAnchor"></a>
                     <a class="token" href="#/s:V9LLVMSwift10BasicBlock">BasicBlock</a>
@@ -237,7 +274,7 @@
                       <div class="abstract">
                         <p>A <code>BasicBlock</code> represents a basic block in an LLVM IR program.  A basic
 block contains a sequence of instructions, a pointer to its parent block and
-its follower block, and an optional label that gives the basic block an 
+its follower block, and an optional label that gives the basic block an
 entry in the symbol table.</p>
 
 <p>A basic block can be thought of as a sequence of instructions, and indeed
@@ -307,9 +344,52 @@ also cannot have any PHI nodes.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A <code>Parameter</code> represents an index into the parameters of a <code><a href="Classes/Function.html">Function</a></code>.</p>
 
                         <a href="Structs/Parameter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Parameter</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V9LLVMSwift12FunctionType"></a>
+                    <a name="//apple_ref/swift/Struct/FunctionType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift12FunctionType">FunctionType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>FunctionType</code> represents a function&rsquo;s type signature.  It consists of a
+return type and a list of formal parameter types. The return type of a
+function type is a <code>void</code> type or first class type — except for <code><a href="Structs/LabelType.html">LabelType</a></code>
+and <code><a href="Structs/MetadataType.html">MetadataType</a></code>.</p>
+
+                        <a href="Structs/FunctionType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FunctionType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -355,26 +435,6 @@ reference to an external definition that has an initializer.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:V9LLVMSwift8VoidType"></a>
-                    <a name="//apple_ref/swift/Struct/VoidType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift8VoidType">VoidType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Structs/VoidType.html" class="slightly-smaller">See more</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:V9LLVMSwift7IntType"></a>
                     <a name="//apple_ref/swift/Struct/IntType" class="dashAnchor"></a>
                     <a class="token" href="#/s:V9LLVMSwift7IntType">IntType</a>
@@ -385,53 +445,29 @@ reference to an external definition that has an initializer.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The <code>IntType</code> represents an integral value of a specified bit width.</p>
+
+<p>The <code>IntType</code> is a very simple type that simply specifies an arbitrary bit
+width for the integer type desired. Any bit width from 1 bit to (2^23)-1
+(about 8 million) can be specified.</p>
 
                         <a href="Structs/IntType.html" class="slightly-smaller">See more</a>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:V9LLVMSwift9ArrayType"></a>
-                    <a name="//apple_ref/swift/Struct/ArrayType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift9ArrayType">ArrayType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">IntType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
 
-                        <a href="Structs/ArrayType.html" class="slightly-smaller">See more</a>
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:V9LLVMSwift12MetadataType"></a>
-                    <a name="//apple_ref/swift/Struct/MetadataType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift12MetadataType">MetadataType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Structs/MetadataType.html" class="slightly-smaller">See more</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -445,39 +481,31 @@ reference to an external definition that has an initializer.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p><code>LabelType</code> represents code labels.</p>
 
                         <a href="Structs/LabelType.html" class="slightly-smaller">See more</a>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:V9LLVMSwift11PointerType"></a>
-                    <a name="//apple_ref/swift/Struct/PointerType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift11PointerType">PointerType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LabelType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
 
-                        <a href="Structs/PointerType.html" class="slightly-smaller">See more</a>
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:V9LLVMSwift12FunctionType"></a>
-                    <a name="//apple_ref/swift/Struct/FunctionType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift12FunctionType">FunctionType</a>
+                    <a name="/s:V9LLVMSwift12MetadataType"></a>
+                    <a name="//apple_ref/swift/Struct/MetadataType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift12MetadataType">MetadataType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -485,69 +513,18 @@ reference to an external definition that has an initializer.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The <code>MetadataType</code> type represents embedded metadata. No derived types may
+be created from metadata except for function arguments.</p>
 
-                        <a href="Structs/FunctionType.html" class="slightly-smaller">See more</a>
+                        <a href="Structs/MetadataType.html" class="slightly-smaller">See more</a>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:V9LLVMSwift10X86MMXType"></a>
-                    <a name="//apple_ref/swift/Struct/X86MMXType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift10X86MMXType">X86MMXType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MetadataType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
 
-                        <a href="Structs/X86MMXType.html" class="slightly-smaller">See more</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:V9LLVMSwift9TokenType"></a>
-                    <a name="//apple_ref/swift/Struct/TokenType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift9TokenType">TokenType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Structs/TokenType.html" class="slightly-smaller">See more</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:V9LLVMSwift10VectorType"></a>
-                    <a name="//apple_ref/swift/Struct/VectorType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift10VectorType">VectorType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Structs/VectorType.html" class="slightly-smaller">See more</a>
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -618,6 +595,98 @@ is <code>1</code> and SSA semantics are preserved.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:V9LLVMSwift11PointerType"></a>
+                    <a name="//apple_ref/swift/Struct/PointerType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift11PointerType">PointerType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>PointerType</code> is used to specify memory locations. Pointers are commonly
+used to reference objects in memory.</p>
+
+<p><code>PointerType</code> may have an optional address space attribute defining the
+numbered address space where the pointed-to object resides. The default
+address space is number zero. The semantics of non-zero address spaces are
+target-specific.</p>
+
+<p>Note that LLVM does not permit pointers to void <code>(void*)</code> nor does it permit
+pointers to labels <code>(label*)</code>.  Use <code>i8*</code> instead.</p>
+
+                        <a href="Structs/PointerType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PointerType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V9LLVMSwift10StructType"></a>
+                    <a name="//apple_ref/swift/Struct/StructType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift10StructType">StructType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>StructType</code> is used to represent a collection of data members together in
+memory. The elements of a structure may be any type that has a size.</p>
+
+<p>Structures in memory are accessed using <code>load</code> and <code>store</code> by getting a
+pointer to a field with the ‘getelementptr‘ instruction. Structures in
+registers are accessed using the <code>extractvalue</code> and <code>insertvalue</code>
+instructions.</p>
+
+<p>Structures may optionally be <q>packed</q> structures, which indicate that the
+alignment of the struct is one byte, and that there is no padding between
+the elements. In non-packed structs, padding between field types is inserted
+as defined by the <code>DataLayout</code> of the module, which is required to match
+what the underlying code generator expects.</p>
+
+<p>Structures can either be <q>literal</q> or <q>identified</q>. A literal structure is
+defined inline with other types (e.g. {i32, i32}*) whereas identified types
+are always defined at the top level with a name. Literal types are uniqued
+by their contents and can never be recursive or opaque since there is no way
+to write one. Identified types can be recursive, can be opaqued, and are
+never uniqued.</p>
+
+                        <a href="Structs/StructType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">StructType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:V9LLVMSwift6Switch"></a>
                     <a name="//apple_ref/swift/Struct/Switch" class="dashAnchor"></a>
                     <a class="token" href="#/s:V9LLVMSwift6Switch">Switch</a>
@@ -653,9 +722,9 @@ flow passes to the default basic block.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:V9LLVMSwift10TargetData"></a>
-                    <a name="//apple_ref/swift/Struct/TargetData" class="dashAnchor"></a>
-                    <a class="token" href="#/s:V9LLVMSwift10TargetData">TargetData</a>
+                    <a name="/s:V9LLVMSwift9TokenType"></a>
+                    <a name="//apple_ref/swift/Struct/TokenType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift9TokenType">TokenType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -663,17 +732,17 @@ flow passes to the default basic block.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A <code>TargetData</code> encapsulates information about the data requirements of a
-particular target architecture and can be used to retrieve information about
-sizes and offsets of types with respect to this target.</p>
+                        <p><code>TokenType</code> is used when a value is associated with an instruction but all
+uses of the value must not attempt to introspect or obscure it. As such, it
+is not appropriate to have a <code>PHI</code> or <code>select</code> of type <code>TokenType</code>.</p>
 
-                        <a href="Structs/TargetData.html" class="slightly-smaller">See more</a>
+                        <a href="Structs/TokenType.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TargetData</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TokenType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -715,10 +784,114 @@ in an LLVM program.</p>
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V9LLVMSwift10VectorType"></a>
+                    <a name="//apple_ref/swift/Struct/VectorType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift10VectorType">VectorType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>VectorType</code> is a simple derived type that represents a vector of
+elements. <code>VectorType</code>s are used when multiple primitive data are operated
+in parallel using a single instruction (SIMD). A vector type requires a size
+(number of elements) and an underlying primitive data type.</p>
+
+                        <a href="Structs/VectorType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VectorType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V9LLVMSwift8VoidType"></a>
+                    <a name="//apple_ref/swift/Struct/VoidType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift8VoidType">VoidType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>Void</code> type represents any value and has no size.</p>
+
+                        <a href="Structs/VoidType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VoidType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V9LLVMSwift10X86MMXType"></a>
+                    <a name="//apple_ref/swift/Struct/X86MMXType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9LLVMSwift10X86MMXType">X86MMXType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>X86MMXType</code> represents a value held in an MMX register on an x86 machine.</p>
+
+<p>The operations allowed on it are quite limited: parameters and return
+values, load and store, and bitcast. User-specified MMX instructions are
+represented as intrinsic or asm calls with arguments and/or results of this
+type. There are no arrays, vectors or constants of this type.</p>
+
+                        <a href="Structs/X86MMXType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">X86MMXType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

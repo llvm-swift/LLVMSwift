@@ -14,7 +14,7 @@
     <a title="PointerType Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (51% documented)</p>
+        <p><a href="../index.html"> Docs</a> (71% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -46,10 +46,10 @@
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StructType.html">StructType</a>
+                <a href="../Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Target.html">Target</a>
+                <a href="../Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
@@ -60,7 +60,7 @@
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/Attribute.html">Attribute</a>
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -82,6 +82,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -189,10 +192,10 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Switch.html">Switch</a>
+                <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/TargetData.html">TargetData</a>
+                <a href="../Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -217,7 +220,22 @@
         <section>
           <section class="section">
             <h1>PointerType</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PointerType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span></code></pre>
+
+                </div>
+              </div>
+            <p><code>PointerType</code> is used to specify memory locations. Pointers are commonly
+used to reference objects in memory.</p>
+
+<p><code>PointerType</code> may have an optional address space attribute defining the
+numbered address space where the pointed-to object resides. The default
+address space is number zero. The semantics of non-zero address spaces are
+target-specific.</p>
+
+<p>Note that LLVM does not permit pointers to void <code>(void*)</code> nor does it permit
+pointers to labels <code>(label*)</code>.  Use <code>i8*</code> instead.</p>
 
           </section>
           <section class="section task-group-section">
@@ -236,8 +254,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Retrieves the type of the value being pointed to.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">pointee</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -255,8 +281,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Retrieves the address space where the pointed-to object resides.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -274,8 +308,49 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a <code>PointerType</code> from a pointee type and an optional address space.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">pointee</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pointee</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the pointed-to object.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>addressSpace</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The optional address space where the pointed-to object resides.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -293,8 +368,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>/ Creates a type that simulates a pointer to void <code>(void*)</code>.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">toVoid</span> <span class="o">=</span> <span class="kt">PointerType</span><span class="p">(</span><span class="nv">pointee</span><span class="p">:</span> <span class="kt"><a href="../Structs/IntType.html">IntType</a></span><span class="o">.</span><span class="n">int8</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -312,8 +395,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Retrieves the underlying LLVM type object.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMTypeRef</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -323,7 +414,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

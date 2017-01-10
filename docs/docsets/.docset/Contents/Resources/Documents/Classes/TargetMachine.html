@@ -14,7 +14,7 @@
     <a title="TargetMachine Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (51% documented)</p>
+        <p><a href="../index.html"> Docs</a> (71% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -46,10 +46,10 @@
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StructType.html">StructType</a>
+                <a href="../Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Target.html">Target</a>
+                <a href="../Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
@@ -60,7 +60,7 @@
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/Attribute.html">Attribute</a>
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -82,6 +82,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -189,10 +192,10 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Switch.html">Switch</a>
+                <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/TargetData.html">TargetData</a>
+                <a href="../Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -224,7 +227,7 @@
                 </div>
               </div>
             <p>A <code>TargetMachine</code> object represents an object that encapsulates information
-about a particular machine (i.e. CPU type) associated with a target 
+about a particular machine (i.e. CPU type) associated with a target
 environment.</p>
 
           </section>
@@ -261,9 +264,9 @@ environment.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC9LLVMSwift13TargetMachine10dataLayoutVS_10TargetData"></a>
+                    <a name="/s:vC9LLVMSwift13TargetMachine10dataLayoutCS_10TargetData"></a>
                     <a name="//apple_ref/swift/Property/dataLayout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC9LLVMSwift13TargetMachine10dataLayoutVS_10TargetData">dataLayout</a>
+                    <a class="token" href="#/s:vC9LLVMSwift13TargetMachine10dataLayoutCS_10TargetData">dataLayout</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -278,7 +281,7 @@ environment.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">dataLayout</span><span class="p">:</span> <span class="kt"><a href="../Structs/TargetData.html">TargetData</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">dataLayout</span><span class="p">:</span> <span class="kt"><a href="../Classes/TargetData.html">TargetData</a></span></code></pre>
 
                         </div>
                       </div>
@@ -448,7 +451,7 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Emits an LLVM Bitcode, ASM, or object file for the given module to the 
+                        <p>Emits an LLVM Bitcode, ASM, or object file for the given module to the
 provided filename.</p>
 
 <p>Failure during any part of the compilation process or the process of
@@ -518,7 +521,7 @@ thrown describing the error in detail.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
