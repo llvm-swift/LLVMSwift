@@ -93,7 +93,7 @@ public enum RealPredicate {
   case une
   /// No comparison, always returns `true`.
   case `true`
-  
+
   static let predicateMapping: [RealPredicate: LLVMRealPredicate] = [
     .false: LLVMRealPredicateFalse, .oeq: LLVMRealOEQ, .ogt: LLVMRealOGT,
     .oge: LLVMRealOGE, .olt: LLVMRealOLT, .ole: LLVMRealOLE,
@@ -102,7 +102,7 @@ public enum RealPredicate {
     .ult: LLVMRealULT, .ule: LLVMRealULE, .une: LLVMRealUNE,
     .true: LLVMRealPredicateTrue,
   ]
-  
+
   public var llvm: LLVMRealPredicate {
     return RealPredicate.predicateMapping[self]!
   }
@@ -988,5 +988,9 @@ public class IRBuilder {
   ///   string variable.
   public func buildGlobalStringPtr(_ string: String, name: String = "") -> IRValue {
     return LLVMBuildGlobalStringPtr(llvm, string, name)
+  }
+  
+  deinit {
+    LLVMDisposeBuilder(llvm)
   }
 }

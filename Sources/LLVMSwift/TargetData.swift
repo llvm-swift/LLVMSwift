@@ -1,146 +1,10 @@
 import cllvm
 
-/// The supported types of files codegen can produce.
-public enum CodegenFileType {
-  /// An object file (.o).
-  case object
-  /// An assembly file (.asm).
-  case assembly
-  /// An LLVM Bitcode file (.bc).
-  case bitCode
-
-  /// Returns the underlying `LLVMCodeGenFileType` associated with this file 
-  /// type.
-  public func asLLVM() -> LLVMCodeGenFileType {
-    switch self {
-    case .object: return LLVMObjectFile
-    case .assembly: return LLVMAssemblyFile
-    case .bitCode: fatalError("not handled here")
-    }
-  }
-}
-
-public enum TargetMachineError: Error, CustomStringConvertible {
-  case couldNotEmit(String)
-  case couldNotEmitBitCode
-  case invalidTriple(String)
-  case couldNotCreateTarget(String, String)
-
-  public var description: String {
-    switch self {
-    case .couldNotCreateTarget(let triple, let message):
-      return "could not create target for '\(triple)': \(message)"
-    case .invalidTriple(let target):
-      return "invalid target triple '\(target)'"
-    case .couldNotEmit(let message):
-      return "could not emit object file: \(message)"
-    case .couldNotEmitBitCode:
-      return "could not emit bitcode for an unknown reason"
-    }
-  }
-}
-
-/// A `Target` object represents an object that encapsulates information about
-/// a host architecture, vendor, ABI, etc.
-public class Target {
-  internal let llvm: LLVMTargetRef
-  public init(llvm: LLVMTargetRef) {
-    self.llvm = llvm
-  }
-}
-
-/// A `TargetMachine` object represents an object that encapsulates information
-/// about a particular machine (i.e. CPU type) associated with a target 
-/// environment.
-public class TargetMachine {
-  internal let llvm: LLVMTargetMachineRef
-
-  /// The target information associated with this target machine.
-  public  let target: Target
-
-  /// The data layout semantics associated with this target machine
-  public let dataLayout: TargetData
-
-  /// A string representing the target triple for this target machine.  In the
-  /// form `<arch><sub>-<vendor>-<sys>-<abi>` where
-  ///
-  /// - arch = x86_64, i386, arm, thumb, mips, etc.
-  /// - sub = for ex. on ARM: v5, v6m, v7a, v7m, etc.
-  /// - vendor = pc, apple, nvidia, ibm, etc.
-  /// - sys = none, linux, win32, darwin, cuda, etc.
-  /// - abi = eabi, gnu, android, macho, elf, etc.
-  public let triple: String
-
-  /// Creates a Target Machine with information about its target environment.
-  ///
-  /// - parameter triple: An optional target triple to target.  If this is not
-  ///   provided the target triple of the host machine will be assumed.
-  /// - parameter cpu: An optional CPU type to target.  If this is not provided 
-  ///   the host CPU will be inferred.
-  /// - parameter features: An optional string containing the features a
-  ///   particular target provides.
-  /// - parameter optLevel: The optimization level for generated code.  If no
-  ///   value is provided, the default level of optimization is assumed.
-  /// - parameter relocMode: The relocation mode of the target environment.  If
-  ///   no mode is provided, the default mode for the target architecture is
-  ///   assumed.
-  /// - parameter codeModel: The kind of code to produce for this target.  If
-  ///   no model is provided, the default model for the target architecture is
-  ///   assumed.
-  public init(triple: String? = nil, cpu: String = "", features: String = "",
-              optLevel: CodeGenOptLevel = .default, relocMode: RelocMode = .default,
-              codeModel: CodeModel = .default) throws {
-    self.triple = triple ?? String(cString: LLVMGetDefaultTargetTriple()!)
-    var target: LLVMTargetRef?
-    var error: UnsafeMutablePointer<Int8>? = nil
-    LLVMGetTargetFromTriple(self.triple, &target, &error)
-    if let error = error {
-      defer { LLVMDisposeMessage(error) }
-      throw TargetMachineError.couldNotCreateTarget(self.triple,
-                                                    String(cString: error))
-    }
-    self.target = Target(llvm: target!)
-    self.llvm = LLVMCreateTargetMachine(target!, self.triple, cpu, features,
-                                        optLevel.asLLVM(),
-                                        relocMode.asLLVM(),
-                                        codeModel.asLLVM())
-    self.dataLayout = TargetData(llvm: LLVMCreateTargetDataLayout(self.llvm))
-  }
-
-  /// Emits an LLVM Bitcode, ASM, or object file for the given module to the 
-  /// provided filename.
-  ///
-  /// Failure during any part of the compilation process or the process of
-  /// writing the results to disk will result in a `TargetMachineError` being
-  /// thrown describing the error in detail.
-  ///
-  /// - parameter module: The module whose contents will be codegened.
-  /// - parameter type: The type of codegen to perform on the given module.
-  /// - parameter path: The path to write the resulting file.
-  public func emitToFile(module: Module, type: CodegenFileType, path: String) throws {
-    if case .bitCode = type {
-      if LLVMWriteBitcodeToFile(module.llvm, path) != 0 {
-        throw TargetMachineError.couldNotEmitBitCode
-      }
-      return
-    }
-    var err: UnsafeMutablePointer<Int8>?
-    let status = path.withCString { cStr -> LLVMBool in
-      var mutable = strdup(cStr)
-      defer { free(mutable) }
-      return LLVMTargetMachineEmitToFile(llvm, module.llvm, mutable, type.asLLVM(), &err)
-    }
-    if let err = err, status != 0 {
-      defer { LLVMDisposeMessage(err) }
-      throw TargetMachineError.couldNotEmit(String(cString: err))
-    }
-  }
-}
 
 /// A `TargetData` encapsulates information about the data requirements of a
 /// particular target architecture and can be used to retrieve information about
 /// sizes and offsets of types with respect to this target.
-public struct TargetData {
+public class TargetData {
   internal let llvm: LLVMTargetDataRef
 
   /// Creates a Target Data object from an `LLVMTargetDataRef` object.
@@ -155,11 +19,23 @@ public struct TargetData {
   /// - parameter type: The type of the structure to compute the offset with.
   ///
   /// - returns: The offset of the given element within the structure.
-  public func offsetOfElement(_ element: Int, type: StructType) -> Int {
-    return Int(LLVMOffsetOfElement(llvm, type.asLLVM(), UInt32(element)))
+  public func offsetOfElement(at index: Int, type: StructType) -> Int {
+    return Int(LLVMOffsetOfElement(llvm, type.asLLVM(), UInt32(index)))
   }
 
-  /// Computes the number of bits necessary to hold a value of the given type 
+  /// Computes the index of the struct element at the provided offset in a
+  /// struct type for a target.
+  ///
+  /// - parameter element: The index of the element in the given structure to
+  //    compute.
+  /// - parameter type: The type of the structure to compute the offset with.
+  ///
+  /// - returns: The offset of the given element within the structure.
+  public func elementAtOffset(_ offset: Int, type: StructType) -> Int {
+    return Int(LLVMElementAtOffset(llvm, type.asLLVM(), UInt64(offset)))
+  }
+
+  /// Computes the number of bits necessary to hold a value of the given type
   /// for this target environment.
   ///
   /// - parameter type: The type to compute the size of.
@@ -167,6 +43,148 @@ public struct TargetData {
   /// - returns: The size of the type in bits.
   public func sizeOfTypeInBits(_ type: IRType) -> Int {
     return Int(LLVMSizeOfTypeInBits(llvm, type.asLLVM()))
+  }
+
+  /// Computes the number of bits necessary to hold a value of the given type
+  /// for this target environment.
+  ///
+  /// - parameter type: The type to compute the size of.
+  ///
+  /// - returns: The size of the type in bits.
+  public func abiSizeOfTypeInBits(_ type: IRType) -> Int {
+    return Int(LLVMSizeOfTypeInBits(llvm, type.asLLVM()))
+  }
+
+  /// The current platform byte order, either big or little endian.
+  public var byteOrder: ByteOrder {
+    return ByteOrder(llvm: LLVMByteOrder(llvm))
+  }
+
+  /// Creates a string representation of the target data.
+  public var layoutString: String {
+    let str = LLVMCopyStringRepOfTargetData(llvm)!
+    defer { free(str) }
+    return String(cString: str)
+  }
+
+  /// The integer type that is the same size as a pointer on this target.
+  /// This is analoguous to the `intptr_t` type in C++.
+  /// - parameters:
+  ///   - context: The context in which to derive the type (optional).
+  ///   - addressSpace: The address space in which to derive the type.
+  /// - returns: An IntegerType that is the same size as the pointer type
+  ///            on this target.
+  public func intPointerType(context: Context? = nil, addressSpace: Int? = nil) -> IntType {
+    let type: LLVMTypeRef
+    switch (context, addressSpace) {
+    case let (context?, addressSpace?):
+      type = LLVMIntPtrTypeForASInContext(context.llvm, llvm, UInt32(addressSpace))
+    case let (nil, addressSpace?):
+      type = LLVMIntPtrTypeForAS(llvm, UInt32(addressSpace))
+    case let (context?, nil):
+      type = LLVMIntPtrTypeInContext(context.llvm, llvm)
+    case (nil, nil):
+      type = LLVMIntPtrType(llvm)
+    }
+    return convertType(type) as! IntType // Guaranteed to succeed
+  }
+
+  /// Computes the preferred alignment of the given global for this target
+  ///
+  /// - parameter global: The global variable
+  /// - returns: The variable's preferred alignment in this target
+  public func preferredAlignment(of global: Global) -> Int {
+    return Int(LLVMPreferredAlignmentOfGlobal(llvm, global.asLLVM()))
+  }
+
+  /// Computes the preferred alignment of the given type for this target
+  ///
+  /// - parameter type: The type for which you're computing the alignment
+  /// - returns: The type's preferred alignment in this target
+  public func preferredAlignment(of type: IRType) -> Int {
+    return Int(LLVMPreferredAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the minimum ABI-required alignment for the specified type.
+  /// - parameter type: The type to whose ABI alignment you wish to compute.
+  /// - returns: The minimum ABI-required alignment for the specified type.
+  public func abiAlignment(of type: IRType) -> Int {
+    return Int(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  public func callFrameAlignment(of type: IRType) -> Int {
+    return Int(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the ABI size of a type in bytes for a target.
+  /// - parameter type: The type to whose ABI size you wish to compute.
+  /// - returns: The ABI size for the specified type.
+  public func abiSize(of type: IRType) -> Int {
+    return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
+  }
+  /// Computes the maximum number of bytes that may be overwritten by
+  /// storing the specified type.
+  /// - parameter type: The type to whose store size you wish to compute.
+  /// - returns: The store size of the type in the given target.
+  public func storeSize(of type: IRType) -> Int {
+    return Int(LLVMStoreSizeOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the pointer size for the platform, optionally in a given
+  /// address space.
+  ///
+  /// - parameter addressSpace: The address space in which to compute
+  ///                           pointer size.
+  /// - returns: The size of a pointer in the target address space.
+  public func pointerSize(addressSpace: Int? = nil) -> Int {
+    if let addressSpace = addressSpace {
+      return Int(LLVMPointerSizeForAS(llvm, UInt32(addressSpace)))
+    } else {
+      return Int(LLVMPointerSize(llvm))
+    }
+  }
+
+  deinit {
+    LLVMDisposeTargetData(llvm)
+  }
+}
+
+public enum ByteOrder {
+  /// Little-endian byte order. In a little-endian platform, the highest-order
+  /// bits come at the end of the series of bytes, the least-significant byte
+  /// comes first in memory, so the 16-bit number 1234 would look like:
+  /// ```
+  /// 00000100 11010010
+  /// ^ lower  ^ higher order
+  /// ```
+  case littleEndian
+
+  /// Big-endian byte order. In a little-endian platform, the highest-order
+  /// bits come at the end of the series of bytes, the least-significant byte
+  /// comes first in memory, so the 16-bit number 257 would look like:
+  /// ```
+  /// 11010010 00000100
+  /// ^ higher ^ lower order
+  /// ```
+  case bigEndian
+
+  /// Converts this ByteOrder to the equivalent LLVMByteOrdering
+  internal func asLLVM() -> LLVMByteOrdering {
+    switch self {
+    case .littleEndian: return LLVMLittleEndian
+    case .bigEndian: return LLVMBigEndian
+    }
+  }
+
+  /// Creates a ByteOrder from an LLVMByteOrdering.
+  /// This will call fatalError if it's not passed LLVMLittleEndian or
+  /// LLVMBigEndian.
+  internal init(llvm: LLVMByteOrdering) {
+    switch llvm {
+    case LLVMLittleEndian: self = .littleEndian
+    case LLVMBigEndian: self = .bigEndian
+    default: fatalError("unknown byte order \(llvm)")
+    }
   }
 }
 

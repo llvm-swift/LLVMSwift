@@ -8,20 +8,20 @@ public extension IRValue {
   public var type: IRType {
     return convertType(LLVMTypeOf(asLLVM()))
   }
-  
+
   public var alignment: Int {
     get { return Int(LLVMGetAlignment(asLLVM())) }
     set { LLVMSetAlignment(asLLVM(), UInt32(newValue)) }
   }
-  
+
   public var isConstant: Bool {
     return LLVMIsConstant(asLLVM()) != 0
   }
-  
+
   public var isUndef: Bool {
     return LLVMIsUndef(asLLVM()) != 0
   }
-  
+
   public var name: String {
     get {
       let ptr = LLVMGetValueName(asLLVM())!
@@ -31,18 +31,18 @@ public extension IRValue {
       LLVMSetValueName(asLLVM(), newValue)
     }
   }
-  
+
   public func constGEP(indices: [IRValue]) -> IRValue {
     var idxs = indices.map { $0.asLLVM() as Optional }
     return idxs.withUnsafeMutableBufferPointer { buf in
       return LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count))
     }
   }
-  
+
   public func replaceAllUses(with value: IRValue) {
     LLVMReplaceAllUsesWith(asLLVM(), value.asLLVM())
   }
-  
+
   public func dump() {
     LLVMDumpValue(asLLVM())
   }

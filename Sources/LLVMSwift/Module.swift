@@ -13,10 +13,10 @@ public class Context {
   }
 }
 
-/// Represents the possible errors that can be thrown while interacting with a 
+/// Represents the possible errors that can be thrown while interacting with a
 /// `Module` object.
 public enum ModuleError: Error, CustomStringConvertible {
-  /// Thrown when a module does not pass the module verification process.  
+  /// Thrown when a module does not pass the module verification process.
   /// Includes the reason the module did not pass verification.
   case didNotPassVerification(String)
   /// Thrown when a module cannot be printed at a given path.  Provides the
@@ -39,7 +39,7 @@ public enum ModuleError: Error, CustomStringConvertible {
 }
 
 /// A `Module` represents the top-level structure of an LLVM program. An LLVM
-/// module is effectively a translation unit or a collection of translation 
+/// module is effectively a translation unit or a collection of translation
 /// units merged together.
 public final class Module {
   internal let llvm: LLVMModuleRef
@@ -50,6 +50,12 @@ public final class Module {
   /// - parameter context: The context to associate this module with.  If no
   ///   context is provided, one will be inferred.
   public init(name: String, context: Context? = nil) {
+
+    // Ensure the LLVM initializer is called when the first module
+    // is created
+    _ = llvmInitializer
+
+
     if let context = context {
       llvm = LLVMModuleCreateWithNameInContext(name, context.llvm)
       self.context = context
@@ -98,7 +104,7 @@ public final class Module {
       defer { free(mutable) }
       return LLVMWriteBitcodeToFile(llvm, mutable)
     }
-    
+  
     if status != 0 {
       throw ModuleError.couldNotEmitBitCode(path: path)
     }
@@ -116,12 +122,12 @@ public final class Module {
     return convertType(type)
   }
 
-  /// Searches for and retrieves a function with the given name in this module 
+  /// Searches for and retrieves a function with the given name in this module
   /// if that name references an existing function.
   ///
   /// - parameter name: The name of the function to create.
   ///
-  /// - returns: A representation of the newly created function with the given 
+  /// - returns: A representation of the newly created function with the given
   /// name or nil if such a representation could not be created.
   public func function(named name: String) -> Function? {
     guard let fn = LLVMGetNamedFunction(llvm, name) else { return nil }
@@ -130,7 +136,7 @@ public final class Module {
 
   /// Verifies that this module is valid, taking the specified action if not.
   /// If this module did not pass verification, a description of any invalid
-  /// constructs is provided with the thrown 
+  /// constructs is provided with the thrown
   /// `ModuleError.didNotPassVerification` error.
   public func verify() throws {
     var message: UnsafeMutablePointer<Int8>?
@@ -144,6 +150,10 @@ public final class Module {
   /// Dump a representation of this module to stderr.
   public func dump() {
     LLVMDumpModule(llvm)
+  }
+
+  deinit {
+    LLVMDisposeModule(llvm)
   }
 }
 

@@ -88,7 +88,7 @@ public enum FunctionPass {
   /// This pass reassociates commutative expressions in an order that
   /// is designed to promote better constant propagation, GCSE, LICM, PRE, etc.
   ///
-  /// For example:  
+  /// For example:
   /// ```
   /// 4 + (x + 5)  ->  x + (4 + 5)
   /// ```
