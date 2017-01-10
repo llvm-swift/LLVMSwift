@@ -112,6 +112,10 @@ public class TargetData {
     return Int(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
   }
 
+  /// Computes the call frame alignment for the specified type.
+  /// - parameter type: The type to whose call frame alignment you wish to
+  ///                   compute.
+  /// - returns: The call frame alignment for the specified type.
   public func callFrameAlignment(of type: IRType) -> Int {
     return Int(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
   }
