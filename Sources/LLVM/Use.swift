@@ -11,12 +11,12 @@ public struct Use {
     return Use(llvm: next)
   }
 
-  /// Obtain the user value for this `User` object.
+  /// Obtain the user value for this `Use` object.
   public func user() -> IRValue? {
     return LLVMGetUser(llvm)
   }
 
-  /// Obtain the value this `User` object corresponds to.
+  /// Obtain the value this `Use` object corresponds to.
   public func usedValue() -> IRValue? {
     return LLVMGetUsedValue(llvm)
   }

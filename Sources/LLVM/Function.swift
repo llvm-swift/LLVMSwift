@@ -40,14 +40,14 @@ public class Function: IRValue {
   }
 
   /// Retrieves the sequence of basic blocks that make up this function's body.
-  public var basicBlocks: [BasicBlock] {
-    var blocks = [BasicBlock]()
+  public var basicBlocks: AnySequence<BasicBlock> {
     var current = firstBlock
-    while let block = current {
-      blocks.append(block)
-      current = block.next()
+    return AnySequence<BasicBlock> {
+      return AnyIterator<BasicBlock> {
+        defer { current = current?.next() }
+        return current
+      }
     }
-    return blocks
   }
 
   /// Retrieves a parameter at the given index, if it exists.
