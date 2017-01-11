@@ -50,7 +50,10 @@ public struct BasicBlock: IRValue, Sequence {
     return BasicBlock(llvm: blockRef)
   }
 
-  /// Removes this basic block from a function and deletes it.
+  /// Deletes the basic block from its containing function.
+  /// - note: This does not remove breaks to this block from the
+  ///         function. Ensure you have removed all insructions that reference
+  ///         this basic block before deleting it.
   public func delete() {
     LLVMDeleteBasicBlock(llvm)
   }
