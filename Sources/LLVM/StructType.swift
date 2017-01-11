@@ -28,6 +28,13 @@ public struct StructType: IRType {
     self.llvm = llvm
   }
 
+  public init(elementTypes: [IRType], isPacked: Bool = false) {
+    var irTypes = elementTypes.map { $0.asLLVM() as Optional }
+    self.llvm = irTypes.withUnsafeMutableBufferPointer { buf in
+      LLVMStructType(buf.baseAddress, UInt32(buf.count), isPacked.llvm)
+    }
+  }
+
   /// Invalidates and resets the member types of this structure.
   ///
   /// - parameter types: A list of types of members of this structure.
