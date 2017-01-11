@@ -1,6 +1,7 @@
 import cllvm
 
-/// JITError represents the different kinds of errors the JIT compiler can throw
+/// JITError represents the different kinds of errors the JIT compiler can
+/// throw.
 public enum JITError: Error, CustomStringConvertible {
     /// The JIT was unable to be initialized. A message is provided explaining
     /// the failure.
@@ -15,12 +16,12 @@ public enum JITError: Error, CustomStringConvertible {
     }
 }
 
-/// A JIT is a Just-In-Time compiler that will compile and execute LLVM IR that
-/// has been generated in a `Module`. It can execute arbitrary functions and
-/// return the value the function generated, allowing you to write interactive
-/// programs that will run as soon as they are compiled.
-class JIT {
-    /// The underlying LLVMExecutionEngineRef backing this JIT
+/// A `JIT` is a Just-In-Time compiler that will compile and execute LLVM IR
+/// that has been generated in a `Module`. It can execute arbitrary functions
+/// and return the value the function generated, allowing you to write
+/// interactive programs that will run as soon as they are compiled.
+public final class JIT {
+    /// The underlying LLVMExecutionEngineRef backing this JIT.
     internal let llvm: LLVMExecutionEngineRef
 
     /// Creates a Just In Time compiler that will compile the code in the
@@ -31,7 +32,7 @@ class JIT {
     ///   - module: The module containing code you wish to execute
     ///   - machine: The target machine which you're compiling for
     /// - throws: JITError
-    init(module: Module, machine: TargetMachine) throws {
+    public init(module: Module, machine: TargetMachine) throws {
         var jit: LLVMExecutionEngineRef?
         var error: UnsafeMutablePointer<Int8>?
         if LLVMCreateExecutionEngineForModule(&jit, module.llvm, &error) != 0 {
@@ -46,13 +47,14 @@ class JIT {
 
 
     /// Runs the specified function with the provided arguments by compiling
-    /// it to machine code for your specific architecture.
+    /// it to machine code for the target architecture used to initialize this
+    /// JIT.
     ///
     /// - parameters:
     ///   - function: The function you wish to execute
     ///   - args: The arguments you wish to pass to the function
     /// - returns: The LLVM value that the function returned
-    func runFunction(_ function: Function, args: [IRValue]) -> IRValue {
+    public func runFunction(_ function: Function, args: [IRValue]) -> IRValue {
         var irArgs = args.map { $0.asLLVM() as Optional }
         return irArgs.withUnsafeMutableBufferPointer { buf in
             return LLVMRunFunction(llvm, function.asLLVM(),
@@ -69,7 +71,7 @@ class JIT {
     ///   - function: The `main` function you wish to execute
     ///   - args: The string arguments you wish to pass to the function
     /// - returns: The numerical exit code returned by the function
-    func runFunctionAsMain(_ function: Function, args: [String]) -> Int {
+    public func runFunctionAsMain(_ function: Function, args: [String]) -> Int {
         // FIXME: Also add in envp.
         return withCArrayOfCStrings(args) { buf in
             return Int(LLVMRunFunctionAsMain(llvm, function.asLLVM(),
