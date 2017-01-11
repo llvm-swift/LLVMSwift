@@ -33,6 +33,14 @@ public struct Global: IRValue {
     set { LLVMSetThreadLocal(asLLVM(), newValue.llvm) }
   }
 
+  /// Deletes the global variable from its containing module.
+  /// - note: This does not remove references to this global from the
+  ///         module. Ensure you have removed all insructions that reference
+  ///         this global before deleting it.
+  public func delete() {
+    LLVMDeleteGlobal(llvm)
+  }
+
   /// Retrieves the underlying LLVM value object.
   public func asLLVM() -> LLVMValueRef {
     return llvm

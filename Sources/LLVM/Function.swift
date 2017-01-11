@@ -99,6 +99,14 @@ public class Function: IRValue {
     return BasicBlock(llvm: block)
   }
 
+  /// Deletes the function from its containing module.
+  /// - note: This does not remove calls to this function from the
+  ///         module. Ensure you have removed all insructions that reference
+  ///         this function before deleting it.
+  public func delete() {
+    LLVMDeleteFunction(llvm)
+  }
+
   /// Retrieves the underlying LLVM value object.
   public func asLLVM() -> LLVMValueRef {
     return llvm
