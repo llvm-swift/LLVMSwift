@@ -110,30 +110,6 @@ public final class Module {
     }
   }
 
-  /// Searches for and retrieves a type with the given name in this module if
-  /// that name references an existing type.
-  ///
-  /// - parameter name: The name of the type to create.
-  ///
-  /// - returns: A representation of the newly created type with the given name
-  ///   or nil if such a representation could not be created.
-  public func type(named name: String) -> IRType? {
-    guard let type = LLVMGetTypeByName(llvm, name) else { return nil }
-    return convertType(type)
-  }
-
-  /// Searches for and retrieves a function with the given name in this module
-  /// if that name references an existing function.
-  ///
-  /// - parameter name: The name of the function to create.
-  ///
-  /// - returns: A representation of the newly created function with the given
-  /// name or nil if such a representation could not be created.
-  public func function(named name: String) -> Function? {
-    guard let fn = LLVMGetNamedFunction(llvm, name) else { return nil }
-    return Function(llvm: fn)
-  }
-
   /// Verifies that this module is valid, taking the specified action if not.
   /// If this module did not pass verification, a description of any invalid
   /// constructs is provided with the thrown
