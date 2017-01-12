@@ -55,7 +55,6 @@ public final class Module {
     // is created
     _ = llvmInitializer
 
-
     if let context = context {
       llvm = LLVMModuleCreateWithNameInContext(name, context.llvm)
       self.context = context
@@ -67,6 +66,14 @@ public final class Module {
 
   /// Returns the context associated with this module.
   public let context: Context
+
+  /// The module's name.
+  var name: String {
+    guard let id = LLVMGetModuleIdentifier(llvm, nil) else {
+      return ""
+    }
+    return String(cString: id)
+  }
 
   /// Obtain the data layout for this module.
   public var dataLayout: TargetData {
@@ -150,10 +157,6 @@ public final class Module {
   /// Dump a representation of this module to stderr.
   public func dump() {
     LLVMDumpModule(llvm)
-  }
-
-  deinit {
-    LLVMDisposeModule(llvm)
   }
 }
 
