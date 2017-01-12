@@ -935,7 +935,7 @@ public class IRBuilder {
     return LLVMBuildInsertElement(llvm, vector.asLLVM(), element.asLLVM(), index.asLLVM(), name)
   }
 
-  // MARK: Global Variable Creation Instructions
+  // MARK: Global Variable Instructions
 
   /// Build a named global of the given type.
   ///
@@ -988,6 +988,19 @@ public class IRBuilder {
   ///   string variable.
   public func buildGlobalStringPtr(_ string: String, name: String = "") -> IRValue {
     return LLVMBuildGlobalStringPtr(llvm, string, name)
+  }
+
+  /// Builds a named reference to a global variable with the given name, if it
+  /// exists.
+  ///
+  /// - parameter name: The name of the global to reference.
+  ///
+  /// - returns: A value representing the referenced global if it exists.
+  public func referenceGlobal(named name: String) -> Global? {
+    guard let ref = LLVMGetNamedGlobal(module.llvm, name) else {
+      return nil
+    }
+    return Global(llvm: ref)
   }
   
   deinit {
