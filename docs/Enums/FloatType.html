@@ -14,7 +14,7 @@
     <a title="FloatType Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (86% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -43,6 +43,9 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,12 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -79,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
@@ -220,7 +232,14 @@
         <section>
           <section class="section">
             <h1>FloatType</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FloatType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span></code></pre>
+
+                </div>
+              </div>
+            <p><code>FloatType</code> enumerates representations of a floating value of a particular
+bit width and semantics.</p>
 
           </section>
           <section class="section task-group-section">
@@ -229,9 +248,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift9FloatType4halfFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM9FloatType4halfFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/half" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift9FloatType4halfFMS0_S0_">half</a>
+                    <a class="token" href="#/s:FO4LLVM9FloatType4halfFMS0_S0_">half</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -260,9 +279,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift9FloatType5floatFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM9FloatType5floatFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/float" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift9FloatType5floatFMS0_S0_">float</a>
+                    <a class="token" href="#/s:FO4LLVM9FloatType5floatFMS0_S0_">float</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -291,9 +310,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift9FloatType6doubleFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM9FloatType6doubleFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/double" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift9FloatType6doubleFMS0_S0_">double</a>
+                    <a class="token" href="#/s:FO4LLVM9FloatType6doubleFMS0_S0_">double</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -322,9 +341,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift9FloatType7x86FP80FMS0_S0_"></a>
+                    <a name="/s:FO4LLVM9FloatType7x86FP80FMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/x86FP80" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift9FloatType7x86FP80FMS0_S0_">x86FP80</a>
+                    <a class="token" href="#/s:FO4LLVM9FloatType7x86FP80FMS0_S0_">x86FP80</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -353,9 +372,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift9FloatType5fp128FMS0_S0_"></a>
+                    <a name="/s:FO4LLVM9FloatType5fp128FMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fp128" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift9FloatType5fp128FMS0_S0_">fp128</a>
+                    <a class="token" href="#/s:FO4LLVM9FloatType5fp128FMS0_S0_">fp128</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -384,9 +403,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift9FloatType8ppcFP128FMS0_S0_"></a>
+                    <a name="/s:FO4LLVM9FloatType8ppcFP128FMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/ppcFP128" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift9FloatType8ppcFP128FMS0_S0_">ppcFP128</a>
+                    <a class="token" href="#/s:FO4LLVM9FloatType8ppcFP128FMS0_S0_">ppcFP128</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -415,9 +434,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift9FloatType8constantFSdPS_7IRValue_"></a>
+                    <a name="/s:FO4LLVM9FloatType8constantFSdPS_7IRValue_"></a>
                     <a name="//apple_ref/swift/Method/constant(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift9FloatType8constantFSdPS_7IRValue_">constant(_:)</a>
+                    <a class="token" href="#/s:FO4LLVM9FloatType8constantFSdPS_7IRValue_">constant(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -442,9 +461,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift9FloatType6asLLVMFT_Vs13OpaquePointer"></a>
+                    <a name="/s:FO4LLVM9FloatType6asLLVMFT_Vs13OpaquePointer"></a>
                     <a name="//apple_ref/swift/Method/asLLVM()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift9FloatType6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
+                    <a class="token" href="#/s:FO4LLVM9FloatType6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -471,7 +490,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

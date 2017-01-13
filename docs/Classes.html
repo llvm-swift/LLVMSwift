@@ -13,7 +13,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (86% documented)</p>
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -42,6 +42,9 @@
                 <a href="Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -58,6 +61,12 @@
           <li class="nav-group-name">
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -78,6 +87,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/ModuleError.html">ModuleError</a>
@@ -228,9 +240,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9LLVMSwift8Function"></a>
+                    <a name="/s:C4LLVM8Function"></a>
                     <a name="//apple_ref/swift/Class/Function" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9LLVMSwift8Function">Function</a>
+                    <a class="token" href="#/s:C4LLVM8Function">Function</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -262,9 +274,71 @@ and provide a way to append to that sequence to build out its body.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9LLVMSwift9IRBuilder"></a>
+                    <a name="/s:C4LLVM6Module"></a>
+                    <a name="//apple_ref/swift/Class/Module" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C4LLVM6Module">Module</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>Module</code> represents the top-level structure of an LLVM program. An LLVM
+module is effectively a translation unit or a collection of translation
+units merged together.</p>
+
+                        <a href="Classes/Module.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C4LLVM7Context"></a>
+                    <a name="//apple_ref/swift/Class/Context" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C4LLVM7Context">Context</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>Context</code> represents execution states for the core LLVM IR system.</p>
+
+                        <a href="Classes/Context.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Context</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C4LLVM9IRBuilder"></a>
                     <a name="//apple_ref/swift/Class/IRBuilder" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9LLVMSwift9IRBuilder">IRBuilder</a>
+                    <a class="token" href="#/s:C4LLVM9IRBuilder">IRBuilder</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -296,9 +370,9 @@ methods to insert instructions at that position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9LLVMSwift7Context"></a>
-                    <a name="//apple_ref/swift/Class/Context" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9LLVMSwift7Context">Context</a>
+                    <a name="/s:C4LLVM3JIT"></a>
+                    <a name="//apple_ref/swift/Class/JIT" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C4LLVM3JIT">JIT</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -306,45 +380,18 @@ methods to insert instructions at that position.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A <code>Context</code> represents execution states for the core LLVM IR system.</p>
+                        <p>A <code>JIT</code> is a Just-In-Time compiler that will compile and execute LLVM IR
+that has been generated in a <code><a href="Classes/Module.html">Module</a></code>. It can execute arbitrary functions
+and return the value the function generated, allowing you to write
+interactive programs that will run as soon as they are compiled.</p>
 
-                        <a href="Classes/Context.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/JIT.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Context</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C9LLVMSwift6Module"></a>
-                    <a name="//apple_ref/swift/Class/Module" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9LLVMSwift6Module">Module</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A <code>Module</code> represents the top-level structure of an LLVM program. An LLVM
-module is effectively a translation unit or a collection of translation
-units merged together.</p>
-
-                        <a href="Classes/Module.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">JIT</span></code></pre>
 
                         </div>
                       </div>
@@ -358,9 +405,9 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9LLVMSwift19FunctionPassManager"></a>
+                    <a name="/s:C4LLVM19FunctionPassManager"></a>
                     <a name="//apple_ref/swift/Class/FunctionPassManager" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9LLVMSwift19FunctionPassManager">FunctionPassManager</a>
+                    <a class="token" href="#/s:C4LLVM19FunctionPassManager">FunctionPassManager</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -392,9 +439,9 @@ over each such construct.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9LLVMSwift10TargetData"></a>
+                    <a name="/s:C4LLVM10TargetData"></a>
                     <a name="//apple_ref/swift/Class/TargetData" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9LLVMSwift10TargetData">TargetData</a>
+                    <a class="token" href="#/s:C4LLVM10TargetData">TargetData</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -426,9 +473,9 @@ sizes and offsets of types with respect to this target.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9LLVMSwift6Target"></a>
+                    <a name="/s:C4LLVM6Target"></a>
                     <a name="//apple_ref/swift/Class/Target" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9LLVMSwift6Target">Target</a>
+                    <a class="token" href="#/s:C4LLVM6Target">Target</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -455,9 +502,9 @@ a host architecture, vendor, ABI, etc.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C9LLVMSwift13TargetMachine"></a>
+                    <a name="/s:C4LLVM13TargetMachine"></a>
                     <a name="//apple_ref/swift/Class/TargetMachine" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C9LLVMSwift13TargetMachine">TargetMachine</a>
+                    <a class="token" href="#/s:C4LLVM13TargetMachine">TargetMachine</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -487,7 +534,7 @@ environment.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

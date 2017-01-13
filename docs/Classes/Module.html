@@ -14,7 +14,7 @@
     <a title="Module Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (86% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -43,6 +43,9 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,12 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -79,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
@@ -237,9 +249,9 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift6ModulecFT4nameSS7contextGSqCS_7Context__S0_"></a>
+                    <a name="/s:FC4LLVM6ModulecFT4nameSS7contextGSqCS_7Context__S0_"></a>
                     <a name="//apple_ref/swift/Method/init(name:context:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift6ModulecFT4nameSS7contextGSqCS_7Context__S0_">init(name:context:)</a>
+                    <a class="token" href="#/s:FC4LLVM6ModulecFT4nameSS7contextGSqCS_7Context__S0_">init(name:context:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -297,9 +309,9 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC9LLVMSwift6Module7contextCS_7Context"></a>
+                    <a name="/s:vC4LLVM6Module7contextCS_7Context"></a>
                     <a name="//apple_ref/swift/Property/context" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC9LLVMSwift6Module7contextCS_7Context">context</a>
+                    <a class="token" href="#/s:vC4LLVM6Module7contextCS_7Context">context</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -324,9 +336,9 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC9LLVMSwift6Module10dataLayoutCS_10TargetData"></a>
+                    <a name="/s:vC4LLVM6Module10dataLayoutCS_10TargetData"></a>
                     <a name="//apple_ref/swift/Property/dataLayout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC9LLVMSwift6Module10dataLayoutCS_10TargetData">dataLayout</a>
+                    <a class="token" href="#/s:vC4LLVM6Module10dataLayoutCS_10TargetData">dataLayout</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -351,9 +363,9 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift6Module5printFzT2toSS_T_"></a>
+                    <a name="/s:FC4LLVM6Module5printFzT2toSS_T_"></a>
                     <a name="//apple_ref/swift/Method/print(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift6Module5printFzT2toSS_T_">print(to:)</a>
+                    <a class="token" href="#/s:FC4LLVM6Module5printFzT2toSS_T_">print(to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -364,7 +376,7 @@ units merged together.</p>
                         <p>Print a representation of a module to a file at the given path.</p>
 
 <p>If the provided path is not suitable for writing, this function will throw
-<code><a href="../Enums/ModuleError.html#/s:FO9LLVMSwift11ModuleError13couldNotPrintFMS0_FT4pathSS5errorSS_S0_">ModuleError.couldNotPrint</a></code>.</p>
+<code><a href="../Enums/ModuleError.html#/s:FO4LLVM11ModuleError13couldNotPrintFMS0_FT4pathSS5errorSS_S0_">ModuleError.couldNotPrint</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -401,9 +413,9 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift6Module11emitBitCodeFzT2toSS_T_"></a>
+                    <a name="/s:FC4LLVM6Module11emitBitCodeFzT2toSS_T_"></a>
                     <a name="//apple_ref/swift/Method/emitBitCode(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift6Module11emitBitCodeFzT2toSS_T_">emitBitCode(to:)</a>
+                    <a class="token" href="#/s:FC4LLVM6Module11emitBitCodeFzT2toSS_T_">emitBitCode(to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -414,7 +426,7 @@ units merged together.</p>
                         <p>Writes the bitcode of elements in this module to a file at the given path.</p>
 
 <p>If the provided path is not suitable for writing, this function will throw
-<code><a href="../Enums/ModuleError.html#/s:FO9LLVMSwift11ModuleError19couldNotEmitBitCodeFMS0_FT4pathSS_S0_">ModuleError.couldNotEmitBitCode</a></code>.</p>
+<code><a href="../Enums/ModuleError.html#/s:FO4LLVM11ModuleError19couldNotEmitBitCodeFMS0_FT4pathSS_S0_">ModuleError.couldNotEmitBitCode</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -451,9 +463,123 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift6Module4typeFT5namedSS_GSqPS_6IRType__"></a>
+                    <a name="/s:FC4LLVM6Module6verifyFzT_T_"></a>
+                    <a name="//apple_ref/swift/Method/verify()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM6Module6verifyFzT_T_">verify()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Verifies that this module is valid, taking the specified action if not.
+If this module did not pass verification, a description of any invalid
+constructs is provided with the thrown
+<code><a href="../Enums/ModuleError.html#/s:FO4LLVM11ModuleError22didNotPassVerificationFMS0_FSSS0_">ModuleError.didNotPassVerification</a></code> error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">verify</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM6Module4dumpFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/dump()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM6Module4dumpFT_T_">dump()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dump a representation of this module to stderr.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dump</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM6Module6globalFT5namedSS_GSqVS_6Global_"></a>
+                    <a name="//apple_ref/swift/Method/global(named:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM6Module6globalFT5namedSS_GSqVS_6Global_">global(named:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Searches for and retrieves a global variable with the given name in this
+module if that name references an existing global variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">global</span><span class="p">(</span><span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Global.html">Global</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the global to reference.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the referenced global if it exists.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM6Module4typeFT5namedSS_GSqPS_6IRType__"></a>
                     <a name="//apple_ref/swift/Method/type(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift6Module4typeFT5namedSS_GSqPS_6IRType__">type(named:)</a>
+                    <a class="token" href="#/s:FC4LLVM6Module4typeFT5namedSS_GSqPS_6IRType__">type(named:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -504,9 +630,9 @@ that name references an existing type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift6Module8functionFT5namedSS_GSqCS_8Function_"></a>
+                    <a name="/s:FC4LLVM6Module8functionFT5namedSS_GSqCS_8Function_"></a>
                     <a name="//apple_ref/swift/Method/function(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift6Module8functionFT5namedSS_GSqCS_8Function_">function(named:)</a>
+                    <a class="token" href="#/s:FC4LLVM6Module8functionFT5namedSS_GSqCS_8Function_">function(named:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -554,69 +680,12 @@ if that name references an existing function.</p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9LLVMSwift6Module6verifyFzT_T_"></a>
-                    <a name="//apple_ref/swift/Method/verify()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift6Module6verifyFzT_T_">verify()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Verifies that this module is valid, taking the specified action if not.
-If this module did not pass verification, a description of any invalid
-constructs is provided with the thrown
-<code><a href="../Enums/ModuleError.html#/s:FO9LLVMSwift11ModuleError22didNotPassVerificationFMS0_FSSS0_">ModuleError.didNotPassVerification</a></code> error.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">verify</span><span class="p">()</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9LLVMSwift6Module4dumpFT_T_"></a>
-                    <a name="//apple_ref/swift/Method/dump()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift6Module4dumpFT_T_">dump()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Dump a representation of this module to stderr.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dump</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

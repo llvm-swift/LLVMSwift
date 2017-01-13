@@ -31,6 +31,7 @@ public struct Instruction: IRValue {
         return Instruction(llvm: val)
     }
 
+    /// Retrieves the first use of this instruction.
     public var firstUse: Use? {
         guard let use = LLVMGetFirstUse(llvm) else { return nil }
         return Use(llvm: use)

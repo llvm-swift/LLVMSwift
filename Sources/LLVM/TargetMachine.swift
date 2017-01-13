@@ -68,6 +68,8 @@ public enum TargetMachineError: Error, CustomStringConvertible {
 /// a host architecture, vendor, ABI, etc.
 public class Target {
   internal let llvm: LLVMTargetRef
+
+  /// Creates a `Target` object from an LLVM target object.
   public init(llvm: LLVMTargetRef) {
     self.llvm = llvm
   }

@@ -14,7 +14,7 @@
     <a title="Instruction Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (86% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -43,6 +43,9 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,12 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -79,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
@@ -235,9 +247,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift11InstructioncFT4llvmVs13OpaquePointer_S0_"></a>
+                    <a name="/s:FV4LLVM11InstructioncFT4llvmVs13OpaquePointer_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(llvm:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift11InstructioncFT4llvmVs13OpaquePointer_S0_">init(llvm:)</a>
+                    <a class="token" href="#/s:FV4LLVM11InstructioncFT4llvmVs13OpaquePointer_S0_">init(llvm:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -262,9 +274,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift11Instruction6asLLVMFT_Vs13OpaquePointer"></a>
+                    <a name="/s:FV4LLVM11Instruction6asLLVMFT_Vs13OpaquePointer"></a>
                     <a name="//apple_ref/swift/Method/asLLVM()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift11Instruction6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
+                    <a class="token" href="#/s:FV4LLVM11Instruction6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -289,9 +301,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9LLVMSwift11Instruction6opCodeOS_6OpCode"></a>
+                    <a name="/s:vV4LLVM11Instruction6opCodeOS_6OpCode"></a>
                     <a name="//apple_ref/swift/Property/opCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9LLVMSwift11Instruction6opCodeOS_6OpCode">opCode</a>
+                    <a class="token" href="#/s:vV4LLVM11Instruction6opCodeOS_6OpCode">opCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -316,9 +328,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift11Instruction8previousFT_GSqS0__"></a>
+                    <a name="/s:FV4LLVM11Instruction8previousFT_GSqS0__"></a>
                     <a name="//apple_ref/swift/Method/previous()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift11Instruction8previousFT_GSqS0__">previous()</a>
+                    <a class="token" href="#/s:FV4LLVM11Instruction8previousFT_GSqS0__">previous()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -343,9 +355,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift11Instruction4nextFT_GSqS0__"></a>
+                    <a name="/s:FV4LLVM11Instruction4nextFT_GSqS0__"></a>
                     <a name="//apple_ref/swift/Method/next()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift11Instruction4nextFT_GSqS0__">next()</a>
+                    <a class="token" href="#/s:FV4LLVM11Instruction4nextFT_GSqS0__">next()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -367,12 +379,67 @@
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4LLVM11Instruction8firstUseGSqVS_3Use_"></a>
+                    <a name="//apple_ref/swift/Property/firstUse" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4LLVM11Instruction8firstUseGSqVS_3Use_">firstUse</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the first use of this instruction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">firstUse</span><span class="p">:</span> <span class="kt"><a href="../Structs/Use.html">Use</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV4LLVM11Instruction4usesGVs11AnySequenceVS_3Use_"></a>
+                    <a name="//apple_ref/swift/Property/uses" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4LLVM11Instruction4usesGVs11AnySequenceVS_3Use_">uses</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the sequence of instructions that use the value from this
+instruction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">uses</span><span class="p">:</span> <span class="kt">AnySequence</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Use.html">Use</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

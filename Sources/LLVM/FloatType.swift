@@ -1,7 +1,7 @@
 import cllvm
 
 /// `FloatType` enumerates representations of a floating value of a particular
-// bit width and semantics.
+/// bit width and semantics.
 public enum FloatType: IRType {
   /// 16-bit floating point value
   case half
