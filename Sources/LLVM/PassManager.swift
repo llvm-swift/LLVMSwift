@@ -124,6 +124,46 @@ public enum FunctionPass {
   case basicAliasAnalysis
   /// Runs the LLVM IR Verifier to sanity check the results of passes.
   case verifier
+  /// A pass to inline and remove functions marked as "always_inline".
+  case alwaysInliner
+  /// This pass promotes "by reference" arguments to be passed by value if the 
+  /// number of elements passed is less than or equal to 3.
+  case argumentPromotion
+  /// This function returns a new pass that merges duplicate global constants 
+  /// together into a single constant that is shared. This is useful because 
+  /// some passes (ie TraceValues) insert a lot of string constants into the 
+  /// program, regardless of whether or not they duplicate an existing string.
+  case constantMerge
+  /// This pass removes arguments from functions which are not used by the body
+  /// of the function.
+  case deadArgElimination
+  /// This pass walks SCCs of the call graph in RPO to deduce and propagate 
+  /// function attributes. Currently it only handles synthesizing `norecurse`
+  /// attributes.
+  case functionAttrs
+  /// Uses a heuristic to inline direct function calls to small functions.
+  case functionInlining
+  /// This transform is designed to eliminate unreachable internal globals 
+  /// (functions or global variables)
+  case globalDCE
+  /// This function returns a new pass that optimizes non-address taken internal
+  /// globals.
+  case globalOptimizer
+  /// This pass propagates constants from call sites into the bodies of 
+  /// functions.
+  case ipConstantPropagation
+  /// This pass propagates constants from call sites into the bodies of 
+  /// functions, and keeps track of whether basic blocks are executable in the 
+  /// process.
+  case ipscc
+  /// Return a new pass object which transforms invoke instructions into calls, 
+  /// if the callee can *not* unwind the stack.
+  case pruneEH
+  /// This pass removes any function declarations (prototypes) that are not used.
+  case stripDeadPrototypes
+  /// These functions removes symbols from functions and modules without 
+  /// touching symbols for debugging information.
+  case stripSymbols
 }
 
 /// A `FunctionPassManager` is an object that collects a sequence of passes
@@ -170,6 +210,22 @@ public class FunctionPassManager {
     .typeBasedAliasAnalysis: LLVMAddTypeBasedAliasAnalysisPass,
     .scopedNoAliasAA: LLVMAddScopedNoAliasAAPass,
     .basicAliasAnalysis: LLVMAddBasicAliasAnalysisPass,
+    .alwaysInliner: LLVMAddAlwaysInlinerPass,
+    .argumentPromotion: LLVMAddArgumentPromotionPass,
+    .constantMerge: LLVMAddConstantMergePass,
+    .deadArgElimination: LLVMAddDeadArgEliminationPass,
+    .functionAttrs: LLVMAddFunctionAttrsPass,
+    .functionInlining: LLVMAddFunctionInliningPass,
+    .globalDCE: LLVMAddGlobalDCEPass,
+    .globalOptimizer: LLVMAddGlobalOptimizerPass,
+    .ipConstantPropagation: LLVMAddIPConstantPropagationPass,
+    .ipscc: LLVMAddIPSCCPPass,
+    .pruneEH: LLVMAddPruneEHPass,
+    .stripDeadPrototypes: LLVMAddStripDeadPrototypesPass,
+    .stripSymbols: LLVMAddStripSymbolsPass,
+
+//    .internalize: LLVMAddInternalizePass,
+//    .sroaWithThreshhold: LLVMAddScalarReplAggregatesPassWithThreshold,
   ]
 
   /// Creates a `FunctionPassManager` bound to the given module's IR.
