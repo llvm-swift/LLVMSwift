@@ -106,17 +106,25 @@ public class TargetData {
   }
 
   /// Computes the minimum ABI-required alignment for the specified type.
+  ///
   /// - parameter type: The type to whose ABI alignment you wish to compute.
   /// - returns: The minimum ABI-required alignment for the specified type.
   public func abiAlignment(of type: IRType) -> Int {
     return Int(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
   }
 
+  /// Computes the minimum ABI-required alignment for the specified type.
+  ///
+  /// This function is equivalent to `TargetData.abiAlignment(of:)`.
+  ///
+  /// - parameter type: The type to whose ABI alignment you wish to compute.
+  /// - returns: The minimum ABI-required alignment for the specified type.
   public func callFrameAlignment(of type: IRType) -> Int {
     return Int(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
   }
 
   /// Computes the ABI size of a type in bytes for a target.
+  ///
   /// - parameter type: The type to whose ABI size you wish to compute.
   /// - returns: The ABI size for the specified type.
   public func abiSize(of type: IRType) -> Int {
@@ -124,6 +132,7 @@ public class TargetData {
   }
   /// Computes the maximum number of bytes that may be overwritten by
   /// storing the specified type.
+  ///
   /// - parameter type: The type to whose store size you wish to compute.
   /// - returns: The store size of the type in the given target.
   public func storeSize(of type: IRType) -> Int {
@@ -149,6 +158,8 @@ public class TargetData {
   }
 }
 
+/// `ByteOrder` enumerates the ordering semantics of sequences of bytes on a
+/// particular target architecture.
 public enum ByteOrder {
   /// Little-endian byte order. In a little-endian platform, the _least_
   /// significant bytes come before the _most_ significant bytes in a series, 

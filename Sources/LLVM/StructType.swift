@@ -28,6 +28,11 @@ public struct StructType: IRType {
     self.llvm = llvm
   }
 
+  /// Creates a structure type from an array of component element types.
+  ///
+  /// - parameter elementTypes: A list of types of members of this structure.
+  /// - parameter isPacked: Whether or not this structure is 1-byte aligned with
+  ///   no packing between fields.  Defaults to `false`.
   public init(elementTypes: [IRType], isPacked: Bool = false) {
     var irTypes = elementTypes.map { $0.asLLVM() as Optional }
     self.llvm = irTypes.withUnsafeMutableBufferPointer { buf in
@@ -39,7 +44,7 @@ public struct StructType: IRType {
   ///
   /// - parameter types: A list of types of members of this structure.
   /// - parameter isPacked: Whether or not this structure is 1-byte aligned with
-  /// - no packing between fields.  Defaults to `false`.
+  ///   no packing between fields.  Defaults to `false`.
   public func setBody(_ types: [IRType], isPacked: Bool = false) {
     var _types = types.map { $0.asLLVM() as Optional }
     _types.withUnsafeMutableBufferPointer { buf in
@@ -52,7 +57,7 @@ public struct StructType: IRType {
   ///
   /// - parameter values: A list of values of members of this structure.
   /// - parameter isPacked: Whether or not this structure is 1-byte aligned with
-  /// - no packing between fields.  Defaults to `false`.
+  ///   no packing between fields.  Defaults to `false`.
   ///
   /// - returns: A value representing a constant value of this structure type.
   public static func constant(values: [IRValue], isPacked: Bool = false) -> IRValue {

@@ -14,7 +14,7 @@
     <a title="IRBuilder Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (86% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -43,6 +43,9 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,12 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -79,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
@@ -237,9 +249,9 @@ methods to insert instructions at that position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC9LLVMSwift9IRBuilder6moduleCS_6Module"></a>
+                    <a name="/s:vC4LLVM9IRBuilder6moduleCS_6Module"></a>
                     <a name="//apple_ref/swift/Property/module" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC9LLVMSwift9IRBuilder6moduleCS_6Module">module</a>
+                    <a class="token" href="#/s:vC4LLVM9IRBuilder6moduleCS_6Module">module</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -264,9 +276,9 @@ methods to insert instructions at that position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuildercFT6moduleCS_6Module_S0_"></a>
+                    <a name="/s:FC4LLVM9IRBuildercFT6moduleCS_6Module_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(module:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuildercFT6moduleCS_6Module_S0_">init(module:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuildercFT6moduleCS_6Module_S0_">init(module:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -322,9 +334,9 @@ methods to insert instructions at that position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder13positionAtEndFT2ofVS_10BasicBlock_T_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder13positionAtEndFT2ofVS_10BasicBlock_T_"></a>
                     <a name="//apple_ref/swift/Method/positionAtEnd(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder13positionAtEndFT2ofVS_10BasicBlock_T_">positionAtEnd(of:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder13positionAtEndFT2ofVS_10BasicBlock_T_">positionAtEnd(of:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -369,9 +381,9 @@ methods to insert instructions at that position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder14positionBeforeFPS_7IRValue_T_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder14positionBeforeFPS_7IRValue_T_"></a>
                     <a name="//apple_ref/swift/Method/positionBefore(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder14positionBeforeFPS_7IRValue_T_">positionBefore(_:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder14positionBeforeFPS_7IRValue_T_">positionBefore(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -416,9 +428,9 @@ methods to insert instructions at that position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8positionFTPS_7IRValue_5blockVS_10BasicBlock_T_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8positionFTPS_7IRValue_5blockVS_10BasicBlock_T_"></a>
                     <a name="//apple_ref/swift/Method/position(_:block:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8positionFTPS_7IRValue_5blockVS_10BasicBlock_T_">position(_:block:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8positionFTPS_7IRValue_5blockVS_10BasicBlock_T_">position(_:block:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -429,8 +441,8 @@ methods to insert instructions at that position.</p>
                         <p>Repositions the IR Builder at the point specified by the given instruction
 in the given basic block.</p>
 
-<p>This is equivalent to calling <code><a href="../Classes/IRBuilder.html#/s:FC9LLVMSwift9IRBuilder13positionAtEndFT2ofVS_10BasicBlock_T_">positionAtEnd(of:)</a></code> with the given basic
-block then calling <code><a href="../Classes/IRBuilder.html#/s:FC9LLVMSwift9IRBuilder14positionBeforeFPS_7IRValue_T_">positionBefore(_:)</a></code> with the given instruction.</p>
+<p>This is equivalent to calling <code><a href="../Classes/IRBuilder.html#/s:FC4LLVM9IRBuilder13positionAtEndFT2ofVS_10BasicBlock_T_">positionAtEnd(of:)</a></code> with the given basic
+block then calling <code><a href="../Classes/IRBuilder.html#/s:FC4LLVM9IRBuilder14positionBeforeFPS_7IRValue_T_">positionBefore(_:)</a></code> with the given instruction.</p>
 
                       </div>
                       <div class="declaration">
@@ -480,9 +492,9 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC9LLVMSwift9IRBu
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder22clearInsertionPositionFT_T_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder22clearInsertionPositionFT_T_"></a>
                     <a name="//apple_ref/swift/Method/clearInsertionPosition()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder22clearInsertionPositionFT_T_">clearInsertionPosition()</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder22clearInsertionPositionFT_T_">clearInsertionPosition()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -520,9 +532,9 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC9LLVMSwift9IRBu
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC9LLVMSwift9IRBuilder11insertBlockGSqVS_10BasicBlock_"></a>
+                    <a name="/s:vC4LLVM9IRBuilder11insertBlockGSqVS_10BasicBlock_"></a>
                     <a name="//apple_ref/swift/Property/insertBlock" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC9LLVMSwift9IRBuilder11insertBlockGSqVS_10BasicBlock_">insertBlock</a>
+                    <a class="token" href="#/s:vC4LLVM9IRBuilder11insertBlockGSqVS_10BasicBlock_">insertBlock</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -547,9 +559,9 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC9LLVMSwift9IRBu
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder6insertFTPS_7IRValue_4nameGSqSS__T_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder6insertFTPS_7IRValue_4nameGSqSS__T_"></a>
                     <a name="//apple_ref/swift/Method/insert(_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder6insertFTPS_7IRValue_4nameGSqSS__T_">insert(_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder6insertFTPS_7IRValue_4nameGSqSS__T_">insert(_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -618,9 +630,9 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC9LLVMSwift9IRBu
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildNegFTPS_7IRValue_16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildNegFTPS_7IRValue_16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildNeg(_:overflowBehavior:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildNegFTPS_7IRValue_16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__">buildNeg(_:overflowBehavior:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildNegFTPS_7IRValue_16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__">buildNeg(_:overflowBehavior:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -693,9 +705,9 @@ neither an integer nor a floating value is a fatal condition.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildAddFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildAddFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildAdd(_:_:overflowBehavior:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildAddFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__">buildAdd(_:_:overflowBehavior:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildAddFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__">buildAdd(_:_:overflowBehavior:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -790,9 +802,9 @@ are neither integers nor floating values is a fatal condition.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildSubFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildSubFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildSub(_:_:overflowBehavior:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildSubFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__">buildSub(_:_:overflowBehavior:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildSubFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__">buildSub(_:_:overflowBehavior:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -887,9 +899,9 @@ are neither integers nor floating values is a fatal condition.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildMulFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildMulFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildMul(_:_:overflowBehavior:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildMulFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__">buildMul(_:_:overflowBehavior:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildMulFTPS_7IRValue_PS1__16overflowBehaviorOS_16OverflowBehavior4nameSS_PS1__">buildMul(_:_:overflowBehavior:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -984,9 +996,9 @@ are neither integers nor floating values is a fatal condition.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildRemFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildRemFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildRem(_:_:signed:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildRemFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__">buildRem(_:_:signed:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildRemFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__">buildRem(_:_:signed:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1082,9 +1094,9 @@ are neither integers nor floating values is a fatal condition.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildDivFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildDivFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildDiv(_:_:signed:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildDivFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__">buildDiv(_:_:signed:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildDivFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__">buildDiv(_:_:signed:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1179,9 +1191,9 @@ are neither integers nor floating values is a fatal condition.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder9buildICmpFTPS_7IRValue_PS1__OS_12IntPredicate4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder9buildICmpFTPS_7IRValue_PS1__OS_12IntPredicate4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildICmp(_:_:_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder9buildICmpFTPS_7IRValue_PS1__OS_12IntPredicate4nameSS_PS1__">buildICmp(_:_:_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildICmpFTPS_7IRValue_PS1__OS_12IntPredicate4nameSS_PS1__">buildICmp(_:_:_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1275,9 +1287,9 @@ given predicate.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder9buildFCmpFTPS_7IRValue_PS1__OS_13RealPredicate4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder9buildFCmpFTPS_7IRValue_PS1__OS_13RealPredicate4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildFCmp(_:_:_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder9buildFCmpFTPS_7IRValue_PS1__OS_13RealPredicate4nameSS_PS1__">buildFCmp(_:_:_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildFCmpFTPS_7IRValue_PS1__OS_13RealPredicate4nameSS_PS1__">buildFCmp(_:_:_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1382,9 +1394,9 @@ given predicate.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildNotFTPS_7IRValue_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildNotFTPS_7IRValue_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildNot(_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildNotFTPS_7IRValue_4nameSS_PS1__">buildNot(_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildNotFTPS_7IRValue_4nameSS_PS1__">buildNot(_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1447,9 +1459,9 @@ given predicate.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildXorFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildXorFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildXor(_:_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildXorFTPS_7IRValue_PS1__4nameSS_PS1__">buildXor(_:_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildXorFTPS_7IRValue_PS1__4nameSS_PS1__">buildXor(_:_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1525,9 +1537,9 @@ given predicate.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder7buildOrFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder7buildOrFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildOr(_:_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder7buildOrFTPS_7IRValue_PS1__4nameSS_PS1__">buildOr(_:_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder7buildOrFTPS_7IRValue_PS1__4nameSS_PS1__">buildOr(_:_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1603,9 +1615,9 @@ given predicate.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildAndFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildAndFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildAnd(_:_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildAndFTPS_7IRValue_PS1__4nameSS_PS1__">buildAnd(_:_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildAndFTPS_7IRValue_PS1__4nameSS_PS1__">buildAnd(_:_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1681,9 +1693,9 @@ given predicate.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildShlFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildShlFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildShl(_:_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildShlFTPS_7IRValue_PS1__4nameSS_PS1__">buildShl(_:_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildShlFTPS_7IRValue_PS1__4nameSS_PS1__">buildShl(_:_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1761,9 +1773,9 @@ second value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildShrFTPS_7IRValue_PS1__12isArithmeticSb4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildShrFTPS_7IRValue_PS1__12isArithmeticSb4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildShr(_:_:isArithmetic:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildShrFTPS_7IRValue_PS1__12isArithmeticSb4nameSS_PS1__">buildShr(_:_:isArithmetic:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildShrFTPS_7IRValue_PS1__12isArithmeticSb4nameSS_PS1__">buildShr(_:_:isArithmetic:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1868,9 +1880,9 @@ zero-fill.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildPhiFTPS_6IRType_4nameSS_VS_7PhiNode"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildPhiFTPS_6IRType_4nameSS_VS_7PhiNode"></a>
                     <a name="//apple_ref/swift/Method/buildPhi(_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildPhiFTPS_6IRType_4nameSS_VS_7PhiNode">buildPhi(_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildPhiFTPS_6IRType_4nameSS_VS_7PhiNode">buildPhi(_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1934,9 +1946,9 @@ basic blocks.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder11addFunctionFTSS4typeVS_12FunctionType_CS_8Function"></a>
+                    <a name="/s:FC4LLVM9IRBuilder11addFunctionFTSS4typeVS_12FunctionType_CS_8Function"></a>
                     <a name="//apple_ref/swift/Method/addFunction(_:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder11addFunctionFTSS4typeVS_12FunctionType_CS_8Function">addFunction(_:type:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11addFunctionFTSS4typeVS_12FunctionType_CS_8Function">addFunction(_:type:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1999,9 +2011,9 @@ basic blocks.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder11buildSwitchFTPS_7IRValue_4elseVS_10BasicBlock9caseCountSi_VS_6Switch"></a>
+                    <a name="/s:FC4LLVM9IRBuilder11buildSwitchFTPS_7IRValue_4elseVS_10BasicBlock9caseCountSi_VS_6Switch"></a>
                     <a name="//apple_ref/swift/Method/buildSwitch(_:else:caseCount:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder11buildSwitchFTPS_7IRValue_4elseVS_10BasicBlock9caseCountSi_VS_6Switch">buildSwitch(_:else:caseCount:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildSwitchFTPS_7IRValue_4elseVS_10BasicBlock9caseCountSi_VS_6Switch">buildSwitch(_:else:caseCount:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2082,9 +2094,9 @@ allowing a branch to occur to one of many possible destinations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder12createStructFT4nameSS5typesGSqGSaPS_6IRType___8isPackedSb_VS_10StructType"></a>
+                    <a name="/s:FC4LLVM9IRBuilder12createStructFT4nameSS5typesGSqGSaPS_6IRType___8isPackedSb_VS_10StructType"></a>
                     <a name="//apple_ref/swift/Method/createStruct(name:types:isPacked:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder12createStructFT4nameSS5typesGSqGSaPS_6IRType___8isPackedSb_VS_10StructType">createStruct(name:types:isPacked:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder12createStructFT4nameSS5typesGSqGSaPS_6IRType___8isPackedSb_VS_10StructType">createStruct(name:types:isPacked:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2171,9 +2183,9 @@ allowing a branch to occur to one of many possible destinations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder7buildBrFVS_10BasicBlockPS_7IRValue_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder7buildBrFVS_10BasicBlockPS_7IRValue_"></a>
                     <a name="//apple_ref/swift/Method/buildBr(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder7buildBrFVS_10BasicBlockPS_7IRValue_">buildBr(_:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder7buildBrFVS_10BasicBlockPS_7IRValue_">buildBr(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2223,9 +2235,9 @@ allowing a branch to occur to one of many possible destinations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder11buildCondBrFT9conditionPS_7IRValue_4thenVS_10BasicBlock4elseS2__PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder11buildCondBrFT9conditionPS_7IRValue_4thenVS_10BasicBlock4elseS2__PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildCondBr(condition:then:else:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder11buildCondBrFT9conditionPS_7IRValue_4thenVS_10BasicBlock4elseS2__PS1__">buildCondBr(condition:then:else:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildCondBrFT9conditionPS_7IRValue_4thenVS_10BasicBlock4elseS2__PS1__">buildCondBr(condition:then:else:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2302,9 +2314,9 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildRetFPS_7IRValue_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildRetFPS_7IRValue_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildRet(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildRetFPS_7IRValue_PS1__">buildRet(_:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildRetFPS_7IRValue_PS1__">buildRet(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2355,9 +2367,9 @@ with the given value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder12buildRetVoidFT_PS_7IRValue_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder12buildRetVoidFT_PS_7IRValue_"></a>
                     <a name="//apple_ref/swift/Method/buildRetVoid()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder12buildRetVoidFT_PS_7IRValue_">buildRetVoid()</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder12buildRetVoidFT_PS_7IRValue_">buildRetVoid()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2387,9 +2399,9 @@ with the given value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder16buildUnreachableFT_PS_7IRValue_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder16buildUnreachableFT_PS_7IRValue_"></a>
                     <a name="//apple_ref/swift/Method/buildUnreachable()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder16buildUnreachableFT_PS_7IRValue_">buildUnreachable()</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder16buildUnreachableFT_PS_7IRValue_">buildUnreachable()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2419,9 +2431,9 @@ with the given value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder9buildCallFTPS_7IRValue_4argsGSaPS1___4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder9buildCallFTPS_7IRValue_4argsGSaPS1___4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildCall(_:args:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder9buildCallFTPS_7IRValue_4argsGSaPS1___4nameSS_PS1__">buildCall(_:args:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildCallFTPS_7IRValue_4argsGSaPS1___4nameSS_PS1__">buildCall(_:args:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2509,9 +2521,9 @@ control to that function.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder11buildAllocaFT4typePS_6IRType_4nameSS_PS_7IRValue_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder11buildAllocaFT4typePS_6IRType_4nameSS_PS_7IRValue_"></a>
                     <a name="//apple_ref/swift/Method/buildAlloca(type:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder11buildAllocaFT4typePS_6IRType_4nameSS_PS_7IRValue_">buildAlloca(type:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildAllocaFT4typePS_6IRType_4nameSS_PS_7IRValue_">buildAlloca(type:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2575,9 +2587,9 @@ type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder10buildStoreFTPS_7IRValue_2toPS1___PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder10buildStoreFTPS_7IRValue_2toPS1___PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildStore(_:to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder10buildStoreFTPS_7IRValue_2toPS1___PS1__">buildStore(_:to:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder10buildStoreFTPS_7IRValue_2toPS1___PS1__">buildStore(_:to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2608,9 +2620,9 @@ given in the second value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder9buildLoadFTPS_7IRValue_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder9buildLoadFTPS_7IRValue_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildLoad(_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder9buildLoadFTPS_7IRValue_4nameSS_PS1__">buildLoad(_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildLoadFTPS_7IRValue_4nameSS_PS1__">buildLoad(_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2674,9 +2686,9 @@ given value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder16buildInBoundsGEPFTPS_7IRValue_7indicesGSaPS1___4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder16buildInBoundsGEPFTPS_7IRValue_7indicesGSaPS1___4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildInBoundsGEP(_:indices:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder16buildInBoundsGEPFTPS_7IRValue_7indicesGSaPS1___4nameSS_PS1__">buildInBoundsGEP(_:indices:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder16buildInBoundsGEPFTPS_7IRValue_7indicesGSaPS1___4nameSS_PS1__">buildInBoundsGEP(_:indices:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2758,9 +2770,9 @@ around its semantics and correct usage.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder8buildGEPFTPS_7IRValue_7indicesGSaPS1___4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildGEPFTPS_7IRValue_7indicesGSaPS1___4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildGEP(_:indices:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder8buildGEPFTPS_7IRValue_7indicesGSaPS1___4nameSS_PS1__">buildGEP(_:indices:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildGEPFTPS_7IRValue_7indicesGSaPS1___4nameSS_PS1__">buildGEP(_:indices:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2840,9 +2852,9 @@ around its semantics and correct usage.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder14buildStructGEPFTPS_7IRValue_5indexSi4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder14buildStructGEPFTPS_7IRValue_5indexSi4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildStructGEP(_:index:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder14buildStructGEPFTPS_7IRValue_5indexSi4nameSS_PS1__">buildStructGEP(_:index:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder14buildStructGEPFTPS_7IRValue_5indexSi4nameSS_PS1__">buildStructGEP(_:index:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2930,9 +2942,9 @@ a struct.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder11buildIsNullFTPS_7IRValue_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder11buildIsNullFTPS_7IRValue_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildIsNull(_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder11buildIsNullFTPS_7IRValue_4nameSS_PS1__">buildIsNull(_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildIsNullFTPS_7IRValue_4nameSS_PS1__">buildIsNull(_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2996,9 +3008,9 @@ a struct.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder14buildIsNotNullFTPS_7IRValue_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder14buildIsNotNullFTPS_7IRValue_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildIsNotNull(_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder14buildIsNotNullFTPS_7IRValue_4nameSS_PS1__">buildIsNotNull(_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder14buildIsNotNullFTPS_7IRValue_4nameSS_PS1__">buildIsNotNull(_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3073,9 +3085,9 @@ not <code>null</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder19buildTruncOrBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder19buildTruncOrBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildTruncOrBitCast(_:type:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder19buildTruncOrBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildTruncOrBitCast(_:type:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder19buildTruncOrBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildTruncOrBitCast(_:type:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3152,9 +3164,9 @@ the given value to a value of the given type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder12buildBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder12buildBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildBitCast(_:type:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder12buildBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildBitCast(_:type:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder12buildBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildBitCast(_:type:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3231,9 +3243,9 @@ given type by just copying the bit pattern.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder10buildTruncFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder10buildTruncFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildTrunc(_:type:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder10buildTruncFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildTrunc(_:type:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder10buildTruncFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildTrunc(_:type:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3310,9 +3322,9 @@ type with a shorter width.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder9buildSExtFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder9buildSExtFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildSExt(_:type:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder9buildSExtFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildSExt(_:type:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildSExtFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildSExt(_:type:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3389,9 +3401,9 @@ the given type with a wider width.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder9buildZExtFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder9buildZExtFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildZExt(_:type:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder9buildZExtFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildZExt(_:type:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildZExtFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildZExt(_:type:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3468,9 +3480,9 @@ given type with a wider width.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder13buildIntToPtrFTPS_7IRValue_4typeVS_11PointerType4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder13buildIntToPtrFTPS_7IRValue_4typeVS_11PointerType4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildIntToPtr(_:type:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder13buildIntToPtrFTPS_7IRValue_4typeVS_11PointerType4nameSS_PS1__">buildIntToPtr(_:type:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder13buildIntToPtrFTPS_7IRValue_4typeVS_11PointerType4nameSS_PS1__">buildIntToPtr(_:type:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3547,9 +3559,9 @@ given pointer type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder13buildPtrToIntFTPS_7IRValue_4typeVS_7IntType4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder13buildPtrToIntFTPS_7IRValue_4typeVS_7IntType4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildPtrToInt(_:type:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder13buildPtrToIntFTPS_7IRValue_4typeVS_7IntType4nameSS_PS1__">buildPtrToInt(_:type:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder13buildPtrToIntFTPS_7IRValue_4typeVS_7IntType4nameSS_PS1__">buildPtrToInt(_:type:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3626,9 +3638,9 @@ to the given integer type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder12buildIntToFPFTPS_7IRValue_4typeOS_9FloatType6signedSb4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder12buildIntToFPFTPS_7IRValue_4typeOS_9FloatType6signedSb4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildIntToFP(_:type:signed:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder12buildIntToFPFTPS_7IRValue_4typeOS_9FloatType6signedSb4nameSS_PS1__">buildIntToFP(_:type:signed:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder12buildIntToFPFTPS_7IRValue_4typeOS_9FloatType6signedSb4nameSS_PS1__">buildIntToFP(_:type:signed:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3718,9 +3730,9 @@ value to the given floating type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder12buildFPToIntFTPS_7IRValue_4typeVS_7IntType6signedSb4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder12buildFPToIntFTPS_7IRValue_4typeVS_7IntType6signedSb4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildFPToInt(_:type:signed:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder12buildFPToIntFTPS_7IRValue_4typeVS_7IntType6signedSb4nameSS_PS1__">buildFPToInt(_:type:signed:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder12buildFPToIntFTPS_7IRValue_4typeVS_7IntType6signedSb4nameSS_PS1__">buildFPToInt(_:type:signed:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3810,9 +3822,9 @@ value to the given integer type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder12buildAlignOfFPS_6IRType_PS_7IRValue_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder12buildAlignOfFPS_6IRType_PS_7IRValue_"></a>
                     <a name="//apple_ref/swift/Method/buildAlignOf(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder12buildAlignOfFPS_6IRType_PS_7IRValue_">buildAlignOf(_:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder12buildAlignOfFPS_6IRType_PS_7IRValue_">buildAlignOf(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3863,9 +3875,9 @@ in bytes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder11buildSizeOfFPS_6IRType_PS_7IRValue_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder11buildSizeOfFPS_6IRType_PS_7IRValue_"></a>
                     <a name="//apple_ref/swift/Method/buildSizeOf(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder11buildSizeOfFPS_6IRType_PS_7IRValue_">buildSizeOf(_:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildSizeOfFPS_6IRType_PS_7IRValue_">buildSizeOf(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3917,19 +3929,326 @@ bytes.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Vector%20Instructions"></a>
-                <a name="//apple_ref/swift/Section/Vector Instructions" class="dashAnchor"></a>
-                <a href="#/Vector%20Instructions">
-                  <h3 class="section-name">Vector Instructions</h3>
+                <a name="/Atomic%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/Atomic Instructions" class="dashAnchor"></a>
+                <a href="#/Atomic%20Instructions">
+                  <h3 class="section-name">Atomic Instructions</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder16buildInsertValueFT9aggregatePS_7IRValue_7elementPS1__5indexSi4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder10buildFenceFT8orderingOS_14AtomicOrdering14singleThreadedSb4nameSS_PS_7IRValue_"></a>
+                    <a name="//apple_ref/swift/Method/buildFence(ordering:singleThreaded:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder10buildFenceFT8orderingOS_14AtomicOrdering14singleThreadedSb4nameSS_PS_7IRValue_">buildFence(ordering:singleThreaded:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a fence instruction that introduces <q>happens-before</q> edges between
+operations.  </p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildFence</span><span class="p">(</span><span class="nv">ordering</span><span class="p">:</span> <span class="kt"><a href="../Enums/AtomicOrdering.html">AtomicOrdering</a></span><span class="p">,</span> <span class="nv">singleThreaded</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ordering</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Defines the kind of “synchronizes-with” edge this fence adds.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>singleThreaded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies that the fence only synchronizes with other atomics in the same thread. (This is useful for interacting with signal handlers.) Otherwise this fence is atomic with respect to all other code in the system.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing <code>void</code>.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder18buildAtomicCmpXchgFT3ptrPS_7IRValue_2ofPS1__2toPS1__15successOrderingOS_14AtomicOrdering15failureOrderingS2_14singleThreadedSb_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildAtomicCmpXchg(ptr:of:to:successOrdering:failureOrdering:singleThreaded:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder18buildAtomicCmpXchgFT3ptrPS_7IRValue_2ofPS1__2toPS1__15successOrderingOS_14AtomicOrdering15failureOrderingS2_14singleThreadedSb_PS1__">buildAtomicCmpXchg(ptr:of:to:successOrdering:failureOrdering:singleThreaded:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an atomic compare-and-exchange instruction to atomically modify 
+memory. It loads a value in memory and compares it to a given value. If 
+they are equal, it tries to store a new value into the memory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildAtomicCmpXchg</span><span class="p">(</span>
+    <span class="nv">ptr</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">of</span> <span class="nv">old</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">new</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
+    <span class="nv">successOrdering</span><span class="p">:</span> <span class="kt"><a href="../Enums/AtomicOrdering.html">AtomicOrdering</a></span><span class="p">,</span> <span class="nv">failureOrdering</span><span class="p">:</span> <span class="kt"><a href="../Enums/AtomicOrdering.html">AtomicOrdering</a></span><span class="p">,</span>
+    <span class="nv">singleThreaded</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+  <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ptr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The address of data to update atomically.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>old</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to base the comparison on.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>new</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new value to write if comparison with the old value returns true.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>successOrdering</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies how this cmpxchg synchronizes with other atomic operations when it succeeds.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>failureOrdering</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies how this cmpxchg synchronizes with other atomic operations when it fails.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>singleThreaded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies that this cmpxchg only synchronizes with other atomics in the same thread. (This is useful for interacting with signal handlers.)  Otherwise this cmpxchg is atomic with respect to all other code in the system.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the original value at the given location is together with a flag indicating success (true) or failure (false).</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder14buildAtomicRMWFT8atomicOpOS_30AtomicReadModifyWriteOperation3ptrPS_7IRValue_5valuePS2__8orderingOS_14AtomicOrdering14singleThreadedSb_PS2__"></a>
+                    <a name="//apple_ref/swift/Method/buildAtomicRMW(atomicOp:ptr:value:ordering:singleThreaded:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder14buildAtomicRMWFT8atomicOpOS_30AtomicReadModifyWriteOperation3ptrPS_7IRValue_5valuePS2__8orderingOS_14AtomicOrdering14singleThreadedSb_PS2__">buildAtomicRMW(atomicOp:ptr:value:ordering:singleThreaded:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an atomic read-modify-write instruction to atomically modify memory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildAtomicRMW</span><span class="p">(</span>
+    <span class="nv">atomicOp</span><span class="p">:</span> <span class="kt"><a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a></span><span class="p">,</span> <span class="nv">ptr</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
+    <span class="nv">ordering</span><span class="p">:</span> <span class="kt"><a href="../Enums/AtomicOrdering.html">AtomicOrdering</a></span><span class="p">,</span> <span class="nv">singleThreaded</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+  <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>atomicOp</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The atomic operation to perform.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ptr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The address of a value to modify.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The second argument to the given operation.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ordering</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Defines the kind of “synchronizes-with” edge this atomic operation adds.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>singleThreaded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies that this atomicRMW instruction only synchronizes with other atomics in the same thread. (This is useful for interacting with signal handlers.)  Otherwise this atomicRMW is atomic with respect to all other code in the system.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the old value of the given pointer before the atomic operation was executed.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Aggregate%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/Aggregate Instructions" class="dashAnchor"></a>
+                <a href="#/Aggregate%20Instructions">
+                  <h3 class="section-name">Aggregate Instructions</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder16buildInsertValueFT9aggregatePS_7IRValue_7elementPS1__5indexSi4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildInsertValue(aggregate:element:index:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder16buildInsertValueFT9aggregatePS_7IRValue_7elementPS1__5indexSi4nameSS_PS1__">buildInsertValue(aggregate:element:index:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder16buildInsertValueFT9aggregatePS_7IRValue_7elementPS1__5indexSi4nameSS_PS1__">buildInsertValue(aggregate:element:index:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4016,12 +4335,23 @@ aggregate value.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Vector%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/Vector Instructions" class="dashAnchor"></a>
+                <a href="#/Vector%20Instructions">
+                  <h3 class="section-name">Vector Instructions</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder18buildInsertElementFT6vectorPS_7IRValue_7elementPS1__5indexPS1__4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder18buildInsertElementFT6vectorPS_7IRValue_7elementPS1__5indexPS1__4nameSS_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildInsertElement(vector:element:index:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder18buildInsertElementFT6vectorPS_7IRValue_7elementPS1__5indexPS1__4nameSS_PS1__">buildInsertElement(vector:element:index:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder18buildInsertElementFT6vectorPS_7IRValue_7elementPS1__5indexPS1__4nameSS_PS1__">buildInsertElement(vector:element:index:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4079,7 +4409,7 @@ value into the given vector.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The index at which at which to insert the value.</p>
+                                  <p>The index at which to insert the value.</p>
 
                                 </div>
                               </td>
@@ -4108,23 +4438,102 @@ value into the given vector.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder19buildExtractElementFT6vectorPS_7IRValue_5indexPS1__4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildExtractElement(vector:index:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder19buildExtractElementFT6vectorPS_7IRValue_5indexPS1__4nameSS_PS1__">buildExtractElement(vector:index:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an instruction to extract a single scalar element from a vector at
+a specified index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildExtractElement</span><span class="p">(</span><span class="nv">vector</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value of vector type.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index at which to insert the value.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing a scalar at the given index.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Global%20Variable%20Creation%20Instructions"></a>
-                <a name="//apple_ref/swift/Section/Global Variable Creation Instructions" class="dashAnchor"></a>
-                <a href="#/Global%20Variable%20Creation%20Instructions">
-                  <h3 class="section-name">Global Variable Creation Instructions</h3>
+                <a name="/Global%20Variable%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/Global Variable Instructions" class="dashAnchor"></a>
+                <a href="#/Global%20Variable%20Instructions">
+                  <h3 class="section-name">Global Variable Instructions</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder9addGlobalFTSS4typePS_6IRType__VS_6Global"></a>
+                    <a name="/s:FC4LLVM9IRBuilder9addGlobalFTSS4typePS_6IRType__VS_6Global"></a>
                     <a name="//apple_ref/swift/Method/addGlobal(_:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder9addGlobalFTSS4typePS_6IRType__VS_6Global">addGlobal(_:type:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9addGlobalFTSS4typePS_6IRType__VS_6Global">addGlobal(_:type:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4187,9 +4596,9 @@ value into the given vector.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder15addGlobalStringFT4nameSS5valueSS_VS_6Global"></a>
+                    <a name="/s:FC4LLVM9IRBuilder15addGlobalStringFT4nameSS5valueSS_VS_6Global"></a>
                     <a name="//apple_ref/swift/Method/addGlobalString(name:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder15addGlobalStringFT4nameSS5valueSS_VS_6Global">addGlobalString(name:value:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder15addGlobalStringFT4nameSS5valueSS_VS_6Global">addGlobalString(name:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4253,9 +4662,9 @@ with the nul terminated string value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder17buildGlobalStringFTSS4nameSS_PS_7IRValue_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder17buildGlobalStringFTSS4nameSS_VS_6Global"></a>
                     <a name="//apple_ref/swift/Method/buildGlobalString(_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder17buildGlobalStringFTSS4nameSS_PS_7IRValue_">buildGlobalString(_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder17buildGlobalStringFTSS4nameSS_VS_6Global">buildGlobalString(_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4272,7 +4681,7 @@ string value.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildGlobalString</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildGlobalString</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Global.html">Global</a></span></code></pre>
 
                         </div>
                       </div>
@@ -4320,9 +4729,9 @@ string value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift9IRBuilder20buildGlobalStringPtrFTSS4nameSS_PS_7IRValue_"></a>
+                    <a name="/s:FC4LLVM9IRBuilder20buildGlobalStringPtrFTSS4nameSS_PS_7IRValue_"></a>
                     <a name="//apple_ref/swift/Method/buildGlobalStringPtr(_:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift9IRBuilder20buildGlobalStringPtrFTSS4nameSS_PS_7IRValue_">buildGlobalStringPtr(_:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder20buildGlobalStringPtrFTSS4nameSS_PS_7IRValue_">buildGlobalStringPtr(_:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4388,7 +4797,7 @@ given string value.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

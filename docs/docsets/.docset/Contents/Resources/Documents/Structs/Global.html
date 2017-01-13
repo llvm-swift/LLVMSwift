@@ -14,7 +14,7 @@
     <a title="Global Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (86% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -43,6 +43,9 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,12 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -79,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
@@ -237,9 +249,9 @@ reference to an external definition that has an initializer.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9LLVMSwift6Global23isExternallyInitializedSb"></a>
+                    <a name="/s:vV4LLVM6Global23isExternallyInitializedSb"></a>
                     <a name="//apple_ref/swift/Property/isExternallyInitialized" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9LLVMSwift6Global23isExternallyInitializedSb">isExternallyInitialized</a>
+                    <a class="token" href="#/s:vV4LLVM6Global23isExternallyInitializedSb">isExternallyInitialized</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -265,9 +277,9 @@ reference to an initialized value in another translation unit.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9LLVMSwift6Global11initializerGSqPS_7IRValue__"></a>
+                    <a name="/s:vV4LLVM6Global11initializerGSqPS_7IRValue__"></a>
                     <a name="//apple_ref/swift/Property/initializer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9LLVMSwift6Global11initializerGSqPS_7IRValue__">initializer</a>
+                    <a class="token" href="#/s:vV4LLVM6Global11initializerGSqPS_7IRValue__">initializer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -292,9 +304,9 @@ reference to an initialized value in another translation unit.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9LLVMSwift6Global16isGlobalConstantSb"></a>
+                    <a name="/s:vV4LLVM6Global16isGlobalConstantSb"></a>
                     <a name="//apple_ref/swift/Property/isGlobalConstant" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9LLVMSwift6Global16isGlobalConstantSb">isGlobalConstant</a>
+                    <a class="token" href="#/s:vV4LLVM6Global16isGlobalConstantSb">isGlobalConstant</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -320,9 +332,9 @@ final definition of the global is not.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9LLVMSwift6Global13isThreadLocalSb"></a>
+                    <a name="/s:vV4LLVM6Global13isThreadLocalSb"></a>
                     <a name="//apple_ref/swift/Property/isThreadLocal" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9LLVMSwift6Global13isThreadLocalSb">isThreadLocal</a>
+                    <a class="token" href="#/s:vV4LLVM6Global13isThreadLocalSb">isThreadLocal</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -348,9 +360,39 @@ if this variable is not shared by multiple threads.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift6Global6asLLVMFT_Vs13OpaquePointer"></a>
+                    <a name="/s:FV4LLVM6Global6deleteFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/delete()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV4LLVM6Global6deleteFT_T_">delete()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes the global variable from its containing module.
+- note: This does not remove references to this global from the
+        module. Ensure you have removed all insructions that reference
+        this global before deleting it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">delete</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV4LLVM6Global6asLLVMFT_Vs13OpaquePointer"></a>
                     <a name="//apple_ref/swift/Method/asLLVM()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift6Global6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
+                    <a class="token" href="#/s:FV4LLVM6Global6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -377,7 +419,7 @@ if this variable is not shared by multiple threads.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

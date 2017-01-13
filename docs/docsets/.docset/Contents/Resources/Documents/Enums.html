@@ -13,7 +13,7 @@
     <a title="Enums  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (86% documented)</p>
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -42,6 +42,9 @@
                 <a href="Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -58,6 +61,12 @@
           <li class="nav-group-name">
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -78,6 +87,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/ModuleError.html">ModuleError</a>
@@ -228,9 +240,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift6OpCode"></a>
-                    <a name="//apple_ref/swift/Enum/OpCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift6OpCode">OpCode</a>
+                    <a name="/s:O4LLVM9FloatType"></a>
+                    <a name="//apple_ref/swift/Enum/FloatType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O4LLVM9FloatType">FloatType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -238,18 +250,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Enumerates the opcodes of instructions available in the LLVM IR language.</p>
+                        <p><code>FloatType</code> enumerates representations of a floating value of a particular
+bit width and semantics.</p>
 
-<p>The raw values of this enumeration <em>must</em> match those in
-<a href="https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h">llvm-c/Core.h</a>.</p>
-
-                        <a href="Enums/OpCode.html" class="slightly-smaller">See more</a>
+                        <a href="Enums/FloatType.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FloatType</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -263,33 +273,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift9FloatType"></a>
-                    <a name="//apple_ref/swift/Enum/FloatType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift9FloatType">FloatType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="Enums/FloatType.html" class="slightly-smaller">See more</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:O9LLVMSwift16OverflowBehavior"></a>
+                    <a name="/s:O4LLVM16OverflowBehavior"></a>
                     <a name="//apple_ref/swift/Enum/OverflowBehavior" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift16OverflowBehavior">OverflowBehavior</a>
+                    <a class="token" href="#/s:O4LLVM16OverflowBehavior">OverflowBehavior</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -316,9 +302,9 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift12IntPredicate"></a>
+                    <a name="/s:O4LLVM12IntPredicate"></a>
                     <a name="//apple_ref/swift/Enum/IntPredicate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift12IntPredicate">IntPredicate</a>
+                    <a class="token" href="#/s:O4LLVM12IntPredicate">IntPredicate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -344,9 +330,9 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift13RealPredicate"></a>
+                    <a name="/s:O4LLVM13RealPredicate"></a>
                     <a name="//apple_ref/swift/Enum/RealPredicate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift13RealPredicate">RealPredicate</a>
+                    <a class="token" href="#/s:O4LLVM13RealPredicate">RealPredicate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -369,6 +355,72 @@ operations.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O4LLVM14AtomicOrdering"></a>
+                    <a name="//apple_ref/swift/Enum/AtomicOrdering" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O4LLVM14AtomicOrdering">AtomicOrdering</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>AtomicOrdering</code> enumerates available memory ordering semantics.</p>
+
+<p>Atomic instructions (<code>cmpxchg</code>, <code>atomicrmw</code>, <code>fence</code>, <code>atomic load</code>, and 
+<code>atomic store</code>) take ordering parameters that determine which other atomic 
+instructions on the same address they synchronize with. These semantics are 
+borrowed from Java and C++0x, but are somewhat more colloquial. If these 
+descriptions aren’t precise enough, check those specs (see spec references 
+in the atomics guide). fence instructions treat these orderings somewhat 
+differently since they don’t take an address. See that instruction’s 
+documentation for details.</p>
+
+                        <a href="Enums/AtomicOrdering.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AtomicOrdering</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O4LLVM30AtomicReadModifyWriteOperation"></a>
+                    <a name="//apple_ref/swift/Enum/AtomicReadModifyWriteOperation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O4LLVM30AtomicReadModifyWriteOperation">AtomicReadModifyWriteOperation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>AtomicReadModifyWriteOperation</code> enumerates the kinds of supported atomic
+read-write-modify operations.</p>
+
+                        <a href="Enums/AtomicReadModifyWriteOperation.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AtomicReadModifyWriteOperation</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -376,9 +428,42 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift11ModuleError"></a>
+                    <a name="/s:O4LLVM8JITError"></a>
+                    <a name="//apple_ref/swift/Enum/JITError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O4LLVM8JITError">JITError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>JITError represents the different kinds of errors the JIT compiler can
+throw.</p>
+
+                        <a href="Enums/JITError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">JITError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O4LLVM11ModuleError"></a>
                     <a name="//apple_ref/swift/Enum/ModuleError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift11ModuleError">ModuleError</a>
+                    <a class="token" href="#/s:O4LLVM11ModuleError">ModuleError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -409,9 +494,44 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift12FunctionPass"></a>
+                    <a name="/s:O4LLVM6OpCode"></a>
+                    <a name="//apple_ref/swift/Enum/OpCode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O4LLVM6OpCode">OpCode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumerates the opcodes of instructions available in the LLVM IR language.</p>
+
+<p>The raw values of this enumeration <em>must</em> match those in
+<a href="https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h">llvm-c/Core.h</a></p>
+
+                        <a href="Enums/OpCode.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O4LLVM12FunctionPass"></a>
                     <a name="//apple_ref/swift/Enum/FunctionPass" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift12FunctionPass">FunctionPass</a>
+                    <a class="token" href="#/s:O4LLVM12FunctionPass">FunctionPass</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -441,9 +561,9 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift9ByteOrder"></a>
+                    <a name="/s:O4LLVM9ByteOrder"></a>
                     <a name="//apple_ref/swift/Enum/ByteOrder" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift9ByteOrder">ByteOrder</a>
+                    <a class="token" href="#/s:O4LLVM9ByteOrder">ByteOrder</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -451,9 +571,18 @@ operations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p><code>ByteOrder</code> enumerates the ordering semantics of sequences of bytes on a
+particular target architecture.</p>
 
                         <a href="Enums/ByteOrder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ByteOrder</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -461,9 +590,9 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift15CodeGenOptLevel"></a>
+                    <a name="/s:O4LLVM15CodeGenOptLevel"></a>
                     <a name="//apple_ref/swift/Enum/CodeGenOptLevel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift15CodeGenOptLevel">CodeGenOptLevel</a>
+                    <a class="token" href="#/s:O4LLVM15CodeGenOptLevel">CodeGenOptLevel</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -491,9 +620,9 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift9RelocMode"></a>
+                    <a name="/s:O4LLVM9RelocMode"></a>
                     <a name="//apple_ref/swift/Enum/RelocMode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift9RelocMode">RelocMode</a>
+                    <a class="token" href="#/s:O4LLVM9RelocMode">RelocMode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -519,9 +648,9 @@ operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift9CodeModel"></a>
+                    <a name="/s:O4LLVM9CodeModel"></a>
                     <a name="//apple_ref/swift/Enum/CodeModel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift9CodeModel">CodeModel</a>
+                    <a class="token" href="#/s:O4LLVM9CodeModel">CodeModel</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -557,9 +686,9 @@ Architecture Processor Supplement</a>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift15CodegenFileType"></a>
+                    <a name="/s:O4LLVM15CodegenFileType"></a>
                     <a name="//apple_ref/swift/Enum/CodegenFileType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift15CodegenFileType">CodegenFileType</a>
+                    <a class="token" href="#/s:O4LLVM15CodegenFileType">CodegenFileType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -585,9 +714,9 @@ Architecture Processor Supplement</a>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O9LLVMSwift18TargetMachineError"></a>
+                    <a name="/s:O4LLVM18TargetMachineError"></a>
                     <a name="//apple_ref/swift/Enum/TargetMachineError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O9LLVMSwift18TargetMachineError">TargetMachineError</a>
+                    <a class="token" href="#/s:O4LLVM18TargetMachineError">TargetMachineError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -615,7 +744,7 @@ Architecture Processor Supplement</a>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

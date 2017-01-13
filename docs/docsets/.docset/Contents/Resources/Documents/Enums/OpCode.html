@@ -14,7 +14,7 @@
     <a title="OpCode Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (86% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -43,6 +43,9 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,12 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -79,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
@@ -229,7 +241,7 @@
             <p>Enumerates the opcodes of instructions available in the LLVM IR language.</p>
 
 <p>The raw values of this enumeration <em>must</em> match those in
-<a href="https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h">llvm-c/Core.h</a>.</p>
+<a href="https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h">llvm-c/Core.h</a></p>
 
           </section>
           <section class="section task-group-section">
@@ -238,9 +250,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode3retFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode3retFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/ret" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode3retFMS0_S0_">ret</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3retFMS0_S0_">ret</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -248,14 +260,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>ret</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ret</span>            <span class="o">=</span> <span class="mi">1</span></code></pre>
 
                         </div>
                       </div>
@@ -269,9 +281,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode2brFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode2brFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/br" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode2brFMS0_S0_">br</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode2brFMS0_S0_">br</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -279,14 +291,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>br</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">br</span>             <span class="o">=</span> <span class="mi">2</span></code></pre>
 
                         </div>
                       </div>
@@ -300,9 +312,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6switchFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6switchFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/switch" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6switchFMS0_S0_">switch</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6switchFMS0_S0_">switch</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -310,14 +322,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>switch</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="err">`</span><span class="k">switch</span><span class="err">`</span>       <span class="o">=</span> <span class="mi">3</span></code></pre>
 
                         </div>
                       </div>
@@ -331,9 +343,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode10indirectBrFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode10indirectBrFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/indirectBr" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode10indirectBrFMS0_S0_">indirectBr</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode10indirectBrFMS0_S0_">indirectBr</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -341,14 +353,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>indirectBr</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">indirectBr</span>     <span class="o">=</span> <span class="mi">4</span></code></pre>
 
                         </div>
                       </div>
@@ -362,9 +374,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6invokeFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6invokeFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/invoke" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6invokeFMS0_S0_">invoke</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6invokeFMS0_S0_">invoke</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -372,14 +384,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>invoke</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">invoke</span>         <span class="o">=</span> <span class="mi">5</span></code></pre>
 
                         </div>
                       </div>
@@ -393,9 +405,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode11unreachableFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode11unreachableFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/unreachable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode11unreachableFMS0_S0_">unreachable</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode11unreachableFMS0_S0_">unreachable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -403,14 +415,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>unreachable</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">unreachable</span>    <span class="o">=</span> <span class="mi">7</span></code></pre>
 
                         </div>
                       </div>
@@ -424,9 +436,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode3addFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode3addFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/add" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode3addFMS0_S0_">add</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3addFMS0_S0_">add</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -434,14 +446,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>add</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">add</span>            <span class="o">=</span> <span class="mi">8</span></code></pre>
 
                         </div>
                       </div>
@@ -455,9 +467,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4faddFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4faddFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fadd" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4faddFMS0_S0_">fadd</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4faddFMS0_S0_">fadd</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -465,14 +477,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fadd</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fadd</span>           <span class="o">=</span> <span class="mi">9</span></code></pre>
 
                         </div>
                       </div>
@@ -486,9 +498,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode3subFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode3subFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/sub" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode3subFMS0_S0_">sub</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3subFMS0_S0_">sub</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -496,14 +508,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>sub</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sub</span>            <span class="o">=</span> <span class="mi">10</span></code></pre>
 
                         </div>
                       </div>
@@ -517,9 +529,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4fsubFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4fsubFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fsub" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4fsubFMS0_S0_">fsub</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4fsubFMS0_S0_">fsub</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -527,14 +539,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fsub</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fsub</span>           <span class="o">=</span> <span class="mi">11</span></code></pre>
 
                         </div>
                       </div>
@@ -548,9 +560,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode3mulFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode3mulFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/mul" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode3mulFMS0_S0_">mul</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3mulFMS0_S0_">mul</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -558,14 +570,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>mul</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">mul</span>            <span class="o">=</span> <span class="mi">12</span></code></pre>
 
                         </div>
                       </div>
@@ -579,9 +591,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4fmulFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4fmulFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fmul" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4fmulFMS0_S0_">fmul</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4fmulFMS0_S0_">fmul</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -589,14 +601,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fmul</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fmul</span>           <span class="o">=</span> <span class="mi">13</span></code></pre>
 
                         </div>
                       </div>
@@ -610,9 +622,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4udivFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4udivFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/udiv" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4udivFMS0_S0_">udiv</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4udivFMS0_S0_">udiv</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -620,14 +632,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>udiv</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">udiv</span>           <span class="o">=</span> <span class="mi">14</span></code></pre>
 
                         </div>
                       </div>
@@ -641,9 +653,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4sdivFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4sdivFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/sdiv" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4sdivFMS0_S0_">sdiv</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4sdivFMS0_S0_">sdiv</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -651,14 +663,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>sdiv</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sdiv</span>           <span class="o">=</span> <span class="mi">15</span></code></pre>
 
                         </div>
                       </div>
@@ -672,9 +684,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4fdivFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4fdivFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fdiv" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4fdivFMS0_S0_">fdiv</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4fdivFMS0_S0_">fdiv</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -682,14 +694,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fdiv</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fdiv</span>           <span class="o">=</span> <span class="mi">16</span></code></pre>
 
                         </div>
                       </div>
@@ -703,9 +715,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4uremFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4uremFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/urem" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4uremFMS0_S0_">urem</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4uremFMS0_S0_">urem</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -713,14 +725,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>urem</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">urem</span>           <span class="o">=</span> <span class="mi">17</span></code></pre>
 
                         </div>
                       </div>
@@ -734,9 +746,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4sremFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4sremFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/srem" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4sremFMS0_S0_">srem</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4sremFMS0_S0_">srem</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -744,14 +756,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>srem</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">srem</span>           <span class="o">=</span> <span class="mi">18</span></code></pre>
 
                         </div>
                       </div>
@@ -765,9 +777,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4fremFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4fremFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/frem" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4fremFMS0_S0_">frem</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4fremFMS0_S0_">frem</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -775,14 +787,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>frem</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">frem</span>           <span class="o">=</span> <span class="mi">19</span></code></pre>
 
                         </div>
                       </div>
@@ -796,9 +808,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode3shlFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode3shlFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/shl" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode3shlFMS0_S0_">shl</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3shlFMS0_S0_">shl</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -806,14 +818,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>shl</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">shl</span>            <span class="o">=</span> <span class="mi">20</span></code></pre>
 
                         </div>
                       </div>
@@ -827,9 +839,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4lshrFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4lshrFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/lshr" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4lshrFMS0_S0_">lshr</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4lshrFMS0_S0_">lshr</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -837,14 +849,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>lshr</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">lshr</span>           <span class="o">=</span> <span class="mi">21</span></code></pre>
 
                         </div>
                       </div>
@@ -858,9 +870,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4ashrFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4ashrFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/ashr" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4ashrFMS0_S0_">ashr</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4ashrFMS0_S0_">ashr</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -868,14 +880,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>ashr</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ashr</span>           <span class="o">=</span> <span class="mi">22</span></code></pre>
 
                         </div>
                       </div>
@@ -889,9 +901,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode3andFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode3andFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/and" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode3andFMS0_S0_">and</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3andFMS0_S0_">and</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -899,14 +911,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>and</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">and</span>            <span class="o">=</span> <span class="mi">23</span></code></pre>
 
                         </div>
                       </div>
@@ -920,9 +932,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode2orFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode2orFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/or" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode2orFMS0_S0_">or</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode2orFMS0_S0_">or</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -930,14 +942,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>or</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">or</span>             <span class="o">=</span> <span class="mi">24</span></code></pre>
 
                         </div>
                       </div>
@@ -951,9 +963,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode3xorFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode3xorFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/xor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode3xorFMS0_S0_">xor</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3xorFMS0_S0_">xor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -961,14 +973,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>xor</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">xor</span>            <span class="o">=</span> <span class="mi">25</span></code></pre>
 
                         </div>
                       </div>
@@ -982,9 +994,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6allocaFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6allocaFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/alloca" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6allocaFMS0_S0_">alloca</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6allocaFMS0_S0_">alloca</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -992,14 +1004,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>alloca</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">alloca</span>         <span class="o">=</span> <span class="mi">26</span></code></pre>
 
                         </div>
                       </div>
@@ -1013,9 +1025,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4loadFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4loadFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/load" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4loadFMS0_S0_">load</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4loadFMS0_S0_">load</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1023,14 +1035,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>load</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">load</span>           <span class="o">=</span> <span class="mi">27</span></code></pre>
 
                         </div>
                       </div>
@@ -1044,9 +1056,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode5storeFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode5storeFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/store" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode5storeFMS0_S0_">store</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode5storeFMS0_S0_">store</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1054,14 +1066,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>store</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">store</span>          <span class="o">=</span> <span class="mi">28</span></code></pre>
 
                         </div>
                       </div>
@@ -1075,9 +1087,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode13getElementPtrFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode13getElementPtrFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/getElementPtr" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode13getElementPtrFMS0_S0_">getElementPtr</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode13getElementPtrFMS0_S0_">getElementPtr</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1085,14 +1097,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>getElementPtr</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">getElementPtr</span>  <span class="o">=</span> <span class="mi">29</span></code></pre>
 
                         </div>
                       </div>
@@ -1106,9 +1118,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode5truncFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode5truncFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/trunc" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode5truncFMS0_S0_">trunc</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode5truncFMS0_S0_">trunc</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1116,14 +1128,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>trunc</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">trunc</span>          <span class="o">=</span> <span class="mi">30</span></code></pre>
 
                         </div>
                       </div>
@@ -1137,9 +1149,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4zextFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4zextFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/zext" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4zextFMS0_S0_">zext</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4zextFMS0_S0_">zext</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1147,14 +1159,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>zext</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">zext</span>           <span class="o">=</span> <span class="mi">31</span></code></pre>
 
                         </div>
                       </div>
@@ -1168,9 +1180,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4sextFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4sextFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/sext" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4sextFMS0_S0_">sext</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4sextFMS0_S0_">sext</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1178,14 +1190,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>sext</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sext</span>           <span class="o">=</span> <span class="mi">32</span></code></pre>
 
                         </div>
                       </div>
@@ -1199,9 +1211,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6fpToUIFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6fpToUIFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fpToUI" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6fpToUIFMS0_S0_">fpToUI</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6fpToUIFMS0_S0_">fpToUI</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1209,14 +1221,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fpToUI</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpToUI</span>         <span class="o">=</span> <span class="mi">33</span></code></pre>
 
                         </div>
                       </div>
@@ -1230,9 +1242,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6fpToSIFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6fpToSIFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fpToSI" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6fpToSIFMS0_S0_">fpToSI</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6fpToSIFMS0_S0_">fpToSI</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1240,14 +1252,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fpToSI</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpToSI</span>         <span class="o">=</span> <span class="mi">34</span></code></pre>
 
                         </div>
                       </div>
@@ -1261,9 +1273,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6uiToFPFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6uiToFPFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/uiToFP" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6uiToFPFMS0_S0_">uiToFP</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6uiToFPFMS0_S0_">uiToFP</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1271,14 +1283,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>uiToFP</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">uiToFP</span>         <span class="o">=</span> <span class="mi">35</span></code></pre>
 
                         </div>
                       </div>
@@ -1292,9 +1304,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6siToFPFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6siToFPFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/siToFP" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6siToFPFMS0_S0_">siToFP</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6siToFPFMS0_S0_">siToFP</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1302,14 +1314,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>siToFP</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">siToFP</span>         <span class="o">=</span> <span class="mi">36</span></code></pre>
 
                         </div>
                       </div>
@@ -1323,9 +1335,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode7fpTruncFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode7fpTruncFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fpTrunc" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode7fpTruncFMS0_S0_">fpTrunc</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode7fpTruncFMS0_S0_">fpTrunc</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1333,14 +1345,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fpTrunc</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpTrunc</span>        <span class="o">=</span> <span class="mi">37</span></code></pre>
 
                         </div>
                       </div>
@@ -1354,9 +1366,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode5fpExtFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode5fpExtFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fpExt" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode5fpExtFMS0_S0_">fpExt</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode5fpExtFMS0_S0_">fpExt</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1364,14 +1376,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fpExt</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpExt</span>          <span class="o">=</span> <span class="mi">38</span></code></pre>
 
                         </div>
                       </div>
@@ -1385,9 +1397,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode8ptrToIntFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode8ptrToIntFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/ptrToInt" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode8ptrToIntFMS0_S0_">ptrToInt</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode8ptrToIntFMS0_S0_">ptrToInt</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1395,14 +1407,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>ptrToInt</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ptrToInt</span>       <span class="o">=</span> <span class="mi">39</span></code></pre>
 
                         </div>
                       </div>
@@ -1416,9 +1428,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode8intToPtrFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode8intToPtrFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/intToPtr" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode8intToPtrFMS0_S0_">intToPtr</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode8intToPtrFMS0_S0_">intToPtr</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1426,14 +1438,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>intToPtr</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">intToPtr</span>       <span class="o">=</span> <span class="mi">40</span></code></pre>
 
                         </div>
                       </div>
@@ -1447,9 +1459,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode7bitCastFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode7bitCastFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/bitCast" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode7bitCastFMS0_S0_">bitCast</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode7bitCastFMS0_S0_">bitCast</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1457,14 +1469,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>bitCast</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">bitCast</span>        <span class="o">=</span> <span class="mi">41</span></code></pre>
 
                         </div>
                       </div>
@@ -1478,9 +1490,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode13addrSpaceCastFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode13addrSpaceCastFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/addrSpaceCast" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode13addrSpaceCastFMS0_S0_">addrSpaceCast</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode13addrSpaceCastFMS0_S0_">addrSpaceCast</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1488,14 +1500,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>addrSpaceCast</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">addrSpaceCast</span>  <span class="o">=</span> <span class="mi">60</span></code></pre>
 
                         </div>
                       </div>
@@ -1509,9 +1521,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4icmpFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4icmpFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/icmp" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4icmpFMS0_S0_">icmp</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4icmpFMS0_S0_">icmp</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1519,14 +1531,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>icmp</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">icmp</span>           <span class="o">=</span> <span class="mi">42</span></code></pre>
 
                         </div>
                       </div>
@@ -1540,9 +1552,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4fcmpFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4fcmpFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fcmp" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4fcmpFMS0_S0_">fcmp</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4fcmpFMS0_S0_">fcmp</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1550,14 +1562,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fcmp</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fcmp</span>           <span class="o">=</span> <span class="mi">43</span></code></pre>
 
                         </div>
                       </div>
@@ -1571,9 +1583,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode3PHIFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode3PHIFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/PHI" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode3PHIFMS0_S0_">PHI</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3PHIFMS0_S0_">PHI</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1581,14 +1593,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>PHI</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">PHI</span>            <span class="o">=</span> <span class="mi">44</span></code></pre>
 
                         </div>
                       </div>
@@ -1602,9 +1614,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode4callFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode4callFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/call" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode4callFMS0_S0_">call</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode4callFMS0_S0_">call</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1612,14 +1624,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>call</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">call</span>           <span class="o">=</span> <span class="mi">45</span></code></pre>
 
                         </div>
                       </div>
@@ -1633,9 +1645,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6selectFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6selectFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/select" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6selectFMS0_S0_">select</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6selectFMS0_S0_">select</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1643,14 +1655,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>select</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">select</span>         <span class="o">=</span> <span class="mi">46</span></code></pre>
 
                         </div>
                       </div>
@@ -1664,9 +1676,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode7userOp1FMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode7userOp1FMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/userOp1" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode7userOp1FMS0_S0_">userOp1</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode7userOp1FMS0_S0_">userOp1</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1674,14 +1686,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>userOp1</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">userOp1</span>        <span class="o">=</span> <span class="mi">47</span></code></pre>
 
                         </div>
                       </div>
@@ -1695,9 +1707,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode7userOp2FMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode7userOp2FMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/userOp2" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode7userOp2FMS0_S0_">userOp2</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode7userOp2FMS0_S0_">userOp2</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1705,14 +1717,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>userOp2</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">userOp2</span>        <span class="o">=</span> <span class="mi">48</span></code></pre>
 
                         </div>
                       </div>
@@ -1726,9 +1738,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode5vaArgFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode5vaArgFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/vaArg" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode5vaArgFMS0_S0_">vaArg</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode5vaArgFMS0_S0_">vaArg</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1736,14 +1748,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>vaArg</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">vaArg</span>          <span class="o">=</span> <span class="mi">49</span></code></pre>
 
                         </div>
                       </div>
@@ -1757,9 +1769,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode14extractElementFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode14extractElementFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/extractElement" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode14extractElementFMS0_S0_">extractElement</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode14extractElementFMS0_S0_">extractElement</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1767,14 +1779,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>extractElement</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">extractElement</span> <span class="o">=</span> <span class="mi">50</span></code></pre>
 
                         </div>
                       </div>
@@ -1788,9 +1800,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode13insertElementFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode13insertElementFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/insertElement" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode13insertElementFMS0_S0_">insertElement</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode13insertElementFMS0_S0_">insertElement</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1798,14 +1810,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>insertElement</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">insertElement</span>  <span class="o">=</span> <span class="mi">51</span></code></pre>
 
                         </div>
                       </div>
@@ -1819,9 +1831,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode13shuffleVectorFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode13shuffleVectorFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/shuffleVector" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode13shuffleVectorFMS0_S0_">shuffleVector</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode13shuffleVectorFMS0_S0_">shuffleVector</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1829,14 +1841,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>shuffleVector</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">shuffleVector</span>  <span class="o">=</span> <span class="mi">52</span></code></pre>
 
                         </div>
                       </div>
@@ -1850,9 +1862,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode12extractValueFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode12extractValueFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/extractValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode12extractValueFMS0_S0_">extractValue</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode12extractValueFMS0_S0_">extractValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1860,14 +1872,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>extractValue</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">extractValue</span>   <span class="o">=</span> <span class="mi">53</span></code></pre>
 
                         </div>
                       </div>
@@ -1881,9 +1893,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode11insertValueFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode11insertValueFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/insertValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode11insertValueFMS0_S0_">insertValue</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode11insertValueFMS0_S0_">insertValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1891,14 +1903,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>insertValue</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">insertValue</span>    <span class="o">=</span> <span class="mi">54</span></code></pre>
 
                         </div>
                       </div>
@@ -1912,9 +1924,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode5fenceFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode5fenceFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/fence" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode5fenceFMS0_S0_">fence</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode5fenceFMS0_S0_">fence</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1922,14 +1934,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>fence</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fence</span>          <span class="o">=</span> <span class="mi">55</span></code></pre>
 
                         </div>
                       </div>
@@ -1943,9 +1955,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode13atomicCmpXchgFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode13atomicCmpXchgFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/atomicCmpXchg" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode13atomicCmpXchgFMS0_S0_">atomicCmpXchg</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode13atomicCmpXchgFMS0_S0_">atomicCmpXchg</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1953,14 +1965,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>atomicCmpXchg</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">atomicCmpXchg</span>  <span class="o">=</span> <span class="mi">56</span></code></pre>
 
                         </div>
                       </div>
@@ -1974,9 +1986,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode9atomicRMWFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode9atomicRMWFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/atomicRMW" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode9atomicRMWFMS0_S0_">atomicRMW</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode9atomicRMWFMS0_S0_">atomicRMW</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1984,14 +1996,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>atomicRMW</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">atomicRMW</span>      <span class="o">=</span> <span class="mi">57</span></code></pre>
 
                         </div>
                       </div>
@@ -2005,9 +2017,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode6resumeFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode6resumeFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/resume" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode6resumeFMS0_S0_">resume</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode6resumeFMS0_S0_">resume</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2015,14 +2027,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>resume</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">resume</span>         <span class="o">=</span> <span class="mi">58</span></code></pre>
 
                         </div>
                       </div>
@@ -2036,9 +2048,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode10landingPadFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode10landingPadFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/landingPad" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode10landingPadFMS0_S0_">landingPad</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode10landingPadFMS0_S0_">landingPad</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2046,14 +2058,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>landingPad</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">landingPad</span>     <span class="o">=</span> <span class="mi">59</span></code></pre>
 
                         </div>
                       </div>
@@ -2067,9 +2079,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode10cleanupRetFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode10cleanupRetFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/cleanupRet" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode10cleanupRetFMS0_S0_">cleanupRet</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode10cleanupRetFMS0_S0_">cleanupRet</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2077,14 +2089,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>cleanupRet</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">cleanupRet</span>     <span class="o">=</span> <span class="mi">61</span></code></pre>
 
                         </div>
                       </div>
@@ -2098,9 +2110,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode8catchRetFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode8catchRetFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/catchRet" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode8catchRetFMS0_S0_">catchRet</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode8catchRetFMS0_S0_">catchRet</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2108,14 +2120,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>catchRet</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchRet</span>       <span class="o">=</span> <span class="mi">62</span></code></pre>
 
                         </div>
                       </div>
@@ -2129,9 +2141,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode8catchPadFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode8catchPadFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/catchPad" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode8catchPadFMS0_S0_">catchPad</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode8catchPadFMS0_S0_">catchPad</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2139,14 +2151,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>catchPad</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchPad</span>       <span class="o">=</span> <span class="mi">63</span></code></pre>
 
                         </div>
                       </div>
@@ -2160,9 +2172,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode10cleanupPadFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode10cleanupPadFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/cleanupPad" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode10cleanupPadFMS0_S0_">cleanupPad</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode10cleanupPadFMS0_S0_">cleanupPad</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2170,14 +2182,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>cleanupPad</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">cleanupPad</span>     <span class="o">=</span> <span class="mi">64</span></code></pre>
 
                         </div>
                       </div>
@@ -2191,9 +2203,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO9LLVMSwift6OpCode11catchSwitchFMS0_S0_"></a>
+                    <a name="/s:FO4LLVM6OpCode11catchSwitchFMS0_S0_"></a>
                     <a name="//apple_ref/swift/Element/catchSwitch" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO9LLVMSwift6OpCode11catchSwitchFMS0_S0_">catchSwitch</a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode11catchSwitchFMS0_S0_">catchSwitch</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2201,14 +2213,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opcode for the <code>catchSwitch</code> instruction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchSwitch</span>    <span class="o">=</span> <span class="mi">65</span></code></pre>
 
                         </div>
                       </div>
@@ -2220,7 +2232,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

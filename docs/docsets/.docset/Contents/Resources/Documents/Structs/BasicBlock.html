@@ -14,7 +14,7 @@
     <a title="BasicBlock Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (86% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -43,6 +43,9 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -59,6 +62,12 @@
           <li class="nav-group-name">
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
@@ -79,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
@@ -222,7 +234,7 @@
             <h1>BasicBlock</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">BasicBlock</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">BasicBlock</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                 </div>
               </div>
@@ -247,9 +259,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlockcFT4llvmVs13OpaquePointer_S0_"></a>
+                    <a name="/s:FV4LLVM10BasicBlockcFT4llvmVs13OpaquePointer_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(llvm:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlockcFT4llvmVs13OpaquePointer_S0_">init(llvm:)</a>
+                    <a class="token" href="#/s:FV4LLVM10BasicBlockcFT4llvmVs13OpaquePointer_S0_">init(llvm:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -274,9 +286,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlock6asLLVMFT_Vs13OpaquePointer"></a>
+                    <a name="/s:FV4LLVM10BasicBlock6asLLVMFT_Vs13OpaquePointer"></a>
                     <a name="//apple_ref/swift/Method/asLLVM()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlock6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
+                    <a class="token" href="#/s:FV4LLVM10BasicBlock6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -301,9 +313,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9LLVMSwift10BasicBlock16firstInstructionGSqVS_11Instruction_"></a>
+                    <a name="/s:vV4LLVM10BasicBlock16firstInstructionGSqVS_11Instruction_"></a>
                     <a name="//apple_ref/swift/Property/firstInstruction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9LLVMSwift10BasicBlock16firstInstructionGSqVS_11Instruction_">firstInstruction</a>
+                    <a class="token" href="#/s:vV4LLVM10BasicBlock16firstInstructionGSqVS_11Instruction_">firstInstruction</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -328,9 +340,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV9LLVMSwift10BasicBlock15lastInstructionGSqVS_11Instruction_"></a>
+                    <a name="/s:vV4LLVM10BasicBlock15lastInstructionGSqVS_11Instruction_"></a>
                     <a name="//apple_ref/swift/Property/lastInstruction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV9LLVMSwift10BasicBlock15lastInstructionGSqVS_11Instruction_">lastInstruction</a>
+                    <a class="token" href="#/s:vV4LLVM10BasicBlock15lastInstructionGSqVS_11Instruction_">lastInstruction</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -355,9 +367,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlock6parentFT_GSqS0__"></a>
+                    <a name="/s:FV4LLVM10BasicBlock6parentFT_GSqS0__"></a>
                     <a name="//apple_ref/swift/Method/parent()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlock6parentFT_GSqS0__">parent()</a>
+                    <a class="token" href="#/s:FV4LLVM10BasicBlock6parentFT_GSqS0__">parent()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -382,9 +394,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlock4nextFT_GSqS0__"></a>
+                    <a name="/s:FV4LLVM10BasicBlock4nextFT_GSqS0__"></a>
                     <a name="//apple_ref/swift/Method/next()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlock4nextFT_GSqS0__">next()</a>
+                    <a class="token" href="#/s:FV4LLVM10BasicBlock4nextFT_GSqS0__">next()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -409,9 +421,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlock6deleteFT_T_"></a>
-                    <a name="//apple_ref/swift/Method/delete()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlock6deleteFT_T_">delete()</a>
+                    <a name="/s:vV4LLVM10BasicBlock12instructionsGVs11AnySequenceVS_11Instruction_"></a>
+                    <a name="//apple_ref/swift/Property/instructions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV4LLVM10BasicBlock12instructionsGVs11AnySequenceVS_11Instruction_">instructions</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -419,7 +431,37 @@ also cannot have any PHI nodes.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes this basic block from a function and deletes it.</p>
+                        <p>Returns a sequence of the Instructions that make up this basic block.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">instructions</span><span class="p">:</span> <span class="kt">AnySequence</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Instruction.html">Instruction</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV4LLVM10BasicBlock6deleteFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/delete()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV4LLVM10BasicBlock6deleteFT_T_">delete()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes the basic block from its containing function.
+- note: This does not remove breaks to this block from the
+        function. Ensure you have removed all insructions that reference
+        this basic block before deleting it.</p>
 
                       </div>
                       <div class="declaration">
@@ -436,9 +478,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlock16removeFromParentFT_T_"></a>
+                    <a name="/s:FV4LLVM10BasicBlock16removeFromParentFT_T_"></a>
                     <a name="//apple_ref/swift/Method/removeFromParent()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlock16removeFromParentFT_T_">removeFromParent()</a>
+                    <a class="token" href="#/s:FV4LLVM10BasicBlock16removeFromParentFT_T_">removeFromParent()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -463,9 +505,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlock10moveBeforeFS0_T_"></a>
+                    <a name="/s:FV4LLVM10BasicBlock10moveBeforeFS0_T_"></a>
                     <a name="//apple_ref/swift/Method/moveBefore(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlock10moveBeforeFS0_T_">moveBefore(_:)</a>
+                    <a class="token" href="#/s:FV4LLVM10BasicBlock10moveBeforeFS0_T_">moveBefore(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -490,9 +532,9 @@ also cannot have any PHI nodes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlock9moveAfterFS0_T_"></a>
+                    <a name="/s:FV4LLVM10BasicBlock9moveAfterFS0_T_"></a>
                     <a name="//apple_ref/swift/Method/moveAfter(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlock9moveAfterFS0_T_">moveAfter(_:)</a>
+                    <a class="token" href="#/s:FV4LLVM10BasicBlock9moveAfterFS0_T_">moveAfter(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -514,39 +556,12 @@ also cannot have any PHI nodes.</p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV9LLVMSwift10BasicBlock12makeIteratorFT_GVs11AnyIteratorVS_11Instruction_"></a>
-                    <a name="//apple_ref/swift/Method/makeIterator()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10BasicBlock12makeIteratorFT_GVs11AnyIteratorVS_11Instruction_">makeIterator()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns an iterator over the <code><a href="../Structs/Instruction.html">Instruction</a></code>s that make up this basic block.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeIterator</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">AnyIterator</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Instruction.html">Instruction</a></span><span class="o">&gt;</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-10)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
