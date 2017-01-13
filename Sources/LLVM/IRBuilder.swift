@@ -942,7 +942,7 @@ public class IRBuilder {
     return LLVMSizeOf(val.asLLVM())
   }
 
-  // MARK: Vector Instructions
+  // MARK: Aggregate Instructions
 
   /// Builds an instruction to insert a value into a member field in an 
   /// aggregate value.
@@ -958,18 +958,49 @@ public class IRBuilder {
     return LLVMBuildInsertValue(llvm, aggregate.asLLVM(), element.asLLVM(), UInt32(index), name)
   }
 
+  /// Builds an instruction to extract a value from a member field in an 
+  /// aggregate value.
+  ///
+  /// An `extract value` instruction differs from a `get element pointer`
+  /// instruction because the value being indexed is not a pointer and the first
+  /// index is unnecessary (as it is assumed to be zero).
+  ///
+  /// - parameter aggregate: A value of array or structure type.
+  /// - parameter index: The index at which at which to extract a value.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing an aggregate that has been updated with
+  ///   the given value at the given index.
+  func buildExtractValue(aggregate: IRValue, index: Int, name: String = "") -> IRValue {
+    return LLVMBuildExtractValue(llvm, aggregate.asLLVM(), UInt32(index), name)
+  }
+
+  // MARK: Vector Instructions
+
   /// Builds a vector insert instruction to nondestructively insert the given 
   /// value into the given vector.
   ///
   /// - parameter vector: A value of vector type.
   /// - parameter element: The value to insert.
-  /// - parameter index: The index at which at which to insert the value.
+  /// - parameter index: The index at which to insert the value.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing a vector that has been updated with
   ///   the given value at the given index.
   public func buildInsertElement(vector: IRValue, element: IRValue, index: IRValue, name: String = "") -> IRValue {
     return LLVMBuildInsertElement(llvm, vector.asLLVM(), element.asLLVM(), index.asLLVM(), name)
+  }
+
+  /// Builds an instruction to extract a single scalar element from a vector at
+  /// a specified index.
+  ///
+  /// - parameter vector: A value of vector type.
+  /// - parameter index: The index at which to insert the value.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing a scalar at the given index.
+  public func buildExtractElement(vector: IRValue, index: IRValue, name: String = "") -> IRValue {
+    return LLVMBuildExtractElement(llvm, vector.asLLVM(), index.asLLVM(), name)
   }
 
   // MARK: Global Variable Instructions
