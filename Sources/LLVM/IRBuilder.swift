@@ -54,6 +54,8 @@ public enum IntPredicate {
     .ult: LLVMIntULT, .ule: LLVMIntULE, .sgt: LLVMIntSGT, .sge: LLVMIntSGE,
     .slt: LLVMIntSLT, .sle: LLVMIntSLE
   ]
+
+  /// Retrieves the corresponding `LLVMIntPredicate`.
   public var llvm: LLVMIntPredicate {
     return IntPredicate.predicateMapping[self]!
   }
@@ -103,13 +105,204 @@ public enum RealPredicate {
     .true: LLVMRealPredicateTrue,
   ]
 
+  /// Retrieves the corresponding `LLVMRealPredicate`.
   public var llvm: LLVMRealPredicate {
     return RealPredicate.predicateMapping[self]!
   }
 }
 
+/// `AtomicOrdering` enumerates available memory ordering semantics.
+///
+/// Atomic instructions (`cmpxchg`, `atomicrmw`, `fence`, `atomic load`, and 
+/// `atomic store`) take ordering parameters that determine which other atomic 
+/// instructions on the same address they synchronize with. These semantics are 
+/// borrowed from Java and C++0x, but are somewhat more colloquial. If these 
+/// descriptions aren’t precise enough, check those specs (see spec references 
+/// in the atomics guide). fence instructions treat these orderings somewhat 
+/// differently since they don’t take an address. See that instruction’s 
+/// documentation for details.
+public enum AtomicOrdering: Comparable {
+  /// A load or store which is not atomic
+  case notAtomic
+  /// Lowest level of atomicity, guarantees somewhat sane results, lock free.
+  ///
+  /// The set of values that can be read is governed by the happens-before 
+  /// partial order. A value cannot be read unless some operation wrote it. This
+  /// is intended to provide a guarantee strong enough to model Java’s 
+  /// non-volatile shared variables. This ordering cannot be specified for 
+  /// read-modify-write operations; it is not strong enough to make them atomic 
+  /// in any interesting way.
+  case unordered
+  /// Guarantees that if you take all the operations affecting a specific
+  /// address, a consistent ordering exists.
+  ///
+  /// In addition to the guarantees of unordered, there is a single total order 
+  /// for modifications by monotonic operations on each address. All 
+  /// modification orders must be compatible with the happens-before order. 
+  /// There is no guarantee that the modification orders can be combined to a 
+  /// global total order for the whole program (and this often will not be 
+  /// possible). The read in an atomic read-modify-write operation (cmpxchg and 
+  /// atomicrmw) reads the value in the modification order immediately before 
+  /// the value it writes. If one atomic read happens before another atomic read
+  /// of the same address, the later read must see the same value or a later 
+  /// value in the address’s modification order. This disallows reordering of 
+  /// monotonic (or stronger) operations on the same address. If an address is 
+  /// written monotonic-ally by one thread, and other threads monotonic-ally 
+  /// read that address repeatedly, the other threads must eventually see the 
+  /// write. This corresponds to the C++0x/C1x memory_order_relaxed.
+  case monotonic
+  /// Acquire provides a barrier of the sort necessary to acquire a lock to 
+  /// access other memory with normal loads and stores.
+  ///
+  /// In addition to the guarantees of monotonic, a synchronizes-with edge may 
+  /// be formed with a release operation. This is intended to model C++’s 
+  /// `memory_order_acquire`.
+  case acquire
+  /// Release is similar to Acquire, but with a barrier of the sort necessary to
+  /// release a lock.
+  ///
+  /// In addition to the guarantees of monotonic, if this operation writes a 
+  /// value which is subsequently read by an acquire operation, it 
+  /// synchronizes-with that operation. (This isn’t a complete description; see
+  /// the C++0x definition of a release sequence.) This corresponds to the 
+  /// C++0x/C1x memory_order_release.
+  case release
+  /// provides both an Acquire and a Release barrier (for fences and operations
+  /// which both read and write memory).
+  ///
+  /// This corresponds to the C++0x/C1x memory_order_acq_rel.
+  case acquireRelease
+  /// Provides Acquire semantics for loads and Release semantics for stores.
+  ///
+  /// In addition to the guarantees of acq_rel (acquire for an operation that 
+  /// only reads, release for an operation that only writes), there is a global 
+  /// total order on all sequentially-consistent operations on all addresses, 
+  /// which is consistent with the happens-before partial order and with the 
+  /// modification orders of all the affected addresses. Each 
+  /// sequentially-consistent read sees the last preceding write to the same 
+  /// address in this global order. This corresponds to the C++0x/C1x 
+  /// `memory_order_seq_cst` and Java volatile.
+  case sequentiallyConsistent
+
+  private static let orderingMapping: [AtomicOrdering: LLVMAtomicOrdering] = [
+    .notAtomic: LLVMAtomicOrderingNotAtomic,
+    .unordered: LLVMAtomicOrderingUnordered,
+    .monotonic: LLVMAtomicOrderingMonotonic,
+    .acquire: LLVMAtomicOrderingAcquire,
+    .release: LLVMAtomicOrderingRelease,
+    .acquireRelease: LLVMAtomicOrderingAcquireRelease,
+    .sequentiallyConsistent: LLVMAtomicOrderingSequentiallyConsistent,
+  ]
+
+  public static func ==(lhs: AtomicOrdering, rhs: AtomicOrdering) -> Bool {
+    return lhs.llvm == rhs.llvm
+  }
+
+  public static func <(lhs: AtomicOrdering, rhs: AtomicOrdering) -> Bool {
+    return lhs.llvm.rawValue < rhs.llvm.rawValue
+  }
+
+  /// Retrieves the corresponding `LLVMAtomicOrdering`.
+  public var llvm: LLVMAtomicOrdering {
+    return AtomicOrdering.orderingMapping[self]!
+  }
+}
+
+/// `AtomicReadModifyWriteOperation` enumerates the kinds of supported atomic
+/// read-write-modify operations.
+public enum AtomicReadModifyWriteOperation {
+  /// Set the new value and return the one old
+  ///
+  /// ```
+  /// *ptr = val
+  /// ```
+  case xchg
+  /// Add a value and return the old one
+  ///
+  /// ```
+  /// *ptr = *ptr + val
+  /// ```
+  case add
+  /// Subtract a value and return the old one
+  ///
+  /// ```
+  /// *ptr = *ptr - val
+  /// ```
+  case sub
+  /// And a value and return the old one
+  ///
+  /// ```
+  /// *ptr = *ptr & val
+  /// ```
+  case and
+  /// Not-And a value and return the old one
+  ///
+  /// ```
+  /// *ptr = ~(*ptr & val)
+  /// ```
+  case nand
+  /// OR a value and return the old one
+  ///
+  /// ```
+  /// *ptr = *ptr | val
+  /// ```
+  case or
+  /// Xor a value and return the old one
+  ///
+  /// ```
+  /// *ptr = *ptr ^ val
+  /// ```
+  case xor
+  /// Sets the value if it's greater than the original using a signed comparison
+  /// and return the old one.
+  ///
+  /// ```
+  /// // Using a signed comparison
+  /// *ptr = *ptr > val ? *ptr : val
+  /// ```
+  case max
+  /// Sets the value if it's Smaller than the original using a signed comparison
+  /// and return the old one.
+  ///
+  /// ```
+  /// // Using a signed comparison
+  /// *ptr = *ptr < val ? *ptr : val
+  /// ```
+  case min
+  /// Sets the value if it's greater than the original using an unsigned 
+  /// comparison and return the old one.
+  ///
+  /// ```
+  /// // Using an unsigned comparison
+  /// *ptr = *ptr > val ? *ptr : val
+  /// ```
+  case umax
+  /// Sets the value if it's greater than the original using an unsigned 
+  /// comparison and return the old one.
+  ///
+  /// ```
+  /// // Using an unsigned comparison
+  /// *ptr = *ptr < val ? *ptr : val
+  /// ```
+  case umin
+
+  static let atomicRMWMapping: [AtomicReadModifyWriteOperation: LLVMAtomicRMWBinOp] = [
+    .xchg: LLVMAtomicRMWBinOpXchg, .add: LLVMAtomicRMWBinOpAdd,
+    .sub: LLVMAtomicRMWBinOpSub, .and: LLVMAtomicRMWBinOpAnd,
+    .nand: LLVMAtomicRMWBinOpNand, .or: LLVMAtomicRMWBinOpOr,
+    .xor: LLVMAtomicRMWBinOpXor, .max: LLVMAtomicRMWBinOpMax,
+    .min: LLVMAtomicRMWBinOpMin, .umax: LLVMAtomicRMWBinOpUMax,
+    .umin: LLVMAtomicRMWBinOpUMin,
+  ]
+
+  /// Retrieves the corresponding `LLVMAtomicRMWBinOp`.
+  public var llvm: LLVMAtomicRMWBinOp {
+    return AtomicReadModifyWriteOperation.atomicRMWMapping[self]!
+  }
+}
+
 extension Module {
-  /// Searches for and retrieves a global variable with the given name in this 
+  /// Searches for and retrieves a global variable with the given name in this
   /// module if that name references an existing global variable.
   ///
   /// - parameter name: The name of the global to reference.
@@ -940,6 +1133,91 @@ public class IRBuilder {
   ///   bytes.
   public func buildSizeOf(_ val: IRType) -> IRValue {
     return LLVMSizeOf(val.asLLVM())
+  }
+
+  // MARK: Atomic Instructions
+
+  /// Builds a fence instruction that introduces "happens-before" edges between
+  /// operations.  
+  ///
+  /// - parameter ordering: Defines the kind of "synchronizes-with" edge this
+  ///   fence adds.
+  /// - parameter singleThreaded: Specifies that the fence only synchronizes 
+  ///   with other atomics in the same thread. (This is useful for interacting
+  ///   with signal handlers.) Otherwise this fence is atomic with respect to
+  ///   all other code in the system.
+  ///
+  /// - returns: A value representing `void`.
+  public func buildFence(ordering: AtomicOrdering, singleThreaded: Bool = false, name: String = "") -> IRValue {
+    return LLVMBuildFence(llvm, ordering.llvm, singleThreaded.llvm, name)
+  }
+
+  /// Builds an atomic compare-and-exchange instruction to atomically modify 
+  /// memory. It loads a value in memory and compares it to a given value. If 
+  /// they are equal, it tries to store a new value into the memory.
+  ///
+  /// - parameter ptr: The address of data to update atomically.
+  /// - parameter old: The value to base the comparison on.
+  /// - parameter new: The new value to write if comparison with the old value
+  ///   returns true.
+  /// - parameter successOrdering: Specifies how this cmpxchg synchronizes with 
+  ///   other atomic operations when it succeeds.
+  /// - parameter failureOrdering: Specifies how this cmpxchg synchronizes with
+  ///   other atomic operations when it fails.
+  /// - parameter singleThreaded: Specifies that this cmpxchg only synchronizes
+  ///   with other atomics in the same thread. (This is useful for interacting
+  ///   with signal handlers.)  Otherwise this cmpxchg is atomic with respect to
+  ///   all other code in the system.
+  ///
+  /// - returns: A value representing the original value at the given location 
+  ///   is together with a flag indicating success (true) or failure (false).
+  public func buildAtomicCmpXchg(
+    ptr: IRValue, of old: IRValue, to new: IRValue,
+    successOrdering: AtomicOrdering, failureOrdering: AtomicOrdering,
+    singleThreaded: Bool = false
+  ) -> IRValue {
+
+    if failureOrdering < .monotonic {
+      fatalError("Failure ordering must be at least 'Monotonic'")
+    }
+
+    if successOrdering < .monotonic {
+      fatalError("Success ordering must be at least 'Monotonic'")
+    }
+
+    if failureOrdering == .release || failureOrdering == .acquireRelease {
+      fatalError("Failure ordering may not be 'Release' or 'Acquire Release'")
+    }
+
+    if failureOrdering > successOrdering {
+      fatalError("Failure ordering must be no stronger than success ordering")
+    }
+
+    return LLVMBuildAtomicCmpXchg(
+      llvm, ptr.asLLVM(), old.asLLVM(), new.asLLVM(),
+      successOrdering.llvm, failureOrdering.llvm, singleThreaded.llvm
+    )
+  }
+
+  /// Builds an atomic read-modify-write instruction to atomically modify memory.
+  ///
+  /// - parameter atomicOp: The atomic operation to perform.
+  /// - parameter ptr: The address of a value to modify.
+  /// - parameter value: The second argument to the given operation.
+  /// - parameter ordering: Defines the kind of "synchronizes-with" edge this
+  ///   atomic operation adds.
+  /// - parameter singleThreaded: Specifies that this atomicRMW instruction only
+  ///   synchronizes with other atomics in the same thread. (This is useful for 
+  ///   interacting with signal handlers.)  Otherwise this atomicRMW is atomic 
+  ///   with respect to all other code in the system.
+  ///
+  /// - returns: A value representing the old value of the given pointer before
+  ///   the atomic operation was executed.
+  public func buildAtomicRMW(
+    atomicOp: AtomicReadModifyWriteOperation, ptr: IRValue, value: IRValue,
+    ordering: AtomicOrdering, singleThreaded: Bool = false
+  ) -> IRValue {
+    return LLVMBuildAtomicRMW(llvm, atomicOp.llvm, ptr.asLLVM(), value.asLLVM(), ordering.llvm, singleThreaded.llvm)
   }
 
   // MARK: Aggregate Instructions
