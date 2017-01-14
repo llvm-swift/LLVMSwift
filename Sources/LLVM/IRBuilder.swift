@@ -1335,6 +1335,20 @@ public class IRBuilder {
   public func buildGlobalStringPtr(_ string: String, name: String = "") -> IRValue {
     return LLVMBuildGlobalStringPtr(llvm, string, name)
   }
+
+  /// Builds a named alias to a global value or a constant expression.
+  ///
+  /// Aliases, unlike function or variables, don’t create any new data. They are
+  /// just a new symbol and metadata for an existing position.
+  ///
+  /// - parameter name: The name of the newly inserted alias.
+  /// - parameter aliasee: The value or constant to alias.
+  /// - parameter type: The type of the aliased value or expression.
+  ///
+  /// - returns: A value representing the newly created alias.
+  public func addAlias(name: String, to aliasee: IRValue, type: IRType) -> Alias {
+    return Alias(llvm: LLVMAddAlias(module.llvm, type.asLLVM(), aliasee.asLLVM(), name))
+  }
   
   deinit {
     LLVMDisposeBuilder(llvm)
