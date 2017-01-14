@@ -39,6 +39,12 @@ public struct Global: IRValue {
     set { LLVMSetLinkage(asLLVM(), newValue.llvm) }
   }
 
+  /// Retrieves the visibility style for this global value.
+  public var visibility: Visibility {
+    get { return Visibility(llvm: LLVMGetVisibility(asLLVM())) }
+    set { LLVMSetVisibility(asLLVM(), newValue.llvm) }
+  }
+
   /// Deletes the global variable from its containing module.
   /// - note: This does not remove references to this global from the
   ///         module. Ensure you have removed all insructions that reference

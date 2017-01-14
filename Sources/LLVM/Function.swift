@@ -113,6 +113,12 @@ public class Function: IRValue {
     set { LLVMSetLinkage(asLLVM(), newValue.llvm) }
   }
 
+  /// Retrieves the visibility style for this function.
+  public var visibility: Visibility {
+    get { return Visibility(llvm: LLVMGetVisibility(asLLVM())) }
+    set { LLVMSetVisibility(asLLVM(), newValue.llvm) }
+  }
+
   /// Retrieves the underlying LLVM value object.
   public func asLLVM() -> LLVMValueRef {
     return llvm
