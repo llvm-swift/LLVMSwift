@@ -41,7 +41,7 @@ public enum ModuleError: Error, CustomStringConvertible {
 /// A `Module` represents the top-level structure of an LLVM program. An LLVM
 /// module is effectively a translation unit or a collection of translation
 /// units merged together.
-public final class Module {
+public final class Module: CustomStringConvertible {
   internal let llvm: LLVMModuleRef
 
   /// Creates a `Module` with the given name.
@@ -123,9 +123,62 @@ public final class Module {
     }
   }
 
+  /// Retrieves the sequence of functions that make up this module.
+  public var functions: AnySequence<Function> {
+    var current = firstFunction
+    return AnySequence<Function> {
+      return AnyIterator<Function> {
+        defer { current = current?.next() }
+        return current
+      }
+    }
+  }
+
+  /// Retrieves the first function in this module, if there are any functions.
+  public var firstFunction: Function? {
+    guard let fn = LLVMGetFirstFunction(llvm) else { return nil }
+    return Function(llvm: fn)
+  }
+
+  /// Retrieves the last function in this module, if there are any functions.
+  public var lastFunction: Function? {
+    guard let fn = LLVMGetLastFunction(llvm) else { return nil }
+    return Function(llvm: fn)
+  }
+
+  /// Retrieves the first global in this module, if there are any globals.
+  public var firstGlobal: Global? {
+    guard let fn = LLVMGetFirstGlobal(llvm) else { return nil }
+    return Global(llvm: fn)
+  }
+
+  /// Retrieves the last global in this module, if there are any globals.
+  public var lastGlobal: Global? {
+    guard let fn = LLVMGetLastGlobal(llvm) else { return nil }
+    return Global(llvm: fn)
+  }
+
+  /// Retrieves the sequence of functions that make up this module.
+  public var globals: AnySequence<Global> {
+    var current = firstGlobal
+    return AnySequence<Global> {
+      return AnyIterator<Global> {
+        defer { current = current?.next() }
+        return current
+      }
+    }
+  }
+
   /// Dump a representation of this module to stderr.
   public func dump() {
     LLVMDumpModule(llvm)
+  }
+
+  /// The full text IR of this module
+  public var description: String {
+    let cStr = LLVMPrintModuleToString(llvm)!
+    defer { LLVMDisposeMessage(cStr) }
+    return String(cString: cStr)
   }
 
   deinit {

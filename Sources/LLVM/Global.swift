@@ -33,6 +33,18 @@ public struct Global: IRGlobal {
     set { LLVMSetThreadLocal(asLLVM(), newValue.llvm) }
   }
 
+  /// Retrieves the previous global in the module, if there is one.
+  public func previous() -> Global? {
+    guard let previous = LLVMGetPreviousGlobal(llvm) else { return nil }
+    return Global(llvm: previous)
+  }
+
+  /// Retrieves the next global in the module, if there is one.
+  public func next() -> Global? {
+    guard let next = LLVMGetNextGlobal(llvm) else { return nil }
+    return Global(llvm: next)
+  }
+
   /// Deletes the global variable from its containing module.
   /// - note: This does not remove references to this global from the
   ///         module. Ensure you have removed all insructions that reference

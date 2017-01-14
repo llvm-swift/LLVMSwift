@@ -50,6 +50,18 @@ public class Function: IRGlobal {
     }
   }
 
+  /// Retrieves the previous function in the module, if there is one.
+  public func previous() -> Function? {
+    guard let previous = LLVMGetPreviousFunction(llvm) else { return nil }
+    return Function(llvm: previous)
+  }
+
+  /// Retrieves the next function in the module, if there is one.
+  public func next() -> Function? {
+    guard let next = LLVMGetNextFunction(llvm) else { return nil }
+    return Function(llvm: next)
+  }
+
   /// Retrieves a parameter at the given index, if it exists.
   ///
   /// - parameter index: The index of the parameter to retrieve.
