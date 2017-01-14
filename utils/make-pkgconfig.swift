@@ -58,17 +58,17 @@ func makeFile() throws {
   /// Extract the info we need from llvm-config
 
   print("Found llvm-config at \(llvmConfig)...")
-  print("Running llvm-config --libs all")
+  print("Running llvm-config --libs all...")
   let ldFlags = run(llvmConfig, args: ["--libs", "all"])!
                 .replacing(charactersIn: .newlines, with: "")
-  print("Running llvm-config --version")
+  print("Running llvm-config --version...")
   let version = run(llvmConfig, args: ["--version"])!
                 .replacing(charactersIn: .newlines, with: "")
 
   // SwiftPM has a whitelisted set of cflags that it understands, and
   // unfortunately that includes almost everything but the include dir.
 
-  print("Running llvm-config --cflags")
+  print("Running llvm-config --cflags...")
   let cFlags = run(llvmConfig, args: ["--cflags"])!
                 .replacing(charactersIn: .newlines, with: "")
                 .components(separatedBy: " ")
@@ -86,7 +86,12 @@ func makeFile() throws {
     "Cflags: \(cFlags)",
   ].joined(separator: "\n")
 
+  print("Writing pkg-config file to \(cllvmPath.path)...")
+
   try s.write(toFile: cllvmPath.path, atomically: true, encoding: .utf8)
+
+  print("\nSuccessfully wrote pkg-config file!")
+  print("Make sure to re-run this script when you update LLVM.")
 }
 
 do {
