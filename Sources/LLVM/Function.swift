@@ -107,6 +107,12 @@ public class Function: IRValue {
     LLVMDeleteFunction(llvm)
   }
 
+  /// Retrieves the linkage information for this function.
+  public var linkage: Linkage {
+    get { return Linkage(llvm: LLVMGetLinkage(asLLVM())) }
+    set { LLVMSetLinkage(asLLVM(), newValue.llvm) }
+  }
+
   /// Retrieves the underlying LLVM value object.
   public func asLLVM() -> LLVMValueRef {
     return llvm
