@@ -33,6 +33,12 @@ public struct Global: IRValue {
     set { LLVMSetThreadLocal(asLLVM(), newValue.llvm) }
   }
 
+  /// Retrieves the linkage information for this global value.
+  public var linkage: Linkage {
+    get { return Linkage(llvm: LLVMGetLinkage(asLLVM())) }
+    set { LLVMSetLinkage(asLLVM(), newValue.llvm) }
+  }
+
   /// Deletes the global variable from its containing module.
   /// - note: This does not remove references to this global from the
   ///         module. Ensure you have removed all insructions that reference
