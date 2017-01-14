@@ -44,13 +44,15 @@ Plus, it provides common wrappers around oft-used types like `Function`, `Global
 ## Installation
 
 There are a couple, annoying steps you need to get it working before it'll
-build. Number one, you'll need a custom `cllvm` pkg-config file, which is
-included in the repo. Drop that in `/usr/local/lib/pkgconfig` and make sure
-you have LLVM installed through `homebrew`:
+build.
 
-```
-brew install llvm
-```
+- Install LLVM 3.9 using your favorite package manager. For example:
+  - `brew install llvm`
+- Ensure `llvm-config` is in your `PATH`
+  - That will reside in the `/bin` folder wherever your package manager
+    installed LLVM.
+- Create a pkg-config file for your specific LLVM installation.
+  - We have a utility for this: `swift utils/make-pkgconfig.swift`
 
 Once you do that, you can add LLVMSwift as a dependency for your own Swift
 compiler projects!
