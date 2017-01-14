@@ -3,7 +3,7 @@ import cllvm
 /// A `Global` represents a region of memory allocated at compile time instead
 /// of at runtime.  A global variable must either have an initializer, or make
 /// reference to an external definition that has an initializer.
-public struct Global: IRValue {
+public struct Global: IRGlobal {
   internal let llvm: LLVMValueRef
 
   /// Returns whether this global variable has no initializer because it makes
@@ -31,18 +31,6 @@ public struct Global: IRValue {
   public var isThreadLocal: Bool {
     get { return LLVMIsThreadLocal(asLLVM()) != 0 }
     set { LLVMSetThreadLocal(asLLVM(), newValue.llvm) }
-  }
-
-  /// Retrieves the linkage information for this global value.
-  public var linkage: Linkage {
-    get { return Linkage(llvm: LLVMGetLinkage(asLLVM())) }
-    set { LLVMSetLinkage(asLLVM(), newValue.llvm) }
-  }
-
-  /// Retrieves the visibility style for this global value.
-  public var visibility: Visibility {
-    get { return Visibility(llvm: LLVMGetVisibility(asLLVM())) }
-    set { LLVMSetVisibility(asLLVM(), newValue.llvm) }
   }
 
   /// Deletes the global variable from its containing module.

@@ -1346,7 +1346,7 @@ public class IRBuilder {
   /// - parameter type: The type of the aliased value or expression.
   ///
   /// - returns: A value representing the newly created alias.
-  public func addAlias(name: String, to aliasee: IRValue, type: IRType) -> Alias {
+  public func addAlias(name: String, to aliasee: IRGlobal, type: IRType) -> Alias {
     return Alias(llvm: LLVMAddAlias(module.llvm, type.asLLVM(), aliasee.asLLVM(), name))
   }
   
