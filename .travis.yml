@@ -7,8 +7,8 @@ matrix:
       language: objective-c
       osx_image: xcode8
       before_install:
-        - cp ./cllvm.pc /usr/local/lib/pkgconfig/cllvm.pc
         - brew install llvm
+        - sudo swift utils/make-pkgconfig.swift
       script:
         - swift build
     - os: linux
