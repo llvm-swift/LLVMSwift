@@ -1,8 +1,41 @@
-os: osx
-language: objective-c
-osx_image: xcode8
-before_install:
-  - cp ./cllvm.pc /usr/local/lib/pkgconfig/cllvm.pc 
-  - brew install llvm
-script:
-  - swift build	  
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+matrix:
+  include:
+    - os: osx
+      language: objective-c
+      osx_image: xcode8
+      before_install:
+        - cp ./cllvm.pc /usr/local/lib/pkgconfig/cllvm.pc
+        - brew install llvm
+      script:
+        - swift build
+    - os: linux
+      language: generic
+      sudo: required
+      dist: trusty
+      env:
+        - LLVM_API_VERSION=3.9
+      before_install:
+        # Set the package config path so we can see cllvm
+        - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:"${PKG_CONFIG_PATH}"
+        # Pull clang and llvm
+        - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+        - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main"
+        - sudo apt-get update
+        - sudo apt-get install llvm-${LLVM_API_VERSION}
+        # Work around pre-installed clang
+        - sudo rm -rf /usr/local/clang-*/bin/llvm-config
+        - ls -l /usr/bin/llvm-config*
+        - sudo rm -f /usr/bin/llvm-config
+        - sudo ln -s /usr/bin/llvm-config-${LLVM_API_VERSION} /usr/bin/llvm-config
+        # Grab Swift
+        - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
+        - wget https://swift.org/builds/swift-3.0.2-release/ubuntu1404/swift-3.0.2-RELEASE/swift-3.0.2-RELEASE-ubuntu14.04.tar.gz
+        - tar xzf swift-3.0.2-RELEASE-ubuntu14.04.tar.gz
+        - export PATH=${PWD}/swift-3.0.2-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
+        # Move the package config file into place
+        - sudo ./swift-3.0.2-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
+      script:
+        - swift build

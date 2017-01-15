@@ -1,6 +1,10 @@
 #!/usr/bin/env swift
 import Foundation
 
+#if os(Linux)
+  typealias Process = Task
+#endif
+
 /// Runs the specified program at the provided path.
 /// - parameter path: The full path of the executable you
 ///                   wish to run.
@@ -103,6 +107,11 @@ func makeFile() throws {
 do {
   try makeFile()
 } catch {
+#if os(Linux)
+  // FIXME: Printing the thrown error that here crashes on Linux.
+  print("Unexpected error occured while writing the config file. Check permissions and try again.")
+#else
   print("error: \(error)")
+#endif
   exit(-1)
 }
