@@ -58,11 +58,17 @@ func makeFile() throws {
   /// Extract the info we need from llvm-config
 
   print("Found llvm-config at \(llvmConfig)...")
-  print("Running llvm-config --libs all...")
-  let ldFlags = run(llvmConfig, args: ["--libs", "all"])!
-                .replacing(charactersIn: .newlines, with: "")
+
   print("Running llvm-config --version...")
   let version = run(llvmConfig, args: ["--version"])!
+                .replacing(charactersIn: .newlines, with: "")
+
+  guard version.hasPrefix("3.9") else {
+    throw "LLVMSwift requires LLVM version >=3.9.0, but you have \(version)"
+  }
+
+  print("Running llvm-config --libs all...")
+  let ldFlags = run(llvmConfig, args: ["--libs", "all"])!
                 .replacing(charactersIn: .newlines, with: "")
 
   // SwiftPM has a whitelisted set of cflags that it understands, and
