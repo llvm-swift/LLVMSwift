@@ -1,0 +1,95 @@
+import cllvm
+
+/// Enumerates the possible failures that can be thrown initializing
+/// a MemoryBuffer.
+public enum MemoryBufferError: Error {
+    /// The MemoryBuffer failed to be initialized for a specific reason.
+    case couldNotCreate(String)
+}
+
+/// A `MemoryBuffer` is used to efficiently handle large buffers of binary data.
+public class MemoryBuffer {
+    let llvm: LLVMMemoryBufferRef
+
+    /// Creates a `MemoryBuffer` with the contents of `stdin`, stopping once
+    /// `EOF` is read.
+    /// - throws: `MemoryBufferError` if there was an error on creation.
+    public static func fromStdin() throws -> MemoryBuffer {
+        var buf: LLVMMemoryBufferRef?
+        var error: UnsafeMutablePointer<Int8>?
+        LLVMCreateMemoryBufferWithSTDIN(&buf, &error)
+        if let error = error {
+            defer { LLVMDisposeMessage(error) }
+            throw MemoryBufferError.couldNotCreate(String(cString: error))
+        }
+        guard let llvm = buf else {
+            throw MemoryBufferError.couldNotCreate("unknown reason")
+        }
+        return MemoryBuffer(llvm: llvm)
+    }
+
+
+    /// Creates a MemoryBuffer from the underlying `LLVMMemoryBufferRef`
+    ///
+    /// - parameter llvm: The LLVMMemoryBufferRef with which to initialize
+    internal init(llvm: LLVMMemoryBufferRef) {
+        self.llvm = llvm
+    }
+
+
+    /// Creates a `MemoryBuffer` that points to a specified
+    /// `UnsafeBufferPointer`.
+    ///
+    /// - parameters:
+    ///   - buffer: The underlying buffer that contains the data.
+    ///   - name: The name for the new memory buffer.
+    ///   - requiresNullTerminator: Whether or not the `MemoryBuffer` should
+    ///                             append a null terminator. Defaults to
+    ///                             `false`
+    public init(buffer: UnsafeBufferPointer<Int8>,
+                name: String,
+                requiresNullTerminator: Bool = false) {
+        llvm = LLVMCreateMemoryBufferWithMemoryRange(buffer.baseAddress,
+                                                     buffer.count,
+                                                     name,
+                                                     requiresNullTerminator.llvm)
+    }
+
+    /// Creates a `MemoryBuffer` by copying the data within a specified
+    /// `UnsafeBufferPointer`.
+    ///
+    /// - parameters:
+    ///   - buffer: The underlying buffer that contains the data.
+    ///   - name: The name for the new memory buffer.
+    public init(copyingBuffer buffer: UnsafeBufferPointer<Int8>,
+                name: String) {
+        llvm = LLVMCreateMemoryBufferWithMemoryRangeCopy(buffer.baseAddress,
+                                                         buffer.count,
+                                                         name)
+    }
+
+
+    /// Creates a `MemoryBuffer` with the contents of the file at the provided
+    /// path.
+    ///
+    /// - parameter file: The full path of the file you're trying to read.
+    /// - throws: `MemoryBufferError` if there was a problem creating
+    ///           the buffer or reading the file.
+    public init(contentsOf file: String) throws {
+        var buf: LLVMMemoryBufferRef?
+        var error: UnsafeMutablePointer<Int8>?
+        LLVMCreateMemoryBufferWithContentsOfFile(file, &buf, &error)
+        if let error = error {
+            defer { LLVMDisposeMessage(error) }
+            throw MemoryBufferError.couldNotCreate(String(cString: error))
+        }
+        guard let llvm = buf else {
+            throw MemoryBufferError.couldNotCreate("unknown reason")
+        }
+        self.llvm = llvm
+    }
+
+    deinit {
+        LLVMDisposeMemoryBuffer(llvm)
+    }
+}
