@@ -24,6 +24,32 @@ public extension IRValue {
     return LLVMIsConstant(asLLVM()) != 0
   }
 
+  /// Returns whether this IRValue has any metadata attached.
+  public var hasMetadata: Bool {
+    return LLVMHasMetadata(asLLVM()) != 0
+  }
+
+  /// Returns the metadata attached to this value for the specified kind.
+  ///
+  /// - parameter kind: The kind of metadata you're looking for
+  /// - returns: The metadata attached to this node for the specified kind,
+  ///            or `nil` if no metadata is attached.
+  public func metadata(kind: MetadataKind) -> IRMetadata? {
+    guard let meta = LLVMGetMetadata(asLLVM(), kind.rawValue) else {
+      return nil
+    }
+    return MetadataNode.fromLLVM(meta)
+  }
+
+  /// Sets the metadata of the provided kind for this value.
+  ///
+  /// - parameters:
+  ///   - value: The metadata value you wish to set.
+  ///   - kind: The kind of metadata you wish to set.
+  public func setMetadata(_ value: IRMetadata, kind: MetadataKind) {
+    LLVMSetMetadata(asLLVM(), kind.rawValue, value.asLLVM())
+  }
+
   /// Returns whether this value has been initialized with the special `undef`
   /// value.
   ///

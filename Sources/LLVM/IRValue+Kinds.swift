@@ -214,6 +214,16 @@ public extension IRValue {
         return LLVMIsALandingPadInst(asLLVM()) != nil
     }
 
+    /// Whether or not the underlying LLVM value is an `MDString`
+    var isAnMDString: Bool {
+        return LLVMIsAMDString(asLLVM()) != nil
+    }
+
+    /// Whether or not the underlying LLVM value is an `MDNode`
+    var isAnMDNode: Bool {
+        return LLVMIsAMDNode(asLLVM()) != nil
+    }
+
     /// Whether or not the underlying LLVM value is a `PHINode`
     public var isAPHINode: Bool {
         return LLVMIsAPHINode(asLLVM()) != nil

@@ -1349,6 +1349,30 @@ public class IRBuilder {
   public func addAlias(name: String, to aliasee: IRGlobal, type: IRType) -> Alias {
     return Alias(llvm: LLVMAddAlias(module.llvm, type.asLLVM(), aliasee.asLLVM(), name))
   }
+
+
+  /// Adds the provided metadata value to the operands of a named metadata node
+  /// at module level. If the named metadata node does not exist, then it will
+  /// create a named metadata node with the provided value.
+  ///
+  /// - Parameters:
+  ///   - name: The name for the named metadata node.
+  ///   - value: The value to add to the named metata.
+  public func addNamedMetadataOperand(name: String, value: IRMetadata) {
+    LLVMAddNamedMetadataOperand(module.llvm, name, value.asLLVM())
+  }
+
+  public func namedMetadataOperands(name: String) -> [IRMetadata] {
+    let count = Int(LLVMGetNamedMetadataNumOperands(module.llvm, name))
+    let ptr = UnsafeMutablePointer<LLVMValueRef?>.allocate(capacity: count)
+    defer { free(ptr) }
+    LLVMGetNamedMetadataOperands(module.llvm, name, ptr)
+    let buf = UnsafeMutableBufferPointer(start: ptr, count: count)
+    return buf.flatMap {
+      guard let llvm = $0 else { return nil }
+      return MetadataNode.fromLLVM(llvm)
+    }
+  }
   
   deinit {
     LLVMDisposeBuilder(llvm)
