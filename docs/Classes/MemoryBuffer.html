@@ -256,7 +256,16 @@
 
                 </div>
               </div>
-            <p>A <code>MemoryBuffer</code> is used to efficiently handle large buffers of binary data.</p>
+            <p><code>MemoryBuffer</code> provides simple read-only access to a block of memory, and
+provides simple methods for reading files and standard input into a memory
+buffer.  In addition to basic access to the characters in the file, this
+interface guarantees you can read one character past the end of the file,
+and that this character will read as &rsquo;\0&rsquo;.</p>
+
+<p>The &rsquo;\0&rsquo; guarantee is needed to support an optimization &ndash; it&rsquo;s intended to
+be more efficient for clients which are reading all the data to stop
+reading when they encounter a &rsquo;\0&rsquo; than to continually check the file
+position to see if it has reached the end of the file.</p>
 
           </section>
           <section class="section task-group-section">
@@ -313,8 +322,8 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;</span><span class="p">,</span>
-                <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-                <span class="nv">requiresNullTerminator</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+              <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+              <span class="nv">requiresNullTerminator</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -389,7 +398,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">copyingBuffer</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;</span><span class="p">,</span>
-                <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+              <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

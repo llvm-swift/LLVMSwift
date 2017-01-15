@@ -46,6 +46,9 @@
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -94,6 +97,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
@@ -530,6 +536,71 @@ thrown describing the error in detail.</p>
                               <td>
                                 <div>
                                   <p>The path to write the resulting file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM13TargetMachine18emitToMemoryBufferFzT6moduleCS_6Module4typeOS_15CodegenFileType_CS_12MemoryBuffer"></a>
+                    <a name="//apple_ref/swift/Method/emitToMemoryBuffer(module:type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM13TargetMachine18emitToMemoryBufferFzT6moduleCS_6Module4typeOS_15CodegenFileType_CS_12MemoryBuffer">emitToMemoryBuffer(module:type:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Emits an LLVM Bitcode, ASM, or object file for the given module to a new
+<code><a href="../Classes/MemoryBuffer.html">MemoryBuffer</a></code> containing the contents.</p>
+
+<p>Failure during any part of the compilation process or the process of
+writing the results to disk will result in a <code><a href="../Enums/TargetMachineError.html">TargetMachineError</a></code> being
+thrown describing the error in detail.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">emitToMemoryBuffer</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module.html">Module</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CodegenFileType.html">CodegenFileType</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/MemoryBuffer.html">MemoryBuffer</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>module</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The module whose contents will be codegened.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of codegen to perform on the given module.</p>
 
                                 </div>
                               </td>
