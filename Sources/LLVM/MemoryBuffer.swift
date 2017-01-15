@@ -8,7 +8,7 @@ public enum MemoryBufferError: Error {
 }
 
 /// A `MemoryBuffer` is used to efficiently handle large buffers of binary data.
-public class MemoryBuffer {
+public class MemoryBuffer: Sequence {
     let llvm: LLVMMemoryBufferRef
 
     /// Creates a `MemoryBuffer` with the contents of `stdin`, stopping once
@@ -87,6 +87,21 @@ public class MemoryBuffer {
             throw MemoryBufferError.couldNotCreate("unknown reason")
         }
         self.llvm = llvm
+    }
+
+    /// Retrieves the start address of this buffer.
+    public var start: UnsafePointer<Int8> {
+        return LLVMGetBufferStart(llvm)
+    }
+
+    /// Retrieves the size in bytes of this buffer.
+    public var size: Int {
+        return LLVMGetBufferSize(llvm)
+    }
+
+    /// Makes an iterator so this buffer can be traversed in a `for` loop.
+    public func makeIterator() -> UnsafeBufferPointerIterator<Int8> {
+        return UnsafeBufferPointer(start: start, count: size).makeIterator()
     }
 
     deinit {
