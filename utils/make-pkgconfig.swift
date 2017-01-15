@@ -107,6 +107,11 @@ func makeFile() throws {
 do {
   try makeFile()
 } catch {
-//  print("error: \(error)")
+#if os(Linux)
+  // FIXME: Printing the thrown error that here crashes on Linux.
+  print("Unexpected error occured while writing the config file. Check permissions and try again.")
+#else
+  print("error: \(error)")
+#endif
   exit(-1)
 }
