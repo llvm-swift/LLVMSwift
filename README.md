@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/harlanhaskins/LLVMSwift.svg?branch=master)](https://travis-ci.org/harlanhaskins/LLVMSwift)
+[![Documentation](/docs/badge.svg?raw=true)](https://harlanhaskins.github.io/LLVMSwift)
 
 # LLVMSwift
 

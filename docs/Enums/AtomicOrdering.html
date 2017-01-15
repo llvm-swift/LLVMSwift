@@ -93,6 +93,9 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
               </li>
               <li class="nav-group-task">
@@ -109,6 +112,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
               </li>
             </ul>
           </li>
@@ -160,6 +166,9 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -170,6 +179,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/ArrayType.html">ArrayType</a>
               </li>
@@ -240,13 +252,13 @@
               </div>
             <p><code>AtomicOrdering</code> enumerates available memory ordering semantics.</p>
 
-<p>Atomic instructions (<code>cmpxchg</code>, <code>atomicrmw</code>, <code>fence</code>, <code>atomic load</code>, and 
-<code>atomic store</code>) take ordering parameters that determine which other atomic 
-instructions on the same address they synchronize with. These semantics are 
-borrowed from Java and C++0x, but are somewhat more colloquial. If these 
-descriptions aren’t precise enough, check those specs (see spec references 
-in the atomics guide). fence instructions treat these orderings somewhat 
-differently since they don’t take an address. See that instruction’s 
+<p>Atomic instructions (<code>cmpxchg</code>, <code>atomicrmw</code>, <code>fence</code>, <code>atomic load</code>, and
+<code>atomic store</code>) take ordering parameters that determine which other atomic
+instructions on the same address they synchronize with. These semantics are
+borrowed from Java and C++0x, but are somewhat more colloquial. If these
+descriptions aren’t precise enough, check those specs (see spec references
+in the atomics guide). fence instructions treat these orderings somewhat
+differently since they don’t take an address. See that instruction’s
 documentation for details.</p>
 
           </section>
@@ -299,11 +311,11 @@ documentation for details.</p>
                       <div class="abstract">
                         <p>Lowest level of atomicity, guarantees somewhat sane results, lock free.</p>
 
-<p>The set of values that can be read is governed by the happens-before 
+<p>The set of values that can be read is governed by the happens-before
 partial order. A value cannot be read unless some operation wrote it. This
-is intended to provide a guarantee strong enough to model Java’s 
-non-volatile shared variables. This ordering cannot be specified for 
-read-modify-write operations; it is not strong enough to make them atomic 
+is intended to provide a guarantee strong enough to model Java’s
+non-volatile shared variables. This ordering cannot be specified for
+read-modify-write operations; it is not strong enough to make them atomic
 in any interesting way.</p>
 
                       </div>
@@ -338,19 +350,19 @@ in any interesting way.</p>
                         <p>Guarantees that if you take all the operations affecting a specific
 address, a consistent ordering exists.</p>
 
-<p>In addition to the guarantees of unordered, there is a single total order 
-for modifications by monotonic operations on each address. All 
-modification orders must be compatible with the happens-before order. 
-There is no guarantee that the modification orders can be combined to a 
-global total order for the whole program (and this often will not be 
-possible). The read in an atomic read-modify-write operation (cmpxchg and 
-atomicrmw) reads the value in the modification order immediately before 
+<p>In addition to the guarantees of unordered, there is a single total order
+for modifications by monotonic operations on each address. All
+modification orders must be compatible with the happens-before order.
+There is no guarantee that the modification orders can be combined to a
+global total order for the whole program (and this often will not be
+possible). The read in an atomic read-modify-write operation (cmpxchg and
+atomicrmw) reads the value in the modification order immediately before
 the value it writes. If one atomic read happens before another atomic read
-of the same address, the later read must see the same value or a later 
-value in the address’s modification order. This disallows reordering of 
-monotonic (or stronger) operations on the same address. If an address is 
-written monotonic-ally by one thread, and other threads monotonic-ally 
-read that address repeatedly, the other threads must eventually see the 
+of the same address, the later read must see the same value or a later
+value in the address’s modification order. This disallows reordering of
+monotonic (or stronger) operations on the same address. If an address is
+written monotonic-ally by one thread, and other threads monotonic-ally
+read that address repeatedly, the other threads must eventually see the
 write. This corresponds to the C++0x/C1x memory_order_relaxed.</p>
 
                       </div>
@@ -382,11 +394,11 @@ write. This corresponds to the C++0x/C1x memory_order_relaxed.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Acquire provides a barrier of the sort necessary to acquire a lock to 
+                        <p>Acquire provides a barrier of the sort necessary to acquire a lock to
 access other memory with normal loads and stores.</p>
 
-<p>In addition to the guarantees of monotonic, a synchronizes-with edge may 
-be formed with a release operation. This is intended to model C++’s 
+<p>In addition to the guarantees of monotonic, a synchronizes-with edge may
+be formed with a release operation. This is intended to model C++’s
 <code>memory_order_acquire</code>.</p>
 
                       </div>
@@ -421,10 +433,10 @@ be formed with a release operation. This is intended to model C++’s
                         <p>Release is similar to Acquire, but with a barrier of the sort necessary to
 release a lock.</p>
 
-<p>In addition to the guarantees of monotonic, if this operation writes a 
-value which is subsequently read by an acquire operation, it 
+<p>In addition to the guarantees of monotonic, if this operation writes a
+value which is subsequently read by an acquire operation, it
 synchronizes-with that operation. (This isn’t a complete description; see
-the C++0x definition of a release sequence.) This corresponds to the 
+the C++0x definition of a release sequence.) This corresponds to the
 C++0x/C1x memory_order_release.</p>
 
                       </div>
@@ -492,13 +504,13 @@ which both read and write memory).</p>
                       <div class="abstract">
                         <p>Provides Acquire semantics for loads and Release semantics for stores.</p>
 
-<p>In addition to the guarantees of acq_rel (acquire for an operation that 
-only reads, release for an operation that only writes), there is a global 
-total order on all sequentially-consistent operations on all addresses, 
-which is consistent with the happens-before partial order and with the 
-modification orders of all the affected addresses. Each 
-sequentially-consistent read sees the last preceding write to the same 
-address in this global order. This corresponds to the C++0x/C1x 
+<p>In addition to the guarantees of acq_rel (acquire for an operation that
+only reads, release for an operation that only writes), there is a global
+total order on all sequentially-consistent operations on all addresses,
+which is consistent with the happens-before partial order and with the
+modification orders of all the affected addresses. Each
+sequentially-consistent read sees the last preceding write to the same
+address in this global order. This corresponds to the C++0x/C1x
 <code>memory_order_seq_cst</code> and Java volatile.</p>
 
                       </div>
@@ -532,13 +544,13 @@ address in this global order. This corresponds to the C++0x/C1x
                       <div class="abstract">
                         <p>Provides Acquire semantics for loads and Release semantics for stores.</p>
 
-<p>In addition to the guarantees of acq_rel (acquire for an operation that 
-only reads, release for an operation that only writes), there is a global 
-total order on all sequentially-consistent operations on all addresses, 
-which is consistent with the happens-before partial order and with the 
-modification orders of all the affected addresses. Each 
-sequentially-consistent read sees the last preceding write to the same 
-address in this global order. This corresponds to the C++0x/C1x 
+<p>In addition to the guarantees of acq_rel (acquire for an operation that
+only reads, release for an operation that only writes), there is a global
+total order on all sequentially-consistent operations on all addresses,
+which is consistent with the happens-before partial order and with the
+modification orders of all the affected addresses. Each
+sequentially-consistent read sees the last preceding write to the same
+address in this global order. This corresponds to the C++0x/C1x
 <code>memory_order_seq_cst</code> and Java volatile.</p>
 
                       </div>
@@ -601,13 +613,13 @@ address in this global order. This corresponds to the C++0x/C1x
                       <div class="abstract">
                         <p>Provides Acquire semantics for loads and Release semantics for stores.</p>
 
-<p>In addition to the guarantees of acq_rel (acquire for an operation that 
-only reads, release for an operation that only writes), there is a global 
-total order on all sequentially-consistent operations on all addresses, 
-which is consistent with the happens-before partial order and with the 
-modification orders of all the affected addresses. Each 
-sequentially-consistent read sees the last preceding write to the same 
-address in this global order. This corresponds to the C++0x/C1x 
+<p>In addition to the guarantees of acq_rel (acquire for an operation that
+only reads, release for an operation that only writes), there is a global
+total order on all sequentially-consistent operations on all addresses,
+which is consistent with the happens-before partial order and with the
+modification orders of all the affected addresses. Each
+sequentially-consistent read sees the last preceding write to the same
+address in this global order. This corresponds to the C++0x/C1x
 <code>memory_order_seq_cst</code> and Java volatile.</p>
 
                       </div>
@@ -687,7 +699,7 @@ address in this global order. This corresponds to the C++0x/C1x
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

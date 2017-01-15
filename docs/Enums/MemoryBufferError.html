@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>StructType Class Reference</title>
+    <title>MemoryBufferError Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,18 +10,18 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/StructType" class="dashAnchor"></a>
-    <a title="StructType Class Reference"></a>
+    <a name="//apple_ref/swift/Enum/MemoryBufferError" class="dashAnchor"></a>
+    <a title="MemoryBufferError Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (51% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        StructType Class Reference
+        MemoryBufferError Enum Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -43,13 +43,19 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StructType.html">StructType</a>
+                <a href="../Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Target.html">Target</a>
+                <a href="../Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
@@ -60,7 +66,13 @@
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/Attribute.html">Attribute</a>
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -81,7 +93,19 @@
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -94,6 +118,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
               </li>
             </ul>
           </li>
@@ -145,6 +172,9 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -155,6 +185,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/ArrayType.html">ArrayType</a>
               </li>
@@ -189,10 +222,10 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Switch.html">Switch</a>
+                <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/TargetData.html">TargetData</a>
+                <a href="../Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -216,8 +249,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>StructType</h1>
-            <p>Undocumented</p>
+            <h1>MemoryBufferError</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MemoryBufferError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                </div>
+              </div>
+            <p>Enumerates the possible failures that can be thrown initializing
+a MemoryBuffer.</p>
 
           </section>
           <section class="section task-group-section">
@@ -226,9 +266,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9LLVMSwift10StructTypecFT4llvmVs13OpaquePointer_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(llvm:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift10StructTypecFT4llvmVs13OpaquePointer_S0_">init(llvm:)</a>
+                    <a name="/s:FO4LLVM17MemoryBufferError14couldNotCreateFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/couldNotCreate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM17MemoryBufferError14couldNotCreateFMS0_FSSS0_">couldNotCreate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -236,84 +276,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The MemoryBuffer failed to be initialized for a specific reason.</p>
 
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9LLVMSwift10StructTypecFT12elementTypesGSaPS_6IRType__8isPackedSb4llvmGSqVs13OpaquePointer__S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(elementTypes:isPacked:llvm:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift10StructTypecFT12elementTypesGSaPS_6IRType__8isPackedSb4llvmGSqVs13OpaquePointer__S0_">init(elementTypes:isPacked:llvm:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">couldNotCreate</span><span class="p">(</span><span class="kt">String</span><span class="p">)</span></code></pre>
 
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9LLVMSwift10StructType7setBodyFTGSaPS_6IRType__8isPackedSb_T_"></a>
-                    <a name="//apple_ref/swift/Method/setBody(_:isPacked:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift10StructType7setBodyFTGSaPS_6IRType__8isPackedSb_T_">setBody(_:isPacked:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFC9LLVMSwift10StructType8constantFT6valuesGSaPS_7IRValue__8isPackedSb_PS1__"></a>
-                    <a name="//apple_ref/swift/Method/constant(values:isPacked:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC9LLVMSwift10StructType8constantFT6valuesGSaPS_7IRValue__8isPackedSb_PS1__">constant(values:isPacked:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9LLVMSwift10StructType6asLLVMFT_Vs13OpaquePointer"></a>
-                    <a name="//apple_ref/swift/Method/asLLVM()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9LLVMSwift10StructType6asLLVMFT_Vs13OpaquePointer">asLLVM()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -323,7 +295,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

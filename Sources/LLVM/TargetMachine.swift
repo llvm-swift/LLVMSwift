@@ -82,7 +82,7 @@ public class TargetMachine {
   internal let llvm: LLVMTargetMachineRef
 
   /// The target information associated with this target machine.
-  public  let target: Target
+  public let target: Target
 
   /// The data layout semantics associated with this target machine
   public let dataLayout: TargetData
@@ -118,7 +118,7 @@ public class TargetMachine {
               codeModel: CodeModel = .default) throws {
     self.triple = triple ?? String(cString: LLVMGetDefaultTargetTriple()!)
     var target: LLVMTargetRef?
-    var error: UnsafeMutablePointer<Int8>? = nil
+    var error: UnsafeMutablePointer<Int8>?
     LLVMGetTargetFromTriple(self.triple, &target, &error)
     if let error = error {
       defer { LLVMDisposeMessage(error) }

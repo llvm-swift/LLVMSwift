@@ -55,7 +55,6 @@ public final class Module: CustomStringConvertible {
     // is created
     _ = llvmInitializer
 
-
     if let context = context {
       llvm = LLVMModuleCreateWithNameInContext(name, context.llvm)
       self.context = context
@@ -104,7 +103,7 @@ public final class Module: CustomStringConvertible {
       defer { free(mutable) }
       return LLVMWriteBitcodeToFile(llvm, mutable)
     }
-  
+
     if status != 0 {
       throw ModuleError.couldNotEmitBitCode(path: path)
     }

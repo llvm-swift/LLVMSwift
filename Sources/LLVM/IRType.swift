@@ -16,7 +16,7 @@ public extension IRType {
   /// Returns the special LLVM `undef` value for this type.
   ///
   /// The `undef` value can be used anywhere a constant is expected, and
-  /// indicates that the user of the value may receive an unspecified 
+  /// indicates that the user of the value may receive an unspecified
   /// bit-pattern.
   public func undef() -> IRValue {
     return LLVMGetUndef(asLLVM())

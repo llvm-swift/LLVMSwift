@@ -93,6 +93,9 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
               </li>
               <li class="nav-group-task">
@@ -109,6 +112,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
               </li>
             </ul>
           </li>
@@ -160,6 +166,9 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -170,6 +179,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/ArrayType.html">ArrayType</a>
               </li>
@@ -238,7 +250,7 @@
 
                 </div>
               </div>
-            <p>An <code>IRBuilder</code> is a helper object that generates LLVM instructions.  IR 
+            <p>An <code>IRBuilder</code> is a helper object that generates LLVM instructions.  IR
 Builders keep track of a position within a function or basic block and has
 methods to insert instructions at that position.</p>
 
@@ -717,7 +729,7 @@ neither an integer nor a floating value is a fatal condition.</p>
                       <div class="abstract">
                         <p>Builds an add instruction with the given values as operands.</p>
 
-<p>Whether an integer or floating point add instruction is built is 
+<p>Whether an integer or floating point add instruction is built is
 determined by the type of the first given value.  Providing operands that
 are neither integers nor floating values is a fatal condition.</p>
 
@@ -727,8 +739,8 @@ are neither integers nor floating values is a fatal condition.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildAdd</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                <span class="nv">overflowBehavior</span><span class="p">:</span> <span class="kt"><a href="../Enums/OverflowBehavior.html">OverflowBehavior</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
-                <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                       <span class="nv">overflowBehavior</span><span class="p">:</span> <span class="kt"><a href="../Enums/OverflowBehavior.html">OverflowBehavior</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
+                       <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -824,8 +836,8 @@ are neither integers nor floating values is a fatal condition.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildSub</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                <span class="nv">overflowBehavior</span><span class="p">:</span> <span class="kt"><a href="../Enums/OverflowBehavior.html">OverflowBehavior</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
-                <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                       <span class="nv">overflowBehavior</span><span class="p">:</span> <span class="kt"><a href="../Enums/OverflowBehavior.html">OverflowBehavior</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
+                       <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -921,8 +933,8 @@ are neither integers nor floating values is a fatal condition.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildMul</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                <span class="nv">overflowBehavior</span><span class="p">:</span> <span class="kt"><a href="../Enums/OverflowBehavior.html">OverflowBehavior</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
-                <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                       <span class="nv">overflowBehavior</span><span class="p">:</span> <span class="kt"><a href="../Enums/OverflowBehavior.html">OverflowBehavior</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
+                       <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1019,8 +1031,8 @@ are neither integers nor floating values is a fatal condition.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildRem</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                <span class="nv">signed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-                <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                       <span class="nv">signed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                       <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1117,7 +1129,7 @@ are neither integers nor floating values is a fatal condition.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDiv</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                <span class="nv">signed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                       <span class="nv">signed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1212,8 +1224,8 @@ given predicate.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildICmp</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                 <span class="n">_</span> <span class="nv">predicate</span><span class="p">:</span> <span class="kt"><a href="../Enums/IntPredicate.html">IntPredicate</a></span><span class="p">,</span>
-                 <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                        <span class="n">_</span> <span class="nv">predicate</span><span class="p">:</span> <span class="kt"><a href="../Enums/IntPredicate.html">IntPredicate</a></span><span class="p">,</span>
+                        <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1308,8 +1320,8 @@ given predicate.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildFCmp</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                 <span class="n">_</span> <span class="nv">predicate</span><span class="p">:</span> <span class="kt"><a href="../Enums/RealPredicate.html">RealPredicate</a></span><span class="p">,</span>
-                 <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                        <span class="n">_</span> <span class="nv">predicate</span><span class="p">:</span> <span class="kt"><a href="../Enums/RealPredicate.html">RealPredicate</a></span><span class="p">,</span>
+                        <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1785,7 +1797,7 @@ second value.</p>
                       <div class="abstract">
                         <p>Builds a right-shift instruction of the first value by an amount in the
 second value.  If <code>isArithmetic</code> is true the value of the first operand is
-bitshifted with sign extension.  Else the value is bitshifted with 
+bitshifted with sign extension.  Else the value is bitshifted with
 zero-fill.</p>
 
                       </div>
@@ -2024,8 +2036,8 @@ basic blocks.</p>
                         <p>Build a branch table that branches on the given value with the given
 default basic block.</p>
 
-<p>The ‘switch‘ instruction is used to transfer control flow to one of 
-several different places. It is a generalization of the ‘br‘ instruction, 
+<p>The ‘switch‘ instruction is used to transfer control flow to one of
+several different places. It is a generalization of the ‘br‘ instruction,
 allowing a branch to occur to one of many possible destinations.</p>
 
                       </div>
@@ -2245,7 +2257,7 @@ allowing a branch to occur to one of many possible destinations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Build a condition branch that branches to the first basic block if the 
+                        <p>Build a condition branch that branches to the first basic block if the
 provided condition is <code>true</code>, otherwise to the second basic block.</p>
 
                       </div>
@@ -2696,8 +2708,8 @@ given value.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds a <code>GEP</code> (Get Element Pointer) instruction with a resultant value 
-that is undefined if the address is outside the actual underlying 
+                        <p>Builds a <code>GEP</code> (Get Element Pointer) instruction with a resultant value
+that is undefined if the address is outside the actual underlying
 allocated object and not the address one-past-the-end.</p>
 
 <p>The <code>GEP</code> instruction is often the source of confusion.  LLVM <a href="http://llvm.org/docs/GetElementPtr.html">provides a
@@ -3174,7 +3186,7 @@ the given value to a value of the given type.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds a bitcast instruction to convert the given value to a value of the 
+                        <p>Builds a bitcast instruction to convert the given value to a value of the
 given type by just copying the bit pattern.</p>
 
                       </div>
@@ -3648,7 +3660,7 @@ to the given integer type.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds an integer-to-floating instruction to convert the given integer 
+                        <p>Builds an integer-to-floating instruction to convert the given integer
 value to the given floating type.</p>
 
                       </div>
@@ -3832,7 +3844,7 @@ value to the given integer type.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds a constant expression that returns the alignment of the given type 
+                        <p>Builds a constant expression that returns the alignment of the given type
 in bytes.</p>
 
                       </div>
@@ -3950,7 +3962,7 @@ bytes.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Builds a fence instruction that introduces <q>happens-before</q> edges between
-operations.  </p>
+operations.</p>
 
                       </div>
                       <div class="declaration">
@@ -4015,8 +4027,8 @@ operations.  </p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds an atomic compare-and-exchange instruction to atomically modify 
-memory. It loads a value in memory and compares it to a given value. If 
+                        <p>Builds an atomic compare-and-exchange instruction to atomically modify
+memory. It loads a value in memory and compares it to a given value. If
 they are equal, it tries to store a new value into the memory.</p>
 
                       </div>
@@ -4256,7 +4268,7 @@ they are equal, it tries to store a new value into the memory.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds an instruction to insert a value into a member field in an 
+                        <p>Builds an instruction to insert a value into a member field in an
 aggregate value.</p>
 
                       </div>
@@ -4359,7 +4371,7 @@ aggregate value.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds a vector insert instruction to nondestructively insert the given 
+                        <p>Builds a vector insert instruction to nondestructively insert the given
 value into the given vector.</p>
 
                       </div>
@@ -4606,7 +4618,7 @@ a specified index.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Build a named global string consisting of an array of <code>i8</code> type filled in 
+                        <p>Build a named global string consisting of an array of <code>i8</code> type filled in
 with the nul terminated string value.</p>
 
                       </div>
@@ -4672,8 +4684,8 @@ with the nul terminated string value.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds a named global variable containing the characters of the given 
-string value as an array of <code>i8</code> type filled in with the nul terminated 
+                        <p>Builds a named global variable containing the characters of the given
+string value as an array of <code>i8</code> type filled in with the nul terminated
 string value.</p>
 
                       </div>
@@ -4792,12 +4804,93 @@ given string value.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder8addAliasFT4nameSS2toPS_8IRGlobal_4typePS_6IRType__VS_5Alias"></a>
+                    <a name="//apple_ref/swift/Method/addAlias(name:to:type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8addAliasFT4nameSS2toPS_8IRGlobal_4typePS_6IRType__VS_5Alias">addAlias(name:to:type:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a named alias to a global value or a constant expression.</p>
+
+<p>Aliases, unlike function or variables, don’t create any new data. They are
+just a new symbol and metadata for an existing position.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addAlias</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">to</span> <span class="nv">aliasee</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRGlobal.html">IRGlobal</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Alias.html">Alias</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the newly inserted alias.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>aliasee</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value or constant to alias.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the aliased value or expression.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the newly created alias.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
