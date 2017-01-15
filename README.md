@@ -21,7 +21,7 @@ Once you do that, you can start adding functions, global variables, and generati
 let main = builder.addFunction(name: "main", 
                                type: FunctionType(argTypes: [], 
                                                   returnType: VoidType())
-let entry = builder.appendBasicBlock(named: "entry")
+let entry = function.appendBasicBlock(named: "entry")
 builder.positionAtEnd(of: entry)
 
 builder.buildRetVoid()
