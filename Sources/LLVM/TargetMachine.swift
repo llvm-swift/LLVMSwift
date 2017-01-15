@@ -162,6 +162,36 @@ public class TargetMachine {
     }
   }
 
+  /// Emits an LLVM Bitcode, ASM, or object file for the given module to a new
+  /// `MemoryBuffer` containing the contents.
+  ///
+  /// Failure during any part of the compilation process or the process of
+  /// writing the results to disk will result in a `TargetMachineError` being
+  /// thrown describing the error in detail.
+  ///
+  /// - parameter module: The module whose contents will be codegened.
+  /// - parameter type: The type of codegen to perform on the given module.
+  public func emitToMemoryBuffer(module: Module, type: CodegenFileType) throws -> MemoryBuffer {
+    if case .bitCode = type {
+      guard let buffer = LLVMWriteBitcodeToMemoryBuffer(module.llvm) else {
+        throw TargetMachineError.couldNotEmitBitCode
+      }
+      return MemoryBuffer(llvm: buffer)
+    }
+    var buf: LLVMMemoryBufferRef?
+    var error: UnsafeMutablePointer<Int8>?
+    LLVMTargetMachineEmitToMemoryBuffer(llvm, module.llvm,
+                                        type.asLLVM(), &error, &buf)
+    if let error = error {
+      defer { free(error) }
+      throw TargetMachineError.couldNotEmit(String(cString: error), type)
+    }
+    guard let llvm = buf else {
+      throw TargetMachineError.couldNotEmit("unknown reason", type)
+    }
+    return MemoryBuffer(llvm: llvm)
+  }
+
   deinit {
     LLVMDisposeTargetMachine(llvm)
   }
