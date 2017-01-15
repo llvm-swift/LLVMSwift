@@ -12,6 +12,7 @@ import Foundation
 ///                   process.
 /// - returns: The standard output of the process, or nil if it was empty.
 func run(_ path: String, args: [String] = []) -> String? {
+    print("Running \(path) \(args.joined(separator: " "))...")
     let pipe = Pipe()
     let process = Process()
     process.launchPath = path
@@ -63,7 +64,6 @@ func makeFile() throws {
 
   print("Found llvm-config at \(llvmConfig)...")
 
-  print("Running llvm-config --version...")
   let version = run(llvmConfig, args: ["--version"])!
                 .replacing(charactersIn: .newlines, with: "")
 
@@ -71,14 +71,16 @@ func makeFile() throws {
     throw "LLVMSwift requires LLVM version >=3.9.0, but you have \(version)"
   }
 
-  print("Running llvm-config --libs all...")
-  let ldFlags = run(llvmConfig, args: ["--libs", "all"])!
-                .replacing(charactersIn: .newlines, with: "")
+  let ldFlags = run(llvmConfig, args: ["--ldflags", "--libs", "all",
+                                       "--system-libs"])!
+                .replacing(charactersIn: .newlines, with: " ")
+                .components(separatedBy: " ")
+                .filter { !$0.hasPrefix("-W") }
+                .joined(separator: " ")
 
   // SwiftPM has a whitelisted set of cflags that it understands, and
   // unfortunately that includes almost everything but the include dir.
 
-  print("Running llvm-config --cflags...")
   let cFlags = run(llvmConfig, args: ["--cflags"])!
                 .replacing(charactersIn: .newlines, with: "")
                 .components(separatedBy: " ")
@@ -91,7 +93,7 @@ func makeFile() throws {
     "Name: cllvm",
     "Description: The llvm library",
     "Version: \(version)",
-    "Libs: \(ldFlags)",
+    "Libs: \(ldFlags) -lc++",
     "Requires.private:",
     "Cflags: \(cFlags)",
   ].joined(separator: "\n")
