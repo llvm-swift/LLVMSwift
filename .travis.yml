@@ -11,7 +11,7 @@ matrix:
         - brew install llvm
         - sudo swift utils/make-pkgconfig.swift
       script:
-        - swift build
+        - swift test
     - os: linux
       language: generic
       sudo: required
@@ -39,4 +39,4 @@ matrix:
         # Move the package config file into place
         - sudo ./swift-3.0.2-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
       script:
-        - swift build
+        - swift test
