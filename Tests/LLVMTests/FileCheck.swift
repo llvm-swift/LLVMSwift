@@ -2,6 +2,8 @@ import Foundation
 
 #if os(Linux)
   import Glibc
+
+  typealias NSRegularExpression = RegularExpression
 #else
   import Darwin
 #endif
@@ -92,33 +94,34 @@ private func overrideFDAndCollectOutput(file : FileCheckFD, of block : () -> ())
 	fflush(stdout)
 	let oldFd = dup(file.fileno)
 
-	let template = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("output.XXXXXX") as NSURL
-	var buffer = [Int8](repeating: 0, count: Int(PATH_MAX))
-	guard template.getFileSystemRepresentation(&buffer, maxLength: buffer.count) else {
-		return ""
-	}
+	let template = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("output.XXXXXX")
+  return template.withUnsafeFileSystemRepresentation { buffer in
+    guard let buffer = buffer else {
+      return ""
+    }
 
-	let newFd = mkstemp(&buffer)
-	guard newFd != -1 else {
-		return ""
-	}
+   	let newFd = mkstemp(UnsafeMutablePointer(mutating: buffer))
+    guard newFd != -1 else {
+      return ""
+    }
 
-	dup2(newFd, file.fileno)
+    dup2(newFd, file.fileno)
 
-	block()
+    block()
 
-	close(newFd)
-	fflush(file.filePtr)
+    close(newFd)
+    fflush(file.filePtr)
 
 
-	dup2(oldFd, file.fileno)
-	close(oldFd)
+    dup2(oldFd, file.fileno)
+    close(oldFd)
 
-	let url = URL(fileURLWithFileSystemRepresentation: buffer, isDirectory: false, relativeTo: nil)
-	guard let s = try? String(contentsOf: url) else {
-		return ""
-	}
-	return s
+    let url = URL(fileURLWithFileSystemRepresentation: buffer, isDirectory: false, relativeTo: nil)
+    guard let s = try? String(contentsOf: url) else {
+      return ""
+    }
+    return s
+  }
 }
 
 func validateCheckPrefixes(_ prefixes : [String]) -> [String]? {
