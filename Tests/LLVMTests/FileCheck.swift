@@ -107,7 +107,7 @@ public func fileCheckOutput(of FD : FileCheckFD = .stdout, withPrefixes prefixes
 }
 
 private func overrideFDAndCollectOutput(file : FileCheckFD, of block : () -> ()) -> String {
-  fflush(stdout)
+  fflush(file.filePtr)
   let oldFd = dup(file.fileno)
 
   let template = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("output.XXXXXX")
@@ -133,7 +133,7 @@ private func overrideFDAndCollectOutput(file : FileCheckFD, of block : () -> ())
     close(oldFd)
 
     let url = URL(fileURLWithFileSystemRepresentation: buffer, isDirectory: false, relativeTo: nil)
-    guard let s = try? String(contentsOf: url) else {
+    guard let s = try? String(contentsOf: url, encoding: .utf8) else {
       return ""
     }
     return s
