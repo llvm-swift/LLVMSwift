@@ -7,9 +7,15 @@ public enum JITError: Error, CustomStringConvertible {
   /// the failure.
   case couldNotInitialize(String)
 
+  /// The JIT was unable to remove the provided module. A message is provided
+  /// explaining the failure
+  case couldNotRemoveModule(Module, String)
+
   /// A human-readable description of the error.
   public var description: String {
     switch self {
+    case .couldNotRemoveModule(let module, let message):
+      return "could not remove module '\(module.name)': \(message)"
     case .couldNotInitialize(let message):
       return "could not initialize JIT: \(message)"
     }
@@ -58,6 +64,42 @@ public final class JIT {
     return irArgs.withUnsafeMutableBufferPointer { buf in
       return LLVMRunFunction(llvm, function.asLLVM(),
                              UInt32(buf.count), buf.baseAddress)
+    }
+  }
+
+  /// Retrieves a pointer to the function compiled by this JIT.
+  /// - parameter name: The name of the function you wish to look up.
+  /// - returns: A pointer to the result of compiling the specified function.
+  /// - note: You will have to `unsafeBitCast` this pointer to
+  ///         the appropriate `@convention(c)` function type to be
+  ///         able to run it from Swift.
+  /// 
+  /// ```
+  /// typealias FnPtr = @convention(c) () -> Double
+  /// let fnAddr = jit.addressOfFunction(name: "test")
+  /// let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
+  /// ```
+  public func addressOfFunction(name: String) -> OpaquePointer? {
+    let addr = LLVMGetFunctionAddress(llvm, name)
+    guard addr != 0 else { return nil }
+    return OpaquePointer(bitPattern: UInt(addr))
+  }
+
+  /// Adds the provided module, and all top-level declarations into this JIT.
+  /// - parameter module: The module you wish to add.
+  public func addModule(_ module: Module) {
+    LLVMAddModule(llvm, module.llvm)
+  }
+
+  /// Removes the provided module, and all top-level declarations, from this
+  /// JIT.
+  public func removeModule(_ module: Module) throws {
+    var outMod: LLVMModuleRef? = module.llvm
+    var outError: UnsafeMutablePointer<Int8>?
+    LLVMRemoveModule(llvm, module.llvm, &outMod, &outError)
+    if let err = outError {
+      defer { LLVMDisposeMessage(err) }
+      throw JITError.couldNotRemoveModule(module, String(cString: err))
     }
   }
 
