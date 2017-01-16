@@ -93,7 +93,7 @@ func makeFile() throws {
     "Name: cllvm",
     "Description: The llvm library",
     "Version: \(version)",
-    "Libs: \(ldFlags) -lc++",
+    "Libs: \(ldFlags) -lstdc++",
     "Requires.private:",
     "Cflags: \(cFlags)",
   ].joined(separator: "\n")
