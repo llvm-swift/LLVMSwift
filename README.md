@@ -1,6 +1,6 @@
 
 
-# LLVMSwift [![Build Status](https://travis-ci.org/harlanhaskins/LLVMSwift.svg?branch=master)](https://travis-ci.org/harlanhaskins/LLVMSwift) [![Documentation](https://cdn.rawgit.com/harlanhaskins/LLVMSwift/master/docs/badge.svg)](https://harlanhaskins.github.io/LLVMSwift)
+# LLVMSwift [![Build Status](https://travis-ci.org/harlanhaskins/LLVMSwift.svg?branch=master)](https://travis-ci.org/harlanhaskins/LLVMSwift) [![Documentation](https://cdn.rawgit.com/trill-lang/LLVMSwift/master/docs/badge.svg)](https://trill-lang.github.io/LLVMSwift)
 
 LLVMSwift is a set of Swifty API wrappers for the LLVM C API.
 It makes compiler development feel great from Swift!
