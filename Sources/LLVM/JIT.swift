@@ -73,10 +73,12 @@ public final class JIT {
   /// - note: You will have to `unsafeBitCast` this pointer to
   ///         the appropriate `@convention(c)` function type to be
   ///         able to run it from Swift.
-  ///         
-  ///       typealias FnPtr = @convention(c) () -> Double
-  ///       let fnAddr = jit.addressOfFunction(name: "test")
-  ///       let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
+  /// 
+  /// ```
+  /// typealias FnPtr = @convention(c) () -> Double
+  /// let fnAddr = jit.addressOfFunction(name: "test")
+  /// let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
+  /// ```
   public func addressOfFunction(name: String) -> OpaquePointer? {
     let addr = LLVMGetFunctionAddress(llvm, name)
     guard addr != 0 else { return nil }
