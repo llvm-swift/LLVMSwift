@@ -167,6 +167,13 @@ extension CChar {
   }
 }
 
+extension Character {
+  fileprivate var isPartOfWord : Bool {
+    let utf8Value = String(self).utf8.first!
+    return isalnum(Int32(utf8Value)) != 0 || utf8Value == "-".utf8.first! || utf8Value == "_".utf8.first!
+  }
+}
+
 private func findCheckType(in buf : UnsafeBufferPointer<CChar>, with prefix : String) -> CheckType {
   let nextChar = UInt8(buf[prefix.utf8.count])
 
@@ -245,21 +252,35 @@ private func findFirstMatch(in inbuffer : UnsafeBufferPointer<CChar>, among pref
 
   while !buffer.isEmpty {
     let str = String(bytesNoCopy: UnsafeMutableRawPointer(mutating: buffer.baseAddress!), length: buffer.count, encoding: .utf8, freeWhenDone: false)!
-    let matches = RE.matches(in: str, options: [], range: NSRange(location: 0, length: buffer.count))
-    guard let prefix = matches.first else {
+    let match = RE.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.distance(from: str.startIndex, to: str.endIndex)))
+    guard let prefix = match else {
       return ("", .none, lineNumber, buffer)
     }
-    let skippedPrefix = buffer.substr(0, prefix.range.location)
-    let prefixStr = substring(in: buffer, with: prefix.range)
+    let skippedPrefix = substring(in: buffer, with: NSMakeRange(0, prefix.range.location))
+    let prefixStr = str.substring(
+      with: Range(
+        uncheckedBounds: (
+          str.index(str.startIndex, offsetBy: prefix.range.location),
+          str.index(str.startIndex, offsetBy: NSMaxRange(prefix.range))
+        )
+      )
+    )
 
-    buffer = buffer.dropFront(prefix.range.location)
-    lineNumber += skippedPrefix.filter({ c in UInt8(c) == "\n".utf8.first! }).count
+    // HACK: Conversion between the buffer and `String` causes index
+    // mismatches when searching for strings.  We're instead going to do
+    // something terribly inefficient here: Use the regular expression to
+    // look for check prefixes, then use Foundation's Data to find their
+    // actual locations in the buffer.
+    let bd = Data(buffer: buffer)
+    let range = bd.range(of: prefixStr.data(using: .utf8)!)!
+    buffer = buffer.dropFront(range.lowerBound)
+    lineNumber += skippedPrefix.characters.filter({ c in c == "\n" }).count
     // Check that the matched prefix isn't a suffix of some other check-like
     // word.
     // FIXME: This is a very ad-hoc check. it would be better handled in some
     // other way. Among other things it seems hard to distinguish between
     // intentional and unintentional uses of this feature.
-    if skippedPrefix.isEmpty || !skippedPrefix.last!.isPartOfWord {
+    if skippedPrefix.isEmpty || !skippedPrefix.characters.last!.isPartOfWord {
       // Now extract the type.
       let CheckTy = findCheckType(in: buffer, with: prefixStr)
 
@@ -279,10 +300,9 @@ private func findFirstMatch(in inbuffer : UnsafeBufferPointer<CChar>, among pref
     }
     buffer = buffer.dropFront(loc)
   }
-
+  
   return ("", .none, lineNumber, buffer)
 }
-
 
 private func readCheckStrings(in buf : UnsafeBufferPointer<CChar>, withPrefixes prefixes : [String], options: FileCheckOptions, _ RE : NSRegularExpression) -> [CheckString] {
   // Keeps track of the line on which CheckPrefix instances are found.
