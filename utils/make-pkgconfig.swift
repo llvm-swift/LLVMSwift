@@ -3,6 +3,9 @@ import Foundation
 
 #if os(Linux)
   typealias Process = Task
+  let libCPP = "-lstdc++"
+#elseif os(macOS)
+  let libCPP = "-lc++"
 #endif
 
 /// Runs the specified program at the provided path.
@@ -93,7 +96,7 @@ func makeFile() throws {
     "Name: cllvm",
     "Description: The llvm library",
     "Version: \(version)",
-    "Libs: \(ldFlags) -lstdc++",
+    "Libs: \(ldFlags) \(libCPP)",
     "Requires.private:",
     "Cflags: \(cFlags)",
   ].joined(separator: "\n")
