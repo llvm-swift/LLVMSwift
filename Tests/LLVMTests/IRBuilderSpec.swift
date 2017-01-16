@@ -6,7 +6,7 @@ class IRBuilderSpec : XCTestCase {
   func testIRBuilder() {
     XCTAssert(fileCheckOutput(of: .stderr) {
       // CHECK: ; ModuleID = 'IRBuilderTest'
-      // CHECK: source_filename = "IRBuilderTest"
+      // CHECK-NEXT: source_filename = "IRBuilderTest"
       let module = Module(name: "IRBuilderTest")
       let builder = IRBuilder(module: module)
       // CHECK: define void @main() {
@@ -25,7 +25,7 @@ class IRBuilderSpec : XCTestCase {
 
   #if !os(macOS)
   static var allTests = testCase([
-		("testIRBuilder", testIRBuilder),
+    ("testIRBuilder", testIRBuilder),
   ])
   #endif
 }
