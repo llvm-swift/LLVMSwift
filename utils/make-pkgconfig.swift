@@ -3,7 +3,7 @@ import Foundation
 
 #if os(Linux)
   typealias Process = Task
-  let libCPP = "-lc++"
+  let libCPP = "-L/usr/lib -lc++"
 #elseif os(macOS)
   let libCPP = "-lc++"
 #endif

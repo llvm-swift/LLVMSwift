@@ -25,7 +25,10 @@ matrix:
         - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
         - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main"
         - sudo apt-get update
-        - sudo apt-get install llvm-${LLVM_API_VERSION}
+        - sudo apt-get install llvm-${LLVM_API_VERSION} libc++1
+        # Move libC++ into place
+        - sudo cp /usr/lib/x86_64-linux-gnu/libc++.so.1.0 /usr/lib/
+        - sudo ln -sf /usr/lib/libc++.so.1.0 /usr/lib/libc++.so
         # Work around pre-installed clang
         - sudo rm -rf /usr/local/clang-*/bin/llvm-config
         - ls -l /usr/bin/llvm-config*
