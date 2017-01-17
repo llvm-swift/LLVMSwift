@@ -6,7 +6,7 @@ public enum OverflowBehavior {
   /// The result value of the operator is the mathematical result modulo `2^n`,
   /// where `n` is the bit width of the result.
   case `default`
-  /// The result value of the operator is a poison value if signed overflow 
+  /// The result value of the operator is a poison value if signed overflow
   /// occurs.
   case noSignedWrap
   /// The result value of the operator is a poison value if unsigned overflow
@@ -36,7 +36,7 @@ public enum IntPredicate {
   /// less than or equal to the second.
   case ule
 
-  /// Interprets the operands as signed values and yields true if the first is 
+  /// Interprets the operands as signed values and yields true if the first is
   /// greater than the second.
   case sgt
   /// Interprets the operands as signed values and yields true if the first is
@@ -52,7 +52,7 @@ public enum IntPredicate {
   static let predicateMapping: [IntPredicate: LLVMIntPredicate] = [
     .eq: LLVMIntEQ, .ne: LLVMIntNE, .ugt: LLVMIntUGT, .uge: LLVMIntUGE,
     .ult: LLVMIntULT, .ule: LLVMIntULE, .sgt: LLVMIntSGT, .sge: LLVMIntSGE,
-    .slt: LLVMIntSLT, .sle: LLVMIntSLE
+    .slt: LLVMIntSLT, .sle: LLVMIntSLE,
   ]
 
   /// Retrieves the corresponding `LLVMIntPredicate`.
@@ -113,58 +113,58 @@ public enum RealPredicate {
 
 /// `AtomicOrdering` enumerates available memory ordering semantics.
 ///
-/// Atomic instructions (`cmpxchg`, `atomicrmw`, `fence`, `atomic load`, and 
-/// `atomic store`) take ordering parameters that determine which other atomic 
-/// instructions on the same address they synchronize with. These semantics are 
-/// borrowed from Java and C++0x, but are somewhat more colloquial. If these 
-/// descriptions aren’t precise enough, check those specs (see spec references 
-/// in the atomics guide). fence instructions treat these orderings somewhat 
-/// differently since they don’t take an address. See that instruction’s 
+/// Atomic instructions (`cmpxchg`, `atomicrmw`, `fence`, `atomic load`, and
+/// `atomic store`) take ordering parameters that determine which other atomic
+/// instructions on the same address they synchronize with. These semantics are
+/// borrowed from Java and C++0x, but are somewhat more colloquial. If these
+/// descriptions aren’t precise enough, check those specs (see spec references
+/// in the atomics guide). fence instructions treat these orderings somewhat
+/// differently since they don’t take an address. See that instruction’s
 /// documentation for details.
 public enum AtomicOrdering: Comparable {
   /// A load or store which is not atomic
   case notAtomic
   /// Lowest level of atomicity, guarantees somewhat sane results, lock free.
   ///
-  /// The set of values that can be read is governed by the happens-before 
+  /// The set of values that can be read is governed by the happens-before
   /// partial order. A value cannot be read unless some operation wrote it. This
-  /// is intended to provide a guarantee strong enough to model Java’s 
-  /// non-volatile shared variables. This ordering cannot be specified for 
-  /// read-modify-write operations; it is not strong enough to make them atomic 
+  /// is intended to provide a guarantee strong enough to model Java’s
+  /// non-volatile shared variables. This ordering cannot be specified for
+  /// read-modify-write operations; it is not strong enough to make them atomic
   /// in any interesting way.
   case unordered
   /// Guarantees that if you take all the operations affecting a specific
   /// address, a consistent ordering exists.
   ///
-  /// In addition to the guarantees of unordered, there is a single total order 
-  /// for modifications by monotonic operations on each address. All 
-  /// modification orders must be compatible with the happens-before order. 
-  /// There is no guarantee that the modification orders can be combined to a 
-  /// global total order for the whole program (and this often will not be 
-  /// possible). The read in an atomic read-modify-write operation (cmpxchg and 
-  /// atomicrmw) reads the value in the modification order immediately before 
+  /// In addition to the guarantees of unordered, there is a single total order
+  /// for modifications by monotonic operations on each address. All
+  /// modification orders must be compatible with the happens-before order.
+  /// There is no guarantee that the modification orders can be combined to a
+  /// global total order for the whole program (and this often will not be
+  /// possible). The read in an atomic read-modify-write operation (cmpxchg and
+  /// atomicrmw) reads the value in the modification order immediately before
   /// the value it writes. If one atomic read happens before another atomic read
-  /// of the same address, the later read must see the same value or a later 
-  /// value in the address’s modification order. This disallows reordering of 
-  /// monotonic (or stronger) operations on the same address. If an address is 
-  /// written monotonic-ally by one thread, and other threads monotonic-ally 
-  /// read that address repeatedly, the other threads must eventually see the 
+  /// of the same address, the later read must see the same value or a later
+  /// value in the address’s modification order. This disallows reordering of
+  /// monotonic (or stronger) operations on the same address. If an address is
+  /// written monotonic-ally by one thread, and other threads monotonic-ally
+  /// read that address repeatedly, the other threads must eventually see the
   /// write. This corresponds to the C++0x/C1x memory_order_relaxed.
   case monotonic
-  /// Acquire provides a barrier of the sort necessary to acquire a lock to 
+  /// Acquire provides a barrier of the sort necessary to acquire a lock to
   /// access other memory with normal loads and stores.
   ///
-  /// In addition to the guarantees of monotonic, a synchronizes-with edge may 
-  /// be formed with a release operation. This is intended to model C++’s 
+  /// In addition to the guarantees of monotonic, a synchronizes-with edge may
+  /// be formed with a release operation. This is intended to model C++’s
   /// `memory_order_acquire`.
   case acquire
   /// Release is similar to Acquire, but with a barrier of the sort necessary to
   /// release a lock.
   ///
-  /// In addition to the guarantees of monotonic, if this operation writes a 
-  /// value which is subsequently read by an acquire operation, it 
+  /// In addition to the guarantees of monotonic, if this operation writes a
+  /// value which is subsequently read by an acquire operation, it
   /// synchronizes-with that operation. (This isn’t a complete description; see
-  /// the C++0x definition of a release sequence.) This corresponds to the 
+  /// the C++0x definition of a release sequence.) This corresponds to the
   /// C++0x/C1x memory_order_release.
   case release
   /// provides both an Acquire and a Release barrier (for fences and operations
@@ -174,13 +174,13 @@ public enum AtomicOrdering: Comparable {
   case acquireRelease
   /// Provides Acquire semantics for loads and Release semantics for stores.
   ///
-  /// In addition to the guarantees of acq_rel (acquire for an operation that 
-  /// only reads, release for an operation that only writes), there is a global 
-  /// total order on all sequentially-consistent operations on all addresses, 
-  /// which is consistent with the happens-before partial order and with the 
-  /// modification orders of all the affected addresses. Each 
-  /// sequentially-consistent read sees the last preceding write to the same 
-  /// address in this global order. This corresponds to the C++0x/C1x 
+  /// In addition to the guarantees of acq_rel (acquire for an operation that
+  /// only reads, release for an operation that only writes), there is a global
+  /// total order on all sequentially-consistent operations on all addresses,
+  /// which is consistent with the happens-before partial order and with the
+  /// modification orders of all the affected addresses. Each
+  /// sequentially-consistent read sees the last preceding write to the same
+  /// address in this global order. This corresponds to the C++0x/C1x
   /// `memory_order_seq_cst` and Java volatile.
   case sequentiallyConsistent
 
@@ -269,7 +269,7 @@ public enum AtomicReadModifyWriteOperation {
   /// *ptr = *ptr < val ? *ptr : val
   /// ```
   case min
-  /// Sets the value if it's greater than the original using an unsigned 
+  /// Sets the value if it's greater than the original using an unsigned
   /// comparison and return the old one.
   ///
   /// ```
@@ -277,7 +277,7 @@ public enum AtomicReadModifyWriteOperation {
   /// *ptr = *ptr > val ? *ptr : val
   /// ```
   case umax
-  /// Sets the value if it's greater than the original using an unsigned 
+  /// Sets the value if it's greater than the original using an unsigned
   /// comparison and return the old one.
   ///
   /// ```
@@ -338,7 +338,7 @@ extension Module {
   }
 }
 
-/// An `IRBuilder` is a helper object that generates LLVM instructions.  IR 
+/// An `IRBuilder` is a helper object that generates LLVM instructions.  IR
 /// Builders keep track of a position within a function or basic block and has
 /// methods to insert instructions at that position.
 public class IRBuilder {
@@ -445,20 +445,20 @@ public class IRBuilder {
 
   /// Builds an add instruction with the given values as operands.
   ///
-  /// Whether an integer or floating point add instruction is built is 
+  /// Whether an integer or floating point add instruction is built is
   /// determined by the type of the first given value.  Providing operands that
   /// are neither integers nor floating values is a fatal condition.
   ///
   /// - parameter lhs: The first summand value (the augend).
   /// - parameter rhs: The second summand value (the addend).
-  /// - parameter overflowBehavior: Should overflow occur, specifies the 
+  /// - parameter overflowBehavior: Should overflow occur, specifies the
   ///   behavior of the program.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the sum of the two operands.
   public func buildAdd(_ lhs: IRValue, _ rhs: IRValue,
-                overflowBehavior: OverflowBehavior = .default,
-                name: String = "") -> IRValue {
+                       overflowBehavior: OverflowBehavior = .default,
+                       name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
     if lhs.type is IntType {
@@ -490,8 +490,8 @@ public class IRBuilder {
   ///
   /// - returns: A value representing the difference of the two operands.
   public func buildSub(_ lhs: IRValue, _ rhs: IRValue,
-                overflowBehavior: OverflowBehavior = .default,
-                name: String = "") -> IRValue {
+                       overflowBehavior: OverflowBehavior = .default,
+                       name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
     if lhs.type is IntType {
@@ -523,8 +523,8 @@ public class IRBuilder {
   ///
   /// - returns: A value representing the product of the two operands.
   public func buildMul(_ lhs: IRValue, _ rhs: IRValue,
-                overflowBehavior: OverflowBehavior = .default,
-                name: String = "") -> IRValue {
+                       overflowBehavior: OverflowBehavior = .default,
+                       name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
     if lhs.type is IntType {
@@ -558,8 +558,8 @@ public class IRBuilder {
   /// - returns: A value representing the remainder of division of the first
   ///   operand by the second operand.
   public func buildRem(_ lhs: IRValue, _ rhs: IRValue,
-                signed: Bool = true,
-                name: String = "") -> IRValue {
+                       signed: Bool = true,
+                       name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
     if lhs.type is IntType {
@@ -587,10 +587,10 @@ public class IRBuilder {
   ///   instruction.  Defaults to emission of a signed divide instruction.
   /// - parameter name: The name for the newly inserted instruction.
   ///
-  /// - returns: A value representing the quotient of the first and second 
+  /// - returns: A value representing the quotient of the first and second
   ///   operands.
   public func buildDiv(_ lhs: IRValue, _ rhs: IRValue,
-                signed: Bool = true, name: String = "") -> IRValue {
+                       signed: Bool = true, name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
     if lhs.type is IntType {
@@ -618,8 +618,8 @@ public class IRBuilder {
   /// - returns: A value representing the result of the comparision of the given
   ///   operands.
   public func buildICmp(_ lhs: IRValue, _ rhs: IRValue,
-                 _ predicate: IntPredicate,
-                 name: String = "") -> IRValue {
+                        _ predicate: IntPredicate,
+                        name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
     guard lhs.type is IntType else {
@@ -641,8 +641,8 @@ public class IRBuilder {
   /// - returns: A value representing the result of the comparision of the given
   ///   operands.
   public func buildFCmp(_ lhs: IRValue, _ rhs: IRValue,
-                 _ predicate: RealPredicate,
-                 name: String = "") -> IRValue {
+                        _ predicate: RealPredicate,
+                        name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
     guard lhs.type is FloatType else {
@@ -715,7 +715,7 @@ public class IRBuilder {
 
   /// Builds a right-shift instruction of the first value by an amount in the
   /// second value.  If `isArithmetic` is true the value of the first operand is
-  /// bitshifted with sign extension.  Else the value is bitshifted with 
+  /// bitshifted with sign extension.  Else the value is bitshifted with
   /// zero-fill.
   ///
   /// - parameter lhs: The first operand.
@@ -754,7 +754,7 @@ public class IRBuilder {
   ///
   /// - parameter name: The name of the newly defined function.
   /// - parameter type: The type of the newly defined function.
-  /// 
+  ///
   /// - returns: A value representing the newly inserted function definition.
   public func addFunction(_ name: String, type: FunctionType) -> Function {
     return Function(llvm: LLVMAddFunction(module.llvm, name, type.asLLVM()))
@@ -763,12 +763,12 @@ public class IRBuilder {
   /// Build a branch table that branches on the given value with the given
   /// default basic block.
   ///
-  /// The ‘switch‘ instruction is used to transfer control flow to one of 
-  /// several different places. It is a generalization of the ‘br‘ instruction, 
+  /// The ‘switch‘ instruction is used to transfer control flow to one of
+  /// several different places. It is a generalization of the ‘br‘ instruction,
   /// allowing a branch to occur to one of many possible destinations.
   ///
   /// - parameter value: The value to compare.
-  /// - parameter else: The default destination for control flow should the 
+  /// - parameter else: The default destination for control flow should the
   ///   value not match a case in the branch table.
   /// - parameter caseCount: The number of cases in the branch table.
   ///
@@ -809,12 +809,12 @@ public class IRBuilder {
     return LLVMBuildBr(llvm, block.llvm)
   }
 
-  /// Build a condition branch that branches to the first basic block if the 
+  /// Build a condition branch that branches to the first basic block if the
   /// provided condition is `true`, otherwise to the second basic block.
   ///
   /// - parameter condition: A value of type `i1` that determines which basic
   ///   block to transfer control flow to.
-  /// - parameter then: The basic block to transfer control flow to if the 
+  /// - parameter then: The basic block to transfer control flow to if the
   ///   condition evaluates to `true`.
   /// - parameter else: The basic block to transfer control flow to if the
   ///   condition evaluates to `false`.
@@ -903,8 +903,8 @@ public class IRBuilder {
     return LLVMBuildLoad(llvm, ptr.asLLVM(), name)
   }
 
-  /// Builds a `GEP` (Get Element Pointer) instruction with a resultant value 
-  /// that is undefined if the address is outside the actual underlying 
+  /// Builds a `GEP` (Get Element Pointer) instruction with a resultant value
+  /// that is undefined if the address is outside the actual underlying
   /// allocated object and not the address one-past-the-end.
   ///
   /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
@@ -955,7 +955,7 @@ public class IRBuilder {
   /// - returns: A value representing the address of a subelement of the given
   ///   struct value.
   public func buildStructGEP(_ ptr: IRValue, index: Int, name: String = "") -> IRValue {
-      return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
+    return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
   }
 
   // MARK: Null Test Instructions
@@ -999,14 +999,14 @@ public class IRBuilder {
     return LLVMBuildTruncOrBitCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds a bitcast instruction to convert the given value to a value of the 
+  /// Builds a bitcast instruction to convert the given value to a value of the
   /// given type by just copying the bit pattern.
   ///
   /// - parameter val: The value to bitcast.
   /// - parameter type: The destination type.
   /// - parameter name: The name for the newly inserted instruction.
   ///
-  /// - returns: A value representing the result of bitcasting the given value 
+  /// - returns: A value representing the result of bitcasting the given value
   ///   to fit the given type.
   public func buildBitCast(_ val: IRValue, type: IRType, name: String = "") -> IRValue {
     return LLVMBuildBitCast(llvm, val.asLLVM(), type.asLLVM(), name)
@@ -1024,7 +1024,6 @@ public class IRBuilder {
     return LLVMBuildTrunc(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-
   /// Builds a sign extension instruction to sign extend the given value to
   /// the given type with a wider width.
   ///
@@ -1032,7 +1031,7 @@ public class IRBuilder {
   /// - parameter type: The destination type.
   /// - parameter name: The name for the newly inserted instruction.
   ///
-  /// - returns: A value representing the result of sign extending the given 
+  /// - returns: A value representing the result of sign extending the given
   ///   value to fit the given type.
   public func buildSExt(_ val: IRValue, type: IRType, name: String = "") -> IRValue {
     return LLVMBuildSExt(llvm, val.asLLVM(), type.asLLVM(), name)
@@ -1077,7 +1076,7 @@ public class IRBuilder {
     return LLVMBuildIntToPtr(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds an integer-to-floating instruction to convert the given integer 
+  /// Builds an integer-to-floating instruction to convert the given integer
   /// value to the given floating type.
   ///
   /// - parameter val: The integer value.
@@ -1113,7 +1112,7 @@ public class IRBuilder {
     }
   }
 
-  /// Builds a constant expression that returns the alignment of the given type 
+  /// Builds a constant expression that returns the alignment of the given type
   /// in bytes.
   ///
   /// - parameter val: The type to evaluate the alignment of.
@@ -1138,11 +1137,11 @@ public class IRBuilder {
   // MARK: Atomic Instructions
 
   /// Builds a fence instruction that introduces "happens-before" edges between
-  /// operations.  
+  /// operations.
   ///
   /// - parameter ordering: Defines the kind of "synchronizes-with" edge this
   ///   fence adds.
-  /// - parameter singleThreaded: Specifies that the fence only synchronizes 
+  /// - parameter singleThreaded: Specifies that the fence only synchronizes
   ///   with other atomics in the same thread. (This is useful for interacting
   ///   with signal handlers.) Otherwise this fence is atomic with respect to
   ///   all other code in the system.
@@ -1152,15 +1151,15 @@ public class IRBuilder {
     return LLVMBuildFence(llvm, ordering.llvm, singleThreaded.llvm, name)
   }
 
-  /// Builds an atomic compare-and-exchange instruction to atomically modify 
-  /// memory. It loads a value in memory and compares it to a given value. If 
+  /// Builds an atomic compare-and-exchange instruction to atomically modify
+  /// memory. It loads a value in memory and compares it to a given value. If
   /// they are equal, it tries to store a new value into the memory.
   ///
   /// - parameter ptr: The address of data to update atomically.
   /// - parameter old: The value to base the comparison on.
   /// - parameter new: The new value to write if comparison with the old value
   ///   returns true.
-  /// - parameter successOrdering: Specifies how this cmpxchg synchronizes with 
+  /// - parameter successOrdering: Specifies how this cmpxchg synchronizes with
   ///   other atomic operations when it succeeds.
   /// - parameter failureOrdering: Specifies how this cmpxchg synchronizes with
   ///   other atomic operations when it fails.
@@ -1169,7 +1168,7 @@ public class IRBuilder {
   ///   with signal handlers.)  Otherwise this cmpxchg is atomic with respect to
   ///   all other code in the system.
   ///
-  /// - returns: A value representing the original value at the given location 
+  /// - returns: A value representing the original value at the given location
   ///   is together with a flag indicating success (true) or failure (false).
   public func buildAtomicCmpXchg(
     ptr: IRValue, of old: IRValue, to new: IRValue,
@@ -1207,8 +1206,8 @@ public class IRBuilder {
   /// - parameter ordering: Defines the kind of "synchronizes-with" edge this
   ///   atomic operation adds.
   /// - parameter singleThreaded: Specifies that this atomicRMW instruction only
-  ///   synchronizes with other atomics in the same thread. (This is useful for 
-  ///   interacting with signal handlers.)  Otherwise this atomicRMW is atomic 
+  ///   synchronizes with other atomics in the same thread. (This is useful for
+  ///   interacting with signal handlers.)  Otherwise this atomicRMW is atomic
   ///   with respect to all other code in the system.
   ///
   /// - returns: A value representing the old value of the given pointer before
@@ -1222,7 +1221,7 @@ public class IRBuilder {
 
   // MARK: Aggregate Instructions
 
-  /// Builds an instruction to insert a value into a member field in an 
+  /// Builds an instruction to insert a value into a member field in an
   /// aggregate value.
   ///
   /// - parameter aggregate: A value of array or structure type.
@@ -1236,7 +1235,7 @@ public class IRBuilder {
     return LLVMBuildInsertValue(llvm, aggregate.asLLVM(), element.asLLVM(), UInt32(index), name)
   }
 
-  /// Builds an instruction to extract a value from a member field in an 
+  /// Builds an instruction to extract a value from a member field in an
   /// aggregate value.
   ///
   /// An `extract value` instruction differs from a `get element pointer`
@@ -1255,7 +1254,7 @@ public class IRBuilder {
 
   // MARK: Vector Instructions
 
-  /// Builds a vector insert instruction to nondestructively insert the given 
+  /// Builds a vector insert instruction to nondestructively insert the given
   /// value into the given vector.
   ///
   /// - parameter vector: A value of vector type.
@@ -1293,7 +1292,7 @@ public class IRBuilder {
     return Global(llvm: LLVMAddGlobal(module.llvm, type.asLLVM(), name))
   }
 
-  /// Build a named global string consisting of an array of `i8` type filled in 
+  /// Build a named global string consisting of an array of `i8` type filled in
   /// with the nul terminated string value.
   ///
   /// - parameter name: The name of the newly inserted global string value.
@@ -1312,8 +1311,8 @@ public class IRBuilder {
     return global
   }
 
-  /// Builds a named global variable containing the characters of the given 
-  /// string value as an array of `i8` type filled in with the nul terminated 
+  /// Builds a named global variable containing the characters of the given
+  /// string value as an array of `i8` type filled in with the nul terminated
   /// string value.
   ///
   /// - parameter string: The character contents of the newly inserted global.
@@ -1330,7 +1329,7 @@ public class IRBuilder {
   /// - parameter string: The character contents of the newly inserted global.
   /// - parameter name: The name for the newly inserted instruction.
   ///
-  /// - returns: A value representing a pointer to the newly inserted global 
+  /// - returns: A value representing a pointer to the newly inserted global
   ///   string variable.
   public func buildGlobalStringPtr(_ string: String, name: String = "") -> IRValue {
     return LLVMBuildGlobalStringPtr(llvm, string, name)
@@ -1349,7 +1348,6 @@ public class IRBuilder {
   public func addAlias(name: String, to aliasee: IRGlobal, type: IRType) -> Alias {
     return Alias(llvm: LLVMAddAlias(module.llvm, type.asLLVM(), aliasee.asLLVM(), name))
   }
-
 
   /// Adds the provided metadata value to the operands of a named metadata node
   /// at module level. If the named metadata node does not exist, then it will

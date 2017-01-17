@@ -1,6 +1,6 @@
 import cllvm
 
-/// An `Alias` represents a global alias in an LLVM module - a new symbol and 
+/// An `Alias` represents a global alias in an LLVM module - a new symbol and
 /// corresponding metadata for an existing position
 public struct Alias: IRGlobal {
   internal let llvm: LLVMValueRef

@@ -45,6 +45,9 @@
                 <a href="Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -92,6 +95,12 @@
                 <a href="Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/ModuleError.html">ModuleError</a>
               </li>
               <li class="nav-group-task">
@@ -108,6 +117,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Visibility.html">Visibility</a>
               </li>
             </ul>
           </li>
@@ -159,6 +171,9 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -169,6 +184,9 @@
           <li class="nav-group-name">
             <a href="Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/Alias.html">Alias</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Structs/ArrayType.html">ArrayType</a>
               </li>
@@ -251,7 +269,7 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>A <code>Function</code> represents a named function body in LLVM IR source.  Functions
-in LLVM IR encapsulate a list of parameters and a sequence of basic blocks 
+in LLVM IR encapsulate a list of parameters and a sequence of basic blocks
 and provide a way to append to that sequence to build out its body.</p>
 
                         <a href="Classes/Function.html" class="slightly-smaller">See more</a>
@@ -260,7 +278,7 @@ and provide a way to append to that sequence to build out its body.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Function</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRValue.html">IRValue</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Function</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRGlobal.html">IRGlobal</a></span></code></pre>
 
                         </div>
                       </div>
@@ -294,7 +312,7 @@ units merged together.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -346,7 +364,7 @@ units merged together.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An <code>IRBuilder</code> is a helper object that generates LLVM instructions.  IR 
+                        <p>An <code>IRBuilder</code> is a helper object that generates LLVM instructions.  IR
 Builders keep track of a position within a function or basic block and has
 methods to insert instructions at that position.</p>
 
@@ -392,6 +410,47 @@ interactive programs that will run as soon as they are compiled.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">JIT</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C4LLVM12MemoryBuffer"></a>
+                    <a name="//apple_ref/swift/Class/MemoryBuffer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C4LLVM12MemoryBuffer">MemoryBuffer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>MemoryBuffer</code> provides simple read-only access to a block of memory, and
+provides simple methods for reading files and standard input into a memory
+buffer.  In addition to basic access to the characters in the file, this
+interface guarantees you can read one character past the end of the file,
+and that this character will read as &rsquo;\0&rsquo;.</p>
+
+<p>The &rsquo;\0&rsquo; guarantee is needed to support an optimization &ndash; it&rsquo;s intended to
+be more efficient for clients which are reading all the data to stop
+reading when they encounter a &rsquo;\0&rsquo; than to continually check the file
+position to see if it has reached the end of the file.</p>
+
+                        <a href="Classes/MemoryBuffer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MemoryBuffer</span><span class="p">:</span> <span class="kt">Sequence</span></code></pre>
 
                         </div>
                       </div>
@@ -534,7 +593,7 @@ environment.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

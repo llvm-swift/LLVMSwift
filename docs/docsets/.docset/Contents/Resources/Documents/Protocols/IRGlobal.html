@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>TargetData Struct Reference</title>
+    <title>IRGlobal Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,18 +10,18 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/TargetData" class="dashAnchor"></a>
-    <a title="TargetData Struct Reference"></a>
+    <a name="//apple_ref/swift/Protocol/IRGlobal" class="dashAnchor"></a>
+    <a title="IRGlobal Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (51% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        TargetData Struct Reference
+        IRGlobal Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -43,13 +43,19 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StructType.html">StructType</a>
+                <a href="../Classes/Target.html">Target</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Target.html">Target</a>
+                <a href="../Classes/TargetData.html">TargetData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
@@ -60,7 +66,13 @@
             <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/Attribute.html">Attribute</a>
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
@@ -81,7 +93,19 @@
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
@@ -94,6 +118,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
               </li>
             </ul>
           </li>
@@ -145,6 +172,9 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -155,6 +185,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/ArrayType.html">ArrayType</a>
               </li>
@@ -189,10 +222,10 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Switch.html">Switch</a>
+                <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/TargetData.html">TargetData</a>
+                <a href="../Structs/Switch.html">Switch</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -216,16 +249,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>TargetData</h1>
+            <h1>IRGlobal</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TargetData</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IRGlobal</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                 </div>
               </div>
-            <p>A <code>TargetData</code> encapsulates information about the data requirements of a
-particular target architecture and can be used to retrieve information about
-sizes and offsets of types with respect to this target.</p>
+            <p>An <code>IRGlobal</code> is a value, alias, or function that exists at the top level of
+an LLVM module.</p>
 
           </section>
           <section class="section task-group-section">
@@ -234,24 +266,27 @@ sizes and offsets of types with respect to this target.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10TargetDatacFT4llvmVs13OpaquePointer_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(llvm:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10TargetDatacFT4llvmVs13OpaquePointer_S0_">init(llvm:)</a>
+                    <a name="/s:vE4LLVMPS_8IRGlobal7linkageOS_7Linkage"></a>
+                    <a name="//apple_ref/swift/Property/linkage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE4LLVMPS_8IRGlobal7linkageOS_7Linkage">linkage</a>
                     </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a Target Data object from an <code>LLVMTargetDataRef</code> object.</p>
+                        <p>Retrieves the linkage information for this global.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">llvm</span><span class="p">:</span> <span class="kt">LLVMTargetDataRef</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">linkage</span><span class="p">:</span> <span class="kt"><a href="../Enums/Linkage.html">Linkage</a></span></code></pre>
 
                         </div>
                       </div>
@@ -261,103 +296,29 @@ sizes and offsets of types with respect to this target.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9LLVMSwift10TargetData15offsetOfElementFTSi4typeCS_10StructType_Si"></a>
-                    <a name="//apple_ref/swift/Method/offsetOfElement(_:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10TargetData15offsetOfElementFTSi4typeCS_10StructType_Si">offsetOfElement(_:type:)</a>
+                    <a name="/s:vE4LLVMPS_8IRGlobal10visibilityOS_10Visibility"></a>
+                    <a name="//apple_ref/swift/Property/visibility" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE4LLVMPS_8IRGlobal10visibilityOS_10Visibility">visibility</a>
                     </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">offsetOfElement</span><span class="p">(</span><span class="n">_</span> <span class="nv">element</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/StructType.html">StructType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type of the structure to compute the offset with.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The offset of the given element within the structure.</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV9LLVMSwift10TargetData16sizeOfTypeInBitsFPS_6IRType_Si"></a>
-                    <a name="//apple_ref/swift/Method/sizeOfTypeInBits(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9LLVMSwift10TargetData16sizeOfTypeInBitsFPS_6IRType_Si">sizeOfTypeInBits(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Computes the number of bits necessary to hold a value of the given type 
-for this target environment.</p>
+                        <p>Retrieves the visibility style for this global.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sizeOfTypeInBits</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">visibility</span><span class="p">:</span> <span class="kt"><a href="../Enums/Visibility.html">Visibility</a></span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type to compute the size of.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The size of the type in bits.</p>
-
                       </div>
                     </section>
                   </div>
@@ -367,7 +328,7 @@ for this target environment.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-09)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

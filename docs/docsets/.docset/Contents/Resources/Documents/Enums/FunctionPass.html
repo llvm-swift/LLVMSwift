@@ -46,6 +46,9 @@
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -93,6 +96,12 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
               </li>
               <li class="nav-group-task">
@@ -109,6 +118,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
               </li>
             </ul>
           </li>
@@ -160,6 +172,9 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -170,6 +185,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/ArrayType.html">ArrayType</a>
               </li>
@@ -257,7 +275,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This pass uses the SSA based Aggressive DCE algorithm.  This algorithm 
+                        <p>This pass uses the SSA based Aggressive DCE algorithm.  This algorithm
 assumes instructions are dead until proven otherwise, which makes
 it more successful are removing non-obviously dead instructions.</p>
 
@@ -290,7 +308,7 @@ it more successful are removing non-obviously dead instructions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This pass uses a bit-tracking DCE algorithm in order to remove 
+                        <p>This pass uses a bit-tracking DCE algorithm in order to remove
 computations of dead bits.</p>
 
                       </div>
@@ -353,7 +371,7 @@ computations of dead bits.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Merge basic blocks, eliminate unreachable blocks, simplify terminator 
+                        <p>Merge basic blocks, eliminate unreachable blocks, simplify terminator
 instructions, etc.</p>
 
                       </div>
@@ -385,7 +403,7 @@ instructions, etc.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This pass deletes stores that are post-dominated by must-aliased stores 
+                        <p>This pass deletes stores that are post-dominated by must-aliased stores
 and are not loaded used between the stores.</p>
 
                       </div>
@@ -512,7 +530,7 @@ cotemporaneously.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Transform induction variables in a program to all use a single canonical 
+                        <p>Transform induction variables in a program to all use a single canonical
 induction variable per loop.</p>
 
                       </div>
@@ -544,8 +562,8 @@ induction variable per loop.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Combine instructions to form fewer, simple instructions. This pass does 
-not modify the CFG, and has a tendency to make instructions dead, so a 
+                        <p>Combine instructions to form fewer, simple instructions. This pass does
+not modify the CFG, and has a tendency to make instructions dead, so a
 subsequent DCE pass is useful.</p>
 
 <p>This pass combines things like:
@@ -587,8 +605,8 @@ into:
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Thread control through mult-pred/multi-succ blocks where some preds 
-always go to some succ. Thresholds other than minus one override the 
+                        <p>Thread control through mult-pred/multi-succ blocks where some preds
+always go to some succ. Thresholds other than minus one override the
 internal BB duplication default threshold.</p>
 
                       </div>
@@ -933,7 +951,7 @@ binary branch instructions.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>This pass is used to promote memory references to
-be register references. A simple example of the transformation performed 
+be register references. A simple example of the transformation performed
 by this pass is going from code like this:</p>
 
 <pre class="highlight plaintext"><code>%X = alloca i32, i32 1
@@ -1481,7 +1499,7 @@ analysis.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This pass promotes <q>by reference</q> arguments to be passed by value if the 
+                        <p>This pass promotes <q>by reference</q> arguments to be passed by value if the
 number of elements passed is less than or equal to 3.</p>
 
                       </div>
@@ -1513,9 +1531,9 @@ number of elements passed is less than or equal to 3.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This function returns a new pass that merges duplicate global constants 
-together into a single constant that is shared. This is useful because 
-some passes (ie TraceValues) insert a lot of string constants into the 
+                        <p>This function returns a new pass that merges duplicate global constants
+together into a single constant that is shared. This is useful because
+some passes (ie TraceValues) insert a lot of string constants into the
 program, regardless of whether or not they duplicate an existing string.</p>
 
                       </div>
@@ -1579,7 +1597,7 @@ of the function.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This pass walks SCCs of the call graph in RPO to deduce and propagate 
+                        <p>This pass walks SCCs of the call graph in RPO to deduce and propagate
 function attributes. Currently it only handles synthesizing <code>norecurse</code>
 attributes.</p>
 
@@ -1643,7 +1661,7 @@ attributes.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This transform is designed to eliminate unreachable internal globals 
+                        <p>This transform is designed to eliminate unreachable internal globals
 (functions or global variables)</p>
 
                       </div>
@@ -1707,7 +1725,7 @@ globals.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This pass propagates constants from call sites into the bodies of 
+                        <p>This pass propagates constants from call sites into the bodies of
 functions.</p>
 
                       </div>
@@ -1739,8 +1757,8 @@ functions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This pass propagates constants from call sites into the bodies of 
-functions, and keeps track of whether basic blocks are executable in the 
+                        <p>This pass propagates constants from call sites into the bodies of
+functions, and keeps track of whether basic blocks are executable in the
 process.</p>
 
                       </div>
@@ -1772,7 +1790,7 @@ process.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Return a new pass object which transforms invoke instructions into calls, 
+                        <p>Return a new pass object which transforms invoke instructions into calls,
 if the callee can <em>not</em> unwind the stack.</p>
 
                       </div>
@@ -1835,7 +1853,7 @@ if the callee can <em>not</em> unwind the stack.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>These functions removes symbols from functions and modules without 
+                        <p>These functions removes symbols from functions and modules without
 touching symbols for debugging information.</p>
 
                       </div>
@@ -1855,7 +1873,7 @@ touching symbols for debugging information.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

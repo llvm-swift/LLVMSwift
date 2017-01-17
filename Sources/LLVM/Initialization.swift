@@ -2,7 +2,7 @@ import cllvm
 
 /// Lazy static initializer that calls LLVM initialization functions only once.
 let llvmInitializer: Void = {
-    initializeLLVM()
+  initializeLLVM()
 }()
 
 /// Calls all the LLVM functions to initialize:
@@ -14,13 +14,13 @@ let llvmInitializer: Void = {
 /// - Target MCs
 /// - Disassemblers
 private func initializeLLVM() {
-    LLVMInitializeAllTargets()
-    LLVMInitializeAllTargetInfos()
+  LLVMInitializeAllTargets()
+  LLVMInitializeAllTargetInfos()
 
-    LLVMInitializeAllAsmPrinters()
-    LLVMInitializeAllAsmParsers()
+  LLVMInitializeAllAsmPrinters()
+  LLVMInitializeAllAsmParsers()
 
-    LLVMInitializeAllTargetMCs()
-    
-    LLVMInitializeAllDisassemblers()
+  LLVMInitializeAllTargetMCs()
+
+  LLVMInitializeAllDisassemblers()
 }

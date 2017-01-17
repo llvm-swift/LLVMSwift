@@ -45,6 +45,9 @@
                 <a href="Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -92,6 +95,12 @@
                 <a href="Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/ModuleError.html">ModuleError</a>
               </li>
               <li class="nav-group-task">
@@ -108,6 +117,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Visibility.html">Visibility</a>
               </li>
             </ul>
           </li>
@@ -159,6 +171,9 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -169,6 +184,9 @@
           <li class="nav-group-name">
             <a href="Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/Alias.html">Alias</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Structs/ArrayType.html">ArrayType</a>
               </li>
@@ -370,13 +388,13 @@ operations.</p>
                       <div class="abstract">
                         <p><code>AtomicOrdering</code> enumerates available memory ordering semantics.</p>
 
-<p>Atomic instructions (<code>cmpxchg</code>, <code>atomicrmw</code>, <code>fence</code>, <code>atomic load</code>, and 
-<code>atomic store</code>) take ordering parameters that determine which other atomic 
-instructions on the same address they synchronize with. These semantics are 
-borrowed from Java and C++0x, but are somewhat more colloquial. If these 
-descriptions aren’t precise enough, check those specs (see spec references 
-in the atomics guide). fence instructions treat these orderings somewhat 
-differently since they don’t take an address. See that instruction’s 
+<p>Atomic instructions (<code>cmpxchg</code>, <code>atomicrmw</code>, <code>fence</code>, <code>atomic load</code>, and
+<code>atomic store</code>) take ordering parameters that determine which other atomic
+instructions on the same address they synchronize with. These semantics are
+borrowed from Java and C++0x, but are somewhat more colloquial. If these
+descriptions aren’t precise enough, check those specs (see spec references
+in the atomics guide). fence instructions treat these orderings somewhat
+differently since they don’t take an address. See that instruction’s
 documentation for details.</p>
 
                         <a href="Enums/AtomicOrdering.html" class="slightly-smaller">See more</a>
@@ -448,6 +466,100 @@ throw.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">JITError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O4LLVM10Visibility"></a>
+                    <a name="//apple_ref/swift/Enum/Visibility" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O4LLVM10Visibility">Visibility</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>Visibility</code> enumerates available visibility styles.</p>
+
+                        <a href="Enums/Visibility.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Visibility</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O4LLVM7Linkage"></a>
+                    <a name="//apple_ref/swift/Enum/Linkage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O4LLVM7Linkage">Linkage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>Linkage</code> enumerates the supported kinds of linkage for global values.  All
+global variables and functions have a linkage.</p>
+
+                        <a href="Enums/Linkage.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Linkage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O4LLVM17MemoryBufferError"></a>
+                    <a name="//apple_ref/swift/Enum/MemoryBufferError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O4LLVM17MemoryBufferError">MemoryBufferError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumerates the possible failures that can be thrown initializing
+a MemoryBuffer.</p>
+
+                        <a href="Enums/MemoryBufferError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MemoryBufferError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>
@@ -659,8 +771,8 @@ particular target architecture.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The model that generated code should follow.  Code Models enables particular
-styles of generated code that may be more suitable for each enumerated 
-domain.  Code Models differ in addressing (absolute versus position 
+styles of generated code that may be more suitable for each enumerated
+domain.  Code Models differ in addressing (absolute versus position
 independent), code size, data size and address range.</p>
 
 <p>Documentation of these modes paraphrases the <a href="https://software.intel.com/sites/default/files/article/402129/mpx-linux64-abi.pdf">Intel System V ABI AMD64
@@ -744,7 +856,7 @@ Architecture Processor Supplement</a>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

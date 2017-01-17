@@ -1,7 +1,7 @@
 import cllvm
 
 /// A `Function` represents a named function body in LLVM IR source.  Functions
-/// in LLVM IR encapsulate a list of parameters and a sequence of basic blocks 
+/// in LLVM IR encapsulate a list of parameters and a sequence of basic blocks
 /// and provide a way to append to that sequence to build out its body.
 public class Function: IRGlobal {
   internal let llvm: LLVMValueRef
@@ -11,9 +11,9 @@ public class Function: IRGlobal {
 
   /// Retrieves the entry block of this function.
   ///
-  /// The first basic block in a function is special in two ways: it is 
+  /// The first basic block in a function is special in two ways: it is
   /// immediately executed on entrance to the function, and it is not allowed to
-  /// have predecessor basic blocks (i.e. there can not be any branches to the 
+  /// have predecessor basic blocks (i.e. there can not be any branches to the
   /// entry block of a function). Because the block can have no predecessors, it
   /// also cannot have any PHI nodes.
   public var entryBlock: BasicBlock? {

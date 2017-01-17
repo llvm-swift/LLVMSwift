@@ -1,6 +1,5 @@
 import cllvm
 
-
 /// A `TargetData` encapsulates information about the data requirements of a
 /// particular target architecture and can be used to retrieve information about
 /// sizes and offsets of types with respect to this target.
@@ -162,7 +161,7 @@ public class TargetData {
 /// particular target architecture.
 public enum ByteOrder {
   /// Little-endian byte order. In a little-endian platform, the _least_
-  /// significant bytes come before the _most_ significant bytes in a series, 
+  /// significant bytes come before the _most_ significant bytes in a series,
   /// so the 16-bit number 1234 would look like:
   /// ```
   /// 11010010 00000100
@@ -294,8 +293,8 @@ public enum RelocMode {
 }
 
 /// The model that generated code should follow.  Code Models enables particular
-/// styles of generated code that may be more suitable for each enumerated 
-/// domain.  Code Models differ in addressing (absolute versus position 
+/// styles of generated code that may be more suitable for each enumerated
+/// domain.  Code Models differ in addressing (absolute versus position
 /// independent), code size, data size and address range.
 ///
 /// Documentation of these modes paraphrases the [Intel System V ABI AMD64
@@ -303,7 +302,7 @@ public enum RelocMode {
 public enum CodeModel {
   /// Generated code will assume the default for a particular target architecture.
   case `default`
-  /// Generated code will assume the default for JITed code on a particular 
+  /// Generated code will assume the default for JITed code on a particular
   /// target architecture.
   case jitDefault
   /// The virtual address of code executed is known at link time. Additionally
@@ -321,41 +320,41 @@ public enum CodeModel {
   /// This is the fastest code model and is suitable for the vast majority of
   /// programs.
   case small
-  /// The kernel of an operating system is usually rather small but runs in the 
-  /// negative half of the address space. So all symbols are defined to be in 
-  /// the range from 2^64 − 2^31 to 2^64 − 2^24 or from 0xffffffff80000000 to 
+  /// The kernel of an operating system is usually rather small but runs in the
+  /// negative half of the address space. So all symbols are defined to be in
+  /// the range from 2^64 − 2^31 to 2^64 − 2^24 or from 0xffffffff80000000 to
   /// 0xffffffffff000000.
   ///
-  /// This code model has advantages similar to those of the small model, but 
+  /// This code model has advantages similar to those of the small model, but
   /// allows encoding of zero extended symbolic references only for offsets from
-  /// 2^31 to 2^31 + 2^24 or from 0x80000000 to 0x81000000. The range offsets 
-  /// for sign extended reference changes to 0 to 2^31 + 2^24 or 0x00000000 to 
+  /// 2^31 to 2^31 + 2^24 or from 0x80000000 to 0x81000000. The range offsets
+  /// for sign extended reference changes to 0 to 2^31 + 2^24 or 0x00000000 to
   /// 0x81000000.
   case kernel
   /// In the medium model, the data section is split into two parts — the data
-  /// section still limited in the same way as in the small code model and the 
+  /// section still limited in the same way as in the small code model and the
   /// large data section having no limits except for available addressing
   /// space. The program layout must be set in a way so that large data sections
   /// (.ldata, .lrodata, .lbss) come after the text and data sections.
   ///
   /// This model requires the compiler to use `movabs` instructions to access
-  /// large static data and to load addresses into registers, but keeps the 
-  /// advantages of the small code model for manipulation of addresses in the 
+  /// large static data and to load addresses into registers, but keeps the
+  /// advantages of the small code model for manipulation of addresses in the
   /// small data and text sections (specially needed for branches).
   ///
-  /// By default only data larger than 65535 bytes will be placed in the large 
+  /// By default only data larger than 65535 bytes will be placed in the large
   /// data section.
   case medium
-  /// The large code model makes no assumptions about addresses and sizes of 
+  /// The large code model makes no assumptions about addresses and sizes of
   /// sections.
   ///
-  /// The compiler is required to use the movabs instruction, as in the medium 
-  /// code model, even for dealing with addresses inside the text section. 
-  /// Additionally, indirect branches are needed when branching to addresses 
+  /// The compiler is required to use the movabs instruction, as in the medium
+  /// code model, even for dealing with addresses inside the text section.
+  /// Additionally, indirect branches are needed when branching to addresses
   /// whose offset from the current instruction pointer is unknown.
   ///
-  /// It is possible to avoid the limitation on the text section in the small 
-  /// and medium models by breaking up the program into multiple shared 
+  /// It is possible to avoid the limitation on the text section in the small
+  /// and medium models by breaking up the program into multiple shared
   /// libraries, so this model is strictly only required if the text of a single
   /// function becomes larger than what the medium model allows.
   case large

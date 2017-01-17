@@ -55,7 +55,6 @@ public final class Module: CustomStringConvertible {
     // is created
     _ = llvmInitializer
 
-
     if let context = context {
       llvm = LLVMModuleCreateWithNameInContext(name, context.llvm)
       self.context = context
@@ -71,6 +70,17 @@ public final class Module: CustomStringConvertible {
   /// Obtain the data layout for this module.
   public var dataLayout: TargetData {
     return TargetData(llvm: LLVMGetModuleDataLayout(llvm))
+  }
+
+  /// The identifier of this module.
+  public var name: String {
+    get {
+      guard let id = LLVMGetModuleIdentifier(llvm, nil) else { return "" }
+      return String(cString: id)
+    }
+    set {
+      LLVMSetModuleIdentifier(llvm, newValue, newValue.utf8.count)
+    }
   }
 
   /// Print a representation of a module to a file at the given path.
@@ -104,7 +114,7 @@ public final class Module: CustomStringConvertible {
       defer { free(mutable) }
       return LLVMWriteBitcodeToFile(llvm, mutable)
     }
-  
+
     if status != 0 {
       throw ModuleError.couldNotEmitBitCode(path: path)
     }

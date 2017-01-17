@@ -2,19 +2,19 @@ import cllvm
 
 /// A subset of supported LLVM IR optimizer passes.
 public enum FunctionPass {
-  ///  This pass uses the SSA based Aggressive DCE algorithm.  This algorithm 
+  ///  This pass uses the SSA based Aggressive DCE algorithm.  This algorithm
   /// assumes instructions are dead until proven otherwise, which makes
   /// it more successful are removing non-obviously dead instructions.
   case aggressiveDCE
-  /// This pass uses a bit-tracking DCE algorithm in order to remove 
+  /// This pass uses a bit-tracking DCE algorithm in order to remove
   /// computations of dead bits.
   case bitTrackingDCE
   /// Use assume intrinsics to set load/store alignments.
   case alignmentFromAssumptions
-  /// Merge basic blocks, eliminate unreachable blocks, simplify terminator 
+  /// Merge basic blocks, eliminate unreachable blocks, simplify terminator
   /// instructions, etc.
   case cfgSimplification
-  /// This pass deletes stores that are post-dominated by must-aliased stores 
+  /// This pass deletes stores that are post-dominated by must-aliased stores
   /// and are not loaded used between the stores.
   case deadStoreElimination
   /// Converts vector operations into scalar operations.
@@ -25,11 +25,11 @@ public enum FunctionPass {
   /// This pass performs global value numbering and redundant load elimination
   /// cotemporaneously.
   case gvn
-  /// Transform induction variables in a program to all use a single canonical 
+  /// Transform induction variables in a program to all use a single canonical
   /// induction variable per loop.
   case indVarSimplify
-  /// Combine instructions to form fewer, simple instructions. This pass does 
-  /// not modify the CFG, and has a tendency to make instructions dead, so a 
+  /// Combine instructions to form fewer, simple instructions. This pass does
+  /// not modify the CFG, and has a tendency to make instructions dead, so a
   /// subsequent DCE pass is useful.
   ///
   /// This pass combines things like:
@@ -42,8 +42,8 @@ public enum FunctionPass {
   /// %Z = add int 2, %X
   /// ```
   case instructionCombining
-  /// Thread control through mult-pred/multi-succ blocks where some preds 
-  /// always go to some succ. Thresholds other than minus one override the 
+  /// Thread control through mult-pred/multi-succ blocks where some preds
+  /// always go to some succ. Thresholds other than minus one override the
   /// internal BB duplication default threshold.
   case jumpThreading
   /// This pass is a loop invariant code motion and memory promotion pass.
@@ -69,7 +69,7 @@ public enum FunctionPass {
   /// binary branch instructions.
   case lowerSwitch
   ///  This pass is used to promote memory references to
-  /// be register references. A simple example of the transformation performed 
+  /// be register references. A simple example of the transformation performed
   /// by this pass is going from code like this:
   ///
   /// ```asm
@@ -126,42 +126,42 @@ public enum FunctionPass {
   case verifier
   /// A pass to inline and remove functions marked as "always_inline".
   case alwaysInliner
-  /// This pass promotes "by reference" arguments to be passed by value if the 
+  /// This pass promotes "by reference" arguments to be passed by value if the
   /// number of elements passed is less than or equal to 3.
   case argumentPromotion
-  /// This function returns a new pass that merges duplicate global constants 
-  /// together into a single constant that is shared. This is useful because 
-  /// some passes (ie TraceValues) insert a lot of string constants into the 
+  /// This function returns a new pass that merges duplicate global constants
+  /// together into a single constant that is shared. This is useful because
+  /// some passes (ie TraceValues) insert a lot of string constants into the
   /// program, regardless of whether or not they duplicate an existing string.
   case constantMerge
   /// This pass removes arguments from functions which are not used by the body
   /// of the function.
   case deadArgElimination
-  /// This pass walks SCCs of the call graph in RPO to deduce and propagate 
+  /// This pass walks SCCs of the call graph in RPO to deduce and propagate
   /// function attributes. Currently it only handles synthesizing `norecurse`
   /// attributes.
   case functionAttrs
   /// Uses a heuristic to inline direct function calls to small functions.
   case functionInlining
-  /// This transform is designed to eliminate unreachable internal globals 
+  /// This transform is designed to eliminate unreachable internal globals
   /// (functions or global variables)
   case globalDCE
   /// This function returns a new pass that optimizes non-address taken internal
   /// globals.
   case globalOptimizer
-  /// This pass propagates constants from call sites into the bodies of 
+  /// This pass propagates constants from call sites into the bodies of
   /// functions.
   case ipConstantPropagation
-  /// This pass propagates constants from call sites into the bodies of 
-  /// functions, and keeps track of whether basic blocks are executable in the 
+  /// This pass propagates constants from call sites into the bodies of
+  /// functions, and keeps track of whether basic blocks are executable in the
   /// process.
   case ipscc
-  /// Return a new pass object which transforms invoke instructions into calls, 
+  /// Return a new pass object which transforms invoke instructions into calls,
   /// if the callee can *not* unwind the stack.
   case pruneEH
   /// This pass removes any function declarations (prototypes) that are not used.
   case stripDeadPrototypes
-  /// These functions removes symbols from functions and modules without 
+  /// These functions removes symbols from functions and modules without
   /// touching symbols for debugging information.
   case stripSymbols
 }
@@ -224,8 +224,8 @@ public class FunctionPassManager {
     .stripDeadPrototypes: LLVMAddStripDeadPrototypesPass,
     .stripSymbols: LLVMAddStripSymbolsPass,
 
-//    .internalize: LLVMAddInternalizePass,
-//    .sroaWithThreshhold: LLVMAddScalarReplAggregatesPassWithThreshold,
+    //    .internalize: LLVMAddInternalizePass,
+    //    .sroaWithThreshhold: LLVMAddScalarReplAggregatesPassWithThreshold,
   ]
 
   /// Creates a `FunctionPassManager` bound to the given module's IR.

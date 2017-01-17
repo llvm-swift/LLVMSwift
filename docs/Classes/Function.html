@@ -46,6 +46,9 @@
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
               </li>
               <li class="nav-group-task">
@@ -93,6 +96,12 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ModuleError.html">ModuleError</a>
               </li>
               <li class="nav-group-task">
@@ -109,6 +118,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
               </li>
             </ul>
           </li>
@@ -160,6 +172,9 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -170,6 +185,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/ArrayType.html">ArrayType</a>
               </li>
@@ -234,12 +252,12 @@
             <h1>Function</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Function</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Function</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRGlobal.html">IRGlobal</a></span></code></pre>
 
                 </div>
               </div>
             <p>A <code>Function</code> represents a named function body in LLVM IR source.  Functions
-in LLVM IR encapsulate a list of parameters and a sequence of basic blocks 
+in LLVM IR encapsulate a list of parameters and a sequence of basic blocks
 and provide a way to append to that sequence to build out its body.</p>
 
           </section>
@@ -261,9 +279,9 @@ and provide a way to append to that sequence to build out its body.</p>
                       <div class="abstract">
                         <p>Retrieves the entry block of this function.</p>
 
-<p>The first basic block in a function is special in two ways: it is 
+<p>The first basic block in a function is special in two ways: it is
 immediately executed on entrance to the function, and it is not allowed to
-have predecessor basic blocks (i.e. there can not be any branches to the 
+have predecessor basic blocks (i.e. there can not be any branches to the
 entry block of a function). Because the block can have no predecessors, it
 also cannot have any PHI nodes.</p>
 
@@ -360,6 +378,60 @@ also cannot have any PHI nodes.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">basicBlocks</span><span class="p">:</span> <span class="kt">AnySequence</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM8Function8previousFT_GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/previous()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM8Function8previousFT_GSqS0__">previous()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the previous function in the module, if there is one.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">previous</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Function</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM8Function4nextFT_GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/next()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM8Function4nextFT_GSqS0__">next()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the next function in the module, if there is one.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Function</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -621,7 +693,7 @@ also cannot have any PHI nodes.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-12)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
