@@ -83,9 +83,63 @@ class IRBuilderSpec : XCTestCase {
       _ = builder.buildNeg(vg1, overflowBehavior: .noSignedWrap)
 
 
-      // IRBUILDER-NEXT: ret void
+      // IRBUILDERARITH-NEXT: ret void
       builder.buildRetVoid()
-      // IRBUILDER-NEXT: }
+      // IRBUILDERARITH-NEXT: }
+      module.dump()
+    })
+
+    // MARK: Integer comparisons
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["IRBUILDERCMP"]) {
+      // IRBUILDERCMP: ; ModuleID = 'IRBuilderTest'
+      // IRBUILDERCMP-NEXT: source_filename = "IRBuilderTest"
+      let module = Module(name: "IRBuilderTest")
+      let builder = IRBuilder(module: module)
+
+      // IRBUILDERCMP: @a = global i32 1
+      // IRBUILDERCMP-NEXT: @b = global i32 1
+      var g1 = builder.addGlobal("a", type: IntType.int32)
+      g1.initializer = Int32(1)
+      var g2 = builder.addGlobal("b", type: IntType.int32)
+      g2.initializer = Int32(1)
+
+      // IRBUILDERCMP: define void @main() {
+      let main = builder.addFunction("main",
+                                     type: FunctionType(argTypes: [],
+                                                        returnType: VoidType()))
+      // IRBUILDERCMP-NEXT: entry:
+      let entry = main.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: entry)
+
+      // IRBUILDERCMP-NEXT: %0 = load i32, i32* @a
+      let vg1 = builder.buildLoad(g1)
+      // IRBUILDERCMP-NEXT: %1 = load i32, i32* @b
+      let vg2 = builder.buildLoad(g2)
+
+      // IRBUILDERCMP-NEXT: %2 = icmp eq i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .eq)
+      // IRBUILDERCMP-NEXT: %3 = icmp ne i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .ne)
+      // IRBUILDERCMP-NEXT: %4 = icmp ugt i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .ugt)
+      // IRBUILDERCMP-NEXT: %5 = icmp uge i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .uge)
+      // IRBUILDERCMP-NEXT: %6 = icmp ult i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .ult)
+      // IRBUILDERCMP-NEXT: %7 = icmp ule i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .ule)
+      // IRBUILDERCMP-NEXT: %8 = icmp sgt i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .sgt)
+      // IRBUILDERCMP-NEXT: %9 = icmp sge i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .sge)
+      // IRBUILDERCMP-NEXT: %10 = icmp slt i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .slt)
+      // IRBUILDERCMP-NEXT: %11 = icmp sle i32 %0, %1
+      _ = builder.buildICmp(vg1, vg2, .sle)
+
+      // IRBUILDERCMP-NEXT: ret void
+      builder.buildRetVoid()
+      // IRBUILDERCMP-NEXT: }
       module.dump()
     })
   }
