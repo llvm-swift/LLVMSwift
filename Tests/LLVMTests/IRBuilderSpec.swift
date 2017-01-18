@@ -142,6 +142,64 @@ class IRBuilderSpec : XCTestCase {
       // IRBUILDERCMP-NEXT: }
       module.dump()
     })
+
+    // MARK: Float comparisons
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["IRBUILDERFCMP"]) {
+      // IRBUILDERFCMP: ; ModuleID = 'IRBuilderTest'
+      // IRBUILDERFCMP-NEXT: source_filename = "IRBuilderTest"
+      let module = Module(name: "IRBuilderTest")
+      let builder = IRBuilder(module: module)
+
+      // IRBUILDERFCMP: @a = global double 1
+      // IRBUILDERFCMP-NEXT: @b = global double 1
+      var g1 = builder.addGlobal("a", type: FloatType.double)
+      g1.initializer = FloatType.double.constant(1)
+      var g2 = builder.addGlobal("b", type: FloatType.double)
+      g2.initializer = FloatType.double.constant(1)
+
+      // IRBUILDERFCMP: define void @main() {
+      let main = builder.addFunction("main",
+                                     type: FunctionType(argTypes: [],
+                                                        returnType: VoidType()))
+      // IRBUILDERFCMP-NEXT: entry:
+      let entry = main.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: entry)
+
+      // IRBUILDERFCMP-NEXT: %0 = load double, double* @a
+      let vg1 = builder.buildLoad(g1)
+      // IRBUILDERFCMP-NEXT: %1 = load double, double* @b
+      let vg2 = builder.buildLoad(g2)
+
+      // IRBUILDERFCMP-NEXT: %2 = fcmp oeq double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .oeq)
+      // IRBUILDERFCMP-NEXT: %3 = fcmp one double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .one)
+      // IRBUILDERFCMP-NEXT: %4 = fcmp ugt double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .ugt)
+      // IRBUILDERFCMP-NEXT: %5 = fcmp uge double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .uge)
+      // IRBUILDERFCMP-NEXT: %6 = fcmp ult double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .ult)
+      // IRBUILDERFCMP-NEXT: %7 = fcmp ule double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .ule)
+      // IRBUILDERFCMP-NEXT: %8 = fcmp ogt double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .ogt)
+      // IRBUILDERFCMP-NEXT: %9 = fcmp oge double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .oge)
+      // IRBUILDERFCMP-NEXT: %10 = fcmp olt double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .olt)
+      // IRBUILDERFCMP-NEXT: %11 = fcmp ole double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .ole)
+      // IRBUILDERFCMP-NEXT: %12 = fcmp true double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .true)
+      // IRBUILDERFCMP-NEXT: %13 = fcmp false double %0, %1
+      _ = builder.buildFCmp(vg1, vg2, .false)
+
+      // IRBUILDERFCMP-NEXT: ret void
+      builder.buildRetVoid()
+      // IRBUILDERFCMP-NEXT: }
+      module.dump()
+    })
   }
 
   #if !os(macOS)
