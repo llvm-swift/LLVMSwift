@@ -235,13 +235,15 @@ class IRBuilderSpec : XCTestCase {
       // CONTROLFLOW-NEXT: br i1 %1, label %then, label %else
       builder.buildCondBr(condition: res, then: thenBB, else: elseBB)
 
-      // CONTROLFLOW: then:
+      // CONTROLFLOW-NEXT:
+      // CONTROLFLOW-NEXT: then:
       builder.positionAtEnd(of: thenBB)
 
       // CONTROLFLOW-NEXT: ret i32 1
       builder.buildRet(IntType.int32.constant(1))
 
-      // CONTROLFLOW: else:
+      // CONTROLFLOW-NEXT:
+      // CONTROLFLOW-NEXT: else:
       builder.positionAtEnd(of: elseBB)
 
       // CONTROLFLOW-NEXT: ret i32 0
