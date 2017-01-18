@@ -197,7 +197,59 @@ class IRBuilderSpec : XCTestCase {
 
       // IRBUILDERFCMP-NEXT: ret void
       builder.buildRetVoid()
+
       // IRBUILDERFCMP-NEXT: }
+      module.dump()
+    })
+
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["CONTROLFLOW"]) {
+      // CONTROLFLOW: ; ModuleID = 'IRBuilderTest'
+      // CONTROLFLOW-NEXT: source_filename = "IRBuilderTest"
+      let module = Module(name: "IRBuilderTest")
+      let builder = IRBuilder(module: module)
+
+      // CONTROLFLOW: define i32 @main() {
+      let main = builder.addFunction("main",
+                                     type: FunctionType(argTypes: [],
+                                                        returnType: IntType.int32))
+
+      // CONTROLFLOW-NEXT: entry:
+      let entry = main.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: entry)
+
+      // CONTROLFLOW-NEXT: %var = alloca i64
+      let variable = builder.buildAlloca(type: IntType.int64, name: "var")
+
+      // CONTROLFLOW-NEXT: store i64 1, i64* %var
+      builder.buildStore(IntType.int64.constant(1), to: variable)
+
+      // CONTROLFLOW-NEXT: %0 = load i64, i64* %var
+      let load = builder.buildLoad(variable)
+
+      // CONTROLFLOW-NEXT: %1 = icmp eq i64 %0, 0
+      let res = builder.buildICmp(load, IntType.int64.zero(), .eq)
+
+      let thenBB = main.appendBasicBlock(named: "then")
+      let elseBB = main.appendBasicBlock(named: "else")
+
+      // CONTROLFLOW-NEXT: br i1 %1, label %then, label %else
+      builder.buildCondBr(condition: res, then: thenBB, else: elseBB)
+
+      // CONTROLFLOW-NEXT:
+      // CONTROLFLOW-NEXT: then:
+      builder.positionAtEnd(of: thenBB)
+
+      // CONTROLFLOW-NEXT: ret i32 1
+      builder.buildRet(IntType.int32.constant(1))
+
+      // CONTROLFLOW-NEXT:
+      // CONTROLFLOW-NEXT: else:
+      builder.positionAtEnd(of: elseBB)
+
+      // CONTROLFLOW-NEXT: ret i32 0
+      builder.buildRet(IntType.int32.constant(0))
+
+      // CONTROLFLOW-NEXT: }
       module.dump()
     })
   }
