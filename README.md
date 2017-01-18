@@ -62,7 +62,7 @@ compiler projects!
 
 We really recommend using SwiftPM with LLVMSwift, but if your project is
 structured in such a way that makes using SwiftPM impractical or impossible,
-you can still use LLVMSwift by passing the -DNO_SWIFTPM to swift when
+you can still use LLVMSwift by passing the `-DNO_SWIFTPM` to swift when
 compiling.
 
 - Xcode:
@@ -72,7 +72,7 @@ compiling.
   - Under `Library Search Paths` add the output of `llvm-config --libdir`
   - Under `Header Search Paths` add the output of `llvm-config --includedir`
   - Under `Link Target with Libraries` drag in
-    `/path/to/your/llvm/include/libLLVM.dylib`
+    `/path/to/your/llvm/lib/libLLVM.dylib`
 
 This project is used by [Trill](https://github.com/harlanhaskins/trill) for
 all its code generation.
