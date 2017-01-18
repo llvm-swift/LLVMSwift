@@ -153,6 +153,16 @@ public extension IRValue {
     return LLVMIsADbgDeclareInst(asLLVM()) != nil
   }
 
+  /// Whether or not the underlying LLVM value is an `MDString`
+  public var isAnMDString: Bool {
+    return LLVMIsAMDString(asLLVM()) != nil
+  }
+
+  /// Whether or not the underlying LLVM value is an `MDNode`
+  public var isAnMDNode: Bool {
+    return LLVMIsAMDNode(asLLVM()) != nil
+  }
+
   /// Whether or not the underlying LLVM value is a `MemIntrinsic`
   public var isAMemIntrinsic: Bool {
     return LLVMIsAMemIntrinsic(asLLVM()) != nil
