@@ -153,10 +153,6 @@ public class TargetData {
       return Int(LLVMPointerSize(llvm))
     }
   }
-
-  deinit {
-    LLVMDisposeTargetData(llvm)
-  }
 }
 
 /// `ByteOrder` enumerates the ordering semantics of sequences of bytes on a
