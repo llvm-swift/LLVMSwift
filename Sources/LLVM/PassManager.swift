@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// A subset of supported LLVM IR optimizer passes.
 public enum FunctionPass {

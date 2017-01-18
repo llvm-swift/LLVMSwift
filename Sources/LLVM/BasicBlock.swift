@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// A `BasicBlock` represents a basic block in an LLVM IR program.  A basic
 /// block contains a sequence of instructions, a pointer to its parent block and

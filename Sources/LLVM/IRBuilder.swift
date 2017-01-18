@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// Species the behavior that should occur on overflow during mathematical
 /// operations.

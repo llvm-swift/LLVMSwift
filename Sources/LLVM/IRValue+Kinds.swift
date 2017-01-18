@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 // Automatically generated from the macros in llvm/Core.h
 

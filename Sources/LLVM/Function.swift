@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// Enumerates the calling conventions supported by LLVM.
 ///

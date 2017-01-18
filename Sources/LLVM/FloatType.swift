@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// `FloatType` enumerates representations of a floating value of a particular
 /// bit width and semantics.

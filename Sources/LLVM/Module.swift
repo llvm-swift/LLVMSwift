@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// A `Context` represents execution states for the core LLVM IR system.
 public class Context {

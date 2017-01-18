@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// `Use` represents an iterator over the uses and users of a particular value
 /// in an LLVM program.

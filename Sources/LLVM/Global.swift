@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// A `Global` represents a region of memory allocated at compile time instead
 /// of at runtime.  A global variable must either have an initializer, or make

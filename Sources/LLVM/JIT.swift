@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// JITError represents the different kinds of errors the JIT compiler can
 /// throw.

@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// An `IRValue` is a type that is capable of lowering itself to an
 /// `LLVMValueRef` object for use with LLVM's C API.

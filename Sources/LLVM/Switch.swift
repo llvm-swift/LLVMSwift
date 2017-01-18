@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// A `Switch` represents a `switch` instruction.  A `switch` instruction
 /// defines a jump table of values and destination basic blocks to pass the flow
