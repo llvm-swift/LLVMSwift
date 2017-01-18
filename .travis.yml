@@ -1,45 +1,43 @@
 env:
   global:
-    - LC_CTYPE=en_US.UTF-8
+  - LC_CTYPE=en_US.UTF-8
 matrix:
   include:
-    - os: osx
-      language: objective-c
-      osx_image: xcode8
-      before_install:
-        - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
-        - brew install llvm
-        - sudo swift utils/make-pkgconfig.swift
-      script:
-        - swift test
-    - os: linux
-      language: generic
-      sudo: required
-      dist: trusty
-      env:
-        - LLVM_API_VERSION=3.9
-      before_install:
-        # Set the package config path so we can see cllvm
-        - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:"${PKG_CONFIG_PATH}"
-        # Pull clang and llvm
-        - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-        - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main"
-        - sudo apt-get update
-        - sudo apt-get install llvm-${LLVM_API_VERSION} libc++1
-        # Move libC++ into place
-        - sudo cp /usr/lib/x86_64-linux-gnu/libc++.so.1.0 /usr/lib/
-        - sudo ln -sf /usr/lib/libc++.so.1.0 /usr/lib/libc++.so
-        # Work around pre-installed clang
-        - sudo rm -rf /usr/local/clang-*/bin/llvm-config
-        - ls -l /usr/bin/llvm-config*
-        - sudo rm -f /usr/bin/llvm-config
-        - sudo ln -s /usr/bin/llvm-config-${LLVM_API_VERSION} /usr/bin/llvm-config
-        # Grab Swift
-        - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
-        - wget https://swift.org/builds/swift-3.0.2-release/ubuntu1404/swift-3.0.2-RELEASE/swift-3.0.2-RELEASE-ubuntu14.04.tar.gz
-        - tar xzf swift-3.0.2-RELEASE-ubuntu14.04.tar.gz
-        - export PATH=${PWD}/swift-3.0.2-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
-        # Move the package config file into place
-        - sudo ./swift-3.0.2-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
-      script:
-        - swift test
+  - os: osx
+    language: objective-c
+    osx_image: xcode8
+    before_install:
+    - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
+    - brew install llvm
+    - sudo swift utils/make-pkgconfig.swift
+    script:
+    - swift test
+  - os: linux
+    language: generic
+    sudo: required
+    dist: trusty
+    env:
+    - LLVM_API_VERSION=3.9
+    before_install:
+    - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:"${PKG_CONFIG_PATH}"
+    - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+    - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9
+      main"
+    - sudo apt-get update
+    - sudo apt-get install llvm-${LLVM_API_VERSION} libc++1
+    - sudo cp /usr/lib/x86_64-linux-gnu/libc++.so.1.0 /usr/lib/
+    - sudo ln -sf /usr/lib/libc++.so.1.0 /usr/lib/libc++.so
+    - sudo rm -rf /usr/local/clang-*/bin/llvm-config
+    - ls -l /usr/bin/llvm-config*
+    - sudo rm -f /usr/bin/llvm-config
+    - sudo ln -s /usr/bin/llvm-config-${LLVM_API_VERSION} /usr/bin/llvm-config
+    - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
+    - wget https://swift.org/builds/swift-3.0.2-release/ubuntu1404/swift-3.0.2-RELEASE/swift-3.0.2-RELEASE-ubuntu14.04.tar.gz
+    - tar xzf swift-3.0.2-RELEASE-ubuntu14.04.tar.gz
+    - export PATH=${PWD}/swift-3.0.2-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
+    - sudo ./swift-3.0.2-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
+    script:
+    - swift test
+notifications:
+  slack:
+    secure: ek/+U+e44bqP8+QCHojy2LhrN9iwY3N/TNNqNG5FZrp09Vidrd5KXWJOXFxlGrpeWdgTpi089YbEdTfxpcDIudUqDqLwPzS7wePiG2cEC1OT6l3yrhI4AvOe7EsNSOX8gzkuEnmrZVHwLLGe7JeR7JIQKoHMZsBcPYDnO8kRP0Ei3zOh47YUn75SE87egAgZOVBDbZYO3GWRa4WX64s8gaQYQ9a7EoUY0oX9rQ48FJs3rmEIhvIXdcOj9bGX7+o0j7l+IFial/Qh+B6bp4XkZU/tUVP6cuNVI1vxE1weVGCBhgt5wLhXTMewzoE5D1IgMZHVuzIBcDbBthSzQRttLSlYar6xTjXtRtOnb8tqZMWfUj3HBYCFYqtz7PGnZ3IflEVsPJW6tgSsoeB6egjzb8APP9mvhm8+zb1jQG1dqXLWErMjWqhlyPVPmHrxU2w/OLWLAJPY94GVmLnSuOw2pSz41spuEY80JcVVzoRbAOQWrwAujq2S3k93yvKpGq4eaT72Mt8g1CyZesByvzcLk99LEJSpqOIxUqXBd4RwHhay/sq8LllyyqY8ORsxEgwQluOAjEhATO/t/HUsu2ndn1k38U1c4HqXW7FDs1hffYEzZ/PGxciCS6Vt1bfST+iq34pzqpanENQCnX6mSR+D+M7mHlCWdsUihmxEcs5knuM=
