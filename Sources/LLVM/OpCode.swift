@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// Enumerates the opcodes of instructions available in the LLVM IR language.
 ///

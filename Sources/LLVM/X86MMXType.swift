@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// `X86MMXType` represents a value held in an MMX register on an x86 machine.
 ///

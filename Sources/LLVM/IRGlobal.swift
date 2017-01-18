@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// An `IRGlobal` is a value, alias, or function that exists at the top level of
 /// an LLVM module.

@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// Enumerates the possible failures that can be thrown initializing
 /// a MemoryBuffer.

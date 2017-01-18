@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// An `Instruction` represents an instruction residing in a basic block.
 public struct Instruction: IRValue {

@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// A `TargetData` encapsulates information about the data requirements of a
 /// particular target architecture and can be used to retrieve information about

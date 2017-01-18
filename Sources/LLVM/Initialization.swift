@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// Lazy static initializer that calls LLVM initialization functions only once.
 let llvmInitializer: Void = {

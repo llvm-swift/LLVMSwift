@@ -1,4 +1,6 @@
+#if !NO_SWIFTPM
 import cllvm
+#endif
 
 /// `Visibility` enumerates available visibility styles.
 public enum Visibility {
