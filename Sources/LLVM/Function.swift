@@ -1,5 +1,37 @@
 import cllvm
 
+/// Enumerates the calling conventions supported by LLVM.
+///
+/// The raw values of this enumeration *must* match those in
+/// [llvm-c/Core.h](https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h)
+public enum CallingConvention: UInt32 {
+  /// The default LLVM calling convention, compatible with C.
+  case c = 0
+  /// This calling convention attempts to make calls as fast as possible
+  /// (e.g. by passing things in registers).
+  case fast = 8
+  /// This calling convention attempts to make code in the caller as efficient 
+  /// as possible under the assumption that the call is not commonly executed.  
+  /// As such, these calls often preserve all registers so that the call does 
+  /// not break any live ranges in the caller side.
+  case cold = 9
+  /// Calling convention for stack based JavaScript calls.
+  case webKitJS = 12
+  /// Calling convention for dynamic register based calls 
+  /// (e.g. stackmap and patchpoint intrinsics).
+  case anyReg = 13
+  /// The calling conventions mostly used by the Win32 API.
+  ///
+  /// It is basically the same as the C convention with the difference in that 
+  /// the callee is responsible for popping the arguments from the stack.
+  case x86Stdcall = 64
+  /// "Fast" analog of `x86Stdcall`.
+  ///
+  /// Passes first two arguments in ECX:EDX registers, others via the stack. 
+  /// The callee is responsible for stack cleaning.
+  case x86Fastcall = 65
+}
+
 /// A `Function` represents a named function body in LLVM IR source.  Functions
 /// in LLVM IR encapsulate a list of parameters and a sequence of basic blocks
 /// and provide a way to append to that sequence to build out its body.
@@ -7,6 +39,12 @@ public class Function: IRGlobal {
   internal let llvm: LLVMValueRef
   internal init(llvm: LLVMValueRef) {
     self.llvm = llvm
+  }
+
+  /// Accesses the calling convention for this function.
+  public var callingConvention: CallingConvention {
+    get { return CallingConvention(rawValue: LLVMGetFunctionCallConv(llvm))! }
+    set { LLVMSetFunctionCallConv(llvm, newValue.rawValue) }
   }
 
   /// Retrieves the entry block of this function.
