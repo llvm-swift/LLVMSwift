@@ -956,7 +956,7 @@ struct CheckString {
     // Match itself from the last position after matching CHECK-DAG.
     let matchBuffer = buffer.substring(from: buffer.index(buffer.startIndex, offsetBy: lastPos))
     guard let (matchPos, matchLen) = self.pattern.match(matchBuffer, variableTable) else {
-      //			PrintCheckFailed(*this, MatchBuffer, VariableTable)
+      diagnose(.error, self.prefix + ": could not find '\(self.pattern.fixedString)' in input")
       return nil
     }
 
