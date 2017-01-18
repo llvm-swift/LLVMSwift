@@ -501,7 +501,7 @@ public class IRBuilder {
       case .noSignedWrap:
         return LLVMBuildNSWSub(llvm, lhsVal, rhsVal, name)
       case .noUnsignedWrap:
-        return LLVMBuildNSWSub(llvm, lhsVal, rhsVal, name)
+        return LLVMBuildNUWSub(llvm, lhsVal, rhsVal, name)
       case .default:
         return LLVMBuildSub(llvm, lhsVal, rhsVal, name)
       }
