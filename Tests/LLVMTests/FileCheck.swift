@@ -163,25 +163,29 @@ func validateCheckPrefixes(_ prefixes : [String]) -> [String]? {
 
 extension CChar {
   fileprivate var isPartOfWord : Bool {
-    return isalnum(Int32(self)) != 0 || UInt8(self) == "-".utf8.first! || UInt8(self) == "_".utf8.first!
+    return isalnum(Int32(self)) != 0 || self == ("-" as Character).utf8CodePoint || self == ("_" as Character).utf8CodePoint
   }
 }
 
 extension Character {
+  var utf8CodePoint : CChar {
+    return String(self).cString(using: .utf8)!.first!
+  }
+
   fileprivate var isPartOfWord : Bool {
-    let utf8Value = String(self).utf8.first!
-    return isalnum(Int32(utf8Value)) != 0 || utf8Value == "-".utf8.first! || utf8Value == "_".utf8.first!
+    let utf8Value = self.utf8CodePoint
+    return isalnum(Int32(utf8Value)) != 0 || self == "-" || self == "_"
   }
 }
 
 private func findCheckType(in buf : UnsafeBufferPointer<CChar>, with prefix : String) -> CheckType {
-  let nextChar = UInt8(buf[prefix.utf8.count])
+  let nextChar = buf[prefix.utf8.count]
 
   // Verify that the : is present after the prefix.
-  if nextChar == ":".utf8.first! {
+  if nextChar == (":" as Character).utf8CodePoint {
     return .plain
   }
-  if nextChar != "-".utf8.first! {
+  if nextChar != ("-" as Character).utf8CodePoint {
     return .none
   }
 
@@ -192,7 +196,7 @@ private func findCheckType(in buf : UnsafeBufferPointer<CChar>, with prefix : St
     length: buf.count - (prefix.utf8.count + 1),
     encoding: .utf8,
     freeWhenDone: false
-    )!
+  )!
   if rest.hasPrefix("NEXT:") {
     return .next
   }
@@ -221,7 +225,7 @@ private func findCheckType(in buf : UnsafeBufferPointer<CChar>, with prefix : St
     "NOT-NEXT:",
     "SAME-NOT:",
     "NOT-SAME:",
-    ]
+  ]
   if badNotPrefixes.reduce(false, { (acc, s) in acc || rest.hasPrefix(s) }) {
     return .badNot
   }
@@ -230,8 +234,8 @@ private func findCheckType(in buf : UnsafeBufferPointer<CChar>, with prefix : St
 }
 
 extension UnsafeBufferPointer {
-  fileprivate func substr(_ Start : Int, _ Size : Int) -> UnsafeBufferPointer<Element> {
-    return UnsafeBufferPointer<Element>(start: self.baseAddress!.advanced(by: Start), count: Size)
+  fileprivate func substr(_ start : Int, _ size : Int) -> UnsafeBufferPointer<Element> {
+    return UnsafeBufferPointer<Element>(start: self.baseAddress!.advanced(by: start), count: size)
   }
 
   fileprivate func dropFront(_ n : Int) -> UnsafeBufferPointer<Element> {
@@ -282,12 +286,12 @@ private func findFirstMatch(in inbuffer : UnsafeBufferPointer<CChar>, among pref
     // intentional and unintentional uses of this feature.
     if skippedPrefix.isEmpty || !skippedPrefix.characters.last!.isPartOfWord {
       // Now extract the type.
-      let CheckTy = findCheckType(in: buffer, with: prefixStr)
+      let checkTy = findCheckType(in: buffer, with: prefixStr)
 
 
       // If we've found a valid check type for this prefix, we're done.
-      if CheckTy != .none {
-        return (prefixStr, CheckTy, lineNumber, buffer)
+      if checkTy != .none {
+        return (prefixStr, checkTy, lineNumber, buffer)
       }
     }
     // If we didn't successfully find a prefix, we need to skip this invalid
@@ -334,14 +338,14 @@ private func readCheckStrings(in buf : UnsafeBufferPointer<CChar>, withPrefixes 
     // Okay, we found the prefix, yay. Remember the rest of the line, but
     // ignore leading whitespace.
     if !options.contains(.strictWhitespace) || !options.contains(.matchFullLines) {
-      guard let idx = buffer.index(where: { c in UInt8(c) != " ".utf8.first! && UInt8(c) != "\t".utf8.first! }) else {
+      guard let idx = buffer.index(where: { c in c != (" " as Character).utf8CodePoint && c != ("\t" as Character).utf8CodePoint }) else {
         return []
       }
       buffer = buffer.dropFront(idx)
     }
 
     // Scan ahead to the end of line.
-    let EOL : Int = buffer.index(of: CChar("\n".utf8.first!)) ?? buffer.index(of: CChar("\r".utf8.first!))!
+    let EOL : Int = buffer.index(of: ("\n" as Character).utf8CodePoint) ?? buffer.index(of: ("\r" as Character).utf8CodePoint)!
 
     // Remember the location of the start of the pattern, for diagnostics.
     let patternLoc = CheckLoc.inBuffer(buffer.baseAddress!, buf)
@@ -471,12 +475,12 @@ private enum CheckLoc {
     switch self {
     case let .inBuffer(ptr, buf):
       var startPtr = ptr
-      while startPtr != buf.baseAddress! && startPtr.predecessor().pointee != CChar("\n".utf8.first!) {
+      while startPtr != buf.baseAddress! && startPtr.predecessor().pointee != ("\n" as Character).utf8CodePoint {
         startPtr = startPtr.predecessor()
       }
 
       var endPtr = ptr
-      while endPtr != buf.baseAddress!.advanced(by: buf.endIndex) && endPtr.successor().pointee != CChar("\n".utf8.first!) {
+      while endPtr != buf.baseAddress!.advanced(by: buf.endIndex) && endPtr.successor().pointee != ("\n" as Character).utf8CodePoint {
         endPtr = endPtr.successor()
       }
       // One more for good measure.
@@ -576,13 +580,13 @@ private class Pattern {
       return nil
     }
     expr = expr.substring(from: expr.index(expr.startIndex, offsetBy: "@LINE".utf8.count))
-    guard let firstC = expr.utf8.first else {
+    guard let firstC = expr.characters.first else {
       return "\(self.lineNumber)"
     }
 
-    if firstC == "+".utf8.first! {
+    if firstC == "+" {
       expr = expr.substring(from: expr.index(after: expr.startIndex))
-    } else if firstC != "-".utf8.first! {
+    } else if firstC != "-" {
       return nil
     }
 
@@ -627,7 +631,7 @@ private class Pattern {
       for (v, offset) in variableUses {
         var value : String = ""
 
-        if v.utf8.first! == "@".utf8.first! {
+        if let c = v.characters.first, c == "@" {
           guard let v = self.evaluateExpression(v) else {
             return nil
           }
@@ -654,8 +658,9 @@ private class Pattern {
     let matchInfo = r.matches(in: buffer, options: [], range: NSRange(location: 0, length: buffer.utf8.count))
 
     // Successful regex match.
-    assert(!matchInfo.isEmpty, "Didn't get any match")
-    let fullMatch = matchInfo.first!
+    guard let fullMatch = matchInfo.first else {
+      fatalError("Didn't get any matches!")
+    }
 
     // If this defines any variables, remember their values.
     for (_, index) in self.variableDefs {
@@ -679,16 +684,16 @@ private class Pattern {
     // [...] Nesting depth
     var bracketDepth = 0
 
-    while !string.isEmpty {
+    while let firstChar = string.characters.first {
       if string.hasPrefix("]]") && bracketDepth == 0 {
         return offset
       }
-      if string.utf8.first! == "\\".utf8.first! {
+      if firstChar == "\\" {
         // Backslash escapes the next char within regexes, so skip them both.
         string = string.substring(from: string.index(string.startIndex, offsetBy: 2))
         offset = regVar.index(offset, offsetBy: 2)
       } else {
-        switch string.characters.first! {
+        switch firstChar {
         case "[":
           bracketDepth += 1
         case "]":
@@ -838,8 +843,8 @@ private class Pattern {
         // is relaxed, more strict check is performed in \c EvaluateExpression.
         var isExpression = false
         let diagLoc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
-        for (i, c) in name.utf8.enumerated() {
-          if i == 0 && c == "@".utf8.first! {
+        for (i, c) in name.characters.enumerated() {
+          if i == 0 && c == "@" {
             if nameEnd == nil {
               diagnose(.error, diagLoc, "invalid name in named regex definition")
               return true
@@ -847,8 +852,7 @@ private class Pattern {
             isExpression = true
             continue
           }
-          if (c != "_".utf8.first! && isalnum(Int32(c)) == 0 &&
-            (!isExpression || (c != "+".utf8.first! && c != "-".utf8.first!))) {
+          if c != "_" && isalnum(Int32(c.utf8CodePoint)) == 0 && (!isExpression || (c != "+" && c != "-")) {
             diagnose(.error, diagLoc, "invalid name in named regex")
             return true
           }
