@@ -5,8 +5,8 @@ import Foundation
 class IRBuilderSpec : XCTestCase {
   func testIRBuilder() {
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["IRBUILDER"]) {
-      // IRBUILDER: ; ModuleID = 'IRBuilderTest'
-      // IRBUILDER-NEXT: source_filename = "IRBuilderTest"
+      // IRBUILDER: ; ModuleID = '[[ModuleName:IRBuilderTest]]'
+      // IRBUILDER-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "IRBuilderTest")
       let builder = IRBuilder(module: module)
       // IRBUILDER: define void @main() {
@@ -25,8 +25,8 @@ class IRBuilderSpec : XCTestCase {
     // MARK: Arithmetic Instructions
 
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["IRBUILDERARITH"]) {
-      // IRBUILDERARITH: ; ModuleID = 'IRBuilderTest'
-      // IRBUILDERARITH-NEXT: source_filename = "IRBuilderTest"
+      // IRBUILDERARITH: ; ModuleID = '[[ModuleName:IRBuilderTest]]'
+      // IRBUILDERARITH-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "IRBuilderTest")
       let builder = IRBuilder(module: module)
 
@@ -91,8 +91,8 @@ class IRBuilderSpec : XCTestCase {
 
     // MARK: Integer comparisons
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["IRBUILDERCMP"]) {
-      // IRBUILDERCMP: ; ModuleID = 'IRBuilderTest'
-      // IRBUILDERCMP-NEXT: source_filename = "IRBuilderTest"
+      // IRBUILDERCMP: ; ModuleID = '[[ModuleName:IRBuilderTest]]'
+      // IRBUILDERCMP-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "IRBuilderTest")
       let builder = IRBuilder(module: module)
 
@@ -145,8 +145,8 @@ class IRBuilderSpec : XCTestCase {
 
     // MARK: Float comparisons
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["IRBUILDERFCMP"]) {
-      // IRBUILDERFCMP: ; ModuleID = 'IRBuilderTest'
-      // IRBUILDERFCMP-NEXT: source_filename = "IRBuilderTest"
+      // IRBUILDERFCMP: ; ModuleID = '[[ModuleName:IRBuilderTest]]'
+      // IRBUILDERFCMP-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "IRBuilderTest")
       let builder = IRBuilder(module: module)
 
@@ -203,8 +203,8 @@ class IRBuilderSpec : XCTestCase {
     })
 
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["CONTROLFLOW"]) {
-      // CONTROLFLOW: ; ModuleID = 'IRBuilderTest'
-      // CONTROLFLOW-NEXT: source_filename = "IRBuilderTest"
+      // CONTROLFLOW: ; ModuleID = '[[ModuleName:IRBuilderTest]]'
+      // CONTROLFLOW-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "IRBuilderTest")
       let builder = IRBuilder(module: module)
 
