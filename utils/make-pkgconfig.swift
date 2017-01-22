@@ -58,7 +58,7 @@ func makeFile() throws {
   let cllvmPath = pkgConfigDir.appendingPathComponent("cllvm.pc")
 
   /// Ensure we have llvm-config in the PATH
-  guard let llvmConfig = which("llvm-config") else {
+  guard let llvmConfig = which("llvm-config-3.9") ?? which("llvm-config") else {
     throw "Failed to find llvm-config. Ensure llvm-config is installed and " +
           "in your PATH"
   }
