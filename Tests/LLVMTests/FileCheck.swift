@@ -680,7 +680,11 @@ private class Pattern {
     // If this defines any variables, remember their values.
     for (v, index) in self.variableDefs {
       assert(index < fullMatch.numberOfRanges, "Internal paren error")
+    #if os(macOS)
       let r = fullMatch.rangeAt(index)
+    #else
+      let r = fullMatch.range(at: index)
+    #endif
       variableTable[v] = buffer.substring(
         with: Range<String.Index>(
           uncheckedBounds: (
