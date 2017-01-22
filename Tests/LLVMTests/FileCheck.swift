@@ -821,7 +821,15 @@ private class Pattern {
         regExPattern += "("
         curParen += 1
 
-        let (res, paren) = self.addRegExToRegEx(patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2)), curParen)
+        let substr = patternStr.substring(
+          with: Range<String.Index>(
+            uncheckedBounds: (
+              patternStr.index(patternStr.startIndex, offsetBy: 2),
+              End.lowerBound
+            )
+          )
+        )
+        let (res, paren) = self.addRegExToRegEx(substr, curParen)
         curParen = paren
         if res {
           return true
