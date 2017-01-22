@@ -407,6 +407,21 @@ private func readCheckStrings(in buf : UnsafeBufferPointer<CChar>, withPrefixes 
   return contents
 }
 
+private final class BoxedTable {
+  var table : [String:String] = [:]
+
+  init() {}
+
+  subscript(_ i : String) -> String? {
+    set {
+      self.table[i] = newValue!
+    }
+    get {
+       return self.table[i]
+    }
+  }
+}
+
 /// Check the input to FileCheck provided in the \p Buffer against the \p
 /// CheckStrings read from the check file.
 ///
@@ -416,7 +431,7 @@ private func check(input b : String, against checkStrings : [CheckString]) -> Bo
   var failedChecks = false
 
   // This holds all the current filecheck variables.
-  var variableTable = [String:String]()
+  var variableTable = BoxedTable()
 
   var i = 0
   var j = 0
@@ -604,7 +619,7 @@ private class Pattern {
   ///
   /// The \p VariableTable StringMap provides the current values of filecheck
   /// variables and is updated if this match defines new values.
-  func match(_ buffer : String, _ variableTable : [String:String]) -> (Int, Int)? {
+  func match(_ buffer : String, _ variableTable : BoxedTable) -> (Int, Int)? {
     var matchLen : Int = 0
     // If this is the EOF pattern, match it immediately.
     if self.type == .EOF {
@@ -626,9 +641,9 @@ private class Pattern {
     // If there are variable uses, we need to create a temporary string with the
     // actual value.
     var regExToMatch = self.regExPattern
-    if !variableUses.isEmpty {
+    if !self.variableUses.isEmpty {
       var insertOffset = 0
-      for (v, offset) in variableUses {
+      for (v, offset) in self.variableUses {
         var value : String = ""
 
         if let c = v.characters.first, c == "@" {
@@ -663,9 +678,21 @@ private class Pattern {
     }
 
     // If this defines any variables, remember their values.
-    for (_, index) in self.variableDefs {
-      assert(index < matchInfo.count, "Internal paren error")
-      //			VariableTable[VariableDef.0] = MatchInfo[VariableDef.second]
+    for (v, index) in self.variableDefs {
+      assert(index < fullMatch.numberOfRanges, "Internal paren error")
+    #if os(macOS)
+      let r = fullMatch.rangeAt(index)
+    #else
+      let r = fullMatch.range(at: index)
+    #endif
+      variableTable[v] = buffer.substring(
+        with: Range<String.Index>(
+          uncheckedBounds: (
+            buffer.index(buffer.startIndex, offsetBy: r.location),
+            buffer.index(buffer.startIndex, offsetBy: NSMaxRange(r))
+          )
+        )
+      )
     }
 
     matchLen = fullMatch.range.length
@@ -829,7 +856,7 @@ private class Pattern {
         if let end = nameEnd?.lowerBound {
           name = matchStr.substring(to: end)
         } else {
-          name = ""
+          name = matchStr
         }
 
         if name.isEmpty {
@@ -868,14 +895,14 @@ private class Pattern {
         guard let ne = nameEnd else {
           // Handle variables that were defined earlier on the same line by
           // emitting a backreference.
-          if let VarParenNum = self.variableDefs[name] {
-            if VarParenNum < 1 || VarParenNum > 9 {
+          if let varParenNum = self.variableDefs[name] {
+            if varParenNum < 1 || varParenNum > 9 {
               diagnose(.error, diagLoc, "Can't back-reference more than 9 variables")
               return true
             }
-            self.addBackrefToRegEx(VarParenNum)
+            self.addBackrefToRegEx(varParenNum)
           } else {
-            variableUses.append((name, regExPattern.utf8.count))
+            variableUses.append((name, regExPattern.characters.count))
           }
           continue
         }
@@ -899,6 +926,9 @@ private class Pattern {
       if let fixedMatchEnd = mino(patternStr.range(of: "{{")?.lowerBound, patternStr.range(of: "[[")?.lowerBound) {
         self.regExPattern += NSRegularExpression.escapedPattern(for: patternStr.substring(to: fixedMatchEnd))
         patternStr = patternStr.substring(from: fixedMatchEnd)
+      } else {
+        // No more matches, time to quit.
+        break
       }
     }
 
@@ -958,7 +988,7 @@ private struct CheckString {
   let dagNotStrings : Array<Pattern> = []
 
   /// Match check string and its "not strings" and/or "dag strings".
-  func check(_ buffer : String, _ isLabelScanMode : Bool,  _ variableTable : [String:String]) -> (Int, Int)? {
+  func check(_ buffer : String, _ isLabelScanMode : Bool,  _ variableTable : BoxedTable) -> (Int, Int)? {
     var lastPos = 0
 
     // IsLabelScanMode is true when we are scanning forward to find CHECK-LABEL
@@ -1092,11 +1122,11 @@ private struct CheckString {
   }
 
   /// Verify there's no "not strings" in the given buffer.
-  private func checkNot(_ buffer : String, _ notStrings : [Pattern], _ VariableTable : [String:String]) -> Bool {
+  private func checkNot(_ buffer : String, _ notStrings : [Pattern], _ variableTable : BoxedTable) -> Bool {
     for pat in notStrings {
       assert(pat.type == .not, "Expect CHECK-NOT!")
 
-      guard let (Pos, _)/*(Pos, MatchLen)*/ = pat.match(buffer, VariableTable) else {
+      guard let (Pos, _)/*(Pos, MatchLen)*/ = pat.match(buffer, variableTable) else {
         continue
       }
       buffer.cString(using: .utf8)?.withUnsafeBufferPointer { buf in
@@ -1111,7 +1141,7 @@ private struct CheckString {
   }
 
   /// Match "dag strings" and their mixed "not strings".
-  func checkDAG(_ buffer : String, _ variableTable : [String:String]) -> Int? {
+  func checkDAG(_ buffer : String, _ variableTable : BoxedTable) -> Int? {
     var notStrings = [Pattern]()
     if dagNotStrings.isEmpty {
       return 0
