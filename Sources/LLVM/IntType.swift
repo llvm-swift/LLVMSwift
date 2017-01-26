@@ -42,7 +42,7 @@ public struct IntType: IRType {
   ///   type's bit width.  Defaults to `false`.
   public func constant<IntTy: Integer>(_ value: IntTy, signExtend: Bool = false) -> IRValue {
     return LLVMConstInt(asLLVM(),
-                        unsafeBitCast(value.toIntMax(), to: UInt64.self),
+                        UInt64(bitPattern: value.toIntMax()),
                         signExtend.llvm)
   }
 

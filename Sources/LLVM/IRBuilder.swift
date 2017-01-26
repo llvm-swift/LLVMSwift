@@ -1288,10 +1288,18 @@ public class IRBuilder {
   ///
   /// - parameter name: The name of the newly inserted global value.
   /// - parameter type: The type of the newly inserted global value.
+  /// - parameter addressSpace: The optional address space where the global
+  ///   variable resides.
   ///
   /// - returns: A value representing the newly inserted global variable.
-  public func addGlobal(_ name: String, type: IRType) -> Global {
-    return Global(llvm: LLVMAddGlobal(module.llvm, type.asLLVM(), name))
+  public func addGlobal(_ name: String, type: IRType, addressSpace: Int? = nil) -> Global {
+    let llvm: LLVMValueRef
+    if let addressSpace = addressSpace {
+      llvm = LLVMAddGlobalInAddressSpace(module.llvm, type.asLLVM(), name, UInt32(addressSpace))
+    } else {
+      llvm = LLVMAddGlobal(module.llvm, type.asLLVM(), name)
+    }
+    return Global(llvm: llvm)
   }
 
   /// Build a named global string consisting of an array of `i8` type filled in
