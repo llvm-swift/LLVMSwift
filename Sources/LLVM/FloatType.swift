@@ -19,8 +19,8 @@ public enum FloatType: IRType {
   case ppcFP128
 
   /// Creates a constant floating value of this type from a Swift `Double` value.
-  public func constant(_ value: Double) -> IRValue {
-    return LLVMConstReal(asLLVM(), value)
+  public func constant(_ value: Double) -> Constant<Floating> {
+    return Constant(llvm: LLVMConstReal(asLLVM(), value))
   }
 
   /// Retrieves the underlying LLVM type object.

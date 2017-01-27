@@ -35,16 +35,28 @@ public struct IntType: IRType {
     return null()
   }
 
-  /// Creates an integer constant value with the given Swift integer value.
+  /// Creates an unsigned integer constant value with the given Swift integer value.
   ///
   /// - parameter value: A Swift integer value.
   /// - parameter signExtend: Whether to sign-extend this value to fit this
   ///   type's bit width.  Defaults to `false`.
-  public func constant<IntTy: Integer>(_ value: IntTy, signExtend: Bool = false) -> IRValue {
-    return LLVMConstInt(asLLVM(),
-                        UInt64(bitPattern: value.toIntMax()),
-                        signExtend.llvm)
+  public func constant<IntTy: UnsignedInteger>(_ value: IntTy, signExtend: Bool = false) -> Constant<Unsigned> {
+    return Constant(llvm: LLVMConstInt(asLLVM(),
+                          UInt64(bitPattern: value.toIntMax()),
+                          signExtend.llvm))
   }
+
+  /// Creates a signed integer constant value with the given Swift integer value.
+  ///
+  /// - parameter value: A Swift integer value.
+  /// - parameter signExtend: Whether to sign-extend this value to fit this
+  ///   type's bit width.  Defaults to `false`.
+  public func constant<IntTy: SignedInteger>(_ value: IntTy, signExtend: Bool = false) -> Constant<Signed> {
+    return Constant(llvm: LLVMConstInt(asLLVM(),
+                                       UInt64(bitPattern: value.toIntMax()),
+                                       signExtend.llvm))
+  }
+
 
   /// Retrieves an integer value of this type's bit width consisting of all
   /// one-bits.

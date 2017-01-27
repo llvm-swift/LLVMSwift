@@ -613,7 +613,7 @@ public class IRBuilder {
   /// Attempting to compare operands that are not integers is a fatal condition.
   ///
   /// - parameter lhs: The first value to compare.
-  /// - parameter lhs: The second value to compare.
+  /// - parameter rhs: The second value to compare.
   /// - parameter predicate: The method of comparison to use.
   /// - parameter name: The name for the newly inserted instruction.
   ///
@@ -636,7 +636,7 @@ public class IRBuilder {
   /// Attempting to compare operands that are not floating is a fatal condition.
   ///
   /// - parameter lhs: The first value to compare.
-  /// - parameter lhs: The second value to compare.
+  /// - parameter rhs: The second value to compare.
   /// - parameter predicate: The method of comparison to use.
   /// - parameter name: The name for the newly inserted instruction.
   ///
