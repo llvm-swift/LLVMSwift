@@ -74,6 +74,9 @@
                 <a href="Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/CallingConvention.html">CallingConvention</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
               </li>
               <li class="nav-group-task">
@@ -84,6 +87,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums.html#/s:O4LLVM8Floating">Floating</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/FunctionPass.html">FunctionPass</a>
@@ -116,7 +122,13 @@
                 <a href="Enums/RelocMode.html">RelocMode</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums.html#/s:O4LLVM8Unsigned">Unsigned</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Visibility.html">Visibility</a>
@@ -168,8 +180,22 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F4LLVMop1sFGVS_8ConstantOS_6Signed_GS0_S1__">-(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F4LLVMop1sFGVS_8ConstantOS_8Floating_GS0_S1__">-(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:P4LLVM22ConstantRepresentation">ConstantRepresentation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Protocols/IRGlobal.html">IRGlobal</a>
               </li>
@@ -178,6 +204,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/IRValue.html">IRValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:P4LLVM30IntegralConstantRepresentation">IntegralConstantRepresentation</a>
               </li>
             </ul>
           </li>
@@ -192,6 +221,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/FunctionType.html">FunctionType</a>
@@ -249,7 +281,9 @@
         <section>
           <section class="section">
             
-            <a href='#llvmswift-a-href-https-travis-ci-org-harlanhaskins-llvmswift-img-src-https-travis-ci-org-harlanhaskins-llvmswift-svg-branch-master-alt-build-status-a-a-href-https-harlanhaskins-github-io-llvmswift-img-src-https-cdn-rawgit-com-harlanhaskins-llvmswift-master-docs-badge-svg-alt-documentation-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='llvmswift-a-href-https-travis-ci-org-harlanhaskins-llvmswift-img-src-https-travis-ci-org-harlanhaskins-llvmswift-svg-branch-master-alt-build-status-a-a-href-https-harlanhaskins-github-io-llvmswift-img-src-https-cdn-rawgit-com-harlanhaskins-llvmswift-master-docs-badge-svg-alt-documentation-a'>LLVMSwift <a href="https://travis-ci.org/harlanhaskins/LLVMSwift"><img src="https://travis-ci.org/harlanhaskins/LLVMSwift.svg?branch=master" alt="Build Status"></a> <a href="https://harlanhaskins.github.io/LLVMSwift"><img src="https://cdn.rawgit.com/harlanhaskins/LLVMSwift/master/docs/badge.svg" alt="Documentation"></a></h1>
+            <a href='#llvmswift' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='llvmswift'>LLVMSwift</h1>
+
+<p><a href="https://travis-ci.org/trill-lang/LLVMSwift"><img src="https://travis-ci.org/trill-lang/LLVMSwift.svg?branch=master" alt="Build Status"></a> <a href="https://trill-lang.github.io/LLVMSwift"><img src="https://cdn.rawgit.com/trill-lang/LLVMSwift/master/docs/badge.svg" alt="Documentation"></a> <a href="https://llvmswift-slack.herokuapp.com"><img src="https://llvmswift-slack.herokuapp.com/badge.svg" alt="Slack Invite"></a></p>
 
 <p>LLVMSwift is a set of Swifty API wrappers for the LLVM C API.
 It makes compiler development feel great from Swift!</p>
@@ -263,9 +297,9 @@ and an <code>IRBuilder</code> that will build instructions for that module. </p>
 
 <p>Once you do that, you can start adding functions, global variables, and generating instructions!</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">main</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"main"</span><span class="p">,</span> 
-                               <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">(</span><span class="nv">argTypes</span><span class="p">:</span> <span class="p">[],</span> 
-                                                  <span class="nv">returnType</span><span class="p">:</span> <span class="kt">VoidType</span><span class="p">())</span>
-<span class="k">let</span> <span class="nv">entry</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"entry"</span><span class="p">)</span>
+                               <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">(</span><span class="nv">argTypes</span><span class="p">:</span> <span class="p">[],</span>
+                                                  <span class="nv">returnType</span><span class="p">:</span> <span class="kt">VoidType</span><span class="p">()))</span>
+<span class="k">let</span> <span class="nv">entry</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"entry"</span><span class="p">)</span>
 <span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span>
 
 <span class="n">builder</span><span class="o">.</span><span class="nf">buildRetVoid</span><span class="p">()</span>
@@ -312,6 +346,26 @@ installed LLVM.</li>
 
 <p>Once you do that, you can add LLVMSwift as a dependency for your own Swift
 compiler projects!</p>
+<a href='#installation-without-swift-package-manager' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='installation-without-swift-package-manager'>Installation without Swift Package Manager</h3>
+
+<p>We really recommend using SwiftPM with LLVMSwift, but if your project is
+structured in such a way that makes using SwiftPM impractical or impossible,
+you can still use LLVMSwift by passing the <code>-DNO_SWIFTPM</code> to swift when
+compiling.</p>
+
+<ul>
+<li>Xcode:
+
+<ul>
+<li>Add this repository as a git submodule</li>
+<li>Add the files in <code>Sources/</code> to your Xcode project.</li>
+<li>Under <code>Other Swift Flags</code>, add <code>-DNO_SWIFTPM</code>.</li>
+<li>Under <code>Library Search Paths</code> add the output of <code>llvm-config --libdir</code></li>
+<li>Under <code>Header Search Paths</code> add the output of <code>llvm-config --includedir</code></li>
+<li>Under <code>Link Target with Libraries</code> drag in
+<code>/path/to/your/llvm/lib/libLLVM.dylib</code></li>
+</ul></li>
+</ul>
 
 <p>This project is used by <a href="https://github.com/harlanhaskins/trill">Trill</a> for
 all its code generation.</p>
@@ -329,7 +383,7 @@ in this repo.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

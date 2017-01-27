@@ -74,6 +74,9 @@
                 <a href="Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/CallingConvention.html">CallingConvention</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
               </li>
               <li class="nav-group-task">
@@ -84,6 +87,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums.html#/s:O4LLVM8Floating">Floating</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/FunctionPass.html">FunctionPass</a>
@@ -116,7 +122,13 @@
                 <a href="Enums/RelocMode.html">RelocMode</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums.html#/s:O4LLVM8Unsigned">Unsigned</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Visibility.html">Visibility</a>
@@ -168,8 +180,22 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F4LLVMop1sFGVS_8ConstantOS_6Signed_GS0_S1__">-(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F4LLVMop1sFGVS_8ConstantOS_8Floating_GS0_S1__">-(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:P4LLVM22ConstantRepresentation">ConstantRepresentation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Protocols/IRGlobal.html">IRGlobal</a>
               </li>
@@ -178,6 +204,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/IRValue.html">IRValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:P4LLVM30IntegralConstantRepresentation">IntegralConstantRepresentation</a>
               </li>
             </ul>
           </li>
@@ -192,6 +221,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/FunctionType.html">FunctionType</a>
@@ -356,6 +388,53 @@ also cannot have any PHI nodes.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">BasicBlock</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/FIXME:%20When%20upgrading%20to%20Swift%203.1,%20move%20this%20into%20%60Constant%60."></a>
+                <a name="//apple_ref/swift/Section/FIXME: When upgrading to Swift 3.1, move this into `Constant`." class="dashAnchor"></a>
+                <a href="#/FIXME:%20When%20upgrading%20to%20Swift%203.1,%20move%20this%20into%20%60Constant%60.">
+                  <h3 class="section-name">FIXME: When upgrading to Swift 3.1, move this into `Constant`.</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4LLVM8Constant"></a>
+                    <a name="//apple_ref/swift/Struct/Constant" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4LLVM8Constant">Constant</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>Constant</code> represents a value initialized to a constant.  Constant values
+may be manipulated with standard Swift arithmetic operations and used with
+standard IR Builder instructions like any other operand.  The difference
+being any instructions acting solely on constants and any arithmetic
+performed on constants is evaluated at compile-time only.</p>
+
+<p><code>Constant</code>s keep track of the values they represent at the type level to
+disallow mixed-type arithmetic.  Use the <code>cast</code> family of operations to
+safely convert constants to other representations.</p>
+
+                        <a href="Structs/Constant.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Constant</span><span class="o">&lt;</span><span class="kt">Repr</span><span class="p">:</span> <span class="kt"><a href="Protocols.html#/s:P4LLVM22ConstantRepresentation">ConstantRepresentation</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -958,7 +1037,7 @@ type. There are no arrays, vectors or constants of this type.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

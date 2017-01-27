@@ -75,6 +75,9 @@
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/CallingConvention.html">CallingConvention</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
               </li>
               <li class="nav-group-task">
@@ -85,6 +88,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O4LLVM8Floating">Floating</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/FunctionPass.html">FunctionPass</a>
@@ -117,7 +123,13 @@
                 <a href="../Enums/RelocMode.html">RelocMode</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O4LLVM8Unsigned">Unsigned</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Visibility.html">Visibility</a>
@@ -169,8 +181,22 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F4LLVMop1sFGVS_8ConstantOS_6Signed_GS0_S1__">-(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F4LLVMop1sFGVS_8ConstantOS_8Floating_GS0_S1__">-(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P4LLVM22ConstantRepresentation">ConstantRepresentation</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
               </li>
@@ -179,6 +205,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRValue.html">IRValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P4LLVM30IntegralConstantRepresentation">IntegralConstantRepresentation</a>
               </li>
             </ul>
           </li>
@@ -193,6 +222,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/FunctionType.html">FunctionType</a>
@@ -518,9 +550,9 @@ zero-bits.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV4LLVM7IntType8constantuRxs7IntegerrFTx10signExtendSb_PS_7IRValue_"></a>
+                    <a name="/s:FV4LLVM7IntType8constantuRxs15UnsignedIntegerrFTx10signExtendSb_GVS_8ConstantOS_8Unsigned_"></a>
                     <a name="//apple_ref/swift/Method/constant(_:signExtend:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV4LLVM7IntType8constantuRxs7IntegerrFTx10signExtendSb_PS_7IRValue_">constant(_:signExtend:)</a>
+                    <a class="token" href="#/s:FV4LLVM7IntType8constantuRxs15UnsignedIntegerrFTx10signExtendSb_GVS_8ConstantOS_8Unsigned_">constant(_:signExtend:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -528,14 +560,74 @@ zero-bits.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an integer constant value with the given Swift integer value.</p>
+                        <p>Creates an unsigned integer constant value with the given Swift integer value.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">constant</span><span class="o">&lt;</span><span class="kt">IntTy</span><span class="p">:</span> <span class="kt">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">IntTy</span><span class="p">,</span> <span class="nv">signExtend</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">constant</span><span class="o">&lt;</span><span class="kt">IntTy</span><span class="p">:</span> <span class="kt">UnsignedInteger</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">IntTy</span><span class="p">,</span> <span class="nv">signExtend</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Constant.html">Constant</a></span><span class="o">&lt;</span><span class="kt"><a href="../Enums.html#/s:O4LLVM8Unsigned">Unsigned</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A Swift integer value.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>signExtend</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to sign-extend this value to fit this type’s bit width.  Defaults to <code>false</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV4LLVM7IntType8constantuRxs13SignedIntegerrFTx10signExtendSb_GVS_8ConstantOS_6Signed_"></a>
+                    <a name="//apple_ref/swift/Method/constant(_:signExtend:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV4LLVM7IntType8constantuRxs13SignedIntegerrFTx10signExtendSb_GVS_8ConstantOS_6Signed_">constant(_:signExtend:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a signed integer constant value with the given Swift integer value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">constant</span><span class="o">&lt;</span><span class="kt">IntTy</span><span class="p">:</span> <span class="kt">SignedInteger</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">IntTy</span><span class="p">,</span> <span class="nv">signExtend</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Constant.html">Constant</a></span><span class="o">&lt;</span><span class="kt"><a href="../Enums.html#/s:O4LLVM6Signed">Signed</a></span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -640,7 +732,7 @@ one-bits.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-15)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

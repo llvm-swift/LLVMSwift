@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>TargetMachine Class Reference</title>
+    <title>CallingConvention Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/TargetMachine" class="dashAnchor"></a>
-    <a title="TargetMachine Class Reference"></a>
+    <a name="//apple_ref/swift/Enum/CallingConvention" class="dashAnchor"></a>
+    <a title="CallingConvention Enum Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        TargetMachine Class Reference
+        CallingConvention Enum Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -281,16 +281,17 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>TargetMachine</h1>
+            <h1>CallingConvention</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TargetMachine</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CallingConvention</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                 </div>
               </div>
-            <p>A <code>TargetMachine</code> object represents an object that encapsulates information
-about a particular machine (i.e. CPU type) associated with a target
-environment.</p>
+            <p>Enumerates the calling conventions supported by LLVM.</p>
+
+<p>The raw values of this enumeration <em>must</em> match those in
+<a href="https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h">llvm-c/Core.h</a></p>
 
           </section>
           <section class="section task-group-section">
@@ -299,9 +300,9 @@ environment.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC4LLVM13TargetMachine6targetCS_6Target"></a>
-                    <a name="//apple_ref/swift/Property/target" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC4LLVM13TargetMachine6targetCS_6Target">target</a>
+                    <a name="/s:FO4LLVM17CallingConvention1cFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/c" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM17CallingConvention1cFMS0_S0_">c</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -309,26 +310,30 @@ environment.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The target information associated with this target machine.</p>
+                        <p>The default LLVM calling convention, compatible with C.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">target</span><span class="p">:</span> <span class="kt"><a href="../Classes/Target.html">Target</a></span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC4LLVM13TargetMachine10dataLayoutCS_10TargetData"></a>
-                    <a name="//apple_ref/swift/Property/dataLayout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC4LLVM13TargetMachine10dataLayoutCS_10TargetData">dataLayout</a>
+                    <a name="/s:FO4LLVM17CallingConvention4fastFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/fast" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM17CallingConvention4fastFMS0_S0_">fast</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -336,26 +341,31 @@ environment.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The data layout semantics associated with this target machine</p>
+                        <p>This calling convention attempts to make calls as fast as possible
+(e.g. by passing things in registers).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">dataLayout</span><span class="p">:</span> <span class="kt"><a href="../Classes/TargetData.html">TargetData</a></span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fast</span> <span class="o">=</span> <span class="mi">8</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC4LLVM13TargetMachine6tripleSS"></a>
-                    <a name="//apple_ref/swift/Property/triple" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC4LLVM13TargetMachine6tripleSS">triple</a>
+                    <a name="/s:FO4LLVM17CallingConvention4coldFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/cold" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM17CallingConvention4coldFMS0_S0_">cold</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -363,35 +373,33 @@ environment.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A string representing the target triple for this target machine.  In the
-form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code> where</p>
-
-<ul>
-<li>arch = x86_64, i386, arm, thumb, mips, etc.</li>
-<li>sub = for ex. on ARM: v5, v6m, v7a, v7m, etc.</li>
-<li>vendor = pc, apple, nvidia, ibm, etc.</li>
-<li>sys = none, linux, win32, darwin, cuda, etc.</li>
-<li>abi = eabi, gnu, android, macho, elf, etc.</li>
-</ul>
+                        <p>This calling convention attempts to make code in the caller as efficient 
+as possible under the assumption that the call is not commonly executed.<br>
+As such, these calls often preserve all registers so that the call does 
+not break any live ranges in the caller side.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">triple</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">cold</span> <span class="o">=</span> <span class="mi">9</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC4LLVM13TargetMachinecFzT6tripleGSqSS_3cpuSS8featuresSS8optLevelOS_15CodeGenOptLevel9relocModeOS_9RelocMode9codeModelOS_9CodeModel_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(triple:cpu:features:optLevel:relocMode:codeModel:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM13TargetMachinecFzT6tripleGSqSS_3cpuSS8featuresSS8optLevelOS_15CodeGenOptLevel9relocModeOS_9RelocMode9codeModelOS_9CodeModel_S0_">init(triple:cpu:features:optLevel:relocMode:codeModel:)</a>
+                    <a name="/s:FO4LLVM17CallingConvention8webKitJSFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/webKitJS" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM17CallingConvention8webKitJSFMS0_S0_">webKitJS</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -399,113 +407,30 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a Target Machine with information about its target environment.</p>
+                        <p>Calling convention for stack based JavaScript calls.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">triple</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">cpu</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span> <span class="nv">features</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
-              <span class="nv">optLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span> <span class="nv">relocMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/RelocMode.html">RelocMode</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
-              <span class="nv">codeModel</span><span class="p">:</span> <span class="kt"><a href="../Enums/CodeModel.html">CodeModel</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">webKitJS</span> <span class="o">=</span> <span class="mi">12</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>triple</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>An optional target triple to target.  If this is not provided the target triple of the host machine will be assumed.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>cpu</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>An optional CPU type to target.  If this is not provided the host CPU will be inferred.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>features</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>An optional string containing the features a particular target provides.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>optLevel</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The optimization level for generated code.  If no value is provided, the default level of optimization is assumed.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>relocMode</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The relocation mode of the target environment.  If no mode is provided, the default mode for the target architecture is assumed.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>codeModel</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The kind of code to produce for this target.  If no model is provided, the default model for the target architecture is assumed.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC4LLVM13TargetMachine10emitToFileFzT6moduleCS_6Module4typeOS_15CodegenFileType4pathSS_T_"></a>
-                    <a name="//apple_ref/swift/Method/emitToFile(module:type:path:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM13TargetMachine10emitToFileFzT6moduleCS_6Module4typeOS_15CodegenFileType4pathSS_T_">emitToFile(module:type:path:)</a>
+                    <a name="/s:FO4LLVM17CallingConvention6anyRegFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/anyReg" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM17CallingConvention6anyRegFMS0_S0_">anyReg</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -513,77 +438,31 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Emits an LLVM Bitcode, ASM, or object file for the given module to the
-provided filename.</p>
-
-<p>Failure during any part of the compilation process or the process of
-writing the results to disk will result in a <code><a href="../Enums/TargetMachineError.html">TargetMachineError</a></code> being
-thrown describing the error in detail.</p>
+                        <p>Calling convention for dynamic register based calls 
+(e.g. stackmap and patchpoint intrinsics).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">emitToFile</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module.html">Module</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CodegenFileType.html">CodegenFileType</a></span><span class="p">,</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">anyReg</span> <span class="o">=</span> <span class="mi">13</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>module</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The module whose contents will be codegened.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type of codegen to perform on the given module.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>path</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The path to write the resulting file.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC4LLVM13TargetMachine18emitToMemoryBufferFzT6moduleCS_6Module4typeOS_15CodegenFileType_CS_12MemoryBuffer"></a>
-                    <a name="//apple_ref/swift/Method/emitToMemoryBuffer(module:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM13TargetMachine18emitToMemoryBufferFzT6moduleCS_6Module4typeOS_15CodegenFileType_CS_12MemoryBuffer">emitToMemoryBuffer(module:type:)</a>
+                    <a name="/s:FO4LLVM17CallingConvention10x86StdcallFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/x86Stdcall" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM17CallingConvention10x86StdcallFMS0_S0_">x86Stdcall</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -591,54 +470,53 @@ thrown describing the error in detail.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Emits an LLVM Bitcode, ASM, or object file for the given module to a new
-<code><a href="../Classes/MemoryBuffer.html">MemoryBuffer</a></code> containing the contents.</p>
+                        <p>The calling conventions mostly used by the Win32 API.</p>
 
-<p>Failure during any part of the compilation process or the process of
-writing the results to disk will result in a <code><a href="../Enums/TargetMachineError.html">TargetMachineError</a></code> being
-thrown describing the error in detail.</p>
+<p>It is basically the same as the C convention with the difference in that 
+the callee is responsible for popping the arguments from the stack.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">emitToMemoryBuffer</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module.html">Module</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CodegenFileType.html">CodegenFileType</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/MemoryBuffer.html">MemoryBuffer</a></span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">x86Stdcall</span> <span class="o">=</span> <span class="mi">64</span></code></pre>
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>module</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The module whose contents will be codegened.</p>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO4LLVM17CallingConvention11x86FastcallFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/x86Fastcall" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM17CallingConvention11x86FastcallFMS0_S0_">x86Fastcall</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><q>Fast</q> analog of <code><a href="../Enums/CallingConvention.html#/s:FO4LLVM17CallingConvention10x86StdcallFMS0_S0_">x86Stdcall</a></code>.</p>
 
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type of codegen to perform on the given module.</p>
+<p>Passes first two arguments in ECX:EDX registers, others via the stack. 
+The callee is responsible for stack cleaning.</p>
 
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">x86Fastcall</span> <span class="o">=</span> <span class="mi">65</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
