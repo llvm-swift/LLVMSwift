@@ -252,6 +252,44 @@ class IRBuilderSpec : XCTestCase {
       // CONTROLFLOW-NEXT: }
       module.dump()
     })
+
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["CAST"]) {
+        // CAST: ; ModuleID = '[[ModuleName:IRBuilderTest]]'
+        // CAST-NEXT: source_filename = "[[ModuleName]]"
+        let module = Module(name: "IRBuilderTest")
+        let builder = IRBuilder(module: module)
+
+        // CAST: define i32 @main() {
+        let main = builder.addFunction("main",
+                                       type: FunctionType(argTypes: [],
+                                                          returnType: IntType.int32))
+
+        // CAST-NEXT: entry:
+        let entry = main.appendBasicBlock(named: "entry")
+        builder.positionAtEnd(of: entry)
+
+        // CAST-NEXT: %0 = alloca i64
+        let alloca = builder.buildAlloca(type: IntType.int64)
+
+        // CAST-NEXT: %1 = ptrtoint i64* %0 to i64
+        _ = builder.buildPtrToInt(alloca, type: IntType.int64)
+
+        // CAST-NEXT: %2 = load i64, i64* %0
+        let val = builder.buildLoad(alloca)
+
+        // CAST-NEXT: %3 = inttoptr i64 %2 to i64*
+        _ = builder.buildIntToPtr(val,
+                                  type: PointerType(pointee: IntType.int64))
+
+        // CAST-NEXT: %4 = bitcast i64* %0 to i8*
+        _ = builder.buildBitCast(alloca, type: PointerType.toVoid)
+
+        // CAST-NEXT: ret i32 0
+        builder.buildRet(IntType.int32.constant(0))
+
+        // CAST-NEXT: }
+        module.dump()
+    })
   }
 
   #if !os(macOS)
