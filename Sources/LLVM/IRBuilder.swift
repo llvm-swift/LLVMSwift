@@ -1075,7 +1075,7 @@ public class IRBuilder {
   /// - returns: An integer value representing the value of the given pointer
   ///   converted to the given integer type.
   public func buildPtrToInt(_ val: IRValue, type: IntType, name: String = "") -> IRValue {
-    return LLVMBuildIntToPtr(llvm, val.asLLVM(), type.asLLVM(), name)
+    return LLVMBuildPtrToInt(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
   /// Builds an integer-to-floating instruction to convert the given integer
