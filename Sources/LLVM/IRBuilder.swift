@@ -580,24 +580,32 @@ public class IRBuilder {
   /// value.
   ///
   /// Whether an integer or floating point divide instruction is built is
-  /// determined by the type of the first given value.  Providing operands that
+  /// determined by the type of the first given value. Providing operands that
   /// are neither integers nor floating values is a fatal condition.
   ///
   /// - parameter lhs: The first value (the dividend).
   /// - parameter rhs: The second value (the divisor).
   /// - parameter signed: Whether to emit a signed or unsigned remainder
-  ///   instruction.  Defaults to emission of a signed divide instruction.
+  ///                     instruction. Defaults to emission of a signed
+  ///                     divide instruction.
+  /// - parameter exact: Whether this division must be exact. Defaults to
+  ///                    inexact.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the quotient of the first and second
   ///   operands.
   public func buildDiv(_ lhs: IRValue, _ rhs: IRValue,
-                       signed: Bool = true, name: String = "") -> IRValue {
+                       signed: Bool = true, exact: Bool = false,
+                       name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
     if lhs.type is IntType {
       if signed {
-        return LLVMBuildSDiv(llvm, lhsVal, rhsVal, name)
+        if exact {
+          return LLVMBuildExactSDiv(llvm, lhsVal, rhsVal, name)
+        } else {
+          return LLVMBuildSDiv(llvm, lhsVal, rhsVal, name)
+        }
       } else {
         return LLVMBuildUDiv(llvm, lhsVal, rhsVal, name)
       }
@@ -960,6 +968,30 @@ public class IRBuilder {
     return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
   }
 
+  /// Builds an ExtractElement instruction to retrieve an indexed value from a
+  /// vector value.
+  ///
+  /// - parameter vec: The vector you're indexing into.
+  /// - parameter index: The index at which to extract.
+  ///
+  /// - returns: The value in the vector at the provided index.
+  public func buildExtractElement(_ vec: IRValue, index: IRValue,
+                                  name: String = "") -> IRValue {
+    return LLVMBuildExtractElement(llvm, vec.asLLVM(), index.asLLVM(), name)
+  }
+
+  /// Builds an ExtractValue instruction to retrieve an indexed value from a
+  /// struct or array value.
+  ///
+  /// - parameter value: The struct or array you're indexing into.
+  /// - parameter index: The index at which to extract.
+  ///
+  /// - returns: The value in the struct at the provided index.
+  public func buildExtractValue(_ value: IRValue, index: Int,
+                                  name: String = "") -> IRValue {
+    return LLVMBuildExtractValue(llvm, value.asLLVM(), UInt32(index), name)
+  }
+
   // MARK: Null Test Instructions
 
   /// Builds a comparision instruction that returns whether the given operand is
@@ -1013,6 +1045,20 @@ public class IRBuilder {
   public func buildBitCast(_ val: IRValue, type: IRType, name: String = "") -> IRValue {
     return LLVMBuildBitCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
+
+  /// Builds a cast instruction to convert the given floating-point value to a
+  /// value of the given type.
+  ///
+  /// - parameter val: The value to cast.
+  /// - parameter type: The destination type.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the result of casting the given value
+  ///   to fit the given type.
+  public func buildFPCast(_ val: IRValue, type: IRType, name: String = "") -> IRValue {
+    return LLVMBuildFPCast(llvm, val.asLLVM(), type.asLLVM(), name)
+  }
+
   /// Builds a truncate instruction to truncate the given value to the given
   /// type with a shorter width.
   ///
@@ -1219,6 +1265,41 @@ public class IRBuilder {
     ordering: AtomicOrdering, singleThreaded: Bool = false
   ) -> IRValue {
     return LLVMBuildAtomicRMW(llvm, atomicOp.llvm, ptr.asLLVM(), value.asLLVM(), ordering.llvm, singleThreaded.llvm)
+  }
+
+  // MARK: C Standard Library Instructions
+
+  /// Builds a call to the C standard library `malloc` instruction.
+  /// ```
+  /// (type *)malloc(sizeof(type));
+  /// ```
+  /// If `count` is provided, it is equivalent to:
+  /// ```
+  /// (type *)malloc(sizeof(type) * count);
+  /// ```
+  ///
+  /// - parameter type: The intended result type being allocated. The result
+  ///                   of the `malloc` will be a pointer to this type.
+  /// - parameter count: An optional number of slots to allocate, to simulate a
+  ///                    C array. This is equivalent to
+  /// - parameter name: The intended name for the `malloc`'d value.
+  public func buildMalloc(_ type: IRType, count: IRValue? = nil,
+                          name: String = "") -> IRValue {
+    if let count = count {
+      return LLVMBuildArrayMalloc(llvm, type.asLLVM(), count.asLLVM(), name)
+    } else {
+      return LLVMBuildMalloc(llvm, type.asLLVM(), name)
+    }
+  }
+
+  /// Builds a call to the C standard library `free` function, with the provided
+  /// pointer.
+  ///
+  /// - parameter ptr: The pointer to `free`.
+  /// - returns: The `free` instruction.
+  @discardableResult
+  public func buildFree(_ ptr: IRValue) -> IRValue {
+    return LLVMBuildFree(llvm, ptr.asLLVM())
   }
 
   // MARK: Aggregate Instructions

@@ -259,6 +259,7 @@ class IRBuilderSpec : XCTestCase {
         let module = Module(name: "IRBuilderTest")
         let builder = IRBuilder(module: module)
 
+
         // CAST: define i32 @main() {
         let main = builder.addFunction("main",
                                        type: FunctionType(argTypes: [],
