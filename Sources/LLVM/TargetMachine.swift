@@ -86,7 +86,7 @@ public class TargetMachine {
   /// The target information associated with this target machine.
   public let target: Target
 
-  /// The data layout semantics associated with this target machine
+  /// The data layout semantics associated with this target machine.
   public let dataLayout: TargetData
 
   /// A string representing the target triple for this target machine.  In the
@@ -98,6 +98,24 @@ public class TargetMachine {
   /// - sys = none, linux, win32, darwin, cuda, etc.
   /// - abi = eabi, gnu, android, macho, elf, etc.
   public let triple: String
+
+  /// The CPU associated with this target machine.
+  public var cpu: String {
+    guard let str = LLVMGetTargetMachineCPU(self.llvm) else {
+      return ""
+    }
+    defer { LLVMDisposeMessage(str) }
+    return String(validatingUTF8: UnsafePointer<CChar>(str)) ?? ""
+  }
+
+  /// The feature string associated with this target machine.
+  public var features: String {
+    guard let str = LLVMGetTargetMachineFeatureString(self.llvm) else {
+      return ""
+    }
+    defer { LLVMDisposeMessage(str) }
+    return String(validatingUTF8: UnsafePointer<CChar>(str)) ?? ""
+  }
 
   /// Creates a Target Machine with information about its target environment.
   ///
