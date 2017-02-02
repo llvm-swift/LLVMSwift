@@ -253,11 +253,14 @@ class IRBuilderSpec : XCTestCase {
       module.dump()
     })
 
+    // MARK: Cast Instructions
+
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["CAST"]) {
         // CAST: ; ModuleID = '[[ModuleName:IRBuilderTest]]'
         // CAST-NEXT: source_filename = "[[ModuleName]]"
         let module = Module(name: "IRBuilderTest")
         let builder = IRBuilder(module: module)
+
 
         // CAST: define i32 @main() {
         let main = builder.addFunction("main",
@@ -284,12 +287,26 @@ class IRBuilderSpec : XCTestCase {
         // CAST-NEXT: %4 = bitcast i64* %0 to i8*
         _ = builder.buildBitCast(alloca, type: PointerType.toVoid)
 
+        // CAST-NEXT: %5 = alloca double
+        let dblAlloca = builder.buildAlloca(type: FloatType.double)
+
+        // CAST-NEXT: %6 = load double, double* %5
+        let dblVal = builder.buildLoad(dblAlloca)
+
+        // CAST-NEXT: %7 = fptrunc double %6 to float
+        let fltVal = builder.buildFPCast(dblVal, type: FloatType.float)
+
+        // CAST-NEXT: %8 = fpext float %7 to double
+        _ = builder.buildFPCast(fltVal, type: FloatType.double)
+
         // CAST-NEXT: ret i32 0
         builder.buildRet(IntType.int32.constant(0))
 
         // CAST-NEXT: }
         module.dump()
     })
+
+    // MARK: C Standard Library Instructions
   }
 
   #if !os(macOS)
