@@ -304,8 +304,6 @@ class IRBuilderSpec : XCTestCase {
 
         // CAST-NEXT: }
         module.dump()
-
-        print(module)
     })
 
     // MARK: C Standard Library Instructions
