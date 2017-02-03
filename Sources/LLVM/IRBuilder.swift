@@ -746,7 +746,7 @@ public class IRBuilder {
     }
   }
 
-  // MARK: Declaration Instructions
+  // MARK: Conditional Instructions
 
   /// Build a phi node with the given type acting as the result of any incoming
   /// basic blocks.
@@ -760,14 +760,26 @@ public class IRBuilder {
     return PhiNode(llvm: value)
   }
 
-  /// Build a named function body with the given type.
+  /// Build a select instruction to choose a value based on a condition without
+  /// IR-level branching.
   ///
-  /// - parameter name: The name of the newly defined function.
-  /// - parameter type: The type of the newly defined function.
+  /// - parameter cond: The condition to evaluate.  It must have type `i1` or
+  ///   be a vector of `i1`.
+  /// - parameter then: The value to select if the given condition is true.
+  /// - parameter else: The value to select if the given condition is false.
+  /// - parameter name: The name for the newly inserted instruction.
   ///
-  /// - returns: A value representing the newly inserted function definition.
-  public func addFunction(_ name: String, type: FunctionType) -> Function {
-    return Function(llvm: LLVMAddFunction(module.llvm, name, type.asLLVM()))
+  /// - returns: A value representing the value selected for by the condition.
+  public func buildSelect(_ cond: IRValue, then: IRValue, else: IRValue, name: String = "") -> IRValue {
+    if let ty = cond.type as? IntType {
+      precondition(ty.width == 1, "Switch statement condition must have bitwidth of 1, instead has bitwidth of \(ty.width)")
+      return LLVMBuildSelect(llvm, cond.asLLVM(), then.asLLVM(), `else`.asLLVM(), name)
+    } else if let ty = cond.type as? VectorType, let intTy = ty.elementType as? IntType {
+      precondition(intTy.width == 1, "Switch statement condition must have bitwidth of 1, instead has bitwidth of \(intTy.width)")
+      return LLVMBuildSelect(llvm, cond.asLLVM(), then.asLLVM(), `else`.asLLVM(), name)
+    } else {
+      fatalError("Condition must have type i1 or <i1 x N>")
+    }
   }
 
   /// Build a branch table that branches on the given value with the given
@@ -788,6 +800,18 @@ public class IRBuilder {
                                         value.asLLVM(),
                                         `else`.asLLVM(),
                                         UInt32(caseCount))!)
+  }
+
+  // MARK: Declaration Instructions
+
+  /// Build a named function body with the given type.
+  ///
+  /// - parameter name: The name of the newly defined function.
+  /// - parameter type: The type of the newly defined function.
+  ///
+  /// - returns: A value representing the newly inserted function definition.
+  public func addFunction(_ name: String, type: FunctionType) -> Function {
+    return Function(llvm: LLVMAddFunction(module.llvm, name, type.asLLVM()))
   }
 
   /// Build a named structure definition.

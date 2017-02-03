@@ -487,4 +487,37 @@ extension Constant where Repr: IntegralConstantRepresentation {
 
     return Constant(llvm: LLVMConstXor(lhs.llvm, rhs.llvm))
   }
+
+  // MARK: Bitshifting Operations
+
+  /// A constant left-shift of the first value by the second amount.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the value of the first operand
+  ///   shifted left by the number of bits specified in the second operand.
+  public static func <<(lhs: Constant, rhs: Constant) -> Constant {
+    precondition(lhs.repr == rhs.repr, "Mixed-representation constant operations are disallowed")
+
+    return Constant(llvm: LLVMConstShl(lhs.llvm, rhs.llvm))
+  }
+
+
+  // MARK: Conditional Operations
+
+  /// A constant select using the given condition to select among two values.
+  ///
+  /// - parameter cond: The condition to evaluate.  It must have type `i1` or
+  ///   be a vector of `i1`.
+  /// - parameter then: The value to select if the given condition is true.
+  /// - parameter else: The value to select if the given condition is false.
+  ///
+  /// - returns: A constant value representing the constant value selected for
+  ///   by the condition.
+  public static func select<T: ConstantRepresentation>(_ cond: Constant, then: Constant<T>, else: Constant<T>) -> Constant<T> {
+    precondition(then.repr == `else`.repr, "Mixed-representation constant operations are disallowed")
+
+    return Constant<T>(llvm: LLVMConstSelect(cond.llvm, then.llvm, `else`.llvm))
+  }
 }
