@@ -400,6 +400,11 @@ public class IRBuilder {
     return BasicBlock(llvm: blockRef)
   }
 
+  /// Gets the function this builder is building into.
+  public var currentFunction: Function? {
+    return insertBlock?.parent
+  }
+
   /// Inserts the given instruction into the IR Builder.
   ///
   /// - parameter inst: The instruction to insert.

@@ -40,10 +40,10 @@ public struct BasicBlock: IRValue {
     return Instruction(llvm: val)
   }
 
-  /// Returns the parent of this basic block, if it exists.
-  public func parent() -> BasicBlock? {
-    guard let blockRef = LLVMGetBasicBlockParent(llvm) else { return nil }
-    return BasicBlock(llvm: blockRef)
+  /// Returns the parent function of this basic block, if it exists.
+  public var parent: Function? {
+    guard let functionRef = LLVMGetBasicBlockParent(llvm) else { return nil }
+    return Function(llvm: functionRef)
   }
 
   /// Returns the basic block following this basic block, if it exists.
