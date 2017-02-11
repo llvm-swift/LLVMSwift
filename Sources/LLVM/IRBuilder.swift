@@ -1088,6 +1088,15 @@ public class IRBuilder {
     return LLVMBuildFPCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
+  /// Builds an address space cast instruction that converts a pointer value
+  /// to a given type in a different address space.
+  ///
+  /// The address spaces of the value and the destination pointer types must
+  /// be distinct.
+  public func buildAddrSpaceCast(_ val: IRValue, type: IRType, name: String = "") -> IRValue {
+    return LLVMBuildAddrSpaceCast(llvm, val.asLLVM(), type.asLLVM(), name)
+  }
+  
   /// Builds a truncate instruction to truncate the given value to the given
   /// type with a shorter width.
   ///
