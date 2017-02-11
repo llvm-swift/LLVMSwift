@@ -88,7 +88,7 @@ public struct BasicBlock: IRValue {
 }
 
 extension BasicBlock {
-  /// A `Address` represents a function-relative address of a basic block for 
+  /// An `Address` represents a function-relative address of a basic block for
   /// use with the `indirectbr` instruction.
   public struct Address: IRValue {
     internal let llvm: LLVMValueRef

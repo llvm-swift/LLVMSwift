@@ -90,15 +90,14 @@ public class Function: IRGlobal {
     }
   }
 
-  /// Computes the address of the specified basic block in this function, and 
-  /// always has an `i8*` type. 
+  /// Computes the address of the specified basic block in this function.
   ///
   /// Taking the address of the entry block is illegal.
   ///
   /// This value only has defined behavior when used as an operand to the 
   /// `indirectbr` instruction, or for comparisons against null. Pointer 
-  /// equality tests between labels addresses results in undefined behavior 
-  /// — though, again, comparison against null is ok, and no label is equal to 
+  /// equality tests between labels addresses results in undefined behavior.
+  /// Though, again, comparison against null is ok, and no label is equal to
   /// the null pointer. This may be passed around as an opaque pointer sized 
   /// value as long as the bits are not inspected. This allows `ptrtoint` and 
   /// arithmetic to be performed on these values so long as the original value 

@@ -911,7 +911,7 @@ public class IRBuilder {
   }
 
   /// Build a return from the current function back to the calling function with
-  /// the given array of values in aggregate.
+  /// the given array of values as members of an aggregate.
   ///
   /// - parameter values: The values to insert as members of the returned aggregate.
   ///
@@ -1253,6 +1253,27 @@ public class IRBuilder {
     return LLVMSizeOf(val.asLLVM())
   }
 
+  /// Builds an expression that returns the difference between two pointer 
+  /// values, dividing out the size of the pointed-to objects.
+  ///
+  /// This is intended to implement C-style pointer subtraction. As such, the 
+  /// pointers must be appropriately aligned for their element types and 
+  /// pointing into the same object.
+  ///
+  /// - parameter lhs: The first pointer (the minuend).
+  /// - parameter rhs: The second pointer (the subtrahend).
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A IRValue representing a 64-bit integer value of the difference
+  ///   of the two pointer values modulo the size of the pointed-to objects.
+  public func buildPointerDifference(_ lhs: IRValue, _ rhs: IRValue, name: String = "") -> IRValue {
+    precondition(
+      lhs.type is PointerType && rhs.type is PointerType,
+      "Cannot take pointer diff of \(lhs.type) and \(rhs.type)."
+    )
+    return LLVMBuildPtrDiff(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
+  }
+
   // MARK: Atomic Instructions
 
   /// Builds a fence instruction that introduces "happens-before" edges between
@@ -1264,6 +1285,7 @@ public class IRBuilder {
   ///   with other atomics in the same thread. (This is useful for interacting
   ///   with signal handlers.) Otherwise this fence is atomic with respect to
   ///   all other code in the system.
+  /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing `void`.
   public func buildFence(ordering: AtomicOrdering, singleThreaded: Bool = false, name: String = "") -> IRValue {
