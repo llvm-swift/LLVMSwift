@@ -910,6 +910,20 @@ public class IRBuilder {
     return LLVMBuildUnreachable(llvm)
   }
 
+  /// Build a return from the current function back to the calling function with
+  /// the given array of values in aggregate.
+  ///
+  /// - parameter values: The values to insert as members of the returned aggregate.
+  ///
+  /// - returns: A value representing `void`.
+  @discardableResult
+  public func buildRetAggregate(of values: [IRValue]) -> IRValue {
+    var values = values.map { $0.asLLVM() as Optional }
+    return values.withUnsafeMutableBufferPointer { buf in
+      return LLVMBuildAggregateRet(llvm, buf.baseAddress!, UInt32(buf.count))
+    }
+  }
+
   /// Build a call to the given function with the given arguments to transfer
   /// control to that function.
   ///
