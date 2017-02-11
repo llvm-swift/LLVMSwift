@@ -864,6 +864,25 @@ public class IRBuilder {
     return LLVMBuildCondBr(llvm, condition.asLLVM(), then.asLLVM(), `else`.asLLVM())
   }
 
+  /// Build an indirect branch to a label within the current function.
+  ///
+  /// - parameter address: The address of the label to branch to.
+  /// - parameter destinations: The set of possible destinations the address may
+  ///   point to.  The same block may appear multiple times in this list, though
+  ///   this isn't particularly useful.
+  ///
+  /// - returns: An IRValue representing `void`.
+  @discardableResult
+  public func buildIndirectBr(address: BasicBlock.Address, destinations: [BasicBlock]) -> IRValue {
+    guard let ret = LLVMBuildIndirectBr(llvm, address.asLLVM(), UInt32(destinations.count)) else {
+      fatalError("Unable to build indirect branch to address \(address)")
+    }
+    for dest in destinations {
+      LLVMAddDestination(ret, dest.llvm)
+    }
+    return ret
+  }
+
   /// Builds a return from the current function back to the calling function
   /// with the given value.
   ///

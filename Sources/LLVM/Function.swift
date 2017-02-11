@@ -90,6 +90,35 @@ public class Function: IRGlobal {
     }
   }
 
+  /// Computes the address of the specified basic block in this function, and 
+  /// always has an `i8*` type. 
+  ///
+  /// Taking the address of the entry block is illegal.
+  ///
+  /// This value only has defined behavior when used as an operand to the 
+  /// `indirectbr` instruction, or for comparisons against null. Pointer 
+  /// equality tests between labels addresses results in undefined behavior 
+  /// — though, again, comparison against null is ok, and no label is equal to 
+  /// the null pointer. This may be passed around as an opaque pointer sized 
+  /// value as long as the bits are not inspected. This allows `ptrtoint` and 
+  /// arithmetic to be performed on these values so long as the original value 
+  /// is reconstituted before the indirectbr instruction.
+  ///
+  /// Finally, some targets may provide defined semantics when using the value 
+  /// as the operand to an inline assembly, but that is target specific.
+  ///
+  /// - parameter block: The basic block to compute the address of.
+  ///
+  /// - returns: An IRValue representing the address of the given basic block
+  ///   in this function, else nil if the address cannot be computed or the 
+  ///   basic block does not reside in this function. 
+  public func address(of block: BasicBlock) -> BasicBlock.Address? {
+    guard let addr = LLVMBlockAddress(llvm, block.llvm) else {
+      return nil
+    }
+    return BasicBlock.Address(llvm: addr)
+  }
+
   /// Retrieves the previous function in the module, if there is one.
   public func previous() -> Function? {
     guard let previous = LLVMGetPreviousFunction(llvm) else { return nil }
