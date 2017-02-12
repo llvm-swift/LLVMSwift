@@ -864,6 +864,25 @@ public class IRBuilder {
     return LLVMBuildCondBr(llvm, condition.asLLVM(), then.asLLVM(), `else`.asLLVM())
   }
 
+  /// Build an indirect branch to a label within the current function.
+  ///
+  /// - parameter address: The address of the label to branch to.
+  /// - parameter destinations: The set of possible destinations the address may
+  ///   point to.  The same block may appear multiple times in this list, though
+  ///   this isn't particularly useful.
+  ///
+  /// - returns: An IRValue representing `void`.
+  @discardableResult
+  public func buildIndirectBr(address: BasicBlock.Address, destinations: [BasicBlock]) -> IRValue {
+    guard let ret = LLVMBuildIndirectBr(llvm, address.asLLVM(), UInt32(destinations.count)) else {
+      fatalError("Unable to build indirect branch to address \(address)")
+    }
+    for dest in destinations {
+      LLVMAddDestination(ret, dest.llvm)
+    }
+    return ret
+  }
+
   /// Builds a return from the current function back to the calling function
   /// with the given value.
   ///
@@ -889,6 +908,20 @@ public class IRBuilder {
   @discardableResult
   public func buildUnreachable() -> IRValue {
     return LLVMBuildUnreachable(llvm)
+  }
+
+  /// Build a return from the current function back to the calling function with
+  /// the given array of values as members of an aggregate.
+  ///
+  /// - parameter values: The values to insert as members of the returned aggregate.
+  ///
+  /// - returns: A value representing `void`.
+  @discardableResult
+  public func buildRetAggregate(of values: [IRValue]) -> IRValue {
+    var values = values.map { $0.asLLVM() as Optional }
+    return values.withUnsafeMutableBufferPointer { buf in
+      return LLVMBuildAggregateRet(llvm, buf.baseAddress!, UInt32(buf.count))
+    }
   }
 
   /// Build a call to the given function with the given arguments to transfer
@@ -1088,6 +1121,15 @@ public class IRBuilder {
     return LLVMBuildFPCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
+  /// Builds an address space cast instruction that converts a pointer value
+  /// to a given type in a different address space.
+  ///
+  /// The address spaces of the value and the destination pointer types must
+  /// be distinct.
+  public func buildAddrSpaceCast(_ val: IRValue, type: IRType, name: String = "") -> IRValue {
+    return LLVMBuildAddrSpaceCast(llvm, val.asLLVM(), type.asLLVM(), name)
+  }
+  
   /// Builds a truncate instruction to truncate the given value to the given
   /// type with a shorter width.
   ///
@@ -1211,6 +1253,27 @@ public class IRBuilder {
     return LLVMSizeOf(val.asLLVM())
   }
 
+  /// Builds an expression that returns the difference between two pointer 
+  /// values, dividing out the size of the pointed-to objects.
+  ///
+  /// This is intended to implement C-style pointer subtraction. As such, the 
+  /// pointers must be appropriately aligned for their element types and 
+  /// pointing into the same object.
+  ///
+  /// - parameter lhs: The first pointer (the minuend).
+  /// - parameter rhs: The second pointer (the subtrahend).
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A IRValue representing a 64-bit integer value of the difference
+  ///   of the two pointer values modulo the size of the pointed-to objects.
+  public func buildPointerDifference(_ lhs: IRValue, _ rhs: IRValue, name: String = "") -> IRValue {
+    precondition(
+      lhs.type is PointerType && rhs.type is PointerType,
+      "Cannot take pointer diff of \(lhs.type) and \(rhs.type)."
+    )
+    return LLVMBuildPtrDiff(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
+  }
+
   // MARK: Atomic Instructions
 
   /// Builds a fence instruction that introduces "happens-before" edges between
@@ -1222,6 +1285,7 @@ public class IRBuilder {
   ///   with other atomics in the same thread. (This is useful for interacting
   ///   with signal handlers.) Otherwise this fence is atomic with respect to
   ///   all other code in the system.
+  /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing `void`.
   public func buildFence(ordering: AtomicOrdering, singleThreaded: Bool = false, name: String = "") -> IRValue {

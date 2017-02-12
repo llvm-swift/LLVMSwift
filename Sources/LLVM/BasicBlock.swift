@@ -86,3 +86,20 @@ public struct BasicBlock: IRValue {
     LLVMMoveBasicBlockAfter(llvm, block.llvm)
   }
 }
+
+extension BasicBlock {
+  /// An `Address` represents a function-relative address of a basic block for
+  /// use with the `indirectbr` instruction.
+  public struct Address: IRValue {
+    internal let llvm: LLVMValueRef
+
+    internal init(llvm: LLVMValueRef) {
+      self.llvm = llvm
+    }
+
+    /// Retrieves the underlying LLVM value object.
+    public func asLLVM() -> LLVMValueRef {
+      return llvm
+    }
+  }
+}
