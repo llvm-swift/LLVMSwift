@@ -674,7 +674,7 @@ private class Pattern {
 
     // Successful regex match.
     guard let fullMatch = matchInfo.first else {
-      fatalError("Didn't get any matches!")
+      return nil
     }
 
     // If this defines any variables, remember their values.
@@ -1014,7 +1014,13 @@ private struct CheckString {
     // Match itself from the last position after matching CHECK-DAG.
     let matchBuffer = buffer.substring(from: buffer.index(buffer.startIndex, offsetBy: lastPos))
     guard let (matchPos, matchLen) = self.pattern.match(matchBuffer, variableTable) else {
-      diagnose(.error, self.loc, self.prefix + ": could not find '\(self.pattern.fixedString)' in input")
+      if self.pattern.fixedString.isEmpty {
+        diagnose(.error, self.loc, self.prefix + ": could not find a match for regex '\(self.pattern.regExPattern)' in input")
+      } else if self.pattern.regExPattern.isEmpty {
+        diagnose(.error, self.loc, self.prefix + ": could not find '\(self.pattern.fixedString)' in input")
+      } else {
+        diagnose(.error, self.loc, self.prefix + ": could not find '\(self.pattern.fixedString)' (with regex '\(self.pattern.regExPattern)') in input")
+      }
       return nil
     }
 
