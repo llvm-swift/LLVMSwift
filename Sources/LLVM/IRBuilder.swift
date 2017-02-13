@@ -81,7 +81,7 @@ public enum RealPredicate {
   case orderedLessThanOrEqual
   /// Ordered and not equal.
   case orderedNotEqual
-  /// Oredered (no nans).
+  /// Ordered (no nans).
   case ordered
   /// Unordered (either nans).
   case unordered
