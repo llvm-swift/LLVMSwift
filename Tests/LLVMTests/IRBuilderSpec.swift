@@ -117,25 +117,25 @@ class IRBuilderSpec : XCTestCase {
       let vg2 = builder.buildLoad(g2)
 
       // IRBUILDERCMP-NEXT: %2 = icmp eq i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .eq)
+      _ = builder.buildICmp(vg1, vg2, .equal)
       // IRBUILDERCMP-NEXT: %3 = icmp ne i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .ne)
+      _ = builder.buildICmp(vg1, vg2, .notEqual)
       // IRBUILDERCMP-NEXT: %4 = icmp ugt i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .ugt)
+      _ = builder.buildICmp(vg1, vg2, .unsignedGreaterThan)
       // IRBUILDERCMP-NEXT: %5 = icmp uge i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .uge)
+      _ = builder.buildICmp(vg1, vg2, .unsignedGreaterThanOrEqual)
       // IRBUILDERCMP-NEXT: %6 = icmp ult i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .ult)
+      _ = builder.buildICmp(vg1, vg2, .unsignedLessThan)
       // IRBUILDERCMP-NEXT: %7 = icmp ule i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .ule)
+      _ = builder.buildICmp(vg1, vg2, .unsignedLessThanOrEqual)
       // IRBUILDERCMP-NEXT: %8 = icmp sgt i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .sgt)
+      _ = builder.buildICmp(vg1, vg2, .signedGreaterThan)
       // IRBUILDERCMP-NEXT: %9 = icmp sge i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .sge)
+      _ = builder.buildICmp(vg1, vg2, .signedGreaterThanOrEqual)
       // IRBUILDERCMP-NEXT: %10 = icmp slt i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .slt)
+      _ = builder.buildICmp(vg1, vg2, .signedLessThan)
       // IRBUILDERCMP-NEXT: %11 = icmp sle i32 %0, %1
-      _ = builder.buildICmp(vg1, vg2, .sle)
+      _ = builder.buildICmp(vg1, vg2, .signedLessThanOrEqual)
 
       // IRBUILDERCMP-NEXT: ret void
       builder.buildRetVoid()
@@ -171,25 +171,25 @@ class IRBuilderSpec : XCTestCase {
       let vg2 = builder.buildLoad(g2)
 
       // IRBUILDERFCMP-NEXT: %2 = fcmp oeq double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .oeq)
+      _ = builder.buildFCmp(vg1, vg2, .orderedEqual)
       // IRBUILDERFCMP-NEXT: %3 = fcmp one double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .one)
+      _ = builder.buildFCmp(vg1, vg2, .orderedNotEqual)
       // IRBUILDERFCMP-NEXT: %4 = fcmp ugt double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .ugt)
+      _ = builder.buildFCmp(vg1, vg2, .unorderedGreaterThan)
       // IRBUILDERFCMP-NEXT: %5 = fcmp uge double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .uge)
+      _ = builder.buildFCmp(vg1, vg2, .unorderedGreaterThanOrEqual)
       // IRBUILDERFCMP-NEXT: %6 = fcmp ult double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .ult)
+      _ = builder.buildFCmp(vg1, vg2, .unorderedLessThan)
       // IRBUILDERFCMP-NEXT: %7 = fcmp ule double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .ule)
+      _ = builder.buildFCmp(vg1, vg2, .unorderedLessThanOrEqual)
       // IRBUILDERFCMP-NEXT: %8 = fcmp ogt double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .ogt)
+      _ = builder.buildFCmp(vg1, vg2, .orderedGreaterThan)
       // IRBUILDERFCMP-NEXT: %9 = fcmp oge double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .oge)
+      _ = builder.buildFCmp(vg1, vg2, .orderedGreaterThanOrEqual)
       // IRBUILDERFCMP-NEXT: %10 = fcmp olt double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .olt)
+      _ = builder.buildFCmp(vg1, vg2, .orderedLessThan)
       // IRBUILDERFCMP-NEXT: %11 = fcmp ole double %0, %1
-      _ = builder.buildFCmp(vg1, vg2, .ole)
+      _ = builder.buildFCmp(vg1, vg2, .orderedLessThanOrEqual)
       // IRBUILDERFCMP-NEXT: %12 = fcmp true double %0, %1
       _ = builder.buildFCmp(vg1, vg2, .true)
       // IRBUILDERFCMP-NEXT: %13 = fcmp false double %0, %1
@@ -227,7 +227,7 @@ class IRBuilderSpec : XCTestCase {
       let load = builder.buildLoad(variable)
 
       // CONTROLFLOW-NEXT: %1 = icmp eq i64 %0, 0
-      let res = builder.buildICmp(load, IntType.int64.zero(), .eq)
+      let res = builder.buildICmp(load, IntType.int64.zero(), .equal)
 
       let thenBB = main.appendBasicBlock(named: "then")
       let elseBB = main.appendBasicBlock(named: "else")

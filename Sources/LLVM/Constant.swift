@@ -323,11 +323,11 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
 
     switch lhs.repr {
     case .signed:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.eq.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.equal.llvm, lhs.llvm, rhs.llvm))
     case .unsigned:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.eq.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.equal.llvm, lhs.llvm, rhs.llvm))
     case .floating:
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.oeq.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedEqual.llvm, lhs.llvm, rhs.llvm))
     }
   }
 
@@ -343,11 +343,11 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
 
     switch lhs.repr {
     case .signed:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.slt.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedLessThan.llvm, lhs.llvm, rhs.llvm))
     case .unsigned:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.ult.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThan.llvm, lhs.llvm, rhs.llvm))
     case .floating:
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.olt.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThan.llvm, lhs.llvm, rhs.llvm))
     }
   }
 
@@ -363,11 +363,11 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
 
     switch lhs.repr {
     case .signed:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.sgt.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedGreaterThan.llvm, lhs.llvm, rhs.llvm))
     case .unsigned:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.ugt.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThan.llvm, lhs.llvm, rhs.llvm))
     case .floating:
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.ogt.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThan.llvm, lhs.llvm, rhs.llvm))
     }
   }
 
@@ -383,11 +383,11 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
 
     switch lhs.repr {
     case .signed:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.sle.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
     case .unsigned:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.ule.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
     case .floating:
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.ole.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
     }
   }
 
@@ -403,11 +403,11 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
 
     switch lhs.repr {
     case .signed:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.sge.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
     case .unsigned:
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.uge.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
     case .floating:
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.oge.llvm, lhs.llvm, rhs.llvm))
+      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
     }
   }
 }
