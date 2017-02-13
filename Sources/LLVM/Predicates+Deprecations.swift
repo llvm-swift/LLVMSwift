@@ -63,7 +63,7 @@ extension RealPredicate {
     /// Ordered and not equal.
     @available(*, deprecated, renamed: "orderedNotEqual")
     public static let one = orderedNotEqual
-    /// Oredered (no nans).
+    /// Ordered (no nans).
     @available(*, deprecated, renamed: "ordered")
     public static let ord = ordered
     /// Unordered (either nans).
