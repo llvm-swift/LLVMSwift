@@ -422,10 +422,10 @@ private final class BoxedTable {
   }
 }
 
-/// Check the input to FileCheck provided in the \p Buffer against the \p
-/// CheckStrings read from the check file.
+/// Check the input to FileCheck provided in the buffer against the check 
+/// strings read from the check file.
 ///
-/// Returns false if the input fails to satisfy the checks.
+/// Returns `false` if the input fails to satisfy the checks.
 private func check(input b : String, against checkStrings : [CheckString]) -> Bool {
   var buffer = b
   var failedChecks = false
@@ -448,13 +448,14 @@ private func check(input b : String, against checkStrings : [CheckString]) -> Bo
       }
 
       // Scan to next CHECK-LABEL match, ignoring CHECK-NOT and CHECK-DAG
-      guard let (matchLabelPos, matchLabelLen) = checkStr.check(buffer, true, variableTable) else {
+      guard let range = checkStr.check(buffer, true, variableTable) else {
         // Immediately bail of CHECK-LABEL fails, nothing else we can do.
         return false
       }
 
-      checkRegion = buffer.substring(to: buffer.index(buffer.startIndex, offsetBy: matchLabelPos + matchLabelLen))
-      buffer = buffer.substring(from: buffer.index(buffer.startIndex, offsetBy: matchLabelPos + matchLabelLen))
+
+      checkRegion = buffer.substring(to: buffer.index(buffer.startIndex, offsetBy: NSMaxRange(range)))
+      buffer = buffer.substring(from: buffer.index(buffer.startIndex, offsetBy: NSMaxRange(range)))
       j += 1
     }
 
@@ -463,13 +464,13 @@ private func check(input b : String, against checkStrings : [CheckString]) -> Bo
 
       // Check each string within the scanned region, including a second check
       // of any final CHECK-LABEL (to verify CHECK-NOT and CHECK-DAG)
-      guard let (matchPos, matchLen) = checkStrings[i].check(checkRegion, false, variableTable) else {
+      guard let range = checkStrings[i].check(checkRegion, false, variableTable) else {
         failedChecks = true
         i = j
         break
       }
 
-      checkRegion = checkRegion.substring(from: checkRegion.index(checkRegion.startIndex, offsetBy: matchPos + matchLen))
+      checkRegion = checkRegion.substring(from: checkRegion.index(checkRegion.startIndex, offsetBy: NSMaxRange(range)))
     }
 
     if j == e {
@@ -614,24 +615,23 @@ private class Pattern {
   /// Matches the pattern string against the input buffer.
   ///
   /// This returns the position that is matched or npos if there is no match. If
-  /// there is a match, the size of the matched string is returned in \p
-  /// MatchLen.
+  /// there is a match, the range of the match is returned.
   ///
-  /// The \p VariableTable StringMap provides the current values of filecheck
-  /// variables and is updated if this match defines new values.
-  func match(_ buffer : String, _ variableTable : BoxedTable) -> (Int, Int)? {
+  /// The variable table provides the current values of filecheck variables and 
+  /// is updated if this match defines new values.
+  func match(_ buffer : String, _ variableTable : BoxedTable) -> NSRange? {
     var matchLen : Int = 0
     // If this is the EOF pattern, match it immediately.
     if self.type == .EOF {
       matchLen = 0
-      return (buffer.utf8.count, matchLen)
+      return NSRange(location: buffer.utf8.count, length: matchLen)
     }
 
     // If this is a fixed string pattern, just match it now.
     if !self.fixedString.isEmpty {
       matchLen = self.fixedString.utf8.count
       if let b = buffer.range(of: self.fixedString)?.lowerBound {
-        return (buffer.distance(from: buffer.startIndex, to: b), matchLen)
+        return NSRange(location: buffer.distance(from: buffer.startIndex, to: b), length: matchLen)
       }
       return nil
     }
@@ -674,7 +674,7 @@ private class Pattern {
 
     // Successful regex match.
     guard let fullMatch = matchInfo.first else {
-      fatalError("Didn't get any matches!")
+      return nil
     }
 
     // If this defines any variables, remember their values.
@@ -696,15 +696,15 @@ private class Pattern {
     }
 
     matchLen = fullMatch.range.length
-    return (fullMatch.range.location, matchLen)
+    return NSRange(location: fullMatch.range.location, length: matchLen)
   }
 
   /// Finds the closing sequence of a regex variable usage or definition.
   ///
-  /// \p Str has to point in the beginning of the definition (right after the
-  /// opening sequence). Returns the offset of the closing sequence within Str,
-  /// or npos if it was not found.
-  private func findRegexVarEnd(_ regVar : String) -> String.Index? {
+  /// The given string has to start in the beginning of the definition 
+  /// (right after the opening sequence). Returns the offset of the closing 
+  /// sequence within the string, or nil if it was not found.
+  private func findRegexVarEnd(_ regVar : String, brackets: (open: Character, close: Character), terminator: String) -> String.Index? {
     var string = regVar
     // Offset keeps track of the current offset within the input Str
     var offset = regVar.startIndex
@@ -712,7 +712,7 @@ private class Pattern {
     var bracketDepth = 0
 
     while let firstChar = string.characters.first {
-      if string.hasPrefix("]]") && bracketDepth == 0 {
+      if string.hasPrefix(terminator) && bracketDepth == 0 {
         return offset
       }
       if firstChar == "\\" {
@@ -721,11 +721,11 @@ private class Pattern {
         offset = regVar.index(offset, offsetBy: 2)
       } else {
         switch firstChar {
-        case "[":
+        case brackets.open:
           bracketDepth += 1
-        case "]":
+        case brackets.close:
           if bracketDepth == 0 {
-            diagnose(.error, .string(regVar), "missing closing \"]\" for regex variable")
+            diagnose(.error, .string(regVar), "missing closing \"\(brackets.close)\" for regex variable")
             return nil
           }
           bracketDepth -= 1
@@ -752,11 +752,6 @@ private class Pattern {
   }
 
   /// Parses the given string into the Pattern.
-  ///
-  /// \p Prefix provides which prefix is being matched, \p SM provides the
-  /// SourceMgr used for error reports, and \p LineNumber is the line number in
-  /// the input file from which the pattern string was read. Returns true in
-  /// case of an error, false otherwise.
   func parse(in buf : UnsafeBufferPointer<CChar>, pattern : UnsafeBufferPointer<CChar>, withPrefix prefix : String, at lineNumber : Int, options: FileCheckOptions) -> Bool {
     func mino(_ l : String.Index?, _ r : String.Index?) -> String.Index? {
       if l == nil && r == nil {
@@ -808,7 +803,8 @@ private class Pattern {
       // RegEx matches.
       if patternStr.range(of: "{{")?.lowerBound == patternStr.startIndex {
         // This is the start of a regex match.  Scan for the }}.
-        guard let End = patternStr.range(of: "}}") else {
+		patternStr = patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2))
+        guard let end = self.findRegexVarEnd(patternStr, brackets: (open: "{", close: "}"), terminator: "}}") else {
           let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
           diagnose(.error, loc, "found start of regex string with no end '}}'")
           return true
@@ -821,14 +817,7 @@ private class Pattern {
         regExPattern += "("
         curParen += 1
 
-        let substr = patternStr.substring(
-          with: Range<String.Index>(
-            uncheckedBounds: (
-              patternStr.index(patternStr.startIndex, offsetBy: 2),
-              End.lowerBound
-            )
-          )
-        )
+        let substr = patternStr.substring(to: end)
         let (res, paren) = self.addRegExToRegEx(substr, curParen)
         curParen = paren
         if res {
@@ -836,7 +825,7 @@ private class Pattern {
         }
         regExPattern += ")"
 
-        patternStr = patternStr.substring(from: patternStr.index(End.lowerBound, offsetBy: 2))
+        patternStr = patternStr.substring(from: patternStr.index(end, offsetBy: 2))
         continue
       }
 
@@ -849,7 +838,7 @@ private class Pattern {
         // Find the closing bracket pair ending the match.  End is going to be an
         // offset relative to the beginning of the match string.
         let regVar = patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2))
-        guard let end = self.findRegexVarEnd(regVar) else {
+        guard let end = self.findRegexVarEnd(regVar, brackets: (open: "[", close: "]"), terminator: "]]") else {
           let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
           diagnose(.error, loc, "invalid named regex reference, no ]] found")
           return true
@@ -981,22 +970,21 @@ func countNumNewlinesBetween(_ r : String) -> (Int, String.Index?) {
 
 /// CheckString - This is a check that we found in the input file.
 private struct CheckString {
-  /// Pat - The pattern to match.
+  /// The pattern to match.
   let pattern : Pattern
 
-  /// Prefix - Which prefix name this check matched.
+  /// Which prefix name this check matched.
   let prefix : String
 
-  /// Loc - The location in the match file that the check string was specified.
+  /// The location in the match file that the check string was specified.
   let loc : CheckLoc
 
-  /// DagNotStrings - These are all of the strings that are disallowed from
-  /// occurring between this match string and the previous one (or start of
-  /// file).
+  /// These are all of the strings that are disallowed from occurring between 
+  /// this match string and the previous one (or start of file).
   let dagNotStrings : Array<Pattern> = []
 
   /// Match check string and its "not strings" and/or "dag strings".
-  func check(_ buffer : String, _ isLabelScanMode : Bool,  _ variableTable : BoxedTable) -> (Int, Int)? {
+  func check(_ buffer : String, _ isLabelScanMode : Bool,  _ variableTable : BoxedTable) -> NSRange? {
     var lastPos = 0
 
     // IsLabelScanMode is true when we are scanning forward to find CHECK-LABEL
@@ -1013,10 +1001,17 @@ private struct CheckString {
 
     // Match itself from the last position after matching CHECK-DAG.
     let matchBuffer = buffer.substring(from: buffer.index(buffer.startIndex, offsetBy: lastPos))
-    guard let (matchPos, matchLen) = self.pattern.match(matchBuffer, variableTable) else {
-      diagnose(.error, self.loc, self.prefix + ": could not find '\(self.pattern.fixedString)' in input")
+    guard let range = self.pattern.match(matchBuffer, variableTable) else {
+      if self.pattern.fixedString.isEmpty {
+        diagnose(.error, self.loc, self.prefix + ": could not find a match for regex '\(self.pattern.regExPattern)' in input")
+      } else if self.pattern.regExPattern.isEmpty {
+        diagnose(.error, self.loc, self.prefix + ": could not find '\(self.pattern.fixedString)' in input")
+      } else {
+        diagnose(.error, self.loc, self.prefix + ": could not find '\(self.pattern.fixedString)' (with regex '\(self.pattern.regExPattern)') in input")
+      }
       return nil
     }
+    let (matchPos, matchLen) = (range.location, range.length)
 
     // Similar to the above, in "label-scan mode" we can't yet handle CHECK-NEXT
     // or CHECK-NOT
@@ -1050,7 +1045,7 @@ private struct CheckString {
       }
     }
 
-    return (lastPos + matchPos, matchLen)
+    return NSRange(location: lastPos + matchPos, length: matchLen)
   }
 
   /// Verify there is no newline in the given buffer.
@@ -1134,11 +1129,11 @@ private struct CheckString {
     for pat in notStrings {
       assert(pat.type == .not, "Expect CHECK-NOT!")
 
-      guard let (Pos, _)/*(Pos, MatchLen)*/ = pat.match(buffer, variableTable) else {
+      guard let range = pat.match(buffer, variableTable) else {
         continue
       }
       buffer.cString(using: .utf8)?.withUnsafeBufferPointer { buf in
-        let loc = CheckLoc.inBuffer(buf.baseAddress!.advanced(by: Pos), buf)
+        let loc = CheckLoc.inBuffer(buf.baseAddress!.advanced(by: range.location), buf)
         diagnose(.error, loc, self.prefix + "-NOT: string occurred!")
       }
       diagnose(.note, pat.patternLoc, self.prefix + "-NOT: pattern specified here")
@@ -1172,12 +1167,12 @@ private struct CheckString {
       let matchBuffer = buffer.substring(from: buffer.index(buffer.startIndex, offsetBy: startPos))
       // With a group of CHECK-DAGs, a single mismatching means the match on
       // that group of CHECK-DAGs fails immediately.
-      guard let t = pattern.match(matchBuffer, variableTable) else {
+      guard let range = pattern.match(matchBuffer, variableTable) else {
         //				PrintCheckFailed(SM, Pat.getLoc(), Pat, MatchBuffer, VariableTable)
         return nil
       }
-      var matchPos = t.0
-      let matchLen = t.1
+      var matchPos = range.location
+      let matchLen = range.length
       
       // Re-calc it as the offset relative to the start of the original string.
       matchPos += startPos
