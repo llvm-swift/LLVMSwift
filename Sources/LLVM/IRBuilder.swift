@@ -20,41 +20,43 @@ public enum OverflowBehavior {
 public enum IntPredicate {
   /// Yields `true` if the operands are equal, false otherwise without sign
   /// interpretation.
-  case eq
+  case equal
   /// Yields `true` if the operands are unequal, false otherwise without sign
   /// interpretation.
-  case ne
+  case notEqual
 
   /// Interprets the operands as unsigned values and yields true if the first is
   /// greater than the second.
-  case ugt
+  case unsignedGreaterThan
   /// Interprets the operands as unsigned values and yields true if the first is
   /// greater than or equal to the second.
-  case uge
+  case unsignedGreaterThanOrEqual
   /// Interprets the operands as unsigned values and yields true if the first is
   /// less than the second.
-  case ult
+  case unsignedLessThan
   /// Interprets the operands as unsigned values and yields true if the first is
   /// less than or equal to the second.
-  case ule
+  case unsignedLessThanOrEqual
 
   /// Interprets the operands as signed values and yields true if the first is
   /// greater than the second.
-  case sgt
+  case signedGreaterThan
   /// Interprets the operands as signed values and yields true if the first is
   /// greater than or equal to the second.
-  case sge
+  case signedGreaterThanOrEqual
   /// Interprets the operands as signed values and yields true if the first is
   /// less than the second.
-  case slt
+  case signedLessThan
   /// Interprets the operands as signed values and yields true if the first is
   /// less than or equal to the second.
-  case sle
+  case signedLessThanOrEqual
 
   static let predicateMapping: [IntPredicate: LLVMIntPredicate] = [
-    .eq: LLVMIntEQ, .ne: LLVMIntNE, .ugt: LLVMIntUGT, .uge: LLVMIntUGE,
-    .ult: LLVMIntULT, .ule: LLVMIntULE, .sgt: LLVMIntSGT, .sge: LLVMIntSGE,
-    .slt: LLVMIntSLT, .sle: LLVMIntSLE,
+    .equal: LLVMIntEQ, .notEqual: LLVMIntNE, .unsignedGreaterThan: LLVMIntUGT,
+    .unsignedGreaterThanOrEqual: LLVMIntUGE, .unsignedLessThan: LLVMIntULT,
+    .unsignedLessThanOrEqual: LLVMIntULE, .signedGreaterThan: LLVMIntSGT,
+    .signedGreaterThanOrEqual: LLVMIntSGE, .signedLessThan: LLVMIntSLT,
+    .signedLessThanOrEqual: LLVMIntSLE,
   ]
 
   /// Retrieves the corresponding `LLVMIntPredicate`.
@@ -68,42 +70,44 @@ public enum RealPredicate {
   /// No comparison, always returns `false`.
   case `false`
   /// Ordered and equal.
-  case oeq
+  case orderedEqual
   /// Ordered greater than.
-  case ogt
+  case orderedGreaterThan
   /// Ordered greater than or equal.
-  case oge
+  case orderedGreaterThanOrEqual
   /// Ordered less than.
-  case olt
+  case orderedLessThan
   /// Ordered less than or equal.
-  case ole
+  case orderedLessThanOrEqual
   /// Ordered and not equal.
-  case one
+  case orderedNotEqual
   /// Oredered (no nans).
-  case ord
+  case ordered
   /// Unordered (either nans).
-  case uno
+  case unordered
   /// Unordered or equal.
-  case ueq
+  case unorderedEqual
   /// Unordered or greater than.
-  case ugt
+  case unorderedGreaterThan
   /// Unordered or greater than or equal.
-  case uge
+  case unorderedGreaterThanOrEqual
   /// Unordered or less than.
-  case ult
+  case unorderedLessThan
   /// Unordered or less than or equal.
-  case ule
+  case unorderedLessThanOrEqual
   /// Unordered or not equal.
-  case une
+  case unorderedNotEqual
   /// No comparison, always returns `true`.
   case `true`
 
   static let predicateMapping: [RealPredicate: LLVMRealPredicate] = [
-    .false: LLVMRealPredicateFalse, .oeq: LLVMRealOEQ, .ogt: LLVMRealOGT,
-    .oge: LLVMRealOGE, .olt: LLVMRealOLT, .ole: LLVMRealOLE,
-    .one: LLVMRealONE, .ord: LLVMRealORD, .uno: LLVMRealUNO,
-    .ueq: LLVMRealUEQ, .ugt: LLVMRealUGT, .uge: LLVMRealUGE,
-    .ult: LLVMRealULT, .ule: LLVMRealULE, .une: LLVMRealUNE,
+    .false: LLVMRealPredicateFalse, .orderedEqual: LLVMRealOEQ,
+    .orderedGreaterThan: LLVMRealOGT, .orderedGreaterThanOrEqual: LLVMRealOGE,
+    .orderedLessThan: LLVMRealOLT, .orderedLessThanOrEqual: LLVMRealOLE,
+    .orderedNotEqual: LLVMRealONE, .ordered: LLVMRealORD, .unordered: LLVMRealUNO,
+    .unorderedEqual: LLVMRealUEQ, .unorderedGreaterThan: LLVMRealUGT,
+    .unorderedGreaterThanOrEqual: LLVMRealUGE, .unorderedLessThan: LLVMRealULT,
+    .unorderedLessThanOrEqual: LLVMRealULE, .unorderedNotEqual: LLVMRealUNE,
     .true: LLVMRealPredicateTrue,
   ]
 
