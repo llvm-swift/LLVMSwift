@@ -704,7 +704,7 @@ private class Pattern {
   /// \p Str has to point in the beginning of the definition (right after the
   /// opening sequence). Returns the offset of the closing sequence within Str,
   /// or npos if it was not found.
-  private func findRegexVarEnd(_ regVar : String) -> String.Index? {
+  private func findRegexVarEnd(_ regVar : String, brackets: (open: Character, close: Character), terminator: String) -> String.Index? {
     var string = regVar
     // Offset keeps track of the current offset within the input Str
     var offset = regVar.startIndex
@@ -712,7 +712,7 @@ private class Pattern {
     var bracketDepth = 0
 
     while let firstChar = string.characters.first {
-      if string.hasPrefix("]]") && bracketDepth == 0 {
+      if string.hasPrefix(terminator) && bracketDepth == 0 {
         return offset
       }
       if firstChar == "\\" {
@@ -721,11 +721,11 @@ private class Pattern {
         offset = regVar.index(offset, offsetBy: 2)
       } else {
         switch firstChar {
-        case "[":
+        case brackets.open:
           bracketDepth += 1
-        case "]":
+        case brackets.close:
           if bracketDepth == 0 {
-            diagnose(.error, .string(regVar), "missing closing \"]\" for regex variable")
+            diagnose(.error, .string(regVar), "missing closing \"\(brackets.close)\" for regex variable")
             return nil
           }
           bracketDepth -= 1
@@ -808,7 +808,8 @@ private class Pattern {
       // RegEx matches.
       if patternStr.range(of: "{{")?.lowerBound == patternStr.startIndex {
         // This is the start of a regex match.  Scan for the }}.
-        guard let End = patternStr.range(of: "}}") else {
+		patternStr = patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2))
+        guard let end = self.findRegexVarEnd(patternStr, brackets: (open: "{", close: "}"), terminator: "}}") else {
           let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
           diagnose(.error, loc, "found start of regex string with no end '}}'")
           return true
@@ -821,14 +822,7 @@ private class Pattern {
         regExPattern += "("
         curParen += 1
 
-        let substr = patternStr.substring(
-          with: Range<String.Index>(
-            uncheckedBounds: (
-              patternStr.index(patternStr.startIndex, offsetBy: 2),
-              End.lowerBound
-            )
-          )
-        )
+        let substr = patternStr.substring(to: end)
         let (res, paren) = self.addRegExToRegEx(substr, curParen)
         curParen = paren
         if res {
@@ -836,7 +830,7 @@ private class Pattern {
         }
         regExPattern += ")"
 
-        patternStr = patternStr.substring(from: patternStr.index(End.lowerBound, offsetBy: 2))
+        patternStr = patternStr.substring(from: patternStr.index(end, offsetBy: 2))
         continue
       }
 
@@ -849,7 +843,7 @@ private class Pattern {
         // Find the closing bracket pair ending the match.  End is going to be an
         // offset relative to the beginning of the match string.
         let regVar = patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2))
-        guard let end = self.findRegexVarEnd(regVar) else {
+        guard let end = self.findRegexVarEnd(regVar, brackets: (open: "[", close: "]"), terminator: "]]") else {
           let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
           diagnose(.error, loc, "invalid named regex reference, no ]] found")
           return true
