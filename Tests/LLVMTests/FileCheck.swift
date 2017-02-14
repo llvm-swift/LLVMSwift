@@ -351,9 +351,8 @@ private func readCheckStrings(in buf : UnsafeBufferPointer<CChar>, withPrefixes 
     let patternLoc = CheckLoc.inBuffer(buffer.baseAddress!, buf)
 
     // Parse the pattern.
-    let pat : Pattern = Pattern(checking: checkTy)
     let subBuffer = UnsafeBufferPointer<CChar>(start: buffer.baseAddress, count: EOL)
-    if pat.parse(in: buf, pattern: subBuffer, withPrefix: usedPrefix, at: lineNumber, options: options) {
+    guard let pat = Pattern(checking: checkTy, in: buf, pattern: subBuffer, withPrefix: usedPrefix, at: lineNumber, options: options) else {
       return []
     }
 
@@ -550,19 +549,19 @@ enum CheckType {
 }
 
 private class Pattern {
-  var patternLoc : CheckLoc = CheckLoc.string("")
+  let patternLoc : CheckLoc
 
   let type : CheckType
 
   /// If non-empty, this pattern is a fixed string match with the specified
   /// fixed string.
-  var fixedString : String = ""
+  let fixedString : String
 
   /// If non-empty, this is a regex pattern.
   var regExPattern : String = ""
 
   /// Contains the number of line this pattern is in.
-  var lineNumber : Int = 0
+  let lineNumber : Int
 
   /// Entries in this vector map to uses of a variable in the pattern, e.g.
   /// "foo[[bar]]baz".  In this case, the regExPattern will contain "foobaz"
@@ -578,8 +577,191 @@ private class Pattern {
     return !(variableUses.isEmpty && self.variableDefs.isEmpty)
   }
 
-  init(checking ty : CheckType) {
+  init?(checking ty : CheckType, in buf : UnsafeBufferPointer<CChar>, pattern : UnsafeBufferPointer<CChar>, withPrefix prefix : String, at lineNumber : Int, options: FileCheckOptions) {
+    func mino(_ l : String.Index?, _ r : String.Index?) -> String.Index? {
+      if l == nil && r == nil {
+        return nil
+      } else if l == nil && r != nil {
+        return r
+      } else if l != nil && r == nil {
+        return l
+      }
+      return min(l!, r!)
+    }
+
     self.type = ty
+    self.lineNumber = lineNumber
+    var patternStr = substring(in: pattern, with: NSRange(location: 0, length: pattern.count))
+    self.patternLoc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
+
+    // Check that there is something on the line.
+    if patternStr.isEmpty {
+      diagnose(.error, self.patternLoc, "found empty check string with prefix '\(prefix):'")
+      return nil
+    }
+
+    // Check to see if this is a fixed string, or if it has regex pieces.
+    if !options.contains(.matchFullLines) &&
+      (patternStr.utf8.count < 2 ||
+        (patternStr.range(of: "{{") == nil
+          &&
+          patternStr.range(of: "[[") == nil))
+    {
+      self.fixedString = patternStr
+      return
+    } else {
+      self.fixedString = ""
+    }
+
+    if options.contains(.matchFullLines) {
+      regExPattern += "^"
+      if !options.contains(.strictWhitespace) {
+        regExPattern += " *"
+      }
+    }
+
+    // Paren value #0 is for the fully matched string.  Any new
+    // parenthesized values add from there.
+    var curParen = 1
+
+    // Otherwise, there is at least one regex piece.  Build up the regex pattern
+    // by escaping scary characters in fixed strings, building up one big regex.
+    while !patternStr.isEmpty {
+      // RegEx matches.
+      if patternStr.range(of: "{{")?.lowerBound == patternStr.startIndex {
+        // This is the start of a regex match.  Scan for the }}.
+        patternStr = patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2))
+        guard let end = self.findRegexVarEnd(patternStr, brackets: (open: "{", close: "}"), terminator: "}}") else {
+          let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
+          diagnose(.error, loc, "found start of regex string with no end '}}'")
+          return nil
+        }
+
+        // Enclose {{}} patterns in parens just like [[]] even though we're not
+        // capturing the result for any purpose.  This is required in case the
+        // expression contains an alternation like: CHECK:  abc{{x|z}}def.  We
+        // want this to turn into: "abc(x|z)def" not "abcx|zdef".
+        regExPattern += "("
+        curParen += 1
+
+        let substr = patternStr.substring(to: end)
+        let (res, paren) = self.addRegExToRegEx(substr, curParen)
+        curParen = paren
+        if res {
+          return nil
+        }
+        regExPattern += ")"
+
+        patternStr = patternStr.substring(from: patternStr.index(end, offsetBy: 2))
+        continue
+      }
+
+      // Named RegEx matches.  These are of two forms: [[foo:.*]] which matches .*
+      // (or some other regex) and assigns it to the FileCheck variable 'foo'. The
+      // second form is [[foo]] which is a reference to foo.  The variable name
+      // itself must be of the form "[a-zA-Z_][0-9a-zA-Z_]*", otherwise we reject
+      // it.  This is to catch some common errors.
+      if patternStr.hasPrefix("[[") {
+        // Find the closing bracket pair ending the match.  End is going to be an
+        // offset relative to the beginning of the match string.
+        let regVar = patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2))
+        guard let end = self.findRegexVarEnd(regVar, brackets: (open: "[", close: "]"), terminator: "]]") else {
+          let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
+          diagnose(.error, loc, "invalid named regex reference, no ]] found")
+          return nil
+        }
+
+        let matchStr = regVar.substring(to: end)
+        patternStr = patternStr.substring(from: patternStr.index(end, offsetBy: 4))
+
+        // Get the regex name (e.g. "foo").
+        let nameEnd = matchStr.range(of: ":")
+        let name : String
+        if let end = nameEnd?.lowerBound {
+          name = matchStr.substring(to: end)
+        } else {
+          name = matchStr
+        }
+
+        if name.isEmpty {
+          let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
+          diagnose(.error, loc, "invalid name in named regex: empty name")
+          return nil
+        }
+
+        // Verify that the name/expression is well formed. FileCheck currently
+        // supports @LINE, @LINE+number, @LINE-number expressions. The check here
+        // is relaxed, more strict check is performed in \c EvaluateExpression.
+        var isExpression = false
+        let diagLoc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
+        for (i, c) in name.characters.enumerated() {
+          if i == 0 && c == "@" {
+            if nameEnd == nil {
+              diagnose(.error, diagLoc, "invalid name in named regex definition")
+              return nil
+            }
+            isExpression = true
+            continue
+          }
+          if c != "_" && isalnum(Int32(c.utf8CodePoint)) == 0 && (!isExpression || (c != "+" && c != "-")) {
+            diagnose(.error, diagLoc, "invalid name in named regex")
+            return nil
+          }
+        }
+
+        // Name can't start with a digit.
+        if isdigit(Int32(name.utf8.first!)) != 0 {
+          diagnose(.error, diagLoc, "invalid name in named regex")
+          return nil
+        }
+
+        // Handle [[foo]].
+        guard let ne = nameEnd else {
+          // Handle variables that were defined earlier on the same line by
+          // emitting a backreference.
+          if let varParenNum = self.variableDefs[name] {
+            if varParenNum < 1 || varParenNum > 9 {
+              diagnose(.error, diagLoc, "Can't back-reference more than 9 variables")
+              return nil
+            }
+            self.addBackrefToRegEx(varParenNum)
+          } else {
+            variableUses.append((name, regExPattern.characters.count))
+          }
+          continue
+        }
+
+        // Handle [[foo:.*]].
+        self.variableDefs[name] = curParen
+        regExPattern += "("
+        curParen += 1
+
+        let (res, paren) = self.addRegExToRegEx(matchStr.substring(from: matchStr.index(after: ne.lowerBound)), curParen)
+        curParen = paren
+        if res {
+          return nil
+        }
+
+        regExPattern += ")"
+      }
+
+      // Handle fixed string matches.
+      // Find the end, which is the start of the next regex.
+      if let fixedMatchEnd = mino(patternStr.range(of: "{{")?.lowerBound, patternStr.range(of: "[[")?.lowerBound) {
+        self.regExPattern += NSRegularExpression.escapedPattern(for: patternStr.substring(to: fixedMatchEnd))
+        patternStr = patternStr.substring(from: fixedMatchEnd)
+      } else {
+        // No more matches, time to quit.
+        break
+      }
+    }
+
+    if options.contains(.matchFullLines) {
+      if !options.contains(.strictWhitespace) {
+        regExPattern += " *"
+        regExPattern += "$"
+      }
+    }
   }
 
   private func addBackrefToRegEx(_ backRef : Int) {
@@ -749,193 +931,6 @@ private class Pattern {
       diagnose(.error, self.patternLoc, "invalid regex: \(e)")
       return (true, cur)
     }
-  }
-
-  /// Parses the given string into the Pattern.
-  func parse(in buf : UnsafeBufferPointer<CChar>, pattern : UnsafeBufferPointer<CChar>, withPrefix prefix : String, at lineNumber : Int, options: FileCheckOptions) -> Bool {
-    func mino(_ l : String.Index?, _ r : String.Index?) -> String.Index? {
-      if l == nil && r == nil {
-        return nil
-      } else if l == nil && r != nil {
-        return r
-      } else if l != nil && r == nil {
-        return l
-      }
-      return min(l!, r!)
-    }
-
-
-    self.lineNumber = lineNumber
-    var patternStr = substring(in: pattern, with: NSRange(location: 0, length: pattern.count))
-    self.patternLoc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
-
-    // Check that there is something on the line.
-    if patternStr.isEmpty {
-      diagnose(.error, self.patternLoc, "found empty check string with prefix '\(prefix):'")
-      return true
-    }
-
-    // Check to see if this is a fixed string, or if it has regex pieces.
-    if !options.contains(.matchFullLines) &&
-      (patternStr.utf8.count < 2 ||
-        (patternStr.range(of: "{{") == nil
-          &&
-          patternStr.range(of: "[[") == nil))
-    {
-      self.fixedString = patternStr
-      return false
-    }
-
-    if options.contains(.matchFullLines) {
-      regExPattern += "^"
-      if !options.contains(.strictWhitespace) {
-        regExPattern += " *"
-      }
-    }
-
-    // Paren value #0 is for the fully matched string.  Any new
-    // parenthesized values add from there.
-    var curParen = 1
-
-    // Otherwise, there is at least one regex piece.  Build up the regex pattern
-    // by escaping scary characters in fixed strings, building up one big regex.
-    while !patternStr.isEmpty {
-      // RegEx matches.
-      if patternStr.range(of: "{{")?.lowerBound == patternStr.startIndex {
-        // This is the start of a regex match.  Scan for the }}.
-		patternStr = patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2))
-        guard let end = self.findRegexVarEnd(patternStr, brackets: (open: "{", close: "}"), terminator: "}}") else {
-          let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
-          diagnose(.error, loc, "found start of regex string with no end '}}'")
-          return true
-        }
-
-        // Enclose {{}} patterns in parens just like [[]] even though we're not
-        // capturing the result for any purpose.  This is required in case the
-        // expression contains an alternation like: CHECK:  abc{{x|z}}def.  We
-        // want this to turn into: "abc(x|z)def" not "abcx|zdef".
-        regExPattern += "("
-        curParen += 1
-
-        let substr = patternStr.substring(to: end)
-        let (res, paren) = self.addRegExToRegEx(substr, curParen)
-        curParen = paren
-        if res {
-          return true
-        }
-        regExPattern += ")"
-
-        patternStr = patternStr.substring(from: patternStr.index(end, offsetBy: 2))
-        continue
-      }
-
-      // Named RegEx matches.  These are of two forms: [[foo:.*]] which matches .*
-      // (or some other regex) and assigns it to the FileCheck variable 'foo'. The
-      // second form is [[foo]] which is a reference to foo.  The variable name
-      // itself must be of the form "[a-zA-Z_][0-9a-zA-Z_]*", otherwise we reject
-      // it.  This is to catch some common errors.
-      if patternStr.hasPrefix("[[") {
-        // Find the closing bracket pair ending the match.  End is going to be an
-        // offset relative to the beginning of the match string.
-        let regVar = patternStr.substring(from: patternStr.index(patternStr.startIndex, offsetBy: 2))
-        guard let end = self.findRegexVarEnd(regVar, brackets: (open: "[", close: "]"), terminator: "]]") else {
-          let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
-          diagnose(.error, loc, "invalid named regex reference, no ]] found")
-          return true
-        }
-
-        let matchStr = regVar.substring(to: end)
-        patternStr = patternStr.substring(from: patternStr.index(end, offsetBy: 4))
-
-        // Get the regex name (e.g. "foo").
-        let nameEnd = matchStr.range(of: ":")
-        let name : String
-        if let end = nameEnd?.lowerBound {
-          name = matchStr.substring(to: end)
-        } else {
-          name = matchStr
-        }
-
-        if name.isEmpty {
-          let loc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
-          diagnose(.error, loc, "invalid name in named regex: empty name")
-          return true
-        }
-
-        // Verify that the name/expression is well formed. FileCheck currently
-        // supports @LINE, @LINE+number, @LINE-number expressions. The check here
-        // is relaxed, more strict check is performed in \c EvaluateExpression.
-        var isExpression = false
-        let diagLoc = CheckLoc.inBuffer(pattern.baseAddress!, buf)
-        for (i, c) in name.characters.enumerated() {
-          if i == 0 && c == "@" {
-            if nameEnd == nil {
-              diagnose(.error, diagLoc, "invalid name in named regex definition")
-              return true
-            }
-            isExpression = true
-            continue
-          }
-          if c != "_" && isalnum(Int32(c.utf8CodePoint)) == 0 && (!isExpression || (c != "+" && c != "-")) {
-            diagnose(.error, diagLoc, "invalid name in named regex")
-            return true
-          }
-        }
-
-        // Name can't start with a digit.
-        if isdigit(Int32(name.utf8.first!)) != 0 {
-          diagnose(.error, diagLoc, "invalid name in named regex")
-          return true
-        }
-
-        // Handle [[foo]].
-        guard let ne = nameEnd else {
-          // Handle variables that were defined earlier on the same line by
-          // emitting a backreference.
-          if let varParenNum = self.variableDefs[name] {
-            if varParenNum < 1 || varParenNum > 9 {
-              diagnose(.error, diagLoc, "Can't back-reference more than 9 variables")
-              return true
-            }
-            self.addBackrefToRegEx(varParenNum)
-          } else {
-            variableUses.append((name, regExPattern.characters.count))
-          }
-          continue
-        }
-
-        // Handle [[foo:.*]].
-        self.variableDefs[name] = curParen
-        regExPattern += "("
-        curParen += 1
-
-        let (res, paren) = self.addRegExToRegEx(matchStr.substring(from: matchStr.index(after: ne.lowerBound)), curParen)
-        curParen = paren
-        if res {
-          return true
-        }
-
-        regExPattern += ")"
-      }
-
-      // Handle fixed string matches.
-      // Find the end, which is the start of the next regex.
-      if let fixedMatchEnd = mino(patternStr.range(of: "{{")?.lowerBound, patternStr.range(of: "[[")?.lowerBound) {
-        self.regExPattern += NSRegularExpression.escapedPattern(for: patternStr.substring(to: fixedMatchEnd))
-        patternStr = patternStr.substring(from: fixedMatchEnd)
-      } else {
-        // No more matches, time to quit.
-        break
-      }
-    }
-
-    if options.contains(.matchFullLines) {
-      if !options.contains(.strictWhitespace) {
-        regExPattern += " *"
-        regExPattern += "$"
-      }
-    }
-    return false
   }
 }
 
