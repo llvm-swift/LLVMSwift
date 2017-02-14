@@ -935,13 +935,105 @@ public class IRBuilder {
   /// - parameter args: A list of arguments.
   /// - parameter name: The name for the newly inserted instruction.
   ///
-  /// - returns: A value representing `void`.
-  @discardableResult
+  /// - returns: A value representing the result of returning from the callee.
   public func buildCall(_ fn: IRValue, args: [IRValue], name: String = "") -> IRValue {
     var args = args.map { $0.asLLVM() as Optional }
     return args.withUnsafeMutableBufferPointer { buf in
       return LLVMBuildCall(llvm, fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), name)
     }
+  }
+
+  // MARK: Exception Handling Instructions
+
+  /// Build a call to the given function with the given arguments with the
+  /// possibility of control transfering to either the `next` basic block or
+  /// the `catch` basic block if an exception occurs.
+  ///
+  /// If the callee function returns with the `ret` instruction, control flow 
+  /// will return to the `next` label. If the callee (or any indirect callees) 
+  /// returns via the `resume` instruction or other exception handling 
+  /// mechanism, control is interrupted and continued at the dynamically nearest
+  /// `exception` label.
+  ///
+  ///
+  /// - parameter fn: The function to invoke.
+  /// - parameter args: A list of arguments.
+  /// - parameter next: The destination block if the invoke succeeds without exceptions.
+  /// - parameter catch: The destination block if the invoke encounters an exception.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the result of returning from the callee
+  ///   under normal circumstances.  Under exceptional circumstances, the value
+  ///   represents the value of any `resume` instruction in the `catch` block.
+  public func buildInvoke(_ fn: IRValue, args: [IRValue], next: BasicBlock, catch: BasicBlock, name: String = "") -> IRValue {
+    precondition(`catch`.firstInstruction!.opCode == .landingPad, "First instruction of catch block must be a landing pad")
+
+    var args = args.map { $0.asLLVM() as Optional }
+    return args.withUnsafeMutableBufferPointer { buf in
+      return LLVMBuildInvoke(llvm, fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), next.llvm, `catch`.llvm, name)
+    }
+  }
+
+  /// Build a landing pad to specify that a basic block is where an exception 
+  /// lands, and corresponds to the code found in the `catch` portion of a 
+  /// `try/catch` sequence.
+  ///
+  /// The clauses are applied in order from top to bottom. If two landing pad
+  /// instructions are merged together through inlining, the clauses from the 
+  /// calling function are appended to the list of clauses. When the call stack
+  /// is being unwound due to an exception being thrown, the exception is 
+  /// compared against each clause in turn. If it doesn’t match any of the 
+  /// clauses, and the cleanup flag is not set, then unwinding continues further
+  /// up the call stack.
+  ///
+  /// The landingpad instruction has several restrictions:
+  ///
+  /// - A landing pad block is a basic block which is the unwind destination of 
+  ///   an `invoke` instruction.
+  /// - A landing pad block must have a `landingpad` instruction as its first
+  ///   non-PHI instruction.
+  /// - There can be only one `landingpad` instruction within the landing pad 
+  ///   block.
+  /// - A basic block that is not a landing pad block may not include a
+  ///   `landingpad` instruction.
+  ///
+  /// - parameter type: The type of the resulting value from the landing pad.
+  /// - parameter personalityFn: The personality function.
+  /// - parameter clauses: A list of `catch` and `filter` clauses.  This list
+  ///   must either be non-empty or the landing pad must be marked as a cleanup
+  ///   instruction.
+  /// - parameter cleanup: A flag indicating whether the landing pad is a 
+  ///   cleanup.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value of the given type representing the result of matching
+  ///   a clause during unwinding.
+  public func buildLandingPad(returning type: IRType, personalityFn: Function? = nil, clauses: [LandingPadClause], cleanup: Bool = false, name: String = "") -> IRValue {
+    precondition(cleanup || !clauses.isEmpty, "Landing pad must be created with clauses or as cleanup")
+
+    let lp : IRValue = LLVMBuildLandingPad(llvm, type.asLLVM(), personalityFn?.asLLVM(), UInt32(clauses.count), name)
+    for clause in clauses {
+      LLVMAddClause(lp.asLLVM(), clause.asLLVM())
+    }
+    LLVMSetCleanup(lp.asLLVM(), cleanup.llvm)
+    return lp
+  }
+
+  /// Build a resume instruction to resume propagation of an existing 
+  /// (in-flight) exception whose unwinding was interrupted with a 
+  /// `landingpad` instruction.
+  ///
+  /// When all cleanups are finished, if an exception is not handled by the 
+  /// current function, unwinding resumes by calling the resume instruction, 
+  /// passing in the result of the `landingpad` instruction for the original 
+  /// landing pad.
+  ///
+  /// - parameter: A value representing the result of the original landing pad.
+  ///
+  /// - returns: A value representing `void`.
+  @discardableResult
+  public func buildResume(_ val: IRValue) -> IRValue {
+    return LLVMBuildResume(llvm, val.asLLVM())
   }
 
   // MARK: Memory Access Instructions
