@@ -129,6 +129,9 @@
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/ThreadLocalModel.html">ThreadLocalModel</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums.html#/s:O4LLVM8Unsigned">Unsigned</a>
               </li>
               <li class="nav-group-task">
@@ -222,6 +225,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock/Address.html">– Address</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Constant.html">Constant</a>
@@ -439,6 +445,72 @@ also cannot have any PHI nodes.</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">basicBlocks</span><span class="p">:</span> <span class="kt">AnySequence</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="o">&gt;</span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM8Function7addressFT2ofVS_10BasicBlock_GSqVS1_7Address_"></a>
+                    <a name="//apple_ref/swift/Method/address(of:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM8Function7addressFT2ofVS_10BasicBlock_GSqVS1_7Address_">address(of:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Computes the address of the specified basic block in this function.</p>
+
+<p>Taking the address of the entry block is illegal.</p>
+
+<p>This value only has defined behavior when used as an operand to the 
+<code>indirectbr</code> instruction, or for comparisons against null. Pointer 
+equality tests between labels addresses results in undefined behavior.
+Though, again, comparison against null is ok, and no label is equal to
+the null pointer. This may be passed around as an opaque pointer sized 
+value as long as the bits are not inspected. This allows <code>ptrtoint</code> and 
+arithmetic to be performed on these values so long as the original value 
+is reconstituted before the indirectbr instruction.</p>
+
+<p>Finally, some targets may provide defined semantics when using the value 
+as the operand to an inline assembly, but that is target specific.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">address</span><span class="p">(</span><span class="n">of</span> <span class="nv">block</span><span class="p">:</span> <span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="o">.</span><span class="kt">Address</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The basic block to compute the address of.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An IRValue representing the address of the given basic block in this function, else nil if the address cannot be computed or the basic block does not reside in this function.</p>
+
                       </div>
                     </section>
                   </div>
@@ -752,7 +824,7 @@ also cannot have any PHI nodes.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-27)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -129,6 +129,9 @@
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/ThreadLocalModel.html">ThreadLocalModel</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums.html#/s:O4LLVM8Unsigned">Unsigned</a>
               </li>
               <li class="nav-group-task">
@@ -222,6 +225,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock/Address.html">– Address</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Constant.html">Constant</a>
@@ -600,6 +606,33 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC4LLVM9IRBuilder
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">insertBlock</span><span class="p">:</span> <span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC4LLVM9IRBuilder15currentFunctionGSqCS_8Function_"></a>
+                    <a name="//apple_ref/swift/Property/currentFunction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC4LLVM9IRBuilder15currentFunctionGSqCS_8Function_">currentFunction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets the function this builder is building into.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">currentFunction</span><span class="p">:</span> <span class="kt"><a href="../Classes/Function.html">Function</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1144,9 +1177,9 @@ are neither integers nor floating values is a fatal condition.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC4LLVM9IRBuilder8buildDivFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__"></a>
-                    <a name="//apple_ref/swift/Method/buildDiv(_:_:signed:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildDivFTPS_7IRValue_PS1__6signedSb4nameSS_PS1__">buildDiv(_:_:signed:name:)</a>
+                    <a name="/s:FC4LLVM9IRBuilder8buildDivFTPS_7IRValue_PS1__6signedSb5exactSb4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildDiv(_:_:signed:exact:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder8buildDivFTPS_7IRValue_PS1__6signedSb5exactSb4nameSS_PS1__">buildDiv(_:_:signed:exact:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1158,7 +1191,7 @@ are neither integers nor floating values is a fatal condition.</p>
 value.</p>
 
 <p>Whether an integer or floating point divide instruction is built is
-determined by the type of the first given value.  Providing operands that
+determined by the type of the first given value. Providing operands that
 are neither integers nor floating values is a fatal condition.</p>
 
                       </div>
@@ -1167,7 +1200,8 @@ are neither integers nor floating values is a fatal condition.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDiv</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                       <span class="nv">signed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                       <span class="nv">signed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">exact</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                       <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1209,7 +1243,20 @@ are neither integers nor floating values is a fatal condition.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Whether to emit a signed or unsigned remainder instruction.  Defaults to emission of a signed divide instruction.</p>
+                                  <p>Whether to emit a signed or unsigned remainder instruction. Defaults to emission of a signed divide instruction.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>exact</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether this division must be exact. Defaults to inexact.</p>
 
                                 </div>
                               </td>
@@ -1920,10 +1967,10 @@ zero-fill.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Declaration%20Instructions"></a>
-                <a name="//apple_ref/swift/Section/Declaration Instructions" class="dashAnchor"></a>
-                <a href="#/Declaration%20Instructions">
-                  <h3 class="section-name">Declaration Instructions</h3>
+                <a name="/Conditional%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/Conditional Instructions" class="dashAnchor"></a>
+                <a href="#/Conditional%20Instructions">
+                  <h3 class="section-name">Conditional Instructions</h3>
                 </a>
               </div>
               <ul>
@@ -1996,9 +2043,9 @@ basic blocks.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC4LLVM9IRBuilder11addFunctionFTSS4typeVS_12FunctionType_CS_8Function"></a>
-                    <a name="//apple_ref/swift/Method/addFunction(_:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM9IRBuilder11addFunctionFTSS4typeVS_12FunctionType_CS_8Function">addFunction(_:type:)</a>
+                    <a name="/s:FC4LLVM9IRBuilder11buildSelectFTPS_7IRValue_4thenPS1__4elsePS1__4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildSelect(_:then:else:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildSelectFTPS_7IRValue_4thenPS1__4elsePS1__4nameSS_PS1__">buildSelect(_:then:else:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2006,14 +2053,15 @@ basic blocks.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Build a named function body with the given type.</p>
+                        <p>Build a select instruction to choose a value based on a condition without
+IR-level branching.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addFunction</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Structs/FunctionType.html">FunctionType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Function.html">Function</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildSelect</span><span class="p">(</span><span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">then</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">else</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2024,12 +2072,12 @@ basic blocks.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>name</em>
+                                <em>cond</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The name of the newly defined function.</p>
+                                  <p>The condition to evaluate.  It must have type <code>i1</code> or be a vector of <code>i1</code>.</p>
 
                                 </div>
                               </td>
@@ -2037,12 +2085,38 @@ basic blocks.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>type</em>
+                                <em>then</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The type of the newly defined function.</p>
+                                  <p>The value to select if the given condition is true.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>else</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to select if the given condition is false.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
 
                                 </div>
                               </td>
@@ -2052,7 +2126,7 @@ basic blocks.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the newly inserted function definition.</p>
+                        <p>A value representing the value selected for by the condition.</p>
 
                       </div>
                     </section>
@@ -2136,6 +2210,82 @@ allowing a branch to occur to one of many possible destinations.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly inserted <code>switch</code> instruction.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Declaration%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/Declaration Instructions" class="dashAnchor"></a>
+                <a href="#/Declaration%20Instructions">
+                  <h3 class="section-name">Declaration Instructions</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder11addFunctionFTSS4typeVS_12FunctionType_CS_8Function"></a>
+                    <a name="//apple_ref/swift/Method/addFunction(_:type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11addFunctionFTSS4typeVS_12FunctionType_CS_8Function">addFunction(_:type:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a named function body with the given type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addFunction</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Structs/FunctionType.html">FunctionType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Function.html">Function</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the newly defined function.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the newly defined function.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the newly inserted function definition.</p>
 
                       </div>
                     </section>
@@ -2364,6 +2514,71 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:FC4LLVM9IRBuilder15buildIndirectBrFT7addressVVS_10BasicBlock7Address12destinationsGSaS1___PS_7IRValue_"></a>
+                    <a name="//apple_ref/swift/Method/buildIndirectBr(address:destinations:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder15buildIndirectBrFT7addressVVS_10BasicBlock7Address12destinationsGSaS1___PS_7IRValue_">buildIndirectBr(address:destinations:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build an indirect branch to a label within the current function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildIndirectBr</span><span class="p">(</span><span class="nv">address</span><span class="p">:</span> <span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="o">.</span><span class="kt">Address</span><span class="p">,</span> <span class="nv">destinations</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>address</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The address of the label to branch to.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>destinations</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The set of possible destinations the address may point to.  The same block may appear multiple times in this list, though this isn’t particularly useful.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An IRValue representing <code>void</code>.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:FC4LLVM9IRBuilder8buildRetFPS_7IRValue_PS1__"></a>
                     <a name="//apple_ref/swift/Method/buildRet(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FC4LLVM9IRBuilder8buildRetFPS_7IRValue_PS1__">buildRet(_:)</a>
@@ -2469,6 +2684,59 @@ with the given value.</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildUnreachable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing <code>void</code>.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder17buildRetAggregateFT2ofGSaPS_7IRValue___PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildRetAggregate(of:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder17buildRetAggregateFT2ofGSaPS_7IRValue___PS1__">buildRetAggregate(of:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a return from the current function back to the calling function with
+the given array of values as members of an aggregate.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildRetAggregate</span><span class="p">(</span><span class="n">of</span> <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>values</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The values to insert as members of the returned aggregate.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                       <div>
                         <h4>Return Value</h4>
@@ -2978,6 +3246,140 @@ a struct.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder19buildExtractElementFTPS_7IRValue_5indexPS1__4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildExtractElement(_:index:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder19buildExtractElementFTPS_7IRValue_5indexPS1__4nameSS_PS1__">buildExtractElement(_:index:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an ExtractElement instruction to retrieve an indexed value from a
+vector value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildExtractElement</span><span class="p">(</span><span class="n">_</span> <span class="nv">vec</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
+                                  <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vec</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The vector you’re indexing into.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index at which to extract.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value in the vector at the provided index.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder17buildExtractValueFTPS_7IRValue_5indexSi4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildExtractValue(_:index:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder17buildExtractValueFTPS_7IRValue_5indexSi4nameSS_PS1__">buildExtractValue(_:index:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an ExtractValue instruction to retrieve an indexed value from a
+struct or array value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildExtractValue</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+                                  <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The struct or array you’re indexing into.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index at which to extract.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value in the struct at the provided index.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -3286,6 +3688,116 @@ given type by just copying the bit pattern.</p>
                         <h4>Return Value</h4>
                         <p>A value representing the result of bitcasting the given value to fit the given type.</p>
 
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder11buildFPCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildFPCast(_:type:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildFPCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildFPCast(_:type:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a cast instruction to convert the given floating-point value to a
+value of the given type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildFPCast</span><span class="p">(</span><span class="n">_</span> <span class="nv">val</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>val</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to cast.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The destination type.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the result of casting the given value to fit the given type.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder18buildAddrSpaceCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildAddrSpaceCast(_:type:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder18buildAddrSpaceCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildAddrSpaceCast(_:type:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an address space cast instruction that converts a pointer value
+to a given type in a different address space.</p>
+
+<p>The address spaces of the value and the destination pointer types must
+be distinct.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildAddrSpaceCast</span><span class="p">(</span><span class="n">_</span> <span class="nv">val</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -3975,6 +4487,89 @@ bytes.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder22buildPointerDifferenceFTPS_7IRValue_PS1__4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildPointerDifference(_:_:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder22buildPointerDifferenceFTPS_7IRValue_PS1__4nameSS_PS1__">buildPointerDifference(_:_:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an expression that returns the difference between two pointer 
+values, dividing out the size of the pointed-to objects.</p>
+
+<p>This is intended to implement C-style pointer subtraction. As such, the 
+pointers must be appropriately aligned for their element types and 
+pointing into the same object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildPointerDifference</span><span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The first pointer (the minuend).</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The second pointer (the subtrahend).</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A IRValue representing a 64-bit integer value of the difference of the two pointer values modulo the size of the pointed-to objects.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -4037,6 +4632,19 @@ operations.</p>
                               <td>
                                 <div>
                                   <p>Specifies that the fence only synchronizes with other atomics in the same thread. (This is useful for interacting with signal handlers.) Otherwise this fence is atomic with respect to all other code in the system.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
 
                                 </div>
                               </td>
@@ -4277,6 +4885,151 @@ they are equal, it tries to store a new value into the memory.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the old value of the given pointer before the atomic operation was executed.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/C%20Standard%20Library%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/C Standard Library Instructions" class="dashAnchor"></a>
+                <a href="#/C%20Standard%20Library%20Instructions">
+                  <h3 class="section-name">C Standard Library Instructions</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder11buildMallocFTPS_6IRType_5countGSqPS_7IRValue__4nameSS_PS2__"></a>
+                    <a name="//apple_ref/swift/Method/buildMalloc(_:count:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildMallocFTPS_6IRType_5countGSqPS_7IRValue__4nameSS_PS2__">buildMalloc(_:count:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to the C standard library <code>malloc</code> instruction.
+<code>
+(type *)malloc(sizeof(type));
+</code>
+If <code>count</code> is provided, it is equivalent to:
+<code>
+(type *)malloc(sizeof(type) * count);
+</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildMalloc</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">count</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                          <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The intended result type being allocated. The result of the <code>malloc</code> will be a pointer to this type.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>count</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional number of slots to allocate, to simulate a C array. This is equivalent to</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The intended name for the <code>malloc</code>’d value.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder9buildFreeFPS_7IRValue_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildFree(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildFreeFPS_7IRValue_PS1__">buildFree(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to the C standard library <code>free</code> function, with the provided
+pointer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildFree</span><span class="p">(</span><span class="n">_</span> <span class="nv">ptr</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ptr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The pointer to <code>free</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code>free</code> instruction.</p>
 
                       </div>
                     </section>
@@ -4941,7 +5694,7 @@ just a new symbol and metadata for an existing position.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-27)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
