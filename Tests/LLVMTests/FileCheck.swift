@@ -434,10 +434,9 @@ private func check(input b : String, against checkStrings : [CheckString]) -> Bo
 
   var i = 0
   var j = 0
-  var e = checkStrings.count
   while true {
     var checkRegion : String
-    if j == e {
+    if j == checkStrings.count {
       checkRegion = buffer
     } else {
       let checkStr = checkStrings[j]
@@ -451,7 +450,6 @@ private func check(input b : String, against checkStrings : [CheckString]) -> Bo
         // Immediately bail of CHECK-LABEL fails, nothing else we can do.
         return false
       }
-
 
       checkRegion = buffer.substring(to: buffer.index(buffer.startIndex, offsetBy: NSMaxRange(range)))
       buffer = buffer.substring(from: buffer.index(buffer.startIndex, offsetBy: NSMaxRange(range)))
@@ -472,7 +470,7 @@ private func check(input b : String, against checkStrings : [CheckString]) -> Bo
       checkRegion = checkRegion.substring(from: checkRegion.index(checkRegion.startIndex, offsetBy: NSMaxRange(range)))
     }
 
-    if j == e {
+    if j == checkStrings.count {
       break
     }
   }
@@ -980,18 +978,19 @@ private struct CheckString {
 
   /// Match check string and its "not strings" and/or "dag strings".
   func check(_ buffer : String, _ isLabelScanMode : Bool,  _ variableTable : BoxedTable) -> NSRange? {
-    var lastPos = 0
-
-    // IsLabelScanMode is true when we are scanning forward to find CHECK-LABEL
+    // This condition is true when we are scanning forward to find CHECK-LABEL
     // bounds we have not processed variable definitions within the bounded block
-    // yet so cannot handle any final CHECK-DAG yetthis is handled when going
+    // yet so cannot handle any final CHECK-DAG yet this is handled when going
     // over the block again (including the last CHECK-LABEL) in normal mode.
+    let lastPos : Int
     if !isLabelScanMode {
       // Match "dag strings" (with mixed "not strings" if any).
       guard let lp = self.checkDAG(buffer, variableTable) else {
         return nil
       }
       lastPos = lp
+    } else {
+      lastPos = 0
     }
 
     // Match itself from the last position after matching CHECK-DAG.
@@ -1166,12 +1165,9 @@ private struct CheckString {
         //				PrintCheckFailed(SM, Pat.getLoc(), Pat, MatchBuffer, VariableTable)
         return nil
       }
-      var matchPos = range.location
-      let matchLen = range.length
-      
+
       // Re-calc it as the offset relative to the start of the original string.
-      matchPos += startPos
-      
+      var matchPos = range.location + startPos
       if !notStrings.isEmpty {
         if matchPos < lastPos {
           // Reordered?
@@ -1207,7 +1203,7 @@ private struct CheckString {
       }
       
       // Update the last position with CHECK-DAG matches.
-      lastPos = max(matchPos + matchLen, lastPos)
+      lastPos = max(matchPos + range.length, lastPos)
     }
     
     return lastPos
