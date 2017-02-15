@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JIT Class Reference</title>
+    <title>ThreadLocalModel Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/JIT" class="dashAnchor"></a>
-    <a title="JIT Class Reference"></a>
+    <a name="//apple_ref/swift/Enum/ThreadLocalModel" class="dashAnchor"></a>
+    <a title="ThreadLocalModel Enum Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        JIT Class Reference
+        ThreadLocalModel Enum Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -287,17 +287,20 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>JIT</h1>
+            <h1>ThreadLocalModel</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">JIT</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ThreadLocalModel</span></code></pre>
 
                 </div>
               </div>
-            <p>A <code>JIT</code> is a Just-In-Time compiler that will compile and execute LLVM IR
-that has been generated in a <code><a href="../Classes/Module.html">Module</a></code>. It can execute arbitrary functions
-and return the value the function generated, allowing you to write
-interactive programs that will run as soon as they are compiled.</p>
+            <p>Enumerates the supported models of reference of thread-local variables. </p>
+
+<p>These models are listed from the most general, but least optimized, to the
+fastest, but most restrictive.</p>
+
+<p>Documentation of these models quotes the <a href="https://docs.oracle.com/cd/E23824_01/html/819-0690/chapter8-20.html">Oracle Linker and Libraries
+Guide</a>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -306,9 +309,9 @@ interactive programs that will run as soon as they are compiled.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC4LLVM3JITcFzT6moduleCS_6Module7machineCS_13TargetMachine_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(module:machine:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM3JITcFzT6moduleCS_6Module7machineCS_13TargetMachine_S0_">init(module:machine:)</a>
+                    <a name="/s:FO4LLVM16ThreadLocalModel14notThreadLocalFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/notThreadLocal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM16ThreadLocalModel14notThreadLocalFMS0_S0_">notThreadLocal</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -316,272 +319,30 @@ interactive programs that will run as soon as they are compiled.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a Just In Time compiler that will compile the code in the
-provided <code><a href="../Classes/Module.html">Module</a></code> to the architecture of the provided <code><a href="../Classes/TargetMachine.html">TargetMachine</a></code>,
-and execute it.</p>
-
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    JITError
-
-</div>
+                        <p>The variable is not thread local and hence has no associated model.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module.html">Module</a></span><span class="p">,</span> <span class="nv">machine</span><span class="p">:</span> <span class="kt"><a href="../Classes/TargetMachine.html">TargetMachine</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>module</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The module containing code you wish to execute</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>machine</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The target machine which you’re compiling for</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC4LLVM3JIT11runFunctionFTCS_8Function4argsGSaPS_7IRValue___PS2__"></a>
-                    <a name="//apple_ref/swift/Method/runFunction(_:args:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM3JIT11runFunctionFTCS_8Function4argsGSaPS_7IRValue___PS2__">runFunction(_:args:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Runs the specified function with the provided arguments by compiling
-it to machine code for the target architecture used to initialize this
-JIT.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">runFunction</span><span class="p">(</span><span class="n">_</span> <span class="nv">function</span><span class="p">:</span> <span class="kt"><a href="../Classes/Function.html">Function</a></span><span class="p">,</span> <span class="nv">args</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>function</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The function you wish to execute</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>args</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The arguments you wish to pass to the function</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The LLVM value that the function returned</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC4LLVM3JIT17addressOfFunctionFT4nameSS_GSqVs13OpaquePointer_"></a>
-                    <a name="//apple_ref/swift/Method/addressOfFunction(name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM3JIT17addressOfFunctionFT4nameSS_GSqVs13OpaquePointer_">addressOfFunction(name:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Retrieves a pointer to the function compiled by this JIT.
-- parameter name: The name of the function you wish to look up.
-- returns: A pointer to the result of compiling the specified function.
-- note: You will have to <code>unsafeBitCast</code> this pointer to
-        the appropriate <code>@convention(c)</code> function type to be
-        able to run it from Swift.</p>
-
-<pre class="highlight plaintext"><code>typealias FnPtr = @convention(c) () -&gt; Double
-let fnAddr = jit.addressOfFunction(name: "test")
-let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
-</code></pre>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addressOfFunction</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">OpaquePointer</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>name</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The name of the function you wish to look up.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A pointer to the result of compiling the specified function.</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC4LLVM3JIT9addModuleFCS_6ModuleT_"></a>
-                    <a name="//apple_ref/swift/Method/addModule(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM3JIT9addModuleFCS_6ModuleT_">addModule(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Adds the provided module, and all top-level declarations into this JIT.
-- parameter module: The module you wish to add.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addModule</span><span class="p">(</span><span class="n">_</span> <span class="nv">module</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module.html">Module</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>module</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The module you wish to add.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC4LLVM3JIT12removeModuleFzCS_6ModuleT_"></a>
-                    <a name="//apple_ref/swift/Method/removeModule(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM3JIT12removeModuleFzCS_6ModuleT_">removeModule(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Removes the provided module, and all top-level declarations, from this
-JIT.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeModule</span><span class="p">(</span><span class="n">_</span> <span class="nv">module</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module.html">Module</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">notThreadLocal</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC4LLVM3JIT17runFunctionAsMainFTCS_8Function4argsGSaSS__Si"></a>
-                    <a name="//apple_ref/swift/Method/runFunctionAsMain(_:args:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM3JIT17runFunctionAsMainFTCS_8Function4argsGSaSS__Si">runFunctionAsMain(_:args:)</a>
+                    <a name="/s:FO4LLVM16ThreadLocalModel14generalDynamicFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/generalDynamic" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM16ThreadLocalModel14generalDynamicFMS0_S0_">generalDynamic</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -589,56 +350,170 @@ JIT.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Runs the specified function as if it were the <code>main</code> function in an
-executable. It takes an array of argument strings and passes them
-into the function as <code>argc</code> and <code>argv</code>.</p>
+                        <p>Allows reference of all thread-local variables, from either a shared 
+object or a dynamic executable. This model also supports the deferred 
+allocation of a block of thread-local storage when the block is first 
+referenced from a specific thread.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">runFunctionAsMain</span><span class="p">(</span><span class="n">_</span> <span class="nv">function</span><span class="p">:</span> <span class="kt"><a href="../Classes/Function.html">Function</a></span><span class="p">,</span> <span class="nv">args</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">generalDynamic</span></code></pre>
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>function</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The <code>main</code> function you wish to execute</p>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO4LLVM16ThreadLocalModel12localDynamicFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/localDynamic" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM16ThreadLocalModel12localDynamicFMS0_S0_">localDynamic</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This model is an optimization of the General Dynamic model. The compiler 
+might determine that a variable is bound locally, or protected, within the
+object being built. In this case, the compiler instructs the link-editor 
+to statically bind the dynamic <code>tlsoffset</code> and use this model. </p>
 
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>args</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The string arguments you wish to pass to the function</p>
+<p>This model provides a performance benefit over the General Dynamic model. 
+Only one call to <code>tls_get_addr()</code> is required per function, to determine 
+the address of <code>dtv0,m</code>. The dynamic thread-local storage offset, bound at
+link-edit time, is added to the <code>dtv0,m</code> address for each reference.</p>
 
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The numerical exit code returned by the function</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">localDynamic</span></code></pre>
 
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO4LLVM16ThreadLocalModel11initialExecFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/initialExec" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM16ThreadLocalModel11initialExecFMS0_S0_">initialExec</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This model can only reference thread-local variables which are available 
+as part of the initial static thread-local template. This template is 
+composed of all thread-local storage blocks that are available at process 
+startup, plus a small backup reservation. </p>
+
+<p>In this model, the thread pointer-relative offset for a given variable <code>x</code>
+is stored in the GOT entry for x.</p>
+
+<p>This model can reference a limited number of thread-local variables from 
+shared libraries loaded after initial process startup, such as by means of
+lazy loading, filters, or <code>dlopen()</code>. This access is satisfied from a 
+fixed backup reservation. This reservation can only provide storage for 
+uninitialized thread-local data items. For maximum flexibility, shared 
+objects should reference thread-local variables using a dynamic model of
+thread-local storage.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">initialExec</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO4LLVM16ThreadLocalModel9localExecFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/localExec" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM16ThreadLocalModel9localExecFMS0_S0_">localExec</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This model can only reference thread-local variables which are part of the
+thread-local storage block of the dynamic executable. The link-editor 
+calculates the thread pointer-relative offsets statically, without the 
+need for dynamic relocations, or the extra reference to the GOT. This 
+model can not be used to reference variables outside of the dynamic 
+executable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">localExec</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vO4LLVM16ThreadLocalModel4llvmVSC19LLVMThreadLocalMode"></a>
+                    <a name="//apple_ref/swift/Property/llvm" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vO4LLVM16ThreadLocalModel4llvmVSC19LLVMThreadLocalMode">llvm</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the corresponding <code>LLVMThreadLocalMode</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">llvm</span><span class="p">:</span> <span class="kt">LLVMThreadLocalMode</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
