@@ -1480,6 +1480,20 @@ public class IRBuilder {
     return Global(llvm: llvm)
   }
 
+  /// Build a named global of the given type.
+  ///
+  /// - parameter name: The name of the newly inserted global value.
+  /// - parameter initializer: The initial value for the global variable.
+  /// - parameter addressSpace: The optional address space where the global
+  ///   variable resides.
+  ///
+  /// - returns: A value representing the newly inserted global variable.
+  public func addGlobal(_ name: String, initializer: IRValue, addressSpace: Int? = nil) -> Global {
+    var global = addGlobal(name, type: initializer.type)
+    global.initializer = initializer
+    return global
+  }
+
   /// Build a named global string consisting of an array of `i8` type filled in
   /// with the nul terminated string value.
   ///
