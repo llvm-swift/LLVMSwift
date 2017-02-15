@@ -290,14 +290,11 @@
             <h1>OpCode</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OpCode</span></code></pre>
 
                 </div>
               </div>
             <p>Enumerates the opcodes of instructions available in the LLVM IR language.</p>
-
-<p>The raw values of this enumeration <em>must</em> match those in
-<a href="https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h">llvm-c/Core.h</a></p>
 
           </section>
           <section class="section task-group-section">
@@ -323,7 +320,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ret</span></code></pre>
 
                         </div>
                       </div>
@@ -354,7 +351,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">br</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">br</span></code></pre>
 
                         </div>
                       </div>
@@ -385,7 +382,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="err">`</span><span class="k">switch</span><span class="err">`</span> <span class="o">=</span> <span class="mi">3</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="err">`</span><span class="k">switch</span><span class="err">`</span></code></pre>
 
                         </div>
                       </div>
@@ -416,7 +413,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">indirectBr</span> <span class="o">=</span> <span class="mi">4</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">indirectBr</span></code></pre>
 
                         </div>
                       </div>
@@ -447,7 +444,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">invoke</span> <span class="o">=</span> <span class="mi">5</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">invoke</span></code></pre>
 
                         </div>
                       </div>
@@ -478,7 +475,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">unreachable</span> <span class="o">=</span> <span class="mi">7</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">unreachable</span></code></pre>
 
                         </div>
                       </div>
@@ -509,7 +506,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">add</span> <span class="o">=</span> <span class="mi">8</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">add</span></code></pre>
 
                         </div>
                       </div>
@@ -540,7 +537,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fadd</span> <span class="o">=</span> <span class="mi">9</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fadd</span></code></pre>
 
                         </div>
                       </div>
@@ -571,7 +568,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sub</span> <span class="o">=</span> <span class="mi">10</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sub</span></code></pre>
 
                         </div>
                       </div>
@@ -602,7 +599,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fsub</span> <span class="o">=</span> <span class="mi">11</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fsub</span></code></pre>
 
                         </div>
                       </div>
@@ -633,7 +630,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">mul</span> <span class="o">=</span> <span class="mi">12</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">mul</span></code></pre>
 
                         </div>
                       </div>
@@ -664,7 +661,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fmul</span> <span class="o">=</span> <span class="mi">13</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fmul</span></code></pre>
 
                         </div>
                       </div>
@@ -695,7 +692,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">udiv</span> <span class="o">=</span> <span class="mi">14</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">udiv</span></code></pre>
 
                         </div>
                       </div>
@@ -726,7 +723,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sdiv</span> <span class="o">=</span> <span class="mi">15</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sdiv</span></code></pre>
 
                         </div>
                       </div>
@@ -757,7 +754,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fdiv</span> <span class="o">=</span> <span class="mi">16</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fdiv</span></code></pre>
 
                         </div>
                       </div>
@@ -788,7 +785,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">urem</span> <span class="o">=</span> <span class="mi">17</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">urem</span></code></pre>
 
                         </div>
                       </div>
@@ -819,7 +816,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">srem</span> <span class="o">=</span> <span class="mi">18</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">srem</span></code></pre>
 
                         </div>
                       </div>
@@ -850,7 +847,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">frem</span> <span class="o">=</span> <span class="mi">19</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">frem</span></code></pre>
 
                         </div>
                       </div>
@@ -881,7 +878,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">shl</span> <span class="o">=</span> <span class="mi">20</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">shl</span></code></pre>
 
                         </div>
                       </div>
@@ -912,7 +909,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">lshr</span> <span class="o">=</span> <span class="mi">21</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">lshr</span></code></pre>
 
                         </div>
                       </div>
@@ -943,7 +940,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ashr</span> <span class="o">=</span> <span class="mi">22</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ashr</span></code></pre>
 
                         </div>
                       </div>
@@ -974,7 +971,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">and</span> <span class="o">=</span> <span class="mi">23</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">and</span></code></pre>
 
                         </div>
                       </div>
@@ -1005,7 +1002,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">or</span> <span class="o">=</span> <span class="mi">24</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">or</span></code></pre>
 
                         </div>
                       </div>
@@ -1036,7 +1033,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">xor</span> <span class="o">=</span> <span class="mi">25</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">xor</span></code></pre>
 
                         </div>
                       </div>
@@ -1067,7 +1064,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">alloca</span> <span class="o">=</span> <span class="mi">26</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">alloca</span></code></pre>
 
                         </div>
                       </div>
@@ -1098,7 +1095,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">load</span> <span class="o">=</span> <span class="mi">27</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">load</span></code></pre>
 
                         </div>
                       </div>
@@ -1129,7 +1126,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">store</span> <span class="o">=</span> <span class="mi">28</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">store</span></code></pre>
 
                         </div>
                       </div>
@@ -1160,7 +1157,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">getElementPtr</span> <span class="o">=</span> <span class="mi">29</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">getElementPtr</span></code></pre>
 
                         </div>
                       </div>
@@ -1191,7 +1188,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">trunc</span> <span class="o">=</span> <span class="mi">30</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">trunc</span></code></pre>
 
                         </div>
                       </div>
@@ -1222,7 +1219,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">zext</span> <span class="o">=</span> <span class="mi">31</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">zext</span></code></pre>
 
                         </div>
                       </div>
@@ -1253,7 +1250,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sext</span> <span class="o">=</span> <span class="mi">32</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">sext</span></code></pre>
 
                         </div>
                       </div>
@@ -1284,7 +1281,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpToUI</span> <span class="o">=</span> <span class="mi">33</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpToUI</span></code></pre>
 
                         </div>
                       </div>
@@ -1315,7 +1312,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpToSI</span> <span class="o">=</span> <span class="mi">34</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpToSI</span></code></pre>
 
                         </div>
                       </div>
@@ -1346,7 +1343,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">uiToFP</span> <span class="o">=</span> <span class="mi">35</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">uiToFP</span></code></pre>
 
                         </div>
                       </div>
@@ -1377,7 +1374,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">siToFP</span> <span class="o">=</span> <span class="mi">36</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">siToFP</span></code></pre>
 
                         </div>
                       </div>
@@ -1408,7 +1405,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpTrunc</span> <span class="o">=</span> <span class="mi">37</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpTrunc</span></code></pre>
 
                         </div>
                       </div>
@@ -1439,7 +1436,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpExt</span> <span class="o">=</span> <span class="mi">38</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fpExt</span></code></pre>
 
                         </div>
                       </div>
@@ -1470,7 +1467,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ptrToInt</span> <span class="o">=</span> <span class="mi">39</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">ptrToInt</span></code></pre>
 
                         </div>
                       </div>
@@ -1501,7 +1498,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">intToPtr</span> <span class="o">=</span> <span class="mi">40</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">intToPtr</span></code></pre>
 
                         </div>
                       </div>
@@ -1532,7 +1529,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">bitCast</span> <span class="o">=</span> <span class="mi">41</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">bitCast</span></code></pre>
 
                         </div>
                       </div>
@@ -1563,7 +1560,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">addrSpaceCast</span> <span class="o">=</span> <span class="mi">60</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">addrSpaceCast</span></code></pre>
 
                         </div>
                       </div>
@@ -1594,7 +1591,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">icmp</span> <span class="o">=</span> <span class="mi">42</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">icmp</span></code></pre>
 
                         </div>
                       </div>
@@ -1625,7 +1622,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fcmp</span> <span class="o">=</span> <span class="mi">43</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fcmp</span></code></pre>
 
                         </div>
                       </div>
@@ -1639,9 +1636,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO4LLVM6OpCode3PHIFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/PHI" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO4LLVM6OpCode3PHIFMS0_S0_">PHI</a>
+                    <a name="/s:FO4LLVM6OpCode3phiFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/phi" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO4LLVM6OpCode3phiFMS0_S0_">phi</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1656,7 +1653,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">PHI</span> <span class="o">=</span> <span class="mi">44</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">phi</span></code></pre>
 
                         </div>
                       </div>
@@ -1687,7 +1684,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">call</span> <span class="o">=</span> <span class="mi">45</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">call</span></code></pre>
 
                         </div>
                       </div>
@@ -1718,7 +1715,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">select</span> <span class="o">=</span> <span class="mi">46</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">select</span></code></pre>
 
                         </div>
                       </div>
@@ -1749,7 +1746,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">userOp1</span> <span class="o">=</span> <span class="mi">47</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">userOp1</span></code></pre>
 
                         </div>
                       </div>
@@ -1780,7 +1777,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">userOp2</span> <span class="o">=</span> <span class="mi">48</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">userOp2</span></code></pre>
 
                         </div>
                       </div>
@@ -1811,7 +1808,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">vaArg</span> <span class="o">=</span> <span class="mi">49</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">vaArg</span></code></pre>
 
                         </div>
                       </div>
@@ -1842,7 +1839,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">extractElement</span> <span class="o">=</span> <span class="mi">50</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">extractElement</span></code></pre>
 
                         </div>
                       </div>
@@ -1873,7 +1870,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">insertElement</span> <span class="o">=</span> <span class="mi">51</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">insertElement</span></code></pre>
 
                         </div>
                       </div>
@@ -1904,7 +1901,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">shuffleVector</span> <span class="o">=</span> <span class="mi">52</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">shuffleVector</span></code></pre>
 
                         </div>
                       </div>
@@ -1935,7 +1932,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">extractValue</span> <span class="o">=</span> <span class="mi">53</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">extractValue</span></code></pre>
 
                         </div>
                       </div>
@@ -1966,7 +1963,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">insertValue</span> <span class="o">=</span> <span class="mi">54</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">insertValue</span></code></pre>
 
                         </div>
                       </div>
@@ -1997,7 +1994,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fence</span> <span class="o">=</span> <span class="mi">55</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">fence</span></code></pre>
 
                         </div>
                       </div>
@@ -2028,7 +2025,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">atomicCmpXchg</span> <span class="o">=</span> <span class="mi">56</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">atomicCmpXchg</span></code></pre>
 
                         </div>
                       </div>
@@ -2059,7 +2056,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">atomicRMW</span> <span class="o">=</span> <span class="mi">57</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">atomicRMW</span></code></pre>
 
                         </div>
                       </div>
@@ -2090,7 +2087,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">resume</span> <span class="o">=</span> <span class="mi">58</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">resume</span></code></pre>
 
                         </div>
                       </div>
@@ -2121,7 +2118,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">landingPad</span> <span class="o">=</span> <span class="mi">59</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">landingPad</span></code></pre>
 
                         </div>
                       </div>
@@ -2152,7 +2149,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">cleanupRet</span> <span class="o">=</span> <span class="mi">61</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">cleanupRet</span></code></pre>
 
                         </div>
                       </div>
@@ -2183,7 +2180,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchRet</span> <span class="o">=</span> <span class="mi">62</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchRet</span></code></pre>
 
                         </div>
                       </div>
@@ -2214,7 +2211,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchPad</span> <span class="o">=</span> <span class="mi">63</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchPad</span></code></pre>
 
                         </div>
                       </div>
@@ -2245,7 +2242,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">cleanupPad</span> <span class="o">=</span> <span class="mi">64</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">cleanupPad</span></code></pre>
 
                         </div>
                       </div>
@@ -2276,7 +2273,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchSwitch</span> <span class="o">=</span> <span class="mi">65</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">catchSwitch</span></code></pre>
 
                         </div>
                       </div>
@@ -2288,7 +2285,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-13)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
