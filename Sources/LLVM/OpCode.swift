@@ -3,159 +3,227 @@ import cllvm
 #endif
 
 /// Enumerates the opcodes of instructions available in the LLVM IR language.
-///
-/// The raw values of this enumeration *must* match those in
-/// [llvm-c/Core.h](https://github.com/llvm-mirror/llvm/blob/master/include/llvm-c/Core.h)
-public enum OpCode: UInt32 {
+public enum OpCode {
   // MARK: Terminator Instructions
 
   /// The opcode for the `ret` instruction.
-  case ret = 1
+  case ret
   /// The opcode for the `br` instruction.
-  case br = 2
+  case br
   /// The opcode for the `switch` instruction.
-  case `switch` = 3
+  case `switch`
   /// The opcode for the `indirectBr` instruction.
-  case indirectBr = 4
+  case indirectBr
   /// The opcode for the `invoke` instruction.
-  case invoke = 5
+  case invoke
   /// The opcode for the `unreachable` instruction.
-  case unreachable = 7
+  case unreachable
 
   // MARK: Standard Binary Operators
 
   /// The opcode for the `add` instruction.
-  case add = 8
+  case add
   /// The opcode for the `fadd` instruction.
-  case fadd = 9
+  case fadd
   /// The opcode for the `sub` instruction.
-  case sub = 10
+  case sub
   /// The opcode for the `fsub` instruction.
-  case fsub = 11
+  case fsub
   /// The opcode for the `mul` instruction.
-  case mul = 12
+  case mul
   /// The opcode for the `fmul` instruction.
-  case fmul = 13
+  case fmul
   /// The opcode for the `udiv` instruction.
-  case udiv = 14
+  case udiv
   /// The opcode for the `sdiv` instruction.
-  case sdiv = 15
+  case sdiv
   /// The opcode for the `fdiv` instruction.
-  case fdiv = 16
+  case fdiv
   /// The opcode for the `urem` instruction.
-  case urem = 17
+  case urem
   /// The opcode for the `srem` instruction.
-  case srem = 18
+  case srem
   /// The opcode for the `frem` instruction.
-  case frem = 19
+  case frem
 
   // MARK: Logical Operators
 
   /// The opcode for the `shl` instruction.
-  case shl = 20
+  case shl
   /// The opcode for the `lshr` instruction.
-  case lshr = 21
+  case lshr
   /// The opcode for the `ashr` instruction.
-  case ashr = 22
+  case ashr
   /// The opcode for the `and` instruction.
-  case and = 23
+  case and
   /// The opcode for the `or` instruction.
-  case or = 24
+  case or
   /// The opcode for the `xor` instruction.
-  case xor = 25
+  case xor
 
   // MARK: Memory Operators
 
   /// The opcode for the `alloca` instruction.
-  case alloca = 26
+  case alloca
   /// The opcode for the `load` instruction.
-  case load = 27
+  case load
   /// The opcode for the `store` instruction.
-  case store = 28
+  case store
   /// The opcode for the `getElementPtr` instruction.
-  case getElementPtr = 29
+  case getElementPtr
 
   // MARK: Cast Operators
 
   /// The opcode for the `trunc` instruction.
-  case trunc = 30
+  case trunc
   /// The opcode for the `zext` instruction.
-  case zext = 31
+  case zext
   /// The opcode for the `sext` instruction.
-  case sext = 32
+  case sext
   /// The opcode for the `fpToUI` instruction.
-  case fpToUI = 33
+  case fpToUI
   /// The opcode for the `fpToSI` instruction.
-  case fpToSI = 34
+  case fpToSI
   /// The opcode for the `uiToFP` instruction.
-  case uiToFP = 35
+  case uiToFP
   /// The opcode for the `siToFP` instruction.
-  case siToFP = 36
+  case siToFP
   /// The opcode for the `fpTrunc` instruction.
-  case fpTrunc = 37
+  case fpTrunc
   /// The opcode for the `fpExt` instruction.
-  case fpExt = 38
+  case fpExt
   /// The opcode for the `ptrToInt` instruction.
-  case ptrToInt = 39
+  case ptrToInt
   /// The opcode for the `intToPtr` instruction.
-  case intToPtr = 40
+  case intToPtr
   /// The opcode for the `bitCast` instruction.
-  case bitCast = 41
+  case bitCast
   /// The opcode for the `addrSpaceCast` instruction.
-  case addrSpaceCast = 60
+  case addrSpaceCast
 
   // MARK: Other Operators
 
   /// The opcode for the `icmp` instruction.
-  case icmp = 42
+  case icmp
   /// The opcode for the `fcmp` instruction.
-  case fcmp = 43
+  case fcmp
   /// The opcode for the `PHI` instruction.
-  case PHI = 44
+  case phi
   /// The opcode for the `call` instruction.
-  case call = 45
+  case call
   /// The opcode for the `select` instruction.
-  case select = 46
+  case select
   /// The opcode for the `userOp1` instruction.
-  case userOp1 = 47
+  case userOp1
   /// The opcode for the `userOp2` instruction.
-  case userOp2 = 48
+  case userOp2
   /// The opcode for the `vaArg` instruction.
-  case vaArg = 49
+  case vaArg
   /// The opcode for the `extractElement` instruction.
-  case extractElement = 50
+  case extractElement
   /// The opcode for the `insertElement` instruction.
-  case insertElement = 51
+  case insertElement
   /// The opcode for the `shuffleVector` instruction.
-  case shuffleVector = 52
+  case shuffleVector
   /// The opcode for the `extractValue` instruction.
-  case extractValue = 53
+  case extractValue
   /// The opcode for the `insertValue` instruction.
-  case insertValue = 54
+  case insertValue
 
   // MARK: Atomic operators
 
   /// The opcode for the `fence` instruction.
-  case fence = 55
+  case fence
   /// The opcode for the `atomicCmpXchg` instruction.
-  case atomicCmpXchg = 56
+  case atomicCmpXchg
   /// The opcode for the `atomicRMW` instruction.
-  case atomicRMW = 57
+  case atomicRMW
 
   // MARK: Exception Handling Operators
 
   /// The opcode for the `resume` instruction.
-  case resume = 58
+  case resume
   /// The opcode for the `landingPad` instruction.
-  case landingPad = 59
+  case landingPad
   /// The opcode for the `cleanupRet` instruction.
-  case cleanupRet = 61
+  case cleanupRet
   /// The opcode for the `catchRet` instruction.
-  case catchRet = 62
+  case catchRet
   /// The opcode for the `catchPad` instruction.
-  case catchPad = 63
+  case catchPad
   /// The opcode for the `cleanupPad` instruction.
-  case cleanupPad = 64
+  case cleanupPad
   /// The opcode for the `catchSwitch` instruction.
-  case catchSwitch = 65
+  case catchSwitch
+
+  /// Creates an `OpCode` from an `LLVMOpcode`
+  init(rawValue: LLVMOpcode) {
+    switch rawValue {
+    case LLVMRet: self = .ret
+    case LLVMBr: self = .br
+    case LLVMSwitch: self = .switch
+    case LLVMIndirectBr: self = .indirectBr
+    case LLVMInvoke: self = .invoke
+    case LLVMUnreachable: self = .unreachable
+    case LLVMAdd: self = .add
+    case LLVMFAdd: self = .fadd
+    case LLVMSub: self = .sub
+    case LLVMFSub: self = .fsub
+    case LLVMMul: self = .mul
+    case LLVMFMul: self = .fmul
+    case LLVMUDiv: self = .udiv
+    case LLVMSDiv: self = .sdiv
+    case LLVMFDiv: self = .fdiv
+    case LLVMURem: self = .urem
+    case LLVMSRem: self = .srem
+    case LLVMFRem: self = .frem
+    case LLVMShl: self = .shl
+    case LLVMLShr: self = .lshr
+    case LLVMAShr: self = .ashr
+    case LLVMAnd: self = .and
+    case LLVMOr: self = .or
+    case LLVMXor: self = .xor
+    case LLVMAlloca: self = .alloca
+    case LLVMLoad: self = .load
+    case LLVMStore: self = .store
+    case LLVMGetElementPtr: self = .getElementPtr
+    case LLVMTrunc: self = .trunc
+    case LLVMZExt: self = .zext
+    case LLVMSExt: self = .sext
+    case LLVMFPToUI: self = .fpToUI
+    case LLVMFPToSI: self = .fpToSI
+    case LLVMUIToFP: self = .uiToFP
+    case LLVMSIToFP: self = .siToFP
+    case LLVMFPTrunc: self = .fpTrunc
+    case LLVMFPExt: self = .fpExt
+    case LLVMPtrToInt: self = .ptrToInt
+    case LLVMIntToPtr: self = .intToPtr
+    case LLVMBitCast: self = .bitCast
+    case LLVMAddrSpaceCast: self = .addrSpaceCast
+    case LLVMICmp: self = .icmp
+    case LLVMFCmp: self = .fcmp
+    case LLVMPHI: self = .phi
+    case LLVMCall: self = .call
+    case LLVMSelect: self = .select
+    case LLVMUserOp1: self = .userOp1
+    case LLVMUserOp2: self = .userOp2
+    case LLVMVAArg: self = .vaArg
+    case LLVMExtractElement: self = .extractElement
+    case LLVMInsertElement: self = .insertElement
+    case LLVMShuffleVector: self = .shuffleVector
+    case LLVMExtractValue: self = .extractValue
+    case LLVMInsertValue: self = .insertValue
+    case LLVMFence: self = .fence
+    case LLVMAtomicCmpXchg: self = .atomicCmpXchg
+    case LLVMAtomicRMW: self = .atomicRMW
+    case LLVMResume: self = .resume
+    case LLVMLandingPad: self = .landingPad
+    case LLVMCleanupRet: self = .cleanupRet
+    case LLVMCatchRet: self = .catchRet
+    case LLVMCatchPad: self = .catchPad
+    case LLVMCleanupPad: self = .cleanupPad
+    case LLVMCatchSwitch: self = .catchSwitch
+    default: fatalError("invalid LLVMOpcode \(rawValue)")
+    }
+  }
 }

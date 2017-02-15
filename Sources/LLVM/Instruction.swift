@@ -18,7 +18,7 @@ public struct Instruction: IRValue {
 
   /// Retrieves the opcode associated with this `Instruction`.
   public var opCode: OpCode {
-    return OpCode(rawValue: LLVMGetInstructionOpcode(llvm).rawValue)!
+    return OpCode(rawValue: LLVMGetInstructionOpcode(llvm))
   }
 
   /// Obtain the instruction that occurs before this one, if it exists.
