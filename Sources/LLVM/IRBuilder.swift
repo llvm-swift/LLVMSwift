@@ -1275,18 +1275,6 @@ public class IRBuilder {
     return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
   }
 
-  /// Builds an ExtractElement instruction to retrieve an indexed value from a
-  /// vector value.
-  ///
-  /// - parameter vec: The vector you're indexing into.
-  /// - parameter index: The index at which to extract.
-  ///
-  /// - returns: The value in the vector at the provided index.
-  public func buildExtractElement(_ vec: IRValue, index: IRValue,
-                                  name: String = "") -> IRValue {
-    return LLVMBuildExtractElement(llvm, vec.asLLVM(), index.asLLVM(), name)
-  }
-
   /// Builds an ExtractValue instruction to retrieve an indexed value from a
   /// struct or array value.
   ///
