@@ -8,6 +8,7 @@ matrix:
     osx_image: xcode8
     before_install:
     - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
+    - brew update
     - brew install llvm
     - sudo swift utils/make-pkgconfig.swift
     script:

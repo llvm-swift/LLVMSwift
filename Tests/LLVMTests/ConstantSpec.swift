@@ -4,7 +4,6 @@ import Foundation
 
 class ConstantSpec : XCTestCase {
   func testConstants() {
-
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["SIGNEDCONST"]) {
       // SIGNEDCONST: ; ModuleID = '[[ModuleName:ConstantTest]]'
       // SIGNEDCONST-NEXT: source_filename = "[[ModuleName]]"
@@ -91,4 +90,10 @@ class ConstantSpec : XCTestCase {
       module.dump()
     })
   }
+
+  #if !os(macOS)
+  static var allTests = testCase([
+    ("testConstants", testConstants),
+  ])
+  #endif
 }
