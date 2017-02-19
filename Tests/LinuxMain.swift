@@ -7,5 +7,6 @@ XCTMain([
   IRBuilderSpec.allTests,
   ConstantSpec.allTests,
   IRExceptionSpec.allTests,
+  IROperationSpec.allTests,
 ])
 #endif

@@ -1167,7 +1167,7 @@ private struct CheckString {
       }
 
       // Re-calc it as the offset relative to the start of the original string.
-      var matchPos = range.location + startPos
+      let matchPos = range.location + startPos
       if !notStrings.isEmpty {
         if matchPos < lastPos {
           // Reordered?

@@ -214,111 +214,6 @@ public enum AtomicOrdering: Comparable {
   }
 }
 
-/// `BinaryOperation` enumerates the subset of opcodes that are binary operations.
-public enum BinaryOperation {
-  /// The `add` instruction.
-  case add
-  /// The `fadd` instruction.
-  case fadd
-  /// The `sub` instruction.
-  case sub
-  /// The `fsub` instruction.
-  case fsub
-  /// The `mul` instruction.
-  case mul
-  /// The `fmul` instruction.
-  case fmul
-  /// The `udiv` instruction.
-  case udiv
-  /// The `sdiv` instruction.
-  case sdiv
-  /// The `fdiv` instruction.
-  case fdiv
-  /// The `urem` instruction.
-  case urem
-  /// The `srem` instruction.
-  case srem
-  /// The `frem` instruction.
-  case frem
-
-  /// The `shl` instruction.
-  case shl
-  /// The `lshr` instruction.
-  case lshr
-  /// The `ashr` instruction.
-  case ashr
-  /// The `and` instruction.
-  case and
-  /// The `or` instruction.
-  case or
-  /// The `xor` instruction.
-  case xor
-
-  static let binaryOperationMap: [BinaryOperation: LLVMOpcode] = [
-    .add: LLVMAdd, .fadd: LLVMFAdd, .sub: LLVMSub, .fsub: LLVMFSub,
-    .mul: LLVMMul, .fmul: LLVMFMul, .udiv: LLVMUDiv, .sdiv: LLVMSDiv,
-    .fdiv: LLVMFDiv, .urem: LLVMURem, .srem: LLVMSRem, .frem: LLVMFRem,
-    .shl: LLVMShl, .lshr: LLVMLShr, .ashr: LLVMAShr, .and: LLVMAnd,
-    .or: LLVMOr, .xor: LLVMXor,
-  ]
-
-  /// Retrieves the corresponding `LLVMOpcode`.
-  public var llvm: LLVMOpcode {
-    return BinaryOperation.binaryOperationMap[self]!
-  }
-}
-
-/// `CastOperation` enumerates the subset of opcodes that are cast operations.
-public enum CastOperation {
-  /// The `trunc` instruction.
-  case trunc
-  /// The `zext` instruction.
-  case zext
-  /// The `sext` instruction.
-  case sext
-  /// The `fpToUI` instruction.
-  case fpToUI
-  /// The `fpToSI` instruction.
-  case fpToSI
-  /// The `uiToFP` instruction.
-  case uiToFP
-  /// The `siToFP` instruction.
-  case siToFP
-  /// The `fpTrunc` instruction.
-  case fpTrunc
-  /// The `fpext` instruction.
-  case fpext
-  /// The `ptrToInt` instruction.
-  case ptrToInt
-  /// The `intToPtr` instruction.
-  case intToPtr
-  /// The `bitCast` instruction.
-  case bitCast
-  /// The `addrSpaceCast` instruction.
-  case addrSpaceCast
-
-  static let castOperationMap: [CastOperation: LLVMOpcode] = [
-    .trunc: LLVMTrunc,
-    .zext: LLVMZExt,
-    .sext: LLVMSExt,
-    .fpToUI: LLVMFPToUI,
-    .fpToSI: LLVMFPToSI,
-    .uiToFP: LLVMUIToFP,
-    .siToFP: LLVMSIToFP,
-    .fpTrunc: LLVMFPTrunc,
-    .fpext: LLVMFPExt,
-    .ptrToInt: LLVMPtrToInt,
-    .intToPtr: LLVMIntToPtr,
-    .bitCast: LLVMBitCast,
-    .addrSpaceCast: LLVMAddrSpaceCast,
-  ]
-
-  /// Retrieves the corresponding `LLVMOpcode`.
-  public var llvm: LLVMOpcode {
-    return CastOperation.castOperationMap[self]!
-  }
-}
-
 /// `AtomicReadModifyWriteOperation` enumerates the kinds of supported atomic
 /// read-write-modify operations.
 public enum AtomicReadModifyWriteOperation {
@@ -537,7 +432,7 @@ public class IRBuilder {
   ///
   /// - returns: A value representing the result of perfomring the given binary
   ///   operation with the given values as arguments.
-  public func buildBinaryOperation(_ op: BinaryOperation, _ lhs: IRValue, _ rhs: IRValue, name: String = "") -> IRValue {
+  public func buildBinaryOperation(_ op: OpCode.Binary, _ lhs: IRValue, _ rhs: IRValue, name: String = "") -> IRValue {
     return LLVMBuildBinOp(llvm, op.llvm, lhs.asLLVM(), rhs.asLLVM(), name)
   }
 
@@ -551,7 +446,7 @@ public class IRBuilder {
   ///
   /// - returns: A value representing the result of casting the given value to
   ///   the given destination type using the given operation.
-  public func buildCast(_ op: CastOperation, value: IRValue, type: IRType, name: String = "") -> IRValue {
+  public func buildCast(_ op: OpCode.Cast, value: IRValue, type: IRType, name: String = "") -> IRValue {
     return LLVMBuildCast(llvm, op.llvm, value.asLLVM(), type.asLLVM(), name)
   }
 
@@ -1176,7 +1071,7 @@ public class IRBuilder {
   /// This instruction is used to implement the `va_arg` macro in C.
   ///
   /// - parameter list: A value of type `va_list*`
-  /// - parameter type: THe type of values in the variable argument area.
+  /// - parameter type: The type of values in the variable argument area.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value of the specified argument type.  In addition, the 
