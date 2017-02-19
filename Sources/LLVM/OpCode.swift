@@ -227,3 +227,110 @@ public enum OpCode {
     }
   }
 }
+
+extension OpCode {
+  /// `BinaryOperation` enumerates the subset of opcodes that are binary operations.
+  public enum Binary {
+    /// The `add` instruction.
+    case add
+    /// The `fadd` instruction.
+    case fadd
+    /// The `sub` instruction.
+    case sub
+    /// The `fsub` instruction.
+    case fsub
+    /// The `mul` instruction.
+    case mul
+    /// The `fmul` instruction.
+    case fmul
+    /// The `udiv` instruction.
+    case udiv
+    /// The `sdiv` instruction.
+    case sdiv
+    /// The `fdiv` instruction.
+    case fdiv
+    /// The `urem` instruction.
+    case urem
+    /// The `srem` instruction.
+    case srem
+    /// The `frem` instruction.
+    case frem
+
+    /// The `shl` instruction.
+    case shl
+    /// The `lshr` instruction.
+    case lshr
+    /// The `ashr` instruction.
+    case ashr
+    /// The `and` instruction.
+    case and
+    /// The `or` instruction.
+    case or
+    /// The `xor` instruction.
+    case xor
+
+    static let binaryOperationMap: [Binary: LLVMOpcode] = [
+      .add: LLVMAdd, .fadd: LLVMFAdd, .sub: LLVMSub, .fsub: LLVMFSub,
+      .mul: LLVMMul, .fmul: LLVMFMul, .udiv: LLVMUDiv, .sdiv: LLVMSDiv,
+      .fdiv: LLVMFDiv, .urem: LLVMURem, .srem: LLVMSRem, .frem: LLVMFRem,
+      .shl: LLVMShl, .lshr: LLVMLShr, .ashr: LLVMAShr, .and: LLVMAnd,
+      .or: LLVMOr, .xor: LLVMXor,
+    ]
+
+    /// Retrieves the corresponding `LLVMOpcode`.
+    public var llvm: LLVMOpcode {
+      return Binary.binaryOperationMap[self]!
+    }
+  }
+
+  /// `CastOperation` enumerates the subset of opcodes that are cast operations.
+  public enum Cast {
+    /// The `trunc` instruction.
+    case trunc
+    /// The `zext` instruction.
+    case zext
+    /// The `sext` instruction.
+    case sext
+    /// The `fpToUI` instruction.
+    case fpToUI
+    /// The `fpToSI` instruction.
+    case fpToSI
+    /// The `uiToFP` instruction.
+    case uiToFP
+    /// The `siToFP` instruction.
+    case siToFP
+    /// The `fpTrunc` instruction.
+    case fpTrunc
+    /// The `fpext` instruction.
+    case fpext
+    /// The `ptrToInt` instruction.
+    case ptrToInt
+    /// The `intToPtr` instruction.
+    case intToPtr
+    /// The `bitCast` instruction.
+    case bitCast
+    /// The `addrSpaceCast` instruction.
+    case addrSpaceCast
+
+    static let castOperationMap: [Cast: LLVMOpcode] = [
+      .trunc: LLVMTrunc,
+      .zext: LLVMZExt,
+      .sext: LLVMSExt,
+      .fpToUI: LLVMFPToUI,
+      .fpToSI: LLVMFPToSI,
+      .uiToFP: LLVMUIToFP,
+      .siToFP: LLVMSIToFP,
+      .fpTrunc: LLVMFPTrunc,
+      .fpext: LLVMFPExt,
+      .ptrToInt: LLVMPtrToInt,
+      .intToPtr: LLVMIntToPtr,
+      .bitCast: LLVMBitCast,
+      .addrSpaceCast: LLVMAddrSpaceCast,
+    ]
+    
+    /// Retrieves the corresponding `LLVMOpcode`.
+    public var llvm: LLVMOpcode {
+      return Cast.castOperationMap[self]!
+    }
+  }
+}

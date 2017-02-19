@@ -421,6 +421,35 @@ public class IRBuilder {
     }
   }
 
+  // MARK: Convenience Instructions
+
+  /// Builds the specified binary operation instruction with the given arguments.
+  ///
+  /// - parameter op: The operation to build.
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the result of perfomring the given binary
+  ///   operation with the given values as arguments.
+  public func buildBinaryOperation(_ op: OpCode.Binary, _ lhs: IRValue, _ rhs: IRValue, name: String = "") -> IRValue {
+    return LLVMBuildBinOp(llvm, op.llvm, lhs.asLLVM(), rhs.asLLVM(), name)
+  }
+
+  /// Builds the specified cast operation instruction with the given value and
+  /// destination type.
+  ///
+  /// - parameter op: The cast operation to build.
+  /// - parameter value: The value to cast.
+  /// - parameter type: The destination type to cast to.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the result of casting the given value to
+  ///   the given destination type using the given operation.
+  public func buildCast(_ op: OpCode.Cast, value: IRValue, type: IRType, name: String = "") -> IRValue {
+    return LLVMBuildCast(llvm, op.llvm, value.asLLVM(), type.asLLVM(), name)
+  }
+
   // MARK: Arithmetic Instructions
 
   /// Builds a negation instruction with the given value as an operand.
@@ -432,7 +461,7 @@ public class IRBuilder {
   /// - parameter value: The value to negate.
   /// - parameter overflowBehavior: Should overflow occur, specifies the
   ///   behavior of the program.
-  /// - name: The name for the newly inserted instruction.
+  /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the negation of the given value.
   public func buildNeg(_ value: IRValue,
@@ -1035,6 +1064,21 @@ public class IRBuilder {
   public func buildResume(_ val: IRValue) -> IRValue {
     return LLVMBuildResume(llvm, val.asLLVM())
   }
+  
+  /// Build a `va_arg` instruction to access arguments passed through the
+  /// "variable argument" area of a function call. 
+  ///
+  /// This instruction is used to implement the `va_arg` macro in C.
+  ///
+  /// - parameter list: A value of type `va_list*`
+  /// - parameter type: The type of values in the variable argument area.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value of the specified argument type.  In addition, the 
+  ///   `va_list` pointer is incremented to point to the next argument.
+  public func buildVAArg(_ list: IRValue, type: IRType, name: String = "") -> IRValue {
+    return LLVMBuildVAArg(llvm, list.asLLVM(), type.asLLVM(), name)
+  }
 
   // MARK: Memory Access Instructions
 
@@ -1126,18 +1170,6 @@ public class IRBuilder {
     return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
   }
 
-  /// Builds an ExtractElement instruction to retrieve an indexed value from a
-  /// vector value.
-  ///
-  /// - parameter vec: The vector you're indexing into.
-  /// - parameter index: The index at which to extract.
-  ///
-  /// - returns: The value in the vector at the provided index.
-  public func buildExtractElement(_ vec: IRValue, index: IRValue,
-                                  name: String = "") -> IRValue {
-    return LLVMBuildExtractElement(llvm, vec.asLLVM(), index.asLLVM(), name)
-  }
-
   /// Builds an ExtractValue instruction to retrieve an indexed value from a
   /// struct or array value.
   ///
@@ -1189,6 +1221,19 @@ public class IRBuilder {
   ///   given value to fit the given type.
   public func buildTruncOrBitCast(_ val: IRValue, type: IRType, name: String = "") -> IRValue {
     return LLVMBuildTruncOrBitCast(llvm, val.asLLVM(), type.asLLVM(), name)
+  }
+
+  /// Builds an instruction that either performs a zero extension or a bitcast of
+  /// the given value to a value of the given type with a wider width.
+  ///
+  /// - parameter val: The value to zero extend.
+  /// - parameter type: The destination type.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the result of zero extending or bitcasting
+  ///   the given value to fit the given type.
+  public func buildZExtOrBitCast(_ val: IRValue, type: IRType, name: String = "") -> IRValue {
+    return LLVMBuildZExtOrBitCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
   /// Builds a bitcast instruction to convert the given value to a value of the
@@ -1550,6 +1595,24 @@ public class IRBuilder {
   /// - returns: A value representing a scalar at the given index.
   public func buildExtractElement(vector: IRValue, index: IRValue, name: String = "") -> IRValue {
     return LLVMBuildExtractElement(llvm, vector.asLLVM(), index.asLLVM(), name)
+  }
+
+  /// Builds a vector shuffle instruction to construct a permutation of elements
+  /// from the two given input vectors, returning a vector with the same element
+  /// type as the inputs and length that is the same as the shuffle mask.
+  ///
+  /// - parameter vector1: The first vector to shuffle.
+  /// - parameter vector2: The second vector to shuffle.
+  /// - parameter mask: A constant vector of `i32` values that acts as a mask
+  ///   for the shuffled vectors.
+  ///
+  /// - returns: A value representing a vector with the same element type as the
+  ///   inputs and length that is the same as the shuffle mask.
+  public func buildShuffleVector(_ vector1: IRValue, and vector2: IRValue, mask: IRValue, name: String = "") -> IRValue {
+    guard let maskTy = mask.type as? VectorType, maskTy.elementType is IntType else {
+      fatalError("Vector shuffle mask's elements must be 32-bit integers")
+    }
+    return LLVMBuildShuffleVector(llvm, vector1.asLLVM(), vector2.asLLVM(), mask.asLLVM(), name)
   }
 
   // MARK: Global Variable Instructions
