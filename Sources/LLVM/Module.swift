@@ -193,9 +193,10 @@ public final class Module: CustomStringConvertible {
     return String(cString: cStr)
   }
 
-  deinit {
-    LLVMDisposeModule(llvm)
-  }
+  // FIXME: Re-introduce this when disposal becomes safe.
+//  deinit {
+//    LLVMDisposeModule(llvm)
+//  }
 }
 
 extension Bool {
