@@ -36,9 +36,10 @@ public class ObjectFile {
         return SymbolSequence(llvm: LLVMGetSymbols(llvm), object: self)
     }
 
-    deinit {
-        LLVMDisposeObjectFile(llvm)
-    }
+    // FIXME: Re-introduce this when disposal becomes safe.
+//    deinit {
+//        LLVMDisposeObjectFile(llvm)
+//    }
 }
 
 /// A Section represents one of the binary sections in an object file.
@@ -81,9 +82,10 @@ public class SectionSequence: Sequence {
         }
     }
 
-    deinit {
-        LLVMDisposeSectionIterator(llvm)
-    }
+    // FIXME: Re-introduce this when disposal becomes safe.
+//    deinit {
+//        LLVMDisposeSectionIterator(llvm)
+//    }
 }
 
 /// A symbol is a top-level addressable entity in an object file.
@@ -140,9 +142,10 @@ public class RelocationSequence: Sequence {
         }
     }
 
-    deinit {
-        LLVMDisposeSectionIterator(llvm)
-    }
+    // FIXME: Re-introduce this when disposal becomes safe.
+//    deinit {
+//        LLVMDisposeSectionIterator(llvm)
+//    }
 }
 
 /// A sequence for iterating over the symbols in an object file.
@@ -150,7 +153,7 @@ public class SymbolSequence: Sequence {
     let llvm: LLVMSymbolIteratorRef
     let object: ObjectFile
 
-    init(llvm: LLVMRelocationIteratorRef, object: ObjectFile) {
+    init(llvm: LLVMSymbolIteratorRef, object: ObjectFile) {
         self.llvm = llvm
         self.object = object
     }
@@ -167,7 +170,8 @@ public class SymbolSequence: Sequence {
         }
     }
 
-    deinit {
-        LLVMDisposeSymbolIterator(llvm)
-    }
+    // FIXME: Re-introduce this when disposal becomes safe.
+//    deinit {
+//        LLVMDisposeSymbolIterator(llvm)
+//    }
 }
