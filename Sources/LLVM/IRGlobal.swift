@@ -18,4 +18,11 @@ extension IRGlobal {
     get { return Visibility(llvm: LLVMGetVisibility(asLLVM())) }
     set { LLVMSetVisibility(asLLVM(), newValue.llvm) }
   }
+
+  /// Retrieves the storage class for this global declaration.  For use with
+  /// Portable Executable files.
+  public var storageClass: StorageClass {
+    get { return StorageClass(llvm: LLVMGetDLLStorageClass(asLLVM())) }
+    set { LLVMSetDLLStorageClass(asLLVM(), newValue.llvm) }
+  }
 }
