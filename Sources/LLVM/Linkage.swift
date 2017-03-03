@@ -178,3 +178,41 @@ public enum Linkage {
     return Linkage.linkageMapping[self]!
   }
 }
+
+/// `StorageClass` enumerates the storage classes for globals in a Portable
+/// Executable file.
+public enum StorageClass {
+  /// The default storage class for declarations is neither imported nor 
+  /// exported to/from a DLL.
+  case `default`
+  /// The storage class that guarantees the existence of a function in a DLL.  
+  ///
+  /// Using this attribute can produce tighter code because the compiler may 
+  /// skip emitting a thunk and instead directly jump to a particular address.
+  case dllImport
+  /// The storage class for symbols that should be exposed outside of this DLL.
+  ///
+  /// This storage class augments the use of a `.DEF` file, but cannot 
+  /// completely replace them.
+  case dllExport
+
+  private static let storageMapping: [StorageClass: LLVMDLLStorageClass] = [
+    .`default`: LLVMDefaultStorageClass,
+    .dllImport: LLVMDLLImportStorageClass,
+    .dllExport: LLVMDLLExportStorageClass,
+  ]
+
+  internal init(llvm: LLVMDLLStorageClass) {
+    switch llvm {
+    case LLVMDefaultStorageClass: self = .`default`
+    case LLVMDLLImportStorageClass: self = .dllImport
+    case LLVMDLLExportStorageClass: self = .dllExport
+    default: fatalError("unknown DLL storage class \(llvm)")
+    }
+  }
+
+  /// Retrieves the corresponding `LLVMDLLStorageClass`.
+  public var llvm: LLVMDLLStorageClass {
+    return StorageClass.storageMapping[self]!
+  }
+}
