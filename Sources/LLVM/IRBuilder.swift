@@ -965,10 +965,10 @@ public class IRBuilder {
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the result of returning from the callee.
-  public func buildCall(_ fn: IRValue, args: [IRValue], name: String = "") -> IRValue {
+  public func buildCall(_ fn: IRValue, args: [IRValue], name: String = "") -> Call {
     var args = args.map { $0.asLLVM() as Optional }
     return args.withUnsafeMutableBufferPointer { buf in
-      return LLVMBuildCall(llvm, fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), name)
+      return Call(llvm: LLVMBuildCall(llvm, fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), name))
     }
   }
 
@@ -994,12 +994,12 @@ public class IRBuilder {
   /// - returns: A value representing the result of returning from the callee
   ///   under normal circumstances.  Under exceptional circumstances, the value
   ///   represents the value of any `resume` instruction in the `catch` block.
-  public func buildInvoke(_ fn: IRValue, args: [IRValue], next: BasicBlock, catch: BasicBlock, name: String = "") -> IRValue {
+  public func buildInvoke(_ fn: IRValue, args: [IRValue], next: BasicBlock, catch: BasicBlock, name: String = "") -> Invoke {
     precondition(`catch`.firstInstruction!.opCode == .landingPad, "First instruction of catch block must be a landing pad")
 
     var args = args.map { $0.asLLVM() as Optional }
     return args.withUnsafeMutableBufferPointer { buf in
-      return LLVMBuildInvoke(llvm, fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), next.llvm, `catch`.llvm, name)
+      return Invoke(llvm: LLVMBuildInvoke(llvm, fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), next.llvm, `catch`.llvm, name))
     }
   }
 
