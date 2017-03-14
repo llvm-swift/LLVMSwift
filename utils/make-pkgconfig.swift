@@ -67,12 +67,22 @@ func makeFile() throws {
 
   print("Found llvm-config at \(llvmConfig)...")
 
-  let version = run(llvmConfig, args: ["--version"])!
-                .replacing(charactersIn: .newlines, with: "")
+  let versionStr = run(llvmConfig, args: ["--version"])!
+                     .replacing(charactersIn: .newlines, with: "")
+  let components = versionStr.components(separatedBy: ".")
+                             .flatMap { Int($0) }
 
-  guard version.hasPrefix("3.9") else {
-    throw "LLVMSwift requires LLVM version >=3.9.0, but you have \(version)"
+  guard components.count == 3 else {
+    throw "Invalid version number \(versionStr)"
   }
+
+  let version = (components[0], components[1], components[2])
+
+  guard version > (3, 9, 0) else {
+    throw "LLVMSwift requires LLVM version >=3.9.0, but you have \(versionStr)"
+  }
+
+  print("LLVM version is \(versionStr)")
 
   let ldFlags = run(llvmConfig, args: ["--ldflags", "--libs", "all",
                                        "--system-libs"])!
@@ -95,7 +105,7 @@ func makeFile() throws {
   let s = [
     "Name: cllvm",
     "Description: The llvm library",
-    "Version: \(version)",
+    "Version: \(versionStr)",
     "Libs: \(ldFlags) \(libCPP)",
     "Requires.private:",
     "Cflags: \(cFlags)",
