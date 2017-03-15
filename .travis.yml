@@ -5,7 +5,7 @@ matrix:
   include:
   - os: osx
     language: objective-c
-    osx_image: xcode8
+    osx_image: xcode8.2
     before_install:
     - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
     - brew update
@@ -18,11 +18,11 @@ matrix:
     sudo: required
     dist: trusty
     env:
-    - LLVM_API_VERSION=3.9
+    - LLVM_API_VERSION=4.0
     before_install:
     - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:"${PKG_CONFIG_PATH}"
     - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-    - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9
+    - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-${LLVM_API_VERSION}
       main"
     - sudo apt-get update
     - sudo apt-get install llvm-${LLVM_API_VERSION} libc++1
