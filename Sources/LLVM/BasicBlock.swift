@@ -65,7 +65,7 @@ public struct BasicBlock: IRValue {
 
   /// Deletes the basic block from its containing function.
   /// - note: This does not remove breaks to this block from the
-  ///         function. Ensure you have removed all insructions that reference
+  ///         function. Ensure you have removed all instructions that reference
   ///         this basic block before deleting it.
   public func delete() {
     LLVMDeleteBasicBlock(llvm)

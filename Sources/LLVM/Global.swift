@@ -130,7 +130,7 @@ public struct Global: IRGlobal {
 
   /// Deletes the global variable from its containing module.
   /// - note: This does not remove references to this global from the
-  ///         module. Ensure you have removed all insructions that reference
+  ///         module. Ensure you have removed all instructions that reference
   ///         this global before deleting it.
   public func delete() {
     LLVMDeleteGlobal(llvm)

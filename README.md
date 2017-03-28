@@ -47,7 +47,7 @@ Plus, it provides common wrappers around oft-used types like `Function`, `Global
 There are a couple, annoying steps you need to get it working before it'll
 build.
 
-- Install LLVM 3.9 using your favorite package manager. For example:
+- Install LLVM 4.0 using your favorite package manager. For example:
   - `brew install llvm`
 - Ensure `llvm-config` is in your `PATH`
   - That will reside in the `/bin` folder wherever your package manager
