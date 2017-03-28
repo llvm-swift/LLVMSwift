@@ -48,6 +48,29 @@ entry:
 }
 ```
 
+### Types
+
+LLVM IR is a strong, statically typed language.  As such, values and functions
+are tagged with their types, and conversions between them must be explicit (see
+[Conversion Operators](http://llvm.org/docs/LangRef.html#conversion-operations)).
+LLVMSwift represents this with values conforming to the `IRType` protocol and defines
+the following types:
+
+|**Type** | **Represents** |
+|:---:|:---:|
+| VoidType | Nothing; Has no size |
+| IntType | Integer and Boolean values (`i1`) |
+| FloatType | Floating-point values |
+| FunctionType | Function values |
+| LabelType | Code labels |
+| TokenType | Values paired with instructions |
+| MetadataType | Embedded metadata |
+| X86MMXType | X86 MMX values |
+| PointerType | Pointer values |
+| VectorType | SIMD data |
+| ArrayType | Homogeneous values |
+| Structure Type | Heterogeneous values |
+
 
 ### Control Flow
 
@@ -157,8 +180,6 @@ let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
 print(fn(true)) // 0.00917431192660551...
 print(fn(false)) // 0.0112359550561798...
 ```
-
-### Platform Management
 
 ## Installation
 
