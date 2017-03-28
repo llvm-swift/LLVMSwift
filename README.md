@@ -1,46 +1,164 @@
-
-
 # LLVMSwift
 [![Build Status](https://travis-ci.org/trill-lang/LLVMSwift.svg?branch=master)](https://travis-ci.org/trill-lang/LLVMSwift) [![Documentation](https://cdn.rawgit.com/trill-lang/LLVMSwift/master/docs/badge.svg)](https://trill-lang.github.io/LLVMSwift) [![Slack Invite](https://llvmswift-slack.herokuapp.com/badge.svg)](https://llvmswift-slack.herokuapp.com)
 
-LLVMSwift is a set of Swifty API wrappers for the LLVM C API.
-It makes compiler development feel great from Swift!
+LLVMSwift is a pure Swift interface to the [LLVM](http://llvm.org) API and its associated libraries. It provides native, easy-to-use components to make compiler development fun.
 
-## Usage
+## Introduction
 
-To start emitting IR, you'll want to create a `Module` object, with an optional `Context` parameter,
-and an `IRBuilder` that will build instructions for that module. 
+### LLVM IR
+
+The root unit of organization of an LLVM IR program is a `Module`
 
 ```swift
 let module = Module(name: "main")
-let builder = IRBuilder(module: module)
 ```
 
-Once you do that, you can start adding functions, global variables, and generating instructions!
+LLVM IR is construction is done with an `IRBuilder` object.  An `IRBuilder` is a cursor pointed inside a context, and as such has ways of extending that context and moving around inside of it.
+
+Defining a simple function and moving the cursor to a point where we can begin inserting instructions is done like so:
 
 ```swift
-let main = builder.addFunction(name: "main", 
-                               type: FunctionType(argTypes: [],
-                                                  returnType: VoidType()))
+let builder = IRBuilder(module: module)
+
+let main = builder.addFunction(
+             name: "main", 
+             type: FunctionType(argTypes: [],
+             returnType: VoidType())
+           )
 let entry = main.appendBasicBlock(named: "entry")
 builder.positionAtEnd(of: entry)
-
-builder.buildRetVoid()
-
-module.dump()
 ```
 
-The IRBuilder class has methods for almost all functions from the LLVM C API, like:
+Inserting instructions creates native `IRValue` placeholder objects that allow us to structure LLVM IR programs just like Swift programs:
 
-- `builder.buildAdd`
-- `builder.buildSub`
-- `builder.buildMul`
-- `builder.buildCondBr`
-- `builder.addSwitch`
+```swift
+let constant = IntType.int64.constant(21)
+let sum = builder.buildAdd(constant, constant)
+builder.buildRet(sum)
+```
 
-and so many more.
+This simple program generates the following IR:
 
-Plus, it provides common wrappers around oft-used types like `Function`, `Global`, `Switch`, and `PhiNode`.
+```llvm
+// module.dump()
+
+define void @main() {
+entry:
+  ret i64 42
+}
+```
+
+
+### Control Flow
+
+Control flow is changed through the unconditional and conditional `br` instruction.
+
+LLVM is also famous for a control-flow specific IR construct called a [PHI node](http://llvm.org/docs/LangRef.html#phi-instruction).  Because all instructions in LLVM IR are in SSA (Single Static Assignment) form, a PHI node is necessary when the value of a variable assignment depends on the path the flow of control takes through the program.  For example, let's try to build the following Swift program in IR:
+
+```swift
+func calculateFibs(_ backward : Bool) -> Double {
+  let retVal : Double
+  if !backward {
+    // the fibonacci series (sort of)
+    retVal = 1/89
+  } else {
+    // the fibonacci series (sort of) backwards
+    retVal = 1/109
+  }
+  return retVal
+}
+```
+
+Notice that the value of `retVal` depends on the path the flow of control takes through this program, so we must emit a PHI node to properly initialize it:
+
+```swift
+let function = builder.addFunction(
+                 "calculateFibs", 
+                 type: FunctionType(argTypes: [IntType.int1], 
+                 returnType: FloatType.double)
+               )
+let entryBB = function.appendBasicBlock(named: "entry")
+builder.positionAtEnd(of: entryBB)
+
+// allocate space for a local value
+let local = builder.buildAlloca(type: FloatType.double, name: "local")
+
+// Compare to the condition
+let test = builder.buildICmp(function.parameters[0], IntType.int1.zero(), .notEqual)
+
+// Create basic blocks for "then", "else", and "merge"
+let thenBB = function.appendBasicBlock(named: "then")
+let elseBB = function.appendBasicBlock(named: "else")
+let mergeBB = function.appendBasicBlock(named: "merge")
+
+builder.buildCondBr(condition: test, then: thenBB, else: elseBB)
+
+// MARK: Then Block
+builder.positionAtEnd(of: thenBB)
+// local = 1/89, the fibonacci series (sort of)
+let thenVal = FloatType.double.constant(1/89)
+builder.buildStore(thenVal, to: local)
+// Branch to the merge block
+builder.buildBr(mergeBB)
+
+// MARK: Else Block
+builder.positionAtEnd(of: elseBB)
+// local = 1/109, the fibonacci series (sort of) backwards
+let elseVal = FloatType.double.constant(1/109)
+builder.buildStore(elseVal, to: local)
+// Branch to the merge block
+builder.buildBr(mergeBB)
+
+// MARK: Merge Block
+builder.positionAtEnd(of: mergeBB)
+let phi = builder.buildPhi(FloatType.double, name: "phi_example")
+phi.addIncoming([
+  (thenVal, thenBB),
+  (elseVal, elseBB),
+])
+builder.buildRet(phi)
+```
+
+This program generates the following IR:
+
+```llvm
+define double @calculateFibs(i1) {
+entry:
+  %local = alloca double
+  %1 = icmp ne i1 %0, false
+  br i1 %1, label %then, label %else
+
+then:                                             ; preds = %entry
+  store double 0x3F8702E05C0B8170, double* %local
+  br label %merge
+
+else:                                             ; preds = %entry
+  store double 0x3F82C9FB4D812CA0, double* %local
+  br label %merge
+
+merge:                                            ; preds = %else, %then
+  %phi_example = phi double [ 0x3F8702E05C0B8170, %then ], [ 0x3F82C9FB4D812CA0, %else ]
+  ret double %phi_example
+}
+```
+
+### JIT
+
+LLVMSwift provides a JIT abstraction to make executing code in LLVM modules quick and easy.  Let's execute the PHI node example from before:
+
+```swift
+// Setup the JIT
+let jit = try! JIT(module: module, machine: TargetMachine())
+typealias FnPtr = @convention(c) (Bool) -> Double
+// Retrieve a handle to the function we're going to invoke
+let fnAddr = jit.addressOfFunction(name: "calculateFibs")
+let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
+// Call the function!
+print(fn(true)) // 0.00917431192660551...
+print(fn(false)) // 0.0112359550561798...
+```
+
+### Platform Management
 
 ## Installation
 
@@ -86,4 +204,3 @@ all its code generation.
 
 This project is released under the MIT license, a copy of which is available
 in this repo.
-
