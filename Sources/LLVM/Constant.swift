@@ -14,13 +14,6 @@ public enum Signed: IntegralConstantRepresentation {}
 /// Represents floating types and operations.
 public enum Floating: ConstantRepresentation {}
 
-// FIXME: When upgrading to Swift 3.1, move this into `Constant`.
-internal enum InternalConstantRepresentation {
-  case unsigned
-  case signed
-  case floating
-}
-
 /// A `Constant` represents a value initialized to a constant.  Constant values
 /// may be manipulated with standard Swift arithmetic operations and used with
 /// standard IR Builder instructions like any other operand.  The difference
@@ -31,8 +24,15 @@ internal enum InternalConstantRepresentation {
 /// disallow mixed-type arithmetic.  Use the `cast` family of operations to
 /// safely convert constants to other representations.
 public struct Constant<Repr: ConstantRepresentation>: IRValue {
+  fileprivate enum Representation {
+    case unsigned
+    case signed
+    case floating
+  }
+  fileprivate let repr: Representation
+
   internal let llvm: LLVMValueRef
-  internal let repr: InternalConstantRepresentation
+
   internal init(llvm: LLVMValueRef!) {
     self.llvm = llvm
 
