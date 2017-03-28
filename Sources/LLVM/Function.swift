@@ -181,7 +181,7 @@ public class Function: IRGlobal {
 
   /// Deletes the function from its containing module.
   /// - note: This does not remove calls to this function from the
-  ///         module. Ensure you have removed all insructions that reference
+  ///         module. Ensure you have removed all instructions that reference
   ///         this function before deleting it.
   public func delete() {
     LLVMDeleteFunction(llvm)
