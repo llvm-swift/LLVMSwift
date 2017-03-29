@@ -40,6 +40,13 @@ public struct BasicBlock: IRValue {
     return Instruction(llvm: val)
   }
 
+  /// Returns the terminator instruction if this basic block is well formed or 
+  /// `nil` if it is not well formed.
+  public var terminator: TerminatorInstruction? {
+    guard let term = LLVMGetBasicBlockTerminator(llvm) else { return nil }
+    return TerminatorInstruction(llvm: term)
+  }
+
   /// Returns the parent function of this basic block, if it exists.
   public var parent: Function? {
     guard let functionRef = LLVMGetBasicBlockParent(llvm) else { return nil }
