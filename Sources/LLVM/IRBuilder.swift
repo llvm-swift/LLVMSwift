@@ -1706,8 +1706,7 @@ public class IRBuilder {
     return Alias(llvm: LLVMAddAlias(module.llvm, type.asLLVM(), aliasee.asLLVM(), name))
   }
 
-  // FIXME: Re-introduce this when disposal becomes safe.
-//  deinit {
-//    LLVMDisposeBuilder(llvm)
-//  }
+  deinit {
+    LLVMDisposeBuilder(llvm)
+  }
 }

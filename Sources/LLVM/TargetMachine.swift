@@ -212,8 +212,7 @@ public class TargetMachine {
     return MemoryBuffer(llvm: llvm)
   }
 
-  // FIXME: Re-introduce this when disposal becomes safe.
-//  deinit {
-//    LLVMDisposeTargetMachine(llvm)
-//  }
+  deinit {
+    LLVMDisposeTargetMachine(llvm)
+  }
 }
