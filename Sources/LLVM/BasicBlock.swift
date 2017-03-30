@@ -63,15 +63,11 @@ public struct BasicBlock: IRValue {
     }
   }
 
-  /// Deletes the basic block from its containing function.
-  /// - note: This does not remove breaks to this block from the
-  ///         function. Ensure you have removed all instructions that reference
-  ///         this basic block before deleting it.
-  public func delete() {
-    LLVMDeleteBasicBlock(llvm)
-  }
-
   /// Removes this basic block from a function but keeps it alive.
+  ///
+  /// - note: To ensure correct removal of the block, you must invalidate any 
+  ///         references to it and its child instructions.  The block must also
+  ///         have no successor blocks that make reference to it.
   public func removeFromParent() {
     LLVMRemoveBasicBlockFromParent(llvm)
   }
@@ -85,6 +81,18 @@ public struct BasicBlock: IRValue {
   public func moveAfter(_ block: BasicBlock) {
     LLVMMoveBasicBlockAfter(llvm, block.llvm)
   }
+}
+
+extension BasicBlock {
+  /// Deletes the basic block from its containing function.
+  /// - note: This does not remove breaks to this block from the
+  ///         function. Ensure you have removed all instructions that reference
+  ///         this basic block before deleting it.
+  @available(*, deprecated, message: "it is hard to use correctly and will be removed.  See BasicBlock.removeFromParent() instead")
+  public func delete() {
+    LLVMDeleteBasicBlock(llvm)
+  }
+
 }
 
 extension BasicBlock {
