@@ -51,3 +51,30 @@ public struct Instruction: IRValue {
     }
   }
 }
+
+/// A `TerminatorInstruction` represents an instruction that terminates a 
+/// basic block.
+public struct TerminatorInstruction {
+  internal let llvm: LLVMValueRef
+
+  /// Creates a `TerminatorInstruction` from an `LLVMValueRef` object.
+  public init(llvm: LLVMValueRef) {
+    self.llvm = llvm
+  }
+
+  /// Retrieves the number of successors of this terminator instruction.
+  public var successorCount: Int {
+    return Int(LLVMGetNumSuccessors(llvm))
+  }
+
+  /// Returns the successor block at the specified index, if it exists.
+  public func getSuccessor(at idx: Int) -> BasicBlock? {
+    guard let succ = LLVMGetSuccessor(llvm, UInt32(idx)) else { return nil }
+    return BasicBlock(llvm: succ)
+  }
+
+  /// Updates the successor block at the specified index.
+  public func setSuccessor(at idx: Int, to bb: BasicBlock) {
+    LLVMSetSuccessor(llvm, UInt32(idx), bb.asLLVM())
+  }
+}
