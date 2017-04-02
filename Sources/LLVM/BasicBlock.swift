@@ -59,6 +59,12 @@ public struct BasicBlock: IRValue {
     return BasicBlock(llvm: blockRef)
   }
 
+  /// Returns the basic block before this basic block, if it exists.
+  public func previous() -> BasicBlock? {
+    guard let blockRef = LLVMGetPreviousBasicBlock(llvm) else { return nil }
+    return BasicBlock(llvm: blockRef)
+  }
+
   /// Returns a sequence of the Instructions that make up this basic block.
   public var instructions: AnySequence<Instruction> {
     var current = firstInstruction

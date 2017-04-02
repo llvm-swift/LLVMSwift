@@ -33,6 +33,13 @@ public struct Instruction: IRValue {
     return Instruction(llvm: val)
   }
 
+  /// Retrieves the parent basic block that contains this instruction, if it
+  /// exists.
+  public var parentBlock: BasicBlock? {
+    guard let parent = LLVMGetInstructionParent(self.llvm) else { return nil }
+    return BasicBlock(llvm: parent)
+  }
+
   /// Retrieves the first use of this instruction.
   public var firstUse: Use? {
     guard let use = LLVMGetFirstUse(llvm) else { return nil }
