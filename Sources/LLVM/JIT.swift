@@ -51,6 +51,7 @@ public final class JIT {
       throw JITError.couldNotInitialize("JIT was NULL")
     }
     self.llvm = _jit
+    LLVMRunStaticConstructors(self.llvm)
   }
 
   /// Runs the specified function with the provided arguments by compiling
@@ -120,6 +121,10 @@ public final class JIT {
                                        UInt32(buf.count),
                                        buf.baseAddress, nil))
     }
+  }
+
+  deinit {
+    LLVMRunStaticDestructors(self.llvm)
   }
 }
 
