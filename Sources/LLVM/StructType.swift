@@ -69,6 +69,27 @@ public struct StructType: IRType {
     }
   }
 
+  /// Retrieves the name associated with this structure type, or the empty
+  /// string if this type is unnamed.
+  public var name: String {
+    guard let sname = LLVMGetStructName(self.llvm) else { return "" }
+    return String(cString: sname)
+  }
+
+  /// Retrieves the element types associated with this structure type.
+  public var elementTypes: [IRType] {
+    var params = [IRType]()
+    let count = Int(LLVMCountStructElementTypes(self.llvm))
+    let paramsPtr = UnsafeMutablePointer<LLVMTypeRef?>.allocate(capacity: count)
+    defer { free(paramsPtr) }
+    LLVMGetStructElementTypes(self.llvm, paramsPtr)
+    for i in 0..<count {
+      let ty = paramsPtr[i]!
+      params.append(convertType(ty))
+    }
+    return params
+  }
+
   /// Retrieves the underlying LLVM type object.
   public func asLLVM() -> LLVMTypeRef {
     return llvm
