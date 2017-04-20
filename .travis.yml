@@ -14,7 +14,7 @@ matrix:
     - sudo swift utils/make-pkgconfig.swift
     script:
     - swift test
-    - xcodebuild -project Xcode/LLVM.xcodeproj -scheme LLVM | xcpretty
+    - xcodebuild -project Xcode/LLVM.xcodeproj | xcpretty
   - os: linux
     language: generic
     sudo: required
