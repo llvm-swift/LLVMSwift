@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// `StructType` is used to represent a collection of data members together in
 /// memory. The elements of a structure may be any type that has a size.

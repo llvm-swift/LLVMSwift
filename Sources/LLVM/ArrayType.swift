@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// `ArrayType` is a very simple derived type that arranges elements
 /// sequentially in memory. `ArrayType` requires a size (number of elements) and

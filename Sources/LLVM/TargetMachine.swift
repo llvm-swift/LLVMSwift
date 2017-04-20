@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// The supported types of files codegen can produce.
 public enum CodegenFileType {

@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// `TokenType` is used when a value is associated with an instruction but all
 /// uses of the value must not attempt to introspect or obscure it. As such, it

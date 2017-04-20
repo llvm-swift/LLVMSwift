@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// `PointerType` is used to specify memory locations. Pointers are commonly
 /// used to reference objects in memory.

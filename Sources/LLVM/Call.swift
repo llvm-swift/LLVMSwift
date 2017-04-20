@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// Represents a simple function call.
 public struct Call: IRValue {

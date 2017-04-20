@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// `LabelType` represents code labels.
 public struct LabelType: IRType {

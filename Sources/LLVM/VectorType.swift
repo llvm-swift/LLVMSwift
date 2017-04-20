@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// A `VectorType` is a simple derived type that represents a vector of
 /// elements. `VectorType`s are used when multiple primitive data are operated

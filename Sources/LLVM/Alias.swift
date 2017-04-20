@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// An `Alias` represents a global alias in an LLVM module - a new symbol and
 /// corresponding metadata for an existing position

@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// Enumerates the supported kind of clauses.
 public enum LandingPadClause: IRValue {
