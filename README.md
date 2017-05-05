@@ -103,9 +103,6 @@ let function = builder.addFunction(
 let entryBB = function.appendBasicBlock(named: "entry")
 builder.positionAtEnd(of: entryBB)
 
-// allocate space for a local value
-let local = builder.buildAlloca(type: FloatType.double, name: "local")
-
 // Compare to the condition
 let test = builder.buildICmp(function.parameters[0], IntType.int1.zero(), .notEqual)
 
@@ -120,7 +117,6 @@ builder.buildCondBr(condition: test, then: thenBB, else: elseBB)
 builder.positionAtEnd(of: thenBB)
 // local = 1/89, the fibonacci series (sort of)
 let thenVal = FloatType.double.constant(1/89)
-builder.buildStore(thenVal, to: local)
 // Branch to the merge block
 builder.buildBr(mergeBB)
 
@@ -128,7 +124,6 @@ builder.buildBr(mergeBB)
 builder.positionAtEnd(of: elseBB)
 // local = 1/109, the fibonacci series (sort of) backwards
 let elseVal = FloatType.double.constant(1/109)
-builder.buildStore(elseVal, to: local)
 // Branch to the merge block
 builder.buildBr(mergeBB)
 
@@ -147,16 +142,13 @@ This program generates the following IR:
 ```llvm
 define double @calculateFibs(i1) {
 entry:
-  %local = alloca double
   %1 = icmp ne i1 %0, false
   br i1 %1, label %then, label %else
 
 then:                                             ; preds = %entry
-  store double 0x3F8702E05C0B8170, double* %local
   br label %merge
 
 else:                                             ; preds = %entry
-  store double 0x3F82C9FB4D812CA0, double* %local
   br label %merge
 
 merge:                                            ; preds = %else, %then
