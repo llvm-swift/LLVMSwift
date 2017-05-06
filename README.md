@@ -103,7 +103,7 @@ let function = builder.addFunction(
 let entryBB = function.appendBasicBlock(named: "entry")
 builder.positionAtEnd(of: entryBB)
 
-// allocate space for a local value
+// allocate space for a local value		
 let local = builder.buildAlloca(type: FloatType.double, name: "local")
 
 // Compare to the condition
@@ -120,7 +120,6 @@ builder.buildCondBr(condition: test, then: thenBB, else: elseBB)
 builder.positionAtEnd(of: thenBB)
 // local = 1/89, the fibonacci series (sort of)
 let thenVal = FloatType.double.constant(1/89)
-builder.buildStore(thenVal, to: local)
 // Branch to the merge block
 builder.buildBr(mergeBB)
 
@@ -128,7 +127,6 @@ builder.buildBr(mergeBB)
 builder.positionAtEnd(of: elseBB)
 // local = 1/109, the fibonacci series (sort of) backwards
 let elseVal = FloatType.double.constant(1/109)
-builder.buildStore(elseVal, to: local)
 // Branch to the merge block
 builder.buildBr(mergeBB)
 
@@ -139,7 +137,9 @@ phi.addIncoming([
   (thenVal, thenBB),
   (elseVal, elseBB),
 ])
-builder.buildRet(phi)
+builder.buildStore(phi, to: local)
+let ret = builder.buildLoad(local, name: "ret")
+builder.buildRet(ret)
 ```
 
 This program generates the following IR:
@@ -152,16 +152,16 @@ entry:
   br i1 %1, label %then, label %else
 
 then:                                             ; preds = %entry
-  store double 0x3F8702E05C0B8170, double* %local
   br label %merge
 
 else:                                             ; preds = %entry
-  store double 0x3F82C9FB4D812CA0, double* %local
   br label %merge
 
 merge:                                            ; preds = %else, %then
   %phi_example = phi double [ 0x3F8702E05C0B8170, %then ], [ 0x3F82C9FB4D812CA0, %else ]
-  ret double %phi_example
+  store double %phi_example, double* %local
+  %ret = load double, double* %local
+  ret double %ret
 }
 ```
 
