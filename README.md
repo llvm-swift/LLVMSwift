@@ -103,6 +103,9 @@ let function = builder.addFunction(
 let entryBB = function.appendBasicBlock(named: "entry")
 builder.positionAtEnd(of: entryBB)
 
+// allocate space for a local value		
+let local = builder.buildAlloca(type: FloatType.double, name: "local")
+
 // Compare to the condition
 let test = builder.buildICmp(function.parameters[0], IntType.int1.zero(), .notEqual)
 
@@ -134,7 +137,9 @@ phi.addIncoming([
   (thenVal, thenBB),
   (elseVal, elseBB),
 ])
-builder.buildRet(phi)
+builder.buildStore(phi, to: local)
+let ret = builder.buildLoad(local, name: "ret")
+builder.buildRet(ret)
 ```
 
 This program generates the following IR:
@@ -142,6 +147,7 @@ This program generates the following IR:
 ```llvm
 define double @calculateFibs(i1) {
 entry:
+  %local = alloca double
   %1 = icmp ne i1 %0, false
   br i1 %1, label %then, label %else
 
@@ -153,7 +159,9 @@ else:                                             ; preds = %entry
 
 merge:                                            ; preds = %else, %then
   %phi_example = phi double [ 0x3F8702E05C0B8170, %then ], [ 0x3F82C9FB4D812CA0, %else ]
-  ret double %phi_example
+  store double %phi_example, double* %local
+  %ret = load double, double* %local
+  ret double %ret
 }
 ```
 
