@@ -8,6 +8,9 @@ let package = Package(
     .library(
       name: "LLVM",
       targets: ["LLVM"]),
+    .library(
+      name: "LLVMIntrinsics",
+      targets: ["LLVMIntrinsics"]),
   ],
   dependencies: [
     .package(url: "https://github.com/llvm-swift/FileCheck.git", from: "0.0.3"),
@@ -25,5 +28,11 @@ let package = Package(
     .testTarget(
       name: "LLVMTests",
       dependencies: ["LLVM", "FileCheck"]),
+    .target(
+      name: "LLVMIntrinsics",
+      dependencies: ["LLVM"]),
+    .testTarget(
+      name: "LLVMIntrinsicsTests",
+      dependencies: ["LLVMIntrinsics", "LLVM", "FileCheck"]),
   ]
 )

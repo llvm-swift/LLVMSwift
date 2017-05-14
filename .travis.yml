@@ -11,6 +11,7 @@ matrix:
     - brew update
     - brew install llvm
     - sudo swift utils/make-pkgconfig.swift
+    - sudo swift utils/intrinsics-gen.swift Tests/Resources/Intrinsics.td
     script:
     - swift test -Xlinker -w
   - os: linux
@@ -37,6 +38,7 @@ matrix:
     - tar xzf swift-4.2-RELEASE-ubuntu14.04.tar.gz
     - export PATH=${PWD}/swift-4.2-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
     - sudo ./swift-4.2-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
+    - sudo ./swift-4.2-RELEASE-ubuntu14.04/usr/bin/swift utils/intrinsics-gen.swift Tests/Resources/Intrinsics.td
     script:
     - swift test
 notifications:

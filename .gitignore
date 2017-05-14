@@ -5,3 +5,4 @@ Package.resolved
 Package.pins
 /*.xcodeproj
 /build
+/Sources/LLVMIntrinsics/IntrinsicsDef.swift
