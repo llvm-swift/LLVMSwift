@@ -24,6 +24,12 @@ public struct PointerType: IRType {
   /// - parameter addressSpace: The optional address space where the pointed-to
   ///   object resides.
   public init(pointee: IRType, addressSpace: Int = 0) {
+    // FIXME: This class of invalid reference is not caught by Module.verify(),
+    // only `lli`.
+    if pointee is VoidType {
+      fatalError("Attempted to form pointer to VoidType - use pointer to IntType.int8 instead")
+    }
+
     self.pointee = pointee
     self.addressSpace = addressSpace
   }
