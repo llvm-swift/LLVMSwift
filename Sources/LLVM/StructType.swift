@@ -58,10 +58,22 @@ public struct StructType: IRType {
   /// list of values.
   ///
   /// - parameter values: A list of values of members of this structure.
+  ///
+  /// - returns: A value representing a constant value of this structure type.
+  public func constant(values: [IRValue]) -> IRValue {
+    var vals = values.map { $0.asLLVM() as Optional }
+    return vals.withUnsafeMutableBufferPointer { buf in
+      return LLVMConstNamedStruct(asLLVM(), buf.baseAddress, UInt32(buf.count))
+    }
+  }
+
+  /// Creates a complex constant value initialized with the given list of values.
+  ///
+  /// - parameter values: A list of values of members of this structure.
   /// - parameter isPacked: Whether or not this structure is 1-byte aligned with
   ///   no packing between fields.  Defaults to `false`.
   ///
-  /// - returns: A value representing a constant value of this structure type.
+  /// - returns: A value representing a complex constant value with given the values.
   public static func constant(values: [IRValue], isPacked: Bool = false) -> IRValue {
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
