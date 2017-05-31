@@ -89,6 +89,29 @@ class ConstantSpec : XCTestCase {
       // FLOATINGCONST-NEXT: }
       module.dump()
     })
+
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["STRUCTCONST"]) {
+      // STRUCTCONST: ; ModuleID = '[[ModuleName:ConstantTest]]'
+      // STRUCTCONST-NEXT: source_filename = "[[ModuleName]]"
+      let module = Module(name: "ConstantTest")
+      let builder = IRBuilder(module: module)
+      // STRUCTCONST: define void @main() {
+      let main = builder.addFunction("main",
+                                     type: FunctionType(argTypes: [],
+                                                        returnType: VoidType()))
+
+      let constant = StructType(elementTypes: [IntType.int64])
+        .constant(values: [Int64(42).asLLVM()])
+
+      // STRUCTCONST-NEXT: entry:
+      let entry = main.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: entry)
+
+      // STRUCTCONST-NEXT: ret { i64 } { i64 42 }
+      builder.buildRet(constant)
+      // STRUCTCONST-NEXT: }
+      module.dump()
+    })
   }
 
   #if !os(macOS)

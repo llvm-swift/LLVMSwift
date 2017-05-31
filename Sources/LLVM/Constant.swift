@@ -13,6 +13,8 @@ public enum Unsigned: IntegralConstantRepresentation {}
 public enum Signed: IntegralConstantRepresentation {}
 /// Represents floating types and operations.
 public enum Floating: ConstantRepresentation {}
+/// Represents struct types and operations.
+public enum Struct: ConstantRepresentation {}
 
 /// A `Constant` represents a value initialized to a constant.  Constant values
 /// may be manipulated with standard Swift arithmetic operations and used with
@@ -28,6 +30,7 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
     case unsigned
     case signed
     case floating
+    case `struct`
   }
   fileprivate let repr: Representation
 
@@ -43,6 +46,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       self.repr = .signed
     } else if reprID == ObjectIdentifier(Floating.self) {
       self.repr = .floating
+    } else if reprID == ObjectIdentifier(Struct.self) {
+        self.repr = .struct
     } else {
       fatalError("Invalid representation \(type(of: Repr.self))")
     }
@@ -71,6 +76,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
         return Constant<T>(llvm: LLVMConstIntCast(val, type.asLLVM(), /*signed:*/ false.llvm))
       case .floating:
         return Constant<T>(llvm: LLVMConstFPToUI(val, type.asLLVM()))
+      case .struct:
+        fatalError("Cannot cast struct type to integer type")
       }
     } else if destID == ObjectIdentifier(Signed.self) {
       switch self.repr {
@@ -79,6 +86,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
         return Constant<T>(llvm: LLVMConstIntCast(val, type.asLLVM(), /*signed:*/ true.llvm))
       case .floating:
         return Constant<T>(llvm: LLVMConstFPToSI(val, type.asLLVM()))
+      case .struct:
+        fatalError("Cannot cast struct type to integer type")
       }
     } else {
       fatalError("Invalid representation \(type(of: T.self))")
@@ -100,6 +109,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant<Floating>(llvm: LLVMConstSIToFP(val, type.asLLVM()))
     case .floating:
       return Constant<Floating>(llvm: LLVMConstFPCast(val, type.asLLVM()))
+    case .struct:
+      fatalError("Cannot cast struct type to float type")
     }
   }
 
@@ -152,6 +163,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       }
     case .floating:
       return Constant(llvm: LLVMConstFAdd(lhsVal, rhsVal))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -170,6 +183,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant(llvm: LLVMConstAdd(lhs.llvm, rhs.llvm))
     case .floating:
       return Constant(llvm: LLVMConstFAdd(lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -199,6 +214,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       }
     case .floating:
       return lhs - rhs
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -217,6 +234,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant(llvm: LLVMConstSub(lhs.llvm, rhs.llvm))
     case .floating:
       return Constant(llvm: LLVMConstFSub(lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -246,6 +265,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       }
     case .floating:
       return lhs * rhs
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -264,6 +285,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant(llvm: LLVMConstMul(lhs.llvm, rhs.llvm))
     case .floating:
       return Constant(llvm: LLVMConstFMul(lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -285,6 +308,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant(llvm: LLVMConstUDiv(lhs.llvm, rhs.llvm))
     case .floating:
       return Constant(llvm: LLVMConstFDiv(lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -306,6 +331,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant(llvm: LLVMConstURem(lhs.llvm, rhs.llvm))
     case .floating:
       return Constant(llvm: LLVMConstFRem(lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -328,6 +355,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.equal.llvm, lhs.llvm, rhs.llvm))
     case .floating:
       return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedEqual.llvm, lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -348,6 +377,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThan.llvm, lhs.llvm, rhs.llvm))
     case .floating:
       return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThan.llvm, lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -368,6 +399,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThan.llvm, lhs.llvm, rhs.llvm))
     case .floating:
       return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThan.llvm, lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -388,6 +421,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
     case .floating:
       return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 
@@ -408,6 +443,8 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
       return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
     case .floating:
       return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
+    case .struct:
+      fatalError("Operation undefined on struct type")
     }
   }
 }
@@ -519,5 +556,18 @@ extension Constant where Repr: IntegralConstantRepresentation {
     precondition(then.repr == `else`.repr, "Mixed-representation constant operations are disallowed")
 
     return Constant<T>(llvm: LLVMConstSelect(cond.llvm, then.llvm, `else`.llvm))
+  }
+}
+
+// MARK: Struct Operations
+
+extension Constant where Repr == Struct {
+
+  public func getElement(indices: [Int]) -> IRValue {
+    assert(repr == .struct)
+    var indices = indices.map({ UInt32($0) })
+    return indices.withUnsafeMutableBufferPointer { buf in
+      return LLVMConstExtractValue(asLLVM(), buf.baseAddress, UInt32(buf.count))
+    }
   }
 }
