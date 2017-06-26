@@ -45,6 +45,10 @@ public enum OpCode {
   case srem
   /// The opcode for the `frem` instruction.
   case frem
+  /// The opcode for the `icmp` instruction.
+  case icmp
+  /// The opcode for the `fcmp` instruction.
+  case fcmp
 
   // MARK: Logical Operators
 
@@ -103,10 +107,6 @@ public enum OpCode {
 
   // MARK: Other Operators
 
-  /// The opcode for the `icmp` instruction.
-  case icmp
-  /// The opcode for the `fcmp` instruction.
-  case fcmp
   /// The opcode for the `PHI` instruction.
   case phi
   /// The opcode for the `call` instruction.
@@ -256,6 +256,11 @@ extension OpCode {
     /// The `frem` instruction.
     case frem
 
+    /// The opcode for the `icmp` instruction.
+    case icmp
+    /// The opcode for the `fcmp` instruction.
+    case fcmp
+
     /// The `shl` instruction.
     case shl
     /// The `lshr` instruction.
@@ -273,6 +278,7 @@ extension OpCode {
       .add: LLVMAdd, .fadd: LLVMFAdd, .sub: LLVMSub, .fsub: LLVMFSub,
       .mul: LLVMMul, .fmul: LLVMFMul, .udiv: LLVMUDiv, .sdiv: LLVMSDiv,
       .fdiv: LLVMFDiv, .urem: LLVMURem, .srem: LLVMSRem, .frem: LLVMFRem,
+      .icmp: LLVMICmp, .fcmp: LLVMFCmp,
       .shl: LLVMShl, .lshr: LLVMLShr, .ashr: LLVMAShr, .and: LLVMAnd,
       .or: LLVMOr, .xor: LLVMXor,
     ]
