@@ -2,10 +2,10 @@
 import cllvm
 #endif
 
-/// Lazy static initializer that calls LLVM initialization functions only once.
-let llvmInitializer: Void = {
-  initializeLLVM()
-}()
+/// initializer that calls LLVM initialization functions only once.
+public func initializeLLVM() {
+  _ = llvmInitializer
+}
 
 /// Calls all the LLVM functions to initialize:
 ///
@@ -15,7 +15,7 @@ let llvmInitializer: Void = {
 /// - ASM Parsers
 /// - Target MCs
 /// - Disassemblers
-private func initializeLLVM() {
+let llvmInitializer: Void = {
   LLVMInitializeAllTargets()
   LLVMInitializeAllTargetInfos()
 
@@ -25,4 +25,5 @@ private func initializeLLVM() {
   LLVMInitializeAllTargetMCs()
 
   LLVMInitializeAllDisassemblers()
-}
+}()
+
