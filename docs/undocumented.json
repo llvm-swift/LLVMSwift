@@ -1,6 +1,33 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/bretttoomey/Documents/LLVMSwift/Sources/LLVM/ObjectFile.swift",
+      "line": 110,
+      "symbol": "Relocation.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/bretttoomey/Documents/LLVMSwift/Sources/LLVM/ObjectFile.swift",
+      "line": 111,
+      "symbol": "Relocation.offset",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/bretttoomey/Documents/LLVMSwift/Sources/LLVM/ObjectFile.swift",
+      "line": 112,
+      "symbol": "Relocation.symbol",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/bretttoomey/Documents/LLVMSwift/Sources/LLVM/ObjectFile.swift",
+      "line": 113,
+      "symbol": "Relocation.typeName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
   ],
-  "source_directory": "/Users/harlan/Documents/Code/Swift/LLVMSwift"
+  "source_directory": "/Users/bretttoomey/Documents/LLVMSwift"
 }

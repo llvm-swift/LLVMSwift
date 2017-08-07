@@ -14,7 +14,7 @@
     <a title="JIT Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html"> Docs</a> (99% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -50,6 +50,18 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Target.html">Target</a>
@@ -102,6 +114,9 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/Linkage.html">Linkage</a>
               </li>
               <li class="nav-group-task">
@@ -114,6 +129,12 @@
                 <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
               </li>
               <li class="nav-group-task">
@@ -124,6 +145,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
@@ -230,6 +254,9 @@
                 <a href="../Structs/BasicBlock/Address.html">– Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
@@ -243,6 +270,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/LabelType.html">LabelType</a>
@@ -260,10 +290,22 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -319,7 +361,6 @@ interactive programs that will run as soon as they are compiled.</p>
                         <p>Creates a Just In Time compiler that will compile the code in the
 provided <code><a href="../Classes/Module.html">Module</a></code> to the architecture of the provided <code><a href="../Classes/TargetMachine.html">TargetMachine</a></code>,
 and execute it.</p>
-
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     JITError
@@ -348,7 +389,6 @@ and execute it.</p>
                               <td>
                                 <div>
                                   <p>The module containing code you wish to execute</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -360,8 +400,7 @@ and execute it.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The target machine which you’re compiling for</p>
-
+                                  <p>The target machine which you&rsquo;re compiling for</p>
                                 </div>
                               </td>
                             </tr>
@@ -410,7 +449,6 @@ JIT.</p>
                               <td>
                                 <div>
                                   <p>The function you wish to execute</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -423,7 +461,6 @@ JIT.</p>
                               <td>
                                 <div>
                                   <p>The arguments you wish to pass to the function</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -433,7 +470,6 @@ JIT.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The LLVM value that the function returned</p>
-
                       </div>
                     </section>
                   </div>
@@ -451,13 +487,14 @@ JIT.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Retrieves a pointer to the function compiled by this JIT.
-- parameter name: The name of the function you wish to look up.
-- returns: A pointer to the result of compiling the specified function.
-- note: You will have to <code>unsafeBitCast</code> this pointer to
-        the appropriate <code>@convention(c)</code> function type to be
-        able to run it from Swift.</p>
+                        <p>Retrieves a pointer to the function compiled by this JIT.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    You will have to <code>unsafeBitCast</code> this pointer to
+    the appropriate <code>@convention(c)</code> function type to be
+    able to run it from Swift.
 
+</div>
 <pre class="highlight plaintext"><code>typealias FnPtr = @convention(c) () -&gt; Double
 let fnAddr = jit.addressOfFunction(name: "test")
 let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
@@ -485,7 +522,6 @@ let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
                               <td>
                                 <div>
                                   <p>The name of the function you wish to look up.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -495,7 +531,6 @@ let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
                       <div>
                         <h4>Return Value</h4>
                         <p>A pointer to the result of compiling the specified function.</p>
-
                       </div>
                     </section>
                   </div>
@@ -513,8 +548,7 @@ let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Adds the provided module, and all top-level declarations into this JIT.
-- parameter module: The module you wish to add.</p>
+                        <p>Adds the provided module, and all top-level declarations into this JIT.</p>
 
                       </div>
                       <div class="declaration">
@@ -538,7 +572,6 @@ let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
                               <td>
                                 <div>
                                   <p>The module you wish to add.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -615,7 +648,6 @@ into the function as <code>argc</code> and <code>argv</code>.</p>
                               <td>
                                 <div>
                                   <p>The <code>main</code> function you wish to execute</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -628,7 +660,6 @@ into the function as <code>argc</code> and <code>argv</code>.</p>
                               <td>
                                 <div>
                                   <p>The string arguments you wish to pass to the function</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -638,7 +669,6 @@ into the function as <code>argc</code> and <code>argv</code>.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The numerical exit code returned by the function</p>
-
                       </div>
                     </section>
                   </div>
@@ -648,8 +678,8 @@ into the function as <code>argc</code> and <code>argv</code>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

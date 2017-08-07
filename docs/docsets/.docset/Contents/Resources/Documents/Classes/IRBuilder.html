@@ -14,7 +14,7 @@
     <a title="IRBuilder Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html"> Docs</a> (99% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -50,6 +50,18 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Target.html">Target</a>
@@ -102,6 +114,9 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/Linkage.html">Linkage</a>
               </li>
               <li class="nav-group-task">
@@ -114,6 +129,12 @@
                 <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
               </li>
               <li class="nav-group-task">
@@ -124,6 +145,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
@@ -230,6 +254,9 @@
                 <a href="../Structs/BasicBlock/Address.html">– Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
@@ -243,6 +270,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/LabelType.html">LabelType</a>
@@ -260,10 +290,22 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -366,7 +408,6 @@ methods to insert instructions at that position.</p>
                               <td>
                                 <div>
                                   <p>The module into which instructions will be inserted.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -424,7 +465,6 @@ methods to insert instructions at that position.</p>
                               <td>
                                 <div>
                                   <p>The basic block to reposition the IR Builder after.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -471,7 +511,6 @@ methods to insert instructions at that position.</p>
                               <td>
                                 <div>
                                   <p>The instruction to reposition the IR Builder before.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -522,7 +561,6 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC4LLVM9IRBuilder
                               <td>
                                 <div>
                                   <p>The instruction to reposition the IR Builder before.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -535,7 +573,6 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC4LLVM9IRBuilder
                               <td>
                                 <div>
                                   <p>The basic block to reposition the IR builder in.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -676,7 +713,6 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC4LLVM9IRBuilder
                               <td>
                                 <div>
                                   <p>The instruction to insert.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -689,12 +725,197 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC4LLVM9IRBuilder
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Convenience%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/Convenience Instructions" class="dashAnchor"></a>
+                <a href="#/Convenience%20Instructions">
+                  <h3 class="section-name">Convenience Instructions</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder20buildBinaryOperationFTOOS_6OpCode6BinaryPS_7IRValue_PS3__4nameSS_PS3__"></a>
+                    <a name="//apple_ref/swift/Method/buildBinaryOperation(_:_:_:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder20buildBinaryOperationFTOOS_6OpCode6BinaryPS_7IRValue_PS3__4nameSS_PS3__">buildBinaryOperation(_:_:_:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds the specified binary operation instruction with the given arguments.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildBinaryOperation</span><span class="p">(</span><span class="n">_</span> <span class="nv">op</span><span class="p">:</span> <span class="kt"><a href="../Enums/OpCode.html">OpCode</a></span><span class="o">.</span><span class="kt">Binary</span><span class="p">,</span> <span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>op</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The operation to build.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The first operand.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The second operand.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the result of perfomring the given binary
+operation with the given values as arguments.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder9buildCastFTOOS_6OpCode4Cast5valuePS_7IRValue_4typePS_6IRType_4nameSS_PS3__"></a>
+                    <a name="//apple_ref/swift/Method/buildCast(_:value:type:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildCastFTOOS_6OpCode4Cast5valuePS_7IRValue_4typePS_6IRType_4nameSS_PS3__">buildCast(_:value:type:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds the specified cast operation instruction with the given value and
+destination type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildCast</span><span class="p">(</span><span class="n">_</span> <span class="nv">op</span><span class="p">:</span> <span class="kt"><a href="../Enums/OpCode.html">OpCode</a></span><span class="o">.</span><span class="kt">Cast</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>op</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cast operation to build.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to cast.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The destination type to cast to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the result of casting the given value to
+the given destination type using the given operation.</p>
                       </div>
                     </section>
                   </div>
@@ -729,10 +950,6 @@ block then calling <code><a href="../Classes/IRBuilder.html#/s:FC4LLVM9IRBuilder
 determined by the type of the given value.  Providing an operand that is
 neither an integer nor a floating value is a fatal condition.</p>
 
-<ul>
-<li><p>name: The name for the newly inserted instruction.</p></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -757,7 +974,6 @@ neither an integer nor a floating value is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The value to negate.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -769,8 +985,20 @@ neither an integer nor a floating value is a fatal condition.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Should overflow occur, specifies the behavior of the program.</p>
-
+                                  <p>Should overflow occur, specifies the
+behavior of the program.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
                                 </div>
                               </td>
                             </tr>
@@ -780,7 +1008,6 @@ neither an integer nor a floating value is a fatal condition.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the negation of the given value.</p>
-
                       </div>
                     </section>
                   </div>
@@ -828,7 +1055,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The first summand value (the augend).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -841,7 +1067,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The second summand value (the addend).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -853,8 +1078,8 @@ are neither integers nor floating values is a fatal condition.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Should overflow occur, specifies the behavior of the program.</p>
-
+                                  <p>Should overflow occur, specifies the
+behavior of the program.</p>
                                 </div>
                               </td>
                             </tr>
@@ -867,7 +1092,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -877,7 +1101,6 @@ are neither integers nor floating values is a fatal condition.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the sum of the two operands.</p>
-
                       </div>
                     </section>
                   </div>
@@ -925,7 +1148,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The first value (the minuend).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -938,7 +1160,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The second value (the subtrahend).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -950,8 +1171,8 @@ are neither integers nor floating values is a fatal condition.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Should overflow occur, specifies the behavior of the program.</p>
-
+                                  <p>Should overflow occur, specifies the
+behavior of the program.</p>
                                 </div>
                               </td>
                             </tr>
@@ -964,7 +1185,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -974,7 +1194,6 @@ are neither integers nor floating values is a fatal condition.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the difference of the two operands.</p>
-
                       </div>
                     </section>
                   </div>
@@ -1022,7 +1241,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The first factor value (the multiplier).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1035,7 +1253,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The second factor value (the multiplicand).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1047,8 +1264,8 @@ are neither integers nor floating values is a fatal condition.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Should overflow occur, specifies the behavior of the program.</p>
-
+                                  <p>Should overflow occur, specifies the
+behavior of the program.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1061,7 +1278,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1071,7 +1287,6 @@ are neither integers nor floating values is a fatal condition.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the product of the two operands.</p>
-
                       </div>
                     </section>
                   </div>
@@ -1120,7 +1335,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The first value (the dividend).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1133,7 +1347,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The second value (the divisor).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1145,8 +1358,8 @@ are neither integers nor floating values is a fatal condition.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Whether to emit a signed or unsigned remainder instruction.  Defaults to emission of a signed remainder instruction.</p>
-
+                                  <p>Whether to emit a signed or unsigned remainder
+instruction.  Defaults to emission of a signed remainder instruction.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1159,7 +1372,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1168,8 +1380,8 @@ are neither integers nor floating values is a fatal condition.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the remainder of division of the first operand by the second operand.</p>
-
+                        <p>A value representing the remainder of division of the first
+operand by the second operand.</p>
                       </div>
                     </section>
                   </div>
@@ -1218,7 +1430,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The first value (the dividend).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1231,7 +1442,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The second value (the divisor).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1243,8 +1453,9 @@ are neither integers nor floating values is a fatal condition.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Whether to emit a signed or unsigned remainder instruction. Defaults to emission of a signed divide instruction.</p>
-
+                                  <p>Whether to emit a signed or unsigned remainder
+                instruction. Defaults to emission of a signed
+                divide instruction.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1256,8 +1467,8 @@ are neither integers nor floating values is a fatal condition.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Whether this division must be exact. Defaults to inexact.</p>
-
+                                  <p>Whether this division must be exact. Defaults to
+               inexact.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1270,7 +1481,6 @@ are neither integers nor floating values is a fatal condition.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1279,8 +1489,8 @@ are neither integers nor floating values is a fatal condition.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the quotient of the first and second operands.</p>
-
+                        <p>A value representing the quotient of the first and second
+operands.</p>
                       </div>
                     </section>
                   </div>
@@ -1327,7 +1537,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The first value to compare.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1340,7 +1549,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The second value to compare.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1353,7 +1561,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The method of comparison to use.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1366,7 +1573,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1375,8 +1581,8 @@ given predicate.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of the comparision of the given operands.</p>
-
+                        <p>A value representing the result of the comparision of the given
+operands.</p>
                       </div>
                     </section>
                   </div>
@@ -1423,7 +1629,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The first value to compare.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1436,7 +1641,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The second value to compare.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1449,7 +1653,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The method of comparison to use.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1462,7 +1665,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1471,8 +1673,8 @@ given predicate.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of the comparision of the given operands.</p>
-
+                        <p>A value representing the result of the comparision of the given
+operands.</p>
                       </div>
                     </section>
                   </div>
@@ -1525,7 +1727,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The value to negate.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1538,7 +1739,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1548,7 +1748,6 @@ given predicate.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the logical negation of the given operand.</p>
-
                       </div>
                     </section>
                   </div>
@@ -1590,7 +1789,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The first operand.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1603,7 +1801,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The second operand.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1616,7 +1813,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1625,8 +1821,8 @@ given predicate.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the exclusive OR of the values of the two given operands.</p>
-
+                        <p>A value representing the exclusive OR of the values of the
+two given operands.</p>
                       </div>
                     </section>
                   </div>
@@ -1668,7 +1864,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The first operand.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1681,7 +1876,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The second operand.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1694,7 +1888,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1703,8 +1896,8 @@ given predicate.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the logical OR of the values of the two given operands.</p>
-
+                        <p>A value representing the logical OR of the values of the
+two given operands.</p>
                       </div>
                     </section>
                   </div>
@@ -1746,7 +1939,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The first operand.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1759,7 +1951,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The second operand.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1772,7 +1963,6 @@ given predicate.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1781,8 +1971,8 @@ given predicate.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the logical AND of the values of the two given operands.</p>
-
+                        <p>A value representing the logical AND of the values of the
+two given operands.</p>
                       </div>
                     </section>
                   </div>
@@ -1826,7 +2016,6 @@ second value.</p>
                               <td>
                                 <div>
                                   <p>The first operand.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1839,7 +2028,6 @@ second value.</p>
                               <td>
                                 <div>
                                   <p>The number of bits to shift the first operand left by.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1852,7 +2040,6 @@ second value.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1861,8 +2048,8 @@ second value.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the value of the first operand shifted left by the number of bits specified in the second operand.</p>
-
+                        <p>A value representing the value of the first operand shifted
+left by the number of bits specified in the second operand.</p>
                       </div>
                     </section>
                   </div>
@@ -1909,7 +2096,6 @@ zero-fill.</p>
                               <td>
                                 <div>
                                   <p>The first operand.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1922,7 +2108,6 @@ zero-fill.</p>
                               <td>
                                 <div>
                                   <p>The number of bits to shift the first operand right by.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1934,8 +2119,8 @@ zero-fill.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Whether this instruction performs an arithmetic or logical right-shift.  The default is a logical right-shift.</p>
-
+                                  <p>Whether this instruction performs an arithmetic
+or logical right-shift.  The default is a logical right-shift.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1948,7 +2133,6 @@ zero-fill.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1957,8 +2141,8 @@ zero-fill.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the value of the first operand shifted right by the numeber of bits specified in the second operand.</p>
-
+                        <p>A value representing the value of the first operand shifted
+right by the numeber of bits specified in the second operand.</p>
                       </div>
                     </section>
                   </div>
@@ -2012,7 +2196,6 @@ basic blocks.</p>
                               <td>
                                 <div>
                                   <p>The type of incoming values.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2025,7 +2208,6 @@ basic blocks.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2035,7 +2217,6 @@ basic blocks.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly inserted phi node.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2077,8 +2258,8 @@ IR-level branching.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The condition to evaluate.  It must have type <code>i1</code> or be a vector of <code>i1</code>.</p>
-
+                                  <p>The condition to evaluate.  It must have type <code>i1</code> or
+be a vector of <code>i1</code>.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2091,7 +2272,6 @@ IR-level branching.</p>
                               <td>
                                 <div>
                                   <p>The value to select if the given condition is true.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2104,7 +2284,6 @@ IR-level branching.</p>
                               <td>
                                 <div>
                                   <p>The value to select if the given condition is false.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2117,7 +2296,6 @@ IR-level branching.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2127,7 +2305,6 @@ IR-level branching.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the value selected for by the condition.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2174,7 +2351,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                               <td>
                                 <div>
                                   <p>The value to compare.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2186,8 +2362,8 @@ allowing a branch to occur to one of many possible destinations.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The default destination for control flow should the value not match a case in the branch table.</p>
-
+                                  <p>The default destination for control flow should the
+value not match a case in the branch table.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2200,7 +2376,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                               <td>
                                 <div>
                                   <p>The number of cases in the branch table.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2210,7 +2385,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly inserted <code>switch</code> instruction.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2263,7 +2437,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                               <td>
                                 <div>
                                   <p>The name of the newly defined function.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2276,7 +2449,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                               <td>
                                 <div>
                                   <p>The type of the newly defined function.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2286,7 +2458,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly inserted function definition.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2328,7 +2499,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                               <td>
                                 <div>
                                   <p>The name of the structure.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2340,8 +2510,7 @@ allowing a branch to occur to one of many possible destinations.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The type of fields that make up the structure’s body.</p>
-
+                                  <p>The type of fields that make up the structure&rsquo;s body.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2353,8 +2522,8 @@ allowing a branch to occur to one of many possible destinations.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Whether this structure should be 1-byte aligned with no padding between elements.</p>
-
+                                  <p>Whether this structure should be 1-byte aligned with
+no padding between elements.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2364,7 +2533,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly declared named structure.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2417,7 +2585,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                               <td>
                                 <div>
                                   <p>The target block to transfer control flow to.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2427,7 +2594,6 @@ allowing a branch to occur to one of many possible destinations.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2469,8 +2635,8 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                               </td>
                               <td>
                                 <div>
-                                  <p>A value of type <code>i1</code> that determines which basic block to transfer control flow to.</p>
-
+                                  <p>A value of type <code>i1</code> that determines which basic
+block to transfer control flow to.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2482,8 +2648,8 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                               </td>
                               <td>
                                 <div>
-                                  <p>The basic block to transfer control flow to if the condition evaluates to <code>true</code>.</p>
-
+                                  <p>The basic block to transfer control flow to if the
+condition evaluates to <code>true</code>.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2495,8 +2661,8 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                               </td>
                               <td>
                                 <div>
-                                  <p>The basic block to transfer control flow to if the condition evaluates to <code>false</code>.</p>
-
+                                  <p>The basic block to transfer control flow to if the
+condition evaluates to <code>false</code>.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2506,7 +2672,6 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2548,7 +2713,6 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                               <td>
                                 <div>
                                   <p>The address of the label to branch to.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2560,8 +2724,9 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                               </td>
                               <td>
                                 <div>
-                                  <p>The set of possible destinations the address may point to.  The same block may appear multiple times in this list, though this isn’t particularly useful.</p>
-
+                                  <p>The set of possible destinations the address may
+point to.  The same block may appear multiple times in this list, though
+this isn&rsquo;t particularly useful.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2571,7 +2736,6 @@ provided condition is <code>true</code>, otherwise to the second basic block.</p
                       <div>
                         <h4>Return Value</h4>
                         <p>An IRValue representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2614,7 +2778,6 @@ with the given value.</p>
                               <td>
                                 <div>
                                   <p>The value to return from the current function.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2624,7 +2787,6 @@ with the given value.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2656,7 +2818,6 @@ with the given value.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2688,7 +2849,6 @@ with the given value.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2731,7 +2891,6 @@ the given array of values as members of an aggregate.</p>
                               <td>
                                 <div>
                                   <p>The values to insert as members of the returned aggregate.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2741,7 +2900,6 @@ the given array of values as members of an aggregate.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2749,9 +2907,9 @@ the given array of values as members of an aggregate.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC4LLVM9IRBuilder9buildCallFTPS_7IRValue_4argsGSaPS1___4nameSS_PS1__"></a>
+                    <a name="/s:FC4LLVM9IRBuilder9buildCallFTPS_7IRValue_4argsGSaPS1___4nameSS_VS_4Call"></a>
                     <a name="//apple_ref/swift/Method/buildCall(_:args:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildCallFTPS_7IRValue_4argsGSaPS1___4nameSS_PS1__">buildCall(_:args:name:)</a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder9buildCallFTPS_7IRValue_4argsGSaPS1___4nameSS_VS_4Call">buildCall(_:args:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2767,7 +2925,7 @@ control to that function.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildCall</span><span class="p">(</span><span class="n">_</span> <span class="nv">fn</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">args</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">],</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildCall</span><span class="p">(</span><span class="n">_</span> <span class="nv">fn</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">args</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">],</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Call.html">Call</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2784,7 +2942,6 @@ control to that function.</p>
                               <td>
                                 <div>
                                   <p>The function to invoke.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2797,7 +2954,6 @@ control to that function.</p>
                               <td>
                                 <div>
                                   <p>A list of arguments.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2810,7 +2966,6 @@ control to that function.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2819,8 +2974,367 @@ control to that function.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing <code>void</code>.</p>
+                        <p>A value representing the result of returning from the callee.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Exception%20Handling%20Instructions"></a>
+                <a name="//apple_ref/swift/Section/Exception Handling Instructions" class="dashAnchor"></a>
+                <a href="#/Exception%20Handling%20Instructions">
+                  <h3 class="section-name">Exception Handling Instructions</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder11buildInvokeFTPS_7IRValue_4argsGSaPS1___4nextVS_10BasicBlock5catchS2_4nameSS_VS_6Invoke"></a>
+                    <a name="//apple_ref/swift/Method/buildInvoke(_:args:next:catch:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildInvokeFTPS_7IRValue_4argsGSaPS1___4nextVS_10BasicBlock5catchS2_4nameSS_VS_6Invoke">buildInvoke(_:args:next:catch:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a call to the given function with the given arguments with the
+possibility of control transfering to either the <code>next</code> basic block or
+the <code>catch</code> basic block if an exception occurs.</p>
 
+<p>If the callee function returns with the <code>ret</code> instruction, control flow 
+will return to the <code>next</code> label. If the callee (or any indirect callees) 
+returns via the <code>resume</code> instruction or other exception handling 
+mechanism, control is interrupted and continued at the dynamically nearest
+<code>exception</code> label.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildInvoke</span><span class="p">(</span><span class="n">_</span> <span class="nv">fn</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">args</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">],</span> <span class="nv">next</span><span class="p">:</span> <span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="p">,</span> <span class="nv">catch</span><span class="p">:</span> <span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Invoke.html">Invoke</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The function to invoke.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>args</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A list of arguments.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>next</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The destination block if the invoke succeeds without exceptions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>catch</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The destination block if the invoke encounters an exception.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the result of returning from the callee
+under normal circumstances.  Under exceptional circumstances, the value
+represents the value of any <code>resume</code> instruction in the <code>catch</code> block.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder15buildLandingPadFT9returningPS_6IRType_13personalityFnGSqCS_8Function_7clausesGSaOS_16LandingPadClause_7cleanupSb4nameSS_PS_7IRValue_"></a>
+                    <a name="//apple_ref/swift/Method/buildLandingPad(returning:personalityFn:clauses:cleanup:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder15buildLandingPadFT9returningPS_6IRType_13personalityFnGSqCS_8Function_7clausesGSaOS_16LandingPadClause_7cleanupSb4nameSS_PS_7IRValue_">buildLandingPad(returning:personalityFn:clauses:cleanup:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a landing pad to specify that a basic block is where an exception 
+lands, and corresponds to the code found in the <code>catch</code> portion of a 
+<code>try/catch</code> sequence.</p>
+
+<p>The clauses are applied in order from top to bottom. If two landing pad
+instructions are merged together through inlining, the clauses from the 
+calling function are appended to the list of clauses. When the call stack
+is being unwound due to an exception being thrown, the exception is 
+compared against each clause in turn. If it doesn’t match any of the 
+clauses, and the cleanup flag is not set, then unwinding continues further
+up the call stack.</p>
+
+<p>The landingpad instruction has several restrictions:</p>
+
+<ul>
+<li>A landing pad block is a basic block which is the unwind destination of 
+an <code>invoke</code> instruction.</li>
+<li>A landing pad block must have a <code>landingpad</code> instruction as its first
+non-PHI instruction.</li>
+<li>There can be only one <code>landingpad</code> instruction within the landing pad 
+block.</li>
+<li><p>A basic block that is not a landing pad block may not include a
+<code>landingpad</code> instruction.</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildLandingPad</span><span class="p">(</span><span class="n">returning</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">personalityFn</span><span class="p">:</span> <span class="kt"><a href="../Classes/Function.html">Function</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">clauses</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/LandingPadClause.html">LandingPadClause</a></span><span class="p">],</span> <span class="nv">cleanup</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the resulting value from the landing pad.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>personalityFn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The personality function.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clauses</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A list of <code>catch</code> and <code>filter</code> clauses.  This list
+must either be non-empty or the landing pad must be marked as a cleanup
+instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cleanup</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A flag indicating whether the landing pad is a 
+cleanup.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value of the given type representing the result of matching
+a clause during unwinding.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder11buildResumeFPS_7IRValue_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildResume(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder11buildResumeFPS_7IRValue_PS1__">buildResume(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a resume instruction to resume propagation of an existing 
+(in-flight) exception whose unwinding was interrupted with a 
+<code>landingpad</code> instruction.</p>
+
+<p>When all cleanups are finished, if an exception is not handled by the 
+current function, unwinding resumes by calling the resume instruction, 
+passing in the result of the <code>landingpad</code> instruction for the original 
+landing pad.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildResume</span><span class="p">(</span><span class="n">_</span> <span class="nv">val</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing <code>void</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder10buildVAArgFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildVAArg(_:type:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder10buildVAArgFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildVAArg(_:type:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a <code>va_arg</code> instruction to access arguments passed through the
+<q>variable argument</q> area of a function call. </p>
+
+<p>This instruction is used to implement the <code>va_arg</code> macro in C.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildVAArg</span><span class="p">(</span><span class="n">_</span> <span class="nv">list</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>list</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value of type <code>va_list*</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of values in the variable argument area.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value of the specified argument type.  In addition, the 
+<code>va_list</code> pointer is incremented to point to the next argument.</p>
                       </div>
                     </section>
                   </div>
@@ -2873,8 +3387,8 @@ type.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The sized type used to determine the amount of stack memory to allocate.</p>
-
+                                  <p>The sized type used to determine the amount of stack
+memory to allocate.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2887,7 +3401,6 @@ type.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2897,7 +3410,6 @@ type.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2930,7 +3442,6 @@ given in the second value.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -2973,7 +3484,6 @@ given value.</p>
                               <td>
                                 <div>
                                   <p>The pointer value to load from.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2986,7 +3496,6 @@ given value.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -2995,8 +3504,8 @@ given value.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of a load from the given pointer value.</p>
-
+                        <p>A value representing the result of a load from the given
+pointer value.</p>
                       </div>
                     </section>
                   </div>
@@ -3044,7 +3553,6 @@ around its semantics and correct usage.</p>
                               <td>
                                 <div>
                                   <p>The base address for the index calculation.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3056,8 +3564,8 @@ around its semantics and correct usage.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A list of indices that indicate which of the elements of the aggregate object are indexed.</p>
-
+                                  <p>A list of indices that indicate which of the elements
+of the aggregate object are indexed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -3070,7 +3578,6 @@ around its semantics and correct usage.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3079,8 +3586,8 @@ around its semantics and correct usage.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the address of a subelement of the given aggregate data structure value.</p>
-
+                        <p>A value representing the address of a subelement of the given
+aggregate data structure value.</p>
                       </div>
                     </section>
                   </div>
@@ -3126,7 +3633,6 @@ around its semantics and correct usage.</p>
                               <td>
                                 <div>
                                   <p>The base address for the index calculation.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3138,8 +3644,8 @@ around its semantics and correct usage.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A list of indices that indicate which of the elements of the aggregate object are indexed.</p>
-
+                                  <p>A list of indices that indicate which of the elements
+of the aggregate object are indexed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -3152,7 +3658,6 @@ around its semantics and correct usage.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3161,8 +3666,8 @@ around its semantics and correct usage.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the address of a subelement of the given aggregate data structure value.</p>
-
+                        <p>A value representing the address of a subelement of the given
+aggregate data structure value.</p>
                       </div>
                     </section>
                   </div>
@@ -3205,7 +3710,6 @@ a struct.</p>
                               <td>
                                 <div>
                                   <p>The base address for the index calculation.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3218,7 +3722,6 @@ a struct.</p>
                               <td>
                                 <div>
                                   <p>The offset from the base for the index calculation.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3231,7 +3734,6 @@ a struct.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3240,75 +3742,8 @@ a struct.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the address of a subelement of the given struct value.</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC4LLVM9IRBuilder19buildExtractElementFTPS_7IRValue_5indexPS1__4nameSS_PS1__"></a>
-                    <a name="//apple_ref/swift/Method/buildExtractElement(_:index:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC4LLVM9IRBuilder19buildExtractElementFTPS_7IRValue_5indexPS1__4nameSS_PS1__">buildExtractElement(_:index:name:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Builds an ExtractElement instruction to retrieve an indexed value from a
-vector value.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildExtractElement</span><span class="p">(</span><span class="n">_</span> <span class="nv">vec</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-                                  <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>vec</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The vector you’re indexing into.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>index</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The index at which to extract.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The value in the vector at the provided index.</p>
-
+                        <p>A value representing the address of a subelement of the given
+struct value.</p>
                       </div>
                     </section>
                   </div>
@@ -3351,8 +3786,7 @@ struct or array value.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The struct or array you’re indexing into.</p>
-
+                                  <p>The struct or array you&rsquo;re indexing into.</p>
                                 </div>
                               </td>
                             </tr>
@@ -3365,7 +3799,6 @@ struct or array value.</p>
                               <td>
                                 <div>
                                   <p>The index at which to extract.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3375,7 +3808,6 @@ struct or array value.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The value in the struct at the provided index.</p>
-
                       </div>
                     </section>
                   </div>
@@ -3429,7 +3861,6 @@ struct or array value.</p>
                               <td>
                                 <div>
                                   <p>The value to test.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3442,7 +3873,6 @@ struct or array value.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3451,8 +3881,8 @@ struct or array value.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An <code>i1</code><code>value representing the result of a test to see if the value is</code>null`.</p>
-
+                        <p>An <code>i1</code><code>value representing the result of a test to see if the
+value is</code>null`.</p>
                       </div>
                     </section>
                   </div>
@@ -3495,7 +3925,6 @@ not <code>null</code>.</p>
                               <td>
                                 <div>
                                   <p>The value to test.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3508,7 +3937,6 @@ not <code>null</code>.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3517,8 +3945,8 @@ not <code>null</code>.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An <code>i1</code><code>value representing the result of a test to see if the value is not</code>null`.</p>
-
+                        <p>An <code>i1</code><code>value representing the result of a test to see if the
+value is not</code>null`.</p>
                       </div>
                     </section>
                   </div>
@@ -3572,7 +4000,6 @@ the given value to a value of the given type.</p>
                               <td>
                                 <div>
                                   <p>The value to cast or truncate.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3585,7 +4012,6 @@ the given value to a value of the given type.</p>
                               <td>
                                 <div>
                                   <p>The destination type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3598,7 +4024,6 @@ the given value to a value of the given type.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3607,8 +4032,84 @@ the given value to a value of the given type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of truncating or bitcasting the given value to fit the given type.</p>
+                        <p>A value representing the result of truncating or bitcasting the
+given value to fit the given type.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder18buildZExtOrBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildZExtOrBitCast(_:type:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder18buildZExtOrBitCastFTPS_7IRValue_4typePS_6IRType_4nameSS_PS1__">buildZExtOrBitCast(_:type:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds an instruction that either performs a zero extension or a bitcast of
+the given value to a value of the given type with a wider width.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildZExtOrBitCast</span><span class="p">(</span><span class="n">_</span> <span class="nv">val</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>val</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to zero extend.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The destination type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the result of zero extending or bitcasting
+the given value to fit the given type.</p>
                       </div>
                     </section>
                   </div>
@@ -3651,7 +4152,6 @@ given type by just copying the bit pattern.</p>
                               <td>
                                 <div>
                                   <p>The value to bitcast.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3664,7 +4164,6 @@ given type by just copying the bit pattern.</p>
                               <td>
                                 <div>
                                   <p>The destination type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3677,7 +4176,6 @@ given type by just copying the bit pattern.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3686,8 +4184,8 @@ given type by just copying the bit pattern.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of bitcasting the given value to fit the given type.</p>
-
+                        <p>A value representing the result of bitcasting the given value
+to fit the given type.</p>
                       </div>
                     </section>
                   </div>
@@ -3730,7 +4228,6 @@ value of the given type.</p>
                               <td>
                                 <div>
                                   <p>The value to cast.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3743,7 +4240,6 @@ value of the given type.</p>
                               <td>
                                 <div>
                                   <p>The destination type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3756,7 +4252,6 @@ value of the given type.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3765,8 +4260,8 @@ value of the given type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of casting the given value to fit the given type.</p>
-
+                        <p>A value representing the result of casting the given value
+to fit the given type.</p>
                       </div>
                     </section>
                   </div>
@@ -3840,7 +4335,6 @@ type with a shorter width.</p>
                               <td>
                                 <div>
                                   <p>The value to truncate.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3853,7 +4347,6 @@ type with a shorter width.</p>
                               <td>
                                 <div>
                                   <p>The destination type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3866,7 +4359,6 @@ type with a shorter width.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3875,8 +4367,8 @@ type with a shorter width.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of truncating the given value to fit the given type.</p>
-
+                        <p>A value representing the result of truncating the given value
+to fit the given type.</p>
                       </div>
                     </section>
                   </div>
@@ -3919,7 +4411,6 @@ the given type with a wider width.</p>
                               <td>
                                 <div>
                                   <p>The value to sign extend.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3932,7 +4423,6 @@ the given type with a wider width.</p>
                               <td>
                                 <div>
                                   <p>The destination type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3945,7 +4435,6 @@ the given type with a wider width.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -3954,8 +4443,8 @@ the given type with a wider width.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of sign extending the given value to fit the given type.</p>
-
+                        <p>A value representing the result of sign extending the given
+value to fit the given type.</p>
                       </div>
                     </section>
                   </div>
@@ -3998,7 +4487,6 @@ given type with a wider width.</p>
                               <td>
                                 <div>
                                   <p>The value to zero extend.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4011,7 +4499,6 @@ given type with a wider width.</p>
                               <td>
                                 <div>
                                   <p>The destination type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4024,7 +4511,6 @@ given type with a wider width.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4033,8 +4519,8 @@ given type with a wider width.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the result of zero extending the given value to fit the given type.</p>
-
+                        <p>A value representing the result of zero extending the given
+value to fit the given type.</p>
                       </div>
                     </section>
                   </div>
@@ -4077,7 +4563,6 @@ given pointer type.</p>
                               <td>
                                 <div>
                                   <p>The integer value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4090,7 +4575,6 @@ given pointer type.</p>
                               <td>
                                 <div>
                                   <p>The destination pointer type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4103,7 +4587,6 @@ given pointer type.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4112,8 +4595,8 @@ given pointer type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A pointer value representing the value of the given integer converted to the given pointer type.</p>
-
+                        <p>A pointer value representing the value of the given integer
+converted to the given pointer type.</p>
                       </div>
                     </section>
                   </div>
@@ -4156,7 +4639,6 @@ to the given integer type.</p>
                               <td>
                                 <div>
                                   <p>The pointer value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4169,7 +4651,6 @@ to the given integer type.</p>
                               <td>
                                 <div>
                                   <p>The destination integer type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4182,7 +4663,6 @@ to the given integer type.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4191,8 +4671,8 @@ to the given integer type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An integer value representing the value of the given pointer converted to the given integer type.</p>
-
+                        <p>An integer value representing the value of the given pointer
+converted to the given integer type.</p>
                       </div>
                     </section>
                   </div>
@@ -4235,7 +4715,6 @@ value to the given floating type.</p>
                               <td>
                                 <div>
                                   <p>The integer value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4248,7 +4727,6 @@ value to the given floating type.</p>
                               <td>
                                 <div>
                                   <p>The destination integer type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4261,7 +4739,6 @@ value to the given floating type.</p>
                               <td>
                                 <div>
                                   <p>Whether the destination is a signed or unsigned integer.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4274,7 +4751,6 @@ value to the given floating type.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4283,8 +4759,8 @@ value to the given floating type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A floating value representing the value of the given integer converted to the given floating type.</p>
-
+                        <p>A floating value representing the value of the given integer
+converted to the given floating type.</p>
                       </div>
                     </section>
                   </div>
@@ -4327,7 +4803,6 @@ value to the given integer type.</p>
                               <td>
                                 <div>
                                   <p>The floating value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4340,7 +4815,6 @@ value to the given integer type.</p>
                               <td>
                                 <div>
                                   <p>The destination integer type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4353,7 +4827,6 @@ value to the given integer type.</p>
                               <td>
                                 <div>
                                   <p>Whether the destination is a signed or unsigned integer.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4366,7 +4839,6 @@ value to the given integer type.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4375,8 +4847,8 @@ value to the given integer type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An integer value representing the value of the given float converted to the given integer type.</p>
-
+                        <p>An integer value representing the value of the given float
+converted to the given integer type.</p>
                       </div>
                     </section>
                   </div>
@@ -4419,7 +4891,6 @@ in bytes.</p>
                               <td>
                                 <div>
                                   <p>The type to evaluate the alignment of.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4428,8 +4899,8 @@ in bytes.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An integer value representing the alignment of the given type in bytes.</p>
-
+                        <p>An integer value representing the alignment of the given type
+in bytes.</p>
                       </div>
                     </section>
                   </div>
@@ -4472,7 +4943,6 @@ bytes.</p>
                               <td>
                                 <div>
                                   <p>The type to evaluate the size of.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4481,8 +4951,8 @@ bytes.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An integer value representing the size of the given type in bytes.</p>
-
+                        <p>An integer value representing the size of the given type in
+bytes.</p>
                       </div>
                     </section>
                   </div>
@@ -4529,7 +4999,6 @@ pointing into the same object.</p>
                               <td>
                                 <div>
                                   <p>The first pointer (the minuend).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4542,7 +5011,6 @@ pointing into the same object.</p>
                               <td>
                                 <div>
                                   <p>The second pointer (the subtrahend).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4555,7 +5023,6 @@ pointing into the same object.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4564,8 +5031,8 @@ pointing into the same object.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A IRValue representing a 64-bit integer value of the difference of the two pointer values modulo the size of the pointed-to objects.</p>
-
+                        <p>A IRValue representing a 64-bit integer value of the difference
+of the two pointer values modulo the size of the pointed-to objects.</p>
                       </div>
                     </section>
                   </div>
@@ -4618,8 +5085,8 @@ operations.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Defines the kind of “synchronizes-with” edge this fence adds.</p>
-
+                                  <p>Defines the kind of <q>synchronizes-with</q> edge this
+fence adds.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4631,8 +5098,10 @@ operations.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Specifies that the fence only synchronizes with other atomics in the same thread. (This is useful for interacting with signal handlers.) Otherwise this fence is atomic with respect to all other code in the system.</p>
-
+                                  <p>Specifies that the fence only synchronizes
+with other atomics in the same thread. (This is useful for interacting
+with signal handlers.) Otherwise this fence is atomic with respect to
+all other code in the system.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4645,7 +5114,6 @@ operations.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4655,7 +5123,6 @@ operations.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing <code>void</code>.</p>
-
                       </div>
                     </section>
                   </div>
@@ -4703,7 +5170,6 @@ they are equal, it tries to store a new value into the memory.</p>
                               <td>
                                 <div>
                                   <p>The address of data to update atomically.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4716,7 +5182,6 @@ they are equal, it tries to store a new value into the memory.</p>
                               <td>
                                 <div>
                                   <p>The value to base the comparison on.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4728,8 +5193,8 @@ they are equal, it tries to store a new value into the memory.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The new value to write if comparison with the old value returns true.</p>
-
+                                  <p>The new value to write if comparison with the old value
+returns true.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4741,8 +5206,8 @@ they are equal, it tries to store a new value into the memory.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Specifies how this cmpxchg synchronizes with other atomic operations when it succeeds.</p>
-
+                                  <p>Specifies how this cmpxchg synchronizes with
+other atomic operations when it succeeds.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4754,8 +5219,8 @@ they are equal, it tries to store a new value into the memory.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Specifies how this cmpxchg synchronizes with other atomic operations when it fails.</p>
-
+                                  <p>Specifies how this cmpxchg synchronizes with
+other atomic operations when it fails.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4767,8 +5232,10 @@ they are equal, it tries to store a new value into the memory.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Specifies that this cmpxchg only synchronizes with other atomics in the same thread. (This is useful for interacting with signal handlers.)  Otherwise this cmpxchg is atomic with respect to all other code in the system.</p>
-
+                                  <p>Specifies that this cmpxchg only synchronizes
+with other atomics in the same thread. (This is useful for interacting
+with signal handlers.)  Otherwise this cmpxchg is atomic with respect to
+all other code in the system.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4777,8 +5244,8 @@ they are equal, it tries to store a new value into the memory.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the original value at the given location is together with a flag indicating success (true) or failure (false).</p>
-
+                        <p>A value representing the original value at the given location
+is together with a flag indicating success (true) or failure (false).</p>
                       </div>
                     </section>
                   </div>
@@ -4823,7 +5290,6 @@ they are equal, it tries to store a new value into the memory.</p>
                               <td>
                                 <div>
                                   <p>The atomic operation to perform.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4836,7 +5302,6 @@ they are equal, it tries to store a new value into the memory.</p>
                               <td>
                                 <div>
                                   <p>The address of a value to modify.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4849,7 +5314,6 @@ they are equal, it tries to store a new value into the memory.</p>
                               <td>
                                 <div>
                                   <p>The second argument to the given operation.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -4861,8 +5325,8 @@ they are equal, it tries to store a new value into the memory.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Defines the kind of “synchronizes-with” edge this atomic operation adds.</p>
-
+                                  <p>Defines the kind of <q>synchronizes-with</q> edge this
+atomic operation adds.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4874,8 +5338,10 @@ they are equal, it tries to store a new value into the memory.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Specifies that this atomicRMW instruction only synchronizes with other atomics in the same thread. (This is useful for interacting with signal handlers.)  Otherwise this atomicRMW is atomic with respect to all other code in the system.</p>
-
+                                  <p>Specifies that this atomicRMW instruction only
+synchronizes with other atomics in the same thread. (This is useful for
+interacting with signal handlers.)  Otherwise this atomicRMW is atomic
+with respect to all other code in the system.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4884,8 +5350,8 @@ they are equal, it tries to store a new value into the memory.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing the old value of the given pointer before the atomic operation was executed.</p>
-
+                        <p>A value representing the old value of the given pointer before
+the atomic operation was executed.</p>
                       </div>
                     </section>
                   </div>
@@ -4914,14 +5380,13 @@ they are equal, it tries to store a new value into the memory.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Builds a call to the C standard library <code>malloc</code> instruction.
-<code>
-(type *)malloc(sizeof(type));
-</code>
-If <code>count</code> is provided, it is equivalent to:
-<code>
-(type *)malloc(sizeof(type) * count);
-</code></p>
+                        <p>Builds a call to the C standard library <code>malloc</code> instruction.</p>
+<pre class="highlight plaintext"><code>(type *)malloc(sizeof(type));
+</code></pre>
+
+<p>If <code>count</code> is provided, it is equivalent to:</p>
+<pre class="highlight plaintext"><code>(type *)malloc(sizeof(type) * count);
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -4945,8 +5410,8 @@ If <code>count</code> is provided, it is equivalent to:
                               </td>
                               <td>
                                 <div>
-                                  <p>The intended result type being allocated. The result of the <code>malloc</code> will be a pointer to this type.</p>
-
+                                  <p>The intended result type being allocated. The result
+              of the <code>malloc</code> will be a pointer to this type.</p>
                                 </div>
                               </td>
                             </tr>
@@ -4958,8 +5423,8 @@ If <code>count</code> is provided, it is equivalent to:
                               </td>
                               <td>
                                 <div>
-                                  <p>An optional number of slots to allocate, to simulate a C array. This is equivalent to</p>
-
+                                  <p>An optional number of slots to allocate, to simulate a
+               C array. This is equivalent to</p>
                                 </div>
                               </td>
                             </tr>
@@ -4971,8 +5436,7 @@ If <code>count</code> is provided, it is equivalent to:
                               </td>
                               <td>
                                 <div>
-                                  <p>The intended name for the <code>malloc</code>’d value.</p>
-
+                                  <p>The intended name for the <code>malloc</code>&lsquo;d value.</p>
                                 </div>
                               </td>
                             </tr>
@@ -5020,7 +5484,6 @@ pointer.</p>
                               <td>
                                 <div>
                                   <p>The pointer to <code>free</code>.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5030,7 +5493,6 @@ pointer.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The <code>free</code> instruction.</p>
-
                       </div>
                     </section>
                   </div>
@@ -5084,7 +5546,6 @@ aggregate value.</p>
                               <td>
                                 <div>
                                   <p>A value of array or structure type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5097,7 +5558,6 @@ aggregate value.</p>
                               <td>
                                 <div>
                                   <p>The value to insert.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5110,7 +5570,6 @@ aggregate value.</p>
                               <td>
                                 <div>
                                   <p>The index at which at which to insert the value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5123,7 +5582,6 @@ aggregate value.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5132,8 +5590,8 @@ aggregate value.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing an aggregate that has been updated with the given value at the given index.</p>
-
+                        <p>A value representing an aggregate that has been updated with
+the given value at the given index.</p>
                       </div>
                     </section>
                   </div>
@@ -5187,7 +5645,6 @@ value into the given vector.</p>
                               <td>
                                 <div>
                                   <p>A value of vector type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5200,7 +5657,6 @@ value into the given vector.</p>
                               <td>
                                 <div>
                                   <p>The value to insert.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5213,7 +5669,6 @@ value into the given vector.</p>
                               <td>
                                 <div>
                                   <p>The index at which to insert the value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5226,7 +5681,6 @@ value into the given vector.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5235,8 +5689,8 @@ value into the given vector.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing a vector that has been updated with the given value at the given index.</p>
-
+                        <p>A value representing a vector that has been updated with
+the given value at the given index.</p>
                       </div>
                     </section>
                   </div>
@@ -5279,7 +5733,6 @@ a specified index.</p>
                               <td>
                                 <div>
                                   <p>A value of vector type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5292,7 +5745,6 @@ a specified index.</p>
                               <td>
                                 <div>
                                   <p>The index at which to insert the value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5305,7 +5757,6 @@ a specified index.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5315,7 +5766,84 @@ a specified index.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing a scalar at the given index.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4LLVM9IRBuilder18buildShuffleVectorFTPS_7IRValue_3andPS1__4maskPS1__4nameSS_PS1__"></a>
+                    <a name="//apple_ref/swift/Method/buildShuffleVector(_:and:mask:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4LLVM9IRBuilder18buildShuffleVectorFTPS_7IRValue_3andPS1__4maskPS1__4nameSS_PS1__">buildShuffleVector(_:and:mask:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a vector shuffle instruction to construct a permutation of elements
+from the two given input vectors, returning a vector with the same element
+type as the inputs and length that is the same as the shuffle mask.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildShuffleVector</span><span class="p">(</span><span class="n">_</span> <span class="nv">vector1</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">and</span> <span class="nv">vector2</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">mask</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vector1</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The first vector to shuffle.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>vector2</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The second vector to shuffle.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A constant vector of <code>i32</code> values that acts as a mask
+for the shuffled vectors.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing a vector with the same element type as the
+inputs and length that is the same as the shuffle mask.</p>
                       </div>
                     </section>
                   </div>
@@ -5368,7 +5896,6 @@ a specified index.</p>
                               <td>
                                 <div>
                                   <p>The name of the newly inserted global value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5381,7 +5908,6 @@ a specified index.</p>
                               <td>
                                 <div>
                                   <p>The type of the newly inserted global value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5393,8 +5919,8 @@ a specified index.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The optional address space where the global variable resides.</p>
-
+                                  <p>The optional address space where the global
+variable resides.</p>
                                 </div>
                               </td>
                             </tr>
@@ -5404,7 +5930,6 @@ a specified index.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly inserted global variable.</p>
-
                       </div>
                     </section>
                   </div>
@@ -5446,7 +5971,6 @@ a specified index.</p>
                               <td>
                                 <div>
                                   <p>The name of the newly inserted global value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5459,7 +5983,6 @@ a specified index.</p>
                               <td>
                                 <div>
                                   <p>The initial value for the global variable.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5471,8 +5994,8 @@ a specified index.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The optional address space where the global variable resides.</p>
-
+                                  <p>The optional address space where the global
+variable resides.</p>
                                 </div>
                               </td>
                             </tr>
@@ -5482,7 +6005,6 @@ a specified index.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly inserted global variable.</p>
-
                       </div>
                     </section>
                   </div>
@@ -5525,7 +6047,6 @@ with the nul terminated string value.</p>
                               <td>
                                 <div>
                                   <p>The name of the newly inserted global string value.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5538,7 +6059,6 @@ with the nul terminated string value.</p>
                               <td>
                                 <div>
                                   <p>The character contents of the newly inserted global.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5548,7 +6068,6 @@ with the nul terminated string value.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly inserted global string variable.</p>
-
                       </div>
                     </section>
                   </div>
@@ -5592,7 +6111,6 @@ string value.</p>
                               <td>
                                 <div>
                                   <p>The character contents of the newly inserted global.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5605,7 +6123,6 @@ string value.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5615,7 +6132,6 @@ string value.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly inserted global string variable.</p>
-
                       </div>
                     </section>
                   </div>
@@ -5658,7 +6174,6 @@ given string value.</p>
                               <td>
                                 <div>
                                   <p>The character contents of the newly inserted global.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5671,7 +6186,6 @@ given string value.</p>
                               <td>
                                 <div>
                                   <p>The name for the newly inserted instruction.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5680,8 +6194,8 @@ given string value.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A value representing a pointer to the newly inserted global string variable.</p>
-
+                        <p>A value representing a pointer to the newly inserted global
+string variable.</p>
                       </div>
                     </section>
                   </div>
@@ -5726,7 +6240,6 @@ just a new symbol and metadata for an existing position.</p>
                               <td>
                                 <div>
                                   <p>The name of the newly inserted alias.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5739,7 +6252,6 @@ just a new symbol and metadata for an existing position.</p>
                               <td>
                                 <div>
                                   <p>The value or constant to alias.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5752,7 +6264,6 @@ just a new symbol and metadata for an existing position.</p>
                               <td>
                                 <div>
                                   <p>The type of the aliased value or expression.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -5762,7 +6273,6 @@ just a new symbol and metadata for an existing position.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the newly created alias.</p>
-
                       </div>
                     </section>
                   </div>
@@ -5772,8 +6282,8 @@ just a new symbol and metadata for an existing position.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

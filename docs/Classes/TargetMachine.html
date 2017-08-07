@@ -14,7 +14,7 @@
     <a title="TargetMachine Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html"> Docs</a> (99% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -50,6 +50,18 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Target.html">Target</a>
@@ -102,6 +114,9 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/Linkage.html">Linkage</a>
               </li>
               <li class="nav-group-task">
@@ -114,6 +129,12 @@
                 <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
               </li>
               <li class="nav-group-task">
@@ -124,6 +145,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
@@ -230,6 +254,9 @@
                 <a href="../Structs/BasicBlock/Address.html">– Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
@@ -243,6 +270,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/LabelType.html">LabelType</a>
@@ -260,10 +290,22 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -484,8 +526,8 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                               </td>
                               <td>
                                 <div>
-                                  <p>An optional target triple to target.  If this is not provided the target triple of the host machine will be assumed.</p>
-
+                                  <p>An optional target triple to target.  If this is not
+provided the target triple of the host machine will be assumed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -497,8 +539,8 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                               </td>
                               <td>
                                 <div>
-                                  <p>An optional CPU type to target.  If this is not provided the host CPU will be inferred.</p>
-
+                                  <p>An optional CPU type to target.  If this is not provided
+the host CPU will be inferred.</p>
                                 </div>
                               </td>
                             </tr>
@@ -510,8 +552,8 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                               </td>
                               <td>
                                 <div>
-                                  <p>An optional string containing the features a particular target provides.</p>
-
+                                  <p>An optional string containing the features a
+particular target provides.</p>
                                 </div>
                               </td>
                             </tr>
@@ -523,8 +565,8 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The optimization level for generated code.  If no value is provided, the default level of optimization is assumed.</p>
-
+                                  <p>The optimization level for generated code.  If no
+value is provided, the default level of optimization is assumed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -536,8 +578,9 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The relocation mode of the target environment.  If no mode is provided, the default mode for the target architecture is assumed.</p>
-
+                                  <p>The relocation mode of the target environment.  If
+no mode is provided, the default mode for the target architecture is
+assumed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -549,8 +592,9 @@ form <code>&lt;arch&gt;&lt;sub&gt;-&lt;vendor&gt;-&lt;sys&gt;-&lt;abi&gt;</code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The kind of code to produce for this target.  If no model is provided, the default model for the target architecture is assumed.</p>
-
+                                  <p>The kind of code to produce for this target.  If
+no model is provided, the default model for the target architecture is
+assumed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -602,7 +646,6 @@ thrown describing the error in detail.</p>
                               <td>
                                 <div>
                                   <p>The module whose contents will be codegened.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -615,7 +658,6 @@ thrown describing the error in detail.</p>
                               <td>
                                 <div>
                                   <p>The type of codegen to perform on the given module.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -628,7 +670,6 @@ thrown describing the error in detail.</p>
                               <td>
                                 <div>
                                   <p>The path to write the resulting file.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -680,7 +721,6 @@ thrown describing the error in detail.</p>
                               <td>
                                 <div>
                                   <p>The module whose contents will be codegened.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -693,7 +733,6 @@ thrown describing the error in detail.</p>
                               <td>
                                 <div>
                                   <p>The type of codegen to perform on the given module.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -708,8 +747,8 @@ thrown describing the error in detail.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

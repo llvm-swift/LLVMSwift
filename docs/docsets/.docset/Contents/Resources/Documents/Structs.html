@@ -13,7 +13,7 @@
     <a title="Structs  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (100% documented)</p>
+        <p><a href="index.html"> Docs</a> (99% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -49,6 +49,18 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SymbolSequence.html">SymbolSequence</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Target.html">Target</a>
@@ -101,6 +113,9 @@
                 <a href="Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/Linkage.html">Linkage</a>
               </li>
               <li class="nav-group-task">
@@ -113,6 +128,12 @@
                 <a href="Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/OverflowBehavior.html">OverflowBehavior</a>
               </li>
               <li class="nav-group-task">
@@ -123,6 +144,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/StorageClass.html">StorageClass</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/TargetMachineError.html">TargetMachineError</a>
@@ -229,6 +253,9 @@
                 <a href="Structs/BasicBlock/Address.html">– Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
@@ -242,6 +269,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Invoke.html">Invoke</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/LabelType.html">LabelType</a>
@@ -259,10 +289,22 @@
                 <a href="Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/TokenType.html">TokenType</a>
@@ -403,13 +445,66 @@ also cannot have any PHI nodes.</p>
               </ul>
             </div>
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/FIXME:%20When%20upgrading%20to%20Swift%203.1,%20move%20this%20into%20%60Constant%60."></a>
-                <a name="//apple_ref/swift/Section/FIXME: When upgrading to Swift 3.1, move this into `Constant`." class="dashAnchor"></a>
-                <a href="#/FIXME:%20When%20upgrading%20to%20Swift%203.1,%20move%20this%20into%20%60Constant%60.">
-                  <h3 class="section-name">FIXME: When upgrading to Swift 3.1, move this into `Constant`.</h3>
-                </a>
-              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4LLVM4Call"></a>
+                    <a name="//apple_ref/swift/Struct/Call" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4LLVM4Call">Call</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents a simple function call.</p>
+
+                        <a href="Structs/Call.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Call</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4LLVM6Invoke"></a>
+                    <a name="//apple_ref/swift/Struct/Invoke" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4LLVM6Invoke">Invoke</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents a function call that may transfer control to an exception handler.</p>
+
+                        <a href="Structs/Invoke.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Invoke</span><span class="p">:</span> <span class="kt"><a href="Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
               <ul>
                 <li class="item">
                   <div>
@@ -580,6 +675,35 @@ reference to an external definition that has an initializer.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4LLVM21TerminatorInstruction"></a>
+                    <a name="//apple_ref/swift/Struct/TerminatorInstruction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4LLVM21TerminatorInstruction">TerminatorInstruction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>TerminatorInstruction</code> represents an instruction that terminates a 
+basic block.</p>
+
+                        <a href="Structs/TerminatorInstruction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TerminatorInstruction</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -688,6 +812,95 @@ be created from metadata except for function arguments.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:V4LLVM7Section"></a>
+                    <a name="//apple_ref/swift/Struct/Section" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4LLVM7Section">Section</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A Section represents one of the binary sections in an object file.</p>
+
+                        <a href="Structs/Section.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Section</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4LLVM6Symbol"></a>
+                    <a name="//apple_ref/swift/Struct/Symbol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4LLVM6Symbol">Symbol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A symbol is a top-level addressable entity in an object file.</p>
+
+                        <a href="Structs/Symbol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Symbol</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V4LLVM10Relocation"></a>
+                    <a name="//apple_ref/swift/Struct/Relocation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V4LLVM10Relocation">Relocation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A Relocation represents the contents of a relocated symbol in the dynamic
+linker.</p>
+
+                        <a href="Structs/Relocation.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Relocation</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:V4LLVM7PhiNode"></a>
                     <a name="//apple_ref/swift/Struct/PhiNode" class="dashAnchor"></a>
                     <a class="token" href="#/s:V4LLVM7PhiNode">PhiNode</a>
@@ -704,7 +917,6 @@ be created from metadata except for function arguments.</p>
 form, a PHI node is necessary when the value of a variable assignment
 depends on the path the flow of control takes through the program.  For
 example:</p>
-
 <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">a</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">42</span> <span class="p">{</span>
   <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
@@ -716,7 +928,6 @@ example:</p>
 involving the variable <code>c</code>.  Because <code>b</code> must be assigned to once, a PHI
 node is created and the program effectively is transformed into the
 following:</p>
-
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">aNoCond</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">42</span> <span class="p">{</span>
   <span class="k">let</span> <span class="nv">aCondTrue</span> <span class="o">=</span> <span class="mi">2</span>
@@ -1043,8 +1254,8 @@ type. There are no arrays, vectors or constants of this type.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

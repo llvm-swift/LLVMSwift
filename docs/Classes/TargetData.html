@@ -14,7 +14,7 @@
     <a title="TargetData Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html"> Docs</a> (99% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -50,6 +50,18 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Target.html">Target</a>
@@ -102,6 +114,9 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/Linkage.html">Linkage</a>
               </li>
               <li class="nav-group-task">
@@ -114,6 +129,12 @@
                 <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
               </li>
               <li class="nav-group-task">
@@ -124,6 +145,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
@@ -230,6 +254,9 @@
                 <a href="../Structs/BasicBlock/Address.html">– Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
@@ -243,6 +270,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/LabelType.html">LabelType</a>
@@ -260,10 +290,22 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -365,7 +407,6 @@ sizes and offsets of types with respect to this target.</p>
                               <td>
                                 <div>
                                   <p>The type of the structure to compute the offset with.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -375,7 +416,6 @@ sizes and offsets of types with respect to this target.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The offset of the given element within the structure.</p>
-
                       </div>
                     </section>
                   </div>
@@ -416,7 +456,6 @@ sizes and offsets of types with respect to this target.</p>
                               <td>
                                 <div>
                                   <p>The type of the structure to compute the offset with.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -426,7 +465,6 @@ sizes and offsets of types with respect to this target.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The offset of the given element within the structure.</p>
-
                       </div>
                     </section>
                   </div>
@@ -469,7 +507,6 @@ for this target environment.</p>
                               <td>
                                 <div>
                                   <p>The type to compute the size of.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -479,7 +516,6 @@ for this target environment.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The size of the type in bits.</p>
-
                       </div>
                     </section>
                   </div>
@@ -522,7 +558,6 @@ of the given type for this target environment.</p>
                               <td>
                                 <div>
                                   <p>The type to compute the size of.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -532,7 +567,6 @@ of the given type for this target environment.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The minimum ABI-required size of the type in bytes.</p>
-
                       </div>
                     </section>
                   </div>
@@ -605,12 +639,7 @@ of the given type for this target environment.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The integer type that is the same size as a pointer on this target.
-This is analoguous to the <code>intptr_t</code> type in C++.
-- parameters:
-  - context: The context in which to derive the type (optional).
-  - addressSpace: The address space in which to derive the type.
-- returns: An IntegerType that is the same size as the pointer type
-           on this target.</p>
+This is analoguous to the <code>intptr_t</code> type in C++.</p>
 
                       </div>
                       <div class="declaration">
@@ -634,7 +663,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                               <td>
                                 <div>
                                   <p>The context in which to derive the type (optional).</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -647,7 +675,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                               <td>
                                 <div>
                                   <p>The address space in which to derive the type.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -656,8 +683,8 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An IntegerType that is the same size as the pointer type on this target.</p>
-
+                        <p>An IntegerType that is the same size as the pointer type
+       on this target.</p>
                       </div>
                     </section>
                   </div>
@@ -699,7 +726,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                               <td>
                                 <div>
                                   <p>The global variable</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -708,8 +734,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The variable’s preferred alignment in this target</p>
-
+                        <p>The variable&rsquo;s preferred alignment in this target</p>
                       </div>
                     </section>
                   </div>
@@ -750,8 +775,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                               </td>
                               <td>
                                 <div>
-                                  <p>The type for which you’re computing the alignment</p>
-
+                                  <p>The type for which you&rsquo;re computing the alignment</p>
                                 </div>
                               </td>
                             </tr>
@@ -760,8 +784,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The type’s preferred alignment in this target</p>
-
+                        <p>The type&rsquo;s preferred alignment in this target</p>
                       </div>
                     </section>
                   </div>
@@ -803,7 +826,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                               <td>
                                 <div>
                                   <p>The type to whose ABI alignment you wish to compute.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -813,7 +835,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                       <div>
                         <h4>Return Value</h4>
                         <p>The minimum ABI-required alignment for the specified type.</p>
-
                       </div>
                     </section>
                   </div>
@@ -857,7 +878,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                               <td>
                                 <div>
                                   <p>The type to whose ABI alignment you wish to compute.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -867,7 +887,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                       <div>
                         <h4>Return Value</h4>
                         <p>The minimum ABI-required alignment for the specified type.</p>
-
                       </div>
                     </section>
                   </div>
@@ -909,7 +928,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                               <td>
                                 <div>
                                   <p>The type to whose ABI size you wish to compute.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -919,7 +937,6 @@ This is analoguous to the <code>intptr_t</code> type in C++.
                       <div>
                         <h4>Return Value</h4>
                         <p>The ABI size for the specified type.</p>
-
                       </div>
                     </section>
                   </div>
@@ -962,7 +979,6 @@ storing the specified type.</p>
                               <td>
                                 <div>
                                   <p>The type to whose store size you wish to compute.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -972,7 +988,6 @@ storing the specified type.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The store size of the type in the given target.</p>
-
                       </div>
                     </section>
                   </div>
@@ -1014,8 +1029,8 @@ address space.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The address space in which to compute pointer size.</p>
-
+                                  <p>The address space in which to compute
+                      pointer size.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1025,7 +1040,6 @@ address space.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>The size of a pointer in the target address space.</p>
-
                       </div>
                     </section>
                   </div>
@@ -1035,8 +1049,8 @@ address space.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

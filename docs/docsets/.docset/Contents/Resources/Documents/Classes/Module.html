@@ -14,7 +14,7 @@
     <a title="Module Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html"> Docs</a> (99% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -50,6 +50,18 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Target.html">Target</a>
@@ -102,6 +114,9 @@
                 <a href="../Enums/JITError.html">JITError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/Linkage.html">Linkage</a>
               </li>
               <li class="nav-group-task">
@@ -114,6 +129,12 @@
                 <a href="../Enums/OpCode.html">OpCode</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
               </li>
               <li class="nav-group-task">
@@ -124,6 +145,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:O4LLVM6Signed">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
@@ -230,6 +254,9 @@
                 <a href="../Structs/BasicBlock/Address.html">– Address</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Constant.html">Constant</a>
               </li>
               <li class="nav-group-task">
@@ -243,6 +270,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/LabelType.html">LabelType</a>
@@ -260,10 +290,22 @@
                 <a href="../Structs/PointerType.html">PointerType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/StructType.html">StructType</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
@@ -339,7 +381,6 @@ units merged together.</p>
                               <td>
                                 <div>
                                   <p>The name of the module.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -351,8 +392,8 @@ units merged together.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The context to associate this module with.  If no context is provided, one will be inferred.</p>
-
+                                  <p>The context to associate this module with.  If no
+context is provided, one will be inferred.</p>
                                 </div>
                               </td>
                             </tr>
@@ -482,8 +523,7 @@ units merged together.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The path to write the module’s representation to.</p>
-
+                                  <p>The path to write the module&rsquo;s representation to.</p>
                                 </div>
                               </td>
                             </tr>
@@ -532,8 +572,7 @@ units merged together.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The path to write the module’s representation to.</p>
-
+                                  <p>The path to write the module&rsquo;s representation to.</p>
                                 </div>
                               </td>
                             </tr>
@@ -831,7 +870,6 @@ module if that name references an existing global variable.</p>
                               <td>
                                 <div>
                                   <p>The name of the global to reference.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -841,7 +879,6 @@ module if that name references an existing global variable.</p>
                       <div>
                         <h4>Return Value</h4>
                         <p>A value representing the referenced global if it exists.</p>
-
                       </div>
                     </section>
                   </div>
@@ -884,7 +921,6 @@ that name references an existing type.</p>
                               <td>
                                 <div>
                                   <p>The name of the type to create.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -893,8 +929,8 @@ that name references an existing type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A representation of the newly created type with the given name or nil if such a representation could not be created.</p>
-
+                        <p>A representation of the newly created type with the given name
+or nil if such a representation could not be created.</p>
                       </div>
                     </section>
                   </div>
@@ -937,7 +973,6 @@ if that name references an existing function.</p>
                               <td>
                                 <div>
                                   <p>The name of the function to create.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -946,8 +981,8 @@ if that name references an existing function.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A representation of the newly created function with the given name or nil if such a representation could not be created.</p>
-
+                        <p>A representation of the newly created function with the given
+name or nil if such a representation could not be created.</p>
                       </div>
                     </section>
                   </div>
@@ -957,8 +992,8 @@ if that name references an existing function.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-02-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
