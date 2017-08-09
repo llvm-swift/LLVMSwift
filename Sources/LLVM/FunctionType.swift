@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// `FunctionType` represents a function's type signature.  It consists of a
 /// return type and a list of formal parameter types. The return type of a

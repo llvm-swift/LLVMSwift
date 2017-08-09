@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// An `IRType` is a type that is capable of lowering itself to an `LLVMTypeRef`
 /// object for use with LLVM's C API.

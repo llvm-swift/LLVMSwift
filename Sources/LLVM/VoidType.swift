@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// The `Void` type represents any value and has no size.
 public struct VoidType: IRType {

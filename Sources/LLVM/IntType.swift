@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// The `IntType` represents an integral value of a specified bit width.
 ///

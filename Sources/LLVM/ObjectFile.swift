@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// An in-memory representation of a platform object file.
 public class ObjectFile {

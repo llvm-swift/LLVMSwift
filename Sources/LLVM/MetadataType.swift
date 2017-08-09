@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// The `MetadataType` type represents embedded metadata. No derived types may
 /// be created from metadata except for function arguments.

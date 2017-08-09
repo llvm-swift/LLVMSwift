@@ -10,9 +10,11 @@ matrix:
     - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
     - brew update
     - brew install llvm
+    - sudo gem install xcpretty
     - sudo swift utils/make-pkgconfig.swift
     script:
     - swift test
+    - xcodebuild -project Xcode/LLVM.xcodeproj | xcpretty
   - os: linux
     language: generic
     sudo: required

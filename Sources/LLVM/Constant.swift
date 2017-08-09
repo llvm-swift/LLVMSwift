@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// A protocol to which the phantom types for a constant's representation conform.
 public protocol ConstantRepresentation {}

@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// A `PhiNode` object represents a PHI node.
 ///

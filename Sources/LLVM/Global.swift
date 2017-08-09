@@ -1,6 +1,4 @@
-#if !NO_SWIFTPM
 import cllvm
-#endif
 
 /// Enumerates the supported models of reference of thread-local variables. 
 ///
