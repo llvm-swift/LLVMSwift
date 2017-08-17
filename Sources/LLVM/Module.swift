@@ -5,14 +5,28 @@ import cllvm
 /// A `Context` represents execution states for the core LLVM IR system.
 public class Context {
   internal let llvm: LLVMContextRef
+  internal let ownsContext: Bool
 
   /// Retrieves the global context instance.
   public static let global = Context(llvm: LLVMGetGlobalContext()!)
 
-  /// Creates a `Context` object from an `LLVMContextRef` object.
-  public init(llvm: LLVMContextRef) {
-    self.llvm = llvm
+  /// Creates a `Context` object using `LLVMContextCreate`
+  public init() {
+    llvm = LLVMContextCreate()
+    ownsContext = true
   }
+
+  /// Creates a `Context` object from an `LLVMContextRef` object.
+  public init(llvm: LLVMContextRef, ownsContext: Bool = false) {
+    self.llvm = llvm
+    self.ownsContext = ownsContext
+  }
+
+    deinit {
+        if ownsContext {
+            LLVMContextDispose(llvm)
+        }
+    }
 }
 
 /// Represents the possible errors that can be thrown while interacting with a
