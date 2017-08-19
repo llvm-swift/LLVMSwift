@@ -33,10 +33,10 @@ matrix:
     - sudo rm -f /usr/bin/llvm-config
     - sudo ln -s /usr/bin/llvm-config-${LLVM_API_VERSION} /usr/bin/llvm-config
     - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
-    - wget https://swift.org/builds/swift-3.1-release/ubuntu1404/swift-3.1-RELEASE/swift-3.1-RELEASE-ubuntu14.04.tar.gz
-    - tar xzf swift-3.1-RELEASE-ubuntu14.04.tar.gz
-    - export PATH=${PWD}/swift-3.1-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
-    - sudo ./swift-3.1-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
+    - wget https://swift.org/builds/swift-3.1.1-release/ubuntu1404/swift-3.1.1-RELEASE/swift-3.1.1-RELEASE-ubuntu14.04.tar.gz
+    - tar xzf swift-3.1.1-RELEASE-ubuntu14.04.tar.gz
+    - export PATH=${PWD}/swift-3.1.1-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
+    - sudo ./swift-3.1.1-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
     script:
     - swift test
 notifications:
