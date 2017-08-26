@@ -136,6 +136,10 @@ public class TargetMachine {
   public init(triple: String? = nil, cpu: String = "", features: String = "",
               optLevel: CodeGenOptLevel = .default, relocMode: RelocMode = .default,
               codeModel: CodeModel = .default) throws {
+
+    // Ensure the LLVM initializer is called when the first module is created
+    initializeLLVM()
+
     self.triple = triple ?? String(cString: LLVMGetDefaultTargetTriple()!)
     var target: LLVMTargetRef?
     var error: UnsafeMutablePointer<Int8>?

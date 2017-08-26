@@ -53,9 +53,8 @@ public final class Module: CustomStringConvertible {
   ///   context is provided, one will be inferred.
   public init(name: String, context: Context? = nil) {
 
-    // Ensure the LLVM initializer is called when the first module
-    // is created
-    _ = llvmInitializer
+    // Ensure the LLVM initializer is called when the first module is created
+    initializeLLVM()
 
     if let context = context {
       llvm = LLVMModuleCreateWithNameInContext(name, context.llvm)
