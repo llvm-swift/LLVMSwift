@@ -2,7 +2,7 @@
 import cllvm
 #endif
 
-/// An in-memory representation of a platform object file.
+/// An in-memory representation of a format-independent object file.
 public class ObjectFile {
     let llvm: LLVMObjectFileRef
 
@@ -20,6 +20,7 @@ public class ObjectFile {
     /// the provided path.
     /// - parameter path: The absolute file path on your filesystem.
     public convenience init?(path: String) {
+        
         guard let memoryBuffer = try? MemoryBuffer(contentsOf: path) else {
             return nil
         }
@@ -36,10 +37,9 @@ public class ObjectFile {
         return SymbolSequence(llvm: LLVMGetSymbols(llvm), object: self)
     }
 
-    // FIXME: Re-introduce this when disposal becomes safe.
-//    deinit {
-//        LLVMDisposeObjectFile(llvm)
-//    }
+    deinit {
+        LLVMDisposeObjectFile(llvm)
+    }
 }
 
 /// A Section represents one of the binary sections in an object file.
@@ -53,11 +53,24 @@ public struct Section {
     /// The address of the section in the object file.
     public let address: Int
 
+    /// The parent sequence of this section.
+    private let sectionIterator: LLVMSectionIteratorRef
+
+
     internal init(fromIterator si: LLVMSectionIteratorRef) {
-        name = String(cString: LLVMGetSectionName(si))
-        size = Int(LLVMGetSectionSize(si))
-        contents = String(cString: LLVMGetSectionContents(si))
-        address = Int(LLVMGetSectionAddress(si))
+        self.sectionIterator = si
+        self.name = String(cString: LLVMGetSectionName(si))
+        self.size = Int(LLVMGetSectionSize(si))
+        self.contents = String(cString: LLVMGetSectionContents(si))
+        self.address = Int(LLVMGetSectionAddress(si))
+    }
+
+    /// Returns a sequence of all the relocations in this object file.
+    public var relocations: RelocationSequence {
+        return RelocationSequence(
+            llvm: LLVMGetRelocations(self.sectionIterator),
+            sectionIterator: self.sectionIterator
+        )
     }
 }
 
@@ -82,10 +95,9 @@ public class SectionSequence: Sequence {
         }
     }
 
-    // FIXME: Re-introduce this when disposal becomes safe.
-//    deinit {
-//        LLVMDisposeSectionIterator(llvm)
-//    }
+    deinit {
+        LLVMDisposeSectionIterator(llvm)
+    }
 }
 
 /// A symbol is a top-level addressable entity in an object file.
@@ -107,9 +119,17 @@ public struct Symbol {
 /// A Relocation represents the contents of a relocated symbol in the dynamic
 /// linker.
 public struct Relocation {
+    /// Retrieves the type of this relocation.
+    ///
+    /// The value of this integer is dependent upon the type of object file
+    /// it was retrieved from.
     public let type: Int
+    /// The offset the relocated symbol resides at.
     public let offset: Int
+    /// The symbol that is the subject of the relocation.
     public let symbol: Symbol
+    /// Get a string that represents the type of this relocation for display
+    /// purposes.
     public let typeName: String
 
     internal init(fromIterator ri: LLVMRelocationIteratorRef) {
@@ -142,10 +162,9 @@ public class RelocationSequence: Sequence {
         }
     }
 
-    // FIXME: Re-introduce this when disposal becomes safe.
-//    deinit {
-//        LLVMDisposeSectionIterator(llvm)
-//    }
+    deinit {
+        LLVMDisposeSectionIterator(llvm)
+    }
 }
 
 /// A sequence for iterating over the symbols in an object file.
@@ -169,9 +188,10 @@ public class SymbolSequence: Sequence {
             return Symbol(fromIterator: self.llvm)
         }
     }
+    
 
-    // FIXME: Re-introduce this when disposal becomes safe.
-//    deinit {
-//        LLVMDisposeSymbolIterator(llvm)
-//    }
+
+    deinit {
+        LLVMDisposeSymbolIterator(llvm)
+    }
 }
