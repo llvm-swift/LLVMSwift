@@ -1,0 +1,12 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "cllvm",
+      "reason": null,
+      "repositoryURL": "https://github.com/trill-lang/cllvm.git",
+      "version": "0.0.3"
+    }
+  ],
+  "version": 1
+}

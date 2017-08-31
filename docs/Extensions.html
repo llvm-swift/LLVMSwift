@@ -13,7 +13,7 @@
     <a title="Extensions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (99% documented)</p>
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -101,7 +101,7 @@
                 <a href="Enums/FloatType.html">FloatType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums.html#/s:4LLVM8FloatingO">Floating</a>
+                <a href="Enums.html#/s:O4LLVM8Floating">Floating</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/FunctionPass.html">FunctionPass</a>
@@ -143,7 +143,7 @@
                 <a href="Enums/RelocMode.html">RelocMode</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums.html#/s:4LLVM6SignedO">Signed</a>
+                <a href="Enums.html#/s:O4LLVM6Signed">Signed</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/StorageClass.html">StorageClass</a>
@@ -155,7 +155,7 @@
                 <a href="Enums/ThreadLocalModel.html">ThreadLocalModel</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums.html#/s:4LLVM8UnsignedO">Unsigned</a>
+                <a href="Enums.html#/s:O4LLVM8Unsigned">Unsigned</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Visibility.html">Visibility</a>
@@ -210,10 +210,13 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:4LLVM1sopAA8ConstantVyAA6SignedOGAGF">-(_:)</a>
+                <a href="Functions.html#/s:F4LLVMop1sFGVS_8ConstantOS_6Signed_GS0_S1__">-(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:4LLVM1sopAA8ConstantVyAA8FloatingOGAGF">-(_:)</a>
+                <a href="Functions.html#/s:F4LLVMop1sFGVS_8ConstantOS_8Floating_GS0_S1__">-(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F4LLVM14initializeLLVMFT_T_">initializeLLVM()</a>
               </li>
             </ul>
           </li>
@@ -221,7 +224,7 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
+                <a href="Protocols.html#/s:P4LLVM22ConstantRepresentation">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/IRGlobal.html">IRGlobal</a>
@@ -233,7 +236,7 @@
                 <a href="Protocols/IRValue.html">IRValue</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
+                <a href="Protocols.html#/s:P4LLVM30IntegralConstantRepresentation">IntegralConstantRepresentation</a>
               </li>
             </ul>
           </li>
@@ -382,7 +385,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">SignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int</span> <span class="p">:</span> <span class="kt">SignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -392,9 +395,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s4Int8V"></a>
+                    <a name="/s:Vs4Int8"></a>
                     <a name="//apple_ref/swift/Extension/Int8" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s4Int8V">Int8</a>
+                    <a class="token" href="#/s:Vs4Int8">Int8</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -409,7 +412,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int8</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">SignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int8</span> <span class="p">:</span> <span class="kt">SignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -419,9 +422,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s5Int16V"></a>
+                    <a name="/s:Vs5Int16"></a>
                     <a name="//apple_ref/swift/Extension/Int16" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s5Int16V">Int16</a>
+                    <a class="token" href="#/s:Vs5Int16">Int16</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -436,7 +439,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int16</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">SignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int16</span> <span class="p">:</span> <span class="kt">SignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -446,9 +449,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s5Int32V"></a>
+                    <a name="/s:Vs5Int32"></a>
                     <a name="//apple_ref/swift/Extension/Int32" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s5Int32V">Int32</a>
+                    <a class="token" href="#/s:Vs5Int32">Int32</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -463,7 +466,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int32</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">SignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int32</span> <span class="p">:</span> <span class="kt">SignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -473,9 +476,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s5Int64V"></a>
+                    <a name="/s:Vs5Int64"></a>
                     <a name="//apple_ref/swift/Extension/Int64" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s5Int64V">Int64</a>
+                    <a class="token" href="#/s:Vs5Int64">Int64</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -490,7 +493,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int64</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">SignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int64</span> <span class="p">:</span> <span class="kt">SignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -517,7 +520,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">UnsignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt</span> <span class="p">:</span> <span class="kt">UnsignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -527,9 +530,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s5UInt8V"></a>
+                    <a name="/s:Vs5UInt8"></a>
                     <a name="//apple_ref/swift/Extension/UInt8" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s5UInt8V">UInt8</a>
+                    <a class="token" href="#/s:Vs5UInt8">UInt8</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -544,7 +547,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt8</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">UnsignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt8</span> <span class="p">:</span> <span class="kt">UnsignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -554,9 +557,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s6UInt16V"></a>
+                    <a name="/s:Vs6UInt16"></a>
                     <a name="//apple_ref/swift/Extension/UInt16" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s6UInt16V">UInt16</a>
+                    <a class="token" href="#/s:Vs6UInt16">UInt16</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -571,7 +574,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt16</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">UnsignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt16</span> <span class="p">:</span> <span class="kt">UnsignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -581,9 +584,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s6UInt32V"></a>
+                    <a name="/s:Vs6UInt32"></a>
                     <a name="//apple_ref/swift/Extension/UInt32" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s6UInt32V">UInt32</a>
+                    <a class="token" href="#/s:Vs6UInt32">UInt32</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -598,7 +601,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt32</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">UnsignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt32</span> <span class="p">:</span> <span class="kt">UnsignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -608,9 +611,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s6UInt64V"></a>
+                    <a name="/s:Vs6UInt64"></a>
                     <a name="//apple_ref/swift/Extension/UInt64" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s6UInt64V">UInt64</a>
+                    <a class="token" href="#/s:Vs6UInt64">UInt64</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -625,7 +628,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt64</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">UnsignedInteger</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UInt64</span> <span class="p">:</span> <span class="kt">UnsignedInteger</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -691,7 +694,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-19)</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-08-30)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
