@@ -111,7 +111,7 @@ public struct Global: IRGlobal {
 
   /// Accesses the model of reference for this global variable if it is 
   /// thread-local.
-  public var threadLocalMode: ThreadLocalModel {
+  public var threadLocalModel: ThreadLocalModel {
     get { return ThreadLocalModel(llvm: LLVMGetThreadLocalMode(asLLVM())) }
     set { LLVMSetThreadLocalMode(asLLVM(), newValue.llvm) }
   }
