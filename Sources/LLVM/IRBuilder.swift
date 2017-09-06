@@ -200,10 +200,8 @@ public enum AtomicOrdering: Comparable {
     .sequentiallyConsistent: LLVMAtomicOrderingSequentiallyConsistent,
   ]
 
-  public static func ==(lhs: AtomicOrdering, rhs: AtomicOrdering) -> Bool {
-    return lhs.llvm == rhs.llvm
-  }
-
+  /// Returns whether the left atomic ordering is strictly weaker than the
+  /// right atomic order.
   public static func <(lhs: AtomicOrdering, rhs: AtomicOrdering) -> Bool {
     return lhs.llvm.rawValue < rhs.llvm.rawValue
   }
