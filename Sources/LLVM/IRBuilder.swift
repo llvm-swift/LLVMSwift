@@ -1094,25 +1094,40 @@ public class IRBuilder {
     return LLVMBuildAlloca(llvm, type.asLLVM(), name)
   }
 
-  /// Build a store instruction that stores the first value into the location
+  /// Builds a store instruction that stores the first value into the location
   /// given in the second value.
+  ///
+  /// - parameter val: The source value.
+  /// - parameter ptr: The destination pointer to store into.
+  /// - parameter ordering: The ordering effect of the fence for this store,
+  ///   if any.  Defaults to a nonatomic store.
+  /// - parameter volatile: Whether this is a store to a volatile memory location.
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildStore(_ val: IRValue, to ptr: IRValue) -> IRValue {
-    return LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())
+  public func buildStore(_ val: IRValue, to ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false) -> IRValue {
+    let storeInst = LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())!
+    LLVMSetOrdering(storeInst, ordering.llvm)
+    LLVMSetVolatile(storeInst, volatile.llvm)
+    return storeInst
   }
 
   /// Builds a load instruction that loads a value from the location in the
   /// given value.
   ///
   /// - parameter ptr: The pointer value to load from.
+  /// - parameter ordering: The ordering effect of the fence for this load,
+  ///   if any.  Defaults to a nonatomic load.
+  /// - parameter volatile: Whether this is a load from a volatile memory location.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the result of a load from the given
   ///   pointer value.
-  public func buildLoad(_ ptr: IRValue, name: String = "") -> IRValue {
-    return LLVMBuildLoad(llvm, ptr.asLLVM(), name)
+  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, name: String = "") -> IRValue {
+    let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
+    LLVMSetOrdering(loadInst, ordering.llvm)
+    LLVMSetVolatile(loadInst, volatile.llvm)
+    return loadInst
   }
 
   /// Builds a `GEP` (Get Element Pointer) instruction with a resultant value
