@@ -1721,6 +1721,48 @@ public class IRBuilder {
     return Alias(llvm: LLVMAddAlias(module.llvm, type.asLLVM(), aliasee.asLLVM(), name))
   }
 
+  // MARK: Inline Assembly
+
+  /// Builds a value representing an inline assembly expression (as opposed to
+  /// module-level inline assembly).
+  ///
+  /// LLVM represents inline assembler as a template string (containing the
+  /// instructions to emit), a list of operand constraints (stored as a string),
+  /// and some flags.
+  ///
+  /// The template string supports argument substitution of the operands using
+  /// "$" followed by a number, to indicate substitution of the given
+  /// register/memory location, as specified by the constraint string.
+  /// "${NUM:MODIFIER}" may also be used, where MODIFIER is a target-specific
+  /// annotation for how to print the operand (see [Asm Template Argument
+  /// Modifiers](https://llvm.org/docs/LangRef.html#inline-asm-modifiers)).
+  ///
+  /// LLVM’s support for inline asm is modeled closely on the requirements of
+  /// Clang’s GCC-compatible inline-asm support. Thus, the feature-set and the
+  /// constraint and modifier codes are similar or identical to those in GCC’s
+  /// inline asm support.
+  ///
+  /// However, the syntax of the template and constraint strings is not the
+  /// same as the syntax accepted by GCC and Clang, and, while most constraint
+  /// letters are passed through as-is by Clang, some get translated to other
+  /// codes when converting from the C source to the LLVM assembly.
+  ///
+  /// - parameter asm: The inline assembly expression template string.
+  /// - parameter type: The type of the parameters and return value of the
+  ///   assembly expression string.
+  /// - parameter constraints: A comma-separated string, each element containing
+  ///   one or more constraint codes.
+  /// - parameter hasSideEffects: Whether this inline asm expression has
+  ///   side effects.  Defaults to `false`.
+  /// - parameter needsAlignedStack: Whether the function containing the
+  ///   asm needs to align its stack conservatively.  Defaults to `true`.
+  ///
+  /// - returns: A representation of the newly created inline assembly
+  ///   expression.
+  public func buildInlineAssembly(_ asm: String, type: FunctionType, constraints: String = "", hasSideEffects: Bool = true, needsAlignedStack: Bool = true) -> IRValue {
+    return LLVMConstInlineAsm(type.asLLVM(), asm, constraints, hasSideEffects.llvm, needsAlignedStack.llvm)
+  }
+
   deinit {
     LLVMDisposeBuilder(llvm)
   }
