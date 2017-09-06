@@ -19,6 +19,12 @@ public struct Switch: IRValue {
     LLVMAddCase(llvm, value.asLLVM(), block.asLLVM())
   }
 
+  /// Retrieves the basic block the flow of control reaches should a
+  /// value not match any of the cases in the branch table.
+  var defaultDestination: BasicBlock {
+    return BasicBlock(llvm: LLVMGetSwitchDefaultDest(self.llvm))
+  }
+
   /// Retrieves the underlying LLVM value object.
   public func asLLVM() -> LLVMValueRef {
     return llvm
