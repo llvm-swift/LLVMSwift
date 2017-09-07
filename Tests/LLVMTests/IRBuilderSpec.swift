@@ -223,6 +223,12 @@ class IRBuilderSpec : XCTestCase {
       // CONTROLFLOW-NEXT: store i64 1, i64* %var
       builder.buildStore(IntType.int64.constant(1), to: variable)
 
+      // CONTROLFLOW-NEXT: store volatile i64 1, i64* %var
+      builder.buildStore(IntType.int64.constant(1), to: variable, volatile: true)
+
+      // CONTROLFLOW-NEXT: store atomic i64 1, i64* %var
+      builder.buildStore(IntType.int64.constant(1), to: variable, ordering: .sequentiallyConsistent)
+
       // CONTROLFLOW-NEXT: %0 = load i64, i64* %var
       let load = builder.buildLoad(variable)
 

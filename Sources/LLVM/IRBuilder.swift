@@ -200,10 +200,8 @@ public enum AtomicOrdering: Comparable {
     .sequentiallyConsistent: LLVMAtomicOrderingSequentiallyConsistent,
   ]
 
-  public static func ==(lhs: AtomicOrdering, rhs: AtomicOrdering) -> Bool {
-    return lhs.llvm == rhs.llvm
-  }
-
+  /// Returns whether the left atomic ordering is strictly weaker than the
+  /// right atomic order.
   public static func <(lhs: AtomicOrdering, rhs: AtomicOrdering) -> Bool {
     return lhs.llvm.rawValue < rhs.llvm.rawValue
   }
@@ -1094,25 +1092,40 @@ public class IRBuilder {
     return LLVMBuildAlloca(llvm, type.asLLVM(), name)
   }
 
-  /// Build a store instruction that stores the first value into the location
+  /// Builds a store instruction that stores the first value into the location
   /// given in the second value.
+  ///
+  /// - parameter val: The source value.
+  /// - parameter ptr: The destination pointer to store into.
+  /// - parameter ordering: The ordering effect of the fence for this store,
+  ///   if any.  Defaults to a nonatomic store.
+  /// - parameter volatile: Whether this is a store to a volatile memory location.
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildStore(_ val: IRValue, to ptr: IRValue) -> IRValue {
-    return LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())
+  public func buildStore(_ val: IRValue, to ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false) -> IRValue {
+    let storeInst = LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())!
+    LLVMSetOrdering(storeInst, ordering.llvm)
+    LLVMSetVolatile(storeInst, volatile.llvm)
+    return storeInst
   }
 
   /// Builds a load instruction that loads a value from the location in the
   /// given value.
   ///
   /// - parameter ptr: The pointer value to load from.
+  /// - parameter ordering: The ordering effect of the fence for this load,
+  ///   if any.  Defaults to a nonatomic load.
+  /// - parameter volatile: Whether this is a load from a volatile memory location.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the result of a load from the given
   ///   pointer value.
-  public func buildLoad(_ ptr: IRValue, name: String = "") -> IRValue {
-    return LLVMBuildLoad(llvm, ptr.asLLVM(), name)
+  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, name: String = "") -> IRValue {
+    let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
+    LLVMSetOrdering(loadInst, ordering.llvm)
+    LLVMSetVolatile(loadInst, volatile.llvm)
+    return loadInst
   }
 
   /// Builds a `GEP` (Get Element Pointer) instruction with a resultant value
@@ -1704,6 +1717,48 @@ public class IRBuilder {
   /// - returns: A value representing the newly created alias.
   public func addAlias(name: String, to aliasee: IRGlobal, type: IRType) -> Alias {
     return Alias(llvm: LLVMAddAlias(module.llvm, type.asLLVM(), aliasee.asLLVM(), name))
+  }
+
+  // MARK: Inline Assembly
+
+  /// Builds a value representing an inline assembly expression (as opposed to
+  /// module-level inline assembly).
+  ///
+  /// LLVM represents inline assembler as a template string (containing the
+  /// instructions to emit), a list of operand constraints (stored as a string),
+  /// and some flags.
+  ///
+  /// The template string supports argument substitution of the operands using
+  /// "$" followed by a number, to indicate substitution of the given
+  /// register/memory location, as specified by the constraint string.
+  /// "${NUM:MODIFIER}" may also be used, where MODIFIER is a target-specific
+  /// annotation for how to print the operand (see [Asm Template Argument
+  /// Modifiers](https://llvm.org/docs/LangRef.html#inline-asm-modifiers)).
+  ///
+  /// LLVM’s support for inline asm is modeled closely on the requirements of
+  /// Clang’s GCC-compatible inline-asm support. Thus, the feature-set and the
+  /// constraint and modifier codes are similar or identical to those in GCC’s
+  /// inline asm support.
+  ///
+  /// However, the syntax of the template and constraint strings is not the
+  /// same as the syntax accepted by GCC and Clang, and, while most constraint
+  /// letters are passed through as-is by Clang, some get translated to other
+  /// codes when converting from the C source to the LLVM assembly.
+  ///
+  /// - parameter asm: The inline assembly expression template string.
+  /// - parameter type: The type of the parameters and return value of the
+  ///   assembly expression string.
+  /// - parameter constraints: A comma-separated string, each element containing
+  ///   one or more constraint codes.
+  /// - parameter hasSideEffects: Whether this inline asm expression has
+  ///   side effects.  Defaults to `false`.
+  /// - parameter needsAlignedStack: Whether the function containing the
+  ///   asm needs to align its stack conservatively.  Defaults to `true`.
+  ///
+  /// - returns: A representation of the newly created inline assembly
+  ///   expression.
+  public func buildInlineAssembly(_ asm: String, type: FunctionType, constraints: String = "", hasSideEffects: Bool = true, needsAlignedStack: Bool = true) -> IRValue {
+    return LLVMConstInlineAsm(type.asLLVM(), asm, constraints, hasSideEffects.llvm, needsAlignedStack.llvm)
   }
 
   deinit {
