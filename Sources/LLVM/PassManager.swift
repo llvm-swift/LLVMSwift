@@ -166,6 +166,12 @@ public enum FunctionPass {
   /// These functions removes symbols from functions and modules without
   /// touching symbols for debugging information.
   case stripSymbols
+  /// Performs a loop vectorization pass to widen instructions in loops to
+  /// operate on multiple consecutive iterations.
+  case loopVectorize
+  /// This pass performs a superword-level parallelism pass to combine
+  /// similar independent instructions into vector instructions.
+  case slpVectorize
 }
 
 /// A `FunctionPassManager` is an object that collects a sequence of passes
@@ -225,7 +231,8 @@ public class FunctionPassManager {
     .pruneEH: LLVMAddPruneEHPass,
     .stripDeadPrototypes: LLVMAddStripDeadPrototypesPass,
     .stripSymbols: LLVMAddStripSymbolsPass,
-
+    .loopVectorize: LLVMAddLoopVectorizePass,
+    .slpVectorize: LLVMAddSLPVectorizePass,
     //    .internalize: LLVMAddInternalizePass,
     //    .sroaWithThreshhold: LLVMAddScalarReplAggregatesPassWithThreshold,
   ]
