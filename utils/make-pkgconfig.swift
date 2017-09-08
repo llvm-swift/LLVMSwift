@@ -68,6 +68,7 @@ func makeFile() throws {
 
   let versionStr = run(llvmConfig, args: ["--version"])!
                      .replacing(charactersIn: .newlines, with: "")
+                     .replacingOccurrences(of: "svn", with: "")
   let components = versionStr.components(separatedBy: ".")
                              .flatMap { Int($0) }
 
