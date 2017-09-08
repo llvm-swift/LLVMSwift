@@ -654,7 +654,8 @@ public class IRBuilder {
   /// Build an integer comparison between the two provided values using the
   /// given predicate.
   ///
-  /// Attempting to compare operands that are not integers is a fatal condition.
+  /// - precondition: Arguments must be integer or pointer or integer vector typed
+  /// - precondition: lhs.type == rhs.type
   ///
   /// - parameter lhs: The first value to compare.
   /// - parameter rhs: The second value to compare.
@@ -668,9 +669,13 @@ public class IRBuilder {
                         name: String = "") -> IRValue {
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
-    guard lhs.type is IntType else {
-      fatalError("Can only build ICMP instruction with int types")
-    }
+    assert(
+        (lhs.type is IntType && rhs.type is IntType) ||
+        (lhs.type is PointerType && rhs.type is PointerType) ||
+        ((lhs.type is VectorType && rhs.type is VectorType) &&
+            (LLVMGetTypeKind(LLVMGetElementType(lhs.type.asLLVM())) == LLVMIntegerTypeKind) &&
+            (LLVMGetTypeKind(LLVMGetElementType(rhs.type.asLLVM())) == LLVMIntegerTypeKind)),
+        "Can only build ICMP instruction with int or pointer types")
     return LLVMBuildICmp(llvm, predicate.llvm, lhsVal, rhsVal, name)
   }
 
