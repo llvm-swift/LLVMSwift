@@ -917,7 +917,6 @@ extension Constant {
     return Constant<T>(llvm: arithmetic ? LLVMConstAShr(lhs.llvm, rhs.llvm) : LLVMConstLShr(lhs.llvm, rhs.llvm))
   }
 
-
   // MARK: Conditional Operations
 
   /// A constant select using the given condition to select among two values.
@@ -929,8 +928,9 @@ extension Constant {
   ///
   /// - returns: A constant value representing the constant value selected for
   ///   by the condition.
-  public static func select<T>(_ cond: Constant, then: Constant<T>, else: Constant<T>) -> Constant<T> {
-    return Constant<T>(llvm: LLVMConstSelect(cond.llvm, then.llvm, `else`.llvm))
+  public static func select<T: IntegralConstantRepresentation, U>(_ cond: Constant<T>, then: Constant<U>, else: Constant<U>) -> Constant<U> {
+    assert((cond.type as! IntType).width == 1)
+    return Constant<U>(llvm: LLVMConstSelect(cond.llvm, then.llvm, `else`.llvm))
   }
 }
 
@@ -938,6 +938,12 @@ extension Constant {
 
 extension Constant where Repr == Struct {
 
+  /// Creates a constant operation retrieving the element at the index.
+  ///
+  /// - parameter indices: A list of indices that indicate which of the elements
+  ///   of the aggregate object are indexed.
+  ///
+  /// - returns: The value in the struct at the provided index.
   public func getElement(indices: [Int]) -> IRValue {
     var indices = indices.map({ UInt32($0) })
     return indices.withUnsafeMutableBufferPointer { buf in
@@ -951,22 +957,56 @@ extension Constant where Repr == Struct {
 
 extension Constant where Repr == Floating {
 
+  /// Creates a constant add operation to add two homogenous constants together.
+  ///
+  /// - parameter lhs: The first summand value (the augend).
+  /// - parameter rhs: The second summand value (the addend).
+  ///
+  /// - returns: A constant value representing the sum of the two operands.
   public static func +(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.adding(rhs)
   }
 
+  /// Creates a constant sub operation to subtract two homogenous constants.
+  ///
+  /// - parameter lhs: The first value (the minuend).
+  /// - parameter rhs: The second value (the subtrahend).
+  ///
+  /// - returns: A constant value representing the difference of the two operands.
   public static func -(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.subtracting(rhs)
   }
 
+  /// Creates a constant multiply operation with the given values as operands.
+  ///
+  /// - parameter lhs: The first factor value (the multiplier).
+  /// - parameter rhs: The second factor value (the multiplicand).
+  ///
+  /// - returns: A constant value representing the product of the two operands.
   public static func *(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.multiplying(rhs)
   }
 
+  /// A constant divide operation that provides the remainder after divison of
+  /// the first value by the second value.
+  ///
+  /// - parameter lhs: The first value (the dividend).
+  /// - parameter rhs: The second value (the divisor).
+  ///
+  /// - returns: A constant value representing the quotient of the first and
+  ///   second operands.
   public static func /(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.dividing(by: rhs)
   }
 
+  /// A constant remainder operation that provides the remainder after divison
+  /// of the first value by the second value.
+  ///
+  /// - parameter lhs: The first value (the dividend).
+  /// - parameter rhs: The second value (the divisor).
+  ///
+  /// - returns: A constant value representing the remainder of division of the
+  ///   first operand by the second operand.
   public static func %(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.remainder(rhs)
   }
@@ -975,18 +1015,46 @@ extension Constant where Repr == Floating {
     return Constant.equals(lhs, rhs)
   }
 
+  /// A constant less-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func <(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.lessThan(lhs, rhs)
   }
 
+  /// A constant greater-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func >(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.greaterThan(lhs, rhs)
   }
 
+  /// A constant less-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func <=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.lessThanOrEqual(lhs, rhs)
   }
 
+  /// A constant greater-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func >=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.greaterThanOrEqual(lhs, rhs)
   }
@@ -994,58 +1062,155 @@ extension Constant where Repr == Floating {
 
 extension Constant where Repr == Signed {
 
+  /// Creates a constant add operation to add two homogenous constants together.
+  ///
+  /// - parameter lhs: The first summand value (the augend).
+  /// - parameter rhs: The second summand value (the addend).
+  ///
+  /// - returns: A constant value representing the sum of the two operands.
   public static func +(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.adding(rhs)
   }
 
+  /// Creates a constant sub operation to subtract two homogenous constants.
+  ///
+  /// - parameter lhs: The first value (the minuend).
+  /// - parameter rhs: The second value (the subtrahend).
+  ///
+  /// - returns: A constant value representing the difference of the two operands.
   public static func -(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.subtracting(rhs)
   }
 
+  /// Creates a constant multiply operation with the given values as operands.
+  ///
+  /// - parameter lhs: The first factor value (the multiplier).
+  /// - parameter rhs: The second factor value (the multiplicand).
+  ///
+  /// - returns: A constant value representing the product of the two operands.
   public static func *(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.multiplying(rhs)
   }
 
+  /// A constant divide operation that provides the remainder after divison of
+  /// the first value by the second value.
+  ///
+  /// - parameter lhs: The first value (the dividend).
+  /// - parameter rhs: The second value (the divisor).
+  ///
+  /// - returns: A constant value representing the quotient of the first and
+  ///   second operands.
   public static func /(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.dividing(by: rhs)
   }
 
+  /// A constant remainder operation that provides the remainder after divison
+  /// of the first value by the second value.
+  ///
+  /// - parameter lhs: The first value (the dividend).
+  /// - parameter rhs: The second value (the divisor).
+  ///
+  /// - returns: A constant value representing the remainder of division of the
+  ///   first operand by the second operand.
   public static func %(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.remainder(rhs)
   }
 
+  /// A constant equality comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func ==(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.equals(lhs, rhs)
   }
 
+  /// A constant less-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func <(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.lessThan(lhs, rhs)
   }
 
+  /// A constant greater-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func >(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.greaterThan(lhs, rhs)
   }
 
+  /// A constant less-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func <=(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.lessThanOrEqual(lhs, rhs)
   }
 
+  /// A constant greater-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func >=(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.greaterThanOrEqual(lhs, rhs)
   }
 
+  /// A constant bitwise logical OR with the given values as operands.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the logical OR of the values of
+  ///   the two given operands.
   public static func |(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.or(lhs, rhs)
   }
 
+  /// A constant bitwise logical AND with the given values as operands.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the logical OR of the values of
+  ///   the two given operands.
   public static func &(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.and(lhs, rhs)
   }
 
+  /// A constant left-shift of the first value by the second amount.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the value of the first operand
+  ///   shifted left by the number of bits specified in the second operand.
   public static func <<(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.leftShift(lhs, rhs)
   }
 
+  /// A constant right-shift of the first value by the second amount.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the value of the first operand
+  ///   shifted left by the number of bits specified in the second operand.
   public static func >>(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.rightShift(lhs, rhs)
   }
@@ -1053,59 +1218,169 @@ extension Constant where Repr == Signed {
 
 extension Constant where Repr == Unsigned {
 
+  /// Creates a constant add operation to add two homogenous constants together.
+  ///
+  /// - parameter lhs: The first summand value (the augend).
+  /// - parameter rhs: The second summand value (the addend).
+  ///
+  /// - returns: A constant value representing the sum of the two operands.
   public static func +(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.adding(rhs)
   }
 
+  /// Creates a constant sub operation to subtract two homogenous constants.
+  ///
+  /// - parameter lhs: The first value (the minuend).
+  /// - parameter rhs: The second value (the subtrahend).
+  ///
+  /// - returns: A constant value representing the difference of the two operands.
   public static func -(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.subtracting(rhs)
   }
 
+  /// Creates a constant multiply operation with the given values as operands.
+  ///
+  /// - parameter lhs: The first factor value (the multiplier).
+  /// - parameter rhs: The second factor value (the multiplicand).
+  ///
+  /// - returns: A constant value representing the product of the two operands.
   public static func *(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.multiplying(rhs)
   }
 
+  /// A constant divide operation that provides the remainder after divison of
+  /// the first value by the second value.
+  ///
+  /// - parameter lhs: The first value (the dividend).
+  /// - parameter rhs: The second value (the divisor).
+  ///
+  /// - returns: A constant value representing the quotient of the first and
+  ///   second operands.
   public static func /(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.dividing(by: rhs)
   }
 
+  /// A constant remainder operation that provides the remainder after divison
+  /// of the first value by the second value.
+  ///
+  /// - parameter lhs: The first value (the dividend).
+  /// - parameter rhs: The second value (the divisor).
+  ///
+  /// - returns: A constant value representing the remainder of division of the
+  ///   first operand by the second operand.
   public static func %(lhs: Constant, rhs: Constant) -> Constant {
     return lhs.remainder(rhs)
   }
 
+  /// A constant equality comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func ==(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.equals(lhs, rhs)
   }
 
+  /// A constant less-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func <(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.lessThan(lhs, rhs)
   }
 
+  /// A constant greater-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func >(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.greaterThan(lhs, rhs)
   }
 
+  /// A constant less-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func <=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.lessThanOrEqual(lhs, rhs)
   }
 
+  /// A constant greater-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func >=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.greaterThanOrEqual(lhs, rhs)
   }
 
+  /// A constant bitwise logical OR with the given values as operands.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the logical OR of the values of
+  ///   the two given operands.
   public static func |(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.or(lhs, rhs)
   }
 
+  /// A constant bitwise logical AND with the given values as operands.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the logical OR of the values of
+  ///   the two given operands.
   public static func &(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.and(lhs, rhs)
   }
 
+  /// A constant left-shift of the first value by the second amount.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the value of the first operand
+  ///   shifted left by the number of bits specified in the second operand.
   public static func <<(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.leftShift(lhs, rhs)
   }
 
+  /// A constant right-shift of the first value by the second amount.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  ///
+  /// - returns: A constant value representing the value of the first operand
+  ///   shifted left by the number of bits specified in the second operand.
   public static func >>(lhs: Constant, rhs: Constant) -> Constant {
     return Constant.rightShift(lhs, rhs)
+  }
+}
+
+extension Constant where Repr: IntegralConstantRepresentation {
+
+  /// A constant bitwise logical not with the given integral value as an operand.
+  ///
+  /// - parameter val: The value to negate.
+  ///
+  /// - returns: A constant value representing the logical negation of the given
+  ///   operand.
+  public static prefix func !(_ lhs: Constant) -> Constant {
+    return Constant(llvm: LLVMConstNot(lhs.llvm))
   }
 }
