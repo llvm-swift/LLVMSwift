@@ -142,14 +142,12 @@ extension Constant where Repr == Floating {
 
 extension Constant where Repr == Struct {
 
-  /// - note: See the LLVM Reference manual's section on `bitcast`
-  @available(*, unavailable, message: "You cannot cast an aggregate type")
+  @available(*, unavailable, message: "You cannot cast an aggregate type. See the LLVM Reference manual's section on `bitcast`")
   public func cast<T: IntegralConstantRepresentation>(to type: IntType) -> Constant<T> {
     fatalError()
   }
 
-  /// - note: See the LLVM Reference manual's section on `bitcast`
-  @available(*, unavailable, message: "You cannot cast an aggregate type")
+  @available(*, unavailable, message: "You cannot cast an aggregate type. See the LLVM Reference manual's section on `bitcast`")
   public func cast(to type: FloatType) -> Constant<Floating> {
     fatalError()
   }
@@ -278,7 +276,7 @@ extension Constant where Repr == Signed {
   ///   behavior of the resulting constant value.
   ///
   /// - returns: A constant value representing the sum of the two operands.
-  public func add(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
+  public func adding(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
     return Constant.add(self, rhs, overflowBehavior: overflowBehavior)
   }
 }
@@ -292,7 +290,7 @@ extension Constant where Repr == Unsigned {
   ///   behavior of the resulting constant value.
   ///
   /// - returns: A constant value representing the sum of the two operands.
-  public func add(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
+  public func adding(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
     return Constant.add(self, rhs, overflowBehavior: overflowBehavior)
   }
 }
@@ -304,7 +302,7 @@ extension Constant where Repr == Floating {
   /// - parameter rhs: The second summand value (the addend).
   ///
   /// - returns: A constant value representing the sum of the two operands.
-  public func add(_ rhs: Constant) -> Constant {
+  public func adding(_ rhs: Constant) -> Constant {
     return Constant.add(self, rhs)
   }
 }
@@ -373,7 +371,7 @@ extension Constant where Repr == Unsigned {
   ///   behavior of the resulting constant value.
   ///
   /// - returns: A constant value representing the difference of the two operands.
-  public func subtract(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
+  public func subtracting(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
     return Constant.subtract(self, rhs, overflowBehavior: overflowBehavior)
   }
 }
@@ -387,7 +385,7 @@ extension Constant where Repr == Signed {
   ///   behavior of the resulting constant value.
   ///
   /// - returns: A constant value representing the difference of the two operands.
-  public func subtract(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
+  public func subtracting(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
     return Constant.subtract(self, rhs, overflowBehavior: overflowBehavior)
   }
 }
@@ -399,7 +397,7 @@ extension Constant where Repr == Floating {
   /// - parameter rhs: The second value (the subtrahend).
   ///
   /// - returns: A constant value representing the difference of the two operands.
-  public func subtract(_ rhs: Constant) -> Constant {
+  public func subtracting(_ rhs: Constant) -> Constant {
     return Constant.subtract(self, rhs)
   }
 }
@@ -468,7 +466,7 @@ extension Constant where Repr == Unsigned {
   ///   behavior of the resulting constant value.
   ///
   /// - returns: A constant value representing the product of the two operands.
-  public func multiply(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
+  public func multiplying(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
     return Constant.multiply(self, rhs, overflowBehavior: overflowBehavior)
   }
 }
@@ -482,7 +480,7 @@ extension Constant where Repr == Signed {
   ///   behavior of the resulting constant value.
   ///
   /// - returns: A constant value representing the product of the two operands.
-  public func multiply(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
+  public func multiplying(_ rhs: Constant, overflowBehavior: OverflowBehavior = .default) -> Constant {
     return Constant.multiply(self, rhs, overflowBehavior: overflowBehavior)
   }
 }
@@ -495,7 +493,7 @@ extension Constant where Repr == Floating {
   /// - parameter rhs: The second factor value (the multiplicand).
   ///
   /// - returns: A constant value representing the product of the two operands.
-  public func multiply(_ rhs: Constant) -> Constant {
+  public func multiplying(_ rhs: Constant) -> Constant {
     return Constant.multiply(self, rhs)
   }
 }
@@ -550,7 +548,7 @@ extension Constant where Repr == Unsigned {
   ///
   /// - returns: A constant value representing the quotient of the first and 
   ///   second operands.
-  public func divide(_ rhs: Constant) -> Constant {
+  public func dividing(_ rhs: Constant) -> Constant {
     return Constant.divide(self, rhs)
   }
 }
@@ -564,7 +562,7 @@ extension Constant where Repr == Signed {
   ///
   /// - returns: A constant value representing the quotient of the first and 
   ///   second operands.
-  public func divide(_ rhs: Constant) -> Constant {
+  public func dividing(_ rhs: Constant) -> Constant {
     return Constant.divide(self, rhs)
   }
 }
@@ -578,7 +576,7 @@ extension Constant where Repr == Floating {
   ///
   /// - returns: A constant value representing the quotient of the first and 
   ///   second operands.
-  public func divide(_ rhs: Constant) -> Constant {
+  public func dividing(_ rhs: Constant) -> Constant {
     return Constant.divide(self, rhs)
   }
 }
