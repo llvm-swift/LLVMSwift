@@ -57,10 +57,12 @@ public struct StructType: IRType {
   /// Creates a constant value of this structure type initialized with the given
   /// list of values.
   ///
+  /// - precondition: values.count == aggregate.elementCount
   /// - parameter values: A list of values of members of this structure.
   ///
   /// - returns: A value representing a constant value of this structure type.
   public func constant(values: [IRValue]) -> Constant<Struct> {
+    assert(numericCast(values.count) == LLVMCountStructElementTypes(llvm), "The number of values must match the number of elements in the aggregate")
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
       return Constant(llvm: LLVMConstNamedStruct(asLLVM(),
