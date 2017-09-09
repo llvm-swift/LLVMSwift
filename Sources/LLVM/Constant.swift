@@ -43,7 +43,7 @@ public struct Constant<Repr: ConstantRepresentation>: IRValue {
 
 // MARK: Casting
 
-extension Constant where Repr == Unsigned {
+extension Constant where Repr: IntegralConstantRepresentation {
 
   /// Creates a constant cast to a given integral type.
   ///
@@ -51,17 +51,22 @@ extension Constant where Repr == Unsigned {
   ///
   /// - returns: A const value representing this value cast to the given
   ///   integral type.
-  public func cast<T: IntegralConstantRepresentation>(to type: IntType) -> Constant<T> {
-    let destID = ObjectIdentifier(T.self)
-    let val = self.asLLVM()
-    if destID == ObjectIdentifier(Unsigned.self) {
-      return Constant<T>(llvm: LLVMConstIntCast(val, type.asLLVM(), /*signed:*/ false.llvm))
-    } else if destID == ObjectIdentifier(Signed.self) {
-      return Constant<T>(llvm: LLVMConstIntCast(val, type.asLLVM(), /*signed:*/ true.llvm))
-    } else {
-      fatalError("Invalid representation \(type(of: T.self))")
-    }
+  public func cast(to type: IntType) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstIntCast(llvm, type.asLLVM(), /*signed:*/ true.llvm))
   }
+
+  /// Creates a constant cast to a given integral type.
+  ///
+  /// - parameter type: The type to cast towards.
+  ///
+  /// - returns: A const value representing this value cast to the given
+  ///   integral type.
+  public func cast(to type: IntType) -> Constant<Unsigned> {
+    return Constant<Unsigned>(llvm: LLVMConstIntCast(llvm, type.asLLVM(), /*signed:*/ false.llvm))
+  }
+}
+
+extension Constant where Repr == Unsigned {
 
   /// Creates a constant cast to a given floating type.
   ///
@@ -70,8 +75,7 @@ extension Constant where Repr == Unsigned {
   /// - returns: A const value representing this value cast to the given
   ///   floating type.
   public func cast(to type: FloatType) -> Constant<Floating> {
-    let val = self.asLLVM()
-    return Constant<Floating>(llvm: LLVMConstUIToFP(val, type.asLLVM()))
+    return Constant<Floating>(llvm: LLVMConstUIToFP(llvm, type.asLLVM()))
   }
 }
 
@@ -83,16 +87,18 @@ extension Constant where Repr == Signed {
   ///
   /// - returns: A const value representing this value cast to the given
   ///   integral type.
-  public func cast<T: IntegralConstantRepresentation>(to type: IntType) -> Constant<T> {
-    let destID = ObjectIdentifier(T.self)
-    let val = self.asLLVM()
-    if destID == ObjectIdentifier(Unsigned.self) {
-      return Constant<T>(llvm: LLVMConstIntCast(val, type.asLLVM(), /*signed:*/ false.llvm))
-    } else if destID == ObjectIdentifier(Signed.self) {
-      return Constant<T>(llvm: LLVMConstIntCast(val, type.asLLVM(), /*signed:*/ true.llvm))
-    } else {
-      fatalError("Invalid representation \(type(of: T.self))")
-    }
+  public func cast(to type: IntType) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstIntCast(llvm, type.asLLVM(), /*signed:*/ true.llvm))
+  }
+
+  /// Creates a constant cast to a given integral type.
+  ///
+  /// - parameter type: The type to cast towards.
+  ///
+  /// - returns: A const value representing this value cast to the given
+  ///   integral type.
+  public func cast(to type: IntType) -> Constant<Unsigned> {
+    return Constant<Unsigned>(llvm: LLVMConstIntCast(llvm, type.asLLVM(), /*signed:*/ false.llvm))
   }
 
   /// Creates a constant cast to a given floating type.
@@ -115,16 +121,18 @@ extension Constant where Repr == Floating {
   ///
   /// - returns: A const value representing this value cast to the given
   ///   integral type.
-  public func cast<T: IntegralConstantRepresentation>(to type: IntType) -> Constant<T> {
-    let destID = ObjectIdentifier(T.self)
-    let val = self.asLLVM()
-    if destID == ObjectIdentifier(Unsigned.self) {
-      return Constant<T>(llvm: LLVMConstFPToUI(val, type.asLLVM()))
-    } else if destID == ObjectIdentifier(Signed.self) {
-      return Constant<T>(llvm: LLVMConstFPToSI(val, type.asLLVM()))
-    } else {
-      fatalError("Invalid representation \(type(of: T.self))")
-    }
+  public func cast(to type: IntType) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstFPToSI(llvm, type.asLLVM()))
+  }
+
+  /// Creates a constant cast to a given integral type.
+  ///
+  /// - parameter type: The type to cast towards.
+  ///
+  /// - returns: A const value representing this value cast to the given
+  ///   integral type.
+  public func cast(to type: IntType) -> Constant<Unsigned> {
+    return Constant<Unsigned>(llvm: LLVMConstFPToUI(llvm, type.asLLVM()))
   }
 
   /// Creates a constant cast to a given floating type.
@@ -139,6 +147,8 @@ extension Constant where Repr == Floating {
   }
 }
 
+
+// NOTE: These are here to improve the error message should a user attempt to cast a const struct
 
 extension Constant where Repr == Struct {
 
@@ -666,7 +676,7 @@ extension Constant where Repr == Floating {
 
 // MARK: Comparison Operations
 
-extension Constant {
+extension Constant where Repr: IntegralConstantRepresentation {
 
   /// A constant equality comparison between two values.
   ///
@@ -675,18 +685,12 @@ extension Constant {
   ///
   /// - returns: A constant integral value (i1) representing the result of the
   ///   comparision of the given operands.
-  public static func equals<T: NumericalConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<Signed> {
-
-    switch ObjectIdentifier(T.self) {
-    case ObjectIdentifier(Unsigned.self): fallthrough
-    case ObjectIdentifier(Signed.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.equal.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Floating.self):
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedEqual.llvm, lhs.llvm, rhs.llvm))
-    default:
-      fatalError("Invalid representation")
-    }
+  public static func equals(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.equal.llvm, lhs.llvm, rhs.llvm))
   }
+}
+
+extension Constant where Repr == Signed {
 
   /// A constant less-than comparison between two values.
   ///
@@ -695,18 +699,8 @@ extension Constant {
   ///
   /// - returns: A constant integral value (i1) representing the result of the
   ///   comparision of the given operands.
-  public static func lessThan<T: NumericalConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<Signed> {
-
-    switch ObjectIdentifier(T.self) {
-    case ObjectIdentifier(Unsigned.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThan.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Signed.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedLessThan.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Floating.self):
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThan.llvm, lhs.llvm, rhs.llvm))
-    default:
-      fatalError("Invalid representation")
-    }
+  public static func lessThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThan.llvm, lhs.llvm, rhs.llvm))
   }
 
   /// A constant greater-than comparison between two values.
@@ -716,18 +710,8 @@ extension Constant {
   ///
   /// - returns: A constant integral value (i1) representing the result of the
   ///   comparision of the given operands.
-  public static func greaterThan<T: NumericalConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<Signed> {
-
-    switch ObjectIdentifier(T.self) {
-    case ObjectIdentifier(Unsigned.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThan.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Signed.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedGreaterThan.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Floating.self):
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThan.llvm, lhs.llvm, rhs.llvm))
-    default:
-      fatalError("Invalid representation")
-    }
+  public static func greaterThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedGreaterThan.llvm, lhs.llvm, rhs.llvm))
   }
 
   /// A constant less-than-or-equal comparison between two values.
@@ -737,18 +721,8 @@ extension Constant {
   ///
   /// - returns: A constant integral value (i1) representing the result of the
   ///   comparision of the given operands.
-  public static func lessThanOrEqual <T: NumericalConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<Signed> {
-
-    switch ObjectIdentifier(T.self) {
-    case ObjectIdentifier(Unsigned.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Signed.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Floating.self):
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-    default:
-      fatalError("Invalid representation")
-    }
+  public static func lessThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
   }
 
   /// A constant greater-than-or-equal comparison between two values.
@@ -758,22 +732,120 @@ extension Constant {
   ///
   /// - returns: A constant integral value (i1) representing the result of the
   ///   comparision of the given operands.
-  public static func greaterThanOrEqual <T: NumericalConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<Signed> {
+  public static func greaterThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
+  }
+}
 
-    switch ObjectIdentifier(T.self) {
-    case ObjectIdentifier(Unsigned.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Signed.self):
-      return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-    case ObjectIdentifier(Floating.self):
-      return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-    default:
-      fatalError("Invalid representation")
-    }
+extension Constant where Repr == Unsigned {
+
+  /// A constant less-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func lessThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThan.llvm, lhs.llvm, rhs.llvm))
   }
 
+  /// A constant greater-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func greaterThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThan.llvm, lhs.llvm, rhs.llvm))
+  }
 
-  // MARK: Logical Operations
+  /// A constant less-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func lessThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
+  }
+
+  /// A constant greater-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func greaterThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
+  }
+}
+
+extension Constant where Repr == Floating {
+
+  /// A constant equality comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func equals(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedEqual.llvm, lhs.llvm, rhs.llvm))
+  }
+
+  /// A constant less-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func lessThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThan.llvm, lhs.llvm, rhs.llvm))
+  }
+
+  /// A constant greater-than comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func greaterThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThan.llvm, lhs.llvm, rhs.llvm))
+  }
+
+  /// A constant less-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func lessThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
+  }
+
+  /// A constant greater-than-or-equal comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
+  public static func greaterThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
+  }
+}
+
+
+// MARK: Logical Operations
+
+extension Constant {
 
   /// A constant bitwise logical not with the given integral value as an operand.
   ///
