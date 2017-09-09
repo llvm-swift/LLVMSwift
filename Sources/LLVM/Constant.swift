@@ -845,7 +845,7 @@ extension Constant {
   ///
   /// - returns: A constant value representing the constant value selected for
   ///   by the condition.
-  public static func select<T: ConstantRepresentation>(_ cond: Constant, then: Constant<T>, else: Constant<T>) -> Constant<T> {
+  public static func select<T>(_ cond: Constant, then: Constant<T>, else: Constant<T>) -> Constant<T> {
     return Constant<T>(llvm: LLVMConstSelect(cond.llvm, then.llvm, `else`.llvm))
   }
 }
