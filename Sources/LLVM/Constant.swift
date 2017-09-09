@@ -67,7 +67,7 @@ extension Constant where Repr == Unsigned {
   ///
   /// - parameter type: The type to cast towards.
   ///
-  /// - returns: A const value representing this value cast to the given 
+  /// - returns: A const value representing this value cast to the given
   ///   floating type.
   public func cast(to type: FloatType) -> Constant<Floating> {
     let val = self.asLLVM()
@@ -99,7 +99,7 @@ extension Constant where Repr == Signed {
   ///
   /// - parameter type: The type to cast towards.
   ///
-  /// - returns: A const value representing this value cast to the given 
+  /// - returns: A const value representing this value cast to the given
   ///   floating type.
   public func cast(to type: FloatType) -> Constant<Floating> {
     let val = self.asLLVM()
@@ -131,7 +131,7 @@ extension Constant where Repr == Floating {
   ///
   /// - parameter type: The type to cast towards.
   ///
-  /// - returns: A const value representing this value cast to the given 
+  /// - returns: A const value representing this value cast to the given
   ///   floating type.
   public func cast(to type: FloatType) -> Constant<Floating> {
     let val = self.asLLVM()
@@ -350,7 +350,7 @@ extension Constant {
       return Constant<Signed>(llvm: LLVMConstSub(lhs.llvm, rhs.llvm))
     }
   }
-  
+
   /// Creates a constant sub operation to subtract two homogenous constants.
   ///
   /// - parameter lhs: The first value (the minuend).
@@ -508,7 +508,7 @@ extension Constant {
   /// - parameter lhs: The first value (the dividend).
   /// - parameter rhs: The second value (the divisor).
   ///
-  /// - returns: A constant value representing the quotient of the first and 
+  /// - returns: A constant value representing the quotient of the first and
   ///   second operands.
   public static func divide(_ lhs: Constant<Unsigned>, _ rhs: Constant<Unsigned>) -> Constant<Unsigned> {
     return Constant<Unsigned>(llvm: LLVMConstUDiv(lhs.llvm, rhs.llvm))
@@ -520,7 +520,7 @@ extension Constant {
   /// - parameter lhs: The first value (the dividend).
   /// - parameter rhs: The second value (the divisor).
   ///
-  /// - returns: A constant value representing the quotient of the first and 
+  /// - returns: A constant value representing the quotient of the first and
   ///   second operands.
   public static func divide(_ lhs: Constant<Signed>, _ rhs: Constant<Signed>) -> Constant<Signed> {
     return Constant<Signed>(llvm: LLVMConstSDiv(lhs.llvm, rhs.llvm))
@@ -532,7 +532,7 @@ extension Constant {
   /// - parameter lhs: The first value (the dividend).
   /// - parameter rhs: The second value (the divisor).
   ///
-  /// - returns: A constant value representing the quotient of the first and 
+  /// - returns: A constant value representing the quotient of the first and
   ///   second operands.
   public static func divide(_ lhs: Constant<Floating>, _ rhs: Constant<Floating>) -> Constant<Floating> {
     return Constant<Floating>(llvm: LLVMConstFDiv(lhs.llvm, rhs.llvm))
@@ -546,9 +546,9 @@ extension Constant where Repr == Unsigned {
   ///
   /// - parameter rhs: The second value (the divisor).
   ///
-  /// - returns: A constant value representing the quotient of the first and 
+  /// - returns: A constant value representing the quotient of the first and
   ///   second operands.
-  public func dividing(_ rhs: Constant) -> Constant {
+  public func dividing(by rhs: Constant) -> Constant {
     return Constant.divide(self, rhs)
   }
 }
@@ -560,9 +560,9 @@ extension Constant where Repr == Signed {
   ///
   /// - parameter rhs: The second value (the divisor).
   ///
-  /// - returns: A constant value representing the quotient of the first and 
+  /// - returns: A constant value representing the quotient of the first and
   ///   second operands.
-  public func dividing(_ rhs: Constant) -> Constant {
+  public func dividing(by rhs: Constant) -> Constant {
     return Constant.divide(self, rhs)
   }
 }
@@ -574,9 +574,9 @@ extension Constant where Repr == Floating {
   ///
   /// - parameter rhs: The second value (the divisor).
   ///
-  /// - returns: A constant value representing the quotient of the first and 
+  /// - returns: A constant value representing the quotient of the first and
   ///   second operands.
-  public func dividing(_ rhs: Constant) -> Constant {
+  public func dividing(by rhs: Constant) -> Constant {
     return Constant.divide(self, rhs)
   }
 }
@@ -585,7 +585,7 @@ extension Constant where Repr == Floating {
 
 extension Constant {
 
-  /// A constant remainder operation that provides the remainder after divison 
+  /// A constant remainder operation that provides the remainder after divison
   /// of the first value by the second value.
   ///
   /// - parameter lhs: The first value (the dividend).
@@ -597,7 +597,7 @@ extension Constant {
     return Constant<Unsigned>(llvm: LLVMConstURem(lhs.llvm, rhs.llvm))
   }
 
-  /// A constant remainder operation that provides the remainder after divison 
+  /// A constant remainder operation that provides the remainder after divison
   /// of the first value by the second value.
   ///
   /// - parameter lhs: The first value (the dividend).
@@ -673,7 +673,7 @@ extension Constant {
   /// - parameter lhs: The first value to compare.
   /// - parameter rhs: The second value to compare.
   ///
-  /// - returns: A constant integral value (i1) representing the result of the 
+  /// - returns: A constant integral value (i1) representing the result of the
   ///   comparision of the given operands.
   public static func equals<T: NumericalConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<Signed> {
 
@@ -803,7 +803,7 @@ extension Constant {
   /// - parameter rhs: The second operand.
   /// - parameter name: The name for the newly inserted instruction.
   ///
-  /// - returns: A constant value representing the logical OR of the values of 
+  /// - returns: A constant value representing the logical OR of the values of
   ///   the two given operands.
   public static func or<T: IntegralConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<T> {
     return Constant<T>(llvm: LLVMConstOr(lhs.llvm, rhs.llvm))
@@ -833,6 +833,18 @@ extension Constant {
     return Constant<T>(llvm: LLVMConstShl(lhs.llvm, rhs.llvm))
   }
 
+  /// A constant right-shift of the first value by the second amount.
+  ///
+  /// - parameter lhs: The first operand.
+  /// - parameter rhs: The second operand.
+  /// - parameter arithmetic: Should the shift be arithmetic or logical (defaults to true)
+  ///
+  /// - returns: A constant value representing the value of the first operand
+  ///   shifted left by the number of bits specified in the second operand.
+  public static func rightShift<T: IntegralConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>, arithmetic: Bool = true) -> Constant<T> {
+    return Constant<T>(llvm: arithmetic ? LLVMConstAShr(lhs.llvm, rhs.llvm) : LLVMConstLShr(lhs.llvm, rhs.llvm))
+  }
+
 
   // MARK: Conditional Operations
 
@@ -859,5 +871,169 @@ extension Constant where Repr == Struct {
     return indices.withUnsafeMutableBufferPointer { buf in
       return LLVMConstExtractValue(asLLVM(), buf.baseAddress, UInt32(buf.count))
     }
+  }
+}
+
+
+// MARK: Swift Operators
+
+extension Constant where Repr == Floating {
+
+  public static func +(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.adding(rhs)
+  }
+
+  public static func -(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.subtracting(rhs)
+  }
+
+  public static func *(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.multiplying(rhs)
+  }
+
+  public static func /(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.dividing(by: rhs)
+  }
+
+  public static func %(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.remainder(rhs)
+  }
+
+  public static func ==(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.equals(lhs, rhs)
+  }
+
+  public static func <(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.lessThan(lhs, rhs)
+  }
+
+  public static func >(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.greaterThan(lhs, rhs)
+  }
+
+  public static func <=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.lessThanOrEqual(lhs, rhs)
+  }
+
+  public static func >=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.greaterThanOrEqual(lhs, rhs)
+  }
+}
+
+extension Constant where Repr == Signed {
+
+  public static func +(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.adding(rhs)
+  }
+
+  public static func -(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.subtracting(rhs)
+  }
+
+  public static func *(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.multiplying(rhs)
+  }
+
+  public static func /(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.dividing(by: rhs)
+  }
+
+  public static func %(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.remainder(rhs)
+  }
+
+  public static func ==(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.equals(lhs, rhs)
+  }
+
+  public static func <(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.lessThan(lhs, rhs)
+  }
+
+  public static func >(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.greaterThan(lhs, rhs)
+  }
+
+  public static func <=(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.lessThanOrEqual(lhs, rhs)
+  }
+
+  public static func >=(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.greaterThanOrEqual(lhs, rhs)
+  }
+
+  public static func |(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.or(lhs, rhs)
+  }
+
+  public static func &(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.and(lhs, rhs)
+  }
+
+  public static func <<(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.leftShift(lhs, rhs)
+  }
+
+  public static func >>(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.rightShift(lhs, rhs)
+  }
+}
+
+extension Constant where Repr == Unsigned {
+
+  public static func +(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.adding(rhs)
+  }
+
+  public static func -(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.subtracting(rhs)
+  }
+
+  public static func *(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.multiplying(rhs)
+  }
+
+  public static func /(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.dividing(by: rhs)
+  }
+
+  public static func %(lhs: Constant, rhs: Constant) -> Constant {
+    return lhs.remainder(rhs)
+  }
+
+  public static func ==(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.equals(lhs, rhs)
+  }
+
+  public static func <(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.lessThan(lhs, rhs)
+  }
+
+  public static func >(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.greaterThan(lhs, rhs)
+  }
+
+  public static func <=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.lessThanOrEqual(lhs, rhs)
+  }
+
+  public static func >=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
+    return Constant.greaterThanOrEqual(lhs, rhs)
+  }
+
+  public static func |(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.or(lhs, rhs)
+  }
+
+  public static func &(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.and(lhs, rhs)
+  }
+
+  public static func <<(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.leftShift(lhs, rhs)
+  }
+
+  public static func >>(lhs: Constant, rhs: Constant) -> Constant {
+    return Constant.rightShift(lhs, rhs)
   }
 }
