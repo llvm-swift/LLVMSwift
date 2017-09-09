@@ -112,6 +112,31 @@ class ConstantSpec : XCTestCase {
       // STRUCTCONST-NEXT: }
       module.dump()
     })
+
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["STRUCTCONSTGETELEMENT"]) {
+      // STRUCTCONSTGETELEMENT: ; ModuleID = '[[ModuleName:ConstantTest]]'
+      // STRUCTCONSTGETELEMENT-NEXT: source_filename = "[[ModuleName]]"
+      let module = Module(name: "ConstantTest")
+      let builder = IRBuilder(module: module)
+      // STRUCTCONSTGETELEMENT: define void @main() {
+      let main = builder.addFunction("main",
+                                     type: FunctionType(argTypes: [],
+                                                        returnType: VoidType()))
+
+      let constant = StructType(elementTypes: [IntType.int64])
+        .constant(values: [42])
+
+      // STRUCTCONSTGETELEMENT-NEXT: entry:
+      let entry = main.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: entry)
+
+      let firstElement = constant.getElement(indices: [0])
+
+      // STRUCTCONSTGETELEMENT-NEXT: ret i64 42
+      builder.buildRet(firstElement)
+      // STRUCTCONSTGETELEMENT-NEXT: }
+      module.dump()
+    })
   }
 
   #if !os(macOS)
