@@ -101,7 +101,7 @@ class ConstantSpec : XCTestCase {
                                                         returnType: VoidType()))
 
       let constant = StructType(elementTypes: [IntType.int64])
-        .constant(values: [Int64(42).asLLVM()])
+        .constant(values: [42])
 
       // STRUCTCONST-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
