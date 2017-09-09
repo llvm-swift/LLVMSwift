@@ -71,13 +71,13 @@ public struct StructType: IRType {
     }
   }
 
-  /// Creates a complex constant value initialized with the given list of values.
+  /// Creates an constant struct value initialized with the given list of values.
   ///
   /// - parameter values: A list of values of members of this structure.
   /// - parameter isPacked: Whether or not this structure is 1-byte aligned with
   ///   no packing between fields.  Defaults to `false`.
   ///
-  /// - returns: A value representing a complex constant value with given the values.
+  /// - returns: A value representing a constant struct value with given the values.
   public static func constant(values: [IRValue], isPacked: Bool = false) -> Constant<Struct> {
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in

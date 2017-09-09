@@ -39,10 +39,10 @@ class ConstantSpec : XCTestCase {
       // UNSIGNEDCONST-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "ConstantTest")
       let builder = IRBuilder(module: module)
-      // UNSIGNEDCONST: define void @main() {
+      // UNSIGNEDCONST: define i64 @main() {
       let main = builder.addFunction("main",
                                      type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                                        returnType: IntType.int64))
       let constant = IntType.int64.constant(UInt64(42))
 
       // UNSIGNEDCONST-NEXT: entry:
@@ -67,10 +67,10 @@ class ConstantSpec : XCTestCase {
       // FLOATINGCONST-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "ConstantTest")
       let builder = IRBuilder(module: module)
-      // FLOATINGCONST: define void @main() {
+      // FLOATINGCONST: define i64 @main() {
       let main = builder.addFunction("main",
                                      type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                                        returnType: IntType.int64))
       let constant = FloatType.double.constant(42.0)
 
       // FLOATINGCONST-NEXT: entry:
@@ -95,10 +95,10 @@ class ConstantSpec : XCTestCase {
       // STRUCTCONST-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "ConstantTest")
       let builder = IRBuilder(module: module)
-      // STRUCTCONST: define void @main() {
+      // STRUCTCONST: define i64 @main() {
       let main = builder.addFunction("main",
                                      type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                                        returnType: IntType.int64))
 
       let constant = StructType(elementTypes: [IntType.int64])
         .constant(values: [42])
@@ -118,10 +118,10 @@ class ConstantSpec : XCTestCase {
       // STRUCTCONSTGETELEMENT-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "ConstantTest")
       let builder = IRBuilder(module: module)
-      // STRUCTCONSTGETELEMENT: define void @main() {
+      // STRUCTCONSTGETELEMENT: define i64 @main() {
       let main = builder.addFunction("main",
                                      type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                                        returnType: IntType.int64))
 
       let constant = StructType(elementTypes: [IntType.int64])
         .constant(values: [42])
