@@ -22,7 +22,7 @@ class ConstantSpec : XCTestCase {
       // SIGNEDCONST-NOT: %{{[0-9]+}} = add i64 %%{{[0-9]+}}, %%{{[0-9]+}}
       let val1 = builder.buildAdd(constant.adding(constant), constant.multiplying(constant))
       // SIGNEDCONST-NOT: %{{[0-9]+}} = sub i64 %%{{[0-9]+}}, %%{{[0-9]+}}
-      let val2 = builder.buildSub(constant.subtracting(constant), constant.dividing(constant))
+      let val2 = builder.buildSub(constant.subtracting(constant), constant.dividing(by: constant))
       // SIGNEDCONST-NOT: %{{[0-9]+}} = mul i64 %%{{[0-9]+}}, %%{{[0-9]+}}
       let val3 = builder.buildMul(val1, val2)
       // SIGNEDCONST-NOT: %{{[0-9]+}} = mul i64 %%{{[0-9]+}}, %%{{[0-9]+}}
@@ -52,7 +52,7 @@ class ConstantSpec : XCTestCase {
       // UNSIGNEDCONST-NOT: %{{[0-9]+}} = add i64 %%{{[0-9]+}}, %%{{[0-9]+}}
       let val1 = builder.buildAdd(constant.adding(constant), constant.multiplying(constant))
       // UNSIGNEDCONST-NOT: %{{[0-9]+}} = sub i64 %%{{[0-9]+}}, %%{{[0-9]+}}
-      let val2 = builder.buildSub(constant.subtracting(constant), constant.dividing(constant))
+      let val2 = builder.buildSub(constant.subtracting(constant), constant.dividing(by: constant))
       // UNSIGNEDCONST-NOT: %{{[0-9]+}} = mul i64 %%{{[0-9]+}}, %%{{[0-9]+}}
       let val3 = builder.buildMul(val1, val2)
 
@@ -80,7 +80,7 @@ class ConstantSpec : XCTestCase {
       // FLOATINGCONST-NOT: %{{[0-9]+}} = add double %%{{[0-9]+}}, %%{{[0-9]+}}
       let val1 = builder.buildAdd(constant.adding(constant), constant.multiplying(constant))
       // FLOATINGCONST-NOT: %{{[0-9]+}} = sub double %%{{[0-9]+}}, %%{{[0-9]+}}
-      let val2 = builder.buildSub(constant.subtracting(constant), constant.dividing(constant))
+      let val2 = builder.buildSub(constant.subtracting(constant), constant.dividing(by: constant))
       // FLOATINGCONST-NOT: %{{[0-9]+}} = mul double %%{{[0-9]+}}, %%{{[0-9]+}}
       let val3 = builder.buildMul(val1, val2)
 
