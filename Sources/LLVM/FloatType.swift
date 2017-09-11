@@ -10,14 +10,14 @@ public struct FloatType: IRType {
   public var kind: Kind
 
   /// Returns the context associated with this module.
-  public let context: Context?
+  public let context: Context
 
   /// Creates a float type of a particular kind
   ///
   /// - parameter kind: The kind of floating point type to create
   /// - parameter context: The context to create this type in
   /// - SeeAlso: http://llvm.org/docs/ProgrammersManual.html#achieving-isolation-with-llvmcontext
-  public init(kind: Kind, in context: Context? = nil) {
+  public init(kind: Kind, in context: Context = Context.global) {
     self.kind = kind
     self.context = context
   }
@@ -57,23 +57,13 @@ public struct FloatType: IRType {
 
   /// Retrieves the underlying LLVM type object.
   public func asLLVM() -> LLVMTypeRef {
-    if let context = context {
-        switch kind {
-        case .half: return LLVMHalfTypeInContext(context.llvm)
-        case .float: return LLVMFloatTypeInContext(context.llvm)
-        case .double: return LLVMDoubleTypeInContext(context.llvm)
-        case .x86FP80: return LLVMX86FP80TypeInContext(context.llvm)
-        case .fp128: return LLVMFP128TypeInContext(context.llvm)
-        case .ppcFP128: return LLVMPPCFP128TypeInContext(context.llvm)
-        }
-    }
     switch kind {
-    case .half: return LLVMHalfType()
-    case .float: return LLVMFloatType()
-    case .double: return LLVMDoubleType()
-    case .x86FP80: return LLVMX86FP80Type()
-    case .fp128: return LLVMFP128Type()
-    case .ppcFP128: return LLVMPPCFP128Type()
+    case .half: return LLVMHalfTypeInContext(context.llvm)
+    case .float: return LLVMFloatTypeInContext(context.llvm)
+    case .double: return LLVMDoubleTypeInContext(context.llvm)
+    case .x86FP80: return LLVMX86FP80TypeInContext(context.llvm)
+    case .fp128: return LLVMFP128TypeInContext(context.llvm)
+    case .ppcFP128: return LLVMPPCFP128TypeInContext(context.llvm)
     }
   }
 }

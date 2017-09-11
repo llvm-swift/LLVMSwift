@@ -31,7 +31,7 @@ public extension IRType {
   }
 
   /// Returns the context associated with this type
-  public func context() -> Context {
+  public var context: Context {
     return Context(llvm: LLVMGetTypeContext(asLLVM()))
   }
 }
