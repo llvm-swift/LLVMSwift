@@ -29,11 +29,6 @@ public extension IRType {
   public func constPointerNull() -> IRValue {
     return LLVMConstPointerNull(asLLVM())
   }
-
-  /// Dumps a representation of this type to stderr.
-  public func dump() {
-    LLVMDumpType(asLLVM())
-  }
 }
 
 internal func convertType(_ type: LLVMTypeRef) -> IRType {
