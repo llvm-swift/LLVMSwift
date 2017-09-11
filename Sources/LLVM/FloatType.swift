@@ -38,17 +38,17 @@ public struct FloatType: IRType {
   }
 
   /// 16-bit floating point value in the global context
-  static let half = FloatType(kind: .half)
+  public static let half = FloatType(kind: .half)
   /// 32-bit floating point value in the global context
-  static let float = FloatType(kind: .float)
+  public static let float = FloatType(kind: .float)
   /// 64-bit floating point value in the global context
-  static let double = FloatType(kind: .double)
+  public static let double = FloatType(kind: .double)
   /// 80-bit floating point value (X87) in the global context
-  static let x86FP80 = FloatType(kind: .x86FP80)
+  public static let x86FP80 = FloatType(kind: .x86FP80)
   /// 128-bit floating point value (112-bit mantissa) in the global context
-  static let fp128 = FloatType(kind: .fp128)
+  public static let fp128 = FloatType(kind: .fp128)
   /// 128-bit floating point value (two 64-bits) in the global context
-  static let ppcFP128 = FloatType(kind: .ppcFP128)
+  public static let ppcFP128 = FloatType(kind: .ppcFP128)
 
   /// Creates a constant floating value of this type from a Swift `Double` value.
   public func constant(_ value: Double) -> Constant<Floating> {
