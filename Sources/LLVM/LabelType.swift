@@ -12,7 +12,7 @@ public struct LabelType: IRType {
   ///
   /// - parameter context: The context to create this type in
   /// - SeeAlso: http://llvm.org/docs/ProgrammersManual.html#achieving-isolation-with-llvmcontext
-  public init(context: Context? = nil) {
+  public init(in context: Context? = nil) {
       self.context = context
   }
 

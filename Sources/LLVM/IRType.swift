@@ -37,20 +37,19 @@ public extension IRType {
 }
 
 internal func convertType(_ type: LLVMTypeRef) -> IRType {
+  let context = Context(llvm: LLVMGetTypeContext(type))
   switch LLVMGetTypeKind(type) {
-  case LLVMVoidTypeKind:
-    return VoidType()
-  case LLVMHalfTypeKind:
-    return FloatType.half
-  case LLVMFloatTypeKind: return FloatType.float
-  case LLVMDoubleTypeKind: return FloatType.double
-  case LLVMX86_FP80TypeKind: return FloatType.x86FP80
-  case LLVMFP128TypeKind: return FloatType.fp128
-  case LLVMPPC_FP128TypeKind: return FloatType.fp128
-  case LLVMLabelTypeKind: return LabelType()
+  case LLVMVoidTypeKind: return VoidType(in: context)
+  case LLVMFloatTypeKind: return FloatType(kind: .float, in: context)
+  case LLVMHalfTypeKind: return FloatType(kind: .half, in: context)
+  case LLVMDoubleTypeKind: return FloatType(kind: .double, in: context)
+  case LLVMX86_FP80TypeKind: return FloatType(kind: .x86FP80, in: context)
+  case LLVMFP128TypeKind: return FloatType(kind: .fp128, in: context)
+  case LLVMPPC_FP128TypeKind: return FloatType(kind: .fp128, in: context)
+  case LLVMLabelTypeKind: return LabelType(in: context)
   case LLVMIntegerTypeKind:
     let width = LLVMGetIntTypeWidth(type)
-    return IntType(width: Int(width))
+    return IntType(width: Int(width), in: context)
   case LLVMFunctionTypeKind:
     var params = [IRType]()
     let count = Int(LLVMCountParamTypes(type))
@@ -81,7 +80,7 @@ internal func convertType(_ type: LLVMTypeRef) -> IRType {
   case LLVMMetadataTypeKind:
     return MetadataType(llvm: type)
   case LLVMX86_MMXTypeKind:
-    return X86MMXType()
+    return X86MMXType(in: context)
   case LLVMTokenTypeKind:
     return TokenType(llvm: type)
   default: fatalError("unknown type kind for type \(type)")
