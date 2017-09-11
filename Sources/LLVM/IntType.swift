@@ -11,8 +11,18 @@ public struct IntType: IRType {
   /// Retrieves the bit width of this integer type.
   public let width: Int
 
+  /// Returns the context associated with this module.
+  public let context: Context?
+
   /// Creates an integer type with the specified bit width.
-  public init(width: Int) { self.width = width }
+  ///
+  /// - parameter width: The width in bits of the integer type
+  /// - parameter context: The context to create this type in
+  /// - SeeAlso: http://llvm.org/docs/ProgrammersManual.html#achieving-isolation-with-llvmcontext
+  public init(width: Int, in context: Context? = nil) {
+    self.width = width
+    self.context = context
+  }
 
   /// Retrieves the `i1` type.
   public static let int1 = IntType(width: 1)
@@ -68,6 +78,9 @@ public struct IntType: IRType {
 
   /// Retrieves the underlying LLVM type object.
   public func asLLVM() -> LLVMTypeRef {
+    if let context = context {
+        return LLVMIntTypeInContext(context.llvm, UInt32(width))
+    }
     return LLVMIntType(UInt32(width))
   }
 }

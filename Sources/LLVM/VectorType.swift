@@ -16,6 +16,7 @@ public struct VectorType: IRType {
   ///
   /// - parameter elementType: The type of elements of this vector.
   /// - parameter count: The number of elements in this vector.
+  /// - note: The context of this type is taken from it's `elementType`
   public init(elementType: IRType, count: Int) {
     self.elementType = elementType
     self.count = count
