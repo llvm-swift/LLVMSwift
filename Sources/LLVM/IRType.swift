@@ -29,6 +29,11 @@ public extension IRType {
   public func constPointerNull() -> IRValue {
     return LLVMConstPointerNull(asLLVM())
   }
+
+  /// Returns the context associated with this type
+  public func context() -> Context {
+    return Context(llvm: LLVMGetTypeContext(asLLVM()))
+  }
 }
 
 internal func convertType(_ type: LLVMTypeRef) -> IRType {
