@@ -9,7 +9,7 @@ public struct FloatType: IRType {
   /// The kind of floating point type this is
   public var kind: Kind
 
-  /// Returns the context associated with this module.
+  /// Returns the context associated with this type.
   public let context: Context
 
   /// Creates a float type of a particular kind

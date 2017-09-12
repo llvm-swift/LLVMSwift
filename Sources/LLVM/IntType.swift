@@ -11,7 +11,7 @@ public struct IntType: IRType {
   /// Retrieves the bit width of this integer type.
   public let width: Int
 
-  /// Returns the context associated with this module.
+  /// Returns the context associated with this type.
   public let context: Context
 
   /// Creates an integer type with the specified bit width.

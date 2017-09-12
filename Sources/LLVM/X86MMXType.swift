@@ -10,7 +10,7 @@ import cllvm
 /// type. There are no arrays, vectors or constants of this type.
 public struct X86MMXType: IRType {
 
-  /// Returns the context associated with this module.
+  /// Returns the context associated with this type.
   public let context: Context
 
   /// Creates an `X86MMXType`.
