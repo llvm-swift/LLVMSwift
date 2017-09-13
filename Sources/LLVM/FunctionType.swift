@@ -20,6 +20,7 @@ public struct FunctionType: IRType {
   /// - parameter returnType: The return type of the function type.
   /// - parameter isVarArg: Indicates whether this function type is variadic.
   ///   Defaults to `false`.
+  /// - note: The context of this type is taken from it's `returnType`
   public init(argTypes: [IRType], returnType: IRType, isVarArg: Bool = false) {
     self.argTypes = argTypes
     self.returnType = returnType

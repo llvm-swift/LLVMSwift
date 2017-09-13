@@ -12,6 +12,7 @@ public struct ArrayType: IRType {
   public let count: Int
 
   /// Creates an array type from an underlying element type and count.
+  /// - note: The context of this type is taken from it's `elementType`
   public init(elementType: IRType, count: Int) {
     self.elementType = elementType
     self.count = count

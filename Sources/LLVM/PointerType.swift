@@ -23,6 +23,7 @@ public struct PointerType: IRType {
   /// - parameter pointee: The type of the pointed-to object.
   /// - parameter addressSpace: The optional address space where the pointed-to
   ///   object resides.
+  /// - note: The context of this type is taken from it's pointee
   public init(pointee: IRType, addressSpace: Int = 0) {
     // FIXME: This class of invalid reference is not caught by Module.verify(),
     // only `lli`.

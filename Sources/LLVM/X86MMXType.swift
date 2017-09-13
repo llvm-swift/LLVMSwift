@@ -9,11 +9,20 @@ import cllvm
 /// represented as intrinsic or asm calls with arguments and/or results of this
 /// type. There are no arrays, vectors or constants of this type.
 public struct X86MMXType: IRType {
+
+  /// Returns the context associated with this type.
+  public let context: Context
+
   /// Creates an `X86MMXType`.
-  public init() {}
+  ///
+  /// - parameter context: The context to create this type in
+  /// - SeeAlso: http://llvm.org/docs/ProgrammersManual.html#achieving-isolation-with-llvmcontext
+  public init(in context: Context = Context.global) {
+    self.context = context
+  }
 
   /// Retrieves the underlying LLVM type object.
   public func asLLVM() -> LLVMTypeRef {
-    return LLVMX86MMXType()
+    return LLVMX86MMXTypeInContext(context.llvm)
   }
 }

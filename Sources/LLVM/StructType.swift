@@ -35,10 +35,12 @@ public struct StructType: IRType {
   /// - parameter elementTypes: A list of types of members of this structure.
   /// - parameter isPacked: Whether or not this structure is 1-byte aligned with
   ///   no packing between fields.  Defaults to `false`.
-  public init(elementTypes: [IRType], isPacked: Bool = false) {
+  /// - parameter context: The context to create this type in
+  /// - SeeAlso: http://llvm.org/docs/ProgrammersManual.html#achieving-isolation-with-llvmcontext
+  public init(elementTypes: [IRType], isPacked: Bool = false, in context: Context = Context.global) {
     var irTypes = elementTypes.map { $0.asLLVM() as Optional }
     self.llvm = irTypes.withUnsafeMutableBufferPointer { buf in
-      LLVMStructType(buf.baseAddress, UInt32(buf.count), isPacked.llvm)
+      return LLVMStructTypeInContext(context.llvm, buf.baseAddress, UInt32(buf.count), isPacked.llvm)
     }
   }
 
