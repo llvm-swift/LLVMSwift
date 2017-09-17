@@ -5,6 +5,7 @@ import cllvm
 /// An in-memory representation of a format-independent object file.
 public class ObjectFile {
     let llvm: LLVMObjectFileRef
+    let buffer: MemoryBuffer
 
     /// Creates an `ObjectFile` with the contents of a provided memory buffer.
     /// - parameter memoryBuffer: A memory buffer containing a valid binary
@@ -13,6 +14,7 @@ public class ObjectFile {
         guard let file = LLVMCreateObjectFile(memoryBuffer.llvm) else {
             return nil
         }
+        self.buffer = memoryBuffer
         self.llvm = file
     }
 
@@ -20,7 +22,6 @@ public class ObjectFile {
     /// the provided path.
     /// - parameter path: The absolute file path on your filesystem.
     public convenience init?(path: String) {
-        
         guard let memoryBuffer = try? MemoryBuffer(contentsOf: path) else {
             return nil
         }

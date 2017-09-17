@@ -59,6 +59,7 @@ public enum ModuleError: Error, CustomStringConvertible {
 /// units merged together.
 public final class Module: CustomStringConvertible {
   internal let llvm: LLVMModuleRef
+  internal var ownsLLVMRef = true
 
   /// Creates a `Module` with the given name.
   ///
@@ -207,7 +208,9 @@ public final class Module: CustomStringConvertible {
   }
 
   deinit {
-    LLVMDisposeModule(llvm)
+    if ownsLLVMRef {
+      LLVMDisposeModule(llvm)
+    }
   }
 }
 

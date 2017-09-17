@@ -99,6 +99,12 @@ public class TargetMachine {
   /// - abi = eabi, gnu, android, macho, elf, etc.
   public let triple: String
 
+  private let optLevel: CodeGenOptLevel
+  private let relocMode: RelocMode
+  private let codeModel: CodeModel
+
+  var ownsLLVMRef: Bool = true
+
   /// The CPU associated with this target machine.
   public var cpu: String {
     guard let str = LLVMGetTargetMachineCPU(self.llvm) else {
@@ -134,7 +140,8 @@ public class TargetMachine {
   ///   no model is provided, the default model for the target architecture is
   ///   assumed.
   public init(triple: String? = nil, cpu: String = "", features: String = "",
-              optLevel: CodeGenOptLevel = .default, relocMode: RelocMode = .default,
+              optLevel: CodeGenOptLevel = .default,
+              relocMode: RelocMode = .default,
               codeModel: CodeModel = .default) throws {
 
     // Ensure the LLVM initializer is called when the first module is created
@@ -155,7 +162,16 @@ public class TargetMachine {
                                         relocMode.asLLVM(),
                                         codeModel.asLLVM())
     self.dataLayout = TargetData(llvm: LLVMCreateTargetDataLayout(self.llvm))
+    self.optLevel = optLevel
+    self.codeModel = codeModel
+    self.relocMode = relocMode
   }
+
+    func clone() throws -> TargetMachine {
+        return try TargetMachine(triple: triple, cpu: cpu, features: features,
+                                 optLevel: optLevel, relocMode: relocMode,
+                                 codeModel: codeModel)
+    }
 
   /// Emits an LLVM Bitcode, ASM, or object file for the given module to the
   /// provided filename.
@@ -217,6 +233,8 @@ public class TargetMachine {
   }
 
   deinit {
-    LLVMDisposeTargetMachine(llvm)
+    if ownsLLVMRef {
+      LLVMDisposeTargetMachine(llvm)
+    }
   }
 }
