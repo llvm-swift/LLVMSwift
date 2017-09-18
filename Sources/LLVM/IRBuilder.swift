@@ -497,9 +497,14 @@ public class IRBuilder {
   public func buildAdd(_ lhs: IRValue, _ rhs: IRValue,
                        overflowBehavior: OverflowBehavior = .default,
                        name: String = "") -> IRValue {
+    var lhsType = lhs.type
+    if let vlhs = lhsType as? VectorType {
+        lhsType = vlhs.elementType
+    }
+
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
-    if lhs.type is IntType {
+    if lhsType is IntType {
       switch overflowBehavior {
       case .noSignedWrap:
         return LLVMBuildNSWAdd(llvm, lhsVal, rhsVal, name)
@@ -508,7 +513,7 @@ public class IRBuilder {
       case .default:
         return LLVMBuildAdd(llvm, lhsVal, rhsVal, name)
       }
-    } else if lhs.type is FloatType {
+    } else if lhsType is FloatType {
       return LLVMBuildFAdd(llvm, lhsVal, rhsVal, name)
     }
     fatalError("Can only add value of int, float, or vector types")
@@ -530,9 +535,14 @@ public class IRBuilder {
   public func buildSub(_ lhs: IRValue, _ rhs: IRValue,
                        overflowBehavior: OverflowBehavior = .default,
                        name: String = "") -> IRValue {
+    var lhsType = lhs.type
+    if let vlhs = lhsType as? VectorType {
+        lhsType = vlhs.elementType
+    }
+
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
-    if lhs.type is IntType {
+    if lhsType is IntType {
       switch overflowBehavior {
       case .noSignedWrap:
         return LLVMBuildNSWSub(llvm, lhsVal, rhsVal, name)
@@ -541,7 +551,7 @@ public class IRBuilder {
       case .default:
         return LLVMBuildSub(llvm, lhsVal, rhsVal, name)
       }
-    } else if lhs.type is FloatType {
+    } else if lhsType is FloatType {
       return LLVMBuildFSub(llvm, lhsVal, rhsVal, name)
     }
     fatalError("Can only subtract value of int or float types")
@@ -563,9 +573,14 @@ public class IRBuilder {
   public func buildMul(_ lhs: IRValue, _ rhs: IRValue,
                        overflowBehavior: OverflowBehavior = .default,
                        name: String = "") -> IRValue {
+    var lhsType = lhs.type
+    if let vlhs = lhsType as? VectorType {
+        lhsType = vlhs.elementType
+    }
+
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
-    if lhs.type is IntType {
+    if lhsType is IntType {
       switch overflowBehavior {
       case .noSignedWrap:
         return LLVMBuildNSWMul(llvm, lhsVal, rhsVal, name)
@@ -574,7 +589,7 @@ public class IRBuilder {
       case .default:
         return LLVMBuildMul(llvm, lhsVal, rhsVal, name)
       }
-    } else if lhs.type is FloatType {
+    } else if lhsType is FloatType {
       return LLVMBuildFMul(llvm, lhsVal, rhsVal, name)
     }
     fatalError("Can only multiply value of int or float types")
@@ -598,15 +613,20 @@ public class IRBuilder {
   public func buildRem(_ lhs: IRValue, _ rhs: IRValue,
                        signed: Bool = true,
                        name: String = "") -> IRValue {
+    var lhsType = lhs.type
+    if let vlhs = lhsType as? VectorType {
+        lhsType = vlhs.elementType
+    }
+
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
-    if lhs.type is IntType {
+    if lhsType is IntType {
       if signed {
         return LLVMBuildSRem(llvm, lhsVal, rhsVal, name)
       } else {
         return LLVMBuildURem(llvm, lhsVal, rhsVal, name)
       }
-    } else if lhs.type is FloatType {
+    } else if lhsType is FloatType {
       return LLVMBuildFRem(llvm, lhsVal, rhsVal, name)
     }
     fatalError("Can only take remainder of int or float types")
@@ -633,9 +653,14 @@ public class IRBuilder {
   public func buildDiv(_ lhs: IRValue, _ rhs: IRValue,
                        signed: Bool = true, exact: Bool = false,
                        name: String = "") -> IRValue {
+    var lhsType = lhs.type
+    if let vlhs = lhsType as? VectorType {
+        lhsType = vlhs.elementType
+    }
+
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
-    if lhs.type is IntType {
+    if lhsType is IntType {
       if signed {
         if exact {
           return LLVMBuildExactSDiv(llvm, lhsVal, rhsVal, name)
@@ -645,7 +670,7 @@ public class IRBuilder {
       } else {
         return LLVMBuildUDiv(llvm, lhsVal, rhsVal, name)
       }
-    } else if lhs.type is FloatType {
+    } else if lhsType is FloatType {
       return LLVMBuildFDiv(llvm, lhsVal, rhsVal, name)
     }
     fatalError("Can only divide values of int or float types")
@@ -694,9 +719,14 @@ public class IRBuilder {
   public func buildFCmp(_ lhs: IRValue, _ rhs: IRValue,
                         _ predicate: RealPredicate,
                         name: String = "") -> IRValue {
+    var lhsType = lhs.type
+    if let vlhs = lhsType as? VectorType {
+        lhsType = vlhs.elementType
+    }
+
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
-    guard lhs.type is FloatType else {
+    guard lhsType is FloatType else {
       fatalError("Can only build FCMP instruction with float types")
     }
     return LLVMBuildFCmp(llvm, predicate.llvm, lhsVal, rhsVal, name)
