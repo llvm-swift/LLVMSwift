@@ -497,10 +497,7 @@ public class IRBuilder {
   public func buildAdd(_ lhs: IRValue, _ rhs: IRValue,
                        overflowBehavior: OverflowBehavior = .default,
                        name: String = "") -> IRValue {
-    var lhsType = lhs.type
-    if let vlhs = lhsType as? VectorType {
-        lhsType = vlhs.elementType
-    }
+    let lhsType = lhs.type.lowerFromVector()
 
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
@@ -535,10 +532,7 @@ public class IRBuilder {
   public func buildSub(_ lhs: IRValue, _ rhs: IRValue,
                        overflowBehavior: OverflowBehavior = .default,
                        name: String = "") -> IRValue {
-    var lhsType = lhs.type
-    if let vlhs = lhsType as? VectorType {
-        lhsType = vlhs.elementType
-    }
+    let lhsType = lhs.type.lowerFromVector()
 
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
@@ -573,10 +567,7 @@ public class IRBuilder {
   public func buildMul(_ lhs: IRValue, _ rhs: IRValue,
                        overflowBehavior: OverflowBehavior = .default,
                        name: String = "") -> IRValue {
-    var lhsType = lhs.type
-    if let vlhs = lhsType as? VectorType {
-        lhsType = vlhs.elementType
-    }
+    let lhsType = lhs.type.lowerFromVector()
 
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
@@ -613,10 +604,7 @@ public class IRBuilder {
   public func buildRem(_ lhs: IRValue, _ rhs: IRValue,
                        signed: Bool = true,
                        name: String = "") -> IRValue {
-    var lhsType = lhs.type
-    if let vlhs = lhsType as? VectorType {
-        lhsType = vlhs.elementType
-    }
+    let lhsType = lhs.type.lowerFromVector()
 
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
@@ -653,10 +641,7 @@ public class IRBuilder {
   public func buildDiv(_ lhs: IRValue, _ rhs: IRValue,
                        signed: Bool = true, exact: Bool = false,
                        name: String = "") -> IRValue {
-    var lhsType = lhs.type
-    if let vlhs = lhsType as? VectorType {
-        lhsType = vlhs.elementType
-    }
+    let lhsType = lhs.type.lowerFromVector()
 
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()
@@ -719,10 +704,7 @@ public class IRBuilder {
   public func buildFCmp(_ lhs: IRValue, _ rhs: IRValue,
                         _ predicate: RealPredicate,
                         name: String = "") -> IRValue {
-    var lhsType = lhs.type
-    if let vlhs = lhsType as? VectorType {
-        lhsType = vlhs.elementType
-    }
+    let lhsType = lhs.type.lowerFromVector()
 
     let lhsVal = lhs.asLLVM()
     let rhsVal = rhs.asLLVM()

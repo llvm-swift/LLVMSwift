@@ -2,5 +2,6 @@
 /.build
 /Packages
 Package.resolved
+Package.pins
 /*.xcodeproj
 /build
