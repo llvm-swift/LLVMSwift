@@ -36,16 +36,6 @@ public extension IRType {
   }
 }
 
-extension IRType {
-    internal func lowerFromVector() -> IRType {
-        guard let vectorType = self as? VectorType else {
-            return self
-        }
-
-        return vectorType.elementType
-    }
-}
-
 internal func convertType(_ type: LLVMTypeRef) -> IRType {
   let context = Context(llvm: LLVMGetTypeContext(type))
   switch LLVMGetTypeKind(type) {
