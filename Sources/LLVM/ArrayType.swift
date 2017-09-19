@@ -31,7 +31,8 @@ public struct ArrayType: IRType {
     }
   }
 
-  /// Creates a constant array value of i8 from a swift string.
+  /// Creates a constant, null terminated array value of utf8 bytes from
+  /// string's utf8 member.
   ///
   /// - parameter string: A string to create a null terminated array from.
   /// - parameter context: The context to create the string in.
