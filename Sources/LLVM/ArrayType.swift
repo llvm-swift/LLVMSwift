@@ -31,6 +31,19 @@ public struct ArrayType: IRType {
     }
   }
 
+  /// Creates a constant, null terminated array value of UTF-8 bytes from
+  /// string's `utf8` member.
+  ///
+  /// - parameter string: A string to create a null terminated array from.
+  /// - parameter context: The context to create the string in.
+  ///
+  /// - returns: A null terminated constant array value containing
+  ///   `string.utf8.count + 1` i8's.
+  public static func constant(string: String, in context: Context = .global) -> IRValue {
+    let length = string.utf8.count
+    return LLVMConstStringInContext(context.llvm, string, UInt32(length), 0)
+  }
+
   /// Retrieves the underlying LLVM type object.
   public func asLLVM() -> LLVMTypeRef {
     return LLVMArrayType(elementType.asLLVM(), UInt32(count))
