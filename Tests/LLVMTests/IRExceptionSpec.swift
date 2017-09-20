@@ -1,5 +1,6 @@
 import LLVM
 import XCTest
+import FileCheck
 import Foundation
 
 class IRExceptionSpec : XCTestCase {
