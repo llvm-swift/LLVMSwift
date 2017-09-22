@@ -1,5 +1,6 @@
 import LLVM
 import XCTest
+import FileCheck
 import Foundation
 
 class IRBuilderSpec : XCTestCase {
@@ -241,15 +242,13 @@ class IRBuilderSpec : XCTestCase {
       // CONTROLFLOW-NEXT: br i1 %1, label %then, label %else
       builder.buildCondBr(condition: res, then: thenBB, else: elseBB)
 
-      // CONTROLFLOW-NEXT:
-      // CONTROLFLOW-NEXT: then:
+      // CONTROLFLOW: then:
       builder.positionAtEnd(of: thenBB)
 
       // CONTROLFLOW-NEXT: ret i32 1
       builder.buildRet(IntType.int32.constant(1))
 
-      // CONTROLFLOW-NEXT:
-      // CONTROLFLOW-NEXT: else:
+      // CONTROLFLOW: else:
       builder.positionAtEnd(of: elseBB)
 
       // CONTROLFLOW-NEXT: ret i32 0

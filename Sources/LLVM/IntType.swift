@@ -52,7 +52,7 @@ public struct IntType: IRType {
   ///   type's bit width.  Defaults to `false`.
   public func constant<IntTy: UnsignedInteger>(_ value: IntTy, signExtend: Bool = false) -> Constant<Unsigned> {
     return Constant(llvm: LLVMConstInt(asLLVM(),
-                          value.toUIntMax(),
+                          UInt64(value),
                           signExtend.llvm))
   }
 
@@ -63,7 +63,7 @@ public struct IntType: IRType {
   ///   type's bit width.  Defaults to `false`.
   public func constant<IntTy: SignedInteger>(_ value: IntTy, signExtend: Bool = false) -> Constant<Signed> {
     return Constant(llvm: LLVMConstInt(asLLVM(),
-                                       UInt64(bitPattern: value.toIntMax()),
+                                       UInt64(bitPattern: Int64(value)),
                                        signExtend.llvm))
   }
 
