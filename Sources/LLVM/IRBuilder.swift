@@ -1090,11 +1090,14 @@ public class IRBuilder {
   ///
   /// - parameter type: The sized type used to determine the amount of stack
   ///   memory to allocate.
+  /// - parameter alignment: The alignment of the access.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing `void`.
-  public func buildAlloca(type: IRType, name: String = "") -> IRValue {
-    return LLVMBuildAlloca(llvm, type.asLLVM(), name)
+  public func buildAlloca(type: IRType, alignment: Int = 0, name: String = "") -> IRValue {
+    let allocaInst = LLVMBuildAlloca(llvm, type.asLLVM(), name)!
+    LLVMSetAlignment(allocaInst, UInt32(alignment))
+    return allocaInst
   }
 
   /// Builds a store instruction that stores the first value into the location
@@ -1105,13 +1108,15 @@ public class IRBuilder {
   /// - parameter ordering: The ordering effect of the fence for this store,
   ///   if any.  Defaults to a nonatomic store.
   /// - parameter volatile: Whether this is a store to a volatile memory location.
+  /// - parameter alignment: The alignment of the access.
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildStore(_ val: IRValue, to ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false) -> IRValue {
+  public func buildStore(_ val: IRValue, to ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Int = 0) -> IRValue {
     let storeInst = LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())!
     LLVMSetOrdering(storeInst, ordering.llvm)
     LLVMSetVolatile(storeInst, volatile.llvm)
+    LLVMSetAlignment(storeInst, UInt32(alignment))
     return storeInst
   }
 
@@ -1122,14 +1127,16 @@ public class IRBuilder {
   /// - parameter ordering: The ordering effect of the fence for this load,
   ///   if any.  Defaults to a nonatomic load.
   /// - parameter volatile: Whether this is a load from a volatile memory location.
+  /// - parameter alignment: The alignment of the access.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the result of a load from the given
   ///   pointer value.
-  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, name: String = "") -> IRValue {
+  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Int = 0, name: String = "") -> IRValue {
     let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
     LLVMSetOrdering(loadInst, ordering.llvm)
     LLVMSetVolatile(loadInst, volatile.llvm)
+    LLVMSetAlignment(loadInst, UInt32(alignment))
     return loadInst
   }
 

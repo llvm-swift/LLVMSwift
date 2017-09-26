@@ -7,6 +7,12 @@ import cllvm
 public protocol IRGlobal: IRValue {}
 
 extension IRGlobal {
+  /// Retrieves the alignment of this value.
+  public var alignment: Int {
+    get { return Int(LLVMGetAlignment(asLLVM())) }
+    set { LLVMSetAlignment(asLLVM(), UInt32(newValue)) }
+  }
+  
   /// Retrieves the linkage information for this global.
   public var linkage: Linkage {
     get { return Linkage(llvm: LLVMGetLinkage(asLLVM())) }
