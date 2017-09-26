@@ -15,12 +15,6 @@ public extension IRValue {
     return convertType(LLVMTypeOf(asLLVM()))
   }
 
-  /// Retrieves the alignment of this value.
-  public var alignment: Int {
-    get { return Int(LLVMGetAlignment(asLLVM())) }
-    set { LLVMSetAlignment(asLLVM(), UInt32(newValue)) }
-  }
-
   /// Returns whether this value is a constant.
   public var isConstant: Bool {
     return LLVMIsConstant(asLLVM()) != 0
