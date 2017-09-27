@@ -17,6 +17,8 @@ public enum Signed: IntegralConstantRepresentation {}
 public enum Floating: NumericalConstantRepresentation {}
 /// Represents struct types and operations.
 public enum Struct: ConstantRepresentation {}
+/// Represents vector types and operations.
+public enum Vector: ConstantRepresentation {}
 
 /// A `Constant` represents a value initialized to a constant.  Constant values
 /// may be manipulated with standard Swift arithmetic operations and used with
@@ -952,6 +954,27 @@ extension Constant where Repr == Struct {
   }
 }
 
+// MARK: Vector Operations
+
+extension Constant where Repr == Vector {
+  /// Builds a constant operation to construct a permutation of elements
+  /// from the two given input vectors, returning a vector with the same element
+  /// type as the inputs and length that is the same as the shuffle mask.
+  ///
+  /// - parameter vector1: The first constant vector to shuffle.
+  /// - parameter vector2: The second constant vector to shuffle.
+  /// - parameter mask: A constant vector of `i32` values that acts as a mask
+  ///   for the shuffled vectors.
+  ///
+  /// - returns: A value representing a constant vector with the same element
+  ///   type as the inputs and length that is the same as the shuffle mask.
+  public static func buildShuffleVector(_ vector1: Constant, and vector2: Constant, mask: Constant) -> Constant {
+    guard let maskTy = mask.type as? VectorType, maskTy.elementType is IntType else {
+      fatalError("Vector shuffle mask's elements must be 32-bit integers")
+    }
+    return Constant(llvm: LLVMConstShuffleVector(vector1.asLLVM(), vector2.asLLVM(), mask.asLLVM()))
+  }
+}
 
 // MARK: Swift Operators
 
@@ -1382,5 +1405,51 @@ extension Constant where Repr: IntegralConstantRepresentation {
   ///   operand.
   public static prefix func !(_ lhs: Constant) -> Constant {
     return Constant(llvm: LLVMConstNot(lhs.llvm))
+  }
+}
+
+// MARK: Undef
+
+extension Constant where Repr: IntegralConstantRepresentation {
+  /// Returns the special LLVM `undef` value for this type.
+  ///
+  /// The `undef` value can be used anywhere a constant is expected, and
+  /// indicates that the user of the value may receive an unspecified
+  /// bit-pattern.
+  public static func undef(_ ty: IntType) -> Constant {
+    return Constant<Repr>(llvm: ty.undef().asLLVM())
+  }
+}
+
+extension Constant where Repr == Floating {
+  /// Returns the special LLVM `undef` value for this type.
+  ///
+  /// The `undef` value can be used anywhere a constant is expected, and
+  /// indicates that the user of the value may receive an unspecified
+  /// bit-pattern.
+  public static func undef(_ ty: FloatType) -> Constant {
+    return Constant(llvm: ty.undef().asLLVM())
+  }
+}
+
+extension Constant where Repr == Struct {
+  /// Returns the special LLVM `undef` value for this type.
+  ///
+  /// The `undef` value can be used anywhere a constant is expected, and
+  /// indicates that the user of the value may receive an unspecified
+  /// bit-pattern.
+  public static func undef(_ ty: StructType) -> Constant {
+    return Constant(llvm: ty.undef().asLLVM())
+  }
+}
+
+extension Constant where Repr == Vector {
+  /// Returns the special LLVM `undef` value for this type.
+  ///
+  /// The `undef` value can be used anywhere a constant is expected, and
+  /// indicates that the user of the value may receive an unspecified
+  /// bit-pattern.
+  public static func undef(_ ty: VectorType) -> Constant {
+    return Constant(llvm: ty.undef().asLLVM())
   }
 }

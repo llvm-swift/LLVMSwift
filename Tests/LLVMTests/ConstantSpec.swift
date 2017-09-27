@@ -138,6 +138,62 @@ class ConstantSpec : XCTestCase {
       // STRUCTCONSTGETELEMENT-NEXT: }
       module.dump()
     })
+
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["VECTORCONSTSHUFFLE-IDENTITY"]) {
+      // VECTORCONSTSHUFFLE-IDENTITY: ; ModuleID = '[[ModuleName:ConstantTest]]'
+      // VECTORCONSTSHUFFLE-IDENTITY-NEXT: source_filename = "[[ModuleName]]"
+      let module = Module(name: "ConstantTest")
+      let builder = IRBuilder(module: module)
+
+      let vecTy = VectorType(elementType: IntType.int32, count: 4)
+      // VECTORCONSTSHUFFLE-IDENTITY: define <4 x i32> @main() {
+      let main = builder.addFunction("main",
+                                     type: FunctionType(argTypes: [],
+                                                        returnType: vecTy))
+
+      let vec1 = vecTy.constant([ 1, 2, 3, 4 ] as [Int32])
+      let mask = vecTy.constant([ 0, 1, 2, 3 ] as [Int32])
+
+      // VECTORCONSTSHUFFLE-IDENTITY-NEXT: entry:
+      let entry = main.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: entry)
+
+      let firstElement = Constant<Vector>.buildShuffleVector(vec1, and: .undef(vecTy), mask: mask)
+
+      // VECTORCONSTSHUFFLE-IDENTITY-NEXT: ret <4 x i32> <i32 1, i32 2, i32 3, i32 4>
+      builder.buildRet(firstElement)
+      // VECTORCONSTSHUFFLE-IDENTITY-NEXT: }
+      module.dump()
+    })
+
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["VECTORCONSTSHUFFLE"]) {
+      // VECTORCONSTSHUFFLE: ; ModuleID = '[[ModuleName:ConstantTest]]'
+      // VECTORCONSTSHUFFLE-NEXT: source_filename = "[[ModuleName]]"
+      let module = Module(name: "ConstantTest")
+      let builder = IRBuilder(module: module)
+
+      let maskTy = VectorType(elementType: IntType.int32, count: 8)
+      // VECTORCONSTSHUFFLE: define <8 x i32> @main() {
+      let main = builder.addFunction("main",
+                                     type: FunctionType(argTypes: [],
+                                                        returnType: maskTy))
+
+      let vecTy = VectorType(elementType: IntType.int32, count: 4)
+      let vec1 = vecTy.constant([ 1, 2, 3, 4 ] as [Int32])
+      let vec2 = vecTy.constant([ 5, 6, 7, 8 ] as [Int32])
+      let mask = maskTy.constant([ 1, 3, 5, 7, 0, 2, 4, 6 ] as [Int32])
+
+      // VECTORCONSTSHUFFLE-NEXT: entry:
+      let entry = main.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: entry)
+
+      let firstElement = Constant<Vector>.buildShuffleVector(vec1, and: vec2, mask: mask)
+
+      // VECTORCONSTSHUFFLE-NEXT: ret <8 x i32> <i32 2, i32 4, i32 6, i32 8, i32 1, i32 3, i32 5, i32 7>
+      builder.buildRet(firstElement)
+      // VECTORCONSTSHUFFLE-NEXT: }
+      module.dump()
+    })
   }
 
   #if !os(macOS)

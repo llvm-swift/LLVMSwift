@@ -38,6 +38,12 @@ class IRBuilderSpec : XCTestCase {
       var g2 = builder.addGlobal("b", type: IntType.int32)
       g2.initializer = Int32(1)
 
+      // IRBUILDERARITH-NEXT: @vec1 = global <8 x i64> <i64 1, i64 1, i64 1, i64 1, i64 1, i64 1, i64 1, i64 1>
+      // IRBUILDERARITH-NEXT: @vec2 = global <8 x i64> <i64 2, i64 2, i64 2, i64 2, i64 2, i64 2, i64 2, i64 2>
+      let vecTy = VectorType(elementType: IntType.int32, count: 8)
+      let gVec1 = builder.addGlobal("vec1", initializer: vecTy.constant([ 1, 1, 1, 1, 1, 1, 1, 1 ]))
+      let gVec2 = builder.addGlobal("vec2", initializer: vecTy.constant([ 2, 2, 2, 2, 2, 2, 2, 2 ]))
+
       // IRBUILDERARITH: define void @main() {
       let main = builder.addFunction("main",
                                      type: FunctionType(argTypes: [],
@@ -46,43 +52,59 @@ class IRBuilderSpec : XCTestCase {
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
 
-      // IRBUILDERARITH-NEXT: %0 = load i32, i32* @a
+      // IRBUILDERARITH-NEXT: [[A_LOAD:%[0-9]+]] = load i32, i32* @a
       let vg1 = builder.buildLoad(g1)
-      // IRBUILDERARITH-NEXT: %1 = load i32, i32* @b
+      // IRBUILDERARITH-NEXT: [[B_LOAD:%[0-9]+]] = load i32, i32* @b
       let vg2 = builder.buildLoad(g2)
 
-      // IRBUILDERARITH-NEXT: %2 = add i32 %0, %1
+      // IRBUILDERARITH-NEXT: [[VEC1_LOAD:%[0-9]+]] = load <8 x i64>, <8 x i64>* @vec1
+      let vgVec1 = builder.buildLoad(gVec1)
+
+      // IRBUILDERARITH-NEXT: [[VEC2_LOAD:%[0-9]+]] = load <8 x i64>, <8 x i64>* @vec2
+      let vgVec2 = builder.buildLoad(gVec2)
+
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = add i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildAdd(vg1, vg2)
-      // IRBUILDERARITH-NEXT: %3 = sub i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sub i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildSub(vg1, vg2)
-      // IRBUILDERARITH-NEXT: %4 = mul i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = mul i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildMul(vg1, vg2)
-      // IRBUILDERARITH-NEXT: %5 = sdiv i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sdiv i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildDiv(vg1, vg2, signed: true)
-      // IRBUILDERARITH-NEXT: %6 = udiv i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = udiv i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildDiv(vg1, vg2, signed: false)
 
-      // IRBUILDERARITH-NEXT: %7 = add nsw i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = add nsw i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildAdd(vg1, vg2, overflowBehavior: .noSignedWrap)
-      // IRBUILDERARITH-NEXT: %8 = sub nsw i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sub nsw i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildSub(vg1, vg2, overflowBehavior: .noSignedWrap)
-      // IRBUILDERARITH-NEXT: %9 = mul nsw i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = mul nsw i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildMul(vg1, vg2, overflowBehavior: .noSignedWrap)
 
-      // IRBUILDERARITH-NEXT: %10 = add nuw i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = add nuw i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildAdd(vg1, vg2, overflowBehavior: .noUnsignedWrap)
-      // IRBUILDERARITH-NEXT: %11 = sub nuw i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sub nuw i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildSub(vg1, vg2, overflowBehavior: .noUnsignedWrap)
-      // IRBUILDERARITH-NEXT: %12 = mul nuw i32 %0, %1
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = mul nuw i32 [[A_LOAD]], [[B_LOAD]]
       _ = builder.buildMul(vg1, vg2, overflowBehavior: .noUnsignedWrap)
 
-      // IRBUILDERARITH-NEXT: %13 = sub i32 0, %0
-      _ = builder.buildNeg(vg1, overflowBehavior: .default)
-      // IRBUILDERARITH-NEXT: %14 = sub nuw i32 0, %0
-      _ = builder.buildNeg(vg1, overflowBehavior: .noUnsignedWrap)
-      // IRBUILDERARITH-NEXT: %15 = sub nsw i32 0, %0
-      _ = builder.buildNeg(vg1, overflowBehavior: .noSignedWrap)
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = add <8 x i64> [[VEC1_LOAD]], [[VEC2_LOAD]]
+      _ = builder.buildAdd(vgVec1, vgVec2)
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sub <8 x i64> [[VEC1_LOAD]], [[VEC2_LOAD]]
+      _ = builder.buildSub(vgVec1, vgVec2)
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = mul <8 x i64> [[VEC1_LOAD]], [[VEC2_LOAD]]
+      _ = builder.buildMul(vgVec1, vgVec2)
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sdiv <8 x i64> [[VEC1_LOAD]], [[VEC2_LOAD]]
+      _ = builder.buildDiv(vgVec1, vgVec2, signed: true)
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = udiv <8 x i64> [[VEC1_LOAD]], [[VEC2_LOAD]]
+      _ = builder.buildDiv(vgVec1, vgVec2, signed: false)
 
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sub i32 0, [[A_LOAD]]
+      _ = builder.buildNeg(vg1, overflowBehavior: .default)
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sub nuw i32 0, [[A_LOAD]]
+      _ = builder.buildNeg(vg1, overflowBehavior: .noUnsignedWrap)
+      // IRBUILDERARITH-NEXT: {{%[0-9]+}} = sub nsw i32 0, [[A_LOAD]]
+      _ = builder.buildNeg(vg1, overflowBehavior: .noSignedWrap)
 
       // IRBUILDERARITH-NEXT: ret void
       builder.buildRetVoid()
