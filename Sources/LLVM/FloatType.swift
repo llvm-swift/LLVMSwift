@@ -51,8 +51,25 @@ public struct FloatType: IRType {
   public static let ppcFP128 = FloatType(kind: .ppcFP128)
 
   /// Creates a constant floating value of this type from a Swift `Double` value.
+  ///
+  /// - parameter value: A Swift double value.
+  ///
+  /// - returns: A value representing a floating point constant initialized
+  ///   with the given Swift double value.
   public func constant(_ value: Double) -> Constant<Floating> {
     return Constant(llvm: LLVMConstReal(asLLVM(), value))
+  }
+
+  /// Creates a constant floating value of this type parsed from a string.
+  ///
+  /// - parameter value: A string value containing a float.
+  ///
+  /// - returns: A value representing a constant initialized with the result of
+  ///   parsing the string as a floating point number.
+  public func constant(_ value: String) -> Constant<Floating> {
+    return value.withCString { cString in
+      return Constant(llvm: LLVMConstRealOfStringAndSize(asLLVM(), cString, UInt32(value.count)))
+    }
   }
 
   /// Retrieves the underlying LLVM type object.

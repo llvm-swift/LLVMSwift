@@ -50,6 +50,9 @@ public struct IntType: IRType {
   /// - parameter value: A Swift integer value.
   /// - parameter signExtend: Whether to sign-extend this value to fit this
   ///   type's bit width.  Defaults to `false`.
+  ///
+  /// - returns: A value representing an unsigned integer constant initialized
+  ///   with the given Swift integer value.
   public func constant<IntTy: UnsignedInteger>(_ value: IntTy, signExtend: Bool = false) -> Constant<Unsigned> {
     return Constant(llvm: LLVMConstInt(asLLVM(),
                           UInt64(value),
@@ -61,12 +64,28 @@ public struct IntType: IRType {
   /// - parameter value: A Swift integer value.
   /// - parameter signExtend: Whether to sign-extend this value to fit this
   ///   type's bit width.  Defaults to `false`.
+  ///
+  /// - returns: A value representing a signed integer constant initialized with
+  ///   the given Swift integer value.
   public func constant<IntTy: SignedInteger>(_ value: IntTy, signExtend: Bool = false) -> Constant<Signed> {
     return Constant(llvm: LLVMConstInt(asLLVM(),
                                        UInt64(bitPattern: Int64(value)),
                                        signExtend.llvm))
   }
 
+  /// Creates a constant integer value of this type parsed from a string.
+  ///
+  /// - parameter value: A string value containing an integer.
+  /// - parameter radix: The radix, or base, to use for converting text to an
+  ///   integer value.  Defaults to 10.
+  ///
+  /// - returns: A value representing a constant initialized with the result of
+  ///   parsing the string as a signed integer.
+  public func constant(_ value: String, radix: Int = 10) -> Constant<Signed> {
+    return value.withCString { cString in
+      return Constant(llvm: LLVMConstIntOfStringAndSize(asLLVM(), cString, UInt32(value.count), UInt8(radix)))
+    }
+  }
 
   /// Retrieves an integer value of this type's bit width consisting of all
   /// one-bits.
