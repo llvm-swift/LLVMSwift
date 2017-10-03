@@ -78,11 +78,11 @@ internal func convertType(_ type: LLVMTypeRef) -> IRType {
     let count = Int(LLVMGetVectorSize(type))
     return VectorType(elementType: elementType, count: count)
   case LLVMMetadataTypeKind:
-    return MetadataType(llvm: type)
+    return MetadataType(in: context)
   case LLVMX86_MMXTypeKind:
     return X86MMXType(in: context)
   case LLVMTokenTypeKind:
-    return TokenType(llvm: type)
+    return TokenType(in: context)
   default: fatalError("unknown type kind for type \(type)")
   }
 }
