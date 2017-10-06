@@ -56,8 +56,14 @@ func makeFile() throws {
   }
   let cllvmPath = pkgConfigDir.appendingPathComponent("cllvm.pc")
 
+  let brewLLVMConfig: () -> String? = {
+    guard let brew = which("brew") else { return nil }
+    guard let brewPrefix = run(brew, args: ["--prefix"]) else { return nil }
+    return which(brewPrefix + "/opt/llvm/bin/llvm-config")
+  }
+
   /// Ensure we have llvm-config in the PATH
-  guard let llvmConfig = which("llvm-config-3.9") ?? which("llvm-config") ?? which("/usr/local/opt/llvm/bin/llvm-config") else {
+  guard let llvmConfig = which("llvm-config-3.9") ?? which("llvm-config") ?? brewLLVMConfig() else {
     throw "Failed to find llvm-config. Ensure llvm-config is installed and " +
           "in your PATH"
   }
