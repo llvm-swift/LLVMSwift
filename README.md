@@ -1,5 +1,5 @@
 # LLVMSwift
-[![Build Status](https://travis-ci.org/trill-lang/LLVMSwift.svg?branch=master)](https://travis-ci.org/trill-lang/LLVMSwift) [![Documentation](https://cdn.rawgit.com/trill-lang/LLVMSwift/master/docs/badge.svg)](https://trill-lang.github.io/LLVMSwift) [![Slack Invite](https://llvmswift-slack.herokuapp.com/badge.svg)](https://llvmswift-slack.herokuapp.com)
+[![Build Status](https://travis-ci.org/llvm-swift/LLVMSwift.svg?branch=master)](https://travis-ci.org/llvm-swift/LLVMSwift) [![Documentation](https://cdn.rawgit.com/llvm-swift/LLVMSwift/master/docs/badge.svg)](https://llvm-swift.github.io/LLVMSwift) [![Slack Invite](https://llvmswift-slack.herokuapp.com/badge.svg)](https://llvmswift-slack.herokuapp.com)
 
 LLVMSwift is a pure Swift interface to the [LLVM](http://llvm.org) API and its associated libraries. It provides native, easy-to-use components to make compiler development fun.
 
