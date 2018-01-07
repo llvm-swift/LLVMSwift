@@ -21,7 +21,7 @@ Defining a simple function and moving the cursor to a point where we can begin i
 let builder = IRBuilder(module: module)
 
 let main = builder.addFunction(
-             name: "main", 
+             "main",
              type: FunctionType(argTypes: [],
              returnType: VoidType())
            )
