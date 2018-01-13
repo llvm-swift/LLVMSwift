@@ -24,6 +24,123 @@ public enum JITError: Error, CustomStringConvertible {
   }
 }
 
+public final class JITValue {
+  fileprivate let llvm: LLVMGenericValueRef
+  fileprivate init(llvm: LLVMGenericValueRef) {
+    self.llvm = llvm
+  }
+
+  public convenience init?(int value: Int) {
+    guard
+      let llvm = LLVMCreateGenericValueOfInt(value.type.asLLVM(),
+                                             UInt64(bitPattern: Int64(value)),
+                                             /*signed:*/ true.llvm)
+    else {
+      return nil
+    }
+    self.init(llvm: llvm)
+  }
+
+  public convenience init?(int value: UInt) {
+    guard
+      let llvm = LLVMCreateGenericValueOfInt(value.type.asLLVM(),
+                                             UInt64(value),
+                                             /*signed:*/ false.llvm)
+    else {
+      return nil
+    }
+    self.init(llvm: llvm)
+  }
+
+  public convenience init?(int value: Float) {
+    guard
+      let llvm = LLVMCreateGenericValueOfFloat(FloatType.float.asLLVM(), Double(value))
+    else {
+      return nil
+    }
+    self.init(llvm: llvm)
+  }
+
+  public convenience init?(int value: Double) {
+    guard
+      let llvm = LLVMCreateGenericValueOfFloat(FloatType.double.asLLVM(), value)
+    else {
+      return nil
+    }
+    self.init(llvm: llvm)
+  }
+
+
+  public convenience init?(pointer value: UnsafeMutableRawPointer?) {
+    guard
+      let llvm = LLVMCreateGenericValueOfPointer(value)
+    else {
+      return nil
+    }
+    self.init(llvm: llvm)
+  }
+
+  public convenience init?(int value: Constant<Signed>) {
+    let intValue = LLVMConstIntGetSExtValue(value.asLLVM())
+    guard
+      let llvm = LLVMCreateGenericValueOfInt(value.type.asLLVM(),
+                                             UInt64(bitPattern: intValue),
+                                             /*signed:*/ true.llvm)
+    else {
+      return nil
+    }
+    self.init(llvm: llvm)
+  }
+
+  public convenience init?(int value: Constant<Unsigned>) {
+    let intValue = LLVMConstIntGetZExtValue(value.asLLVM())
+    guard
+      let llvm = LLVMCreateGenericValueOfInt(value.type.asLLVM(),
+                                             intValue, /*signed:*/ false.llvm)
+    else {
+      return nil
+    }
+    self.init(llvm: llvm)
+  }
+
+  public convenience init?(float value: Constant<Floating>) {
+    var infoLost: LLVMBool = 0
+    let floatValue = LLVMConstRealGetDouble(value.asLLVM(), &infoLost)
+    guard infoLost == 0 else {
+      return nil
+    }
+    guard
+      let llvm = LLVMCreateGenericValueOfFloat(value.type.asLLVM(), floatValue)
+    else {
+      return nil
+    }
+    self.init(llvm: llvm)
+  }
+
+  deinit {
+    LLVMDisposeGenericValue(self.llvm)
+  }
+
+  public var bitwidth: UInt {
+    let width = LLVMGenericValueIntWidth(self.llvm)
+    return UInt(width)
+  }
+
+  public var intValue: Int {
+    let int = LLVMGenericValueToInt(self.llvm, /*signed:*/ true.llvm)
+    return Int(bitPattern: UInt(int))
+  }
+
+  public var unsignedIntValue: UInt {
+    let int = LLVMGenericValueToInt(self.llvm, /*signed:*/ false.llvm)
+    return UInt(int)
+  }
+
+  public var pointerValue: UnsafeMutableRawPointer? {
+    return LLVMGenericValueToPointer(self.llvm)
+  }
+}
+
 /// A `JIT` is a Just-In-Time compiler that will compile and execute LLVM IR
 /// that has been generated in a `Module`. It can execute arbitrary functions
 /// and return the value the function generated, allowing you to write
@@ -68,11 +185,11 @@ public final class JIT {
   ///   - function: The function you wish to execute
   ///   - args: The arguments you wish to pass to the function
   /// - returns: The LLVM value that the function returned
-  public func runFunction(_ function: Function, args: [IRValue]) -> IRValue {
-    var irArgs = args.map { $0.asLLVM() as Optional }
+  public func runFunction(_ function: Function, args: [JITValue]) -> JITValue {
+    var irArgs = args.map { $0.llvm as Optional }
     return irArgs.withUnsafeMutableBufferPointer { buf in
-      return LLVMRunFunction(llvm, function.asLLVM(),
-                             UInt32(buf.count), buf.baseAddress)
+      return JITValue(llvm: LLVMRunFunction(llvm, function.asLLVM(),
+                                            UInt32(buf.count), buf.baseAddress))
     }
   }
 
