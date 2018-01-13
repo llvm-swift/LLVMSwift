@@ -9,5 +9,6 @@ XCTMain([
   IRExceptionSpec.allTests,
   IROperationSpec.allTests,
   FileCheckSpec.allTests,
+  JITSpec.allTests,
 ])
 #endif
