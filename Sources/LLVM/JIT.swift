@@ -32,6 +32,10 @@ public final class JIT {
   /// The underlying LLVMExecutionEngineRef backing this JIT.
   internal let llvm: LLVMExecutionEngineRef
 
+  private static var linkOnce: () = {
+    return LLVMLinkInMCJIT()
+  }()
+
   /// Creates a Just In Time compiler that will compile the code in the
   /// provided `Module` to the architecture of the provided `TargetMachine`,
   /// and execute it.
@@ -41,6 +45,8 @@ public final class JIT {
   ///   - machine: The target machine which you're compiling for
   /// - throws: JITError
   public init(module: Module, machine: TargetMachine) throws {
+    _ = JIT.linkOnce
+
     var jit: LLVMExecutionEngineRef?
     var error: UnsafeMutablePointer<Int8>?
     if LLVMCreateExecutionEngineForModule(&jit, module.llvm, &error) != 0 {
