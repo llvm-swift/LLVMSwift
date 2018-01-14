@@ -107,7 +107,7 @@ builder.positionAtEnd(of: entryBB)
 let local = builder.buildAlloca(type: FloatType.double, name: "local")
 
 // Compare to the condition
-let test = builder.buildICmp(function.parameters[0], IntType.int1.zero(), .notEqual)
+let test = builder.buildICmp(function.parameters[0], IntType.int1.zero(), .equal)
 
 // Create basic blocks for "then", "else", and "merge"
 let thenBB = function.appendBasicBlock(named: "then")

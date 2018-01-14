@@ -32,6 +32,10 @@ public final class JIT {
   /// The underlying LLVMExecutionEngineRef backing this JIT.
   internal let llvm: LLVMExecutionEngineRef
 
+  private static var linkOnce: () = {
+    return LLVMLinkInMCJIT()
+  }()
+
   /// Creates a Just In Time compiler that will compile the code in the
   /// provided `Module` to the architecture of the provided `TargetMachine`,
   /// and execute it.
@@ -41,6 +45,8 @@ public final class JIT {
   ///   - machine: The target machine which you're compiling for
   /// - throws: JITError
   public init(module: Module, machine: TargetMachine) throws {
+    _ = JIT.linkOnce
+
     var jit: LLVMExecutionEngineRef?
     var error: UnsafeMutablePointer<Int8>?
     if LLVMCreateExecutionEngineForModule(&jit, module.llvm, &error) != 0 {
@@ -52,22 +58,6 @@ public final class JIT {
     }
     self.llvm = _jit
     LLVMRunStaticConstructors(self.llvm)
-  }
-
-  /// Runs the specified function with the provided arguments by compiling
-  /// it to machine code for the target architecture used to initialize this
-  /// JIT.
-  ///
-  /// - parameters:
-  ///   - function: The function you wish to execute
-  ///   - args: The arguments you wish to pass to the function
-  /// - returns: The LLVM value that the function returned
-  public func runFunction(_ function: Function, args: [IRValue]) -> IRValue {
-    var irArgs = args.map { $0.asLLVM() as Optional }
-    return irArgs.withUnsafeMutableBufferPointer { buf in
-      return LLVMRunFunction(llvm, function.asLLVM(),
-                             UInt32(buf.count), buf.baseAddress)
-    }
   }
 
   /// Retrieves a pointer to the function compiled by this JIT.
