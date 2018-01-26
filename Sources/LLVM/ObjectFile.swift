@@ -56,7 +56,6 @@ public struct Section {
     /// The parent sequence of this section.
     private let sectionIterator: LLVMSectionIteratorRef
 
-
     internal init(fromIterator si: LLVMSectionIteratorRef) {
         self.sectionIterator = si
         self.name = String(cString: LLVMGetSectionName(si))
@@ -71,6 +70,12 @@ public struct Section {
             llvm: LLVMGetRelocations(self.sectionIterator),
             sectionIterator: self.sectionIterator
         )
+    }
+
+    /// Returns whether a symbol matching the given `Symbol` can be found in
+    /// this section.
+    public func contains(symbol: Symbol) -> Bool {
+        return LLVMGetSectionContainsSymbol(self.sectionIterator, symbol.symbolIterator) != 0
     }
 }
 
@@ -109,10 +114,14 @@ public struct Symbol {
     /// The address of the symbol in the object file.
     public let address: Int
 
+    /// The parent sequence of this symbol.
+    fileprivate let symbolIterator: LLVMSymbolIteratorRef
+
     internal init(fromIterator si: LLVMSymbolIteratorRef) {
         self.name = String(cString: LLVMGetSymbolName(si))
         self.size = Int(LLVMGetSymbolSize(si))
         self.address = Int(LLVMGetSymbolAddress(si))
+      self.symbolIterator = si
     }
 }
 
@@ -188,8 +197,6 @@ public class SymbolSequence: Sequence {
             return Symbol(fromIterator: self.llvm)
         }
     }
-    
-
 
     deinit {
         LLVMDisposeSymbolIterator(llvm)
