@@ -838,9 +838,18 @@ public class IRBuilder {
   /// Build a branch table that branches on the given value with the given
   /// default basic block.
   ///
-  /// The ‘switch‘ instruction is used to transfer control flow to one of
-  /// several different places. It is a generalization of the ‘br‘ instruction,
+  /// The `switch` instruction is used to transfer control flow to one of
+  /// several different places. It is a generalization of the `br` instruction,
   /// allowing a branch to occur to one of many possible destinations.
+  ///
+  /// This function returns a value that acts as a representation of the branch
+  /// table for the `switch` instruction.  When the `switch` instruction is
+  /// executed, this table is searched for the given value. If the value is
+  /// found, control flow is transferred to the corresponding destination;
+  /// otherwise, control flow is transferred to the default destination
+  /// specified by the `else` block.
+  ///
+  /// To add branches to the `switch` table, see `Switch.addCase(_:_:)`.
   ///
   /// - parameter value: The value to compare.
   /// - parameter else: The default destination for control flow should the
@@ -888,6 +897,12 @@ public class IRBuilder {
 
   /// Build an unconditional branch to the given basic block.
   ///
+  /// The `br` instruction is used to cause control flow to transfer to a
+  /// different basic block in the current function. There are two forms of this
+  /// instruction, corresponding to a conditional branch and an unconditional
+  /// branch.  To build a conditional branch, see
+  /// `buildCondBr(condition:then:`else`:)`.
+  ///
   /// - parameter block: The target block to transfer control flow to.
   ///
   /// - returns: A value representing `void`.
@@ -898,6 +913,11 @@ public class IRBuilder {
 
   /// Build a condition branch that branches to the first basic block if the
   /// provided condition is `true`, otherwise to the second basic block.
+  ///
+  /// The `br` instruction is used to cause control flow to transfer to a
+  /// different basic block in the current function. There are two forms of this
+  /// instruction, corresponding to a conditional branch and an unconditional
+  /// branch.  To build an unconditional branch, see `buildBr(_:)`.
   ///
   /// - parameter condition: A value of type `i1` that determines which basic
   ///   block to transfer control flow to.
@@ -913,6 +933,14 @@ public class IRBuilder {
   }
 
   /// Build an indirect branch to a label within the current function.
+  ///
+  /// The `indirectbr` instruction implements an indirect branch to a label
+  /// within the current function, whose address is specified by the `address`
+  /// parameter.
+  ///
+  /// All possible destination blocks must be listed in the `destinations` list,
+  /// otherwise this instruction has undefined behavior. This implies that jumps
+  /// to labels defined in other functions have undefined behavior as well.
   ///
   /// - parameter address: The address of the label to branch to.
   /// - parameter destinations: The set of possible destinations the address may
@@ -934,6 +962,13 @@ public class IRBuilder {
   /// Build a return from the current function back to the calling function
   /// with the given value.
   ///
+  /// Returning a value with a type that does not correspond to the return
+  /// type of the current function is a fatal condition.
+  ///
+  /// There are two forms of the `ret` instruction: one that returns a value and
+  /// then causes control flow, and one that just causes control flow to occur.
+  /// To build the `ret` that does not return a value use `buildRetVoid()`.
+  ///
   /// - parameter val: The value to return from the current function.
   ///
   /// - returns: A value representing `void`.
@@ -942,7 +977,14 @@ public class IRBuilder {
     return LLVMBuildRet(llvm, val.asLLVM())
   }
 
-  /// Builds a void return from the current function.
+  /// Build a void return from the current function.
+  ///
+  /// If the current function does not have a `Void` return value, failure to
+  /// return a falue is a fatal condition.
+  ///
+  /// There are two forms of the `ret` instruction: one that returns a value and
+  /// then causes control flow, and one that just causes control flow to occur.
+  /// To build the `ret` that returns a value use `buildRet(_:)`.
   ///
   /// - returns: A value representing `void`.
   @discardableResult
@@ -950,7 +992,12 @@ public class IRBuilder {
     return LLVMBuildRetVoid(llvm)
   }
 
-  /// Builds an unreachable instruction in the current function.
+  /// Build an unreachable instruction in the current function.
+  ///
+  /// The `unreachable` instruction has no defined semantics. This instruction
+  /// is used to inform the optimizer that a particular portion of the code is
+  /// not reachable. This can be used to indicate that the code after a
+  /// no-return function cannot be reached, and other facts.
   ///
   /// - returns: A value representing `void`.
   @discardableResult
@@ -999,6 +1046,10 @@ public class IRBuilder {
   /// mechanism, control is interrupted and continued at the dynamically nearest
   /// `exception` label.
   ///
+  /// The `catch` block is a landing pad for the exception. As such, the first
+  /// instruction of that block is required to be the `landingpad` instruction,
+  /// which contains the information about the behavior of the program after
+  /// unwinding happens.
   ///
   /// - parameter fn: The function to invoke.
   /// - parameter args: A list of arguments.
@@ -1069,7 +1120,7 @@ public class IRBuilder {
   ///
   /// When all cleanups are finished, if an exception is not handled by the 
   /// current function, unwinding resumes by calling the resume instruction, 
-  /// passing in the result of the `landingpad` instruction for the original 
+  /// passing in the result of the `landingpad` instruction for the original
   /// landing pad.
   ///
   /// - parameter: A value representing the result of the original landing pad.
@@ -1100,14 +1151,32 @@ public class IRBuilder {
   /// Build an `alloca` to allocate stack memory to hold a value of the given
   /// type.
   ///
+  /// The `alloca` instruction allocates `sizeof(<type>)*count` bytes of
+  /// memory on the runtime stack, returning a pointer of the appropriate type
+  /// to the program. If `count` is specified, it is the number of elements
+  /// allocated, otherwise `count` is defaulted to be one. If a constant
+  /// alignment is specified, the value result of the allocation is guaranteed
+  /// to be aligned to at least that boundary. The alignment may not be
+  /// greater than `1 << 29`. If not specified, or if zero, the target can
+  /// choose to align the allocation on any convenient boundary compatible with
+  /// the type.
+  ///
   /// - parameter type: The sized type used to determine the amount of stack
   ///   memory to allocate.
+  /// - parameter count: An optional number of slots to allocate, to simulate a
+  ///                    C array.
   /// - parameter alignment: The alignment of the access.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing `void`.
-  public func buildAlloca(type: IRType, alignment: Int = 0, name: String = "") -> IRValue {
-    let allocaInst = LLVMBuildAlloca(llvm, type.asLLVM(), name)!
+  public func buildAlloca(type: IRType, count: IRValue? = nil,
+                          alignment: Int = 0, name: String = "") -> IRValue {
+    let allocaInst: LLVMValueRef
+    if let count = count {
+      allocaInst = LLVMBuildArrayAlloca(llvm, type.asLLVM(), count.asLLVM(), name)
+    } else {
+      allocaInst = LLVMBuildAlloca(llvm, type.asLLVM(), name)!
+    }
     LLVMSetAlignment(allocaInst, UInt32(alignment))
     return allocaInst
   }
@@ -1210,6 +1279,12 @@ public class IRBuilder {
   /// Build an ExtractValue instruction to retrieve an indexed value from a
   /// struct or array value.
   ///
+  /// `extractvalue` function like a GEP, but has different indexing semantics:
+  ///
+  /// - Since the value being indexed is not a pointer, the first index is
+  /// omitted and assumed to be zero.
+  /// - Not only struct indices but also array indices must be in bounds.
+  ///
   /// - parameter value: The struct or array you're indexing into.
   /// - parameter index: The index at which to extract.
   ///
@@ -1276,6 +1351,14 @@ public class IRBuilder {
   /// Build a bitcast instruction to convert the given value to a value of the
   /// given type by just copying the bit pattern.
   ///
+  /// The `bitcast` instruction is always a no-op cast because no bits change
+  /// with this conversion. The conversion is done as if the value had been
+  /// stored to memory and read back as the given type. Pointer (or vector of
+  /// pointer) types may only be converted to other pointer (or vector of
+  /// pointer) types with the same address space through this instruction. To
+  /// convert pointers to other types, see `buildIntToPtr(_:type:name:)` or
+  /// `buildPtrToInt(_:type:name:)`.
+  ///
   /// - parameter val: The value to bitcast.
   /// - parameter type: The destination type.
   /// - parameter name: The name for the newly inserted instruction.
@@ -1301,6 +1384,12 @@ public class IRBuilder {
 
   /// Build an address space cast instruction that converts a pointer value
   /// to a given type in a different address space.
+  ///
+  /// The `addrspacecast` instruction can be a no-op cast or a complex value
+  /// modification, depending on the target and the address space pair. Pointer
+  /// conversions within the same address space must be performed with the
+  /// `bitcast` instruction. Note that if the address space conversion is legal
+  /// then both result and operand refer to the same memory location.
   ///
   /// The address spaces of the value and the destination pointer types must
   /// be distinct.
@@ -1350,6 +1439,13 @@ public class IRBuilder {
   /// Build an integer-to-pointer instruction to convert the given value to the
   /// given pointer type.
   ///
+  /// The `inttoptr` instruction converts the given value to the given pointer
+  /// type by applying either a zero extension or a truncation depending on the
+  /// size of the integer value. If value is larger than the size of a pointer
+  /// then a truncation is done. If value is smaller than the size of a pointer
+  /// then a zero extension is done. If they are the same size, nothing is done
+  /// (no-op cast).
+  ///
   /// - parameter val: The integer value.
   /// - parameter type: The destination pointer type.
   /// - parameter name: The name for the newly inserted instruction.
@@ -1362,6 +1458,14 @@ public class IRBuilder {
 
   /// Build a pointer-to-integer instruction to convert the given pointer value
   /// to the given integer type.
+  ///
+  /// The `ptrtoint` instruction converts the given pointer value to the given
+  /// integer type by interpreting the pointer value as an integer and either
+  /// truncating or zero extending that value to the size of the integer type.
+  /// If the pointer value is smaller than the integer type then a zero
+  /// extension is done. If the pointer value is larger than the integer type
+  /// then a truncation is done. If they are the same size, then nothing is done
+  /// (no-op cast) other than a type change.
   ///
   /// - parameter val: The pointer value.
   /// - parameter type: The destination integer type.
@@ -1456,6 +1560,22 @@ public class IRBuilder {
 
   /// Build a fence instruction that introduces "happens-before" edges between
   /// operations.
+  ///
+  /// A fence `A` which has (at least) `release` ordering semantics synchronizes
+  /// with a fence `B` with (at least) `acquire` ordering semantics if and only
+  /// if there exist atomic operations X and Y, both operating on some atomic
+  /// object `M`, such that `A` is sequenced before `X`, `X` modifies `M`
+  /// (either directly or through some side effect of a sequence headed by `X`),
+  /// `Y` is sequenced before `B`, and `Y` observes `M`. This provides a
+  /// happens-before dependency between `A` and `B`. Rather than an explicit
+  /// fence, one (but not both) of the atomic operations `X` or `Y` might
+  /// provide a release or acquire (resp.) ordering constraint and still
+  /// synchronize-with the explicit fence and establish the happens-before edge.
+  ///
+  /// A fence which has `sequentiallyConsistent` ordering, in addition to having
+  /// both `acquire` and `release` semantics specified above, participates in
+  /// the global program order of other `sequentiallyConsistent` operations
+  /// and/or fences.
   ///
   /// - parameter ordering: Defines the kind of "synchronizes-with" edge this
   ///   fence adds.
