@@ -3,7 +3,7 @@ import cllvm
 #endif
 
 /// An `Alias` represents a global alias in an LLVM module - a new symbol and
-/// corresponding metadata for an existing position
+/// corresponding metadata for an existing global value.
 public struct Alias: IRGlobal {
   internal let llvm: LLVMValueRef
 
