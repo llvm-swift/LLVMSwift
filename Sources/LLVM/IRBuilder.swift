@@ -450,7 +450,7 @@ public class IRBuilder {
 
   // MARK: Arithmetic Instructions
 
-  /// Builds a negation instruction with the given value as an operand.
+  /// Build a negation instruction with the given value as an operand.
   ///
   /// Whether an integer or floating point negate instruction is built is
   /// determined by the type of the given value.  Providing an operand that is
@@ -481,7 +481,7 @@ public class IRBuilder {
     fatalError("Can only negate value of int or float types")
   }
 
-  /// Builds an add instruction with the given values as operands.
+  /// Build an add instruction with the given values as operands.
   ///
   /// Whether an integer or floating point add instruction is built is
   /// determined by the type of the first given value.  Providing operands that
@@ -516,7 +516,7 @@ public class IRBuilder {
     fatalError("Can only add value of int, float, or vector types")
   }
 
-  /// Builds a subtract instruction with the given values as operands.
+  /// Build a subtract instruction with the given values as operands.
   ///
   /// Whether an integer or floating point subtract instruction is built is
   /// determined by the type of the first given value.  Providing operands that
@@ -551,7 +551,7 @@ public class IRBuilder {
     fatalError("Can only subtract value of int or float types")
   }
 
-  /// Builds a multiply instruction with the given values as operands.
+  /// Build a multiply instruction with the given values as operands.
   ///
   /// Whether an integer or floating point multiply instruction is built is
   /// determined by the type of the first given value.  Providing operands that
@@ -716,7 +716,7 @@ public class IRBuilder {
 
   // MARK: Logical Instructions
 
-  /// Builds a bitwise logical not with the given value as an operand.
+  /// Build a bitwise logical not with the given value as an operand.
   ///
   /// - parameter val: The value to negate.
   /// - parameter name: The name for the newly inserted instruction.
@@ -726,7 +726,7 @@ public class IRBuilder {
     return LLVMBuildNot(llvm, val.asLLVM(), name)
   }
 
-  /// Builds a bitwise logical exclusive OR with the given values as operands.
+  /// Build a bitwise logical exclusive OR with the given values as operands.
   ///
   /// - parameter lhs: The first operand.
   /// - parameter rhs: The second operand.
@@ -738,7 +738,7 @@ public class IRBuilder {
     return LLVMBuildXor(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
   }
 
-  /// Builds a bitwise logical OR with the given values as operands.
+  /// Build a bitwise logical OR with the given values as operands.
   ///
   /// - parameter lhs: The first operand.
   /// - parameter rhs: The second operand.
@@ -750,7 +750,7 @@ public class IRBuilder {
     return LLVMBuildOr(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
   }
 
-  /// Builds a bitwise logical AND with the given values as operands.
+  /// Build a bitwise logical AND with the given values as operands.
   ///
   /// - parameter lhs: The first operand.
   /// - parameter rhs: The second operand.
@@ -762,7 +762,7 @@ public class IRBuilder {
     return LLVMBuildAnd(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
   }
 
-  /// Builds a left-shift instruction of the first value by an amount in the
+  /// Build a left-shift instruction of the first value by an amount in the
   /// second value.
   ///
   /// - parameter lhs: The first operand.
@@ -776,7 +776,7 @@ public class IRBuilder {
     return LLVMBuildShl(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
   }
 
-  /// Builds a right-shift instruction of the first value by an amount in the
+  /// Build a right-shift instruction of the first value by an amount in the
   /// second value.  If `isArithmetic` is true the value of the first operand is
   /// bitshifted with sign extension.  Else the value is bitshifted with
   /// zero-fill.
@@ -838,9 +838,18 @@ public class IRBuilder {
   /// Build a branch table that branches on the given value with the given
   /// default basic block.
   ///
-  /// The ‘switch‘ instruction is used to transfer control flow to one of
-  /// several different places. It is a generalization of the ‘br‘ instruction,
+  /// The `switch` instruction is used to transfer control flow to one of
+  /// several different places. It is a generalization of the `br` instruction,
   /// allowing a branch to occur to one of many possible destinations.
+  ///
+  /// This function returns a value that acts as a representation of the branch
+  /// table for the `switch` instruction.  When the `switch` instruction is
+  /// executed, this table is searched for the given value. If the value is
+  /// found, control flow is transferred to the corresponding destination;
+  /// otherwise, control flow is transferred to the default destination
+  /// specified by the `else` block.
+  ///
+  /// To add branches to the `switch` table, see `Switch.addCase(_:_:)`.
   ///
   /// - parameter value: The value to compare.
   /// - parameter else: The default destination for control flow should the
@@ -888,6 +897,12 @@ public class IRBuilder {
 
   /// Build an unconditional branch to the given basic block.
   ///
+  /// The `br` instruction is used to cause control flow to transfer to a
+  /// different basic block in the current function. There are two forms of this
+  /// instruction, corresponding to a conditional branch and an unconditional
+  /// branch.  To build a conditional branch, see
+  /// `buildCondBr(condition:then:`else`:)`.
+  ///
   /// - parameter block: The target block to transfer control flow to.
   ///
   /// - returns: A value representing `void`.
@@ -898,6 +913,11 @@ public class IRBuilder {
 
   /// Build a condition branch that branches to the first basic block if the
   /// provided condition is `true`, otherwise to the second basic block.
+  ///
+  /// The `br` instruction is used to cause control flow to transfer to a
+  /// different basic block in the current function. There are two forms of this
+  /// instruction, corresponding to a conditional branch and an unconditional
+  /// branch.  To build an unconditional branch, see `buildBr(_:)`.
   ///
   /// - parameter condition: A value of type `i1` that determines which basic
   ///   block to transfer control flow to.
@@ -913,6 +933,14 @@ public class IRBuilder {
   }
 
   /// Build an indirect branch to a label within the current function.
+  ///
+  /// The `indirectbr` instruction implements an indirect branch to a label
+  /// within the current function, whose address is specified by the `address`
+  /// parameter.
+  ///
+  /// All possible destination blocks must be listed in the `destinations` list,
+  /// otherwise this instruction has undefined behavior. This implies that jumps
+  /// to labels defined in other functions have undefined behavior as well.
   ///
   /// - parameter address: The address of the label to branch to.
   /// - parameter destinations: The set of possible destinations the address may
@@ -931,8 +959,15 @@ public class IRBuilder {
     return ret
   }
 
-  /// Builds a return from the current function back to the calling function
+  /// Build a return from the current function back to the calling function
   /// with the given value.
+  ///
+  /// Returning a value with a type that does not correspond to the return
+  /// type of the current function is a fatal condition.
+  ///
+  /// There are two forms of the `ret` instruction: one that returns a value and
+  /// then causes control flow, and one that just causes control flow to occur.
+  /// To build the `ret` that does not return a value use `buildRetVoid()`.
   ///
   /// - parameter val: The value to return from the current function.
   ///
@@ -942,7 +977,14 @@ public class IRBuilder {
     return LLVMBuildRet(llvm, val.asLLVM())
   }
 
-  /// Builds a void return from the current function.
+  /// Build a void return from the current function.
+  ///
+  /// If the current function does not have a `Void` return value, failure to
+  /// return a falue is a fatal condition.
+  ///
+  /// There are two forms of the `ret` instruction: one that returns a value and
+  /// then causes control flow, and one that just causes control flow to occur.
+  /// To build the `ret` that returns a value use `buildRet(_:)`.
   ///
   /// - returns: A value representing `void`.
   @discardableResult
@@ -950,7 +992,12 @@ public class IRBuilder {
     return LLVMBuildRetVoid(llvm)
   }
 
-  /// Builds an unreachable instruction in the current function.
+  /// Build an unreachable instruction in the current function.
+  ///
+  /// The `unreachable` instruction has no defined semantics. This instruction
+  /// is used to inform the optimizer that a particular portion of the code is
+  /// not reachable. This can be used to indicate that the code after a
+  /// no-return function cannot be reached, and other facts.
   ///
   /// - returns: A value representing `void`.
   @discardableResult
@@ -999,6 +1046,10 @@ public class IRBuilder {
   /// mechanism, control is interrupted and continued at the dynamically nearest
   /// `exception` label.
   ///
+  /// The `catch` block is a landing pad for the exception. As such, the first
+  /// instruction of that block is required to be the `landingpad` instruction,
+  /// which contains the information about the behavior of the program after
+  /// unwinding happens.
   ///
   /// - parameter fn: The function to invoke.
   /// - parameter args: A list of arguments.
@@ -1069,7 +1120,7 @@ public class IRBuilder {
   ///
   /// When all cleanups are finished, if an exception is not handled by the 
   /// current function, unwinding resumes by calling the resume instruction, 
-  /// passing in the result of the `landingpad` instruction for the original 
+  /// passing in the result of the `landingpad` instruction for the original
   /// landing pad.
   ///
   /// - parameter: A value representing the result of the original landing pad.
@@ -1100,19 +1151,37 @@ public class IRBuilder {
   /// Build an `alloca` to allocate stack memory to hold a value of the given
   /// type.
   ///
+  /// The `alloca` instruction allocates `sizeof(<type>)*count` bytes of
+  /// memory on the runtime stack, returning a pointer of the appropriate type
+  /// to the program. If `count` is specified, it is the number of elements
+  /// allocated, otherwise `count` is defaulted to be one. If a constant
+  /// alignment is specified, the value result of the allocation is guaranteed
+  /// to be aligned to at least that boundary. The alignment may not be
+  /// greater than `1 << 29`. If not specified, or if zero, the target can
+  /// choose to align the allocation on any convenient boundary compatible with
+  /// the type.
+  ///
   /// - parameter type: The sized type used to determine the amount of stack
   ///   memory to allocate.
+  /// - parameter count: An optional number of slots to allocate, to simulate a
+  ///                    C array.
   /// - parameter alignment: The alignment of the access.
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing `void`.
-  public func buildAlloca(type: IRType, alignment: Int = 0, name: String = "") -> IRValue {
-    let allocaInst = LLVMBuildAlloca(llvm, type.asLLVM(), name)!
+  public func buildAlloca(type: IRType, count: IRValue? = nil,
+                          alignment: Int = 0, name: String = "") -> IRValue {
+    let allocaInst: LLVMValueRef
+    if let count = count {
+      allocaInst = LLVMBuildArrayAlloca(llvm, type.asLLVM(), count.asLLVM(), name)
+    } else {
+      allocaInst = LLVMBuildAlloca(llvm, type.asLLVM(), name)!
+    }
     LLVMSetAlignment(allocaInst, UInt32(alignment))
     return allocaInst
   }
 
-  /// Builds a store instruction that stores the first value into the location
+  /// Build a store instruction that stores the first value into the location
   /// given in the second value.
   ///
   /// - parameter val: The source value.
@@ -1132,7 +1201,7 @@ public class IRBuilder {
     return storeInst
   }
 
-  /// Builds a load instruction that loads a value from the location in the
+  /// Build a load instruction that loads a value from the location in the
   /// given value.
   ///
   /// - parameter ptr: The pointer value to load from.
@@ -1152,7 +1221,7 @@ public class IRBuilder {
     return loadInst
   }
 
-  /// Builds a `GEP` (Get Element Pointer) instruction with a resultant value
+  /// Build a `GEP` (Get Element Pointer) instruction with a resultant value
   /// that is undefined if the address is outside the actual underlying
   /// allocated object and not the address one-past-the-end.
   ///
@@ -1174,7 +1243,7 @@ public class IRBuilder {
     }
   }
 
-  /// Builds a GEP (Get Element Pointer) instruction.
+  /// Build a GEP (Get Element Pointer) instruction.
   ///
   /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
   /// document](http://llvm.org/docs/GetElementPtr.html) to answer questions
@@ -1194,7 +1263,7 @@ public class IRBuilder {
     }
   }
 
-  /// Builds a GEP (Get Element Pointer) instruction suitable for indexing into
+  /// Build a GEP (Get Element Pointer) instruction suitable for indexing into
   /// a struct.
   ///
   /// - parameter ptr: The base address for the index calculation.
@@ -1207,21 +1276,27 @@ public class IRBuilder {
     return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
   }
 
-  /// Builds an ExtractValue instruction to retrieve an indexed value from a
+  /// Build an ExtractValue instruction to retrieve an indexed value from a
   /// struct or array value.
+  ///
+  /// `extractvalue` function like a GEP, but has different indexing semantics:
+  ///
+  /// - Since the value being indexed is not a pointer, the first index is
+  /// omitted and assumed to be zero.
+  /// - Not only struct indices but also array indices must be in bounds.
   ///
   /// - parameter value: The struct or array you're indexing into.
   /// - parameter index: The index at which to extract.
   ///
   /// - returns: The value in the struct at the provided index.
   public func buildExtractValue(_ value: IRValue, index: Int,
-                                  name: String = "") -> IRValue {
+                                name: String = "") -> IRValue {
     return LLVMBuildExtractValue(llvm, value.asLLVM(), UInt32(index), name)
   }
 
   // MARK: Null Test Instructions
 
-  /// Builds a comparision instruction that returns whether the given operand is
+  /// Build a comparision instruction that returns whether the given operand is
   /// `null`.
   ///
   /// - parameter val: The value to test.
@@ -1233,7 +1308,7 @@ public class IRBuilder {
     return LLVMBuildIsNull(llvm, val.asLLVM(), name)
   }
 
-  /// Builds a comparision instruction that returns whether the given operand is
+  /// Build a comparision instruction that returns whether the given operand is
   /// not `null`.
   ///
   /// - parameter val: The value to test.
@@ -1247,7 +1322,7 @@ public class IRBuilder {
 
   // MARK: Conversion Instructions
 
-  /// Builds an instruction that either performs a truncation or a bitcast of
+  /// Build an instruction that either performs a truncation or a bitcast of
   /// the given value to a value of the given type.
   ///
   /// - parameter val: The value to cast or truncate.
@@ -1260,7 +1335,7 @@ public class IRBuilder {
     return LLVMBuildTruncOrBitCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds an instruction that either performs a zero extension or a bitcast of
+  /// Build an instruction that either performs a zero extension or a bitcast of
   /// the given value to a value of the given type with a wider width.
   ///
   /// - parameter val: The value to zero extend.
@@ -1273,8 +1348,16 @@ public class IRBuilder {
     return LLVMBuildZExtOrBitCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds a bitcast instruction to convert the given value to a value of the
+  /// Build a bitcast instruction to convert the given value to a value of the
   /// given type by just copying the bit pattern.
+  ///
+  /// The `bitcast` instruction is always a no-op cast because no bits change
+  /// with this conversion. The conversion is done as if the value had been
+  /// stored to memory and read back as the given type. Pointer (or vector of
+  /// pointer) types may only be converted to other pointer (or vector of
+  /// pointer) types with the same address space through this instruction. To
+  /// convert pointers to other types, see `buildIntToPtr(_:type:name:)` or
+  /// `buildPtrToInt(_:type:name:)`.
   ///
   /// - parameter val: The value to bitcast.
   /// - parameter type: The destination type.
@@ -1286,7 +1369,7 @@ public class IRBuilder {
     return LLVMBuildBitCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds a cast instruction to convert the given floating-point value to a
+  /// Build a cast instruction to convert the given floating-point value to a
   /// value of the given type.
   ///
   /// - parameter val: The value to cast.
@@ -1299,8 +1382,14 @@ public class IRBuilder {
     return LLVMBuildFPCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds an address space cast instruction that converts a pointer value
+  /// Build an address space cast instruction that converts a pointer value
   /// to a given type in a different address space.
+  ///
+  /// The `addrspacecast` instruction can be a no-op cast or a complex value
+  /// modification, depending on the target and the address space pair. Pointer
+  /// conversions within the same address space must be performed with the
+  /// `bitcast` instruction. Note that if the address space conversion is legal
+  /// then both result and operand refer to the same memory location.
   ///
   /// The address spaces of the value and the destination pointer types must
   /// be distinct.
@@ -1308,7 +1397,7 @@ public class IRBuilder {
     return LLVMBuildAddrSpaceCast(llvm, val.asLLVM(), type.asLLVM(), name)
   }
   
-  /// Builds a truncate instruction to truncate the given value to the given
+  /// Build a truncate instruction to truncate the given value to the given
   /// type with a shorter width.
   ///
   /// - parameter val: The value to truncate.
@@ -1321,7 +1410,7 @@ public class IRBuilder {
     return LLVMBuildTrunc(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds a sign extension instruction to sign extend the given value to
+  /// Build a sign extension instruction to sign extend the given value to
   /// the given type with a wider width.
   ///
   /// - parameter val: The value to sign extend.
@@ -1334,7 +1423,7 @@ public class IRBuilder {
     return LLVMBuildSExt(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds a zero extension instruction to zero extend the given value to the
+  /// Build a zero extension instruction to zero extend the given value to the
   /// given type with a wider width.
   ///
   /// - parameter val: The value to zero extend.
@@ -1347,8 +1436,15 @@ public class IRBuilder {
     return LLVMBuildZExt(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds an integer-to-pointer instruction to convert the given value to the
+  /// Build an integer-to-pointer instruction to convert the given value to the
   /// given pointer type.
+  ///
+  /// The `inttoptr` instruction converts the given value to the given pointer
+  /// type by applying either a zero extension or a truncation depending on the
+  /// size of the integer value. If value is larger than the size of a pointer
+  /// then a truncation is done. If value is smaller than the size of a pointer
+  /// then a zero extension is done. If they are the same size, nothing is done
+  /// (no-op cast).
   ///
   /// - parameter val: The integer value.
   /// - parameter type: The destination pointer type.
@@ -1360,8 +1456,16 @@ public class IRBuilder {
     return LLVMBuildIntToPtr(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds a pointer-to-integer instruction to convert the given pointer value
+  /// Build a pointer-to-integer instruction to convert the given pointer value
   /// to the given integer type.
+  ///
+  /// The `ptrtoint` instruction converts the given pointer value to the given
+  /// integer type by interpreting the pointer value as an integer and either
+  /// truncating or zero extending that value to the size of the integer type.
+  /// If the pointer value is smaller than the integer type then a zero
+  /// extension is done. If the pointer value is larger than the integer type
+  /// then a truncation is done. If they are the same size, then nothing is done
+  /// (no-op cast) other than a type change.
   ///
   /// - parameter val: The pointer value.
   /// - parameter type: The destination integer type.
@@ -1373,7 +1477,7 @@ public class IRBuilder {
     return LLVMBuildPtrToInt(llvm, val.asLLVM(), type.asLLVM(), name)
   }
 
-  /// Builds an integer-to-floating instruction to convert the given integer
+  /// Build an integer-to-floating instruction to convert the given integer
   /// value to the given floating type.
   ///
   /// - parameter val: The integer value.
@@ -1391,7 +1495,7 @@ public class IRBuilder {
     }
   }
 
-  /// Builds a floating-to-integer instruction to convert the given floating
+  /// Build a floating-to-integer instruction to convert the given floating
   /// value to the given integer type.
   ///
   /// - parameter val: The floating value.
@@ -1409,7 +1513,7 @@ public class IRBuilder {
     }
   }
 
-  /// Builds a constant expression that returns the alignment of the given type
+  /// Build a constant expression that returns the alignment of the given type
   /// in bytes.
   ///
   /// - parameter val: The type to evaluate the alignment of.
@@ -1420,7 +1524,7 @@ public class IRBuilder {
     return LLVMAlignOf(val.asLLVM())
   }
 
-  /// Builds a constant expression that returns the size of the given type in
+  /// Build a constant expression that returns the size of the given type in
   /// bytes.
   ///
   /// - parameter val: The type to evaluate the size of.
@@ -1431,7 +1535,7 @@ public class IRBuilder {
     return LLVMSizeOf(val.asLLVM())
   }
 
-  /// Builds an expression that returns the difference between two pointer 
+  /// Build an expression that returns the difference between two pointer
   /// values, dividing out the size of the pointed-to objects.
   ///
   /// This is intended to implement C-style pointer subtraction. As such, the 
@@ -1454,8 +1558,24 @@ public class IRBuilder {
 
   // MARK: Atomic Instructions
 
-  /// Builds a fence instruction that introduces "happens-before" edges between
+  /// Build a fence instruction that introduces "happens-before" edges between
   /// operations.
+  ///
+  /// A fence `A` which has (at least) `release` ordering semantics synchronizes
+  /// with a fence `B` with (at least) `acquire` ordering semantics if and only
+  /// if there exist atomic operations X and Y, both operating on some atomic
+  /// object `M`, such that `A` is sequenced before `X`, `X` modifies `M`
+  /// (either directly or through some side effect of a sequence headed by `X`),
+  /// `Y` is sequenced before `B`, and `Y` observes `M`. This provides a
+  /// happens-before dependency between `A` and `B`. Rather than an explicit
+  /// fence, one (but not both) of the atomic operations `X` or `Y` might
+  /// provide a release or acquire (resp.) ordering constraint and still
+  /// synchronize-with the explicit fence and establish the happens-before edge.
+  ///
+  /// A fence which has `sequentiallyConsistent` ordering, in addition to having
+  /// both `acquire` and `release` semantics specified above, participates in
+  /// the global program order of other `sequentiallyConsistent` operations
+  /// and/or fences.
   ///
   /// - parameter ordering: Defines the kind of "synchronizes-with" edge this
   ///   fence adds.
@@ -1470,7 +1590,7 @@ public class IRBuilder {
     return LLVMBuildFence(llvm, ordering.llvm, singleThreaded.llvm, name)
   }
 
-  /// Builds an atomic compare-and-exchange instruction to atomically modify
+  /// Build an atomic compare-and-exchange instruction to atomically modify
   /// memory. It loads a value in memory and compares it to a given value. If
   /// they are equal, it tries to store a new value into the memory.
   ///
@@ -1517,7 +1637,7 @@ public class IRBuilder {
     )
   }
 
-  /// Builds an atomic read-modify-write instruction to atomically modify memory.
+  /// Build an atomic read-modify-write instruction to atomically modify memory.
   ///
   /// - parameter atomicOp: The atomic operation to perform.
   /// - parameter ptr: The address of a value to modify.
@@ -1540,7 +1660,7 @@ public class IRBuilder {
 
   // MARK: C Standard Library Instructions
 
-  /// Builds a call to the C standard library `malloc` instruction.
+  /// Build a call to the C standard library `malloc` instruction.
   /// ```
   /// (type *)malloc(sizeof(type));
   /// ```
@@ -1552,7 +1672,7 @@ public class IRBuilder {
   /// - parameter type: The intended result type being allocated. The result
   ///                   of the `malloc` will be a pointer to this type.
   /// - parameter count: An optional number of slots to allocate, to simulate a
-  ///                    C array. This is equivalent to
+  ///                    C array.
   /// - parameter name: The intended name for the `malloc`'d value.
   public func buildMalloc(_ type: IRType, count: IRValue? = nil,
                           name: String = "") -> IRValue {
@@ -1563,7 +1683,7 @@ public class IRBuilder {
     }
   }
 
-  /// Builds a call to the C standard library `free` function, with the provided
+  /// Build a call to the C standard library `free` function, with the provided
   /// pointer.
   ///
   /// - parameter ptr: The pointer to `free`.
@@ -1575,7 +1695,7 @@ public class IRBuilder {
 
   // MARK: Aggregate Instructions
 
-  /// Builds an instruction to insert a value into a member field in an
+  /// Build an instruction to insert a value into a member field in an
   /// aggregate value.
   ///
   /// - parameter aggregate: A value of array or structure type.
@@ -1589,7 +1709,7 @@ public class IRBuilder {
     return LLVMBuildInsertValue(llvm, aggregate.asLLVM(), element.asLLVM(), UInt32(index), name)
   }
 
-  /// Builds an instruction to extract a value from a member field in an
+  /// Build an instruction to extract a value from a member field in an
   /// aggregate value.
   ///
   /// An `extract value` instruction differs from a `get element pointer`
@@ -1608,7 +1728,7 @@ public class IRBuilder {
 
   // MARK: Vector Instructions
 
-  /// Builds a vector insert instruction to nondestructively insert the given
+  /// Build a vector insert instruction to nondestructively insert the given
   /// value into the given vector.
   ///
   /// - parameter vector: A value of vector type.
@@ -1622,7 +1742,7 @@ public class IRBuilder {
     return LLVMBuildInsertElement(llvm, vector.asLLVM(), element.asLLVM(), index.asLLVM(), name)
   }
 
-  /// Builds an instruction to extract a single scalar element from a vector at
+  /// Build an instruction to extract a single scalar element from a vector at
   /// a specified index.
   ///
   /// - parameter vector: A value of vector type.
@@ -1634,9 +1754,17 @@ public class IRBuilder {
     return LLVMBuildExtractElement(llvm, vector.asLLVM(), index.asLLVM(), name)
   }
 
-  /// Builds a vector shuffle instruction to construct a permutation of elements
+  /// Build a vector shuffle instruction to construct a permutation of elements
   /// from the two given input vectors, returning a vector with the same element
   /// type as the inputs and length that is the same as the shuffle mask.
+  ///
+  /// The elements of the two input vectors are numbered from left to right
+  /// across both of the vectors. The shuffle mask operand specifies, for each
+  /// element of the result vector, which element of the two input vectors the
+  /// result element gets. If the shuffle mask is `undef`, the result vector is
+  /// also `undef`. If any element of the mask operand is `undef`, that element
+  /// of the result is `undef`. If the shuffle mask selects an `undef` element
+  /// from one of the input vectors, the resulting element is `undef`.
   ///
   /// - parameter vector1: The first vector to shuffle.
   /// - parameter vector2: The second vector to shuffle.
@@ -1705,7 +1833,7 @@ public class IRBuilder {
     return global
   }
 
-  /// Builds a named global variable containing the characters of the given
+  /// Build a named global variable containing the characters of the given
   /// string value as an array of `i8` type filled in with the nul terminated
   /// string value.
   ///
@@ -1717,7 +1845,7 @@ public class IRBuilder {
     return Global(llvm: LLVMBuildGlobalString(llvm, string, name))
   }
 
-  /// Builds a named global variable containing a pointer to the contents of the
+  /// Build a named global variable containing a pointer to the contents of the
   /// given string value.
   ///
   /// - parameter string: The character contents of the newly inserted global.
@@ -1729,7 +1857,7 @@ public class IRBuilder {
     return LLVMBuildGlobalStringPtr(llvm, string, name)
   }
 
-  /// Builds a named alias to a global value or a constant expression.
+  /// Build a named alias to a global value or a constant expression.
   ///
   /// Aliases, unlike function or variables, don’t create any new data. They are
   /// just a new symbol and metadata for an existing position.
@@ -1745,7 +1873,7 @@ public class IRBuilder {
 
   // MARK: Inline Assembly
 
-  /// Builds a value representing an inline assembly expression (as opposed to
+  /// Build a value representing an inline assembly expression (as opposed to
   /// module-level inline assembly).
   ///
   /// LLVM represents inline assembler as a template string (containing the
