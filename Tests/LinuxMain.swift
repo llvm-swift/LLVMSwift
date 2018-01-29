@@ -10,5 +10,6 @@ XCTMain([
   IROperationSpec.allTests,
   FileCheckSpec.allTests,
   JITSpec.allTests,
+  ModuleLinkSpec.allTests,
 ])
 #endif

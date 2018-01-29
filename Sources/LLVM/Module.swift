@@ -148,6 +148,21 @@ public final class Module: CustomStringConvertible {
     }
   }
 
+  /// Links the given module with this module.  If the link succeeds, this
+  /// module will the composite of the two input modules.
+  ///
+  /// The result of this function is `true` if the link succeeds, or `false`
+  /// otherwise - unlike `llvm::Linker::linkModules`.
+  ///
+  /// - parameter other: The module to link with this module.
+  public func link(_ other: Module) -> Bool {
+    // First clone the other module; `LLVMLinkModules2` consumes the source
+    // module via a move and that module still owns its ModuleRef.
+    let otherClone = LLVMCloneModule(other.llvm)
+    // N.B. Returns `true` on error.
+    return LLVMLinkModules2(self.llvm, otherClone) == 0
+  }
+
   /// Retrieves the sequence of functions that make up this module.
   public var functions: AnySequence<Function> {
     var current = firstFunction

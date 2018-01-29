@@ -31,4 +31,18 @@ extension IRGlobal {
     get { return StorageClass(llvm: LLVMGetDLLStorageClass(asLLVM())) }
     set { LLVMSetDLLStorageClass(asLLVM(), newValue.llvm) }
   }
+
+  /// Retrieves the section associated with the symbol that will eventually be
+  /// emitted for this global value.
+  ///
+  /// - Note: Global `Alias` values may or may not be resolvable to any
+  ///   particular section given the state of the IR in an arbitrary module. A
+  ///   return value of the empty string indicates a failed section lookup.
+  public var section: String {
+    get {
+      guard let sname = LLVMGetSection(asLLVM()) else { return "" }
+      return String(cString: sname)
+    }
+    set { LLVMSetSection(asLLVM(), newValue) }
+  }
 }
