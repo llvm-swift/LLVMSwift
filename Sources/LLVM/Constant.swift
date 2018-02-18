@@ -165,7 +165,43 @@ extension Constant where Repr == Struct {
   }
 }
 
+// MARK: Truncation
 
+extension Constant where Repr == Signed {
+  /// Creates a constant truncated to a given integral type.
+  ///
+  /// - parameter type: The type to truncate towards.
+  ///
+  /// - returns: A const value representing this value truncated to the given
+  ///   integral type's bitwidth.
+  public func truncate(to type: IntType) -> Constant<Signed> {
+    return Constant<Signed>(llvm: LLVMConstTrunc(llvm, type.asLLVM()))
+  }
+}
+
+extension Constant where Repr == Unsigned {
+  /// Creates a constant truncated to a given integral type.
+  ///
+  /// - parameter type: The type to truncate towards.
+  ///
+  /// - returns: A const value representing this value truncated to the given
+  ///   integral type's bitwidth.
+  public func truncate(to type: IntType) -> Constant<Unsigned> {
+    return Constant<Unsigned>(llvm: LLVMConstTrunc(llvm, type.asLLVM()))
+  }
+}
+
+extension Constant where Repr == Floating {
+  /// Creates a constant truncated to a given floating type.
+  ///
+  /// - parameter type: The type to truncate towards.
+  ///
+  /// - returns: A const value representing this value truncated to the given
+  ///   floating type's bitwidth.
+  public func truncate(to type: FloatType) -> Constant<Floating> {
+    return Constant<Floating>(llvm: LLVMConstFPTrunc(llvm, type.asLLVM()))
+  }
+}
 
 // MARK: Arithmetic Operations
 
@@ -933,6 +969,23 @@ extension Constant {
   public static func select<T: IntegralConstantRepresentation, U>(_ cond: Constant<T>, then: Constant<U>, else: Constant<U>) -> Constant<U> {
     assert((cond.type as! IntType).width == 1)
     return Constant<U>(llvm: LLVMConstSelect(cond.llvm, then.llvm, `else`.llvm))
+  }
+}
+
+// MARK: Constant Pointer To Integer
+
+extension Constant where Repr: IntegralConstantRepresentation {
+  /// Creates a constant pointer-to-integer operation to convert the given constant
+  /// global pointer value to the given integer type.
+  ///
+  /// - parameter val: The pointer value.
+  /// - parameter intType: The destination integer type.
+  ///
+  /// - returns: An constant value representing the constant value of the given
+  ///   pointer converted to the given integer type.
+  public static func pointerToInt(_ val: IRGlobal, _ intType: IntType) -> Constant {
+    precondition(val.isConstant, "May only convert global constant pointers to integers")
+    return Constant<Repr>(llvm: LLVMConstPtrToInt(val.asLLVM(), intType.asLLVM()))
   }
 }
 
