@@ -1087,6 +1087,13 @@ extension Constant where Repr == Floating {
     return lhs.remainder(rhs)
   }
 
+  /// A constant equality comparison between two values.
+  ///
+  /// - parameter lhs: The first value to compare.
+  /// - parameter rhs: The second value to compare.
+  ///
+  /// - returns: A constant integral value (i1) representing the result of the
+  ///   comparision of the given operands.
   public static func ==(lhs: Constant, rhs: Constant) -> Constant<Signed> {
     return Constant.equals(lhs, rhs)
   }

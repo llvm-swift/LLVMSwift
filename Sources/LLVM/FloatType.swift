@@ -22,6 +22,7 @@ public struct FloatType: IRType {
     self.context = context
   }
 
+  /// Enumerates the bitwidth and kind of supported floating point types.
   public enum Kind {
     /// 16-bit floating point value
     case half
