@@ -216,3 +216,49 @@ public enum StorageClass {
     return StorageClass.storageMapping[self]!
   }
 }
+
+/// Enumerates values representing whether or not this global value's address
+/// is significant in this module or the program at large.  A global value's
+/// address is considered significant if it is referenced by any module in the
+/// final program.
+///
+/// This attribute is intended to be used only by the code generator and LTO to
+/// allow the linker to decide whether the global needs to be in the symbol
+/// table.  Constant global values with unnamed addresses and identical
+/// initializers may be merged by LLVM.  Note that a global value with an
+/// unnamed address may be merged with a global value with a significant address
+/// resulting in a global value with a significant address.
+public enum UnnamedAddressKind {
+  /// Indicates that the address of this global value is significant
+  /// in this module.
+  case none
+
+  /// Indicates that the address of this global value is not significant to the
+  /// current module but it may or may not be significant to another module;
+  /// only the content of the value is known to be significant within the
+  /// current module.
+//  case local
+
+  /// Indicates that the address of this global value is not significant to the
+  /// current module or any other module; only the content of the value
+  /// is significant globally.
+  case global
+
+  private static let unnamedAddressMapping: [UnnamedAddressKind: LLVMBool] = [
+    .none: LLVMBool(0),
+//    .local: LLVMBool(1),
+    .global: LLVMBool(1),
+    ]
+
+  internal init(llvm: LLVMBool) {
+    switch llvm {
+    case 0: self = .none
+    case 1: self = .global
+    default: fatalError("unknown unnamed address kind \(llvm)")
+    }
+  }
+
+  internal var llvm: LLVMBool {
+    return UnnamedAddressKind.unnamedAddressMapping[self]!
+  }
+}

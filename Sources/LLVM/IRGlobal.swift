@@ -32,6 +32,12 @@ extension IRGlobal {
     set { LLVMSetDLLStorageClass(asLLVM(), newValue.llvm) }
   }
 
+  /// Retrieves an indicator for the significance of a global value's address.
+  public var unnamedAddressKind: UnnamedAddressKind {
+    get { return UnnamedAddressKind(llvm: LLVMHasUnnamedAddr(asLLVM()))  }
+    set { LLVMSetUnnamedAddr(asLLVM(), newValue.llvm) }
+  }
+
   /// Retrieves the section associated with the symbol that will eventually be
   /// emitted for this global value.
   ///
