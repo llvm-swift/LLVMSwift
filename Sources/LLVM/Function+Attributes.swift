@@ -2,8 +2,8 @@
 import cllvm
 #endif
 
-/// Enumerates the attributes of LLVM functions and function parameters.
-public enum FunctionAttribute: String {
+/// Enumerates the kinds of attributes of LLVM functions and function parameters.
+public enum AttributeKind: String {
   /// This attribute indicates that, when emitting the prologue and epilogue,
   /// the backend should forcibly align the stack pointer.
   case alignstack
@@ -81,13 +81,6 @@ public enum FunctionAttribute: String {
   /// otherwise do optimizations specifically to reduce code size as long as
   /// they do not significantly impact runtime performance.
   case optsize
-  /// This attribute tells the code generator that the code generated for this
-  /// function needs to follow certain conventions that make it possible for a
-  /// runtime function to patch over it later.
-  case patchableFunction = "patchable-function"
-  /// This attribute indicates that the function will trigger a guard region in
-  /// the end of the stack.
-  case probeStack = "probe-stack"
   /// This attribute indicates that the function computes its result (or
   /// decides to unwind an exception) based strictly on its arguments, without
   /// dereferencing any pointer arguments or otherwise accessing any mutable
@@ -97,11 +90,6 @@ public enum FunctionAttribute: String {
   /// pointer arguments (including byval arguments) or otherwise modify any
   /// state (e.g. memory, control registers, etc) visible to caller functions.
   case readonly
-  /// This attribute controls the behavior of stack probes: either the
-  /// "probe-stack" attribute, or ABI-required stack probes, if any.
-  case stackProbleSize = "stack-probe-size"
-  /// This attribute disables ABI-required stack probes, if any.
-  case noStackArgProbe = "no-stack-arg-probe"
   /// This attribute indicates that the function may write to but does not read
   /// read from memory.
   case writeonly
@@ -142,9 +130,6 @@ public enum FunctionAttribute: String {
   /// This attribute indicates that the function was called from a scope that
   /// requires strict floating point semantics.
   case strictfp
-  /// This attribute indicates that the function will delegate to some other
-  /// function with a tail call.
-  case thunk
   /// This attribute indicates that the ABI being targeted requires that an
   /// unwind table entry be produced for this function even if we can show
   /// that no exceptions passes by it.
@@ -201,7 +186,7 @@ public enum FunctionAttribute: String {
   case swifterror
 
   /// ID of the attribute.
-  internal var kindID: UInt32 {
+  internal var id: UInt32 {
     return LLVMGetEnumAttributeKindForName(rawValue, rawValue.count)
   }
 }
@@ -236,25 +221,154 @@ public enum AttributeIndex: ExpressibleByIntegerLiteral, RawRepresentable {
   }
 }
 
+/// An LLVM attribute.
+public protocol Attribute {
+  var name: String { get }
+  func asLLVM() -> LLVMAttributeRef
+}
+
+/// An "enum" (a.k.a. target-independent) attribute.
+public struct EnumAttribute: Attribute {
+  internal let llvm: LLVMAttributeRef
+  internal init(llvm: LLVMAttributeRef) {
+    self.llvm = llvm
+  }
+
+  /// The kind ID of the attribute.
+  internal var kindID: UInt32 {
+    return LLVMGetEnumAttributeKind(llvm)
+  }
+
+  /// The name of the attribute's kind.
+  public var name: String {
+    return ""
+  }
+
+  /// The value of the attribute.
+  public var value: UInt64 {
+    return LLVMGetEnumAttributeValue(llvm)
+  }
+
+  /// Retrieves the underlying LLVM attribute object.
+  public func asLLVM() -> LLVMAttributeRef {
+    return llvm
+  }
+}
+
+/// A "string" (a.k.a. target-dependent) attribute.
+public struct StringAttribute: Attribute {
+  internal let llvm: LLVMAttributeRef
+  internal init(llvm: LLVMAttributeRef) {
+    self.llvm = llvm
+  }
+
+  /// The name of the attribute.
+  public var name: String {
+    var length: UInt32 = 0
+    let cstring = LLVMGetStringAttributeKind(llvm, &length)
+    return String.init(cString: cstring!)
+  }
+
+  /// The value of the attribute.
+  public var value: String {
+    var length: UInt32 = 0
+    let cstring = LLVMGetStringAttributeValue(llvm, &length)
+    return String.init(cString: cstring!)
+  }
+
+  /// Retrieves the underlying LLVM attribute object.
+  public func asLLVM() -> LLVMAttributeRef {
+    return llvm
+  }
+}
+
 extension Function {
-  /// Adds an attribute to the function, its return value or its parameters.
+  /// Adds an enum attribute to the function, its return value or one of its
+  /// parameters.
   ///
-  /// - parameter attr: The attribute to add.
+  /// - parameter attrKind: The kind of the attribute to add.
   /// - parameter value: The optional value of the attribute.
   /// - parameter index: The index representing the function, its return value
   ///   or one of its parameters.
-  public func addAttribute(_ attr: FunctionAttribute, value: UInt64 = 0, to index: AttributeIndex) {
+  @discardableResult
+  public func addAttribute(_ attrKind: AttributeKind, value: UInt64 = 0, to index: AttributeIndex) -> EnumAttribute {
     let ctx = LLVMGetModuleContext(LLVMGetGlobalParent(llvm))
-    let attrRef = LLVMCreateEnumAttribute(ctx, attr.kindID, value)
+    let attrRef = LLVMCreateEnumAttribute(ctx, attrKind.id, value)
     LLVMAddAttributeAtIndex(llvm, index.rawValue, attrRef)
+    return EnumAttribute(llvm: attrRef!)
   }
 
-  /// Removes an attribute from the function.
+  /// Adds a string attribute to the function, its return value or one of its
+  /// parameters.
+  ///
+  /// - parameter name: The name of the attribute to add.
+  /// - parameter value: The optional value of the attribute.
+  /// - parameter index: The index representing the function, its return value
+  ///   or one of its parameters.
+  @discardableResult
+  public func addAttribute(_ name: String, value: String = "", to index: AttributeIndex) -> StringAttribute {
+    let ctx = LLVMGetModuleContext(LLVMGetGlobalParent(llvm))
+    let attrRef = name.withCString { cname -> LLVMAttributeRef! in
+      return value.withCString { cvalue in
+        return LLVMCreateStringAttribute(ctx, cname, UInt32(name.count), cvalue, UInt32(value.count))
+      }
+    }
+    LLVMAddAttributeAtIndex(llvm, index.rawValue, attrRef)
+    return StringAttribute(llvm: attrRef!)
+  }
+
+  /// Removes an attribute from the function, its return value or one of its
+  /// parameters.
   ///
   /// - parameter attr: The attribute to remove.
   /// - parameter index: The index representing the function, its return value
   ///   or one of its parameters.
-  public func removeAttribute(_ attr: FunctionAttribute, value: UInt64 = 0, from index: AttributeIndex) {
-    LLVMRemoveEnumAttributeAtIndex(llvm, index.rawValue, attr.kindID)
+  public func removeAttribute(_ attr: Attribute, from index: AttributeIndex) {
+    switch attr {
+    case let enumAttr as EnumAttribute:
+      LLVMRemoveEnumAttributeAtIndex(llvm, index.rawValue, enumAttr.kindID)
+    case let stringAttr as StringAttribute:
+      var length: UInt32 = 0
+      let cstring = LLVMGetStringAttributeKind(stringAttr.llvm, &length)
+      LLVMRemoveStringAttributeAtIndex(llvm, index.rawValue, cstring, length)
+    default:
+      fatalError()
+    }
+  }
+
+  /// Removes an enum attribute from the function, its return value or one of
+  /// its parameters.
+  ///
+  /// - parameter attr: The kind of the attribute to remove.
+  /// - parameter index: The index representing the function, its return value
+  ///   or one of its parameters.
+  public func removeAttribute(_ attrKind: AttributeKind, from index: AttributeIndex) {
+    LLVMRemoveEnumAttributeAtIndex(llvm, index.rawValue, attrKind.id)
+  }
+
+  /// Removes a string attribute from the function, its return value or one of
+  /// its parameters.
+  ///
+  /// - parameter name: The name of the attribute to remove.
+  /// - parameter index: The index representing the function, its return value
+  ///   or one of its parameters.
+  public func removeAttribute(_ name: String, from index: AttributeIndex) {
+    name.withCString {
+      LLVMRemoveStringAttributeAtIndex(llvm, index.rawValue, $0, UInt32(name.count))
+    }
+  }
+
+  /// Gets the attributes of the function, its return value or its parameters.
+  public func attributes(at index: AttributeIndex) -> [Attribute] {
+    let attrCount = LLVMGetAttributeCountAtIndex(llvm, index.rawValue)
+    var attrRefs: [LLVMAttributeRef?] = Array(repeating: nil, count: Int(attrCount))
+    LLVMGetAttributesAtIndex(llvm, index.rawValue, &attrRefs)
+    return attrRefs.map { attrRef -> Attribute in
+      if LLVMIsEnumAttribute(attrRef) != 0 {
+        return EnumAttribute(llvm: attrRef!)
+      } else {
+        return StringAttribute(llvm: attrRef!)
+      }
+    }
   }
 }
