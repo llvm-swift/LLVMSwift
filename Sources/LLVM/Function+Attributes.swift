@@ -2,7 +2,7 @@
 import cllvm
 #endif
 
-/// Enumerates the attributes of LLVM functions.
+/// Enumerates the attributes of LLVM functions and function parameters.
 public enum FunctionAttribute: String {
   /// This attribute indicates that, when emitting the prologue and epilogue,
   /// the backend should forcibly align the stack pointer.
@@ -149,15 +149,6 @@ public enum FunctionAttribute: String {
   /// unwind table entry be produced for this function even if we can show
   /// that no exceptions passes by it.
   case uwtable
-
-  /// ID of the attribute.
-  internal var kindID: UInt32 {
-    return LLVMGetEnumAttributeKindForName(rawValue, rawValue.count)
-  }
-}
-
-/// Enumerates the parameter attributes of LLVM functions.
-public enum ParameterAttribute: String {
   /// This indicates to the code generator that the parameter or return value
   /// should be zero-extended to the extent required by the target’s ABI by the
   /// caller (for a parameter) or the callee (for a return value).
@@ -215,48 +206,55 @@ public enum ParameterAttribute: String {
   }
 }
 
+/// Represents the possible indices of function attributes.
+public enum AttributeIndex: ExpressibleByIntegerLiteral, RawRepresentable {
+  /// Represents the function itself.
+  case function
+  /// Represents the function's return value.
+  case returnValue
+  /// Represents the function's i-th argument.
+  case argument(Int)
+
+  public init(integerLiteral value: UInt32) {
+    switch value {
+    case ~0: self = .function
+    case 0: self = .returnValue
+    default: self = .argument(Int(value) - 1)
+    }
+  }
+
+  public init?(rawValue: RawValue) {
+    self.init(integerLiteral: rawValue)
+  }
+
+  public var rawValue: UInt32 {
+    switch self {
+    case .function: return ~0
+    case .returnValue: return 0
+    case .argument(let i): return UInt32(i) + 1
+    }
+  }
+}
+
 extension Function {
-  /// Adds an attribute to the function.
+  /// Adds an attribute to the function, its return value or its parameters.
   ///
   /// - parameter attr: The attribute to add.
   /// - parameter value: The optional value of the attribute.
-  public func addAttribute(_ attr: FunctionAttribute, value: UInt64 = 0) {
+  /// - parameter index: The index representing the function, its return value
+  ///   or one of its parameters.
+  public func addAttribute(_ attr: FunctionAttribute, value: UInt64 = 0, to index: AttributeIndex) {
     let ctx = LLVMGetModuleContext(LLVMGetGlobalParent(llvm))
     let attrRef = LLVMCreateEnumAttribute(ctx, attr.kindID, value)
-    LLVMAddAttributeAtIndex(llvm, 0, attrRef)
-  }
-
-  /// Adds an attribute to the given function's parameter.
-  ///
-  /// - parameter attr: The attribute to add.
-  /// - parameter value: The optional value of the attribute.
-  /// - parameterIndex: The index of the parameter to which add the
-  ///   attribute, starting from 0.
-  public func addParameterAttribute(_ attr: ParameterAttribute, value: UInt64 = 0,
-                                    for parameterIndex: LLVMAttributeIndex) {
-    let ctx = LLVMGetModuleContext(LLVMGetGlobalParent(llvm))
-    let attrRef = LLVMCreateEnumAttribute(ctx, attr.kindID, value)
-    LLVMAddAttributeAtIndex(llvm, parameterIndex + 1, attrRef)
+    LLVMAddAttributeAtIndex(llvm, index.rawValue, attrRef)
   }
 
   /// Removes an attribute from the function.
   ///
   /// - parameter attr: The attribute to remove.
-  public func removeAttribute(_ attr: FunctionAttribute, value: UInt64 = 0) {
-    LLVMRemoveEnumAttributeAtIndex(llvm, 0, attr.kindID)
-  }
-
-  /// Removes an attribute from the function.
-  ///
-  /// - parameter attr: The attribute to add.
-
-  /// Removes an attribute from the given function's parameter.
-  ///
-  /// - parameter attr: The attribute to remove.
-  /// - parameter parameterIndex: The index of the parameter to which add the
-  ///   attribute, starting from 0.
-  public func removeParameterAttribute(_ attr: ParameterAttribute,
-                                       for parameterIndex: LLVMAttributeIndex) {
-    LLVMRemoveEnumAttributeAtIndex(llvm, parameterIndex + 1, attr.kindID)
+  /// - parameter index: The index representing the function, its return value
+  ///   or one of its parameters.
+  public func removeAttribute(_ attr: FunctionAttribute, value: UInt64 = 0, from index: AttributeIndex) {
+    LLVMRemoveEnumAttributeAtIndex(llvm, index.rawValue, attr.kindID)
   }
 }
