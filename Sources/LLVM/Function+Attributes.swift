@@ -29,7 +29,7 @@ public enum FunctionAttribute: String {
   /// This attribute indicates that the function may only access memory that is
   /// either not accessible by the module being compiled, or is pointed to by
   /// its pointer arguments.
-  case inaccessiblemem_or_argmemonly
+  case inaccessiblememOrArgmemonly = "inaccessiblemem_or_argmemonly"
   /// This attribute indicates that the source code contained a hint that inlin
   /// inlining this function is desirable (such as the “inline” keyword in
   /// C/C++).
@@ -48,7 +48,7 @@ public enum FunctionAttribute: String {
   case naked
   /// When this attribute is set to true, the jump tables and lookup tables
   /// that can be generated from a switch case lowering are disabled.
-  case no_jump_tables = "no-jump-tables"
+  case noJumpTables = "no-jump-tables"
   /// This indicates that the callee function at a call site is not recognized
   /// as a built-in function.
   case nobuiltin
@@ -84,10 +84,10 @@ public enum FunctionAttribute: String {
   /// This attribute tells the code generator that the code generated for this
   /// function needs to follow certain conventions that make it possible for a
   /// runtime function to patch over it later.
-  case patchable_function = "patchable-function"
+  case patchableFunction = "patchable-function"
   /// This attribute indicates that the function will trigger a guard region in
   /// the end of the stack.
-  case probe_stack = "probe-stack"
+  case probeStack = "probe-stack"
   /// This attribute indicates that the function computes its result (or
   /// decides to unwind an exception) based strictly on its arguments, without
   /// dereferencing any pointer arguments or otherwise accessing any mutable
@@ -99,9 +99,9 @@ public enum FunctionAttribute: String {
   case readonly
   /// This attribute controls the behavior of stack probes: either the
   /// "probe-stack" attribute, or ABI-required stack probes, if any.
-  case stack_proble_size = "stack-probe-size"
+  case stackProbleSize = "stack-probe-size"
   /// This attribute disables ABI-required stack probes, if any.
-  case no_stack_arg_probe = "no-stack-arg-probe"
+  case noStackArgProbe = "no-stack-arg-probe"
   /// This attribute indicates that the function may write to but does not read
   /// read from memory.
   case writeonly
@@ -110,22 +110,22 @@ public enum FunctionAttribute: String {
   /// arguments, with arbitrary offsets.
   case argmemonly
   /// This attribute indicates that this function can return twice.
-  case returns_twice
+  case returnsTwice = "returns_twice"
   /// This attribute indicates that SafeStack protection is enabled for this
   /// function.
   case safestack
   /// This attribute indicates that AddressSanitizer checks (dynamic address
   /// safety analysis) are enabled for this function.
-  case sanitize_address
+  case sanitizeAddress = "sanitize_address"
   /// This attribute indicates that MemorySanitizer checks (dynamic detection
   /// of accesses to uninitialized memory) are enabled for this function.
-  case sanitize_memory
+  case sanitizeMemory = "sanitize_memory"
   /// This attribute indicates that ThreadSanitizer checks (dynamic thread
   /// safety analysis) are enabled for this function.
-  case sanitize_thread
+  case sanitizeThread = "sanitize_thread"
   /// This attribute indicates that HWAddressSanitizer checks (dynamic address
   /// safety analysis based on tagged pointers) are enabled for this function.
-  case sanitize_hwaddress
+  case sanitizeHWAddress = "sanitize_hwaddress"
   /// This function attribute indicates that the function does not have any
   /// effects besides calculating its result and does not have undefined
   /// behavior.
@@ -194,7 +194,7 @@ public enum FunctionAttribute: String {
   case dereferenceable
   /// This indicates that the parameter or return value isn’t both non-null and
   /// non-dereferenceable (up to `n` bytes) at the same time.
-  case dereferenceable_or_null
+  case dereferenceableOrNull = "dereferenceable_or_null"
   /// This indicates that the parameter is the self/context parameter.
   case swiftself
   /// This attribute is motivated to model and optimize Swift error handling.
