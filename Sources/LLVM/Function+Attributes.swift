@@ -223,7 +223,6 @@ public enum AttributeIndex: ExpressibleByIntegerLiteral, RawRepresentable {
 
 /// An LLVM attribute.
 public protocol Attribute {
-  var name: String { get }
   func asLLVM() -> LLVMAttributeRef
 }
 
@@ -237,11 +236,6 @@ public struct EnumAttribute: Attribute {
   /// The kind ID of the attribute.
   internal var kindID: UInt32 {
     return LLVMGetEnumAttributeKind(llvm)
-  }
-
-  /// The name of the attribute's kind.
-  public var name: String {
-    return ""
   }
 
   /// The value of the attribute.
