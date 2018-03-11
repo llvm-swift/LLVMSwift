@@ -326,7 +326,7 @@ extension Function {
       let cstring = LLVMGetStringAttributeKind(stringAttr.llvm, &length)
       LLVMRemoveStringAttributeAtIndex(llvm, index.rawValue, cstring, length)
     default:
-      fatalError()
+      fatalError("unexpected attribute type")
     }
   }
 
