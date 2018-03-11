@@ -131,10 +131,7 @@ class IRAttributesSpec : XCTestCase {
       XCTAssertEqual(enumAttr.value, value)
       XCTAssert(fn.attributes(at: .function).contains { $0.asLLVM() == enumAttr.asLLVM() })
 
-      // LLVM issue?
-      // Removing an integer attribute seems to always fail, because
-      // `AttributeList::removeAttribute` (Attributes.cpp:1096) attempts to add the
-      // attribute about to be removed without preserving its value.
+      // FIXME: Remove when LLVM 7.0.0 is released.
       guard value == 0 else { continue }
 
       fn.removeAttribute(enumAttr, from: .function)
@@ -198,7 +195,7 @@ class IRAttributesSpec : XCTestCase {
       XCTAssertEqual(enumAttr.value, value)
       XCTAssert(fn.attributes(at: .returnValue).contains { $0.asLLVM() == enumAttr.asLLVM() })
 
-      // LLVM issue?
+      // FIXME: Remove when LLVM 7.0.0 is released.
       guard value == 0 else { continue }
 
       fn.removeAttribute(enumAttr, from: .returnValue)
@@ -214,7 +211,7 @@ class IRAttributesSpec : XCTestCase {
       XCTAssertEqual(enumAttr.value, value)
       XCTAssert(fn.attributes(at: .argument(0)).contains { $0.asLLVM() == enumAttr.asLLVM() })
 
-      // LLVM issue?
+      // FIXME: Remove when LLVM 7.0.0 is released.
       guard value == 0 else { continue }
 
       fn.removeAttribute(enumAttr, from: .argument(0))

@@ -343,6 +343,17 @@ extension Function {
   /// - parameter index: The index representing the function, its return value
   ///   or one of its parameters.
   public func removeAttribute(_ attrKind: AttributeKind, from index: AttributeIndex) {
+    // FIXME: Remove when LLVM 7.0.0 is released.
+    guard  attrKind != .align
+        && attrKind != .alignstack
+        && attrKind != .allocsize
+        && attrKind != .dereferenceable
+        && attrKind != .dereferenceableOrNull else {
+          fatalError(
+            "Removing valued enum attributes crashes in LLVM <7.0.0 " +
+            "and is currently disabled in LLVMSwift.")
+    }
+
     LLVMRemoveEnumAttributeAtIndex(llvm, index.rawValue, attrKind.id)
   }
 
