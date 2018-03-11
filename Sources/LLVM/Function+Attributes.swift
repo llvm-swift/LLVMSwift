@@ -222,7 +222,13 @@ public enum AttributeIndex: ExpressibleByIntegerLiteral, RawRepresentable {
 }
 
 /// An LLVM attribute.
+///
+/// Functions, return types and each parameter may have a set of attributes
+/// associated with them. Such attributes are used to communicate additional
+/// information about a function. Attributes are considered to be part of the
+/// function, but not of the function type.
 public protocol Attribute {
+  /// Retrieves the underlying LLVM attribute reference object.
   func asLLVM() -> LLVMAttributeRef
 }
 
