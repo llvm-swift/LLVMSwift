@@ -5,7 +5,7 @@ matrix:
   include:
   - os: osx
     language: objective-c
-    osx_image: xcode9
+    osx_image: xcode9.2
     before_install:
     - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
     - brew update
@@ -38,6 +38,7 @@ matrix:
     - export PATH=${PWD}/swift-4.0-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
     - sudo ./swift-4.0-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
     script:
+    - git checkout tags/0.2.3
     - swift test
 notifications:
   slack:
