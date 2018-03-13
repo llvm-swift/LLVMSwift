@@ -32,7 +32,7 @@ builder.positionAtEnd(of: entry)
 Inserting instructions creates native `IRValue` placeholder objects that allow us to structure LLVM IR programs just like Swift programs:
 
 ```swift
-let constant = IntType.int64.constant(21)
+let constant = IntType.int64.constant(42)
 let sum = builder.buildAdd(constant, constant)
 builder.buildRet(sum)
 ```
