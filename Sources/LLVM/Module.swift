@@ -209,6 +209,25 @@ public final class Module: CustomStringConvertible {
     }
   }
 
+  /// The current debug metadata version number.
+  public static var debugMetadataVersion: UInt32 {
+    return LLVMDebugMetadataVersion();
+  }
+
+  /// The version of debug metadata that's present in this module.
+  public var debugMetadataVersion: UInt32 {
+    return LLVMGetModuleDebugMetadataVersion(self.llvm)
+  }
+
+  /// Strip debug info in the module if it exists.
+  ///
+  /// To do this, we remove all calls to the debugger intrinsics and any named
+  /// metadata for debugging. We also remove debug locations for instructions.
+  /// Return true if module is modified.
+  public func stripDebugInfo() -> Bool {
+    return LLVMStripModuleDebugInfo(self.llvm) != 0
+  }
+
   /// Dump a representation of this module to stderr.
   public func dump() {
     LLVMDumpModule(llvm)

@@ -5,6 +5,7 @@ import XCTest
 #if !os(macOS)
 XCTMain([
   ConstantSpec.allTests,
+  DIBuilderSpec.allTests,
   FileCheckSpec.allTests,
   IRBuilderSpec.allTests,
   IRExceptionSpec.allTests,
