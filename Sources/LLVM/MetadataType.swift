@@ -18,6 +18,6 @@ public struct MetadataType: IRType {
 
   /// Retrieves the underlying LLVM type object.
   public func asLLVM() -> LLVMTypeRef {
-    fatalError("This version of LLVM does not support the creation of MetadataType objects")
+    return LLVMMetadataTypeInContext(context.llvm)
   }
 }

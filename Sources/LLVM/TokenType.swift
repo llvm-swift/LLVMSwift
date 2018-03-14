@@ -19,6 +19,6 @@ public struct TokenType: IRType {
 
   /// Retrieves the underlying LLVM type object.
   public func asLLVM() -> LLVMTypeRef {
-    fatalError("This version of LLVM does not support the creation of TokenType objects")
+    return LLVMTokenTypeInContext(context.llvm)
   }
 }
