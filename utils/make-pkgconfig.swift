@@ -76,7 +76,7 @@ func makeFile() throws {
                      .replacing(charactersIn: .newlines, with: "")
                      .replacingOccurrences(of: "svn", with: "")
   let components = versionStr.components(separatedBy: ".")
-                             .flatMap { Int($0) }
+                             .compactMap { Int($0) }
 
   guard components.count == 3 else {
     throw "Invalid version number \(versionStr)"
