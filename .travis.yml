@@ -5,13 +5,40 @@ matrix:
   include:
   - os: osx
     language: objective-c
-    osx_image: xcode9.2
+    osx_image: xcode9.3
     before_install:
     - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
     - brew update
     - brew install llvm
     - sudo swift utils/make-pkgconfig.swift
     script:
+    - swift test
+  - os: linux
+    language: generic
+    sudo: required
+    dist: trusty
+    env:
+    - LLVM_API_VERSION=6.0
+    before_install:
+    - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:"${PKG_CONFIG_PATH}"
+    - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+    - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-${LLVM_API_VERSION} main"
+    - sudo apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
+    - sudo apt-get update
+    - sudo apt-get install -y llvm-${LLVM_API_VERSION} libc++1
+    - sudo cp /usr/lib/x86_64-linux-gnu/libc++.so.1.0 /usr/lib/
+    - sudo ln -sf /usr/lib/libc++.so.1.0 /usr/lib/libc++.so
+    - sudo rm -rf /usr/local/clang-*/bin/llvm-config
+    - ls -l /usr/bin/llvm-config*
+    - sudo rm -f /usr/bin/llvm-config
+    - sudo ln -s /usr/bin/llvm-config-${LLVM_API_VERSION} /usr/bin/llvm-config
+    - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
+    - wget https://swift.org/builds/swift-4.1-release/ubuntu1404/swift-4.1-RELEASE/swift-4.1-RELEASE-ubuntu14.04.tar.gz
+    - tar xzf swift-4.1-RELEASE-ubuntu14.04.tar.gz
+    - export PATH=${PWD}/swift-4.1-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
+    - sudo ./swift-4.1-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
+    script:
+    - git checkout tags/0.2.3
     - swift test
 notifications:
   slack:
