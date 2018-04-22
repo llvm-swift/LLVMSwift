@@ -12,7 +12,7 @@ matrix:
     - brew install llvm
     - sudo swift utils/make-pkgconfig.swift
     script:
-    - swift test
+    - swift test -Xlinker -w
   - os: linux
     language: generic
     sudo: required
@@ -38,7 +38,6 @@ matrix:
     - export PATH=${PWD}/swift-4.1-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
     - sudo ./swift-4.1-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
     script:
-    - git checkout tags/0.2.3
     - swift test
 notifications:
   slack:
