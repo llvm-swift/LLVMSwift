@@ -308,7 +308,7 @@ extension Function {
   @discardableResult
   public func addAttribute(_ name: String, value: String = "", to index: AttributeIndex) -> StringAttribute {
     let ctx = LLVMGetModuleContext(LLVMGetGlobalParent(llvm))
-    let attrRef = name.withCString { cname -> LLVMAttributeRef! in
+    let attrRef = name.withCString { cname -> LLVMAttributeRef? in
       return value.withCString { cvalue in
         return LLVMCreateStringAttribute(ctx, cname, UInt32(name.count), cvalue, UInt32(value.count))
       }
