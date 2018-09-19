@@ -110,7 +110,7 @@ public class MemoryBuffer: Sequence {
   }
 
   /// Makes an iterator so this buffer can be traversed in a `for` loop.
-  public func makeIterator() -> UnsafeBufferPointerIterator<Int8> {
+  public func makeIterator() -> UnsafeBufferPointer<Int8>.Iterator {
     return UnsafeBufferPointer(start: start, count: size).makeIterator()
   }
 

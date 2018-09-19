@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:4.2
 
 import PackageDescription
 
@@ -10,12 +10,18 @@ let package = Package(
       targets: ["LLVM"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/llvm-swift/cllvm.git", from: "0.0.3"),
     .package(url: "https://github.com/llvm-swift/FileCheck.git", from: "0.0.3"),
   ],
   targets: [
+    .systemLibrary(
+      name: "cllvm",
+      pkgConfig: "cllvm",
+      providers: [
+          .brew(["llvm"]),
+      ]),
     .target(
-      name: "LLVM"),
+      name: "LLVM",
+      dependencies: ["cllvm"]),
     .testTarget(
       name: "LLVMTests",
       dependencies: ["LLVM", "FileCheck"]),

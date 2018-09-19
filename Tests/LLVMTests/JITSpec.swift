@@ -63,9 +63,9 @@ class JITSpec : XCTestCase {
       // Retrieve a handle to the function we're going to invoke
       let fnAddr = jit.addressOfFunction(name: "calculateFibs")
       let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
-      // JIT: 0.00917431192660551
+      // JIT: 0.009174311926605505
       print(fn(true))
-      // JIT-NEXT: 0.0112359550561798
+      // JIT-NEXT: 0.011235955056179775
       print(fn(false))
     })
   }
