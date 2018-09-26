@@ -24,6 +24,11 @@
 #include <llvm-c/Transforms/IPO.h>
 #include <llvm-c/Transforms/PassManagerBuilder.h>
 #include <llvm-c/Transforms/Scalar.h>
+#if LLVM_VERSION_MAJOR > 6
+// LLVMAddLowerSwitchPass and LLVMAddPromoteMemoryToRegisterPass live here
+// as of LLVM 7.0
+#include <llvm-c/Transforms/Utils.h>
+#endif
 #include <llvm-c/Transforms/Vectorize.h>
 #include <llvm-c/Types.h>
 
