@@ -63,7 +63,7 @@ func makeFile() throws {
   }
 
   /// Ensure we have llvm-config in the PATH
-  guard let llvmConfig = which("llvm-config-6.0") ?? which("llvm-config") ?? brewLLVMConfig() else {
+  guard let llvmConfig = which("llvm-config-7") ?? which("llvm-config") ?? brewLLVMConfig() else {
     throw "Failed to find llvm-config. Ensure llvm-config is installed and " +
           "in your PATH"
   }
@@ -84,7 +84,7 @@ func makeFile() throws {
 
   let version = (components[0], components[1], components[2])
 
-  guard version >= (6, 0, 0) else {
+  guard version >= (7, 0, 0) else {
     throw "LLVMSwift requires LLVM version >=6.0.0, but you have \(versionStr)"
   }
 
@@ -128,11 +128,6 @@ func makeFile() throws {
 do {
   try makeFile()
 } catch {
-#if os(Linux)
-  // FIXME: Printing the thrown error that here crashes on Linux.
-  print("Unexpected error occured while writing the config file. Check permissions and try again.")
-#else
   print("error: \(error)")
-#endif
   exit(-1)
 }
