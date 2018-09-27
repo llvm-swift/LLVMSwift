@@ -18,8 +18,8 @@ public struct Call: IRValue {
 
   /// Accesses the calling convention for this function call.
   public var callingConvention: CallingConvention {
-    get { return CallingConvention(rawValue: LLVMGetInstructionCallConv(self.llvm))! }
-    set { LLVMSetInstructionCallConv(self.llvm, newValue.rawValue) }
+    get { return CallingConvention(llvm: LLVMCallConv(rawValue: LLVMGetInstructionCallConv(self.llvm))) }
+    set { LLVMSetInstructionCallConv(self.llvm, newValue.llvm.rawValue) }
   }
 
   /// Returns whether this function call is a tail call.  That is, if the callee
