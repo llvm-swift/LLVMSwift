@@ -66,6 +66,96 @@ public extension IRValue {
   public func dump() {
     LLVMDumpValue(asLLVM())
   }
+
+  /// The kind of this value.
+  public var kind: IRValueKind {
+    return IRValueKind(llvm: LLVMGetValueKind(asLLVM()))
+  }
+}
+
+/// Enumerates the kinds of values present in LLVM IR.
+public enum IRValueKind {
+  /// The value is an argument.
+  case argument
+  /// The value is a basic block.
+  case basicBlock
+  /// The value is a memory use.
+  case memoryUse
+  /// The value is a memory definition.
+  case memoryDef
+  /// The value is a memory phi node.
+  case memoryPhi
+  /// The value is a function.
+  case function
+  /// The value is a global alias.
+  case globalAlias
+  /// The value is an ifunc.
+  case globalIFunc
+  /// The value is a variable.
+  case globalVariable
+  /// The value is a block address.
+  case blockAddress
+  /// The value is a constant expression.
+  case constantExpression
+  /// The value is a constant array.
+  case constantArray
+  /// The value is a constant struct.
+  case constantStruct
+  /// The value is a constant vector.
+  case constantVector
+  /// The value is undef.
+  case undef
+  /// The value is a constant aggregate zero.
+  case constantAggregateZero
+  /// The value is a constant data array.
+  case constantDataArray
+  /// The value is a constant data vector.
+  case constantDataVector
+  /// The value is a constant int value.
+  case constantInt
+  /// The value is a constant floating pointer value.
+  case constantFloat
+  /// The value is a constant pointer to null.
+  case constantPointerNull
+  /// The value is a constant none-token value.
+  case constantTokenNone
+  /// The value is a metadata-as-value node.
+  case metadataAsValue
+  /// The value is inline assembly.
+  case inlineASM
+  /// The value is an instruction.
+  case instruction
+
+  init(llvm: LLVMValueKind) {
+    switch llvm {
+    case LLVMArgumentValueKind: self = .argument
+    case LLVMBasicBlockValueKind: self = .basicBlock
+    case LLVMMemoryUseValueKind: self = .memoryUse
+    case LLVMMemoryDefValueKind: self = .memoryDef
+    case LLVMMemoryPhiValueKind: self = .memoryPhi
+    case LLVMFunctionValueKind: self = .function
+    case LLVMGlobalAliasValueKind: self = .globalAlias
+    case LLVMGlobalIFuncValueKind: self = .globalIFunc
+    case LLVMGlobalVariableValueKind: self = .globalVariable
+    case LLVMBlockAddressValueKind: self = .blockAddress
+    case LLVMConstantExprValueKind: self = .constantExpression
+    case LLVMConstantArrayValueKind: self = .constantArray
+    case LLVMConstantStructValueKind: self = .constantStruct
+    case LLVMConstantVectorValueKind: self = .constantVector
+    case LLVMUndefValueValueKind: self = .undef
+    case LLVMConstantAggregateZeroValueKind: self = .constantAggregateZero
+    case LLVMConstantDataArrayValueKind: self = .constantDataArray
+    case LLVMConstantDataVectorValueKind: self = .constantDataVector
+    case LLVMConstantIntValueKind: self = .constantInt
+    case LLVMConstantFPValueKind: self = .constantFloat
+    case LLVMConstantPointerNullValueKind: self = .constantPointerNull
+    case LLVMConstantTokenNoneValueKind: self = .constantTokenNone
+    case LLVMMetadataAsValueValueKind: self = .metadataAsValue
+    case LLVMInlineAsmValueKind: self = .inlineASM
+    case LLVMInstructionValueKind: self = .instruction
+    default: fatalError("unknown IRValue kind \(llvm)")
+    }
+  }
 }
 
 extension LLVMValueRef: IRValue {
