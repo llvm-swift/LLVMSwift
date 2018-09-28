@@ -56,6 +56,11 @@ public class Function: IRGlobal {
   /// have predecessor basic blocks (i.e. there can not be any branches to the
   /// entry block of a function). Because the block can have no predecessors, it
   /// also cannot have any PHI nodes.
+  ///
+  /// The entry block is also special in that any static allocas emitted into it
+  /// influence the layout of the stack frame of the function at code generation
+  /// time.  It is therefore often more efficient to emit static allocas in the
+  /// entry block than anywhere else in the function.
   public var entryBlock: BasicBlock? {
     guard let blockRef = LLVMGetEntryBasicBlock(llvm) else { return nil }
     return BasicBlock(llvm: blockRef)
