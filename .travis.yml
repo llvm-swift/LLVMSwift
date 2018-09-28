@@ -18,7 +18,7 @@ matrix:
     sudo: required
     dist: trusty
     env:
-    - LLVM_API_VERSION=6.0
+    - LLVM_API_VERSION=7
     before_install:
     - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:"${PKG_CONFIG_PATH}"
     - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
