@@ -131,9 +131,6 @@ class IRAttributesSpec : XCTestCase {
       XCTAssertEqual(enumAttr.value, value)
       XCTAssert(fn.attributes(at: .function).contains { $0.asLLVM() == enumAttr.asLLVM() })
 
-      // FIXME: Remove when LLVM 7.0.0 is released.
-      guard value == 0 else { continue }
-
       fn.removeAttribute(enumAttr, from: .function)
       XCTAssertFalse(fn.attributes(at: .function).contains { $0.asLLVM() == enumAttr.asLLVM() })
 
@@ -195,9 +192,6 @@ class IRAttributesSpec : XCTestCase {
       XCTAssertEqual(enumAttr.value, value)
       XCTAssert(fn.attributes(at: .returnValue).contains { $0.asLLVM() == enumAttr.asLLVM() })
 
-      // FIXME: Remove when LLVM 7.0.0 is released.
-      guard value == 0 else { continue }
-
       fn.removeAttribute(enumAttr, from: .returnValue)
       XCTAssertFalse(fn.attributes(at: .returnValue).contains { $0.asLLVM() == enumAttr.asLLVM() })
 
@@ -210,9 +204,6 @@ class IRAttributesSpec : XCTestCase {
       enumAttr = fn.addAttribute(attrKind, value: value, to: .argument(0))
       XCTAssertEqual(enumAttr.value, value)
       XCTAssert(fn.attributes(at: .argument(0)).contains { $0.asLLVM() == enumAttr.asLLVM() })
-
-      // FIXME: Remove when LLVM 7.0.0 is released.
-      guard value == 0 else { continue }
 
       fn.removeAttribute(enumAttr, from: .argument(0))
       XCTAssertFalse(fn.attributes(at: .argument(0)).contains { $0.asLLVM() == enumAttr.asLLVM() })
