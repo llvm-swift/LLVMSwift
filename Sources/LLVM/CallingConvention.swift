@@ -418,7 +418,7 @@ public enum CallingConvention {
     .amdGPUHullShader : LLVMAMDGPUHSCallConv,
     .msp430Builtin : LLVMMSP430BUILTINCallConv,
     .amdGPULS : LLVMAMDGPULSCallConv, .amdGPUES : LLVMAMDGPUESCallConv,
-    ]
+  ]
 
   /// Retrieves the corresponding `LLVMDWARFSourceLanguage`.
   public var llvm: LLVMCallConv {

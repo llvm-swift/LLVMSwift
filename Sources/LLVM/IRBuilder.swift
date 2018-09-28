@@ -340,6 +340,18 @@ extension Module {
     guard let fn = LLVMGetNamedFunction(llvm, name) else { return nil }
     return Function(llvm: fn)
   }
+
+  /// Searches for and retrieves a comdat section with the given name in this
+  /// module.  If none is found, one with that name is created and returned.
+  ///
+  /// - parameter name: The name of the comdat section to create.
+  ///
+  /// - returns: A representation of the newly created comdat section with the
+  ///   given name.
+  public func comdat(named name: String) -> Comdat {
+    guard let comdat = LLVMGetOrInsertComdat(llvm, name) else { fatalError() }
+    return Comdat(llvm: comdat)
+  }
 }
 
 /// An `IRBuilder` is a helper object that generates LLVM instructions.  IR

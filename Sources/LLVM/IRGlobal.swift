@@ -38,6 +38,12 @@ extension IRGlobal {
     set { LLVMSetUnnamedAddr(asLLVM(), newValue.llvm) }
   }
 
+  /// Retrieves the COMDAT section for this global, if it exists.
+  public var comdat: Comdat? {
+    get { return LLVMGetComdat(asLLVM()).map(Comdat.init(llvm:))  }
+    set { LLVMSetComdat(asLLVM(), newValue?.llvm) }
+  }
+
   /// Retrieves the section associated with the symbol that will eventually be
   /// emitted for this global value.
   ///
