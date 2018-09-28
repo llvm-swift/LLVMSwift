@@ -63,6 +63,11 @@ public class Function: IRGlobal {
     }
   }
 
+  /// Retrieves the number of basic blocks in this function
+  public var basicBlockCount: Int {
+    return Int(LLVMCountBasicBlocks(self.llvm))
+  }
+
   /// Computes the address of the specified basic block in this function.
   ///
   /// Taking the address of the entry block is illegal.
@@ -134,6 +139,11 @@ public class Function: IRGlobal {
       current = param.next()
     }
     return params
+  }
+
+  /// Retrieves the number of parameter values in this function.
+  public var parameterCount: Int {
+    return Int(LLVMCountParams(self.llvm))
   }
 
   /// Appends the named basic block to the body of this function.

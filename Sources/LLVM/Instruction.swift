@@ -57,6 +57,23 @@ public struct Instruction: IRValue {
       }
     }
   }
+
+  /// Removes this instruction from a basic block but keeps it alive.
+  ///
+  /// - note: To ensure correct removal of the instruction, you must invalidate
+  ///         any references to its result values, if any.
+  public func removeFromParent() {
+    LLVMInstructionRemoveFromParent(llvm)
+  }
+
+  /// Create a copy of 'this' instruction that is identical in all ways except
+  /// the following:
+  ///
+  ///  - The instruction has no parent
+  ///  - The instruction has no name
+  public func clone() -> Instruction {
+    return Instruction(llvm: LLVMInstructionClone(self.llvm))
+  }
 }
 
 /// A `TerminatorInstruction` represents an instruction that terminates a 

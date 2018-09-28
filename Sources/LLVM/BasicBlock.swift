@@ -28,6 +28,12 @@ public struct BasicBlock: IRValue {
     return llvm
   }
 
+  /// Retrieves the name of this basic block.
+  public var name: String {
+    let cstring = LLVMGetBasicBlockName(self.llvm)
+    return String(cString: cstring!)
+  }
+
   /// Returns the first instruction in the basic block, if it exists.
   public var firstInstruction: Instruction? {
     guard let val = LLVMGetFirstInstruction(llvm) else { return nil }
@@ -94,18 +100,6 @@ public struct BasicBlock: IRValue {
   public func moveAfter(_ block: BasicBlock) {
     LLVMMoveBasicBlockAfter(llvm, block.llvm)
   }
-}
-
-extension BasicBlock {
-  /// Deletes the basic block from its containing function.
-  /// - note: This does not remove breaks to this block from the
-  ///         function. Ensure you have removed all instructions that reference
-  ///         this basic block before deleting it.
-  @available(*, deprecated, message: "it is hard to use correctly and will be removed.  See BasicBlock.removeFromParent() instead")
-  public func delete() {
-    LLVMDeleteBasicBlock(llvm)
-  }
-
 }
 
 extension BasicBlock {

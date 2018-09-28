@@ -201,6 +201,16 @@ extension Constant where Repr == Floating {
   public func truncate(to type: FloatType) -> Constant<Floating> {
     return Constant<Floating>(llvm: LLVMConstFPTrunc(llvm, type.asLLVM()))
   }
+
+  /// Creates a constant extended to a given floating type.
+  ///
+  /// - parameter type: The type to extend towards.
+  ///
+  /// - returns: A const value representing this value extended to the given
+  ///   floating type's bitwidth.
+  public func extend(to type: FloatType) -> Constant<Floating> {
+    return Constant<Floating>(llvm: LLVMConstFPExt(llvm, type.asLLVM()))
+  }
 }
 
 // MARK: Arithmetic Operations
