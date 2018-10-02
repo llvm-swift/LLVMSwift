@@ -7,6 +7,7 @@ import cllvm
 /// sizes and offsets of types with respect to this target.
 public class TargetData {
   internal let llvm: LLVMTargetDataRef
+  private var structLayoutCache = [LLVMTypeRef: StructLayout]()
 
   /// Creates a Target Data object from an `LLVMTargetDataRef` object.
   public init(llvm: LLVMTargetDataRef) {
@@ -44,16 +45,6 @@ public class TargetData {
   /// - returns: The size of the type in bits.
   public func sizeOfTypeInBits(_ type: IRType) -> Int {
     return Int(LLVMSizeOfTypeInBits(llvm, type.asLLVM()))
-  }
-
-  /// Computes the minimum ABI-required number of bits necessary to hold a value
-  /// of the given type for this target environment.
-  ///
-  /// - parameter type: The type to compute the size of.
-  ///
-  /// - returns: The minimum ABI-required size of the type in bytes.
-  public func abiSizeOfType(_ type: IRType) -> Int {
-    return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
   }
 
   /// The current platform byte order, either big or little endian.
@@ -94,6 +85,95 @@ public class TargetData {
   ///
   /// - parameter global: The global variable
   /// - returns: The variable's preferred alignment in this target
+  public func preferredAlignment(of global: Global) -> Alignment {
+    return Alignment(LLVMPreferredAlignmentOfGlobal(llvm, global.asLLVM()))
+  }
+
+  /// Computes the preferred alignment of the given type for this target
+  ///
+  /// - parameter type: The type for which you're computing the alignment
+  /// - returns: The type's preferred alignment in this target
+  public func preferredAlignment(of type: IRType) -> Alignment {
+    return Alignment(LLVMPreferredAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the minimum ABI-required alignment for the specified type.
+  ///
+  /// - parameter type: The type to whose ABI alignment you wish to compute.
+  /// - returns: The minimum ABI-required alignment for the specified type.
+  public func abiAlignment(of type: IRType) -> Alignment {
+    return Alignment(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the minimum ABI-required alignment for the specified type.
+  ///
+  /// This function is equivalent to `TargetData.abiAlignment(of:)`.
+  ///
+  /// - parameter type: The type to whose ABI alignment you wish to compute.
+  /// - returns: The minimum ABI-required alignment for the specified type.
+  public func callFrameAlignment(of type: IRType) -> Alignment {
+    return Alignment(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the ABI size of a type in bytes for a target.
+  ///
+  /// - parameter type: The type to whose ABI size you wish to compute.
+  /// - returns: The ABI size for the specified type.
+  public func abiSize(of type: IRType) -> Size {
+    return Size(LLVMABISizeOfType(llvm, type.asLLVM()))
+  }
+  /// Computes the maximum number of bytes that may be overwritten by
+  /// storing the specified type.
+  ///
+  /// - parameter type: The type to whose store size you wish to compute.
+  /// - returns: The store size of the type in the given target.
+  public func storeSize(of type: IRType) -> Size {
+    return Size(LLVMStoreSizeOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the pointer size for the platform, optionally in a given
+  /// address space.
+  ///
+  /// - parameter addressSpace: The address space in which to compute
+  ///                           pointer size.
+  /// - returns: The size of a pointer in the target address space.
+  public func pointerSize(addressSpace: Int? = nil) -> Size {
+    if let addressSpace = addressSpace {
+      return Size(UInt64(LLVMPointerSizeForAS(llvm, UInt32(addressSpace))))
+    } else {
+      return Size(UInt64(LLVMPointerSize(llvm)))
+    }
+  }
+
+  /// Returns the offset in bytes between successive objects of the
+  /// specified type, including alignment padding.
+  ///
+  /// This is the amount that alloca reserves for this type. For example,
+  /// returns 12 or 16 for x86_fp80, depending on alignment.
+  ///
+  /// - parameter type: The type whose allocation size you wish to compute.
+  /// - returns: The size an alloca would reserve for the given type.
+  public func allocationSize(of type: IRType) -> Size {
+    // Round up to the next alignment boundary.
+    return TargetData.align(self.storeSize(of: type), to: self.abiAlignment(of: type))
+  }
+
+  public static func align(_ value: Size, to align: Alignment, skew: Size = Size.zero) -> Size {
+    precondition(align != Alignment.zero, "Align can't be 0.")
+
+    let skewValue = skew.rawValue % UInt64(align.rawValue)
+    let alignValue = UInt64(align.rawValue)
+    let retVal = (value.rawValue + alignValue - 1 - skewValue) / alignValue * alignValue + skewValue
+    return Size(retVal)
+  }
+}
+
+extension TargetData {
+  /// Computes the preferred alignment of the given global for this target
+  ///
+  /// - parameter global: The global variable
+  /// - returns: The variable's preferred alignment in this target
+  @available(*, message: "Prefer the overload of prefferedAlignment(of:) that returns an Alignment")
   public func preferredAlignment(of global: Global) -> Int {
     return Int(LLVMPreferredAlignmentOfGlobal(llvm, global.asLLVM()))
   }
@@ -102,6 +182,7 @@ public class TargetData {
   ///
   /// - parameter type: The type for which you're computing the alignment
   /// - returns: The type's preferred alignment in this target
+  @available(*, message: "Prefer the overload of prefferedAlignment(of:) that returns an Alignment")
   public func preferredAlignment(of type: IRType) -> Int {
     return Int(LLVMPreferredAlignmentOfType(llvm, type.asLLVM()))
   }
@@ -110,6 +191,7 @@ public class TargetData {
   ///
   /// - parameter type: The type to whose ABI alignment you wish to compute.
   /// - returns: The minimum ABI-required alignment for the specified type.
+  @available(*, message: "Prefer the overload of abiAlignment(of:) that returns an Alignment")
   public func abiAlignment(of type: IRType) -> Int {
     return Int(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
   }
@@ -120,6 +202,7 @@ public class TargetData {
   ///
   /// - parameter type: The type to whose ABI alignment you wish to compute.
   /// - returns: The minimum ABI-required alignment for the specified type.
+  @available(*, message: "Prefer the overload of callFrameAlignment(of:) that returns an Alignment")
   public func callFrameAlignment(of type: IRType) -> Int {
     return Int(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
   }
@@ -128,6 +211,7 @@ public class TargetData {
   ///
   /// - parameter type: The type to whose ABI size you wish to compute.
   /// - returns: The ABI size for the specified type.
+  @available(*, message: "Prefer the overload of abiSize(of:) that returns a Size")
   public func abiSize(of type: IRType) -> Int {
     return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
   }
@@ -136,6 +220,7 @@ public class TargetData {
   ///
   /// - parameter type: The type to whose store size you wish to compute.
   /// - returns: The store size of the type in the given target.
+  @available(*, message: "Prefer the overload of storeSize(of:) that returns a Size")
   public func storeSize(of type: IRType) -> Int {
     return Int(LLVMStoreSizeOfType(llvm, type.asLLVM()))
   }
@@ -146,6 +231,7 @@ public class TargetData {
   /// - parameter addressSpace: The address space in which to compute
   ///                           pointer size.
   /// - returns: The size of a pointer in the target address space.
+  @available(*, message: "Prefer the overload of pointerSize(addressSpace:) that returns a Size")
   public func pointerSize(addressSpace: Int? = nil) -> Int {
     if let addressSpace = addressSpace {
       return Int(LLVMPointerSizeForAS(llvm, UInt32(addressSpace)))
