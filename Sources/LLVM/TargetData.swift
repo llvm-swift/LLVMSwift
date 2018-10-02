@@ -158,6 +158,21 @@ public class TargetData {
     return TargetData.align(self.storeSize(of: type), to: self.abiAlignment(of: type))
   }
 
+  /// Returns a `StructLayout` object containing the alignment of the
+  /// struct, its size, and the offsets of its fields with respect to this
+  /// data layout.
+  ///
+  /// - parameter struct: The struct type whose layout you wish to retrieve.
+  /// - returns: A `StructLayout` describing the layout of the given type.
+  public func layout(of struct: StructType) -> StructLayout {
+    guard let cachedLayout = self.structLayoutCache[`struct`.asLLVM()] else {
+      let layout = StructLayout(`struct`, self)
+      self.structLayoutCache[`struct`.asLLVM()] = layout
+      return layout
+    }
+    return cachedLayout
+  }
+
   public static func align(_ value: Size, to align: Alignment, skew: Size = Size.zero) -> Size {
     precondition(align != Alignment.zero, "Align can't be 0.")
 
@@ -238,6 +253,87 @@ extension TargetData {
     } else {
       return Int(LLVMPointerSize(llvm))
     }
+  }
+}
+
+/// A `StructLayout` encapsulates information about the layout of a `StructType`.
+public struct StructLayout {
+  /// Returns the total size of the struct in bytes.
+  ///
+  /// If the structure is packed, this returns a value that is effectively
+  /// the sum of the sizes of its fields.  If the structure is not packed, this
+  /// returns the value of the sum of the sizes of its fields plus any
+  /// platform-dictated padding.
+  public let size: Size
+  /// Returns the alignment of the struct in bytes.
+  ///
+  /// The alignment value is effectively the maximum of the alignment of each of
+  /// its member values.  This value will never be zero, as even an empty
+  /// structure has an alignment of one byte.
+  public let alignment: Alignment
+  /// Returns true if the structure type includes padding between elements.
+  public let isPadded: Bool
+  /// Returns the number of elements of this structure type.
+  public let elementCount: Int
+  /// Returns the offsets of each member from the start of the of the struct in
+  /// bytes.
+  public let memberOffsets: [Size]
+
+  fileprivate init(_ st: StructType, _ dl: TargetData) {
+    assert(!st.isOpaque, "Cannot get layout of opaque structs")
+    var structAlignment = Alignment.zero
+    var structSize = Size.zero
+    var structIsPadded = false
+    var structMemberOffsets = [Size]()
+    structMemberOffsets.reserveCapacity(st.elementTypes.count)
+    self.elementCount = st.elementTypes.count
+
+    // Loop over each of the elements, placing them in memory.
+    for ty in st.elementTypes {
+      let tyAlign = Alignment(UInt32(st.isPacked ? 1 : dl.abiAlignment(of: ty)))
+
+      // Add padding if necessary to align the data element properly.
+      if (structSize.rawValue & UInt64(tyAlign.rawValue-1)) != 0 {
+        structIsPadded = true
+        structSize = TargetData.align(structSize, to: tyAlign)
+      }
+
+      // Keep track of maximum alignment constraint.
+      structAlignment = max(tyAlign, structAlignment)
+
+      structMemberOffsets.append(structSize)
+      // Consume space for this data item
+      structSize = structSize + dl.allocationSize(of: ty)
+    }
+
+    // Empty structures have alignment of 1 byte.
+    if structAlignment == Alignment.zero {
+      structAlignment = Alignment.one
+    }
+
+    // Add padding to the end of the struct so that it could be put in an array
+    // and all array elements would be aligned correctly.
+    if (structSize.rawValue & UInt64(structAlignment.rawValue-1)) != 0 {
+      structIsPadded = true
+      structSize = TargetData.align(structSize, to: structAlignment)
+    }
+    self.size = structSize
+    self.alignment = structAlignment
+    self.isPadded = structIsPadded
+    self.memberOffsets = structMemberOffsets
+  }
+
+  /// Given a valid byte offset into the structure, returns the structure
+  /// index that contains it.
+  public func index(of offset: Size) -> Int {
+    precondition(!self.memberOffsets.isEmpty,
+                 "Cannot compute index member offset of an empty struct type!")
+    // Multiple fields can have the same offset if any of them are zero sized.
+    // For example, in { i32, [0 x i32], i32 }, searching for offset 4 will stop
+    // at the i32 element, because it is the last element at that offset.  This is
+    // the right one to return, because anything after it will have a higher
+    // offset, implying that this element is non-empty.
+    return self.memberOffsets.firstIndex(where: { $0 > offset }) ?? self.memberOffsets.endIndex
   }
 }
 
