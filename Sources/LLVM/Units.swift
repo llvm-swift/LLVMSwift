@@ -139,6 +139,10 @@ public struct Size {
     let value = self.rawValue + mask
     return Size(value & ~mask)
   }
+
+  public static func % (lhs: Size, rhs: Alignment) -> Size {
+    return Size(lhs.rawValue % UInt64(rhs.rawValue))
+  }
 }
 
 extension Size: UnsignedInteger {
