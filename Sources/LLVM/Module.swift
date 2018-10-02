@@ -80,11 +80,32 @@ public final class Module: CustomStringConvertible {
     self.dataLayout = TargetData(llvm: LLVMGetModuleDataLayout(llvm))
   }
 
+  /// Obtain the target triple for this module.
+  var targetTriple: String {
+    get {
+      guard let id = LLVMGetTarget(llvm) else { return "" }
+      return String(cString: id)
+    }
+    set { LLVMSetTarget(llvm, newValue) }
+  }
+
   /// Returns the context associated with this module.
   public let context: Context
 
   /// Obtain the data layout for this module.
-  public var dataLayout: TargetData
+  public var dataLayout: TargetData {
+    get { return TargetData(llvm: LLVMGetModuleDataLayout(llvm)) }
+    set { LLVMSetModuleDataLayout(llvm, newValue.llvm) }
+  }
+
+  /// Returns a string describing the data layout associated with this module.
+  public var dataLayoutString: String {
+    get {
+      guard let id = LLVMGetDataLayoutStr(llvm) else { return "" }
+      return String(cString: id)
+    }
+    set { LLVMSetDataLayout(llvm, newValue) }
+  }
 
   /// The identifier of this module.
   public var name: String {
