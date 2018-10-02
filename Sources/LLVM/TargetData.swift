@@ -7,6 +7,7 @@ import cllvm
 /// sizes and offsets of types with respect to this target.
 public class TargetData {
   internal let llvm: LLVMTargetDataRef
+  private var structLayoutCache = [LLVMTypeRef: StructLayout]()
 
   /// Creates a Target Data object from an `LLVMTargetDataRef` object.
   public init(llvm: LLVMTargetDataRef) {
@@ -44,16 +45,6 @@ public class TargetData {
   /// - returns: The size of the type in bits.
   public func sizeOfTypeInBits(_ type: IRType) -> Int {
     return Int(LLVMSizeOfTypeInBits(llvm, type.asLLVM()))
-  }
-
-  /// Computes the minimum ABI-required number of bits necessary to hold a value
-  /// of the given type for this target environment.
-  ///
-  /// - parameter type: The type to compute the size of.
-  ///
-  /// - returns: The minimum ABI-required size of the type in bytes.
-  public func abiSizeOfType(_ type: IRType) -> Int {
-    return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
   }
 
   /// The current platform byte order, either big or little endian.
@@ -94,6 +85,124 @@ public class TargetData {
   ///
   /// - parameter global: The global variable
   /// - returns: The variable's preferred alignment in this target
+  public func preferredAlignment(of global: Global) -> Alignment {
+    return Alignment(LLVMPreferredAlignmentOfGlobal(llvm, global.asLLVM()))
+  }
+
+  /// Computes the preferred alignment of the given type for this target
+  ///
+  /// - parameter type: The type for which you're computing the alignment
+  /// - returns: The type's preferred alignment in this target
+  public func preferredAlignment(of type: IRType) -> Alignment {
+    return Alignment(LLVMPreferredAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the minimum ABI-required alignment for the specified type.
+  ///
+  /// - parameter type: The type to whose ABI alignment you wish to compute.
+  /// - returns: The minimum ABI-required alignment for the specified type.
+  public func abiAlignment(of type: IRType) -> Alignment {
+    return Alignment(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the minimum ABI-required alignment for the specified type.
+  ///
+  /// This function is equivalent to `TargetData.abiAlignment(of:)`.
+  ///
+  /// - parameter type: The type to whose ABI alignment you wish to compute.
+  /// - returns: The minimum ABI-required alignment for the specified type.
+  public func callFrameAlignment(of type: IRType) -> Alignment {
+    return Alignment(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the ABI size of a type in bytes for a target.
+  ///
+  /// - parameter type: The type to whose ABI size you wish to compute.
+  /// - returns: The ABI size for the specified type.
+  public func abiSize(of type: IRType) -> Size {
+    return Size(LLVMABISizeOfType(llvm, type.asLLVM()))
+  }
+  /// Computes the maximum number of bytes that may be overwritten by
+  /// storing the specified type.
+  ///
+  /// - parameter type: The type to whose store size you wish to compute.
+  /// - returns: The store size of the type in the given target.
+  public func storeSize(of type: IRType) -> Size {
+    return Size(LLVMStoreSizeOfType(llvm, type.asLLVM()))
+  }
+
+  /// Computes the pointer size for the platform, optionally in a given
+  /// address space.
+  ///
+  /// - parameter addressSpace: The address space in which to compute
+  ///                           pointer size.
+  /// - returns: The size of a pointer in the target address space.
+  public func pointerSize(addressSpace: Int? = nil) -> Size {
+    if let addressSpace = addressSpace {
+      return Size(UInt64(LLVMPointerSizeForAS(llvm, UInt32(addressSpace))))
+    } else {
+      return Size(UInt64(LLVMPointerSize(llvm)))
+    }
+  }
+
+  /// Returns the offset in bytes between successive objects of the
+  /// specified type, including alignment padding.
+  ///
+  /// This is the amount that alloca reserves for this type. For example,
+  /// returns 12 or 16 for x86_fp80, depending on alignment.
+  ///
+  /// - parameter type: The type whose allocation size you wish to compute.
+  /// - returns: The size an alloca would reserve for the given type.
+  public func allocationSize(of type: IRType) -> Size {
+    // Round up to the next alignment boundary.
+    return TargetData.align(self.storeSize(of: type), to: self.abiAlignment(of: type))
+  }
+
+  /// Returns a `StructLayout` object containing the alignment of the
+  /// struct, its size, and the offsets of its fields with respect to this
+  /// data layout.
+  ///
+  /// - parameter struct: The struct type whose layout you wish to retrieve.
+  /// - returns: A `StructLayout` describing the layout of the given type.
+  public func layout(of struct: StructType) -> StructLayout {
+    guard let cachedLayout = self.structLayoutCache[`struct`.asLLVM()] else {
+      let layout = StructLayout(`struct`, self)
+      self.structLayoutCache[`struct`.asLLVM()] = layout
+      return layout
+    }
+    return cachedLayout
+  }
+
+  /// Returns the next integer (mod 2**64) that is greater than or equal to
+  /// \p Value and is a multiple of \p Align. \p Align must be non-zero.
+  ///
+  /// If non-zero \p Skew is specified, the return value will be a minimal
+  /// integer that is greater than or equal to \p Value and equal to
+  /// \p Align * N + \p Skew for some integer N. If \p Skew is larger than
+  /// \p Align, its value is adjusted to '\p Skew mod \p Align'.
+  ///
+  /// Computes the next size value that is greater than or equal to the given
+  /// value and is a multiple of the given alignment.
+  ///
+  /// If the skew value is non-zero, the return value will be the next size
+  /// value that is greater than or equal to the given value multipled by the
+  /// provided alignment with a skew value added
+  public static func align(_ value: Size, to align: Alignment, skew: Size = Size.zero) -> Size {
+    precondition(!align.isZero, "Align can't be 0.")
+
+    let skewValue = skew.rawValue % UInt64(align.rawValue)
+    let alignValue = UInt64(align.rawValue)
+    let retVal = (value.rawValue + alignValue - 1 - skewValue) / alignValue * alignValue + skewValue
+    return Size(retVal)
+  }
+}
+
+extension TargetData {
+  /// Computes the preferred alignment of the given global for this target
+  ///
+  /// - parameter global: The global variable
+  /// - returns: The variable's preferred alignment in this target
+  @available(*, message: "Prefer the overload of prefferedAlignment(of:) that returns an Alignment")
   public func preferredAlignment(of global: Global) -> Int {
     return Int(LLVMPreferredAlignmentOfGlobal(llvm, global.asLLVM()))
   }
@@ -102,6 +211,7 @@ public class TargetData {
   ///
   /// - parameter type: The type for which you're computing the alignment
   /// - returns: The type's preferred alignment in this target
+  @available(*, message: "Prefer the overload of prefferedAlignment(of:) that returns an Alignment")
   public func preferredAlignment(of type: IRType) -> Int {
     return Int(LLVMPreferredAlignmentOfType(llvm, type.asLLVM()))
   }
@@ -110,6 +220,7 @@ public class TargetData {
   ///
   /// - parameter type: The type to whose ABI alignment you wish to compute.
   /// - returns: The minimum ABI-required alignment for the specified type.
+  @available(*, message: "Prefer the overload of abiAlignment(of:) that returns an Alignment")
   public func abiAlignment(of type: IRType) -> Int {
     return Int(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
   }
@@ -120,6 +231,7 @@ public class TargetData {
   ///
   /// - parameter type: The type to whose ABI alignment you wish to compute.
   /// - returns: The minimum ABI-required alignment for the specified type.
+  @available(*, message: "Prefer the overload of callFrameAlignment(of:) that returns an Alignment")
   public func callFrameAlignment(of type: IRType) -> Int {
     return Int(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
   }
@@ -128,6 +240,7 @@ public class TargetData {
   ///
   /// - parameter type: The type to whose ABI size you wish to compute.
   /// - returns: The ABI size for the specified type.
+  @available(*, message: "Prefer the overload of abiSize(of:) that returns a Size")
   public func abiSize(of type: IRType) -> Int {
     return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
   }
@@ -136,6 +249,7 @@ public class TargetData {
   ///
   /// - parameter type: The type to whose store size you wish to compute.
   /// - returns: The store size of the type in the given target.
+  @available(*, message: "Prefer the overload of storeSize(of:) that returns a Size")
   public func storeSize(of type: IRType) -> Int {
     return Int(LLVMStoreSizeOfType(llvm, type.asLLVM()))
   }
@@ -146,12 +260,94 @@ public class TargetData {
   /// - parameter addressSpace: The address space in which to compute
   ///                           pointer size.
   /// - returns: The size of a pointer in the target address space.
+  @available(*, message: "Prefer the overload of pointerSize(addressSpace:) that returns a Size")
   public func pointerSize(addressSpace: Int? = nil) -> Int {
     if let addressSpace = addressSpace {
       return Int(LLVMPointerSizeForAS(llvm, UInt32(addressSpace)))
     } else {
       return Int(LLVMPointerSize(llvm))
     }
+  }
+}
+
+/// A `StructLayout` encapsulates information about the layout of a `StructType`.
+public struct StructLayout {
+  /// Returns the total size of the struct in bytes.
+  ///
+  /// If the structure is packed, this returns a value that is effectively
+  /// the sum of the sizes of its fields.  If the structure is not packed, this
+  /// returns the value of the sum of the sizes of its fields plus any
+  /// platform-dictated padding.
+  public let size: Size
+  /// Returns the alignment of the struct in bytes.
+  ///
+  /// The alignment value is effectively the maximum of the alignment of each of
+  /// its member values.  This value will never be zero, as even an empty
+  /// structure has an alignment of one byte.
+  public let alignment: Alignment
+  /// Returns true if the structure type includes padding between elements.
+  public let isPadded: Bool
+  /// Returns the number of elements of this structure type.
+  public let elementCount: Int
+  /// Returns the offsets of each member from the start of the of the struct in
+  /// bytes.
+  public let memberOffsets: [Size]
+
+  fileprivate init(_ st: StructType, _ dl: TargetData) {
+    assert(!st.isOpaque, "Cannot get layout of opaque structs")
+    var structAlignment = Alignment.zero
+    var structSize = Size.zero
+    var structIsPadded = false
+    var structMemberOffsets = [Size]()
+    structMemberOffsets.reserveCapacity(st.elementTypes.count)
+    self.elementCount = st.elementTypes.count
+
+    // Loop over each of the elements, placing them in memory.
+    for ty in st.elementTypes {
+      let tyAlign = Alignment(UInt32(st.isPacked ? 1 : dl.abiAlignment(of: ty)))
+
+      // Add padding if necessary to align the data element properly.
+      if (structSize.rawValue & UInt64(tyAlign.rawValue-1)) != 0 {
+        structIsPadded = true
+        structSize = TargetData.align(structSize, to: tyAlign)
+      }
+
+      // Keep track of maximum alignment constraint.
+      structAlignment = max(tyAlign, structAlignment)
+
+      structMemberOffsets.append(structSize)
+      // Consume space for this data item
+      structSize = structSize + dl.allocationSize(of: ty)
+    }
+
+    // Empty structures have alignment of 1 byte.
+    if structAlignment == Alignment.zero {
+      structAlignment = Alignment.one
+    }
+
+    // Add padding to the end of the struct so that it could be put in an array
+    // and all array elements would be aligned correctly.
+    if (structSize.rawValue & UInt64(structAlignment.rawValue-1)) != 0 {
+      structIsPadded = true
+      structSize = TargetData.align(structSize, to: structAlignment)
+    }
+    self.size = structSize
+    self.alignment = structAlignment
+    self.isPadded = structIsPadded
+    self.memberOffsets = structMemberOffsets
+  }
+
+  /// Given a valid byte offset into the structure, returns the structure
+  /// index that contains it.
+  public func index(of offset: Size) -> Int {
+    precondition(!self.memberOffsets.isEmpty,
+                 "Cannot compute index member offset of an empty struct type!")
+    // Multiple fields can have the same offset if any of them are zero sized.
+    // For example, in { i32, [0 x i32], i32 }, searching for offset 4 will stop
+    // at the i32 element, because it is the last element at that offset.  This is
+    // the right one to return, because anything after it will have a higher
+    // offset, implying that this element is non-empty.
+    return self.memberOffsets.firstIndex(where: { $0 > offset }) ?? self.memberOffsets.endIndex
   }
 }
 

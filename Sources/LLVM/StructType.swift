@@ -115,4 +115,22 @@ public struct StructType: IRType {
   public func asLLVM() -> LLVMTypeRef {
     return llvm
   }
+
+  /// Return true if this is a struct type with an identity that has an
+  /// unspecified body.
+  ///
+  /// Opaque struct types print as `opaque` in serialized .ll files.
+  public var isOpaque: Bool {
+    return LLVMIsOpaqueStruct(self.llvm) != 0
+  }
+
+  /// Returns true if this is a packed struct type.
+  ///
+  /// A packed struct type includes no padding between fields and is thus
+  /// laid out in one contiguous region of memory with its elements laid out
+  /// one after the other.  A non-packed struct type includes padding according
+  /// to the data layout of the target.
+  public var isPacked: Bool {
+    return LLVMIsPackedStruct(self.llvm) != 0
+  }
 }

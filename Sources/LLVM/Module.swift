@@ -77,15 +77,14 @@ public final class Module: CustomStringConvertible {
       llvm = LLVMModuleCreateWithName(name)
       self.context = Context(llvm: LLVMGetModuleContext(llvm)!)
     }
+    self.dataLayout = TargetData(llvm: LLVMGetModuleDataLayout(llvm))
   }
 
   /// Returns the context associated with this module.
   public let context: Context
 
   /// Obtain the data layout for this module.
-  public var dataLayout: TargetData {
-    return TargetData(llvm: LLVMGetModuleDataLayout(llvm))
-  }
+  public var dataLayout: TargetData
 
   /// The identifier of this module.
   public var name: String {
