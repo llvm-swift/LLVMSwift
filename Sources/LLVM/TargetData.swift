@@ -173,8 +173,22 @@ public class TargetData {
     return cachedLayout
   }
 
+  /// Returns the next integer (mod 2**64) that is greater than or equal to
+  /// \p Value and is a multiple of \p Align. \p Align must be non-zero.
+  ///
+  /// If non-zero \p Skew is specified, the return value will be a minimal
+  /// integer that is greater than or equal to \p Value and equal to
+  /// \p Align * N + \p Skew for some integer N. If \p Skew is larger than
+  /// \p Align, its value is adjusted to '\p Skew mod \p Align'.
+  ///
+  /// Computes the next size value that is greater than or equal to the given
+  /// value and is a multiple of the given alignment.
+  ///
+  /// If the skew value is non-zero, the return value will be the next size
+  /// value that is greater than or equal to the given value multipled by the
+  /// provided alignment with a skew value added
   public static func align(_ value: Size, to align: Alignment, skew: Size = Size.zero) -> Size {
-    precondition(align != Alignment.zero, "Align can't be 0.")
+    precondition(!align.isZero, "Align can't be 0.")
 
     let skewValue = skew.rawValue % UInt64(align.rawValue)
     let alignValue = UInt64(align.rawValue)
