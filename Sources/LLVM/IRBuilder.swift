@@ -380,7 +380,7 @@ extension Module {
   ///
   /// - returns: A value representing the newly inserted global variable.
   public func addGlobal(_ name: String, initializer: IRValue, addressSpace: Int? = nil) -> Global {
-    var global = addGlobal(name, type: initializer.type)
+    let global = addGlobal(name, type: initializer.type)
     global.initializer = initializer
     return global
   }
