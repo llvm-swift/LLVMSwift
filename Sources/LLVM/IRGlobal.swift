@@ -4,7 +4,7 @@ import cllvm
 
 /// An `IRGlobal` is a value, alias, or function that exists at the top level of
 /// an LLVM module.
-public protocol IRGlobal: IRValue {}
+public protocol IRGlobal: IRConstant {}
 
 extension IRGlobal {
   /// Retrieves the alignment of this value.
