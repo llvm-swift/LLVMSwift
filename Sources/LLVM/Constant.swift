@@ -2,6 +2,11 @@
 import cllvm
 #endif
 
+/// An `IRConstant` is an entity whose value doees not change during the
+/// runtime of a program.  This includes global variables and functions, whose
+/// addresses are constant, and constant expressions.
+public protocol IRConstant: IRValue {}
+
 /// A protocol to which the phantom types for a constant's representation conform.
 public protocol ConstantRepresentation {}
 /// A protocol to which the phantom types for all numerical constants conform.
@@ -29,7 +34,7 @@ public enum Vector: ConstantRepresentation {}
 /// `Constant`s keep track of the values they represent at the type level to
 /// disallow mixed-type arithmetic.  Use the `cast` family of operations to
 /// safely convert constants to other representations.
-public struct Constant<Repr: ConstantRepresentation>: IRValue {
+public struct Constant<Repr: ConstantRepresentation>: IRConstant {
   internal let llvm: LLVMValueRef
 
   internal init(llvm: LLVMValueRef!) {
@@ -1009,10 +1014,10 @@ extension Constant where Repr == Struct {
   ///   of the aggregate object are indexed.
   ///
   /// - returns: The value in the struct at the provided index.
-  public func getElement(indices: [Int]) -> IRValue {
+  public func getElement(indices: [Int]) -> IRConstant {
     var indices = indices.map({ UInt32($0) })
     return indices.withUnsafeMutableBufferPointer { buf in
-      return LLVMConstExtractValue(asLLVM(), buf.baseAddress, UInt32(buf.count))
+      return Constant<Struct>(llvm: LLVMConstExtractValue(asLLVM(), buf.baseAddress, UInt32(buf.count)))
     }
   }
 
@@ -1029,10 +1034,10 @@ extension Constant where Repr == Struct {
   ///
   /// - returns: A value representing the address of a subelement of the given
   ///   aggregate data structure value.
-  public func getElementPointer(indices: [IRValue]) -> IRValue {
+  public func getElementPointer(indices: [IRConstant]) -> IRConstant {
     var indices = indices.map({ $0.asLLVM() as LLVMValueRef? })
     return indices.withUnsafeMutableBufferPointer { buf in
-      return LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count))
+      return Constant<Struct>(llvm: LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count)))
     }
   }
 
@@ -1047,10 +1052,10 @@ extension Constant where Repr == Struct {
   ///
   /// - returns: A value representing the address of a subelement of the given
   ///   aggregate data structure value.
-  public func inBoundsGetElementPointer(indices: [IRValue]) -> IRValue {
+  public func inBoundsGetElementPointer(indices: [IRConstant]) -> IRConstant {
     var indices = indices.map({ $0.asLLVM() as LLVMValueRef? })
     return indices.withUnsafeMutableBufferPointer { buf in
-      return LLVMConstInBoundsGEP(asLLVM(), buf.baseAddress, UInt32(buf.count))
+      return Constant<Struct>(llvm: LLVMConstInBoundsGEP(asLLVM(), buf.baseAddress, UInt32(buf.count)))
     }
   }
 }
