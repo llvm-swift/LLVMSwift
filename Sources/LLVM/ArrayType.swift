@@ -24,10 +24,10 @@ public struct ArrayType: IRType {
   /// - parameter type: The type of the provided IR values.
   ///
   /// - returns: A constant array value containing the given values.
-  public static func constant(_ values: [IRValue], type: IRType) -> IRValue {
+  public static func constant(_ values: [IRValue], type: IRType) -> IRConstant {
     var vals = values.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
-      return LLVMConstArray(type.asLLVM(), buf.baseAddress, UInt32(buf.count))
+      return Constant<Struct>(llvm: LLVMConstArray(type.asLLVM(), buf.baseAddress, UInt32(buf.count)))
     }
   }
 
@@ -39,9 +39,9 @@ public struct ArrayType: IRType {
   ///
   /// - returns: A null terminated constant array value containing
   ///   `string.utf8.count + 1` i8's.
-  public static func constant(string: String, in context: Context = .global) -> IRValue {
+  public static func constant(string: String, in context: Context = .global) -> IRConstant {
     let length = string.utf8.count
-    return LLVMConstStringInContext(context.llvm, string, UInt32(length), 0)
+    return Constant<Struct>(llvm: LLVMConstStringInContext(context.llvm, string, UInt32(length), 0))
   }
 
   /// Retrieves the underlying LLVM type object.

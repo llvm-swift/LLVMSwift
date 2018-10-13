@@ -11,8 +11,8 @@ public protocol IRType {
 
 public extension IRType {
   /// Returns the special `null` value for this type.
-  public func null() -> IRValue {
-    return LLVMConstNull(asLLVM())
+  public func null() -> IRConstant {
+    return Constant<Struct>(llvm: LLVMConstNull(asLLVM()))
   }
 
   /// Returns the special LLVM `undef` value for this type.
@@ -26,8 +26,8 @@ public extension IRType {
 
   /// Returns the special LLVM constant `null` pointer value for this type
   /// initialized to `null`.
-  public func constPointerNull() -> IRValue {
-    return LLVMConstPointerNull(asLLVM())
+  public func constPointerNull() -> IRConstant {
+    return Constant<Struct>(llvm: LLVMConstPointerNull(asLLVM()))
   }
 
   /// Returns the context associated with this type

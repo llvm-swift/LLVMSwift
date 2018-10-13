@@ -41,20 +41,6 @@ public extension IRValue {
     }
   }
 
-  /// Perform a GEP (Get Element Pointer) with this value as the base.
-  ///
-  /// - parameter indices: A list of indices that indicate which of the elements
-  ///   of the aggregate object are indexed.
-  ///
-  /// - returns: A value representing the address of a subelement of the given
-  ///   aggregate data structure value.
-  public func constGEP(indices: [IRValue]) -> IRValue {
-    var idxs = indices.map { $0.asLLVM() as Optional }
-    return idxs.withUnsafeMutableBufferPointer { buf in
-      return LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count))
-    }
-  }
-
   /// Replaces all uses of this value with the specified value.
   ///
   /// - parameter value: The new value to swap in.
