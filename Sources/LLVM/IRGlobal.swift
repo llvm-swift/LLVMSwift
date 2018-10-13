@@ -57,4 +57,17 @@ extension IRGlobal {
     }
     set { LLVMSetSection(asLLVM(), newValue) }
   }
+
+  /// Removes this global value from the module and deallocates it.
+  ///
+  /// - note: To ensure correct removal of the global value, you must invalidate
+  ///         any references to it - usually by performing an
+  ///         "Replace All Uses With" (RAUW) operation.
+  ///
+  /// - warning: The native Swift object wrapping this global becomes a dangling
+  ///            reference once this function has been invoked.  It is
+  ///            recommended that all references to it be dropped immediately.
+  public func eraseFromParent() {
+    LLVMDeleteGlobal(self.asLLVM())
+  }
 }
