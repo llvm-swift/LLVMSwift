@@ -1015,6 +1015,44 @@ extension Constant where Repr == Struct {
       return LLVMConstExtractValue(asLLVM(), buf.baseAddress, UInt32(buf.count))
     }
   }
+
+  /// Build a constant `GEP` (Get Element Pointer) instruction with a resultant
+  /// value that is undefined if the address is outside the actual underlying
+  /// allocated object and not the address one-past-the-end.
+  ///
+  /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
+  /// document](http://llvm.org/docs/GetElementPtr.html) to answer questions
+  /// around its semantics and correct usage.
+  ///
+  /// - parameter indices: A list of indices that indicate which of the elements
+  ///   of the aggregate object are indexed.
+  ///
+  /// - returns: A value representing the address of a subelement of the given
+  ///   aggregate data structure value.
+  public func getElementPointer(indices: [IRValue]) -> IRValue {
+    var indices = indices.map({ $0.asLLVM() as LLVMValueRef? })
+    return indices.withUnsafeMutableBufferPointer { buf in
+      return LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count))
+    }
+  }
+
+  /// Build a GEP (Get Element Pointer) instruction.
+  ///
+  /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
+  /// document](http://llvm.org/docs/GetElementPtr.html) to answer questions
+  /// around its semantics and correct usage.
+  ///
+  /// - parameter indices: A list of indices that indicate which of the elements
+  ///   of the aggregate object are indexed.
+  ///
+  /// - returns: A value representing the address of a subelement of the given
+  ///   aggregate data structure value.
+  public func inBoundsGetElementPointer(indices: [IRValue]) -> IRValue {
+    var indices = indices.map({ $0.asLLVM() as LLVMValueRef? })
+    return indices.withUnsafeMutableBufferPointer { buf in
+      return LLVMConstInBoundsGEP(asLLVM(), buf.baseAddress, UInt32(buf.count))
+    }
+  }
 }
 
 // MARK: Vector Operations
