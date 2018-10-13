@@ -7,6 +7,22 @@ import cllvm
 /// addresses are constant, and constant expressions.
 public protocol IRConstant: IRValue {}
 
+extension IRConstant {
+  /// Perform a GEP (Get Element Pointer) with this value as the base.
+  ///
+  /// - parameter indices: A list of indices that indicate which of the elements
+  ///   of the aggregate object are indexed.
+  ///
+  /// - returns: A value representing the address of a subelement of the given
+  ///   aggregate data structure value.
+  public func constGEP(indices: [IRConstant]) -> IRConstant {
+    var idxs = indices.map { $0.asLLVM() as Optional }
+    return idxs.withUnsafeMutableBufferPointer { buf in
+      return Constant<Struct>(llvm: LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count)))
+    }
+  }
+}
+
 /// A protocol to which the phantom types for a constant's representation conform.
 public protocol ConstantRepresentation {}
 /// A protocol to which the phantom types for all numerical constants conform.

@@ -42,8 +42,7 @@ public enum CallingConvention {
   /// floating-point parameters.
   ///
   /// This calling convention supports `tail call
-  /// optimization <CodeGenerator.html#id80>`_ but requires both the
-  /// caller and callee are using it.
+  /// optimization but requires both the caller and callee are using it.
   case ghc
   /// This calling convention has been implemented specifically for use by
   /// the High-Performance Erlang (HiPE) compiler, *the*

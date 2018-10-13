@@ -41,7 +41,7 @@ public struct IntType: IRType {
   /// zero-bits.
   ///
   /// - returns: A value consisting of all zero-bits of this type's bit width.
-  public func zero() -> IRValue {
+  public func zero() -> IRConstant {
     return null()
   }
 
@@ -91,8 +91,8 @@ public struct IntType: IRType {
   /// one-bits.
   ///
   /// - returns: A value consisting of all one-bits of this type's bit width.
-  public func allOnes() -> IRValue {
-    return LLVMConstAllOnes(asLLVM())
+  public func allOnes() -> IRConstant {
+    return Constant<Struct>(llvm: LLVMConstAllOnes(asLLVM()))
   }
 
   /// Retrieves the underlying LLVM type object.
