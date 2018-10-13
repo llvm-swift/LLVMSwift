@@ -21,6 +21,17 @@ extension IRConstant {
       return Constant<Struct>(llvm: LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count)))
     }
   }
+
+  /// Build a constant bitcast to convert the given value to a value of the
+  /// given type by just copying the bit pattern.
+  ///
+  /// - parameter type: The destination type.
+  ///
+  /// - returns: A constant value representing the result of bitcasting this
+  ///   constant value to fit the given type.
+  public func bitCast(to type: IRType) -> IRConstant {
+    return Constant<Struct>(llvm: LLVMConstBitCast(asLLVM(), type.asLLVM()))
+  }
 }
 
 /// A protocol to which the phantom types for a constant's representation conform.
@@ -1014,7 +1025,7 @@ extension Constant where Repr: IntegralConstantRepresentation {
   ///
   /// - returns: An constant value representing the constant value of the given
   ///   pointer converted to the given integer type.
-  public static func pointerToInt(_ val: IRGlobal, _ intType: IntType) -> Constant {
+  public static func pointerToInt(_ val: IRConstant, _ intType: IntType) -> Constant {
     precondition(val.isConstant, "May only convert global constant pointers to integers")
     return Constant<Repr>(llvm: LLVMConstPtrToInt(val.asLLVM(), intType.asLLVM()))
   }

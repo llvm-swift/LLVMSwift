@@ -79,8 +79,12 @@ public enum ThreadLocalModel {
 /// A `Global` represents a region of memory allocated at compile time instead
 /// of at runtime.  A global variable must either have an initializer, or make
 /// reference to an external definition that has an initializer.
-public struct Global: IRGlobal {
+public final class Global: IRGlobal {
   internal let llvm: LLVMValueRef
+
+  internal init(llvm: LLVMValueRef) {
+    self.llvm = llvm
+  }
 
   /// Returns whether this global variable has no initializer because it makes
   /// reference to an initialized value in another translation unit.
