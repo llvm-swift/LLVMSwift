@@ -21,6 +21,7 @@ public enum MemoryBufferError: Error {
 /// position to see if it has reached the end of the file.
 public class MemoryBuffer: Sequence {
   let llvm: LLVMMemoryBufferRef
+  internal var ownsContext: Bool = true
 
   /// Creates a `MemoryBuffer` with the contents of `stdin`, stopping once
   /// `EOF` is read.
@@ -115,6 +116,9 @@ public class MemoryBuffer: Sequence {
   }
 
   deinit {
+    guard self.ownsContext else {
+      return
+    }
     LLVMDisposeMemoryBuffer(llvm)
   }
 }

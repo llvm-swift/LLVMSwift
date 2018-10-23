@@ -117,6 +117,8 @@ public class TargetMachine {
     return String(validatingUTF8: UnsafePointer<CChar>(str)) ?? ""
   }
 
+  internal var ownsContext: Bool = true
+
   /// Creates a Target Machine with information about its target environment.
   ///
   /// - parameter triple: An optional target triple to target.  If this is not
@@ -217,6 +219,9 @@ public class TargetMachine {
   }
 
   deinit {
+    guard self.ownsContext else {
+      return
+    }
     LLVMDisposeTargetMachine(llvm)
   }
 }
