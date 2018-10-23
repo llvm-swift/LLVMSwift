@@ -8,9 +8,9 @@ public protocol IRGlobal: IRConstant {}
 
 extension IRGlobal {
   /// Retrieves the alignment of this value.
-  public var alignment: Int {
-    get { return Int(LLVMGetAlignment(asLLVM())) }
-    set { LLVMSetAlignment(asLLVM(), UInt32(newValue)) }
+  public var alignment: Alignment {
+    get { return Alignment(LLVMGetAlignment(asLLVM())) }
+    set { LLVMSetAlignment(asLLVM(), newValue.rawValue) }
   }
   
   /// Retrieves the linkage information for this global.
