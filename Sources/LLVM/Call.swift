@@ -37,8 +37,8 @@ public struct Call: IRValue {
   ///
   /// - parameter i: The index of the parameter to retrieve.
   /// - parameter alignment: The alignment to apply to the parameter.
-  public func setParameterAlignment(at i : Int, to alignment: Int) {
-    LLVMSetInstrParamAlignment(self.llvm, UInt32(i), UInt32(alignment))
+  public func setParameterAlignment(at i : Int, to alignment: Alignment) {
+    LLVMSetInstrParamAlignment(self.llvm, UInt32(i), alignment.rawValue)
   }
 }
 

@@ -398,7 +398,7 @@ extension Module {
     var global = addGlobal(name, type:
       ArrayType(elementType: IntType.int8, count: length + 1))
 
-    global.alignment = 1
+    global.alignment = Alignment(1)
     global.initializer = value
 
     return global
@@ -1247,14 +1247,14 @@ public class IRBuilder {
   ///
   /// - returns: A value representing `void`.
   public func buildAlloca(type: IRType, count: IRValue? = nil,
-                          alignment: Int = 0, name: String = "") -> IRValue {
+                          alignment: Alignment = .zero, name: String = "") -> IRValue {
     let allocaInst: LLVMValueRef
     if let count = count {
       allocaInst = LLVMBuildArrayAlloca(llvm, type.asLLVM(), count.asLLVM(), name)
     } else {
       allocaInst = LLVMBuildAlloca(llvm, type.asLLVM(), name)!
     }
-    LLVMSetAlignment(allocaInst, UInt32(alignment))
+    LLVMSetAlignment(allocaInst, alignment.rawValue)
     return allocaInst
   }
 
@@ -1270,11 +1270,11 @@ public class IRBuilder {
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildStore(_ val: IRValue, to ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Int = 0) -> IRValue {
+  public func buildStore(_ val: IRValue, to ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero) -> IRValue {
     let storeInst = LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())!
     LLVMSetOrdering(storeInst, ordering.llvm)
     LLVMSetVolatile(storeInst, volatile.llvm)
-    LLVMSetAlignment(storeInst, UInt32(alignment))
+    LLVMSetAlignment(storeInst, alignment.rawValue)
     return storeInst
   }
 
@@ -1290,11 +1290,11 @@ public class IRBuilder {
   ///
   /// - returns: A value representing the result of a load from the given
   ///   pointer value.
-  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Int = 0, name: String = "") -> IRValue {
+  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero, name: String = "") -> IRValue {
     let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
     LLVMSetOrdering(loadInst, ordering.llvm)
     LLVMSetVolatile(loadInst, volatile.llvm)
-    LLVMSetAlignment(loadInst, UInt32(alignment))
+    LLVMSetAlignment(loadInst, alignment.rawValue)
     return loadInst
   }
 
