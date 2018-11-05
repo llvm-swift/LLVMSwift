@@ -35,7 +35,7 @@ public enum ThreadLocalModel {
   /// below which may ultimately defeat lazy allocation of the TLS storagee
   /// block.
   ///
-  /// The code generated for this model does nto assume that any information
+  /// The code generated for this model does not assume that any information
   /// about the module or variable offsets is known at link-time.  Instead, the
   /// exact value of these variables is computed by the dynamic linker at
   /// runtime and passeed to `__tls_get_addr` in an architecture-specific way.

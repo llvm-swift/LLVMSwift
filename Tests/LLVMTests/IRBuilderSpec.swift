@@ -33,9 +33,9 @@ class IRBuilderSpec : XCTestCase {
 
       // IRBUILDERARITH: @a = global i32 1
       // IRBUILDERARITH-NEXT: @b = global i32 1
-      var g1 = builder.addGlobal("a", type: IntType.int32)
+      let g1 = builder.addGlobal("a", type: IntType.int32)
       g1.initializer = Int32(1)
-      var g2 = builder.addGlobal("b", type: IntType.int32)
+      let g2 = builder.addGlobal("b", type: IntType.int32)
       g2.initializer = Int32(1)
 
       // IRBUILDERARITH-NEXT: @vec1 = global <8 x i64> <i64 1, i64 1, i64 1, i64 1, i64 1, i64 1, i64 1, i64 1>
@@ -121,9 +121,9 @@ class IRBuilderSpec : XCTestCase {
 
       // IRBUILDERCMP: @a = global i32 1
       // IRBUILDERCMP-NEXT: @b = global i32 1
-      var g1 = builder.addGlobal("a", type: IntType.int32)
+      let g1 = builder.addGlobal("a", type: IntType.int32)
       g1.initializer = Int32(1)
-      var g2 = builder.addGlobal("b", type: IntType.int32)
+      let g2 = builder.addGlobal("b", type: IntType.int32)
       g2.initializer = Int32(1)
 
       // IRBUILDERCMP: define void @main() {
@@ -175,9 +175,9 @@ class IRBuilderSpec : XCTestCase {
 
       // IRBUILDERFCMP: @a = global double 1
       // IRBUILDERFCMP-NEXT: @b = global double 1
-      var g1 = builder.addGlobal("a", type: FloatType.double)
+      let g1 = builder.addGlobal("a", type: FloatType.double)
       g1.initializer = FloatType.double.constant(1)
-      var g2 = builder.addGlobal("b", type: FloatType.double)
+      let g2 = builder.addGlobal("b", type: FloatType.double)
       g2.initializer = FloatType.double.constant(1)
 
       // IRBUILDERFCMP: define void @main() {
