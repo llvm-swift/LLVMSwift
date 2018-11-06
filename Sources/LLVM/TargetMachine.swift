@@ -75,6 +75,61 @@ public class Target {
   public init(llvm: LLVMTargetRef) {
     self.llvm = llvm
   }
+
+  /// Returns `true` if this target has a JIT.
+  var hasJIT: Bool {
+    return LLVMTargetHasJIT(self.llvm) != 0
+  }
+
+  /// The name of this target.
+  public var name: String {
+    guard let str = LLVMGetTargetName(self.llvm) else {
+      return ""
+    }
+    return String(validatingUTF8: UnsafePointer<CChar>(str)) ?? ""
+  }
+
+  /// The description of this target.
+  public var targetDescription: String {
+    guard let str = LLVMGetTargetDescription(self.llvm) else {
+      return ""
+    }
+    return String(validatingUTF8: UnsafePointer<CChar>(str)) ?? ""
+  }
+
+  /// Returns `true` if this target has a `TargetMachine` associated with it.
+  var hasTargetMachine: Bool {
+    return LLVMTargetHasTargetMachine(self.llvm) != 0
+  }
+
+  /// Returns `true` if this target has an ASM backend
+  var hasASMBackend: Bool {
+    return LLVMTargetHasTargetMachine(self.llvm) != 0
+  }
+
+  /// Returns a sequence of all targets in the global list of targets.
+  public static var allTargets: AnySequence<Target> {
+    var current = firstTarget
+    return AnySequence<Target> {
+      return AnyIterator<Target> {
+        defer { current = current?.next() }
+        return current
+      }
+    }
+  }
+
+  /// Returns the first target in the global target list, if it exists.
+  public static var firstTarget: Target? {
+    guard let targetRef = LLVMGetFirstTarget() else { return nil }
+    return Target(llvm: targetRef)
+  }
+
+  /// Returns the target following this target in the global target list,
+  /// if it exists.
+  public func next() -> Target? {
+    guard let targetRef = LLVMGetNextTarget(self.llvm) else { return nil }
+    return Target(llvm: targetRef)
+  }
 }
 
 /// A `TargetMachine` object represents an object that encapsulates information
