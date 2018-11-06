@@ -269,6 +269,122 @@ public final class Module: CustomStringConvertible {
   }
 }
 
+// MARK: Global Declarations
+
+extension Module {
+  /// Searches for and retrieves a global variable with the given name in this
+  /// module if that name references an existing global variable.
+  ///
+  /// - parameter name: The name of the global to reference.
+  ///
+  /// - returns: A value representing the referenced global if it exists.
+  public func global(named name: String) -> Global? {
+    guard let ref = LLVMGetNamedGlobal(llvm, name) else { return nil }
+    return Global(llvm: ref)
+  }
+
+  /// Searches for and retrieves a type with the given name in this module if
+  /// that name references an existing type.
+  ///
+  /// - parameter name: The name of the type to create.
+  ///
+  /// - returns: A representation of the newly created type with the given name
+  ///   or nil if such a representation could not be created.
+  public func type(named name: String) -> IRType? {
+    guard let type = LLVMGetTypeByName(llvm, name) else { return nil }
+    return convertType(type)
+  }
+
+  /// Searches for and retrieves a function with the given name in this module
+  /// if that name references an existing function.
+  ///
+  /// - parameter name: The name of the function to create.
+  ///
+  /// - returns: A representation of the newly created function with the given
+  /// name or nil if such a representation could not be created.
+  public func function(named name: String) -> Function? {
+    guard let fn = LLVMGetNamedFunction(llvm, name) else { return nil }
+    return Function(llvm: fn)
+  }
+
+  /// Searches for and retrieves a comdat section with the given name in this
+  /// module.  If none is found, one with that name is created and returned.
+  ///
+  /// - parameter name: The name of the comdat section to create.
+  ///
+  /// - returns: A representation of the newly created comdat section with the
+  ///   given name.
+  public func comdat(named name: String) -> Comdat {
+    guard let comdat = LLVMGetOrInsertComdat(llvm, name) else { fatalError() }
+    return Comdat(llvm: comdat)
+  }
+
+  /// Build a named global of the given type.
+  ///
+  /// - parameter name: The name of the newly inserted global value.
+  /// - parameter type: The type of the newly inserted global value.
+  /// - parameter addressSpace: The optional address space where the global
+  ///   variable resides.
+  ///
+  /// - returns: A value representing the newly inserted global variable.
+  public func addGlobal(_ name: String, type: IRType, addressSpace: Int? = nil) -> Global {
+    let val: LLVMValueRef
+    if let addressSpace = addressSpace {
+      val = LLVMAddGlobalInAddressSpace(llvm, type.asLLVM(), name, UInt32(addressSpace))
+    } else {
+      val = LLVMAddGlobal(llvm, type.asLLVM(), name)
+    }
+    return Global(llvm: val)
+  }
+
+  /// Build a named global of the given type.
+  ///
+  /// - parameter name: The name of the newly inserted global value.
+  /// - parameter initializer: The initial value for the global variable.
+  /// - parameter addressSpace: The optional address space where the global
+  ///   variable resides.
+  ///
+  /// - returns: A value representing the newly inserted global variable.
+  public func addGlobal(_ name: String, initializer: IRValue, addressSpace: Int? = nil) -> Global {
+    let global = addGlobal(name, type: initializer.type)
+    global.initializer = initializer
+    return global
+  }
+
+  /// Build a named global string consisting of an array of `i8` type filled in
+  /// with the nul terminated string value.
+  ///
+  /// - parameter name: The name of the newly inserted global string value.
+  /// - parameter value: The character contents of the newly inserted global.
+  ///
+  /// - returns: A value representing the newly inserted global string variable.
+  public func addGlobalString(name: String, value: String) -> Global {
+    let length = value.utf8.count
+
+    var global = addGlobal(name, type:
+      ArrayType(elementType: IntType.int8, count: length + 1))
+
+    global.alignment = Alignment(1)
+    global.initializer = value
+
+    return global
+  }
+
+  /// Build a named alias to a global value or a constant expression.
+  ///
+  /// Aliases, unlike function or variables, don’t create any new data. They are
+  /// just a new symbol and metadata for an existing position.
+  ///
+  /// - parameter name: The name of the newly inserted alias.
+  /// - parameter aliasee: The value or constant to alias.
+  /// - parameter type: The type of the aliased value or expression.
+  ///
+  /// - returns: A value representing the newly created alias.
+  public func addAlias(name: String, to aliasee: IRGlobal, type: IRType) -> Alias {
+    return Alias(llvm: LLVMAddAlias(llvm, type.asLLVM(), aliasee.asLLVM(), name))
+  }
+}
+
 extension Bool {
   internal var llvm: LLVMBool {
     return self ? 1 : 0

@@ -5,27 +5,63 @@ import cllvm
 /// Enumerates the supported models of reference of thread-local variables. 
 ///
 /// These models are listed from the most general, but least optimized, to the
-/// fastest, but most restrictive.
+/// fastest, but most restrictive in general, as architectural differences
+/// play a role in determining the access patterns for thread-local storage.
 ///
-/// Documentation of these models quotes the [Oracle Linker and Libraries
-/// Guide](https://docs.oracle.com/cd/E23824_01/html/819-0690/chapter8-20.html).
+/// In general, support for thread-local storage in statically-linked
+/// applications is limited: some platforms may not even define the behavior of
+/// TLS in such cases.  This is usually not an issue as statically-linked code
+/// only ever has one TLS block, the offset of the variables within that block
+/// is known, and support for additional dynamic loading of code in
+/// statically-linked code is limited.
+///
+/// Computing the thread-specific address of a TLS variable is usually a dynamic
+/// process that relies on an ABI-defined function call (usually
+/// `__tls_get_addr`) to do the heavy lifting.
+///
+/// TLS access models fall into two classes: static and dynamic.  Regardless of
+/// the actual model used, the dynamic linker must process all relocations
+/// for thread-local variables whenever the module is loaded.  Some models,
+/// therefore, provide for a decrease in the overall number of relocations at
+/// a cost of restrictions on which modules can access variables.
 public enum ThreadLocalModel {
   /// The variable is not thread local and hence has no associated model.
   case notThreadLocal
   /// Allows reference of all thread-local variables, from either a shared 
   /// object or a dynamic executable. This model also supports the deferred 
   /// allocation of a block of thread-local storage when the block is first 
-  /// referenced from a specific thread.
+  /// referenced from a specific thread.  Note that the linker is free to
+  /// optimize accesses using this model to one of the more specific models
+  /// below which may ultimately defeat lazy allocation of the TLS storagee
+  /// block.
+  ///
+  /// The code generated for this model does not assume that any information
+  /// about the module or variable offsets is known at link-time.  Instead, the
+  /// exact value of these variables is computed by the dynamic linker at
+  /// runtime and passeed to `__tls_get_addr` in an architecture-specific way.
+  ///
+  /// If possible, this model should be avoided if one of the more specific
+  /// models applies out of concern for code size and application startup
+  /// performance.
   case generalDynamic
-  /// This model is an optimization of the General Dynamic model. The compiler 
+  /// This model is an optimization of the `generalDynamic` model. The compiler
   /// might determine that a variable is bound locally, or protected, within the
-  /// object being built. In this case, the compiler instructs the link-editor 
-  /// to statically bind the dynamic `tlsoffset` and use this model. 
+  /// object being built. In this case, the compiler instructs the linker
+  /// to statically bind the dynamic offset of the variable and use this model.
   ///
   /// This model provides a performance benefit over the General Dynamic model. 
-  /// Only one call to `tls_get_addr()` is required per function, to determine 
-  /// the address of `dtv0,m`. The dynamic thread-local storage offset, bound at
-  /// link-edit time, is added to the `dtv0,m` address for each reference.
+  /// Only one call to `__tls_get_addr` is required per function, to determine
+  /// the starting address of the variable within the TLS block for its
+  /// parent module.  Additional accesses can add an offset to this address
+  /// value for repeated accesses.
+  ///
+  /// The optimization available over the `generalDynamic` model is defeated if
+  /// a variable is only ever accessed once, as its access would incur the
+  /// same `__tls_get_addr` call and the additional overhead of the offset
+  /// calculation.
+  ///
+  /// The linker cannot, in general, optimize from the general dynamic model
+  /// to the local dynamic model.
   case localDynamic
   /// This model can only reference thread-local variables which are available 
   /// as part of the initial static thread-local template. This template is 
@@ -43,8 +79,10 @@ public enum ThreadLocalModel {
   /// objects should reference thread-local variables using a dynamic model of
   /// thread-local storage.
   case initialExec
+  /// This model is an optimization of the `localDynamic` model.
+  ///
   /// This model can only reference thread-local variables which are part of the
-  /// thread-local storage block of the dynamic executable. The link-editor 
+  /// thread-local storage block of the dynamic executable. The linker
   /// calculates the thread pointer-relative offsets statically, without the 
   /// need for dynamic relocations, or the extra reference to the GOT. This 
   /// model can not be used to reference variables outside of the dynamic 

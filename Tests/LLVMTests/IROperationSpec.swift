@@ -12,17 +12,17 @@ class IROperationSpec : XCTestCase {
       let builder = IRBuilder(module: module)
 
       // BINARYOP: @a = global i32 1
-      var gi1 = builder.addGlobal("a", type: IntType.int32)
+      let gi1 = builder.addGlobal("a", type: IntType.int32)
       gi1.initializer = Int32(1)
       // BINARYOP-NEXT: @b = global i32 1
-      var gi2 = builder.addGlobal("b", type: IntType.int32)
+      let gi2 = builder.addGlobal("b", type: IntType.int32)
       gi2.initializer = Int32(1)
 
       // BINARYOP-NEXT: @c = global float 0.000000e+00
-      var gf1 = builder.addGlobal("c", type: FloatType.float)
+      let gf1 = builder.addGlobal("c", type: FloatType.float)
       gf1.initializer = FloatType.float.constant(0.0)
       // BINARYOP-NEXT: @d = global float 0.000000e+00
-      var gf2 = builder.addGlobal("d", type: FloatType.float)
+      let gf2 = builder.addGlobal("d", type: FloatType.float)
       gf2.initializer = FloatType.float.constant(0.0)
 
       // BINARYOP: define void @main() {
@@ -96,11 +96,11 @@ class IROperationSpec : XCTestCase {
       let builder = IRBuilder(module: module)
 
       // CASTOP: @a = global i32 1
-      var gi = builder.addGlobal("a", type: IntType.int32)
+      let gi = builder.addGlobal("a", type: IntType.int32)
       gi.initializer = Int32(1)
 
       // CASTOP-NEXT: @f = global float 0.000000e+00
-      var gf = builder.addGlobal("f", type: FloatType.float)
+      let gf = builder.addGlobal("f", type: FloatType.float)
       gf.initializer = FloatType.float.constant(0.0)
 
       // CASTOP: define void @main() {

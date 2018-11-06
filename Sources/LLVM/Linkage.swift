@@ -237,28 +237,29 @@ public enum UnnamedAddressKind {
   /// current module but it may or may not be significant to another module;
   /// only the content of the value is known to be significant within the
   /// current module.
-//  case local
+  case local
 
   /// Indicates that the address of this global value is not significant to the
   /// current module or any other module; only the content of the value
   /// is significant globally.
   case global
 
-  private static let unnamedAddressMapping: [UnnamedAddressKind: LLVMBool] = [
-    .none: LLVMBool(0),
-//    .local: LLVMBool(1),
-    .global: LLVMBool(1),
-    ]
+  private static let unnamedAddressMapping: [UnnamedAddressKind: LLVMUnnamedAddr] = [
+    .none: LLVMNoUnnamedAddr,
+    .local: LLVMLocalUnnamedAddr,
+    .global: LLVMGlobalUnnamedAddr,
+  ]
 
-  internal init(llvm: LLVMBool) {
+  internal init(llvm: LLVMUnnamedAddr) {
     switch llvm {
-    case 0: self = .none
-    case 1: self = .global
+    case LLVMNoUnnamedAddr: self = .none
+    case LLVMLocalUnnamedAddr: self = .local
+    case LLVMGlobalUnnamedAddr: self = .global
     default: fatalError("unknown unnamed address kind \(llvm)")
     }
   }
 
-  internal var llvm: LLVMBool {
+  internal var llvm: LLVMUnnamedAddr {
     return UnnamedAddressKind.unnamedAddressMapping[self]!
   }
 }

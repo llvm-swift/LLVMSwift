@@ -34,8 +34,8 @@ extension IRGlobal {
 
   /// Retrieves an indicator for the significance of a global value's address.
   public var unnamedAddressKind: UnnamedAddressKind {
-    get { return UnnamedAddressKind(llvm: LLVMHasUnnamedAddr(asLLVM()))  }
-    set { LLVMSetUnnamedAddr(asLLVM(), newValue.llvm) }
+    get { return UnnamedAddressKind(llvm: LLVMGetUnnamedAddress(asLLVM()))  }
+    set { LLVMSetUnnamedAddress(asLLVM(), newValue.llvm) }
   }
 
   /// Retrieves the COMDAT section for this global, if it exists.

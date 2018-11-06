@@ -42,7 +42,7 @@ import cllvm
 ///
 ///     var g1 = builder.addGlobal("g1", initializer: IntType.int8.constant(42))
 ///     g1.comdat = foo
-///     var g2 = builder.addGlobal("g1", initializer: IntType.int8.constant(42))
+///     var g2 = builder.addGlobal("g2", initializer: IntType.int8.constant(42))
 ///     g2.comdat = bar
 ///
 /// From the object file perspective, this requires the creation of two sections
@@ -57,66 +57,68 @@ public class Comdat {
   }
 
   /// The selection kind for this COMDAT section.
-  public var selectionKind: ComdatSelectionKind {
-    get { return ComdatSelectionKind(llvm: LLVMGetComdatSelectionKind(self.llvm)) }
+  public var selectionKind: Comdat.SelectionKind {
+    get { return Comdat.SelectionKind(llvm: LLVMGetComdatSelectionKind(self.llvm)) }
     set { LLVMSetComdatSelectionKind(self.llvm, newValue.llvm) }
   }
 }
 
-/// A `ComdatSelectionKind` describes the behavior of the linker when
-/// linking COMDAT sections.
-public enum ComdatSelectionKind {
-  /// The linker may choose any COMDAT section with a matching key.
-  ///
-  /// This selection kind is the most relaxed - any section with the same key
-  /// but not necessarily identical size or contents can be chosen.  Precisely
-  /// which section is chosen is implementation-defined.
-  ///
-  /// This selection kind is the default for all newly-inserted sections.
-  case any
-  /// The linker may choose any identically-keyed COMDAT section and requires
-  /// all other referenced data to match its selection's referenced data.
-  ///
-  /// This selection kind requires that the data in each COMDAT section be
-  /// identical in length and content.  Inclusion of multiple non-identical
-  /// COMDAT sections with the same key is an error.
-  ///
-  /// For global objects in LLVM, identical contents is defined to mean that
-  /// their initializers point to the same global `IRValue`.
-  case exactMatch
-  /// The linker chooses the identically-keyed COMDAT section with the largest
-  /// size, ignoring content.
-  case largest
-  /// The COMDAT section with this key is unique.
-  ///
-  /// This selection requires that no other COMDAT section have the same key
-  /// as this section, making the choice of selection unambiguous.  Inclusion
-  /// of any other COMDAT section with the same key is an error.
-  case noDuplicates
-  /// The linker may choose any identically-keyed COMDAT section and requires
-  /// all other sections to have the same size as its selection.
-  case sameSize
+extension Comdat {
+  /// A `Comdat.SelectionKind` describes the behavior of the linker when
+  /// linking COMDAT sections.
+  public enum SelectionKind {
+    /// The linker may choose any COMDAT section with a matching key.
+    ///
+    /// This selection kind is the most relaxed - any section with the same key
+    /// but not necessarily identical size or contents can be chosen.  Precisely
+    /// which section is chosen is implementation-defined.
+    ///
+    /// This selection kind is the default for all newly-inserted sections.
+    case any
+    /// The linker may choose any identically-keyed COMDAT section and requires
+    /// all other referenced data to match its selection's referenced data.
+    ///
+    /// This selection kind requires that the data in each COMDAT section be
+    /// identical in length and content.  Inclusion of multiple non-identical
+    /// COMDAT sections with the same key is an error.
+    ///
+    /// For global objects in LLVM, identical contents is defined to mean that
+    /// their initializers point to the same global `IRValue`.
+    case exactMatch
+    /// The linker chooses the identically-keyed COMDAT section with the largest
+    /// size, ignoring content.
+    case largest
+    /// The COMDAT section with this key is unique.
+    ///
+    /// This selection requires that no other COMDAT section have the same key
+    /// as this section, making the choice of selection unambiguous.  Inclusion
+    /// of any other COMDAT section with the same key is an error.
+    case noDuplicates
+    /// The linker may choose any identically-keyed COMDAT section and requires
+    /// all other sections to have the same size as its selection.
+    case sameSize
 
-  internal init(llvm: LLVMComdatSelectionKind) {
-    switch llvm {
-    case LLVMAnyComdatSelectionKind: self = .any
-    case LLVMExactMatchComdatSelectionKind: self = .exactMatch
-    case LLVMLargestComdatSelectionKind: self = .largest
-    case LLVMNoDuplicatesComdatSelectionKind: self = .noDuplicates
-    case LLVMSameSizeComdatSelectionKind: self = .sameSize
-    default: fatalError("unknown comdat selection kind \(llvm)")
+    internal init(llvm: LLVMComdatSelectionKind) {
+      switch llvm {
+      case LLVMAnyComdatSelectionKind: self = .any
+      case LLVMExactMatchComdatSelectionKind: self = .exactMatch
+      case LLVMLargestComdatSelectionKind: self = .largest
+      case LLVMNoDuplicatesComdatSelectionKind: self = .noDuplicates
+      case LLVMSameSizeComdatSelectionKind: self = .sameSize
+      default: fatalError("unknown comdat selection kind \(llvm)")
+      }
     }
-  }
 
-  private static let comdatMapping: [ComdatSelectionKind: LLVMComdatSelectionKind] = [
-    .any: LLVMAnyComdatSelectionKind,
-    .exactMatch: LLVMExactMatchComdatSelectionKind,
-    .largest: LLVMLargestComdatSelectionKind,
-    .noDuplicates: LLVMNoDuplicatesComdatSelectionKind,
-    .sameSize: LLVMSameSizeComdatSelectionKind,
-  ]
+    private static let comdatMapping: [Comdat.SelectionKind: LLVMComdatSelectionKind] = [
+      .any: LLVMAnyComdatSelectionKind,
+      .exactMatch: LLVMExactMatchComdatSelectionKind,
+      .largest: LLVMLargestComdatSelectionKind,
+      .noDuplicates: LLVMNoDuplicatesComdatSelectionKind,
+      .sameSize: LLVMSameSizeComdatSelectionKind,
+    ]
 
-  fileprivate var llvm: LLVMComdatSelectionKind {
-    return ComdatSelectionKind.comdatMapping[self]!
+    fileprivate var llvm: LLVMComdatSelectionKind {
+      return SelectionKind.comdatMapping[self]!
+    }
   }
 }
