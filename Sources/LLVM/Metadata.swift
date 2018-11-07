@@ -335,3 +335,27 @@ public struct NameSpaceMetadata: DIScope {
     self.llvm = llvm
   }
 }
+
+/// `ExpressionMetadata` nodes represent expressions that are inspired by the
+/// DWARF expression language. They are used in debug intrinsics (such as
+/// llvm.dbg.declare and llvm.dbg.value) to describe how the referenced LLVM
+/// variable relates to the source language variable.
+///
+/// Debug intrinsics are interpreted left-to-right: start by pushing the
+/// value/address operand of the intrinsic onto a stack, then repeatedly push
+/// and evaluate opcodes from the `ExpressionMetadata` until the final variable
+/// description is produced.
+///
+/// Though DWARF supports hundreds of expressions, LLVM currently implements
+/// a very limited subset.
+public struct ExpressionMetadata: Metadata {
+  internal let llvm: LLVMMetadataRef
+
+  public func asMetadata() -> LLVMMetadataRef {
+    return llvm
+  }
+
+  public init(llvm: LLVMMetadataRef) {
+    self.llvm = llvm
+  }
+}

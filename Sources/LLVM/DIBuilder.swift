@@ -1055,3 +1055,77 @@ extension DIBuilder {
     return ObjectiveCPropertyMetadata(llvm: ty)
   }
 }
+
+extension DIBuilder {
+  /// Create a new descriptor for the specified variable which has a complex
+  /// address expression for its address.
+  ///
+  /// - Parameters:
+  ///    - expression: An array of complex address operations.
+  public func buildExpression(_ expression: [DWARFExpression]) -> ExpressionMetadata {
+    var expr = expression.flatMap { $0.rawValue }
+    let count = expr.count
+    return expr.withUnsafeMutableBytes { raw in
+      let rawVal = raw.bindMemory(to: Int64.self)
+      guard let expr = LLVMDIBuilderCreateExpression(
+        self.llvm, rawVal.baseAddress!, count)
+      else {
+        fatalError("Failed to allocate metadata")
+      }
+      return ExpressionMetadata(llvm: expr)
+    }
+  }
+
+  /// Create a new descriptor for the specified variable that does not have an
+  /// address, but does have a constant value.
+  ///
+  /// - Parameters:
+  ///   - value: The constant value.
+  public func buildConstantExpresion(_ value: Int) -> ExpressionMetadata {
+    guard let expr = LLVMDIBuilderCreateConstantValueExpression(
+      self.llvm, Int64(value))
+    else {
+      fatalError("Failed to allocate metadata")
+    }
+    return ExpressionMetadata(llvm: expr)
+  }
+
+  /// Create a new descriptor for the specified variable.
+  ///
+  /// - Parameters:
+  ///   - name: Name of the variable.
+  ///   - linkageName: Mangled  name of the variable.
+  ///   - type: Variable Type.
+  ///   - scope: Variable scope.
+  ///   - file: File where this variable is defined.
+  ///   - line: Line number.
+  ///   - isLocal: Boolean flag indicate whether this variable is
+  ///     externally visible or not.
+  ///   - expression: The location of the global relative to the attached
+  ///     GlobalVariable.
+  ///   - declaration: Reference to the corresponding declaration.
+  ///   - alignment: Variable alignment(or 0 if no alignment attr was
+  ///     specified)
+  public func buildGlobalExpression(
+    named name: String, linkageName: String, type: DIType,
+    scope: DIScope, file: FileMetadata, line: Int,
+    isLocal: Bool = true,
+    expression: ExpressionMetadata? = nil,
+    declaration: Metadata? = nil,
+    alignment: Alignment = .zero
+  ) -> ExpressionMetadata {
+    let radix = UInt32(self.module.dataLayout.intPointerType().width)
+    guard let ty = LLVMDIBuilderCreateGlobalVariableExpression(
+      self.llvm, scope.asMetadata(),
+      name, name.count, linkageName, linkageName.count,
+      file.asMetadata(), UInt32(line),
+      type.asMetadata(),
+      isLocal.llvm,
+      expression?.asMetadata(), declaration?.asMetadata(),
+      alignment.rawValue * radix)
+    else {
+      fatalError("Failed to allocate metadata")
+    }
+    return ExpressionMetadata(llvm: ty)
+  }
+}
