@@ -140,6 +140,9 @@ public struct Size {
     return Size(value & ~mask)
   }
 
+  /// Returns the remainder of dividing the first size value
+  /// by the second alignment value.  This has the effect of aligning the
+  /// size value subtractively.
   public static func % (lhs: Size, rhs: Alignment) -> Size {
     return Size(lhs.rawValue % UInt64(rhs.rawValue))
   }
@@ -232,20 +235,6 @@ extension Size: UnsignedInteger {
     lhs = Size(lhs.rawValue * rhs.rawValue)
   }
 
-  public static func * (lhs: Size, rhs: UInt64) -> Size {
-    var lhs = lhs
-    lhs *= Size(rhs)
-    return lhs
-  }
-  public static func * (lhs: UInt64, rhs: Size) -> Size {
-    var lhs = Size(lhs)
-    lhs *= rhs
-    return lhs
-  }
-  public static func *= (lhs: inout Size, rhs: UInt64) {
-    lhs = Size(lhs.rawValue * rhs)
-  }
-
   public static func / (lhs: Size, rhs: Size) -> Size {
     var lhs = lhs
     lhs /= rhs
@@ -295,4 +284,26 @@ extension Size: UnsignedInteger {
 
   public typealias IntegerLiteralType = UInt64
   public typealias Words = UInt64.Words
+}
+
+extension Size {
+  /// Multiplies a size value by a raw unitless value and produces their product.
+  public static func * (lhs: Size, rhs: UInt64) -> Size {
+    var lhs = lhs
+    lhs *= Size(rhs)
+    return lhs
+  }
+
+  /// Multiplies a raw unitless value by a size value and produces their product.
+  public static func * (lhs: UInt64, rhs: Size) -> Size {
+    var lhs = Size(lhs)
+    lhs *= rhs
+    return lhs
+  }
+
+  /// Multiplies a size value by a raw unitless value and stores the result in
+  /// the left-hand-side size variable.
+  public static func *= (lhs: inout Size, rhs: UInt64) {
+    lhs = Size(lhs.rawValue * rhs)
+  }
 }

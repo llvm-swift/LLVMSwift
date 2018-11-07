@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Global Structure Reference</title>
+    <title>EnumAttribute Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/Global" class="dashAnchor"></a>
-    <a title="Global Structure Reference"></a>
+    <a name="//apple_ref/swift/Struct/EnumAttribute" class="dashAnchor"></a>
+    <a title="EnumAttribute Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">LLVM Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Global Structure Reference
+        EnumAttribute Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -31,7 +31,16 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/Comdat.html">Comdat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat/SelectionKind.html">– SelectionKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DIBuilder.html">DIBuilder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Function.html">Function</a>
@@ -40,16 +49,28 @@
                 <a href="../Classes/FunctionPassManager.html">FunctionPassManager</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Global.html">Global</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/JIT/TargetAddress.html">– TargetAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ObjectFile.html">ObjectFile</a>
@@ -84,6 +105,12 @@
                 <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/AttributeIndex.html">AttributeIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
               </li>
               <li class="nav-group-task">
@@ -99,10 +126,28 @@
                 <a href="../Enums/CodegenFileType.html">CodegenFileType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/DIAttributeTypeEncoding.html">DIAttributeTypeEncoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFEmissionKind.html">DWARFEmissionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFExpression.html">DWARFExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFSourceLanguage.html">DWARFSourceLanguage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFTag.html">DWARFTag</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/FunctionPass.html">FunctionPass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRValueKind.html">IRValueKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
@@ -225,7 +270,19 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/Attribute.html">Attribute</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DIType.html">DIType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRConstant.html">IRConstant</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
@@ -240,7 +297,13 @@
                 <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/Metadata.html">Metadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/_IRMetadataInitializerHack.html">_IRMetadataInitializerHack</a>
               </li>
             </ul>
           </li>
@@ -249,6 +312,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alignment.html">Alignment</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/ArrayType.html">ArrayType</a>
@@ -263,7 +329,31 @@
                 <a href="../Structs/Call.html">Call</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Constant.html">Constant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIBasicType.html">DIBasicType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIFlags.html">DIFlags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DISubroutineType.html">DISubroutineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DebugLocation.html">DebugLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnumAttribute.html">EnumAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FileMetadata.html">FileMetadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/FloatType.html">FloatType</a>
@@ -272,10 +362,13 @@
                 <a href="../Structs/FloatType/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/FunctionMetadata.html">FunctionMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/FunctionType.html">FunctionType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Global.html">Global</a>
+                <a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Instruction.html">Instruction</a>
@@ -290,7 +383,28 @@
                 <a href="../Structs/LabelType.html">LabelType</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockFileMetadata.html">LexicalBlockFileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockMetadata.html">LexicalBlockMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/MetadataType.html">MetadataType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ModuleMetadata.html">ModuleMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyAttribute.html">ObjectiveCPropertyAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyMetadata.html">ObjectiveCPropertyMetadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Parameter.html">Parameter</a>
@@ -306,6 +420,15 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringAttribute.html">StringAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructLayout.html">StructLayout</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/StructType.html">StructType</a>
@@ -341,16 +464,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Global</h1>
+            <h1>EnumAttribute</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Global</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRGlobal.html">IRGlobal</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">EnumAttribute</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Attribute.html">Attribute</a></span></code></pre>
 
                 </div>
               </div>
-            <p>A <code>Global</code> represents a region of memory allocated at compile time instead
-of at runtime.  A global variable must either have an initializer, or make
-reference to an external definition that has an initializer.</p>
+            <p>An <q>enum</q> (a.k.a. target-independent) attribute.</p>
 
           </section>
           <section class="section task-group-section">
@@ -359,9 +480,9 @@ reference to an external definition that has an initializer.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM6GlobalV23isExternallyInitializedSbv"></a>
-                    <a name="//apple_ref/swift/Property/isExternallyInitialized" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV23isExternallyInitializedSbv">isExternallyInitialized</a>
+                    <a name="/s:4LLVM13EnumAttributeV5values6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM13EnumAttributeV5values6UInt64Vvp">value</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -369,15 +490,14 @@ reference to an external definition that has an initializer.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns whether this global variable has no initializer because it makes
-reference to an initialized value in another translation unit.</p>
+                        <p>The value of the attribute.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isExternallyInitialized</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt64</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -387,208 +507,9 @@ reference to an initialized value in another translation unit.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM6GlobalV11initializerAA7IRValue_pSgv"></a>
-                    <a name="//apple_ref/swift/Property/initializer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV11initializerAA7IRValue_pSgv">initializer</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Retrieves the initializer for this global variable, if it exists.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">initializer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6GlobalV02isB8ConstantSbv"></a>
-                    <a name="//apple_ref/swift/Property/isGlobalConstant" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV02isB8ConstantSbv">isGlobalConstant</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns whether this global variable is a constant, whether or not the
-final definition of the global is not.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isGlobalConstant</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6GlobalV13isThreadLocalSbv"></a>
-                    <a name="//apple_ref/swift/Property/isThreadLocal" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV13isThreadLocalSbv">isThreadLocal</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns whether this global variable is thread-local.  That is, returns
-if this variable is not shared by multiple threads.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isThreadLocal</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6GlobalV16threadLocalModelAA06ThreaddE0Ov"></a>
-                    <a name="//apple_ref/swift/Property/threadLocalModel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV16threadLocalModelAA06ThreaddE0Ov">threadLocalModel</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Accesses the model of reference for this global variable if it is 
-thread-local.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">threadLocalModel</span><span class="p">:</span> <span class="kt"><a href="../Enums/ThreadLocalModel.html">ThreadLocalModel</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6GlobalV8previousACSgyF"></a>
-                    <a name="//apple_ref/swift/Method/previous()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV8previousACSgyF">previous()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Retrieves the previous global in the module, if there is one.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">previous</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Global</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6GlobalV4nextACSgyF"></a>
-                    <a name="//apple_ref/swift/Method/next()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV4nextACSgyF">next()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Retrieves the next global in the module, if there is one.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Global</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6GlobalV6deleteyyF"></a>
-                    <a name="//apple_ref/swift/Method/delete()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV6deleteyyF">delete()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Deletes the global variable from its containing module.</p>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    This does not remove references to this global from the
-    module. Ensure you have removed all instructions that reference
-    this global before deleting it.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">delete</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6GlobalV02asA0s13OpaquePointerVyF"></a>
+                    <a name="/s:4LLVM13EnumAttributeV02asA0s13OpaquePointerVyF"></a>
                     <a name="//apple_ref/swift/Method/asLLVM()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6GlobalV02asA0s13OpaquePointerVyF">asLLVM()</a>
+                    <a class="token" href="#/s:4LLVM13EnumAttributeV02asA0s13OpaquePointerVyF">asLLVM()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -596,14 +517,14 @@ thread-local.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Retrieves the underlying LLVM value object.</p>
+                        <p>Retrieves the underlying LLVM attribute object.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMValueRef</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMAttributeRef</span></code></pre>
 
                         </div>
                       </div>
@@ -615,8 +536,8 @@ thread-local.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-02-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

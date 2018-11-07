@@ -435,6 +435,9 @@ public enum DIAttributeTypeEncoding {
   }
 }
 
+/// Enumerates a set of flags that can be applied to metadata nodes to change
+/// their interpretation at compile time or attach additional semantic
+/// significance at runtime.
 public struct DIFlags : OptionSet {
   public let rawValue: LLVMDIFlags.RawValue
 
