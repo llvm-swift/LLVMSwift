@@ -78,7 +78,6 @@ public final class Module: CustomStringConvertible {
       llvm = LLVMModuleCreateWithName(name)
       self.context = Context(llvm: LLVMGetModuleContext(llvm)!)
     }
-    self.dataLayout = TargetData(llvm: LLVMGetModuleDataLayout(llvm))
   }
 
   /// Obtain the target triple for this module.
@@ -317,6 +316,18 @@ extension Module {
   public func comdat(named name: String) -> Comdat {
     guard let comdat = LLVMGetOrInsertComdat(llvm, name) else { fatalError() }
     return Comdat(llvm: comdat)
+  }
+
+  /// Searches for and retrieves module-level named metadata with the given name
+  /// in this module.  If none is found, one with that name is created and
+  /// returned.
+  ///
+  /// - parameter name: The name of the comdat section to create.
+  ///
+  /// - returns: A representation of the newly created metadata with the
+  ///   given name.
+  public func metadata(named name: String) -> NamedMetadata {
+    return NamedMetadata(module: self, name: name)
   }
 
   /// Build a named global of the given type.

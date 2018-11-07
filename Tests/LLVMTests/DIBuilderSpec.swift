@@ -18,9 +18,9 @@ class DIBuilderSpec : XCTestCase {
       _ = builder.buildAlloca(type: IntType.int8)
 
       // DIBUILDER-DAG: !{{[0-9]+}} = !DIFile(filename: "test.trill", directory: "/")
-      let file = debugBuilder.createFile(named: "test.trill", in: "/")
+      let file = debugBuilder.buildFile(named: "test.trill", in: "/")
       // DIBUILDER-DAG: !{{[0-9]+}} = distinct !DICompileUnit(language: DW_LANG_Swift, file: !{{[0-9]+}}, isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, enums: !{{[0-9]+}}, splitDebugInlining: false)
-      _ = debugBuilder.createCompileUnit(for: .swift, in: file, kind: .full)
+      _ = debugBuilder.buildCompileUnit(for: .swift, in: file, kind: .full, optimized: false, runtimeVersion: 0)
 
       debugBuilder.finalize()
       module.dump()

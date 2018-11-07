@@ -11,6 +11,14 @@ public class Function: IRGlobal {
     self.llvm = llvm
   }
 
+  /// Accesses the metadata associated with this function.
+  ///
+  /// To build new function metadata, see `DIBuilder.buildFunction`.
+  public var metadata: FunctionMetadata {
+    get { return FunctionMetadata(llvm: LLVMGetSubprogram(self.llvm)) }
+    set { LLVMSetSubprogram(self.llvm, newValue.asMetadata()) }
+  }
+
   /// Accesses the calling convention for this function.
   public var callingConvention: CallingConvention {
     get { return CallingConvention(llvm: LLVMCallConv(rawValue: LLVMGetFunctionCallConv(llvm))) }

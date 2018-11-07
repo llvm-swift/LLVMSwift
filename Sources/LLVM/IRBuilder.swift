@@ -84,6 +84,16 @@ extension IRBuilder {
   }
 }
 
+// MARK: Debug Information
+
+extension IRBuilder {
+  /// Access location information used by debugging information.
+  public var currentDebugLocation: DebugLocation {
+    get { return DebugLocation(llvm: LLVMValueAsMetadata(LLVMGetCurrentDebugLocation(self.llvm))) }
+    set { LLVMSetCurrentDebugLocation(self.llvm, LLVMMetadataAsValue(self.module.context.llvm, newValue.asMetadata())) }
+  }
+}
+
 // MARK: Convenience Instructions
 
 extension IRBuilder {
