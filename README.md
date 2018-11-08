@@ -171,11 +171,14 @@ LLVMSwift provides a JIT abstraction to make executing code in LLVM modules quic
 
 ```swift
 // Setup the JIT
-let jit = try! JIT(module: module, machine: TargetMachine())
+let jit = try JIT(machine: TargetMachine())
 typealias FnPtr = @convention(c) (Bool) -> Double
+_ = try jit.addEagerlyCompiledIR(module) { (name) -> JIT.TargetAddress in
+  return JIT.TargetAddress()
+}
 // Retrieve a handle to the function we're going to invoke
-let fnAddr = jit.addressOfFunction(name: "calculateFibs")
-let fn = unsafeBitCast(fnAddr, to: FnPtr.self)
+let addr = try jit.address(of: "calculateFibs")
+let fn = unsafeBitCast(addr, to: FnPtr.self)
 // Call the function!
 print(fn(true)) // 0.00917431192660551...
 print(fn(false)) // 0.0112359550561798...
@@ -186,7 +189,7 @@ print(fn(false)) // 0.0112359550561798...
 There are a couple annoying steps you need to accomplish before building
 LLVMSwift:
 
-- Install LLVM 5.0+ using your favorite package manager. For example:
+- Install LLVM 7.0+ using your favorite package manager. For example:
   - `brew install llvm`
 - Ensure `llvm-config` is in your `PATH`
   - That will reside in the `/bin` folder wherever your package manager
@@ -200,7 +203,7 @@ compiler projects!
 ### Installation with Swift Package Manager
 
 ```swift
-.package(url: "https://github.com/llvm-swift/LLVMSwift.git", from: "0.2.0")
+.package(url: "https://github.com/llvm-swift/LLVMSwift.git", from: "0.4.0")
 ```
 
 ### Installation without Swift Package Manager
