@@ -984,7 +984,7 @@ extension DIBuilder {
   ///   - line: Line number of the declaration.
   ///   - name: The name of the imported declaration.
   public func buildImportedDeclaration(
-    in context: DIScope, declaration: Metadata,
+    in context: DIScope, declaration: IRMetadata,
     file: FileMetadata, line: Int, name: String = ""
   ) -> ImportedEntityMetadata {
     guard let mod = LLVMDIBuilderCreateImportedDeclaration(
@@ -1111,7 +1111,7 @@ extension DIBuilder {
     scope: DIScope, file: FileMetadata, line: Int,
     isLocal: Bool = true,
     expression: ExpressionMetadata? = nil,
-    declaration: Metadata? = nil,
+    declaration: IRMetadata? = nil,
     alignment: Alignment = .zero
   ) -> ExpressionMetadata {
     let radix = UInt32(self.module.dataLayout.intPointerType().width)

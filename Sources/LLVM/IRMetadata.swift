@@ -41,21 +41,21 @@ public protocol _IRMetadataInitializerHack {
 ///   to compile a program to native machine code and standard debugging
 ///   formats. This allows compatibility with traditional machine-code level
 ///   debuggers, like GDB, DBX, or CodeView.
-public protocol Metadata: _IRMetadataInitializerHack {
+public protocol IRMetadata: _IRMetadataInitializerHack {
   /// Retrieves the underlying LLVM metadata object.
   func asMetadata() -> LLVMMetadataRef
 }
 
-extension Metadata {
+extension IRMetadata {
   /// Replaces all uses of the this metadata with the given metadata.
   ///
   /// - parameter metadata: The new value to swap in.
-  public func replaceAllUses(with metadata: Metadata) {
+  public func replaceAllUses(with metadata: IRMetadata) {
     LLVMMetadataReplaceAllUsesWith(self.asMetadata(), metadata.asMetadata())
   }
 }
 
-extension Metadata {
+extension IRMetadata {
   /// Dumps a representation of this metadata to stderr.
   public func dump() {
     LLVMDumpValue(LLVMMetadataAsValue(LLVMGetGlobalContext(), self.asMetadata()))
@@ -66,13 +66,13 @@ extension Metadata {
   /// - warning: In general, use of this method is discouraged and can
   ///   lead to unpredictable results or undefined behavior.  No checks are
   ///   performed before, during, or after the cast.
-  public func forceCast<DestTy: Metadata>(to: DestTy.Type) -> DestTy {
+  public func forceCast<DestTy: IRMetadata>(to: DestTy.Type) -> DestTy {
     return DestTy(llvm: self.asMetadata())
   }
 }
 
 /// Denotes a scope in which child metadata nodes can be inserted.
-public protocol DIScope: Metadata {}
+public protocol DIScope: IRMetadata {}
 
 /// Denotes metadata for a type.
 public protocol DIType: DIScope {}
@@ -113,7 +113,7 @@ extension DIType {
 }
 
 /// A `DebugLocation` represents a location in source.
-public struct DebugLocation: Metadata {
+public struct DebugLocation: IRMetadata {
   internal let llvm: LLVMMetadataRef
 
   public func asMetadata() -> LLVMMetadataRef {
@@ -140,7 +140,7 @@ public struct DebugLocation: Metadata {
   }
 }
 
-struct AnyMetadata: Metadata {
+struct AnyMetadata: IRMetadata {
   let llvm: LLVMMetadataRef
 
   func asMetadata() -> LLVMMetadataRef {
@@ -271,7 +271,7 @@ public struct LexicalBlockFileMetadata: DIScope {
 
 /// `LocalVariableMetadata` nodes represent local variables and function
 /// parameters in the source language.
-public struct LocalVariableMetadata: Metadata {
+public struct LocalVariableMetadata: IRMetadata {
   internal let llvm: LLVMMetadataRef
 
   public func asMetadata() -> LLVMMetadataRef {
@@ -284,7 +284,7 @@ public struct LocalVariableMetadata: Metadata {
 }
 
 /// `ObjectiveCPropertyMetadata` nodes represent Objective-C property nodes.
-public struct ObjectiveCPropertyMetadata: Metadata {
+public struct ObjectiveCPropertyMetadata: IRMetadata {
   internal let llvm: LLVMMetadataRef
 
   public func asMetadata() -> LLVMMetadataRef {
@@ -362,7 +362,7 @@ public struct NameSpaceMetadata: DIScope {
 ///
 /// Though DWARF supports hundreds of expressions, LLVM currently implements
 /// a very limited subset.
-public struct ExpressionMetadata: Metadata {
+public struct ExpressionMetadata: IRMetadata {
   internal let llvm: LLVMMetadataRef
 
   public func asMetadata() -> LLVMMetadataRef {
