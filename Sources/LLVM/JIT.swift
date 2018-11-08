@@ -5,6 +5,10 @@ import cllvm
 /// JITError represents the different kinds of errors the JIT compiler can
 /// throw.
 public enum JITError: Error, CustomStringConvertible {
+  /// A generic error thrown by the JIT during exceptional circumstances.
+  ///
+  /// In general, it is not safe to catch and continue after this exception has
+  /// been thrown.
   case generic(String)
 
   public var description: String {
@@ -23,7 +27,31 @@ public enum JITError: Error, CustomStringConvertible {
 /// The JIT is fundamentally lazy, and allows control over when and how symbols
 /// are resolved.
 public final class JIT {
-  public typealias TargetAddress = LLVMOrcTargetAddress
+  /// A type that represents an address, either symbolically within the JIT or
+  /// physically in the execution environment.
+  public struct TargetAddress: Comparable {
+    fileprivate var llvm: LLVMOrcTargetAddress
+
+    /// Creates a target address value of `0`.
+    public init() {
+      self.llvm = 0
+    }
+
+    /// Creates a target address from a raw address value.
+    public init(raw: LLVMOrcTargetAddress) {
+      self.llvm = raw
+    }
+
+    public static func == (lhs: TargetAddress, rhs: TargetAddress) -> Bool {
+      return lhs.llvm == rhs.llvm
+    }
+
+    public static func < (lhs: TargetAddress, rhs: TargetAddress) -> Bool {
+      return lhs.llvm < rhs.llvm
+    }
+  }
+
+  /// Represents a handle to a module owned by the JIT stack.
   public struct ModuleHandle {
     fileprivate var llvm: LLVMOrcModuleHandle
   }
@@ -77,13 +105,13 @@ public final class JIT {
   ///   restrict the search, if any.
   /// - returns: The address of the symbol, or 0 if it does not exist.
   public func address(of symbol: String, in module: ModuleHandle? = nil) throws -> TargetAddress {
-    var retAddr: TargetAddress = 0
+    var retAddr: LLVMOrcTargetAddress = 0
     if let targetModule = module {
       try checkForJITError(LLVMOrcGetSymbolAddressIn(self.llvm, &retAddr, targetModule.llvm, symbol))
     } else {
       try checkForJITError(LLVMOrcGetSymbolAddress(self.llvm, &retAddr, symbol))
     }
-    return retAddr
+    return TargetAddress(raw: retAddr)
   }
 
   // MARK: Lazy Compilation
@@ -103,11 +131,11 @@ public final class JIT {
   /// - returns: The target address representing a stub.  Calling this stub
   ///   forces the given compilation callback to fire.
   public func registerLazyCompile(_ callback: @escaping (JIT) -> TargetAddress) throws -> TargetAddress {
-    var addr: TargetAddress = 0
+    var addr: LLVMOrcTargetAddress = 0
     let callbackContext = ORCLazyCompileCallbackContext(callback)
     let contextPtr = Unmanaged<ORCLazyCompileCallbackContext>.passRetained(callbackContext).toOpaque()
     try checkForJITError(LLVMOrcCreateLazyCompileCallback(self.llvm, &addr, lazyCompileBlockTrampoline, contextPtr))
-    return addr
+    return TargetAddress(raw: addr)
   }
 
   // MARK: Stubs
@@ -120,7 +148,7 @@ public final class JIT {
   /// - parameter name: The name of the indirect stub.
   /// - parameter address: The address of the indirect stub.
   public func createIndirectStub(named name: String, address: TargetAddress) throws {
-    try checkForJITError(LLVMOrcCreateIndirectStub(self.llvm, name, address))
+    try checkForJITError(LLVMOrcCreateIndirectStub(self.llvm, name, address.llvm))
   }
 
   /// Resets the address of an indirect stub.
@@ -132,7 +160,7 @@ public final class JIT {
   /// - parameter name: The name of an indirect stub.
   /// - parameter address: The address to set the indirect stub to point to.
   public func setIndirectStubPointer(named name: String, address: TargetAddress) throws {
-    try checkForJITError(LLVMOrcSetIndirectStubPointer(self.llvm, name, address))
+    try checkForJITError(LLVMOrcSetIndirectStubPointer(self.llvm, name, address.llvm))
   }
 
   // MARK: Adding Code to the JIT
@@ -251,7 +279,7 @@ private let lazyCompileBlockTrampoline : LLVMOrcLazyCompileCallbackFn = { (callb
 
   let tempJIT = JIT(llvm: jit, ownsContext: false)
   let callback = Unmanaged<ORCLazyCompileCallbackContext>.fromOpaque(ctx).takeUnretainedValue()
-  return callback.block(tempJIT)
+  return callback.block(tempJIT).llvm
 }
 
 private let symbolBlockTrampoline : LLVMOrcSymbolResolverFn = { (callbackName, callbackCtx) in
@@ -261,7 +289,7 @@ private let symbolBlockTrampoline : LLVMOrcSymbolResolverFn = { (callbackName, c
 
   let name = String(cString: cname)
   let callback = Unmanaged<ORCSymbolCallbackContext>.fromOpaque(ctx).takeUnretainedValue()
-  return callback.block(name)
+  return callback.block(name).llvm
 }
 
 private class ORCLazyCompileCallbackContext {

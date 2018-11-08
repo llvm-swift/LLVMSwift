@@ -2,7 +2,11 @@
 import cllvm
 #endif
 
+/// An unfortunate artifact of the design of the metadata class hierarchy is
+/// that you may find it convenient to force-cast metadata nodes.  In general,
+/// this behavior is not encouraged, but it will be supported for now.
 public protocol _IRMetadataInitializerHack {
+  /// Initialize a metadata node from a raw LLVM metadata ref.
   init(llvm: LLVMMetadataRef)
 }
 
@@ -38,6 +42,7 @@ public protocol _IRMetadataInitializerHack {
 ///   formats. This allows compatibility with traditional machine-code level
 ///   debuggers, like GDB, DBX, or CodeView.
 public protocol Metadata: _IRMetadataInitializerHack {
+  /// Retrieves the underlying LLVM metadata object.
   func asMetadata() -> LLVMMetadataRef
 }
 
@@ -56,6 +61,11 @@ extension Metadata {
     LLVMDumpValue(LLVMMetadataAsValue(LLVMGetGlobalContext(), self.asMetadata()))
   }
 
+  /// Force-casts metadata to a destination type.
+  ///
+  /// - warning: In general, use of this method is discouraged and can
+  ///   lead to unpredictable results or undefined behavior.  No checks are
+  ///   performed before, during, or after the cast.
   public func forceCast<DestTy: Metadata>(to: DestTy.Type) -> DestTy {
     return DestTy(llvm: self.asMetadata())
   }
@@ -300,6 +310,8 @@ public struct ImportedEntityMetadata: DIType {
   }
 }
 
+/// `NameSpaceMetadata` nodes represent subroutines in the source program.
+/// They are attached to corresponding LLVM IR functions.
 public struct FunctionMetadata: DIScope {
   internal let llvm: LLVMMetadataRef
 
@@ -312,6 +324,7 @@ public struct FunctionMetadata: DIScope {
   }
 }
 
+/// `NameSpaceMetadata` nodes represent entities like C++ modules.
 public struct ModuleMetadata: DIScope {
   internal let llvm: LLVMMetadataRef
 
@@ -324,6 +337,7 @@ public struct ModuleMetadata: DIScope {
   }
 }
 
+/// `NameSpaceMetadata` nodes represent entities like C++ namespaces.
 public struct NameSpaceMetadata: DIScope {
   internal let llvm: LLVMMetadataRef
 

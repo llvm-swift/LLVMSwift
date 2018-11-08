@@ -104,7 +104,7 @@ class JITSpec : XCTestCase {
         _ = try jit.addEagerlyCompiledIR(module) { (name) -> JIT.TargetAddress in
           gotForced = true
           guard name == testFuncName else {
-            return 0
+            return JIT.TargetAddress()
           }
           return getUnderlyingCDecl(calculateFibs)
         }
@@ -134,7 +134,7 @@ class JITSpec : XCTestCase {
         _ = try jit.addLazilyCompiledIR(module) { (name) -> JIT.TargetAddress in
           gotForced = true
           guard name == testFuncName else {
-            return 0
+            return JIT.TargetAddress()
           }
           return getUnderlyingCDecl(calculateFibs)
         }
@@ -169,12 +169,12 @@ class JITSpec : XCTestCase {
       let testFuncName = jit.mangle(symbol: "calculateSwiftFibs")
       _ = try jit.addObjectFile(objBuffer) { (name) -> JIT.TargetAddress in
         guard name == testFuncName else {
-          return 0
+          return JIT.TargetAddress()
         }
         return getUnderlyingCDecl(calculateFibs)
       }
       let mainAddr = try jit.address(of: "main")
-      XCTAssert(mainAddr != 0)
+      XCTAssert(mainAddr != JIT.TargetAddress())
     } catch _ {
       XCTFail()
     }
@@ -190,7 +190,7 @@ class JITSpec : XCTestCase {
           let sm = self.buildTestModule()
           _ = try! jit.addEagerlyCompiledIR(sm) { (name) -> JIT.TargetAddress in
             guard name == testFuncName else {
-              return 0
+              return JIT.TargetAddress()
             }
             return getUnderlyingCDecl(calculateFibs)
           }
@@ -223,7 +223,7 @@ class JITSpec : XCTestCase {
           let sm = self.buildTestModule()
           _ = try! jit.addEagerlyCompiledIR(sm) { (name) -> JIT.TargetAddress in
             guard name == testFuncName else {
-              return 0
+              return JIT.TargetAddress()
             }
             return getUnderlyingCDecl(calculateFibs)
           }

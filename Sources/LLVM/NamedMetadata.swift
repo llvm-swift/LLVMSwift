@@ -6,7 +6,9 @@ import cllvm
 /// by a user-provided name.  Named metadata is generated lazily when operands
 /// are attached.
 public class NamedMetadata {
+  /// The module with which this named metadata is associated.
   public let module: Module
+  /// The name associated with this named metadata.
   public let name: String
 
   init(module: Module, name: String) {
