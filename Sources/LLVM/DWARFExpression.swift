@@ -598,7 +598,7 @@ public enum DWARFExpression {
   /// Specifies an immediate value using two operands: an unsigned little-endian
   /// base-128 length, followed by a sequence of bytes of the given length that
   /// contain the value.
-  case implicitValue(UInt64)
+  case implicitValue(UInt64, [UInt8])
 
   /// Specifies that the object does not exist in memory, but its value is
   /// nonetheless known and is at the top of the DWARF expression stack.  In
@@ -963,8 +963,8 @@ extension DWARFExpression {
       return [ 0x9c ]
     case let .bitPiece(val1, val2):
       return [ 0x9d, val1, val2 ]
-    case let .implicitValue(val):
-      return [ 0x9e, val ]
+    case let .implicitValue(val, bytes):
+      return [ 0x9e, val ] + packBytes(bytes)
     case .stackValue:
       return [ 0x9f ]
     case let .implicitPointer(val1, val2):
