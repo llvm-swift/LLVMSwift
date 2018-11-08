@@ -17,12 +17,12 @@ public class NamedMetadata {
   }
 
   /// Computes the operands of a named metadata node.
-  public var operands: [Metadata] {
+  public var operands: [IRMetadata] {
     let count = Int(LLVMGetNamedMetadataNumOperands(self.module.llvm, name))
     let operands = UnsafeMutablePointer<LLVMValueRef?>.allocate(capacity: count)
     LLVMGetNamedMetadataOperands(self.module.llvm, name, operands)
 
-    var ops = [Metadata]()
+    var ops = [IRMetadata]()
     ops.reserveCapacity(count)
     for i in 0..<count {
       guard let rawOperand = operands[i] else {
@@ -37,7 +37,7 @@ public class NamedMetadata {
   }
 
   /// Appends a metadata node as an operand.
-  public func addOperand(_ op: Metadata) {
+  public func addOperand(_ op: IRMetadata) {
     let metaVal = LLVMMetadataAsValue(self.module.context.llvm, op.asMetadata())
     LLVMAddNamedMetadataOperand(self.module.llvm, self.name, metaVal)
   }
