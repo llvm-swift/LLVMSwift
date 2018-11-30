@@ -23,6 +23,42 @@ class IRBuilderSpec : XCTestCase {
       module.dump()
     })
 
+    XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["IRBUILDER-INLINE-ASM"]) {
+      // IRBUILDER-INLINE-ASM: ; ModuleID = '[[ModuleName:IRBuilderInlineAsmTest]]'
+      // IRBUILDER-INLINE-ASM-NEXT: source_filename = "[[ModuleName]]"
+      let module = Module(name: "IRBuilderInlineAsmTest")
+      let builder = IRBuilder(module: module)
+
+      // IRBUILDER-INLINE-ASM: module asm "i32 (i32) asm \22bswap $0\22, \22=r,r\22"
+      module.appendInlineAssembly("""
+      i32 (i32) asm "bswap $0", "=r,r"
+      """)
+      // IRBUILDER-INLINE-ASM-NEXT: %X = call i32 asm \22bswap $0\22, \22=r,r\22(i32 %Y)
+      module.appendInlineAssembly("""
+      %X = call i32 asm "bswap $0", "=r,r"(i32 %Y)
+      """)
+
+      // IRBUILDER-INLINE-ASM: @a = global i32 1
+      let g1 = builder.addGlobal("a", type: IntType.int32)
+      g1.initializer = Int32(1)
+
+      // IRBUILDER-INLINE-ASM: define void @main() {
+      let main = builder.addFunction("main",
+                                     type: FunctionType(argTypes: [],
+                                                        returnType: VoidType()))
+      // IRBUILDER-INLINE-ASM-NEXT: entry:
+      let entry = main.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: entry)
+      let ty = FunctionType(argTypes: [ PointerType(pointee: IntType.int32) ], returnType: VoidType())
+      let emptyASM = builder.buildInlineAssembly("", dialect: .att, type: ty, constraints: "=r,0", hasSideEffects: true, needsAlignedStack: true)
+      // IRBUILDER-INLINE-ASM-NEXT: call void asm sideeffect alignstack "\00", "=r,0\00"(i32* @a)
+      _ = builder.buildCall(emptyASM, args: [ g1 ])
+      // IRBUILDER-INLINE-ASM-NEXT: ret void
+      builder.buildRetVoid()
+      // IRBUILDER-INLINE-ASM-NEXT: }
+      module.dump()
+    })
+
     // MARK: Arithmetic Instructions
 
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["IRBUILDERARITH"]) {

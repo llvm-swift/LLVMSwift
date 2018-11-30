@@ -119,6 +119,18 @@ public final class Module: CustomStringConvertible {
     }
   }
 
+  /// Retrieves the inline assembly for this module, if any.
+  public var inlineAssembly: String {
+    get {
+      var length: Int = 0
+      guard let id = LLVMGetModuleInlineAsm(llvm, &length) else { return "" }
+      return String(cString: id)
+    }
+    set {
+      LLVMSetModuleInlineAsm2(llvm, newValue, newValue.utf8.count)
+    }
+  }
+
   /// Print a representation of a module to a file at the given path.
   ///
   /// If the provided path is not suitable for writing, this function will throw
@@ -429,6 +441,15 @@ extension Module {
   /// - returns: A value representing the newly created alias.
   public func addAlias(name: String, to aliasee: IRGlobal, type: IRType) -> Alias {
     return Alias(llvm: LLVMAddAlias(llvm, type.asLLVM(), aliasee.asLLVM(), name))
+  }
+
+  /// Append to the module-scope inline assembly blocks.
+  ///
+  /// A trailing newline is added if the given string doesn't have one.
+  ///
+  /// - parameter asm: The inline assembly expression template string.
+  public func appendInlineAssembly(_ asm: String) {
+    LLVMAppendModuleInlineAsm(llvm, asm, asm.count)
   }
 }
 
