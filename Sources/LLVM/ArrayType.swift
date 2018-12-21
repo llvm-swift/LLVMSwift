@@ -49,3 +49,9 @@ public struct ArrayType: IRType {
     return LLVMArrayType(elementType.asLLVM(), UInt32(count))
   }
 }
+
+extension ArrayType: Equatable {
+  public static func == (lhs: ArrayType, rhs: ArrayType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

@@ -44,3 +44,9 @@ public struct VectorType: IRType {
     return LLVMVectorType(elementType.asLLVM(), UInt32(count))
   }
 }
+
+extension VectorType: Equatable {
+  public static func == (lhs: VectorType, rhs: VectorType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

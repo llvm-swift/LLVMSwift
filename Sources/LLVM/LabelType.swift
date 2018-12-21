@@ -21,3 +21,9 @@ public struct LabelType: IRType {
    return LLVMLabelTypeInContext(context.llvm)
   }
 }
+
+extension LabelType: Equatable {
+  public static func == (lhs: LabelType, rhs: LabelType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

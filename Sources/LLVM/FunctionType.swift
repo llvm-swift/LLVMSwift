@@ -38,3 +38,9 @@ public struct FunctionType: IRType {
     }
   }
 }
+
+extension FunctionType: Equatable {
+  public static func == (lhs: FunctionType, rhs: FunctionType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

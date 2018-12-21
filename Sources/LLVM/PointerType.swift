@@ -43,3 +43,9 @@ public struct PointerType: IRType {
     return LLVMPointerType(pointee.asLLVM(), UInt32(addressSpace))
   }
 }
+
+extension PointerType: Equatable {
+  public static func == (lhs: PointerType, rhs: PointerType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

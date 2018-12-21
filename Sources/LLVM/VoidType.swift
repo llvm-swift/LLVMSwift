@@ -21,3 +21,9 @@ public struct VoidType: IRType {
     return LLVMVoidTypeInContext(context.llvm)
   }
 }
+
+extension VoidType: Equatable {
+  public static func == (lhs: VoidType, rhs: VoidType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

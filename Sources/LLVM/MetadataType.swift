@@ -21,3 +21,9 @@ public struct MetadataType: IRType {
     return LLVMMetadataTypeInContext(context.llvm)
   }
 }
+
+extension MetadataType: Equatable {
+  public static func == (lhs: MetadataType, rhs: MetadataType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

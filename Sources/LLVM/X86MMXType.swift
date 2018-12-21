@@ -26,3 +26,9 @@ public struct X86MMXType: IRType {
     return LLVMX86MMXTypeInContext(context.llvm)
   }
 }
+
+extension X86MMXType: Equatable {
+  public static func == (lhs: X86MMXType, rhs: X86MMXType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}
