@@ -100,3 +100,9 @@ public struct IntType: IRType {
     return LLVMIntTypeInContext(context.llvm, UInt32(width))
   }
 }
+
+extension IntType: Equatable {
+  public static func == (lhs: IntType, rhs: IntType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

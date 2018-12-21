@@ -22,3 +22,9 @@ public struct TokenType: IRType {
     return LLVMTokenTypeInContext(context.llvm)
   }
 }
+
+extension TokenType: Equatable {
+  public static func == (lhs: TokenType, rhs: TokenType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

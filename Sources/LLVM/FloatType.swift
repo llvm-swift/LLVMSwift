@@ -85,3 +85,9 @@ public struct FloatType: IRType {
     }
   }
 }
+
+extension FloatType: Equatable {
+  public static func == (lhs: FloatType, rhs: FloatType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}

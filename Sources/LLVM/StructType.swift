@@ -134,3 +134,9 @@ public struct StructType: IRType {
     return LLVMIsPackedStruct(self.llvm) != 0
   }
 }
+
+extension StructType: Equatable {
+  public static func == (lhs: StructType, rhs: StructType) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}
