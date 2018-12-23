@@ -110,7 +110,8 @@ public final class Module: CustomStringConvertible {
   /// The identifier of this module.
   public var name: String {
     get {
-      guard let id = LLVMGetModuleIdentifier(llvm, nil) else { return "" }
+      var count = 0
+      guard let id = LLVMGetModuleIdentifier(llvm, &count) else { return "" }
       return String(cString: id)
     }
     set {
