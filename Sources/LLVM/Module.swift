@@ -324,7 +324,7 @@ extension Module {
   /// - parameter name: The name of the function to create.
   ///
   /// - returns: A representation of the newly created function with the given
-  /// name or nil if such a representation could not be created.
+  ///   name or nil if such a representation could not be created.
   public func function(named name: String) -> Function? {
     guard let fn = LLVMGetNamedFunction(llvm, name) else { return nil }
     return Function(llvm: fn)
@@ -429,6 +429,159 @@ extension Module {
   /// - returns: A value representing the newly created alias.
   public func addAlias(name: String, to aliasee: IRGlobal, type: IRType) -> Alias {
     return Alias(llvm: LLVMAddAlias(llvm, type.asLLVM(), aliasee.asLLVM(), name))
+  }
+}
+
+// MARK: Module Flags
+
+extension Module {
+  /// Represents flags that describe information about the module for use by
+  /// an external entity e.g. the dynamic linker.
+  ///
+  /// - Warning: Module flags are not a general runtime metadata infrastructure,
+  ///   and may be stripped by LLVM.  As of the current release, LLVM hardcodes
+  ///   support for object-file emission of module flags related to
+  ///   Objective-C.
+  public class Flags {
+    /// Enumerates the supported behaviors for resolving collisions when two
+    /// module flags share the same key.  These collisions can occur when the
+    /// different flags are inserted under the same key, or when modules
+    /// containing flags under the same key are merged.
+    public enum Behavior {
+      /// Emits an error if two values disagree, otherwise the resulting value
+      /// is that of the operands.
+      case error
+      /// Emits a warning if two values disagree. The result value will be the
+      /// operand for the flag from the first module being linked.
+      case warning
+      /// Adds a requirement that another module flag be present and have a
+      /// specified value after linking is performed. The value must be a
+      /// metadata pair, where the first element of the pair is the ID of the
+      /// module flag to be restricted, and the second element of the pair is
+      /// the value the module flag should be restricted to. This behavior can
+      /// be used to restrict the allowable results (via triggering of an error)
+      /// of linking IDs with the **Override** behavior.
+      case require
+      /// Uses the specified value, regardless of the behavior or value of the
+      /// other module. If both modules specify **Override**, but the values
+      /// differ, an error will be emitted.
+      case override
+      /// Appends the two values, which are required to be metadata nodes.
+      case append
+      /// Appends the two values, which are required to be metadata
+      /// nodes. However, duplicate entries in the second list are dropped
+      /// during the append operation.
+      case appendUnique
+
+      fileprivate init(raw: LLVMModuleFlagBehavior) {
+        switch raw {
+        case LLVMModuleFlagBehaviorError:
+          self = .error
+        case LLVMModuleFlagBehaviorWarning:
+          self = .warning
+        case LLVMModuleFlagBehaviorRequire:
+          self = .require
+        case LLVMModuleFlagBehaviorOverride:
+          self = .override
+        case LLVMModuleFlagBehaviorAppend:
+          self = .append
+        case LLVMModuleFlagBehaviorAppendUnique:
+          self = .appendUnique
+        default:
+          fatalError("Unknown behavior kind")
+        }
+      }
+
+      fileprivate static let behaviorMapping: [Behavior: LLVMModuleFlagBehavior] = [
+        .error: LLVMModuleFlagBehaviorError,
+        .warning: LLVMModuleFlagBehaviorWarning,
+        .require: LLVMModuleFlagBehaviorRequire,
+        .override: LLVMModuleFlagBehaviorOverride,
+        .append: LLVMModuleFlagBehaviorAppend,
+        .appendUnique: LLVMModuleFlagBehaviorAppendUnique,
+      ]
+    }
+
+    /// Represents an entry in the module flags structure.
+    public struct Entry {
+      fileprivate let base: Flags
+      fileprivate let index: UInt32
+
+      /// The conflict behavior of this flag.
+      public var behavior: Behavior {
+        let raw = LLVMModuleFlagEntriesGetFlagBehavior(self.base.llvm, self.index)
+        return Behavior(raw: raw)
+      }
+
+      /// The key this flag was inserted with.
+      public var key: String {
+        var count = 0
+        guard let key = LLVMModuleFlagEntriesGetKey(self.base.llvm, self.index, &count) else { return "" }
+        return String(cString: key)
+      }
+
+      /// The metadata value associated with this flag.
+      public var metadata: IRMetadata {
+        return AnyMetadata(llvm: LLVMModuleFlagEntriesGetMetadata(self.base.llvm, self.index))
+      }
+    }
+
+    private let llvm: OpaquePointer?
+    private let bounds: Int
+    fileprivate init(llvm: OpaquePointer?, bounds: Int) {
+      self.llvm = llvm
+      self.bounds = bounds
+    }
+
+    deinit {
+      guard let ptr = llvm else { return }
+      LLVMDisposeModuleFlagsMetadata(ptr)
+    }
+
+    /// Retrieves a flag at the given index.
+    ///
+    /// - Parameter index: The index to retrieve.
+    ///
+    /// - Returns: An entry describing the flag at the given index.
+    public subscript(_ index: Int) -> Entry {
+      precondition(index >= 0 && index < self.bounds, "Index out of bounds")
+      return Entry(base: self, index: UInt32(index))
+    }
+
+    public var count: Int {
+      return self.bounds
+    }
+  }
+
+  /// Add a module-level flag to the module-level flags metadata.
+  ///
+  /// - Parameters:
+  ///   - name: The key for this flag.
+  ///   - value: The metadata node to insert as the value for this flag.
+  ///   - behavior: The resolution strategy to apply should the key for this
+  ///     flag conflict with an existing flag.
+  public func addFlag(named name: String, value: IRMetadata, behavior: Flags.Behavior) {
+    let raw = Flags.Behavior.behaviorMapping[behavior]!
+    LLVMAddModuleFlag(llvm, raw, name, name.count, value.asMetadata())
+  }
+
+  /// A convenience for inserting constant values as module-level flags.
+  ///
+  /// - Parameters:
+  ///   - name: The key for this flag.
+  ///   - value: The constant value to insert as the metadata for this flag.
+  ///   - behavior: The resolution strategy to apply should the key for this
+  ///     flag conflict with an existing flag.
+  public func addFlag(named name: String, constant: IRConstant, behavior: Flags.Behavior) {
+    let raw = Flags.Behavior.behaviorMapping[behavior]!
+    LLVMAddModuleFlag(llvm, raw, name, name.count, LLVMValueAsMetadata(constant.asLLVM()))
+  }
+
+  /// Retrieves the module-level flags, if they exist.
+  public var flags: Flags? {
+    var len = 0
+    guard let raw = LLVMCopyModuleFlagsMetadata(llvm, &len) else { return nil }
+    return Flags(llvm: raw, bounds: len)
   }
 }
 
