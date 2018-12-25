@@ -230,6 +230,29 @@ public final class Module: CustomStringConvertible {
     }
   }
 
+  /// Retrieves the sequence of aliases that make up this module.
+  public var aliases: AnySequence<Alias> {
+    var current = firstAlias
+    return AnySequence<Alias> {
+      return AnyIterator<Alias> {
+        defer { current = current?.next() }
+        return current
+      }
+    }
+  }
+
+  /// Retrieves the first alias in this module, if there are any aliases.
+  public var firstAlias: Alias? {
+    guard let fn = LLVMGetFirstGlobalAlias(llvm) else { return nil }
+    return Alias(llvm: fn)
+  }
+
+  /// Retrieves the last alias in this module, if there are any aliases.
+  public var lastAlias: Alias? {
+    guard let fn = LLVMGetLastGlobalAlias(llvm) else { return nil }
+    return Alias(llvm: fn)
+  }
+
   /// The current debug metadata version number.
   public static var debugMetadataVersion: UInt32 {
     return LLVMDebugMetadataVersion();
@@ -305,6 +328,18 @@ extension Module {
   public func function(named name: String) -> Function? {
     guard let fn = LLVMGetNamedFunction(llvm, name) else { return nil }
     return Function(llvm: fn)
+  }
+
+  /// Searches for and retrieves an alias with the given name in this module
+  /// if that name references an existing alias.
+  ///
+  /// - parameter name: The name of the alias to search for.
+  ///
+  /// - returns: A representation of an alias with the given
+  ///   name or nil if no such named alias exists.
+  public func alias(named name: String) -> Alias? {
+    guard let alias = LLVMGetNamedGlobalAlias(llvm, name, name.count) else { return nil }
+    return Alias(llvm: alias)
   }
 
   /// Searches for and retrieves a comdat section with the given name in this
