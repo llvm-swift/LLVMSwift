@@ -14,5 +14,6 @@ XCTMain([
   // FIXME: These tests cannot run on Linux without SEGFAULT'ing.
   // JITSpec.allTests,
   ModuleLinkSpec.allTests,
+  ModuleMetadataSpec.allTests,
 ])
 #endif

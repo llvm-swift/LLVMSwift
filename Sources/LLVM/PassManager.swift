@@ -60,6 +60,8 @@ public enum FunctionPass {
   case loopReroll
   /// This pass is a simple loop unrolling pass.
   case loopUnroll
+  /// This pass is a simple loop unroll-and-jam pass.
+  case loopUnrollAndJam
   /// This pass is a simple loop unswitching pass.
   case loopUnswitch
   /// This pass performs optimizations related to eliminating `memcpy` calls
@@ -198,6 +200,7 @@ public class FunctionPassManager {
     .loopRotate: LLVMAddLoopRotatePass,
     .loopReroll: LLVMAddLoopRerollPass,
     .loopUnroll: LLVMAddLoopUnrollPass,
+    .loopUnrollAndJam: LLVMAddLoopUnrollAndJamPass,
     .loopUnswitch: LLVMAddLoopUnswitchPass,
     .memCpyOpt: LLVMAddMemCpyOptPass,
     .partiallyInlineLibCalls: LLVMAddPartiallyInlineLibCallsPass,
