@@ -1599,10 +1599,25 @@ extension IRBuilder {
   ///
   /// - returns: A representation of the newly created inline assembly
   ///   expression.
-  public func buildInlineAssembly(_ asm: String, type: FunctionType, constraints: String = "", hasSideEffects: Bool = true, needsAlignedStack: Bool = true) -> IRValue {
-    return LLVMConstInlineAsm(type.asLLVM(), asm, constraints, hasSideEffects.llvm, needsAlignedStack.llvm)
+  public func buildInlineAssembly(
+    _ asm: String, dialect: InlineAssemblyDialect, type: FunctionType,
+    constraints: String = "",
+    hasSideEffects: Bool = true, needsAlignedStack: Bool = true
+  ) -> IRValue {
+    var asm = asm.utf8CString
+    var constraints = constraints.utf8CString
+    return asm.withUnsafeMutableBufferPointer { asm in
+      return constraints.withUnsafeMutableBufferPointer { constraints in
+        return LLVMGetInlineAsm(type.asLLVM(),
+                                asm.baseAddress, asm.count,
+                                constraints.baseAddress, constraints.count,
+                                hasSideEffects.llvm, needsAlignedStack.llvm,
+                                dialect.llvm)
+      }
+    }
   }
 }
+
 
 private func lowerVector(_ type: IRType) -> IRType {
     guard let vectorType = type as? VectorType else {

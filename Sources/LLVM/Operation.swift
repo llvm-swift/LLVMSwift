@@ -51,16 +51,16 @@ public enum IntPredicate {
   /// less than or equal to the second.
   case signedLessThanOrEqual
 
-  static let predicateMapping: [IntPredicate: LLVMIntPredicate] = [
+  private static let predicateMapping: [IntPredicate: LLVMIntPredicate] = [
     .equal: LLVMIntEQ, .notEqual: LLVMIntNE, .unsignedGreaterThan: LLVMIntUGT,
     .unsignedGreaterThanOrEqual: LLVMIntUGE, .unsignedLessThan: LLVMIntULT,
     .unsignedLessThanOrEqual: LLVMIntULE, .signedGreaterThan: LLVMIntSGT,
     .signedGreaterThanOrEqual: LLVMIntSGE, .signedLessThan: LLVMIntSLT,
     .signedLessThanOrEqual: LLVMIntSLE,
-    ]
+  ]
 
   /// Retrieves the corresponding `LLVMIntPredicate`.
-  public var llvm: LLVMIntPredicate {
+  var llvm: LLVMIntPredicate {
     return IntPredicate.predicateMapping[self]!
   }
 }
@@ -100,7 +100,7 @@ public enum RealPredicate {
   /// No comparison, always returns `true`.
   case `true`
 
-  static let predicateMapping: [RealPredicate: LLVMRealPredicate] = [
+  private static let predicateMapping: [RealPredicate: LLVMRealPredicate] = [
     .false: LLVMRealPredicateFalse, .orderedEqual: LLVMRealOEQ,
     .orderedGreaterThan: LLVMRealOGT, .orderedGreaterThanOrEqual: LLVMRealOGE,
     .orderedLessThan: LLVMRealOLT, .orderedLessThanOrEqual: LLVMRealOLE,
@@ -109,10 +109,10 @@ public enum RealPredicate {
     .unorderedGreaterThanOrEqual: LLVMRealUGE, .unorderedLessThan: LLVMRealULT,
     .unorderedLessThanOrEqual: LLVMRealULE, .unorderedNotEqual: LLVMRealUNE,
     .true: LLVMRealPredicateTrue,
-    ]
+  ]
 
   /// Retrieves the corresponding `LLVMRealPredicate`.
-  public var llvm: LLVMRealPredicate {
+  var llvm: LLVMRealPredicate {
     return RealPredicate.predicateMapping[self]!
   }
 }
@@ -207,7 +207,7 @@ public enum AtomicOrdering: Comparable {
   }
 
   /// Retrieves the corresponding `LLVMAtomicOrdering`.
-  public var llvm: LLVMAtomicOrdering {
+  var llvm: LLVMAtomicOrdering {
     return AtomicOrdering.orderingMapping[self]!
   }
 }
@@ -290,7 +290,7 @@ public enum AtomicReadModifyWriteOperation {
   /// ```
   case umin
 
-  static let atomicRMWMapping: [AtomicReadModifyWriteOperation: LLVMAtomicRMWBinOp] = [
+  private static let atomicRMWMapping: [AtomicReadModifyWriteOperation: LLVMAtomicRMWBinOp] = [
     .xchg: LLVMAtomicRMWBinOpXchg, .add: LLVMAtomicRMWBinOpAdd,
     .sub: LLVMAtomicRMWBinOpSub, .and: LLVMAtomicRMWBinOpAnd,
     .nand: LLVMAtomicRMWBinOpNand, .or: LLVMAtomicRMWBinOpOr,
@@ -300,7 +300,43 @@ public enum AtomicReadModifyWriteOperation {
   ]
 
   /// Retrieves the corresponding `LLVMAtomicRMWBinOp`.
-  public var llvm: LLVMAtomicRMWBinOp {
+  var llvm: LLVMAtomicRMWBinOp {
     return AtomicReadModifyWriteOperation.atomicRMWMapping[self]!
+  }
+}
+
+/// Enumerates the dialects of inline assembly LLVM's parsers can handle.
+public enum InlineAssemblyDialect {
+  /// The dialect of assembly created at Bell Labs by AT&T.
+  ///
+  /// AT&T syntax differs from Intel syntax in a number of ways.  Notably:
+  ///
+  /// - The source operand is before the destination operand
+  /// - Immediate operands are prefixed by a dollar-sign (`$`)
+  /// - Register operands are preceded by a percent-sign (`%`)
+  /// - The size of memory operands is determined from the last character of the
+  ///   the opcode name.  Valid suffixes include `b` for "byte" (8-bit),
+  ///   `w` for "word" (16-bit), `l` for "long-word" (32-bit), and `q` for
+  ///   "quad-word" (64-bit) memory references
+  case att
+  /// The dialect of assembly created at Intel.
+  ///
+  /// Intel syntax differs from AT&T syntax in a number of ways.  Notably:
+  ///
+  /// - The destination operand is before the source operand
+  /// - Immediate and register operands have no prefix.
+  /// - Memory operands are annotated with their sizes. Valid annotations
+  ///   include `byte ptr` (8-bit), `word ptr` (16-bit), `dword ptr` (32-bit) and
+  ///   `qword ptr` (64-bit).
+  case intel
+
+  private static let dialectMapping: [InlineAssemblyDialect: LLVMInlineAsmDialect] = [
+    .att: LLVMInlineAsmDialectATT,
+    .intel: LLVMInlineAsmDialectIntel,
+  ]
+
+  /// Retrieves the corresponding `LLVMInlineAsmDialect`.
+  var llvm: LLVMInlineAsmDialect {
+    return InlineAssemblyDialect.dialectMapping[self]!
   }
 }
