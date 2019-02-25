@@ -37,6 +37,144 @@ public final class DIBuilder {
   }
 }
 
+// MARK: Declarations
+
+extension DIBuilder {
+  /// Builds a call to a debug intrinsic for declaring a local variable and
+  /// inserts it before a given instruction.
+  ///
+  /// This intrinsic provides information about a local element
+  /// (e.g. a variable) defined in some lexical scope.  The variable does not
+  /// have to be physically represented in the source.
+  ///
+  /// Each variable may have at most one corresponding `llvm.dbg.declare`.  A
+  /// variable declaration is not control-dependent: A variable is declared at
+  /// most once, and that declaration remains in effect until the lifetime of
+  /// that variable ends.
+  ///
+  /// `lldb.dbg.declare` can make optimizing code that needs accurate debug info
+  /// difficult because of these scoping constraints.
+  ///
+  /// - Parameters:
+  ///   - variable: The IRValue of a variable to declare.
+  ///   - before: The instruction before which the intrinsic will be inserted.
+  ///   - metadata: Local variable metadata.
+  ///   - expr: A "complex expression" that modifies the current
+  ///           variable declaration.
+  ///   - location: The location of the variable in source.
+  public func buildDeclare(
+    of variable: IRValue,
+    before: Instruction,
+    metadata: LocalVariableMetadata,
+    expr: ExpressionMetadata,
+    location: DebugLocation
+  ) {
+    guard let _ = LLVMDIBuilderInsertDeclareBefore(
+      self.llvm, variable.asLLVM(), metadata.asMetadata(),
+      expr.asMetadata(), location.asMetadata(), before.asLLVM()) else {
+        fatalError()
+    }
+  }
+
+  /// Builds a call to a debug intrinsic for declaring a local variable and
+  /// inserts it at the end of a given basic block.
+  ///
+  /// This intrinsic provides information about a local element
+  /// (e.g. a variable) defined in some lexical scope.  The variable does not
+  /// have to be physically represented in the source.
+  ///
+  /// Each variable may have at most one corresponding `llvm.dbg.declare`.  A
+  /// variable declaration is not control-dependent: A variable is declared at
+  /// most once, and that declaration remains in effect until the lifetime of
+  /// that variable ends.
+  ///
+  /// `lldb.dbg.declare` can make optimizing code that needs accurate debug info
+  /// difficult because of these scoping constraints.
+  ///
+  /// - Parameters:
+  ///   - variable: The IRValue of a variable to declare.
+  ///   - block: The block in which the intrinsic will be placed.
+  ///   - metadata: Local variable metadata.
+  ///   - expr: A "complex expression" that modifies the current
+  ///           variable declaration.
+  ///   - location: The location of the variable in source.
+  public func buildDeclare(
+    of variable: IRValue,
+    atEndOf block: BasicBlock,
+    metadata: LocalVariableMetadata,
+    expr: ExpressionMetadata,
+    location: DebugLocation
+  ) {
+    guard let _ = LLVMDIBuilderInsertDeclareAtEnd(
+      self.llvm, variable.asLLVM(), metadata.asMetadata(),
+      expr.asMetadata(), location.asMetadata(), block.asLLVM()) else {
+        fatalError()
+    }
+  }
+
+  /// Builds a call to a debug intrinsic for providing information about the
+  /// value of a local variable and inserts it before a given instruction.
+  ///
+  /// This intrinsic provides information to model the result of a source
+  /// variable being set to a new value.
+  ///
+  /// This intrinsic is built to describe the value of a source variable
+  /// *directly*.  That is, the source variable may be a value or an address,
+  /// but the value for that variable provided to this intrinsic is considered
+  /// without interpretation to be the value of the given variable.
+  ///
+  /// - Parameters:
+  ///   - value: The value to set the given variable to.
+  ///   - metadata: Metadata for the given local variable.
+  ///   - before: The instruction before which the intrinsic will be inserted.
+  ///   - expr: A "complex expression" that modifies the given value.
+  ///   - location: The location of the variable assignment in source.
+  public func buildDbgValue(
+    of value: IRValue,
+    to metadata: LocalVariableMetadata,
+    before: Instruction,
+    expr: ExpressionMetadata,
+    location: DebugLocation
+  ) {
+    guard let _ = LLVMDIBuilderInsertDbgValueBefore(
+      self.llvm, value.asLLVM(), metadata.asMetadata(),
+      expr.asMetadata(), location.asMetadata(), before.asLLVM()) else {
+        fatalError()
+    }
+  }
+
+  /// Builds a call to a debug intrinsic for providing information about the
+  /// value of a local variable and inserts it before a given instruction.
+  ///
+  /// This intrinsic provides information to model the result of a source
+  /// variable being set to a new value.
+  ///
+  /// This intrinsic is built to describe the value of a source variable
+  /// *directly*.  That is, the source variable may be a value or an address,
+  /// but the value for that variable provided to this intrinsic is considered
+  /// without interpretation to be the value of the given variable.
+  ///
+  /// - Parameters:
+  ///   - value: The value to set the given variable to.
+  ///   - metadata: Metadata for the given local variable.
+  ///   - block: The block in which the intrinsic will be placed.
+  ///   - expr: A "complex expression" that modifies the given value.
+  ///   - location: The location of the variable assignment in source.
+  public func buildDbgValue(
+    of value: IRValue,
+    to metadata: LocalVariableMetadata,
+    atEndOf block: BasicBlock,
+    expr: ExpressionMetadata,
+    location: DebugLocation
+  ) {
+    guard let _ = LLVMDIBuilderInsertDbgValueAtEnd(
+      self.llvm, value.asLLVM(), metadata.asMetadata(),
+      expr.asMetadata(), location.asMetadata(), block.asLLVM()) else {
+        fatalError()
+    }
+  }
+}
+
 // MARK: Scope Entities
 
 extension DIBuilder {
