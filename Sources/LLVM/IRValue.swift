@@ -11,12 +11,12 @@ public protocol IRValue {
 
 public extension IRValue {
   /// Retrieves the type of this value.
-  public var type: IRType {
+  var type: IRType {
     return convertType(LLVMTypeOf(asLLVM()))
   }
 
   /// Returns whether this value is a constant.
-  public var isConstant: Bool {
+  var isConstant: Bool {
     return LLVMIsConstant(asLLVM()) != 0
   }
 
@@ -26,12 +26,12 @@ public extension IRValue {
   /// The `undef` value can be used anywhere a constant is expected, and
   /// indicates that the user of the value may receive an unspecified
   /// bit-pattern.
-  public var isUndef: Bool {
+  var isUndef: Bool {
     return LLVMIsUndef(asLLVM()) != 0
   }
 
   /// Gets and sets the name for this value.
-  public var name: String {
+  var name: String {
     get {
       let ptr = LLVMGetValueName(asLLVM())!
       return String(cString: ptr)
@@ -44,17 +44,17 @@ public extension IRValue {
   /// Replaces all uses of this value with the specified value.
   ///
   /// - parameter value: The new value to swap in.
-  public func replaceAllUses(with value: IRValue) {
+  func replaceAllUses(with value: IRValue) {
     LLVMReplaceAllUsesWith(asLLVM(), value.asLLVM())
   }
 
   /// Dumps a representation of this value to stderr.
-  public func dump() {
+  func dump() {
     LLVMDumpValue(asLLVM())
   }
 
   /// The kind of this value.
-  public var kind: IRValueKind {
+  var kind: IRValueKind {
     return IRValueKind(llvm: LLVMGetValueKind(asLLVM()))
   }
 }
