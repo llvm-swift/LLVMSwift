@@ -113,6 +113,10 @@ extension DIType {
 }
 
 /// A `DebugLocation` represents a location in source.
+///
+/// Debug locations are de-duplicated by file and line.  If more than one
+/// location inside a given scope needs to share a line, a discriminator value
+/// must be set or those locations will be considered equivalent.
 public struct DebugLocation: IRMetadata {
   internal let llvm: LLVMMetadataRef
 
