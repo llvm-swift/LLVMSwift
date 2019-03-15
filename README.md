@@ -23,7 +23,7 @@ let builder = IRBuilder(module: module)
 let main = builder.addFunction(
              "main",
              type: FunctionType(argTypes: [],
-             returnType: VoidType())
+             returnType: IntType.int64)
            )
 let entry = main.appendBasicBlock(named: "entry")
 builder.positionAtEnd(of: entry)
@@ -42,7 +42,7 @@ This simple program generates the following IR:
 ```llvm
 // module.dump()
 
-define void @main() {
+define i64 @main() {
 entry:
   ret i64 42
 }
