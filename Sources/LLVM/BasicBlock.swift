@@ -118,3 +118,9 @@ extension BasicBlock {
     }
   }
 }
+
+extension BasicBlock: Equatable {
+  public static func == (lhs: BasicBlock, rhs: BasicBlock) -> Bool {
+    return lhs.asLLVM() == rhs.asLLVM()
+  }
+}
