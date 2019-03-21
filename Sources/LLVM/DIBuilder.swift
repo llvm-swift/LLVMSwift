@@ -645,12 +645,12 @@ extension DIBuilder {
   ///   - encoding: The basic type encoding
   ///   - size: Size of the type.
   public func buildBasicType(
-    named name: String, encoding: DIAttributeTypeEncoding, size: Size
+    named name: String, encoding: DIAttributeTypeEncoding, flags: DIFlags, size: Size
   ) -> DIType {
     let radix = UInt64(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateBasicType(
       self.llvm, name, name.count,
-      size.valueInBits(radix: radix), encoding.llvm)
+      size.valueInBits(radix: radix), encoding.llvm, flags.llvm)
     else {
       fatalError("Failed to allocate metadata")
     }

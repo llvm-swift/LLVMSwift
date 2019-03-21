@@ -259,7 +259,7 @@ private func compileProgramBody(
   ///
   /// value_t this = 0;
   let diDataTy = dibuilder.buildBasicType(named: "value_t",
-                                          encoding: .signed,
+                                          encoding: .signed, flags: [],
                                           size: builder.module.dataLayout.abiSize(of: cellType))
   let diPtrTy = dibuilder.buildPointerType(pointee: diDataTy,
                                            size: builder.module.dataLayout.pointerSize())

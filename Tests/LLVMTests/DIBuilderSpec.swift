@@ -40,7 +40,7 @@ class DIBuilderSpec : XCTestCase {
 
       let global = builder.addGlobal("global", type: IntType.int32)
       global.initializer = IntType.int32.constant(5)
-      let globalTy = debugBuilder.buildBasicType(named: "int32_t", encoding: .signed, size: Size(8))
+      let globalTy = debugBuilder.buildBasicType(named: "int32_t", encoding: .signed, flags: [], size: Size(8))
 
       // DIEXPRESSION: !{{[0-9]+}} = !DIGlobalVariableExpression(var: !{{[0-9]+}}, expr: !DIExpression())
       // DIEXPRESSION: !{{[0-9]+}} = distinct !DIGlobalVariable(name: "global", linkageName: "global", scope: !{{[0-9]+}}, file: !{{[0-9]+}}, line: 42, type: !{{[0-9]+}}, isLocal: true, isDefinition: true)
