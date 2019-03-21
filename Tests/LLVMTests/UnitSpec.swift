@@ -80,7 +80,7 @@ class UnitSpec : XCTestCase {
   func testStructLayoutOnMachine() {
     let mod = Module(name: "StructLayout")
     let aarch64 = try! TargetMachine(triple: "aarch64--", cpu: "", features: "",
-                                     optLevel: .none, relocMode: .default, codeModel: .default)
+                                     optLevel: .none, relocations: .default, codeModel: .default)
     mod.dataLayout = aarch64.dataLayout
     XCTAssertEqual(mod.dataLayoutString, "e-m:e-i8:8:32-i16:16:32-i64:64-i128:128-n32:64-S128")
 
@@ -115,7 +115,7 @@ class UnitSpec : XCTestCase {
     ])
 
     let aarch32 = try! TargetMachine(triple: "arm--", cpu: "", features: "",
-                                     optLevel: .none, relocMode: .default, codeModel: .default)
+                                     optLevel: .none, relocations: .default, codeModel: .default)
     mod.dataLayout = aarch32.dataLayout
     XCTAssertEqual(mod.dataLayoutString, "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64")
 

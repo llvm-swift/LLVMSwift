@@ -184,14 +184,14 @@ public class TargetMachine {
   ///   particular target provides.
   /// - parameter optLevel: The optimization level for generated code.  If no
   ///   value is provided, the default level of optimization is assumed.
-  /// - parameter relocMode: The relocation mode of the target environment.  If
-  ///   no mode is provided, the default mode for the target architecture is
+  /// - parameter relocations: The relocation model of the target environment.
+  ///   If no mode is provided, the default model for the target architecture is
   ///   assumed.
   /// - parameter codeModel: The kind of code to produce for this target.  If
   ///   no model is provided, the default model for the target architecture is
   ///   assumed.
   public init(triple: String? = nil, cpu: String = "", features: String = "",
-              optLevel: CodeGenOptLevel = .default, relocMode: RelocMode = .default,
+              optLevel: CodeGenOptLevel = .default, relocations: RelocationModel = .default,
               codeModel: CodeModel = .default) throws {
 
     // Ensure the LLVM initializer is called when the first module is created
@@ -209,7 +209,7 @@ public class TargetMachine {
     self.target = Target(llvm: target!)
     self.llvm = LLVMCreateTargetMachine(target!, self.triple, cpu, features,
                                         optLevel.asLLVM(),
-                                        relocMode.asLLVM(),
+                                        relocations.asLLVM(),
                                         codeModel.asLLVM())
     self.dataLayout = TargetData(llvm: LLVMCreateTargetDataLayout(self.llvm))
   }

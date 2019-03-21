@@ -463,16 +463,49 @@ public enum CodeGenOptLevel {
 }
 
 /// The relocation model types supported by LLVM.
-public enum RelocMode {
+public enum RelocationModel {
   /// Generated code will assume the default for a particular target architecture.
   case `default`
   /// Generated code will exist at static offsets.
   case `static`
-  /// Generated code will be Position-Independent.
+  /// Generated code will be position-independent.
   case pic
-  /// Generated code will not be Position-Independent and may be used in static
+  /// Generated code will not be position-independent and may be used in static
   /// or dynamic executables but not necessarily a shared library.
   case dynamicNoPIC
+  /// Generated code will be compiled in read-only position independent mode.
+  /// In this mode, all read-only data and functions are at a link-time constant
+  /// offset from the program counter.
+  ///
+  /// ROPI is not supported by all target architectures and calling conventions.
+  /// It is a particular feature of ARM targets, though.
+  ///
+  /// ROPI may be useful to avoid committing to compile-time constant locations
+  /// for code in memory.  This may be useful in the following circumstances:
+  ///
+  /// - Code is loaded dynamically.
+  /// - Code is loaded into memory conditionally, or in an undefined order.
+  /// - Code is mapped into different addresses during different executions.
+  case ropi
+  /// Generated code will be compiled in read-write position independent mode.
+  /// In this mode, all writable data is at a link-time constant offset from the
+  /// static base register.
+  ///
+  /// RWPI is not supported by all target architectures and calling conventions.
+  /// It is a particular feature of ARM targets, though.
+  ///
+  /// RWPI may be useful to avoid committing to compile-time constant locations
+  /// for code in memory. This is particularly useful for data that must be
+  /// multiply instantiated for reentrant routines, as each thread executing a
+  /// reentrant routine will recieve its own copy of any data in
+  /// read-write segments.
+  case rwpi
+  /// Combines the `ropi` and `rwpi` modes.  Generated code will be compiled in
+  /// both read-only and read-write position independent modes.  All read-only
+  /// data appears at a link-time constant offset from the program counter,
+  /// and all writable data appears at a link-time constant offset from the
+  /// static base register.
+  case ropiRWPI
 
   /// Returns the underlying `LLVMRelocMode` associated with this
   /// relocation model.
@@ -482,6 +515,9 @@ public enum RelocMode {
     case .static: return LLVMRelocStatic
     case .pic: return LLVMRelocPIC
     case .dynamicNoPIC: return LLVMRelocDynamicNoPic
+    case .ropi: return LLVMRelocROPI
+    case .rwpi: return LLVMRelocRWPI
+    case .ropiRWPI: return LLVMRelocROPI_RWPI
     }
   }
 }
