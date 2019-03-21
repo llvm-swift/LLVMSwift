@@ -197,79 +197,6 @@ public class TargetData {
   }
 }
 
-extension TargetData {
-  /// Computes the preferred alignment of the given global for this target
-  ///
-  /// - parameter global: The global variable
-  /// - returns: The variable's preferred alignment in this target
-  @available(*, message: "Prefer the overload of prefferedAlignment(of:) that returns an Alignment")
-  public func preferredAlignment(of global: Global) -> Int {
-    return Int(LLVMPreferredAlignmentOfGlobal(llvm, global.asLLVM()))
-  }
-
-  /// Computes the preferred alignment of the given type for this target
-  ///
-  /// - parameter type: The type for which you're computing the alignment
-  /// - returns: The type's preferred alignment in this target
-  @available(*, message: "Prefer the overload of prefferedAlignment(of:) that returns an Alignment")
-  public func preferredAlignment(of type: IRType) -> Int {
-    return Int(LLVMPreferredAlignmentOfType(llvm, type.asLLVM()))
-  }
-
-  /// Computes the minimum ABI-required alignment for the specified type.
-  ///
-  /// - parameter type: The type to whose ABI alignment you wish to compute.
-  /// - returns: The minimum ABI-required alignment for the specified type.
-  @available(*, message: "Prefer the overload of abiAlignment(of:) that returns an Alignment")
-  public func abiAlignment(of type: IRType) -> Int {
-    return Int(LLVMABIAlignmentOfType(llvm, type.asLLVM()))
-  }
-
-  /// Computes the minimum ABI-required alignment for the specified type.
-  ///
-  /// This function is equivalent to `TargetData.abiAlignment(of:)`.
-  ///
-  /// - parameter type: The type to whose ABI alignment you wish to compute.
-  /// - returns: The minimum ABI-required alignment for the specified type.
-  @available(*, message: "Prefer the overload of callFrameAlignment(of:) that returns an Alignment")
-  public func callFrameAlignment(of type: IRType) -> Int {
-    return Int(LLVMCallFrameAlignmentOfType(llvm, type.asLLVM()))
-  }
-
-  /// Computes the ABI size of a type in bytes for a target.
-  ///
-  /// - parameter type: The type to whose ABI size you wish to compute.
-  /// - returns: The ABI size for the specified type.
-  @available(*, message: "Prefer the overload of abiSize(of:) that returns a Size")
-  public func abiSize(of type: IRType) -> Int {
-    return Int(LLVMABISizeOfType(llvm, type.asLLVM()))
-  }
-  /// Computes the maximum number of bytes that may be overwritten by
-  /// storing the specified type.
-  ///
-  /// - parameter type: The type to whose store size you wish to compute.
-  /// - returns: The store size of the type in the given target.
-  @available(*, message: "Prefer the overload of storeSize(of:) that returns a Size")
-  public func storeSize(of type: IRType) -> Int {
-    return Int(LLVMStoreSizeOfType(llvm, type.asLLVM()))
-  }
-
-  /// Computes the pointer size for the platform, optionally in a given
-  /// address space.
-  ///
-  /// - parameter addressSpace: The address space in which to compute
-  ///                           pointer size.
-  /// - returns: The size of a pointer in the target address space.
-  @available(*, message: "Prefer the overload of pointerSize(addressSpace:) that returns a Size")
-  public func pointerSize(addressSpace: Int? = nil) -> Int {
-    if let addressSpace = addressSpace {
-      return Int(LLVMPointerSizeForAS(llvm, UInt32(addressSpace)))
-    } else {
-      return Int(LLVMPointerSize(llvm))
-    }
-  }
-}
-
 /// A `StructLayout` encapsulates information about the layout of a `StructType`.
 public struct StructLayout {
   /// Returns the total size of the struct in bytes.
@@ -304,7 +231,7 @@ public struct StructLayout {
 
     // Loop over each of the elements, placing them in memory.
     for ty in st.elementTypes {
-      let tyAlign = Alignment(UInt32(st.isPacked ? 1 : dl.abiAlignment(of: ty)))
+      let tyAlign = st.isPacked ? Alignment.one : dl.abiAlignment(of: ty)
 
       // Add padding if necessary to align the data element properly.
       if (structSize.rawValue & UInt64(tyAlign.rawValue-1)) != 0 {
