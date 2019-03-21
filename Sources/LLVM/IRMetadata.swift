@@ -385,36 +385,67 @@ public struct ExpressionMetadata: IRMetadata {
 
 /// Enumerates the kind of metadata nodes.
 public enum IRMetadataKind {
+  /// The metadata is a string.
   case mdString
+  /// The metadata is a constant-as-metadata node.
   case constantAsMetadata
+  /// The metadata is a local-as-metadata node.
   case localAsMetadata
+  /// The metadata is a disctint metadata operand placeholder.
   case distinctMDOperandPlaceholder
+  /// The metadata is a tuple.
   case mdTuple
+  /// The metadata is a location.
   case location
+  /// The metadata is an expression.
   case expression
+  /// The metadata is a global variable expression.
   case globalVariableExpression
+  /// The metadata is a generic DI node.
   case genericDINode
+  /// The metadata is a subrange.
   case subrange
+  /// The metadata is an enumerator.
   case enumerator
+  /// The metadata is a basic type.
   case basicType
+  /// The metadata is a derived type.
   case derivedType
+  /// The metadata is a composite type.
   case compositeType
+  /// The metadata is a subroutine type.
   case subroutineType
+  /// The metadata is a file.
   case file
+  /// The metadata is a compile unit.
   case compileUnit
+  /// The metadata is a subprogram.
   case subprogram
+  /// The metadata is a lexical block.
   case lexicalBlock
+  /// The metadata is a lexical block file.
   case lexicalBlockFile
+  /// The metadata is a namespace.
   case namespace
+  /// The metadata is a module.
   case module
+  /// The metadata is a template type parameter.
   case templateTypeParameter
+  /// The metadata is a template value parameter.
   case templateValueParameter
+  /// The metadata is a global variable.
   case globalVariable
+  /// The metadata is a local variable.
   case localVariable
+  /// The metadata is a label.
   case label
+  /// The metadata is an Objective-C property.
   case objCProperty
+  /// The metadata is an imported entity.
   case importedEntity
+  /// The metadata is a macro.
   case macro
+  /// The metadata is a macro file.
   case macroFile
 
   fileprivate init(raw: LLVMMetadataKind) {

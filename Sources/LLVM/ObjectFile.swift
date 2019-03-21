@@ -37,6 +37,7 @@ public class ObjectFile {
     return SymbolSequence(llvm: LLVMGetSymbols(llvm), object: self)
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     LLVMDisposeObjectFile(llvm)
   }
@@ -100,6 +101,7 @@ public class SectionSequence: Sequence {
     }
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     LLVMDisposeSectionIterator(llvm)
   }
@@ -171,6 +173,7 @@ public class RelocationSequence: Sequence {
     }
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     LLVMDisposeSectionIterator(llvm)
   }
@@ -198,6 +201,7 @@ public class SymbolSequence: Sequence {
     }
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     LLVMDisposeSymbolIterator(llvm)
   }

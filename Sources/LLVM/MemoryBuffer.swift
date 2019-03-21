@@ -115,6 +115,7 @@ public class MemoryBuffer: Sequence {
     return UnsafeBufferPointer(start: start, count: size).makeIterator()
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     guard self.ownsContext else {
       return

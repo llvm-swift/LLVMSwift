@@ -32,10 +32,12 @@ public class Context {
     set { LLVMContextSetDiscardValueNames(self.llvm, newValue.llvm) }
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
-    if ownsContext {
-      LLVMContextDispose(llvm)
+    guard self.ownsContext else {
+      return
     }
+    LLVMContextDispose(self.llvm)
   }
 }
 
@@ -329,6 +331,7 @@ public final class Module: CustomStringConvertible {
     return String(cString: cStr)
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     guard self.ownsContext else {
       return
@@ -587,6 +590,7 @@ extension Module {
       self.bounds = bounds
     }
 
+    /// Deinitialize this value and dispose of its resources.
     deinit {
       guard let ptr = llvm else { return }
       LLVMDisposeModuleFlagsMetadata(ptr)
@@ -602,6 +606,7 @@ extension Module {
       return Entry(base: self, index: UInt32(index))
     }
 
+    /// Returns the number of module flag metadata entries.
     public var count: Int {
       return self.bounds
     }

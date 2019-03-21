@@ -32,6 +32,7 @@ public final class DIBuilder {
     LLVMDIBuilderFinalize(self.llvm)
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     LLVMDisposeDIBuilder(self.llvm)
   }
