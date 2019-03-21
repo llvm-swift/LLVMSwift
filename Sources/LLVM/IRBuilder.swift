@@ -123,6 +123,56 @@ extension IRBuilder {
   public func buildCast(_ op: OpCode.Cast, value: IRValue, type: IRType, name: String = "") -> IRValue {
     return LLVMBuildCast(llvm, op.llvm, value.asLLVM(), type.asLLVM(), name)
   }
+
+  /// Builds a cast operation from a value of pointer type to any other
+  /// integral, pointer, or vector of integral/pointer type.
+  ///
+  /// There are a number of restrictions on the form of the input value and
+  /// destination type.  The source value of a pointer cast must be either a
+  /// pointer or a vector of pointers.  The destination type must either be
+  /// an integer type, a pointer type, or a vector type with integral or pointer
+  /// element type.
+  ///
+  /// If the destination type is an integral type or a vector of integral
+  /// elements, this builds a `ptrtoint` instruction.  Else, if the destination
+  /// is a pointer type or vector of pointer type, and it has an address space
+  /// that differs from the address space of the source value, an
+  /// `addrspacecast` instruction is built.  If none of these are true, a
+  /// `bitcast` instruction is built.
+  ///
+  /// - Parameters:
+  ///   - value: The value to cast.  The value must have pointer type.
+  ///   - type: The destination type to cast to.  This must be a pointer type,
+  ///     integer type, or vector of the same.
+  ///   - name: The name for the newly inserted instruction.
+  /// - Returns: A value representing the result of casting the given value to
+  ///   the given destination type using the appropriate pointer cast operation.
+  public func buildPointerCast(of value: IRValue, to type: IRType, name: String = "") -> IRValue {
+    precondition(value.type is PointerType || value.type.scalarType is PointerType,
+                 "cast value must be a pointer or vector of pointers")
+    precondition(type.scalarType is IntType || type.scalarType is PointerType,
+                 "destination type must be int, pointer, or vector of int/pointer")
+
+    return LLVMBuildPointerCast(llvm, value.asLLVM(), type.asLLVM(), name)
+  }
+
+  /// Builds a cast operation from a value of integral type to given integral
+  /// type by zero-extension, sign-extension, bitcast, or truncation
+  /// as necessary.
+  ///
+  /// - Parameters:
+  ///   - value: The value to cast.
+  ///   - type: The destination integer type to cast to.
+  ///   - signed: If true, if an extension is required it will be a
+  ///     sign-extension.  Else, all required extensions will be
+  ///     zero-extensions.
+  ///   - name: The name for the newly inserted instruction.
+  /// - Returns: A value reprresenting the result of casting the given value to
+  ///   the given destination integer type using the appropriate
+  ///   integral cast operation.
+  public func buildIntCast(of value: IRValue, to type: IntType, signed: Bool = true, name: String = "") -> IRValue {
+    return LLVMBuildIntCast2(llvm, value.asLLVM(), type.asLLVM(), signed.llvm, name)
+  }
 }
 
 // MARK: Arithmetic Instructions
