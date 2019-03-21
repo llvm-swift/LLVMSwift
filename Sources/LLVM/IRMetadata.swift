@@ -69,6 +69,11 @@ extension IRMetadata {
   public func forceCast<DestTy: IRMetadata>(to: DestTy.Type) -> DestTy {
     return DestTy(llvm: self.asMetadata())
   }
+
+  /// Returns the kind of this metadata node.
+  public var kind: IRMetadataKind {
+    return IRMetadataKind(raw: LLVMGetMetadataKind(self.asMetadata()))
+  }
 }
 
 /// Denotes a scope in which child metadata nodes can be inserted.
@@ -375,5 +380,78 @@ public struct ExpressionMetadata: IRMetadata {
 
   public init(llvm: LLVMMetadataRef) {
     self.llvm = llvm
+  }
+}
+
+/// Enumerates the kind of metadata nodes.
+public enum IRMetadataKind {
+  case mdString
+  case constantAsMetadata
+  case localAsMetadata
+  case distinctMDOperandPlaceholder
+  case mdTuple
+  case location
+  case expression
+  case globalVariableExpression
+  case genericDINode
+  case subrange
+  case enumerator
+  case basicType
+  case derivedType
+  case compositeType
+  case subroutineType
+  case file
+  case compileUnit
+  case subprogram
+  case lexicalBlock
+  case lexicalBlockFile
+  case namespace
+  case module
+  case templateTypeParameter
+  case templateValueParameter
+  case globalVariable
+  case localVariable
+  case label
+  case objCProperty
+  case importedEntity
+  case macro
+  case macroFile
+
+  fileprivate init(raw: LLVMMetadataKind) {
+    switch Int(raw) {
+    case LLVMMDStringMetadataKind: self = .mdString
+    case LLVMConstantAsMetadataMetadataKind: self = .constantAsMetadata
+    case LLVMLocalAsMetadataMetadataKind: self = .localAsMetadata
+    case LLVMDistinctMDOperandPlaceholderMetadataKind: self = .distinctMDOperandPlaceholder
+    case LLVMMDTupleMetadataKind: self = .mdTuple
+    case LLVMDILocationMetadataKind: self = .location
+    case LLVMDIExpressionMetadataKind: self = .expression
+    case LLVMDIGlobalVariableExpressionMetadataKind: self = .globalVariableExpression
+    case LLVMGenericDINodeMetadataKind: self = .genericDINode
+    case LLVMDISubrangeMetadataKind: self = .subrange
+    case LLVMDIEnumeratorMetadataKind: self = .enumerator
+    case LLVMDIBasicTypeMetadataKind: self = .basicType
+    case LLVMDIDerivedTypeMetadataKind: self = .derivedType
+    case LLVMDICompositeTypeMetadataKind: self = .compositeType
+    case LLVMDISubroutineTypeMetadataKind: self = .subroutineType
+    case LLVMDIFileMetadataKind: self = .file
+    case LLVMDICompileUnitMetadataKind: self = .compileUnit
+    case LLVMDISubprogramMetadataKind: self = .subprogram
+    case LLVMDILexicalBlockMetadataKind: self = .lexicalBlock
+    case LLVMDILexicalBlockFileMetadataKind: self = .lexicalBlockFile
+    case LLVMDINamespaceMetadataKind: self = .namespace
+    case LLVMDIModuleMetadataKind: self = .module
+    case LLVMDITemplateTypeParameterMetadataKind: self = .templateTypeParameter
+    case LLVMDITemplateValueParameterMetadataKind: self = .templateValueParameter
+    case LLVMDIGlobalVariableMetadataKind: self = .globalVariable
+    case LLVMDILocalVariableMetadataKind: self = .localVariable
+    case LLVMDILabelMetadataKind: self = .label
+    case LLVMDIObjCPropertyMetadataKind: self = .objCProperty
+    case LLVMDIImportedEntityMetadataKind: self = .importedEntity
+    case LLVMDIMacroMetadataKind: self = .macro
+    case LLVMDIMacroFileMetadataKind: self = .macroFile
+    default:
+      fatalError("Unknown kind")
+    }
   }
 }
