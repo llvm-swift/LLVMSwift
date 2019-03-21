@@ -133,6 +133,15 @@ public struct StructType: IRType {
   public var isPacked: Bool {
     return LLVMIsPackedStruct(self.llvm) != 0
   }
+
+  /// Returns true if this is a literal struct type.
+  ///
+  /// A literal struct type is uniqued by structural equivalence - that is,
+  /// regardless of how it is named, two literal structures are equal if
+  /// their fields are equal.
+  public var isLiteral: Bool {
+    return LLVMIsLiteralStruct(self.llvm) != 0
+  }
 }
 
 extension StructType: Equatable {
