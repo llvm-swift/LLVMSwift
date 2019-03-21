@@ -7,6 +7,14 @@ import cllvm
 public protocol IRGlobal: IRConstant {}
 
 extension IRGlobal {
+  /// Retrieves the "value type" of this global value.
+  ///
+  /// The formal type of a global value is always a pointer type.  The value
+  /// type, in contrast, is the type of the value the global points to.
+  public var valueType: IRType {
+    return convertType(LLVMGlobalGetValueType(asLLVM()))
+  }
+
   /// Retrieves the alignment of this value.
   public var alignment: Alignment {
     get { return Alignment(LLVMGetAlignment(asLLVM())) }
