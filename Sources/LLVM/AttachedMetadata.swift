@@ -685,6 +685,7 @@ public class AttachedMetadata {
     self.bounds = bounds
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     guard let ptr = llvm else { return }
     LLVMDisposeValueMetadataEntries(ptr)
@@ -700,6 +701,7 @@ public class AttachedMetadata {
     return Entry(base: self, index: UInt32(index))
   }
 
+  /// Returns the number of metadata entries.
   public var count: Int {
     return self.bounds
   }

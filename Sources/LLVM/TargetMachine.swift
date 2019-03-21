@@ -273,6 +273,7 @@ public class TargetMachine {
     return MemoryBuffer(llvm: llvm)
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     guard self.ownsContext else {
       return

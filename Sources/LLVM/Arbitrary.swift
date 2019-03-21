@@ -12,6 +12,7 @@ import cllvm
 /// supports both the typical integer arithmetic and comparison operations as
 /// well as bitwise manipulation.
 public struct APInt: IRConstant {
+  /// The underlying word size.
   public typealias Word = UInt64
 
   private enum Impl {
@@ -20,6 +21,8 @@ public struct APInt: IRConstant {
   }
 
   private var value: Impl
+
+  /// The bitwidth of this integer.
   public private(set) var bitWidth: Int
 
   fileprivate init(raw values: [Word], _ bits: Int) {
@@ -166,12 +169,16 @@ extension APInt: Numeric {
     self.init(integerLiteral: val)
   }
 
+  /// Returns the result of performing a bitwise AND operation on the two
+  /// given values.
   public static func & (lhs: APInt, rhs: APInt) -> APInt {
     var lhs = lhs
     lhs &= rhs
     return lhs
   }
 
+  /// Stores the result of performing a bitwise AND operation on the two given
+  /// values in the left-hand-side variable.
   public static func &= (lhs: inout APInt, rhs: APInt) {
     precondition(lhs.bitWidth == rhs.bitWidth)
     switch (lhs.value, rhs.value) {
@@ -188,12 +195,16 @@ extension APInt: Numeric {
     }
   }
 
+  /// Returns the result of performing a bitwise OR operation on the two
+  /// given values.
   public static func | (lhs: APInt, rhs: APInt) -> APInt {
     var lhs = lhs
     lhs |= rhs
     return lhs
   }
 
+  /// Stores the result of performing a bitwise OR operation on the two given
+  /// values in the left-hand-side variable.
   public static func |= (lhs: inout APInt, rhs: APInt) {
     precondition(lhs.bitWidth == rhs.bitWidth)
     switch (lhs.value, rhs.value) {
@@ -210,12 +221,16 @@ extension APInt: Numeric {
     }
   }
 
+  /// Returns the result of performing a bitwise XOR operation on the two
+  /// given values.
   public static func ^ (lhs: APInt, rhs: APInt) -> APInt {
     var lhs = lhs
     lhs ^= rhs
     return lhs
   }
 
+  /// Stores the result of performing a bitwise XOR operation on the two given
+  /// values in the left-hand-side variable.
   public static func ^= (lhs: inout APInt, rhs: APInt) {
     precondition(lhs.bitWidth == rhs.bitWidth)
     switch (lhs.value, rhs.value) {
@@ -388,12 +403,16 @@ extension APInt: Numeric {
     }
   }
 
+  /// Returns the result of shifting a value’s binary representation the
+  /// specified number of digits to the left.
   public static func << (lhs: APInt, amount: UInt64) -> APInt {
     var lhs = lhs
     lhs <<= amount
     return lhs
   }
 
+  /// Stores the result of shifting a value’s binary representation the
+  /// specified number of digits to the left in the left-hand-side variable.
   public static func <<= (lhs: inout APInt, amount: UInt64) {
     precondition(amount <= lhs.bitWidth)
     switch lhs.value {

@@ -19,6 +19,7 @@ public class IRBuilder {
     self.llvm = LLVMCreateBuilderInContext(module.context.llvm)
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     LLVMDisposeBuilder(llvm)
   }
