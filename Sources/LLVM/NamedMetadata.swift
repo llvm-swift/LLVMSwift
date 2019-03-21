@@ -11,9 +11,28 @@ public class NamedMetadata {
   /// The name associated with this named metadata.
   public let name: String
 
-  init(module: Module, name: String) {
+  private let llvm: LLVMNamedMDNodeRef
+
+  init(module: Module, llvm: LLVMNamedMDNodeRef) {
     self.module = module
-    self.name = name
+    self.llvm = llvm
+    var nameLen = 0
+    guard let rawName = LLVMGetNamedMetadataName(llvm, &nameLen) else {
+      fatalError("Could not retrieve name for named MD node?")
+    }
+    self.name = String(cString: rawName)
+  }
+
+  /// Retrieves the previous alias in the module, if there is one.
+  public func previous() -> NamedMetadata? {
+    guard let previous = LLVMGetPreviousNamedMetadata(llvm) else { return nil }
+    return NamedMetadata(module: self.module, llvm: previous)
+  }
+
+  /// Retrieves the next alias in the module, if there is one.
+  public func next() -> NamedMetadata? {
+    guard let next = LLVMGetNextNamedMetadata(llvm) else { return nil }
+    return NamedMetadata(module: self.module,llvm: next)
   }
 
   /// Computes the operands of a named metadata node.

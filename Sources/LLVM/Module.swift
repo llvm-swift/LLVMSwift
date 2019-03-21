@@ -242,6 +242,18 @@ public final class Module: CustomStringConvertible {
     }
   }
 
+  /// Retrieves the first alias in this module, if there are any aliases.
+  public var firstAlias: Alias? {
+    guard let fn = LLVMGetFirstGlobalAlias(llvm) else { return nil }
+    return Alias(llvm: fn)
+  }
+
+  /// Retrieves the last alias in this module, if there are any aliases.
+  public var lastAlias: Alias? {
+    guard let fn = LLVMGetLastGlobalAlias(llvm) else { return nil }
+    return Alias(llvm: fn)
+  }
+
   /// Retrieves the sequence of aliases that make up this module.
   public var aliases: AnySequence<Alias> {
     var current = firstAlias
@@ -254,15 +266,26 @@ public final class Module: CustomStringConvertible {
   }
 
   /// Retrieves the first alias in this module, if there are any aliases.
-  public var firstAlias: Alias? {
-    guard let fn = LLVMGetFirstGlobalAlias(llvm) else { return nil }
-    return Alias(llvm: fn)
+  public var firstNamedMetadata: NamedMetadata? {
+    guard let fn = LLVMGetFirstNamedMetadata(llvm) else { return nil }
+    return NamedMetadata(module: self, llvm: fn)
   }
 
   /// Retrieves the last alias in this module, if there are any aliases.
-  public var lastAlias: Alias? {
-    guard let fn = LLVMGetLastGlobalAlias(llvm) else { return nil }
-    return Alias(llvm: fn)
+  public var lastNamedMetadata: NamedMetadata? {
+    guard let fn = LLVMGetLastNamedMetadata(llvm) else { return nil }
+    return NamedMetadata(module: self, llvm: fn)
+  }
+
+  /// Retrieves the sequence of aliases that make up this module.
+  public var namedMetadata: AnySequence<NamedMetadata> {
+    var current = firstNamedMetadata
+    return AnySequence<NamedMetadata> {
+      return AnyIterator<NamedMetadata> {
+        defer { current = current?.next() }
+        return current
+      }
+    }
   }
 
   /// The current debug metadata version number.
@@ -375,7 +398,7 @@ extension Module {
   /// - returns: A representation of the newly created metadata with the
   ///   given name.
   public func metadata(named name: String) -> NamedMetadata {
-    return NamedMetadata(module: self, name: name)
+    return NamedMetadata(module: self, llvm: LLVMGetOrInsertNamedMetadata(self.llvm, name, name.count))
   }
 
   /// Build a named global of the given type.
