@@ -505,7 +505,7 @@ public struct DIFlags : OptionSet {
   /// target's calling convention.
   public static let passByReference     = DIFlags(rawValue: LLVMDIFlagTypePassByReference.rawValue)
   /// Denotes a "fixed enum" type e.g. a C++ `enum class`.
-  public static let fixedEnum           = DIFlags(rawValue: LLVMDIFlagFixedEnum.rawValue)
+  public static let enumClass           = DIFlags(rawValue: LLVMDIFlagEnumClass.rawValue)
   /// Denotes a thunk function.
   public static let thunk               = DIFlags(rawValue: LLVMDIFlagThunk.rawValue)
   /// Denotes a class that has a trivial default constructor and is trivially

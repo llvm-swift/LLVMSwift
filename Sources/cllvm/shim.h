@@ -18,6 +18,7 @@
 #include <llvm-c/LinkTimeOptimizer.h>
 #include <llvm-c/lto.h>
 #include <llvm-c/Object.h>
+#include <llvm-c/OptRemarks.h>
 #include <llvm-c/OrcBindings.h>
 #include <llvm-c/Support.h>
 #include <llvm-c/Target.h>

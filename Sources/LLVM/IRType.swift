@@ -34,6 +34,15 @@ public extension IRType {
   var context: Context {
     return Context(llvm: LLVMGetTypeContext(asLLVM()))
   }
+
+  /// If this is a vector type, return the element type, otherwise
+  /// return `self`.
+  var scalarType: IRType {
+    guard let vecTy = self as? VectorType else {
+      return self
+    }
+    return vecTy.elementType
+  }
 }
 
 internal func convertType(_ type: LLVMTypeRef) -> IRType {

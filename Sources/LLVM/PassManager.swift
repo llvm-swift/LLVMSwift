@@ -64,6 +64,9 @@ public enum FunctionPass {
   case loopUnrollAndJam
   /// This pass is a simple loop unswitching pass.
   case loopUnswitch
+  /// This pass lowers atomic intrinsics to non-atomic form for use in a known
+  /// non-preemptible environment.
+  case lowerAtomic
   /// This pass performs optimizations related to eliminating `memcpy` calls
   /// and/or combining multiple stores into memset's.
   case memCpyOpt
@@ -126,6 +129,10 @@ public enum FunctionPass {
   case scopedNoAliasAA
   /// LLVM's primary stateless and local alias analysis.
   case basicAliasAnalysis
+  /// This pass is used to ensure that functions have at most one return
+  /// instruction in them.  Additionally, it keeps track of which node is
+  /// the new exit node of the CFG.
+  case unifyFunctionExitNodes
   /// Runs the LLVM IR Verifier to sanity check the results of passes.
   case verifier
   /// A pass to inline and remove functions marked as "always_inline".
@@ -202,6 +209,7 @@ public class FunctionPassManager {
     .loopUnroll: LLVMAddLoopUnrollPass,
     .loopUnrollAndJam: LLVMAddLoopUnrollAndJamPass,
     .loopUnswitch: LLVMAddLoopUnswitchPass,
+    .lowerAtomic: LLVMAddLowerAtomicPass,
     .memCpyOpt: LLVMAddMemCpyOptPass,
     .partiallyInlineLibCalls: LLVMAddPartiallyInlineLibCallsPass,
     .lowerSwitch: LLVMAddLowerSwitchPass,
@@ -221,6 +229,7 @@ public class FunctionPassManager {
     .typeBasedAliasAnalysis: LLVMAddTypeBasedAliasAnalysisPass,
     .scopedNoAliasAA: LLVMAddScopedNoAliasAAPass,
     .basicAliasAnalysis: LLVMAddBasicAliasAnalysisPass,
+    .unifyFunctionExitNodes: LLVMAddUnifyFunctionExitNodesPass,
     .alwaysInliner: LLVMAddAlwaysInlinerPass,
     .argumentPromotion: LLVMAddArgumentPromotionPass,
     .constantMerge: LLVMAddConstantMergePass,

@@ -123,6 +123,56 @@ extension IRBuilder {
   public func buildCast(_ op: OpCode.Cast, value: IRValue, type: IRType, name: String = "") -> IRValue {
     return LLVMBuildCast(llvm, op.llvm, value.asLLVM(), type.asLLVM(), name)
   }
+
+  /// Builds a cast operation from a value of pointer type to any other
+  /// integral, pointer, or vector of integral/pointer type.
+  ///
+  /// There are a number of restrictions on the form of the input value and
+  /// destination type.  The source value of a pointer cast must be either a
+  /// pointer or a vector of pointers.  The destination type must either be
+  /// an integer type, a pointer type, or a vector type with integral or pointer
+  /// element type.
+  ///
+  /// If the destination type is an integral type or a vector of integral
+  /// elements, this builds a `ptrtoint` instruction.  Else, if the destination
+  /// is a pointer type or vector of pointer type, and it has an address space
+  /// that differs from the address space of the source value, an
+  /// `addrspacecast` instruction is built.  If none of these are true, a
+  /// `bitcast` instruction is built.
+  ///
+  /// - Parameters:
+  ///   - value: The value to cast.  The value must have pointer type.
+  ///   - type: The destination type to cast to.  This must be a pointer type,
+  ///     integer type, or vector of the same.
+  ///   - name: The name for the newly inserted instruction.
+  /// - Returns: A value representing the result of casting the given value to
+  ///   the given destination type using the appropriate pointer cast operation.
+  public func buildPointerCast(of value: IRValue, to type: IRType, name: String = "") -> IRValue {
+    precondition(value.type is PointerType || value.type.scalarType is PointerType,
+                 "cast value must be a pointer or vector of pointers")
+    precondition(type.scalarType is IntType || type.scalarType is PointerType,
+                 "destination type must be int, pointer, or vector of int/pointer")
+
+    return LLVMBuildPointerCast(llvm, value.asLLVM(), type.asLLVM(), name)
+  }
+
+  /// Builds a cast operation from a value of integral type to given integral
+  /// type by zero-extension, sign-extension, bitcast, or truncation
+  /// as necessary.
+  ///
+  /// - Parameters:
+  ///   - value: The value to cast.
+  ///   - type: The destination integer type to cast to.
+  ///   - signed: If true, if an extension is required it will be a
+  ///     sign-extension.  Else, all required extensions will be
+  ///     zero-extensions.
+  ///   - name: The name for the newly inserted instruction.
+  /// - Returns: A value reprresenting the result of casting the given value to
+  ///   the given destination integer type using the appropriate
+  ///   integral cast operation.
+  public func buildIntCast(of value: IRValue, to type: IntType, signed: Bool = true, name: String = "") -> IRValue {
+    return LLVMBuildIntCast2(llvm, value.asLLVM(), type.asLLVM(), signed.llvm, name)
+  }
 }
 
 // MARK: Arithmetic Instructions
@@ -1392,6 +1442,100 @@ extension IRBuilder {
   }
 }
 
+// MARK: Memory Intrinsics
+
+extension IRBuilder {
+  /// Builds a call to the `llvm.memset.*` family of intrinsics to fill a
+  /// given block of memory with a given byte value.
+  ///
+  /// - NOTE: Unlike the standard function `memset` defined in libc,
+  /// `llvm.memset` does not return a value and may be volatile.  The address
+  /// space of the source and destination values need not match.
+  ///
+  /// - Parameters:
+  ///   - dest: A pointer value to the destination that will be filled.
+  ///   - value: A byte value to fill the destination with.
+  ///   - length: The number of bytes to fill.
+  ///   - alignment: The alignment of the destination pointer value.
+  ///   - volatile: If true, builds a volatile `llvm.memset` intrinsic, else
+  ///     builds a non-volatile `llvm.memset` instrinsic.  The exact behavior of
+  ///     volatile memory intrinsics is platform-dependent and should not be
+  ///     relied upon to perform consistently.  For more information, see the
+  ///     language reference's section on [Volatile Memory
+  ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  public func buildMemset(
+    to dest: IRValue, of value: IRValue, length: IRValue,
+    alignment: Alignment, volatile: Bool = false
+  ) {
+    let instruction = LLVMBuildMemSet(self.llvm, dest.asLLVM(), value.asLLVM(), length.asLLVM(), alignment.rawValue)
+    LLVMSetVolatile(instruction, volatile.llvm)
+  }
+
+  /// Builds a call to the `llvm.memcpy.*` family of intrinsics to copy a block
+  /// of memory to a given destination memory location from a given source
+  /// memory location.
+  ///
+  /// - WARNING: It is illegal for the destination and source locations to
+  ///   overlap each other.
+  ///
+  /// - NOTE: Unlike the standard function `memcpy` defined in libc,
+  /// `llvm.memcpy` does not return a value and may be volatile.  The address
+  /// space of the source and destination values need not match.
+  ///
+  /// - Parameters:
+  ///   - dest: A pointer to the destination that will be filled.
+  ///   - destAlign: The alignment of the destination pointer value.
+  ///   - src: A pointer to the source that will be copied from.
+  ///   - srcAlign: The alignment of the source pointer value.
+  ///   - length: The number of bytes to fill.
+  ///   - volatile: If true, builds a volatile `llvm.memcpy` intrinsic, else
+  ///     builds a non-volatile `llvm.memcpy` instrinsic.  The exact behavior of
+  ///     volatile memory intrinsics is platform-dependent and should not be
+  ///     relied upon to perform consistently.  For more information, see the
+  ///     language reference's section on [Volatile Memory
+  ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  public func buildMemCpy(
+    to dest: IRValue, _ destAlign: Alignment,
+    from src: IRValue, _ srcAlign: Alignment,
+    length: IRValue, volatile: Bool = false
+  ) {
+    let instruction = LLVMBuildMemCpy(self.llvm, dest.asLLVM(), destAlign.rawValue, src.asLLVM(), srcAlign.rawValue, length.asLLVM())
+    LLVMSetVolatile(instruction, volatile.llvm)
+  }
+
+  /// Builds a call to the `llvm.memmove.*` family of intrinsics to move a
+  /// block of memory to a given destination memory location from a given source
+  /// memory location.
+  ///
+  /// Unlike `llvm.memcpy.*`, the destination and source memory locations may
+  /// overlap with each other.
+  ///
+  /// - NOTE: Unlike the standard function `memmove` defined in libc,
+  /// `llvm.memmove` does not return a value and may be volatile.  The address
+  /// space of the source and destination values need not match.
+  ///
+  /// - Parameters:
+  ///   - dest: A pointer to the destination that will be filled.
+  ///   - destAlign: The alignment of the destination pointer value.
+  ///   - src: A pointer to the source that will be copied from.
+  ///   - srcAlign: The alignment of the source pointer value.
+  ///   - length: The number of bytes to fill.
+  ///   - volatile: If true, builds a volatile `llvm.memmove` intrinsic, else
+  ///     builds a non-volatile `llvm.memmove` instrinsic.  The exact behavior of
+  ///     volatile memory intrinsics is platform-dependent and should not be
+  ///     relied upon to perform consistently.  For more information, see the
+  ///     language reference's section on [Volatile Memory
+  ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  public func buildMemMove(
+    to dest: IRValue, _ destAlign: Alignment,
+    from src: IRValue, _ srcAlign: Alignment,
+    length: IRValue, volatile: Bool = false
+  ) {
+    let instruction = LLVMBuildMemMove(self.llvm, dest.asLLVM(), destAlign.rawValue, src.asLLVM(), srcAlign.rawValue, length.asLLVM())
+    LLVMSetVolatile(instruction, volatile.llvm)
+  }
+}
+
 // MARK: Aggregate Instructions
 
 extension IRBuilder {
@@ -1422,7 +1566,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing an aggregate that has been updated with
   ///   the given value at the given index.
-  func buildExtractValue(aggregate: IRValue, index: Int, name: String = "") -> IRValue {
+  public func buildExtractValue(aggregate: IRValue, index: Int, name: String = "") -> IRValue {
     return LLVMBuildExtractValue(llvm, aggregate.asLLVM(), UInt32(index), name)
   }
 }
