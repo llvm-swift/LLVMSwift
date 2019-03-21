@@ -257,17 +257,22 @@ public final class JIT {
     try checkForJITError(LLVMOrcRemoveModule(self.llvm, handle.llvm))
   }
 
-  private func checkForJITError(_ orcError: LLVMOrcErrorCode) throws {
-    switch orcError {
-    case LLVMOrcErrSuccess:
+  private func checkForJITError(_ orcError: LLVMErrorRef!) throws {
+    guard let err = orcError else {
       return
-    case LLVMOrcErrGeneric:
-      guard let msg = LLVMOrcGetErrorMsg(self.llvm) else {
+    }
+
+    switch LLVMGetErrorTypeId(err)! {
+    case LLVMGetStringErrorTypeId():
+      guard let msg = LLVMGetErrorMessage(self.llvm) else {
         fatalError("Couldn't get the error message?")
       }
       throw JITError.generic(String(cString: msg))
     default:
-      fatalError("Uncategorized ORC error code!")
+      guard let msg = LLVMOrcGetErrorMsg(self.llvm) else {
+        fatalError("Couldn't get the error message?")
+      }
+      throw JITError.generic(String(cString: msg))
     }
   }
 }
