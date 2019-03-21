@@ -22,6 +22,16 @@ public class Context {
     self.ownsContext = ownsContext
   }
 
+  /// Returns whether the given context is set to discard all value names.
+  ///
+  /// If true, only the names of GlobalValue objects will be available in
+  /// the IR.  This can be used to save memory and runtime, especially in
+  /// release mode.
+  public var discardValueNames: Bool {
+    get { return LLVMContextShouldDiscardValueNames(self.llvm) != 0 }
+    set { LLVMContextSetDiscardValueNames(self.llvm, newValue.llvm) }
+  }
+
   deinit {
     if ownsContext {
       LLVMContextDispose(llvm)
