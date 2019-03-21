@@ -1566,7 +1566,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing an aggregate that has been updated with
   ///   the given value at the given index.
-  func buildExtractValue(aggregate: IRValue, index: Int, name: String = "") -> IRValue {
+  public func buildExtractValue(aggregate: IRValue, index: Int, name: String = "") -> IRValue {
     return LLVMBuildExtractValue(llvm, aggregate.asLLVM(), UInt32(index), name)
   }
 }
