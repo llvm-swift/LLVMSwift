@@ -23,6 +23,32 @@ public struct BasicBlock: IRValue {
     self.llvm = llvm
   }
 
+  /// Creates a new basic block without a parent function.
+  ///
+  /// The basic block should be inserted into a function or destroyed before
+  /// the IR builder is finalized.
+  public init(context: Context = .global, name: String = "") {
+    self.llvm = LLVMCreateBasicBlockInContext(context.llvm, name)
+  }
+
+  /// Given that this block and a given block share a parent function, move this
+  /// block before the given block in that function's basic block list.
+  ///
+  /// - Parameter position: The basic block that acts as a position before
+  ///   which this block will be moved.
+  public func move(before position: BasicBlock) {
+    LLVMMoveBasicBlockBefore(self.asLLVM(), position.asLLVM())
+  }
+
+  /// Given that this block and a given block share a parent function, move this
+  /// block after the given block in that function's basic block list.
+  ///
+  /// - Parameter position: The basic block that acts as a position after
+  ///   which this block will be moved.
+  public func move(after position: BasicBlock) {
+    LLVMMoveBasicBlockAfter(self.asLLVM(), position.asLLVM())
+  }
+
   /// Retrieves the underlying LLVM value object.
   public func asLLVM() -> LLVMValueRef {
     return llvm
