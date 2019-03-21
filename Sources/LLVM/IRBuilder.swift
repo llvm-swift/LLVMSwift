@@ -1442,6 +1442,100 @@ extension IRBuilder {
   }
 }
 
+// MARK: Memory Intrinsics
+
+extension IRBuilder {
+  /// Builds a call to the `llvm.memset.*` family of intrinsics to fill a
+  /// given block of memory with a given byte value.
+  ///
+  /// - NOTE: Unlike the standard function `memset` defined in libc,
+  /// `llvm.memset` does not return a value and may be volatile.  The address
+  /// space of the source and destination values need not match.
+  ///
+  /// - Parameters:
+  ///   - dest: A pointer value to the destination that will be filled.
+  ///   - value: A byte value to fill the destination with.
+  ///   - length: The number of bytes to fill.
+  ///   - alignment: The alignment of the destination pointer value.
+  ///   - volatile: If true, builds a volatile `llvm.memset` intrinsic, else
+  ///     builds a non-volatile `llvm.memset` instrinsic.  The exact behavior of
+  ///     volatile memory intrinsics is platform-dependent and should not be
+  ///     relied upon to perform consistently.  For more information, see the
+  ///     language reference's section on [Volatile Memory
+  ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  public func buildMemset(
+    to dest: IRValue, of value: IRValue, length: IRValue,
+    alignment: Alignment, volatile: Bool = false
+  ) {
+    let instruction = LLVMBuildMemSet(self.llvm, dest.asLLVM(), value.asLLVM(), length.asLLVM(), alignment.rawValue)
+    LLVMSetVolatile(instruction, volatile.llvm)
+  }
+
+  /// Builds a call to the `llvm.memcpy.*` family of intrinsics to copy a block
+  /// of memory to a given destination memory location from a given source
+  /// memory location.
+  ///
+  /// - WARNING: It is illegal for the destination and source locations to
+  ///   overlap each other.
+  ///
+  /// - NOTE: Unlike the standard function `memcpy` defined in libc,
+  /// `llvm.memcpy` does not return a value and may be volatile.  The address
+  /// space of the source and destination values need not match.
+  ///
+  /// - Parameters:
+  ///   - dest: A pointer to the destination that will be filled.
+  ///   - destAlign: The alignment of the destination pointer value.
+  ///   - src: A pointer to the source that will be copied from.
+  ///   - srcAlign: The alignment of the source pointer value.
+  ///   - length: The number of bytes to fill.
+  ///   - volatile: If true, builds a volatile `llvm.memcpy` intrinsic, else
+  ///     builds a non-volatile `llvm.memcpy` instrinsic.  The exact behavior of
+  ///     volatile memory intrinsics is platform-dependent and should not be
+  ///     relied upon to perform consistently.  For more information, see the
+  ///     language reference's section on [Volatile Memory
+  ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  public func buildMemCpy(
+    to dest: IRValue, _ destAlign: Alignment,
+    from src: IRValue, _ srcAlign: Alignment,
+    length: IRValue, volatile: Bool = false
+  ) {
+    let instruction = LLVMBuildMemCpy(self.llvm, dest.asLLVM(), destAlign.rawValue, src.asLLVM(), srcAlign.rawValue, length.asLLVM())
+    LLVMSetVolatile(instruction, volatile.llvm)
+  }
+
+  /// Builds a call to the `llvm.memmove.*` family of intrinsics to move a
+  /// block of memory to a given destination memory location from a given source
+  /// memory location.
+  ///
+  /// Unlike `llvm.memcpy.*`, the destination and source memory locations may
+  /// overlap with each other.
+  ///
+  /// - NOTE: Unlike the standard function `memmove` defined in libc,
+  /// `llvm.memmove` does not return a value and may be volatile.  The address
+  /// space of the source and destination values need not match.
+  ///
+  /// - Parameters:
+  ///   - dest: A pointer to the destination that will be filled.
+  ///   - destAlign: The alignment of the destination pointer value.
+  ///   - src: A pointer to the source that will be copied from.
+  ///   - srcAlign: The alignment of the source pointer value.
+  ///   - length: The number of bytes to fill.
+  ///   - volatile: If true, builds a volatile `llvm.memmove` intrinsic, else
+  ///     builds a non-volatile `llvm.memmove` instrinsic.  The exact behavior of
+  ///     volatile memory intrinsics is platform-dependent and should not be
+  ///     relied upon to perform consistently.  For more information, see the
+  ///     language reference's section on [Volatile Memory
+  ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  public func buildMemMove(
+    to dest: IRValue, _ destAlign: Alignment,
+    from src: IRValue, _ srcAlign: Alignment,
+    length: IRValue, volatile: Bool = false
+  ) {
+    let instruction = LLVMBuildMemMove(self.llvm, dest.asLLVM(), destAlign.rawValue, src.asLLVM(), srcAlign.rawValue, length.asLLVM())
+    LLVMSetVolatile(instruction, volatile.llvm)
+  }
+}
+
 // MARK: Aggregate Instructions
 
 extension IRBuilder {
