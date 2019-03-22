@@ -67,6 +67,7 @@ import Foundation
 ///     llvm.memcpy.p0i8.p0i8.i32 -> Intrinsic.ID.llvm_memcpy
 ///     llvm.bswap.v4i32 -> Intrinsic.ID.llvm_bswap
 public class Intrinsic: Function {
+  /// A wrapper type for an intrinsic selector.
   public struct Selector {
     let index: UInt32
     fileprivate init(_ index: UInt32) { self.index = index }

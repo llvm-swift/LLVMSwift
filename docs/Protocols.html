@@ -31,6 +31,15 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Comdat.html">Comdat</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +64,15 @@
                 <a href="Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -68,6 +86,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/NamedMetadata.html">NamedMetadata</a>
@@ -147,7 +168,13 @@
                 <a href="Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/IntPredicate.html">IntPredicate</a>
@@ -183,7 +210,7 @@
                 <a href="Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/RelocMode.html">RelocMode</a>
+                <a href="Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -288,6 +315,9 @@
                 <a href="Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -295,9 +325,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -310,6 +337,9 @@
           <li class="nav-group-name">
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Structs/Alias.html">Alias</a>
               </li>
@@ -474,6 +504,39 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:4LLVM8IRGlobalP"></a>
+                    <a name="//apple_ref/swift/Protocol/IRGlobal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM8IRGlobalP">IRGlobal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An <code>IRGlobal</code> is a value, alias, or function that exists at the top level of
+an LLVM module.</p>
+
+                        <a href="Protocols/IRGlobal.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IRGlobal</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRConstant.html">IRConstant</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:4LLVM10IRConstantP"></a>
                     <a name="//apple_ref/swift/Protocol/IRConstant" class="dashAnchor"></a>
                     <a class="token" href="#/s:4LLVM10IRConstantP">IRConstant</a>
@@ -626,9 +689,9 @@ function, but not of the function type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM8IRGlobalP"></a>
-                    <a name="//apple_ref/swift/Protocol/IRGlobal" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM8IRGlobalP">IRGlobal</a>
+                    <a name="/s:4LLVM26_IRMetadataInitializerHackP"></a>
+                    <a name="//apple_ref/swift/Protocol/_IRMetadataInitializerHack" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM26_IRMetadataInitializerHackP">_IRMetadataInitializerHack</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -636,16 +699,132 @@ function, but not of the function type.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An <code>IRGlobal</code> is a value, alias, or function that exists at the top level of
-an LLVM module.</p>
+                        <p>An unfortunate artifact of the design of the metadata class hierarchy is
+that you may find it convenient to force-cast metadata nodes.  In general,
+this behavior is not encouraged, but it will be supported for now.</p>
 
-                        <a href="Protocols/IRGlobal.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/_IRMetadataInitializerHack.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IRGlobal</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRConstant.html">IRConstant</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="n">_IRMetadataInitializerHack</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM10IRMetadataP"></a>
+                    <a name="//apple_ref/swift/Protocol/IRMetadata" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM10IRMetadataP">IRMetadata</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>Metadata</code> protocol captures those types that represent metadata nodes
+in LLVM IR.</p>
+
+<p>LLVM IR allows metadata to be attached to instructions in the program that
+can convey extra information about the code to the optimizers and code
+generator. One example application of metadata is source-level debug
+information.</p>
+
+<p>Metadata does not have a type, and is not a value. If referenced from a call
+instruction, it uses the metadata type.</p>
+
+<p>The idea of LLVM debugging information is to capture how the important
+pieces of the source-language’s Abstract Syntax Tree map onto LLVM code.
+LLVM takes a number of positions on the impact of the broader compilation
+process on debug information:</p>
+
+<ul>
+<li>Debugging information should have very little impact on the rest of the
+compiler. No transformations, analyses, or code generators should need to
+be modified because of debugging information.</li>
+<li>LLVM optimizations should interact in well-defined and easily described
+ways with the debugging information.</li>
+<li>Because LLVM is designed to support arbitrary programming languages,
+LLVM-to-LLVM tools should not need to know anything about the semantics
+of the source-level-language.</li>
+<li>Source-level languages are often widely different from one another. LLVM
+should not put any restrictions of the flavor of the source-language, and
+the debugging information should work with any language.</li>
+<li>With code generator support, it should be possible to use an LLVM compiler
+to compile a program to native machine code and standard debugging
+formats. This allows compatibility with traditional machine-code level
+debuggers, like GDB, DBX, or CodeView.</li>
+</ul>
+
+                        <a href="Protocols/IRMetadata.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IRMetadata</span> <span class="p">:</span> <span class="n"><a href="Protocols/_IRMetadataInitializerHack.html">_IRMetadataInitializerHack</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM7DIScopeP"></a>
+                    <a name="//apple_ref/swift/Protocol/DIScope" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM7DIScopeP">DIScope</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Denotes a scope in which child metadata nodes can be inserted.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DIScope</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRMetadata.html">IRMetadata</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6DITypeP"></a>
+                    <a name="//apple_ref/swift/Protocol/DIType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6DITypeP">DIType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Denotes metadata for a type.</p>
+
+                        <a href="Protocols/DIType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DIType</span> <span class="p">:</span> <span class="kt"><a href="Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span></code></pre>
 
                         </div>
                       </div>
@@ -720,160 +899,11 @@ object for use with LLVM&rsquo;s C API.</p>
                 </li>
               </ul>
             </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM26_IRMetadataInitializerHackP"></a>
-                    <a name="//apple_ref/swift/Protocol/_IRMetadataInitializerHack" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM26_IRMetadataInitializerHackP">_IRMetadataInitializerHack</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An unfortunate artifact of the design of the metadata class hierarchy is
-that you may find it convenient to force-cast metadata nodes.  In general,
-this behavior is not encouraged, but it will be supported for now.</p>
-
-                        <a href="Protocols/_IRMetadataInitializerHack.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="n">_IRMetadataInitializerHack</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM8MetadataP"></a>
-                    <a name="//apple_ref/swift/Protocol/Metadata" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM8MetadataP">Metadata</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>Metadata</code> protocol captures those types that represent metadata nodes
-in LLVM IR.</p>
-
-<p>LLVM IR allows metadata to be attached to instructions in the program that
-can convey extra information about the code to the optimizers and code
-generator. One example application of metadata is source-level debug
-information.</p>
-
-<p>Metadata does not have a type, and is not a value. If referenced from a call
-instruction, it uses the metadata type.</p>
-
-<p>The idea of LLVM debugging information is to capture how the important
-pieces of the source-language’s Abstract Syntax Tree map onto LLVM code.
-LLVM takes a number of positions on the impact of the broader compilation
-process on debug information:</p>
-
-<ul>
-<li>Debugging information should have very little impact on the rest of the
-compiler. No transformations, analyses, or code generators should need to
-be modified because of debugging information.</li>
-<li>LLVM optimizations should interact in well-defined and easily described
-ways with the debugging information.</li>
-<li>Because LLVM is designed to support arbitrary programming languages,
-LLVM-to-LLVM tools should not need to know anything about the semantics
-of the source-level-language.</li>
-<li>Source-level languages are often widely different from one another. LLVM
-should not put any restrictions of the flavor of the source-language, and
-the debugging information should work with any language.</li>
-<li>With code generator support, it should be possible to use an LLVM compiler
-to compile a program to native machine code and standard debugging
-formats. This allows compatibility with traditional machine-code level
-debuggers, like GDB, DBX, or CodeView.</li>
-</ul>
-
-                        <a href="Protocols/Metadata.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Metadata</span> <span class="p">:</span> <span class="n"><a href="Protocols/_IRMetadataInitializerHack.html">_IRMetadataInitializerHack</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM7DIScopeP"></a>
-                    <a name="//apple_ref/swift/Protocol/DIScope" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM7DIScopeP">DIScope</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Denotes a scope in which child metadata nodes can be inserted.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DIScope</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Metadata.html">Metadata</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6DITypeP"></a>
-                    <a name="//apple_ref/swift/Protocol/DIType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6DITypeP">DIType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Denotes metadata for a type.</p>
-
-                        <a href="Protocols/DIType.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DIType</span> <span class="p">:</span> <span class="kt"><a href="Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

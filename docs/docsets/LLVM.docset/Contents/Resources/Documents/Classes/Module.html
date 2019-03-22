@@ -31,6 +31,15 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +64,15 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -68,6 +86,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
@@ -147,7 +168,13 @@
                 <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
@@ -183,7 +210,7 @@
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/RelocMode.html">RelocMode</a>
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -288,6 +315,9 @@
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -295,9 +325,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -310,6 +337,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
@@ -640,6 +670,33 @@ context is provided, one will be inferred.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC14inlineAssemblySSvp"></a>
+                    <a name="//apple_ref/swift/Property/inlineAssembly" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC14inlineAssemblySSvp">inlineAssembly</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the inline assembly for this module, if any.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">inlineAssembly</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -989,6 +1046,168 @@ otherwise - unlike <code>llvm::Linker::linkModules</code>.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:4LLVM6ModuleC10firstAliasAA0D0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/firstAlias" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC10firstAliasAA0D0VSgvp">firstAlias</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the first alias in this module, if there are any aliases.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">firstAlias</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alias.html">Alias</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC9lastAliasAA0D0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/lastAlias" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC9lastAliasAA0D0VSgvp">lastAlias</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the last alias in this module, if there are any aliases.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lastAlias</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alias.html">Alias</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC7aliasess11AnySequenceVyAA5AliasVGvp"></a>
+                    <a name="//apple_ref/swift/Property/aliases" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC7aliasess11AnySequenceVyAA5AliasVGvp">aliases</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the sequence of aliases that make up this module.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">aliases</span><span class="p">:</span> <span class="kt">AnySequence</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Alias.html">Alias</a></span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC18firstNamedMetadataAA0dE0CSgvp"></a>
+                    <a name="//apple_ref/swift/Property/firstNamedMetadata" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC18firstNamedMetadataAA0dE0CSgvp">firstNamedMetadata</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the first alias in this module, if there are any aliases.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">firstNamedMetadata</span><span class="p">:</span> <span class="kt"><a href="../Classes/NamedMetadata.html">NamedMetadata</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC17lastNamedMetadataAA0dE0CSgvp"></a>
+                    <a name="//apple_ref/swift/Property/lastNamedMetadata" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC17lastNamedMetadataAA0dE0CSgvp">lastNamedMetadata</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the last alias in this module, if there are any aliases.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lastNamedMetadata</span><span class="p">:</span> <span class="kt"><a href="../Classes/NamedMetadata.html">NamedMetadata</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC13namedMetadatas11AnySequenceVyAA05NamedD0CGvp"></a>
+                    <a name="//apple_ref/swift/Property/namedMetadata" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC13namedMetadatas11AnySequenceVyAA05NamedD0CGvp">namedMetadata</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the sequence of aliases that make up this module.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">namedMetadata</span><span class="p">:</span> <span class="kt">AnySequence</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/NamedMetadata.html">NamedMetadata</a></span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:4LLVM6ModuleC20debugMetadataVersions6UInt32VvpZ"></a>
                     <a name="//apple_ref/swift/Variable/debugMetadataVersion" class="dashAnchor"></a>
                     <a class="token" href="#/s:4LLVM6ModuleC20debugMetadataVersions6UInt32VvpZ">debugMetadataVersion</a>
@@ -1119,6 +1338,33 @@ Return true if module is modified.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleCfd"></a>
+                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleCfd">deinit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deinitialize this value and dispose of its resources.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
 
                         </div>
                       </div>
@@ -1285,8 +1531,206 @@ if that name references an existing function.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A representation of the newly created function with the given
+                        <p>A representation of a function with the given
 name or nil if such a representation could not be created.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC9intrinsic5named10parametersAA9IntrinsicCSgSS_SayAA6IRType_pGtF"></a>
+                    <a name="//apple_ref/swift/Method/intrinsic(named:parameters:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC9intrinsic5named10parametersAA9IntrinsicCSgSS_SayAA6IRType_pGtF">intrinsic(named:parameters:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Searches for and retrieves an intrinsic with the given name in this module
+if that name references an intrinsic.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">intrinsic</span><span class="p">(</span><span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Intrinsic.html">Intrinsic</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the intrinsic to search for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the parameters of the intrinsic to resolve any
+ambiguity caused by overloads.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A representation of an intrinsic with the given name or nil
+if such an intrinsic could not be found.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC9intrinsic_10parametersAA9IntrinsicCSgAG8SelectorV_SayAA6IRType_pGtF"></a>
+                    <a name="//apple_ref/swift/Method/intrinsic(_:parameters:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC9intrinsic_10parametersAA9IntrinsicCSgAG8SelectorV_SayAA6IRType_pGtF">intrinsic(_:parameters:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Searches for and retrieves an intrinsic with the given selector in this
+module if that selector references an intrinsic.</p>
+
+<p>Unlike <code><a href="../Classes/Module.html#/s:4LLVM6ModuleC9intrinsic5named10parametersAA9IntrinsicCSgSS_SayAA6IRType_pGtF">Module.intrinsic(named:parameters:)</a></code>, the intrinsic function need
+not be declared.  If the module contains a declaration of the intrinsic
+function, it will be returned.  Else, a declaration for the intrinsic
+will be created and appended to this module.</p>
+
+<p>LLVMSwift intrinsic selector syntax differs from the LLVM naming
+conventions for intrinsics in one crucial way: all dots are replaced by
+underscores.</p>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="n">llvm</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">baz</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_foo_bar_baz</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">sin</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_sin</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">stacksave</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_stacksave</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">x86</span><span class="o">.</span><span class="n">xsave64</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_x86_xsave64</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">intrinsic</span><span class="p">(</span><span class="n">_</span> <span class="nv">selector</span><span class="p">:</span> <span class="kt"><a href="../Classes/Intrinsic.html">Intrinsic</a></span><span class="o">.</span><span class="kt">Selector</span><span class="p">,</span> <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Intrinsic.html">Intrinsic</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>selector</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The selector of the intrinsic to search for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameters</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the parameters of the intrinsic to resolve any
+ambiguity caused by overloads.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A representation of an intrinsic with the given name or nil
+if such an intrinsic could not be found.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC5alias5namedAA5AliasVSgSS_tF"></a>
+                    <a name="//apple_ref/swift/Method/alias(named:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC5alias5namedAA5AliasVSgSS_tF">alias(named:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Searches for and retrieves an alias with the given name in this module
+if that name references an existing alias.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">alias</span><span class="p">(</span><span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Alias.html">Alias</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the alias to search for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A representation of an alias with the given
+name or nil if no such named alias exists.</p>
                       </div>
                     </section>
                   </div>
@@ -1392,6 +1836,68 @@ returned.</p>
                         <h4>Return Value</h4>
                         <p>A representation of the newly created metadata with the
 given name.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC11addFunction_4typeAA0D0CSS_AA0D4TypeVtF"></a>
+                    <a name="//apple_ref/swift/Method/addFunction(_:type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC11addFunction_4typeAA0D0CSS_AA0D4TypeVtF">addFunction(_:type:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a named function body with the given type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addFunction</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Structs/FunctionType.html">FunctionType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Function.html">Function</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the newly defined function.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the newly defined function.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the newly inserted function definition.</p>
                       </div>
                     </section>
                   </div>
@@ -1686,13 +2192,278 @@ just a new symbol and metadata for an existing position.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC20appendInlineAssemblyyySSF"></a>
+                    <a name="//apple_ref/swift/Method/appendInlineAssembly(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC20appendInlineAssemblyyySSF">appendInlineAssembly(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append to the module-scope inline assembly blocks.</p>
+
+<p>A trailing newline is added if the given string doesn&rsquo;t have one.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">appendInlineAssembly</span><span class="p">(</span><span class="n">_</span> <span class="nv">asm</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>asm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The inline assembly expression template string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Module%20Flags"></a>
+                <a name="//apple_ref/swift/Section/Module Flags" class="dashAnchor"></a>
+                <a href="#/Module%20Flags">
+                  <h3 class="section-name">Module Flags</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC5FlagsC"></a>
+                    <a name="//apple_ref/swift/Class/Flags" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC5FlagsC">Flags</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents flags that describe information about the module for use by
+an external entity e.g. the dynamic linker.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Module flags are not a general runtime metadata infrastructure,
+and may be stripped by LLVM.  As of the current release, LLVM hardcodes
+support for object-file emission of module flags related to
+Objective-C.
+
+</div>
+
+                        <a href="../Classes/Module/Flags.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Flags</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC7addFlag5named5value8behaviorySS_AA10IRMetadata_pAC5FlagsC8BehaviorOtF"></a>
+                    <a name="//apple_ref/swift/Method/addFlag(named:value:behavior:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC7addFlag5named5value8behaviorySS_AA10IRMetadata_pAC5FlagsC8BehaviorOtF">addFlag(named:value:behavior:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a module-level flag to the module-level flags metadata.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addFlag</span><span class="p">(</span><span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRMetadata.html">IRMetadata</a></span><span class="p">,</span> <span class="nv">behavior</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module/Flags.html">Flags</a></span><span class="o">.</span><span class="kt">Behavior</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The key for this flag.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The metadata node to insert as the value for this flag.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>behavior</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The resolution strategy to apply should the key for this
+flag conflict with an existing flag.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC7addFlag5named8constant8behaviorySS_AA10IRConstant_pAC5FlagsC8BehaviorOtF"></a>
+                    <a name="//apple_ref/swift/Method/addFlag(named:constant:behavior:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC7addFlag5named8constant8behaviorySS_AA10IRConstant_pAC5FlagsC8BehaviorOtF">addFlag(named:constant:behavior:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A convenience for inserting constant values as module-level flags.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addFlag</span><span class="p">(</span><span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRConstant.html">IRConstant</a></span><span class="p">,</span> <span class="nv">behavior</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module/Flags.html">Flags</a></span><span class="o">.</span><span class="kt">Behavior</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The key for this flag.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The constant value to insert as the metadata for this flag.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>behavior</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The resolution strategy to apply should the key for this
+flag conflict with an existing flag.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC5flagsAC5FlagsCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/flags" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC5flagsAC5FlagsCSgvp">flags</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the module-level flags, if they exist.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Classes/Module/Flags.html">Flags</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

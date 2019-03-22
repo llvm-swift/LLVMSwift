@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PinnedKind Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../../js/jquery.min.js" defer></script>
+    <script src="../../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Enum/PinnedKind" class="dashAnchor"></a>
+    <a title="PinnedKind Enumeration Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../../index.html">LLVM Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../../index.html">LLVM Reference</a>
+        <img id="carat" src="../../img/carat.png" />
+        PinnedKind Enumeration Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Comdat.html">Comdat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Comdat/SelectionKind.html">– SelectionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/DIBuilder.html">DIBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Function.html">Function</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/FunctionPassManager.html">FunctionPassManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Global.html">Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/IRBuilder.html">IRBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/JIT/TargetAddress.html">– TargetAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Module/Flags.html">– Flags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/NamedMetadata.html">NamedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/SymbolSequence.html">SymbolSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Target.html">Target</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/TargetData.html">TargetData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/TargetMachine.html">TargetMachine</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/AttributeIndex.html">AttributeIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/ByteOrder.html">ByteOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/CallingConvention.html">CallingConvention</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/CodeModel.html">CodeModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/CodegenFileType.html">CodegenFileType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/DIAttributeTypeEncoding.html">DIAttributeTypeEncoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/DWARFEmissionKind.html">DWARFEmissionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/DWARFExpression.html">DWARFExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/DWARFSourceLanguage.html">DWARFSourceLanguage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/DWARFTag.html">DWARFTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums.html#/s:4LLVM8FloatingO">Floating</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/FunctionPass.html">FunctionPass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/JITError.html">JITError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/OpCode.html">OpCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/RealPredicate.html">RealPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/RelocationModel.html">RelocationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums.html#/s:4LLVM6SignedO">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/StorageClass.html">StorageClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums.html#/s:4LLVM6StructO">Struct</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/ThreadLocalModel.html">ThreadLocalModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/UnnamedAddressKind.html">UnnamedAddressKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums.html#/s:4LLVM8UnsignedO">Unsigned</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums.html#/s:4LLVM6VectorO">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/Visibility.html">Visibility</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/LLVMValueRef.html">LLVMValueRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Extensions/UInt8.html">UInt8</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Functions.html#/s:4LLVM010initializeA0yyF">initializeLLVM()</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Protocols/Attribute.html">Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/DIType.html">DIType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/IRConstant.html">IRConstant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/IRType.html">IRType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/IRValue.html">IRValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/_IRMetadataInitializerHack.html">_IRMetadataInitializerHack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Structs/APInt.html">APInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Alias.html">Alias</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Alignment.html">Alignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ArrayType.html">ArrayType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/BasicBlock/Address.html">– Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Constant.html">Constant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/DIBasicType.html">DIBasicType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/DIFlags.html">DIFlags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/DISubroutineType.html">DISubroutineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/DebugLocation.html">DebugLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/EnumAttribute.html">EnumAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ExpressionMetadata.html">ExpressionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/FileMetadata.html">FileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/FloatType/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/FunctionMetadata.html">FunctionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/FunctionType.html">FunctionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Instruction.html">Instruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Invoke.html">Invoke</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/LabelType.html">LabelType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/LexicalBlockFileMetadata.html">LexicalBlockFileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/LexicalBlockMetadata.html">LexicalBlockMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/MetadataType.html">MetadataType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ModuleMetadata.html">ModuleMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ObjectiveCPropertyAttribute.html">ObjectiveCPropertyAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ObjectiveCPropertyMetadata.html">ObjectiveCPropertyMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Parameter.html">Parameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/PhiNode.html">PhiNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/PointerType.html">PointerType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/StringAttribute.html">StringAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/StructLayout.html">StructLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/StructType.html">StructType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Use.html">Use</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/VectorType.html">VectorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/VoidType.html">VoidType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/X86MMXType.html">X86MMXType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PinnedKind</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PinnedKind</span> <span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                </div>
+              </div>
+            <p>Metadata kinds that are known to LLVM.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO3dbgyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/dbg" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO3dbgyA2EmF">dbg</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Debug information metadata.</p>
+
+<p><code>dbg</code> metadata is used to record primary debugging source-level
+debugging information for values and functions.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">dbg</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO4tbaayA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/tbaa" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO4tbaayA2EmF">tbaa</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type Based Alias Analysis metadata.</p>
+
+<p>In LLVM IR, memory does not have types, so LLVM’s own type system is not
+suitable for doing type based alias analysis (TBAA). Instead, metadata
+is added to the IR to describe a type system of a higher level language.
+This can be used to implement C/C++ strict type aliasing rules, but it
+can also be used to implement custom alias analysis behavior for other
+languages.</p>
+
+<p>To read more about how to do TBAA in LLVM, see the
+<a href="https://llvm.org/docs/LangRef.html#tbaa-metadata">Language Reference</a>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">tbaa</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO4profyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/prof" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO4profyA2EmF">prof</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Profiling metadata.</p>
+
+<p><code>prof</code> metadata is used to record profile data in the IR. The first
+operand of the metadata node indicates the profile metadata type. There
+are currently 3 types: <code>branch_weights</code>, <code>function_entry_count</code>,
+and <code>VP</code>.</p>
+
+<p>Branch weight metadata attached to a <code>branch</code>, <code>select</code>, <code>switch</code> or
+<code>call</code> instruction represents the likeliness of the associated branch
+being taken.</p>
+
+<p>Function entry count metadata can be attached to function definitions to
+record the number of times the function is called. Used with
+block frequency information, it is also used to derive the basic block
+profile count.</p>
+
+<p>VP (value profile) metadata can be attached to instructions that have
+value profile information. Currently this is indirect calls (where it
+records the hottest callees) and calls to memory intrinsics such as
+<code>memcpy</code>, <code>memmove</code>, and <code>memset</code> (where it records the hottest byte
+lengths).</p>
+
+<p>Each VP metadata node contains the “VP” string, then an unsigned 32-bit
+value for the value profiling kind, an unsigned 64-bit value for the
+total number of times the instruction is executed, followed by an
+unsigned 64-bit value and execution count pairs. The value profiling
+kind is 0 for indirect call targets and 1 for memory operations. For
+indirect call targets, each profile value is a hash of the callee
+function name, and for memory operations each value is the byte length.</p>
+
+<p>Note that the value counts do not need to add up to the total count
+listed in the third operand (in practice only the top hottest values
+are tracked and reported).</p>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="n">call</span> <span class="n">void</span> <span class="o">%</span><span class="nf">f</span><span class="p">(),</span> <span class="o">!</span><span class="n">prof</span> <span class="o">!</span><span class="mi">1</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="s">"VP"</span><span class="p">,</span> <span class="n">i32</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">1600</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">7651369219802541373</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">1030</span><span class="p">,</span> <span class="n">i64</span> <span class="o">-</span><span class="mi">4377547752858689819</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">410</span><span class="p">}</span>
+</code></pre>
+
+<p>Note that the VP type is 0 (the second operand), which indicates this is
+an indirect call value profile data. The third operand indicates that
+the indirect call executed 1600 times. The 4th and 6th operands give the
+hashes of the 2 hottest target functions’ names (this is the same hash
+used to represent function names in the profile database), and the 5th
+and 7th operands give the execution count that each of the respective
+prior target functions was called.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">prof</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO6fpmathyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/fpmath" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO6fpmathyA2EmF">fpmath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Floating-point math metadata.</p>
+
+<p><code>fpmath</code> metadata may be attached to any instruction of floating-point
+type. It can be used to express the maximum acceptable error in the
+result of that instruction, in ULPs, thus potentially allowing the
+compiler to use a more efficient but less accurate method of computing
+it. ULP is defined as follows:</p>
+
+<p>If <code>x</code> is a real number that lies between two finite consecutive
+floating-point numbers <code>a</code> and <code>b</code>, without being equal to one of them,
+then <code>ulp(x) = |b - a|</code>, otherwise <code>ulp(x)</code> is the distance between the
+two non-equal finite floating-point numbers nearest <code>x</code>.
+Moreover, <code>ulp(NaN)</code> is <code>NaN</code>.</p>
+
+<p>The metadata node shall consist of a single positive float type number
+representing the maximum relative error, for example:</p>
+<pre class="highlight swift"><code><span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">float</span> <span class="mf">2.5</span> <span class="p">}</span> <span class="p">;</span> <span class="n">maximum</span> <span class="n">acceptable</span> <span class="n">inaccuracy</span> <span class="k">is</span> <span class="mf">2.5</span> <span class="kt">ULPs</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">fpmath</span> <span class="o">=</span> <span class="mi">3</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO5rangeyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/range" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO5rangeyA2EmF">range</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Range metadata.</p>
+
+<p>Range metadata may be attached only to load, call and invoke of integer
+types. It expresses the possible ranges the loaded value or the value
+returned by the called function at this call site is in. If the loaded
+or returned value is not in the specified range, the behavior is
+undefined. The ranges are represented with a flattened list of integers.
+The loaded value or the value returned is known to be in the union of
+the ranges defined by each consecutive pair. Each pair has the
+following properties:</p>
+
+<ul>
+<li>The type must match the type loaded by the instruction.</li>
+<li>The pair <code>a,b</code> represents the range <code>[a,b)</code>.</li>
+<li>Both <code>a</code> and <code>b</code> are constants.</li>
+<li>The range is allowed to wrap.</li>
+<li>The range should not represent the full or empty set.
+That is, <code>a != b</code>.</li>
+<li>In addition, the pairs must be in signed order of the lower bound and
+they must be non-contiguous.</li>
+</ul>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="o">%</span><span class="n">a</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">x</span><span class="p">,</span> <span class="n">align</span> <span class="mi">1</span><span class="p">,</span> <span class="o">!</span><span class="n">range</span> <span class="o">!</span><span class="mi">0</span> <span class="p">;</span> <span class="kt">Can</span> <span class="n">only</span> <span class="n">be</span> <span class="mi">0</span> <span class="n">or</span> <span class="mi">1</span>
+<span class="o">%</span><span class="n">b</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">y</span><span class="p">,</span> <span class="n">align</span> <span class="mi">1</span><span class="p">,</span> <span class="o">!</span><span class="n">range</span> <span class="o">!</span><span class="mi">1</span> <span class="p">;</span> <span class="kt">Can</span> <span class="n">only</span> <span class="n">be</span> <span class="mi">255</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span> <span class="n">or</span> <span class="mi">1</span>
+<span class="o">%</span><span class="n">c</span> <span class="o">=</span> <span class="n">call</span> <span class="n">i8</span> <span class="kd">@foo</span><span class="p">(),</span>       <span class="o">!</span><span class="n">range</span> <span class="o">!</span><span class="mi">2</span> <span class="p">;</span> <span class="kt">Can</span> <span class="n">only</span> <span class="n">be</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="n">or</span> <span class="mi">5</span>
+<span class="o">%</span><span class="n">d</span> <span class="o">=</span> <span class="n">invoke</span> <span class="n">i8</span> <span class="kd">@bar</span><span class="p">()</span> <span class="n">to</span> <span class="n">label</span> <span class="o">%</span><span class="n">cont</span>
+<span class="n">unwind</span> <span class="n">label</span> <span class="o">%</span><span class="n">lpad</span><span class="p">,</span> <span class="o">!</span><span class="n">range</span> <span class="o">!</span><span class="mi">3</span> <span class="p">;</span> <span class="kt">Can</span> <span class="n">only</span> <span class="n">be</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="n">or</span> <span class="mi">5</span>
+<span class="o">...</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">i8</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i8</span> <span class="mi">2</span> <span class="p">}</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">i8</span> <span class="mi">255</span><span class="p">,</span> <span class="n">i8</span> <span class="mi">2</span> <span class="p">}</span>
+<span class="o">!</span><span class="mi">2</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">i8</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i8</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i8</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i8</span> <span class="mi">6</span> <span class="p">}</span>
+<span class="o">!</span><span class="mi">3</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">i8</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">i8</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i8</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i8</span> <span class="mi">6</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">range</span> <span class="o">=</span> <span class="mi">4</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO10tbaaStructyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/tbaaStruct" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO10tbaaStructyA2EmF">tbaaStruct</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type Based Alias Analysis struct metadata.</p>
+
+<p>The <code>llvm.memcpy.*</code> family of instrinsics is often used to implement
+aggregate assignment operations in C and similar languages, however it
+is defined to copy a contiguous region of memory, which is more than
+strictly necessary for aggregate types which contain holes due to
+padding. Also, it doesn’t contain any TBAA information about the fields
+of the aggregate.</p>
+
+<p><code>tbaa.struct</code> metadata can describe which memory subregions in a
+<code>memcpy</code> are padding and what the TBAA tags of the struct are.</p>
+
+<p>The current metadata format is very simple. <code>tbaa.struct</code> metadata nodes
+are a list of operands which are in conceptual groups of three. For each
+group of three, the first operand gives the byte offset of a field in
+bytes, the second gives its size in bytes, and the third gives its
+tbaa tag. e.g.:</p>
+<pre class="highlight swift"><code><span class="o">!</span><span class="mi">4</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">i64</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="mi">1</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">8</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="mi">2</span> <span class="p">}</span>
+</code></pre>
+
+<p>This describes a struct with two fields: The first is at offset 0 bytes
+with size 4 bytes, and has tbaa tag <code>!1</code>. The second is at offset 8
+bytes and has size 4 bytes and has tbaa tag !2.</p>
+
+<p>Note that the fields need not be contiguous. In this example, there is a
+4 byte gap between the two fields. This gap represents padding which
+does not carry useful data and need not be preserved.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">tbaaStruct</span> <span class="o">=</span> <span class="mi">5</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO13invariantLoadyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/invariantLoad" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO13invariantLoadyA2EmF">invariantLoad</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load addreess invariance metadata.</p>
+
+<p>If a load instruction tagged with the <code>invariant.load</code> metadata is
+executed, the optimizer may assume the memory location referenced by the
+load contains the same value at all points in the program where the
+memory location is known to be dereferenceable; otherwise, the
+behavior is undefined.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">invariantLoad</span> <span class="o">=</span> <span class="mi">6</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO10aliasScopeyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/aliasScope" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO10aliasScopeyA2EmF">aliasScope</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Alias scope metadata.</p>
+
+<p><code>alias.scope</code> metadata provide the ability to specify generic <code><a href="../../Classes/AttachedMetadata/PinnedKind.html#/s:4LLVM16AttachedMetadataC10PinnedKindO7noaliasyA2EmF">noalias</a></code>
+memory-access sets. This means that some collection of memory access
+instructions (loads, stores, memory-accessing calls, etc.) that carry
+<code><a href="../../Classes/AttachedMetadata/PinnedKind.html#/s:4LLVM16AttachedMetadataC10PinnedKindO7noaliasyA2EmF">noalias</a></code> metadata can specifically be specified not to alias with some
+other collection of memory access instructions that carry <code>alias.scope</code>
+metadata. Each type of metadata specifies a list of scopes where each
+scope has an id and a domain.</p>
+
+<p>When evaluating an aliasing query, if for some domain, the set of scopes
+with that domain in one instruction’s <code>alias.scope</code> list is a subset of
+(or equal to) the set of scopes for that domain in another instruction’s
+noalias list, then the two memory accesses are assumed not to alias.</p>
+
+<p>Because scopes in one domain don’t affect scopes in other domains,
+separate domains can be used to compose multiple independent noalias
+sets. This is used for example during inlining. As the noalias function
+parameters are turned into noalias scope metadata, a new domain is used
+every time the function is inlined.</p>
+
+<p>The metadata identifying each domain is itself a list containing one or
+two entries. The first entry is the name of the domain. Note that if the
+name is a string then it can be combined across functions and
+translation units. A self-reference can be used to create globally
+unique domain names. A descriptive string may optionally be provided as
+a second list entry.</p>
+
+<p>The metadata identifying each scope is also itself a list containing two
+or three entries. The first entry is the name of the scope. Note that if
+the name is a string then it can be combined across functions and
+translation units. A self-reference can be used to create globally
+unique scope names. A metadata reference to the scope’s domain is the
+second entry. A descriptive string may optionally be provided as a third
+list entry.</p>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="p">;</span> <span class="kt">Two</span> <span class="n">scope</span> <span class="nv">domains</span><span class="p">:</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">0</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">1</span><span class="p">}</span>
+
+<span class="p">;</span> <span class="kt">Some</span> <span class="n">scopes</span> <span class="k">in</span> <span class="n">these</span> <span class="nv">domains</span><span class="p">:</span>
+<span class="o">!</span><span class="mi">2</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">2</span><span class="p">,</span> <span class="o">!</span><span class="mi">0</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">3</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">3</span><span class="p">,</span> <span class="o">!</span><span class="mi">0</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">4</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="mi">1</span><span class="p">}</span>
+
+<span class="p">;</span> <span class="kt">Some</span> <span class="n">scope</span> <span class="nv">lists</span><span class="p">:</span>
+<span class="o">!</span><span class="mi">5</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">4</span><span class="p">}</span> <span class="p">;</span> <span class="kt">A</span> <span class="n">list</span> <span class="n">containing</span> <span class="n">only</span> <span class="n">scope</span> <span class="o">!</span><span class="mi">4</span>
+<span class="o">!</span><span class="mi">6</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="mi">3</span><span class="p">,</span> <span class="o">!</span><span class="mi">2</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">7</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">3</span><span class="p">}</span>
+
+<span class="p">;</span> <span class="kt">These</span> <span class="n">two</span> <span class="n">instructions</span> <span class="n">don</span><span class="err">'</span><span class="n">t</span> <span class="nv">alias</span><span class="p">:</span>
+<span class="o">%</span><span class="mi">0</span> <span class="o">=</span> <span class="n">load</span> <span class="n">float</span><span class="p">,</span> <span class="n">float</span><span class="o">*</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="n">alias</span><span class="o">.</span><span class="n">scope</span> <span class="o">!</span><span class="mi">5</span>
+<span class="n">store</span> <span class="n">float</span> <span class="o">%</span><span class="mi">0</span><span class="p">,</span> <span class="n">float</span><span class="o">*</span> <span class="o">%</span><span class="n">arrayidx</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="n">noalias</span> <span class="o">!</span><span class="mi">5</span>
+
+<span class="p">;</span> <span class="kt">These</span> <span class="n">two</span> <span class="n">instructions</span> <span class="n">also</span> <span class="n">don</span><span class="err">'</span><span class="n">t</span> <span class="nf">alias</span> <span class="p">(</span><span class="k">for</span> <span class="n">domain</span> <span class="o">!</span><span class="mi">1</span><span class="p">,</span> <span class="n">the</span> <span class="k">set</span> <span class="n">of</span> <span class="n">scopes</span>
+<span class="p">;</span> <span class="k">in</span> <span class="n">the</span> <span class="o">!</span><span class="n">alias</span><span class="o">.</span><span class="n">scope</span> <span class="n">equals</span> <span class="n">that</span> <span class="k">in</span> <span class="n">the</span> <span class="o">!</span><span class="n">noalias</span> <span class="n">list</span><span class="p">):</span>
+<span class="o">%</span><span class="mi">2</span> <span class="o">=</span> <span class="n">load</span> <span class="n">float</span><span class="p">,</span> <span class="n">float</span><span class="o">*</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="n">alias</span><span class="o">.</span><span class="n">scope</span> <span class="o">!</span><span class="mi">5</span>
+<span class="n">store</span> <span class="n">float</span> <span class="o">%</span><span class="mi">2</span><span class="p">,</span> <span class="n">float</span><span class="o">*</span> <span class="o">%</span><span class="n">arrayidx</span><span class="o">.</span><span class="n">i2</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="n">noalias</span> <span class="o">!</span><span class="mi">6</span>
+
+<span class="p">;</span> <span class="kt">These</span> <span class="n">two</span> <span class="n">instructions</span> <span class="n">may</span> <span class="nf">alias</span> <span class="p">(</span><span class="k">for</span> <span class="n">domain</span> <span class="o">!</span><span class="mi">0</span><span class="p">,</span> <span class="n">the</span> <span class="k">set</span> <span class="n">of</span> <span class="n">scopes</span> <span class="k">in</span>
+<span class="p">;</span> <span class="n">the</span> <span class="o">!</span><span class="n">noalias</span> <span class="n">list</span> <span class="k">is</span> <span class="n">not</span> <span class="n">a</span> <span class="n">superset</span> <span class="n">of</span><span class="p">,</span> <span class="n">or</span> <span class="n">equal</span> <span class="n">to</span><span class="p">,</span> <span class="n">the</span> <span class="n">scopes</span> <span class="k">in</span> <span class="n">the</span>
+<span class="p">;</span> <span class="o">!</span><span class="n">alias</span><span class="o">.</span><span class="n">scope</span> <span class="n">list</span><span class="p">):</span>
+<span class="o">%</span><span class="mi">2</span> <span class="o">=</span> <span class="n">load</span> <span class="n">float</span><span class="p">,</span> <span class="n">float</span><span class="o">*</span> <span class="o">%</span><span class="n">c</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="n">alias</span><span class="o">.</span><span class="n">scope</span> <span class="o">!</span><span class="mi">6</span>
+<span class="n">store</span> <span class="n">float</span> <span class="o">%</span><span class="mi">0</span><span class="p">,</span> <span class="n">float</span><span class="o">*</span> <span class="o">%</span><span class="n">arrayidx</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="n">align</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="n">noalias</span> <span class="o">!</span><span class="mi">7</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">aliasScope</span> <span class="o">=</span> <span class="mi">7</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO7noaliasyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/noalias" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO7noaliasyA2EmF">noalias</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>No-alias metadata.</p>
+
+<p><code>noalias</code> metadata provide the ability to specify generic <code>noalias</code>
+memory-access sets. This means that some collection of memory access
+instructions (loads, stores, memory-accessing calls, etc.) that carry
+<code>noalias</code> metadata can specifically be specified not to alias with some
+other collection of memory access instructions that carry <code>alias.scope</code>
+metadata. Each type of metadata specifies a list of scopes where each
+scope has an id and a domain.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">noalias</span> <span class="o">=</span> <span class="mi">8</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO11nontemporalyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/nontemporal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO11nontemporalyA2EmF">nontemporal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Temporal metadata.</p>
+
+<p>The existence of the !nontemporal metadata on the instruction tells the
+optimizer and code generator that this load is not expected to be reused
+in the cache. The code generator may select special instructions to save
+cache bandwidth, such as the <code>MOVNT</code> instruction on x86.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">nontemporal</span> <span class="o">=</span> <span class="mi">9</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO21memParallelLoopAccessyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/memParallelLoopAccess" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO21memParallelLoopAccessyA2EmF">memParallelLoopAccess</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Loop memory access metadata.</p>
+
+<p>If certain memory accesses within a loop are independent of each other
+(that is, they have no loop-carried dependencies), and if these are the
+only accesses in the loop, then tagging load/store instructions with
+<code>llvm.mem.parallel_loop_access</code> signals to the optimizer that those
+accesses can be vectorized.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">memParallelLoopAccess</span> <span class="o">=</span> <span class="mi">10</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO7nonnullyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/nonnull" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO7nonnullyA2EmF">nonnull</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Non-null metadata.</p>
+
+<p>This indicates that the parameter or return pointer is not null. This
+attribute may only be applied to pointer typed parameters. This is not
+checked or enforced by LLVM; if the parameter or return pointer is null,
+the behavior is undefined.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">nonnull</span> <span class="o">=</span> <span class="mi">11</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO15dereferenceableyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/dereferenceable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO15dereferenceableyA2EmF">dereferenceable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dereferenceable metadata.</p>
+
+<p>This indicates that the parameter or return pointer is dereferenceable.
+This attribute may only be applied to pointer typed parameters. A
+pointer that is dereferenceable can be loaded from speculatively without
+a risk of trapping. The number of bytes known to be dereferenceable must
+be provided in parentheses. It is legal for the number of bytes to be
+less than the size of the pointee type. The <code><a href="../../Classes/AttachedMetadata/PinnedKind.html#/s:4LLVM16AttachedMetadataC10PinnedKindO7nonnullyA2EmF">nonnull</a></code> attribute does not
+imply dereferenceability (consider a pointer to one element past the end
+of an array), however <code>dereferenceable</code> does imply <code><a href="../../Classes/AttachedMetadata/PinnedKind.html#/s:4LLVM16AttachedMetadataC10PinnedKindO7nonnullyA2EmF">nonnull</a></code> in
+the default address space.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">dereferenceable</span> <span class="o">=</span> <span class="mi">12</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO21dereferenceableOrNullyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/dereferenceableOrNull" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO21dereferenceableOrNullyA2EmF">dereferenceableOrNull</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dereferenceable or null metadata.</p>
+
+<p>This indicates that the parameter or return value isn’t both non-null
+and non-dereferenceable (up to a given number of bytes) at the same
+time. All non-null pointers tagged with <code>dereferenceable_or_null</code> are
+<code><a href="../../Classes/AttachedMetadata/PinnedKind.html#/s:4LLVM16AttachedMetadataC10PinnedKindO15dereferenceableyA2EmF">dereferenceable</a></code>. For address space 0, <code>dereferenceable_or_null</code>
+implies that a pointer is exactly one of <code><a href="../../Classes/AttachedMetadata/PinnedKind.html#/s:4LLVM16AttachedMetadataC10PinnedKindO15dereferenceableyA2EmF">dereferenceable</a></code> or <code>null</code>,
+and in other address spaces <code>dereferenceable_or_null</code> implies that a
+pointer is at least one of <code><a href="../../Classes/AttachedMetadata/PinnedKind.html#/s:4LLVM16AttachedMetadataC10PinnedKindO15dereferenceableyA2EmF">dereferenceable</a></code> or <code>null</code> (i.e. it may be
+both <code>null</code> and <code><a href="../../Classes/AttachedMetadata/PinnedKind.html#/s:4LLVM16AttachedMetadataC10PinnedKindO15dereferenceableyA2EmF">dereferenceable</a></code>). This attribute may only be applied
+to pointer typed parameters.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">dereferenceableOrNull</span> <span class="o">=</span> <span class="mi">13</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO12makeImplicityA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/makeImplicit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO12makeImplicityA2EmF">makeImplicit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Implicit checks metadata.</p>
+
+<p>Making null checks implicit is an aggressive optimization, and it can be
+a net performance pessimization if too many memory operations end up
+faulting because of it. A language runtime typically needs to ensure
+that only a negligible number of implicit null checks actually fault
+once the application has reached a steady state. A standard way of doing
+this is by healing failed implicit null checks into explicit null checks
+via code patching or recompilation. It follows that there are two
+requirements an explicit null check needs to satisfy for it to be
+profitable to convert it to an implicit null check:</p>
+
+<ul>
+<li>The case where the pointer is actually null (i.e. the “failing” case)
+is extremely rare.</li>
+<li>The failing path heals the implicit null check into an explicit null
+check so that the application does not repeatedly page fault.</li>
+</ul>
+
+<p>The frontend is expected to mark branches that satisfy both conditions
+using a <code>make.implicit</code> metadata node (the actual content of the
+metadata node is ignored). Only branches that are marked with
+<code>make.implicit</code> metadata are considered as candidates for conversion
+into implicit null checks.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">makeImplicit</span> <span class="o">=</span> <span class="mi">14</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO13unpredictableyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/unpredictable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO13unpredictableyA2EmF">unpredictable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unpredictable metadata.</p>
+
+<p>Unpredictable metadata may be attached to any <code>branch</code> or <code>switch</code>
+instruction. It can be used to express the unpredictability of control
+flow. Similar to the <code>llvm.expect</code> intrinsic, it may be used to alter
+optimizations related to compare and branch instructions. The metadata
+is treated as a boolean value; if it exists, it signals that the branch
+or switch that it is attached to is completely unpredictable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unpredictable</span> <span class="o">=</span> <span class="mi">15</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO14invariantGroupyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/invariantGroup" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO14invariantGroupyA2EmF">invariantGroup</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Invariant group metadata.</p>
+
+<p>The experimental <code>invariant.group</code> metadata may be attached to
+load/store instructions referencing a single metadata with no entries.
+The existence of <code>invariant.group</code> metadata on the instruction tells the
+optimizer that every load and store to the same pointer operand can be
+assumed to load or store the same value.</p>
+
+<p>Pointers returned by <code>bitcast</code> or <code>getelementptr</code> with only zero indices
+are considered the same.</p>
+
+<p>Examples:</p>
+<pre class="highlight swift"><code><span class="kd">@unknownPtr</span> <span class="o">=</span> <span class="n">external</span> <span class="n">global</span> <span class="n">i8</span>
+<span class="o">...</span>
+<span class="o">%</span><span class="n">ptr</span> <span class="o">=</span> <span class="n">alloca</span> <span class="n">i8</span>
+<span class="n">store</span> <span class="n">i8</span> <span class="mi">42</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span>
+<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo(i8* %ptr)</span>
+
+<span class="o">%</span><span class="n">a</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span> <span class="p">;</span> <span class="kt">Can</span> <span class="n">assume</span> <span class="n">that</span> <span class="n">value</span> <span class="n">under</span> <span class="o">%</span><span class="n">ptr</span> <span class="n">didn</span><span class="err">'</span><span class="n">t</span> <span class="n">change</span>
+<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo(i8* %ptr)</span>
+
+<span class="o">%</span><span class="n">newPtr</span> <span class="o">=</span> <span class="n">call</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@getPointer(i8* %ptr)</span>
+<span class="o">%</span><span class="n">c</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">newPtr</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span> <span class="p">;</span> <span class="kt">Can</span><span class="err">'</span><span class="n">t</span> <span class="n">assume</span> <span class="n">anything</span><span class="p">,</span> <span class="n">because</span> <span class="n">we</span> <span class="n">only</span> <span class="n">have</span> <span class="n">information</span> <span class="n">about</span> <span class="o">%</span><span class="n">ptr</span>
+
+<span class="o">%</span><span class="n">unknownValue</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@unknownPtr</span>
+<span class="n">store</span> <span class="n">i8</span> <span class="o">%</span><span class="n">unknownValue</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span> <span class="p">;</span> <span class="kt">Can</span> <span class="n">assume</span> <span class="n">that</span> <span class="o">%</span><span class="n">unknownValue</span> <span class="o">==</span> <span class="mi">42</span>
+
+<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo(i8* %ptr)</span>
+<span class="o">%</span><span class="n">newPtr2</span> <span class="o">=</span> <span class="n">call</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@llvm</span><span class="o">.</span><span class="n">launder</span><span class="o">.</span><span class="n">invariant</span><span class="o">.</span><span class="nf">group</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">)</span>
+<span class="o">%</span><span class="n">d</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">newPtr2</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span>  <span class="p">;</span> <span class="kt">Can</span><span class="err">'</span><span class="n">t</span> <span class="n">step</span> <span class="n">through</span> <span class="n">launder</span><span class="o">.</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="n">to</span> <span class="k">get</span> <span class="n">value</span> <span class="n">of</span> <span class="o">%</span><span class="n">ptr</span>
+
+<span class="o">...</span>
+<span class="n">declare</span> <span class="n">void</span> <span class="kd">@foo(i8*)</span>
+<span class="n">declare</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@getPointer(i8*)</span>
+<span class="n">declare</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@llvm</span><span class="o">.</span><span class="n">launder</span><span class="o">.</span><span class="n">invariant</span><span class="o">.</span><span class="nf">group</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span><span class="p">)</span>
+
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{}</span>
+</code></pre>
+
+<p>The <code>invariant.group</code> metadata must be dropped when replacing one pointer
+by another based on aliasing information. This is because
+<code>invariant.group</code> is tied to the SSA value of the pointer operand.</p>
+<pre class="highlight swift"><code><span class="o">%</span><span class="n">v</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">x</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span>
+<span class="p">;</span> <span class="k">if</span> <span class="o">%</span><span class="n">x</span> <span class="n">mustalias</span> <span class="o">%</span><span class="n">y</span> <span class="n">then</span> <span class="n">we</span> <span class="n">can</span> <span class="n">replace</span> <span class="n">the</span> <span class="n">above</span> <span class="n">instruction</span> <span class="n">with</span>
+<span class="o">%</span><span class="n">v</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">y</span>
+</code></pre>
+
+<p>Note that this is an experimental feature, which means that its
+semantics might change in the future.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">invariantGroup</span> <span class="o">=</span> <span class="mi">16</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO5alignyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/align" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO5alignyA2EmF">align</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Alignment metadata.</p>
+
+<p>This indicates that the pointer value may be assumed by the optimizer to
+have the specified alignment. If the pointer value does not have the
+specified alignment, behavior is undefined.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">align</span> <span class="o">=</span> <span class="mi">17</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO4loopyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/loop" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO4loopyA2EmF">loop</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Loop identifier metadata.</p>
+
+<p>It is sometimes useful to attach information to loop constructs.
+Currently, loop metadata is implemented as metadata attached to the
+branch instruction in the loop latch block. This type of metadata refer
+to a metadata node that is guaranteed to be separate for each loop. The
+loop identifier metadata is specified with the name <code>llvm.loop</code>.</p>
+
+<p>The loop identifier metadata is implemented using a metadata that
+refers to itself to avoid merging it with any other identifier
+metadata, e.g., during module linkage or function inlining. That is,
+each loop should refer to their own identification metadata even if
+they reside in separate functions. The following example contains loop
+identifier metadata for two separate loop constructs:</p>
+<pre class="highlight swift"><code><span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">0</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">1</span><span class="p">}</span>
+</code></pre>
+
+<p>The loop identifier metadata can be used to specify additional per-loop
+metadata. Any operands after the first operand can be treated as
+user-defined metadata. For example the <code>llvm.loop.unroll.count</code>
+suggests an unroll factor to the loop unroller:</p>
+<pre class="highlight swift"><code><span class="n">br</span> <span class="n">i1</span> <span class="o">%</span><span class="n">exitcond</span><span class="p">,</span> <span class="n">label</span> <span class="o">%.</span><span class="n">_crit_edge</span><span class="p">,</span> <span class="n">label</span> <span class="o">%.</span><span class="n">lr</span><span class="o">.</span><span class="n">ph</span><span class="p">,</span> <span class="o">!</span><span class="n">llvm</span><span class="o">.</span><span class="n">loop</span> <span class="o">!</span><span class="mi">0</span>
+<span class="o">...</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">0</span><span class="p">,</span> <span class="o">!</span><span class="mi">1</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="s">"llvm.loop.unroll.count"</span><span class="p">,</span> <span class="n">i32</span> <span class="mi">4</span><span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">loop</span> <span class="o">=</span> <span class="mi">18</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO4typeyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO4typeyA2EmF">type</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type metadata.</p>
+
+<p>Type metadata is a mechanism that allows IR modules to co-operatively
+build pointer sets corresponding to addresses within a given set of
+globals. LLVM’s control flow integrity implementation uses this metadata
+to efficiently check (at each call site) that a given address
+corresponds to either a valid vtable or function pointer for a given
+class or function type, and its whole-program devirtualization pass uses
+the metadata to identify potential callees for a given virtual call.</p>
+
+<p>For more information, see <a href="https://www.llvm.org/docs/TypeMetadata.html">Type Metadata</a>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">type</span> <span class="o">=</span> <span class="mi">19</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO13sectionPrefixyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/sectionPrefix" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO13sectionPrefixyA2EmF">sectionPrefix</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Section prefix metadata.</p>
+
+<p>LLVM allows an explicit section to be specified for functions. If the
+target supports it, it will emit functions to the section specified.
+Additionally, the function can be placed in a COMDAT.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">sectionPrefix</span> <span class="o">=</span> <span class="mi">20</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO14absoluteSymbolyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/absoluteSymbol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO14absoluteSymbolyA2EmF">absoluteSymbol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Absolute symbol metadata.</p>
+
+<p><code>absolute_symbol</code> metadata may be attached to a global variable
+declaration. It marks the declaration as a reference to an absolute
+symbol, which causes the backend to use absolute relocations for the
+symbol even in position independent code, and expresses the possible
+ranges that the global variable’s address (not its value) is in, in the
+same format as range metadata, with the extension that the pair
+<code>all-ones,all-ones</code> may be used to represent the full set.</p>
+
+<p>For example (assuming 64-bit pointers):</p>
+<pre class="highlight swift"><code><span class="kd">@a</span> <span class="o">=</span> <span class="n">external</span> <span class="n">global</span> <span class="n">i8</span><span class="p">,</span> <span class="o">!</span><span class="n">absolute_symbol</span> <span class="o">!</span><span class="mi">0</span> <span class="p">;</span> <span class="kt">Absolute</span> <span class="n">symbol</span> <span class="k">in</span> <span class="n">range</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">)</span>
+<span class="kd">@b</span> <span class="o">=</span> <span class="n">external</span> <span class="n">global</span> <span class="n">i8</span><span class="p">,</span> <span class="o">!</span><span class="n">absolute_symbol</span> <span class="o">!</span><span class="mi">1</span> <span class="p">;</span> <span class="kt">Absolute</span> <span class="n">symbol</span> <span class="k">in</span> <span class="n">range</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">^</span><span class="mi">64</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">i64</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">256</span> <span class="p">}</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">i64</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i64</span> <span class="o">-</span><span class="mi">1</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">absoluteSymbol</span> <span class="o">=</span> <span class="mi">21</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO10associatedyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/associated" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO10associatedyA2EmF">associated</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Associated metadata.</p>
+
+<p><code>associated</code> metadata may be attached to a global object declaration
+with a single argument that references another global object.</p>
+
+<p>This metadata prevents discarding of the global object in linker GC
+unless the referenced object is also discarded. The linker support for
+this feature is spotty. For best compatibility, globals carrying this
+metadata may also:</p>
+
+<ul>
+<li>Be in a comdat with the referenced global.</li>
+<li>Be in <code>@llvm.compiler.used</code>.</li>
+<li>Have an explicit section with a name which is a valid C identifier.</li>
+</ul>
+
+<p>It does not have any effect on non-ELF targets.</p>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="err">$</span><span class="n">a</span> <span class="o">=</span> <span class="n">comdat</span> <span class="n">any</span>
+<span class="kd">@a</span> <span class="o">=</span> <span class="n">global</span> <span class="n">i32</span> <span class="mi">1</span><span class="p">,</span> <span class="n">comdat</span> <span class="err">$</span><span class="n">a</span>
+<span class="kd">@b</span> <span class="o">=</span> <span class="kd">internal</span> <span class="n">global</span> <span class="n">i32</span> <span class="mi">2</span><span class="p">,</span> <span class="n">comdat</span> <span class="err">$</span><span class="n">a</span><span class="p">,</span> <span class="n">section</span> <span class="s">"abc"</span><span class="p">,</span> <span class="o">!</span><span class="n">associated</span> <span class="o">!</span><span class="mi">0</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i32</span><span class="o">*</span> <span class="kd">@a</span><span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">associated</span> <span class="o">=</span> <span class="mi">22</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO7calleesyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/callees" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO7calleesyA2EmF">callees</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Callees metadata.</p>
+
+<p>Callees metadata may be attached to indirect call sites. If callees
+metadata is attached to a call site, and any callee is not among the
+set of functions provided by the metadata, the behavior is undefined.</p>
+
+<p>The intent of this metadata is to facilitate optimizations such as
+indirect-call promotion. For example, in the code below, the call
+instruction may only target the add or sub functions:</p>
+<pre class="highlight swift"><code><span class="o">%</span><span class="n">result</span> <span class="o">=</span> <span class="n">call</span> <span class="n">i64</span> <span class="o">%</span><span class="nf">binop</span><span class="p">(</span><span class="n">i64</span> <span class="o">%</span><span class="n">x</span><span class="p">,</span> <span class="n">i64</span> <span class="o">%</span><span class="n">y</span><span class="p">),</span> <span class="o">!</span><span class="n">callees</span> <span class="o">!</span><span class="mi">0</span>
+<span class="o">...</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="nf">i64</span> <span class="p">(</span><span class="n">i64</span><span class="p">,</span> <span class="n">i64</span><span class="p">)</span><span class="o">*</span> <span class="kd">@add</span><span class="p">,</span> <span class="nf">i64</span> <span class="p">(</span><span class="n">i64</span><span class="p">,</span> <span class="n">i64</span><span class="p">)</span><span class="o">*</span> <span class="kd">@sub</span><span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">callees</span> <span class="o">=</span> <span class="mi">23</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO7irrLoopyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/irrLoop" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO7irrLoopyA2EmF">irrLoop</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Irreducible loop metadata.</p>
+
+<p><code>irr_loop</code> metadata may be attached to the terminator instruction of a
+basic block that’s an irreducible loop header (note that an irreducible
+loop has more than once header basic blocks.) If <code>irr_loop</code> metadata is
+attached to the terminator instruction of a basic block that is not
+really an irreducible loop header, the behavior is undefined.</p>
+
+<p>The intent of this metadata is to improve the accuracy of the block
+frequency propagation. For example, in the code below, the block
+<code>header0</code> may have a loop header weight (relative to the other headers
+of the irreducible loop) of 100:</p>
+<pre class="highlight swift"><code><span class="nv">header0</span><span class="p">:</span>
+<span class="o">...</span>
+<span class="n">br</span> <span class="n">i1</span> <span class="o">%</span><span class="n">cmp</span><span class="p">,</span> <span class="n">label</span> <span class="o">%</span><span class="n">t1</span><span class="p">,</span> <span class="n">label</span> <span class="o">%</span><span class="n">t2</span><span class="p">,</span> <span class="o">!</span><span class="n">irr_loop</span> <span class="o">!</span><span class="mi">0</span>
+<span class="o">...</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="s">"loop_header_weight"</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">100</span><span class="p">}</span>
+</code></pre>
+
+<p>Irreducible loop header weights are typically based on profile data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">irrLoop</span> <span class="o">=</span> <span class="mi">24</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO11accessGroupyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/accessGroup" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO11accessGroupyA2EmF">accessGroup</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Memory access group metadata.</p>
+
+<p><code>llvm.access.group</code> metadata can be attached to any instruction that
+potentially accesses memory. It can point to a single distinct metadata
+node, which we call access group. This node represents all memory access
+instructions referring to it via <code>llvm.access.group</code>.</p>
+
+<p>When an instruction belongs to multiple access groups, it can also point
+to a list of accesses groups, illustrated by the following example:</p>
+<pre class="highlight swift"><code><span class="o">%</span><span class="n">val</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i32</span><span class="p">,</span> <span class="n">i32</span><span class="o">*</span> <span class="o">%</span><span class="n">arrayidx</span><span class="p">,</span> <span class="o">!</span><span class="n">llvm</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span>
+<span class="o">...</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">1</span><span class="p">,</span> <span class="o">!</span><span class="mi">2</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="n">distinct</span> <span class="o">!</span><span class="p">{}</span>
+<span class="o">!</span><span class="mi">2</span> <span class="o">=</span> <span class="n">distinct</span> <span class="o">!</span><span class="p">{}</span>
+</code></pre>
+
+<p>It is illegal for the list node to be empty since it might be confused
+with an access group.</p>
+
+<p>The access group metadata node must be <code>distinct</code> to avoid collapsing
+multiple access groups by content. An access group metadata node must
+always be empty which can be used to distinguish an access group
+metadata node from a list of access groups. Being empty avoids the
+situation that the content must be updated which, because metadata is
+immutable by design, would required finding and updating all references
+to the access group node.</p>
+
+<p>The access group can be used to refer to a memory access instruction
+without pointing to it directly (which is not possible in global
+metadata). Currently, the only metadata making use of it is
+<code>llvm.loop.parallel_accesses</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">accessGroup</span> <span class="o">=</span> <span class="mi">25</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO8callbackyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/callback" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO8callbackyA2EmF">callback</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Callback metadata.</p>
+
+<p>Callback metadata may be attached to a function declaration, or
+definition. The metadata describes how the arguments of a call to a
+function are in turn passed to the callback function specified by the
+metadata. Thus, the callback metadata provides a partial description of
+a call site inside the function with regards to the arguments of a call
+to the function. The only semantic restriction on the function itself is
+that it is not allowed to inspect or modify arguments referenced in the
+callback metadata as pass-through to the callback function.</p>
+
+<p>The function is not required to actually invoke the callback function
+at runtime. However, the assumptions about not inspecting or modifying
+arguments that would be passed to the specified callback function
+still hold, even if the callback function is not dynamically invoked.
+The function is allowed to invoke the callback function more than once
+per invocation. The function is also allowed to invoke (directly or
+indirectly) the function passed as a callback through another use.
+Finally, the function is also allowed to relay the callback callee
+invocation to a different thread.</p>
+
+<p>The metadata is structured as follows: At the outer level, callback
+metadata is a list of callback encodings. Each encoding starts with a
+constant <code>i64</code> which describes the argument position of the callback
+function in the call to the function. The following elements, except
+the last, describe what arguments are passed to the callback function.
+Each element is again an <code>i64</code> constant identifying the argument of the
+broker that is passed through, or <code>i64 -1</code> to indicate an unknown or
+inspected argument. The order in which they are listed has to be the
+same in which they are passed to the callback callee. The last element
+of the encoding is a boolean which specifies how variadic arguments of
+the broker are handled. If it is true, all variadic arguments of the
+broker are passed through to the callback function after the arguments
+encoded explicitly before.</p>
+
+<p>In the code below, the <code>pthread_create</code> function is marked as such a
+function through the <code>!callback !1</code> metadata. In the example, there is
+only one callback encoding, namely <code>!2</code>, associated with it. This
+encoding identifies the callback function as the second argument
+<code>(i64 2)</code> and the sole argument of the callback function
+as the third <code>(i64 3)</code>.</p>
+<pre class="highlight swift"><code><span class="n">declare</span> <span class="o">!</span><span class="n">callback</span> <span class="o">!</span><span class="mi">1</span> <span class="n">dso_local</span> <span class="n">i32</span> <span class="kd">@pthread_create(i64*, %union.pthread_attr_t*, i8* (i8*)</span><span class="o">*</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">!</span><span class="mi">2</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i64</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i1</span> <span class="kc">false</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">2</span><span class="p">}</span>
+</code></pre>
+
+<p>Another example is shown below. The callback callee is the second
+argument of the <code>__kmpc_fork_call</code> function <code>(i64 2)</code>. The callee is
+given two unknown values (each identified by a <code>i64 -1</code>) and afterwards
+all variadic arguments that are passed to the <code>__kmpc_fork_call</code> call
+(due to the final i1 true).</p>
+<pre class="highlight swift"><code><span class="n">declare</span> <span class="o">!</span><span class="n">callback</span> <span class="o">!</span><span class="mi">0</span> <span class="n">dso_local</span> <span class="n">void</span> <span class="kd">@__kmpc_fork_call(%struct.ident_t*, i32, void (i32*, i32*, ...)</span><span class="o">*</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i64</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i64</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i64</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i1</span> <span class="kc">true</span><span class="p">}</span>
+<span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">1</span><span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">callback</span> <span class="o">=</span> <span class="mi">26</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

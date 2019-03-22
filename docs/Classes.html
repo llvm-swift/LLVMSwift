@@ -31,6 +31,15 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Comdat.html">Comdat</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +64,15 @@
                 <a href="Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -68,6 +86,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/NamedMetadata.html">NamedMetadata</a>
@@ -147,7 +168,13 @@
                 <a href="Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/IntPredicate.html">IntPredicate</a>
@@ -183,7 +210,7 @@
                 <a href="Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/RelocMode.html">RelocMode</a>
+                <a href="Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -288,6 +315,9 @@
                 <a href="Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -295,9 +325,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -310,6 +337,9 @@
           <li class="nav-group-name">
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Structs/Alias.html">Alias</a>
               </li>
@@ -469,6 +499,101 @@
 
           </section>
           <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM7ContextC"></a>
+                    <a name="//apple_ref/swift/Class/Context" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM7ContextC">Context</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>Context</code> represents execution states for the core LLVM IR system.</p>
+
+                        <a href="Classes/Context.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Context</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC"></a>
+                    <a name="//apple_ref/swift/Class/Module" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC">Module</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>Module</code> represents the top-level structure of an LLVM program. An LLVM
+module is effectively a translation unit or a collection of translation
+units merged together.</p>
+
+                        <a href="Classes/Module.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM16AttachedMetadataC"></a>
+                    <a name="//apple_ref/swift/Class/AttachedMetadata" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC">AttachedMetadata</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents a sequence of metadata entries attached to a global value that
+are uniqued by kind.</p>
+
+                        <a href="Classes/AttachedMetadata.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AttachedMetadata</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <ul>
                 <li class="item">
@@ -688,6 +813,97 @@ methods to insert instructions at that position.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:4LLVM9IntrinsicC"></a>
+                    <a name="//apple_ref/swift/Class/Intrinsic" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC">Intrinsic</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An <code>Intrinsic</code> represents an intrinsic known to LLVM.</p>
+
+<p>Intrinsic functions have well known names and semantics and are required to
+follow certain restrictions. Overall, these intrinsics represent an
+extension mechanism for the LLVM language that does not require changing all
+of the transformations in LLVM when adding to the language (or the bitcode
+reader/writer, the parser, etc…).</p>
+
+<p>Intrinsic function names must all start with an <code>llvm.</code> prefix. This prefix
+is reserved in LLVM for intrinsic names; thus, function names may not begin
+with this prefix. Intrinsic functions must always be external functions: you
+cannot define the body of intrinsic functions. Intrinsic functions may only
+be used in call or invoke instructions: it is illegal to take the address of
+an intrinsic function.</p>
+
+<p>Some intrinsic functions can be overloaded, i.e., the intrinsic represents a
+family of functions that perform the same operation but on different data
+types. Because LLVM can represent over 8 million different integer types,
+overloading is used commonly to allow an intrinsic function to operate on
+any integer type. One or more of the argument types or the result type can
+be overloaded to accept any integer type. Argument types may also be defined
+as exactly matching a previous argument’s type or the result type. This
+allows an intrinsic function which accepts multiple arguments, but needs all
+of them to be of the same type, to only be overloaded with respect to a
+single argument or the result.</p>
+
+<p>Overloaded intrinsics will have the names of its overloaded argument types
+encoded into its function name, each preceded by a period. Only those types
+which are overloaded result in a name suffix. Arguments whose type is
+matched against another type do not. For example, the llvm.ctpop function
+can take an integer of any width and returns an integer of exactly the same
+integer width. This leads to a family of functions such as
+<code>i8 @llvm.ctpop.i8(i8 %val)</code> and <code>i29 @llvm.ctpop.i29(i29 %val)</code>. Only one
+type, the return type, is overloaded, and only one type suffix is required.
+Because the argument’s type is matched against the return type, it does not
+require its own name suffix.</p>
+<h1 id='dynamic-member-lookup-for-intrinsics' class='heading'>Dynamic Member Lookup For Intrinsics</h1>
+
+<p>This library provides a dynamic member lookup facility for retrieving
+intrinsic selectors.  For any LLVM intrinsic selector of the form
+<code>llvm.foo.bar.baz</code>, the name of the corresponding dynamic member is that
+name with any dots replaced by underscores.</p>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="n">llvm</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">baz</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_foo_bar_baz</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">stacksave</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_stacksave</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">x86</span><span class="o">.</span><span class="n">xsave64</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_x86_xsave64</span>
+</code></pre>
+
+<p>Any existing underscores do not need to be replaced, e.g.
+<code>llvm.va_copy</code> becomes <code>Intrinsic.ID.llvm_va_copy</code>.</p>
+
+<p>For overloaded intrinsics, the non-overloaded prefix excluding the explicit
+type parameters is used and normalized according to the convention above.</p>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="n">llvm</span><span class="o">.</span><span class="n">sinf64</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_sin</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">memcpy</span><span class="o">.</span><span class="n">p0i8</span><span class="o">.</span><span class="n">p0i8</span><span class="o">.</span><span class="n">i32</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_memcpy</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">bswap</span><span class="o">.</span><span class="n">v4i32</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_bswap</span>
+</code></pre>
+
+                        <a href="Classes/Intrinsic.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Intrinsic</span> <span class="p">:</span> <span class="kt"><a href="Classes/Function.html">Function</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:4LLVM3JITC"></a>
                     <a name="//apple_ref/swift/Class/JIT" class="dashAnchor"></a>
                     <a class="token" href="#/s:4LLVM3JITC">JIT</a>
@@ -754,68 +970,6 @@ position to see if it has reached the end of the file.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MemoryBuffer</span> <span class="p">:</span> <span class="kt">Sequence</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM7ContextC"></a>
-                    <a name="//apple_ref/swift/Class/Context" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM7ContextC">Context</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A <code>Context</code> represents execution states for the core LLVM IR system.</p>
-
-                        <a href="Classes/Context.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Context</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6ModuleC"></a>
-                    <a name="//apple_ref/swift/Class/Module" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC">Module</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A <code>Module</code> represents the top-level structure of an LLVM program. An LLVM
-module is effectively a translation unit or a collection of translation
-units merged together.</p>
-
-                        <a href="Classes/Module.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -1108,8 +1262,8 @@ environment.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

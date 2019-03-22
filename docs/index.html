@@ -30,6 +30,15 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Comdat.html">Comdat</a>
               </li>
               <li class="nav-group-task">
@@ -54,6 +63,15 @@
                 <a href="Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -67,6 +85,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/NamedMetadata.html">NamedMetadata</a>
@@ -146,7 +167,13 @@
                 <a href="Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/IntPredicate.html">IntPredicate</a>
@@ -182,7 +209,7 @@
                 <a href="Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/RelocMode.html">RelocMode</a>
+                <a href="Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -287,6 +314,9 @@
                 <a href="Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -294,9 +324,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -309,6 +336,9 @@
           <li class="nav-group-name">
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Structs/Alias.html">Alias</a>
               </li>
@@ -484,7 +514,7 @@
 <span class="k">let</span> <span class="nv">main</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span>
              <span class="s">"main"</span><span class="p">,</span>
              <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">(</span><span class="nv">argTypes</span><span class="p">:</span> <span class="p">[],</span>
-             <span class="nv">returnType</span><span class="p">:</span> <span class="kt">VoidType</span><span class="p">())</span>
+             <span class="nv">returnType</span><span class="p">:</span> <span class="kt">IntType</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
            <span class="p">)</span>
 <span class="k">let</span> <span class="nv">entry</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"entry"</span><span class="p">)</span>
 <span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span>
@@ -499,7 +529,7 @@
 <p>This simple program generates the following IR:</p>
 <pre class="highlight llvm"><code><span class="err">//</span> <span class="k">module</span><span class="p">.</span><span class="err">dump</span><span class="p">()</span>
 
-<span class="k">define</span> <span class="kt">void</span> <span class="vg">@main</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">define</span> <span class="kt">i64</span> <span class="vg">@main</span><span class="p">()</span> <span class="p">{</span>
 <span class="nl">entry:</span>
   <span class="k">ret</span> <span class="kt">i64</span> <span class="m">42</span>
 <span class="p">}</span>
@@ -657,11 +687,14 @@ the following types:</p>
 
 <p>LLVMSwift provides a JIT abstraction to make executing code in LLVM modules quick and easy.  Let&rsquo;s execute the PHI node example from before:</p>
 <pre class="highlight swift"><code><span class="c1">// Setup the JIT</span>
-<span class="k">let</span> <span class="nv">jit</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">JIT</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">,</span> <span class="nv">machine</span><span class="p">:</span> <span class="kt">TargetMachine</span><span class="p">())</span>
+<span class="k">let</span> <span class="nv">jit</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">JIT</span><span class="p">(</span><span class="nv">machine</span><span class="p">:</span> <span class="kt">TargetMachine</span><span class="p">())</span>
 <span class="kd">typealias</span> <span class="kt">FnPtr</span> <span class="o">=</span> <span class="kd">@convention(c)</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Double</span>
+<span class="n">_</span> <span class="o">=</span> <span class="k">try</span> <span class="n">jit</span><span class="o">.</span><span class="nf">addEagerlyCompiledIR</span><span class="p">(</span><span class="n">module</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">JIT</span><span class="o">.</span><span class="kt">TargetAddress</span> <span class="k">in</span>
+  <span class="k">return</span> <span class="kt">JIT</span><span class="o">.</span><span class="kt">TargetAddress</span><span class="p">()</span>
+<span class="p">}</span>
 <span class="c1">// Retrieve a handle to the function we're going to invoke</span>
-<span class="k">let</span> <span class="nv">fnAddr</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="nf">addressOfFunction</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"calculateFibs"</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">fn</span> <span class="o">=</span> <span class="nf">unsafeBitCast</span><span class="p">(</span><span class="n">fnAddr</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">FnPtr</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">addr</span> <span class="o">=</span> <span class="k">try</span> <span class="n">jit</span><span class="o">.</span><span class="nf">address</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="s">"calculateFibs"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">fn</span> <span class="o">=</span> <span class="nf">unsafeBitCast</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt">FnPtr</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
 <span class="c1">// Call the function!</span>
 <span class="nf">print</span><span class="p">(</span><span class="nf">fn</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span> <span class="c1">// 0.00917431192660551...</span>
 <span class="nf">print</span><span class="p">(</span><span class="nf">fn</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span> <span class="c1">// 0.0112359550561798...</span>
@@ -672,7 +705,7 @@ the following types:</p>
 LLVMSwift:</p>
 
 <ul>
-<li>Install LLVM 5.0+ using your favorite package manager. For example:
+<li>Install LLVM 8.0+ using your favorite package manager. For example:
 
 <ul>
 <li><code>brew install llvm</code></li>
@@ -693,7 +726,7 @@ installed LLVM.</li>
 <p>Once you do that, you can add LLVMSwift as a dependency for your own Swift
 compiler projects!</p>
 <h3 id='installation-with-swift-package-manager' class='heading'>Installation with Swift Package Manager</h3>
-<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/llvm-swift/LLVMSwift.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"0.2.0"</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/llvm-swift/LLVMSwift.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"0.4.0"</span><span class="p">)</span>
 </code></pre>
 <h3 id='installation-without-swift-package-manager' class='heading'>Installation without Swift Package Manager</h3>
 
@@ -730,8 +763,8 @@ in this repo.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

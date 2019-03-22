@@ -31,6 +31,15 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +64,15 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -68,6 +86,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
@@ -147,7 +168,13 @@
                 <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
@@ -183,7 +210,7 @@
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/RelocMode.html">RelocMode</a>
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -288,6 +315,9 @@
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -295,9 +325,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -310,6 +337,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
@@ -548,6 +578,33 @@ methods to insert instructions at that position.</p>
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IRBuilderCfd"></a>
+                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IRBuilderCfd">deinit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deinitialize this value and dispose of its resources.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -1078,6 +1135,188 @@ destination type.</p>
                         <h4>Return Value</h4>
                         <p>A value representing the result of casting the given value to
 the given destination type using the given operation.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IRBuilderC16buildPointerCast2of2to4nameAA7IRValue_pAaH_p_AA6IRType_pSStF"></a>
+                    <a name="//apple_ref/swift/Method/buildPointerCast(of:to:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IRBuilderC16buildPointerCast2of2to4nameAA7IRValue_pAaH_p_AA6IRType_pSStF">buildPointerCast(of:to:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a cast operation from a value of pointer type to any other
+integral, pointer, or vector of integral/pointer type.</p>
+
+<p>There are a number of restrictions on the form of the input value and
+destination type.  The source value of a pointer cast must be either a
+pointer or a vector of pointers.  The destination type must either be
+an integer type, a pointer type, or a vector type with integral or pointer
+element type.</p>
+
+<p>If the destination type is an integral type or a vector of integral
+elements, this builds a <code>ptrtoint</code> instruction.  Else, if the destination
+is a pointer type or vector of pointer type, and it has an address space
+that differs from the address space of the source value, an
+<code>addrspacecast</code> instruction is built.  If none of these are true, a
+<code>bitcast</code> instruction is built.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildPointerCast</span><span class="p">(</span><span class="n">of</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to cast.  The value must have pointer type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The destination type to cast to.  This must be a pointer type,
+integer type, or vector of the same.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing the result of casting the given value to
+the given destination type using the appropriate pointer cast operation.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IRBuilderC12buildIntCast2of2to6signed4nameAA7IRValue_pAaI_p_AA0D4TypeVSbSStF"></a>
+                    <a name="//apple_ref/swift/Method/buildIntCast(of:to:signed:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IRBuilderC12buildIntCast2of2to6signed4nameAA7IRValue_pAaI_p_AA0D4TypeVSbSStF">buildIntCast(of:to:signed:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a cast operation from a value of integral type to given integral
+type by zero-extension, sign-extension, bitcast, or truncation
+as necessary.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildIntCast</span><span class="p">(</span><span class="n">of</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Structs/IntType.html">IntType</a></span><span class="p">,</span> <span class="nv">signed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to cast.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The destination integer type to cast to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>signed</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If true, if an extension is required it will be a
+sign-extension.  Else, all required extensions will be
+zero-extensions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value reprresenting the result of casting the given value to
+the given destination integer type using the appropriate
+integral cast operation.</p>
                       </div>
                     </section>
                   </div>
@@ -5928,6 +6167,384 @@ pointer.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
+                <a name="/Memory%20Intrinsics"></a>
+                <a name="//apple_ref/swift/Section/Memory Intrinsics" class="dashAnchor"></a>
+                <a href="#/Memory%20Intrinsics">
+                  <h3 class="section-name">Memory Intrinsics</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IRBuilderC11buildMemset2to2of6length9alignment8volatileyAA7IRValue_p_AaJ_pAaJ_pAA9AlignmentVSbtF"></a>
+                    <a name="//apple_ref/swift/Method/buildMemset(to:of:length:alignment:volatile:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IRBuilderC11buildMemset2to2of6length9alignment8volatileyAA7IRValue_p_AaJ_pAaJ_pAA9AlignmentVSbtF">buildMemset(to:of:length:alignment:volatile:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to the <code>llvm.memset.*</code> family of intrinsics to fill a
+given block of memory with a given byte value.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Unlike the standard function <code>memset</code> defined in libc,
+<code>llvm.memset</code> does not return a value and may be volatile.  The address
+space of the source and destination values need not match.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildMemset</span><span class="p">(</span>
+  <span class="n">to</span> <span class="nv">dest</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">of</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">length</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
+  <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span> <span class="nv">volatile</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A pointer value to the destination that will be filled.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A byte value to fill the destination with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The number of bytes to fill.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alignment</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alignment of the destination pointer value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>volatile</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If true, builds a volatile <code>llvm.memset</code> intrinsic, else
+builds a non-volatile <code>llvm.memset</code> instrinsic.  The exact behavior of
+volatile memory intrinsics is platform-dependent and should not be
+relied upon to perform consistently.  For more information, see the
+language reference&rsquo;s section on <a href="http://llvm.org/docs/LangRef.html#volatile-memory-accesses">Volatile Memory
+Access</a>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IRBuilderC11buildMemCpy2to_4from_6length8volatileyAA7IRValue_p_AA9AlignmentVAaI_pAkaI_pSbtF"></a>
+                    <a name="//apple_ref/swift/Method/buildMemCpy(to:_:from:_:length:volatile:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IRBuilderC11buildMemCpy2to_4from_6length8volatileyAA7IRValue_p_AA9AlignmentVAaI_pAkaI_pSbtF">buildMemCpy(to:_:from:_:length:volatile:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to the <code>llvm.memcpy.*</code> family of intrinsics to copy a block
+of memory to a given destination memory location from a given source
+memory location.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>It is illegal for the destination and source locations to
+overlap each other.</p>
+
+</div>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Unlike the standard function <code>memcpy</code> defined in libc,
+<code>llvm.memcpy</code> does not return a value and may be volatile.  The address
+space of the source and destination values need not match.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildMemCpy</span><span class="p">(</span>
+  <span class="n">to</span> <span class="nv">dest</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">destAlign</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span>
+  <span class="n">from</span> <span class="nv">src</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">srcAlign</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span>
+  <span class="nv">length</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">volatile</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A pointer to the destination that will be filled.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>destAlign</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alignment of the destination pointer value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>src</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A pointer to the source that will be copied from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>srcAlign</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alignment of the source pointer value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The number of bytes to fill.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>volatile</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If true, builds a volatile <code>llvm.memcpy</code> intrinsic, else
+builds a non-volatile <code>llvm.memcpy</code> instrinsic.  The exact behavior of
+volatile memory intrinsics is platform-dependent and should not be
+relied upon to perform consistently.  For more information, see the
+language reference&rsquo;s section on <a href="http://llvm.org/docs/LangRef.html#volatile-memory-accesses">Volatile Memory
+Access</a>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IRBuilderC12buildMemMove2to_4from_6length8volatileyAA7IRValue_p_AA9AlignmentVAaI_pAkaI_pSbtF"></a>
+                    <a name="//apple_ref/swift/Method/buildMemMove(to:_:from:_:length:volatile:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IRBuilderC12buildMemMove2to_4from_6length8volatileyAA7IRValue_p_AA9AlignmentVAaI_pAkaI_pSbtF">buildMemMove(to:_:from:_:length:volatile:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to the <code>llvm.memmove.*</code> family of intrinsics to move a
+block of memory to a given destination memory location from a given source
+memory location.</p>
+
+<p>Unlike <code>llvm.memcpy.*</code>, the destination and source memory locations may
+overlap with each other.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Unlike the standard function <code>memmove</code> defined in libc,
+<code>llvm.memmove</code> does not return a value and may be volatile.  The address
+space of the source and destination values need not match.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildMemMove</span><span class="p">(</span>
+  <span class="n">to</span> <span class="nv">dest</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">destAlign</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span>
+  <span class="n">from</span> <span class="nv">src</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">srcAlign</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span>
+  <span class="nv">length</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">volatile</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A pointer to the destination that will be filled.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>destAlign</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alignment of the destination pointer value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>src</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A pointer to the source that will be copied from.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>srcAlign</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alignment of the source pointer value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The number of bytes to fill.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>volatile</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If true, builds a volatile <code>llvm.memmove</code> intrinsic, else
+builds a non-volatile <code>llvm.memmove</code> instrinsic.  The exact behavior of
+volatile memory intrinsics is platform-dependent and should not be
+relied upon to perform consistently.  For more information, see the
+language reference&rsquo;s section on <a href="http://llvm.org/docs/LangRef.html#volatile-memory-accesses">Volatile Memory
+Access</a>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <a name="/Aggregate%20Instructions"></a>
                 <a name="//apple_ref/swift/Section/Aggregate Instructions" class="dashAnchor"></a>
                 <a href="#/Aggregate%20Instructions">
@@ -5997,6 +6614,86 @@ aggregate value.</p>
                               <td>
                                 <div>
                                   <p>The index at which at which to insert the value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name for the newly inserted instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A value representing an aggregate that has been updated with
+the given value at the given index.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IRBuilderC17buildExtractValue9aggregate5index4nameAA7IRValue_pAaH_p_SiSStF"></a>
+                    <a name="//apple_ref/swift/Method/buildExtractValue(aggregate:index:name:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IRBuilderC17buildExtractValue9aggregate5index4nameAA7IRValue_pAaH_p_SiSStF">buildExtractValue(aggregate:index:name:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build an instruction to extract a value from a member field in an
+aggregate value.</p>
+
+<p>An <code>extract value</code> instruction differs from a <code>get element pointer</code>
+instruction because the value being indexed is not a pointer and the first
+index is unnecessary (as it is assumed to be zero).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildExtractValue</span><span class="p">(</span><span class="nv">aggregate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>aggregate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value of array or structure type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index at which at which to extract a value.</p>
                                 </div>
                               </td>
                             </tr>
@@ -6726,9 +7423,9 @@ just a new symbol and metadata for an existing position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9IRBuilderC19buildInlineAssembly_4type11constraints14hasSideEffects17needsAlignedStackAA7IRValue_pSS_AA12FunctionTypeVSSS2btF"></a>
-                    <a name="//apple_ref/swift/Method/buildInlineAssembly(_:type:constraints:hasSideEffects:needsAlignedStack:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9IRBuilderC19buildInlineAssembly_4type11constraints14hasSideEffects17needsAlignedStackAA7IRValue_pSS_AA12FunctionTypeVSSS2btF">buildInlineAssembly(_:type:constraints:hasSideEffects:needsAlignedStack:)</a>
+                    <a name="/s:4LLVM9IRBuilderC19buildInlineAssembly_7dialect4type11constraints14hasSideEffects17needsAlignedStackAA7IRValue_pSS_AA0dE7DialectOAA12FunctionTypeVSSS2btF"></a>
+                    <a name="//apple_ref/swift/Method/buildInlineAssembly(_:dialect:type:constraints:hasSideEffects:needsAlignedStack:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IRBuilderC19buildInlineAssembly_7dialect4type11constraints14hasSideEffects17needsAlignedStackAA7IRValue_pSS_AA0dE7DialectOAA12FunctionTypeVSSS2btF">buildInlineAssembly(_:dialect:type:constraints:hasSideEffects:needsAlignedStack:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -6765,7 +7462,11 @@ codes when converting from the C source to the LLVM assembly.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildInlineAssembly</span><span class="p">(</span><span class="n">_</span> <span class="nv">asm</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Structs/FunctionType.html">FunctionType</a></span><span class="p">,</span> <span class="nv">constraints</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span> <span class="nv">hasSideEffects</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">needsAlignedStack</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildInlineAssembly</span><span class="p">(</span>
+  <span class="n">_</span> <span class="nv">asm</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">dialect</span><span class="p">:</span> <span class="kt"><a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a></span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Structs/FunctionType.html">FunctionType</a></span><span class="p">,</span>
+  <span class="nv">constraints</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
+  <span class="nv">hasSideEffects</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">needsAlignedStack</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -6853,8 +7554,8 @@ expression.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

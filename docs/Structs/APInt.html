@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>APInt Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/APInt" class="dashAnchor"></a>
+    <a title="APInt Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">LLVM Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        APInt Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat.html">Comdat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat/SelectionKind.html">– SelectionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DIBuilder.html">DIBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Function.html">Function</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FunctionPassManager.html">FunctionPassManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Global.html">Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IRBuilder.html">IRBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT/TargetAddress.html">– TargetAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Target.html">Target</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TargetData.html">TargetData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TargetMachine.html">TargetMachine</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeIndex.html">AttributeIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CallingConvention.html">CallingConvention</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodeModel.html">CodeModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodegenFileType.html">CodegenFileType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIAttributeTypeEncoding.html">DIAttributeTypeEncoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFEmissionKind.html">DWARFEmissionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFExpression.html">DWARFExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFSourceLanguage.html">DWARFSourceLanguage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFTag.html">DWARFTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FunctionPass.html">FunctionPass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RealPredicate.html">RealPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6StructO">Struct</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ThreadLocalModel.html">ThreadLocalModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UnnamedAddressKind.html">UnnamedAddressKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM8UnsignedO">Unsigned</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6VectorO">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/LLVMValueRef.html">LLVMValueRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:4LLVM010initializeA0yyF">initializeLLVM()</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Attribute.html">Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DIType.html">DIType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRConstant.html">IRConstant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRType.html">IRType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRValue.html">IRValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/_IRMetadataInitializerHack.html">_IRMetadataInitializerHack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alignment.html">Alignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ArrayType.html">ArrayType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock/Address.html">– Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constant.html">Constant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIBasicType.html">DIBasicType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIFlags.html">DIFlags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DISubroutineType.html">DISubroutineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DebugLocation.html">DebugLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnumAttribute.html">EnumAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FileMetadata.html">FileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FloatType/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunctionMetadata.html">FunctionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunctionType.html">FunctionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Instruction.html">Instruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LabelType.html">LabelType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockFileMetadata.html">LexicalBlockFileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockMetadata.html">LexicalBlockMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MetadataType.html">MetadataType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ModuleMetadata.html">ModuleMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyAttribute.html">ObjectiveCPropertyAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyMetadata.html">ObjectiveCPropertyMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Parameter.html">Parameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PhiNode.html">PhiNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointerType.html">PointerType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringAttribute.html">StringAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructLayout.html">StructLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructType.html">StructType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Use.html">Use</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VectorType.html">VectorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoidType.html">VoidType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/X86MMXType.html">X86MMXType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>APInt</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">APInt</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/IRConstant.html">IRConstant</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>A value implementing arbitrary precision integer arithmetic.</p>
+
+<p><code>APInt</code> is a functional replacement for common case unsigned integer type
+like <code>UInt</code> or <code>UInt64</code>, but also allows non-byte-width
+integer sizes and large integer value types such as 3-bits, 15-bits, or more
+than 64-bits of precision. <code>APInt</code> provides a variety of arithmetic
+operators and methods to manipulate integer values of any bit-width. It
+supports both the typical integer arithmetic and comparison operations as
+well as bitwise manipulation.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV4Worda"></a>
+                    <a name="//apple_ref/swift/Alias/Word" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV4Worda">Word</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The underlying word size.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Word</span> <span class="o">=</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV8bitWidthSivp"></a>
+                    <a name="//apple_ref/swift/Property/bitWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV8bitWidthSivp">bitWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The bitwidth of this integer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">bitWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+  <span class="k">get</span>
+  <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM7IRValueP02asA0s13OpaquePointerVyF"></a>
+                    <a name="//apple_ref/swift/Method/asLLVM()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM7IRValueP02asA0s13OpaquePointerVyF">asLLVM()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMValueRef</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntVACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntVACycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and initializes a new <code>APInt</code> with a bitwidth of one and a value
+of zero.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV5width5value6signedACSi_s6UInt64VSbtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(width:value:signed:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV5width5value6signedACSi_s6UInt64VSbtcfc">init(width:value:signed:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and initializes a new <code>APInt</code> with a given bit width, value, and
+signedness.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">width</span> <span class="nv">numBits</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">,</span> <span class="nv">signed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>numBits</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The bit width of the integer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value of the integer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>signed</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If <code>true</code>, treat the most significant bit at the given bit
+    width as a sign bit.  Defaults to <code>false</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV5width6valuesACSi_Says6UInt64VGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(width:values:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV5width6valuesACSi_Says6UInt64VGtcfc">init(width:values:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and initializes a new <code>APInt</code> with a given bit width and an
+array of word values.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">width</span> <span class="nv">numBits</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/APInt.html#/s:4LLVM5APIntV4Worda">Word</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>numBits</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The bit width of the integer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>values</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of words to form the value of the integer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Comparisons"></a>
+                <a name="//apple_ref/swift/Section/Comparisons" class="dashAnchor"></a>
+                <a href="#/Comparisons">
+                  <h3 class="section-name">Comparisons</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SL1loiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SL1loiySbx_xtFZ">&lt;(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Arithmetic%20Operations"></a>
+                <a name="//apple_ref/swift/Section/Arithmetic Operations" class="dashAnchor"></a>
+                <a href="#/Arithmetic%20Operations">
+                  <h3 class="section-name">Arithmetic Operations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sj9MagnitudeQa"></a>
+                    <a name="//apple_ref/swift/Alias/Magnitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sj9MagnitudeQa">Magnitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Magnitude</span> <span class="o">=</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s27ExpressibleByIntegerLiteralP0cD4TypeQa"></a>
+                    <a name="//apple_ref/swift/Alias/IntegerLiteralType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s27ExpressibleByIntegerLiteralP0cD4TypeQa">IntegerLiteralType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">IntegerLiteralType</span> <span class="o">=</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s27ExpressibleByIntegerLiteralP07integerD0x0cD4TypeQz_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(integerLiteral:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s27ExpressibleByIntegerLiteralP07integerD0x0cD4TypeQz_tcfc">init(integerLiteral:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">integerLiteral</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sj7exactlyxSgqd___tcSzRd__lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(exactly:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sj7exactlyxSgqd___tcSzRd__lufc">init(exactly:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="p">?</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">exactly</span> <span class="nv">source</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">BinaryInteger</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV1aoiyA2C_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&amp;(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV1aoiyA2C_ACtFZ">&amp;(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the result of performing a bitwise AND operation on the two
+given values.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV2aeoiyyACz_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&amp;=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV2aeoiyyACz_ACtFZ">&amp;=(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stores the result of performing a bitwise AND operation on the two given
+values in the left-hand-side variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV1ooiyA2C_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/|(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV1ooiyA2C_ACtFZ">|(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the result of performing a bitwise OR operation on the two
+given values.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">|</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV2oeoiyyACz_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/|=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV2oeoiyyACz_ACtFZ">|=(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stores the result of performing a bitwise OR operation on the two given
+values in the left-hand-side variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">|=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV1xoiyA2C_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/^(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV1xoiyA2C_ACtFZ">^(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the result of performing a bitwise XOR operation on the two
+given values.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">^</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV2xeoiyyACz_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/^=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV2xeoiyyACz_ACtFZ">^=(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stores the result of performing a bitwise XOR operation on the two given
+values in the left-hand-side variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">^=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s18AdditiveArithmeticP1poiyxx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/+(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s18AdditiveArithmeticP1poiyxx_xtFZ">+(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">+</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s18AdditiveArithmeticP2peoiyyxz_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/+=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s18AdditiveArithmeticP2peoiyyxz_xtFZ">+=(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">+=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s18AdditiveArithmeticP1soiyxx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/-(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s18AdditiveArithmeticP1soiyxx_xtFZ">-(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">-</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s18AdditiveArithmeticP2seoiyyxz_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/-=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s18AdditiveArithmeticP2seoiyyxz_xtFZ">-=(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">-=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sj9magnitude9MagnitudeQzvp"></a>
+                    <a name="//apple_ref/swift/Property/magnitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sj9magnitude9MagnitudeQzvp">magnitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">magnitude</span><span class="p">:</span> <span class="kt">APInt</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sj1moiyxx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/*(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sj1moiyxx_xtFZ">*(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">*</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sj2meoiyyxz_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/*=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sj2meoiyyxz_xtFZ">*=(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">*=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV2lloiyA2C_s6UInt64VtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&lt;&lt;(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV2lloiyA2C_s6UInt64VtFZ">&lt;&lt;(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the result of shifting a value’s binary representation the
+specified number of digits to the left.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV3lleoiyyACz_s6UInt64VtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&lt;&lt;=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV3lleoiyyACz_s6UInt64VtFZ">&lt;&lt;=(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stores the result of shifting a value’s binary representation the
+specified number of digits to the left in the left-hand-side variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;&lt;=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">APInt</span><span class="p">,</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV21logicallyShiftedRight2byACs6UInt64V_tF"></a>
+                    <a name="//apple_ref/swift/Method/logicallyShiftedRight(by:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV21logicallyShiftedRight2byACs6UInt64V_tF">logicallyShiftedRight(by:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Logically shift the value right by the given amount.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">logicallyShiftedRight</span><span class="p">(</span><span class="n">by</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to shift right by.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An integer of the same bit width that has been logically
+       right shifted.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV19logicallyShiftRight2byys6UInt64V_tF"></a>
+                    <a name="//apple_ref/swift/Method/logicallyShiftRight(by:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV19logicallyShiftRight2byys6UInt64V_tF">logicallyShiftRight(by:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Logically shift the value right by the given amount.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">logicallyShiftRight</span><span class="p">(</span><span class="n">by</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>amount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to shift right by.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Arithmetic%20Operations2"></a>
+                <a name="//apple_ref/swift/Section/Arithmetic Operations" class="dashAnchor"></a>
+                <a href="#/Arithmetic%20Operations2">
+                  <h3 class="section-name">Arithmetic Operations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV17zeroExtendedValues6UInt64VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/zeroExtendedValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV17zeroExtendedValues6UInt64VSgvp">zeroExtendedValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Attempts to return the value of this integer as a 64-bit unsigned integer
+that has been zero-extended.  If the value cannot be represented
+faithfully in 64 bits, the result is <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">zeroExtendedValue</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV17signExtendedValues5Int64VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/signExtendedValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV17signExtendedValues5Int64VSgvp">signExtendedValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Attempts to return the value of this integer as a 64-bit signed integer
+that has been sign-extended.  If the value cannot be rerprresented
+faithfully in 64 bits, the result is <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">signExtendedValue</span><span class="p">:</span> <span class="kt">Int64</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Arithmetic%20Operations3"></a>
+                <a name="//apple_ref/swift/Section/Arithmetic Operations" class="dashAnchor"></a>
+                <a href="#/Arithmetic%20Operations3">
+                  <h3 class="section-name">Arithmetic Operations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV10isNegativeSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isNegative" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV10isNegativeSbvp">isNegative</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns <code>true</code> if the most significant bit of this value is set.</p>
+
+<p>Note: This may return <code>true</code> even if you did not explicitly construct
+      a signed <code>APInt</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isNegative</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV13areAllBitsSetSbvp"></a>
+                    <a name="//apple_ref/swift/Property/areAllBitsSet" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV13areAllBitsSetSbvp">areAllBitsSet</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns <code>true</code> if all bits are ones.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">areAllBitsSet</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV19leadingZeroBitCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/leadingZeroBitCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV19leadingZeroBitCountSivp">leadingZeroBitCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of leading zeros in this value’s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">leadingZeroBitCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV20trailingZeroBitCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/trailingZeroBitCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV20trailingZeroBitCountSivp">trailingZeroBitCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of trailing zeros in this value’s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">trailingZeroBitCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV15nonzeroBitCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/nonzeroBitCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV15nonzeroBitCountSivp">nonzeroBitCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of bits equal to 1 in this value’s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">nonzeroBitCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Arithmetic%20Operations4"></a>
+                <a name="//apple_ref/swift/Section/Arithmetic Operations" class="dashAnchor"></a>
+                <a href="#/Arithmetic%20Operations4">
+                  <h3 class="section-name">Arithmetic Operations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV8truncate2toACSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/truncate(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV8truncate2toACSi_tF">truncate(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Truncates the integer to a given bit width.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">truncate</span><span class="p">(</span><span class="n">to</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new width to truncate towards.  This width cannot
+               exceed the current width of the integer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An integer of the given bit width that has been truncated.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV10zeroExtend2toACSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/zeroExtend(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV10zeroExtend2toACSi_tF">zeroExtend(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Zero extends the integer to a given bit width.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">zeroExtend</span><span class="p">(</span><span class="n">to</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width to zero-extend the integer to.  This value
+               may not be smaller than the current width of the
+               integer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An integer of the given bit width that has been zero-extended.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV10signExtend2toACSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/signExtend(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV10signExtend2toACSi_tF">signExtend(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sign extends the integer to a given bit width.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">signExtend</span><span class="p">(</span><span class="n">to</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width to sign-extend the integer to.  This value
+               may not be smaller than the current width of the
+               integer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An integer of the given bit width that has been zero-extended.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV20zeroExtendOrTruncate2toACSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/zeroExtendOrTruncate(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV20zeroExtendOrTruncate2toACSi_tF">zeroExtendOrTruncate(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Zero extends or truncates the integer to the given width.</p>
+
+<p>If the given bit width exceeds the current bit width, the value is
+zero-extended.  Else if the given bit width is less than the current
+bit width, the value is truncated.</p>
+
+<p>If the given bit width matches the current bit width, this operation is
+a no-op.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">zeroExtendOrTruncate</span><span class="p">(</span><span class="n">to</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width to zero extend or truncate to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An integer that has been zero extended or truncated to fit
+       the given bit width.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV20signExtendOrTruncate2toACSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/signExtendOrTruncate(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV20signExtendOrTruncate2toACSi_tF">signExtendOrTruncate(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sign extends or truncates the integer to the given width.</p>
+
+<p>If the given bit width exceeds the current bit width, the value is
+sign-extended.  Else if the given bit width is less than the current
+bit width, the value is truncated.</p>
+
+<p>If the given bit width matches the current bit width, this operation is
+a no-op.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">signExtendOrTruncate</span><span class="p">(</span><span class="n">to</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width to sign extend or truncate to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An integer that has been sign extended or truncated to fit
+       the given bit width.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV7flipAllyyF"></a>
+                    <a name="//apple_ref/swift/Method/flipAll()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV7flipAllyyF">flipAll()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Toggle every bit in this integer to its opposite value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">flipAll</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV1topyA2CFZ"></a>
+                    <a name="//apple_ref/swift/Method/~(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV1topyA2CFZ">~(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Computes the complement integer value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">prefix</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">~</span> <span class="p">(</span><span class="nv">val</span><span class="p">:</span> <span class="kt">APInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">APInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>val</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The integer value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An integer with the value of the bitwise complement.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
