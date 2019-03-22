@@ -20,10 +20,14 @@ let package = Package(
           .brew(["llvm"]),
       ]),
     .target(
-      name: "LLVM",
+      name: "llvmshims",
       dependencies: ["cllvm"]),
+    .target(
+      name: "LLVM",
+      dependencies: ["cllvm", "llvmshims"]),
     .testTarget(
       name: "LLVMTests",
       dependencies: ["LLVM", "FileCheck"]),
-  ]
+  ],
+  cxxLanguageStandard: .cxx14
 )

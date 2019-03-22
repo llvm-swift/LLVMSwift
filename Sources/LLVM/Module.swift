@@ -371,12 +371,78 @@ extension Module {
   ///
   /// - parameter name: The name of the function to create.
   ///
-  /// - returns: A representation of the newly created function with the given
+  /// - returns: A representation of a function with the given
   ///   name or nil if such a representation could not be created.
   public func function(named name: String) -> Function? {
     guard let fn = LLVMGetNamedFunction(llvm, name) else { return nil }
     return Function(llvm: fn)
   }
+
+  /// Searches for and retrieves an intrinsic with the given name in this module
+  /// if that name references an intrinsic.
+  ///
+  /// - Parameters:
+  ///   - name: The name of the intrinsic to search for.
+  ///   - parameters: The type of the parameters of the intrinsic to resolve any
+  ///     ambiguity caused by overloads.
+  /// - returns: A representation of an intrinsic with the given name or nil
+  ///   if such an intrinsic could not be found.
+  public func intrinsic(named name: String, parameters: [IRType] = []) -> Intrinsic? {
+    guard let intrinsic = self.function(named: name) else {
+      return nil
+    }
+
+    let index = LLVMGetIntrinsicID(intrinsic.asLLVM())
+    guard index != 0 else { return nil }
+
+    guard LLVMIntrinsicIsOverloaded(index) != 0 else {
+      return Intrinsic(llvm: intrinsic.asLLVM())
+    }
+
+    var argIRTypes = parameters.map { $0.asLLVM() as Optional }
+    return argIRTypes.withUnsafeMutableBufferPointer { buf -> Intrinsic in
+      guard let value = LLVMGetIntrinsicDeclaration(self.llvm, index, buf.baseAddress, parameters.count) else {
+        fatalError("Could not retrieve type of intrinsic")
+      }
+      return Intrinsic(llvm: value)
+    }
+  }
+
+  /// Searches for and retrieves an intrinsic with the given selector in this
+  /// module if that selector references an intrinsic.
+  ///
+  /// Unlike `Module.intrinsic(named:parameters:)`, the intrinsic function need
+  /// not be declared.  If the module contains a declaration of the intrinsic
+  /// function, it will be returned.  Else, a declaration for the intrinsic
+  /// will be created and appended to this module.
+  ///
+  /// LLVMSwift intrinsic selector syntax differs from the LLVM naming
+  /// conventions for intrinsics in one crucial way: all dots are replaced by
+  /// underscores.
+  ///
+  /// For example:
+  ///
+  ///     llvm.foo.bar.baz -> Intrinsic.ID.llvm_foo_bar_baz
+  ///     llvm.sin -> Intrinsic.ID.llvm_sin
+  ///     llvm.stacksave -> Intrinsic.ID.llvm_stacksave
+  ///     llvm.x86.xsave64 -> Intrinsic.ID.llvm_x86_xsave64
+  ///
+  /// - Parameters:
+  ///   - selector: The selector of the intrinsic to search for.
+  ///   - parameters: The type of the parameters of the intrinsic to resolve any
+  ///     ambiguity caused by overloads.
+  /// - returns: A representation of an intrinsic with the given name or nil
+  ///   if such an intrinsic could not be found.
+  public func intrinsic(_ selector: Intrinsic.Selector, parameters: [IRType] = []) -> Intrinsic? {
+    var argIRTypes = parameters.map { $0.asLLVM() as Optional }
+    return argIRTypes.withUnsafeMutableBufferPointer { buf -> Intrinsic in
+      guard let value = LLVMGetIntrinsicDeclaration(self.llvm, selector.index, buf.baseAddress, parameters.count) else {
+        fatalError("Could not retrieve type of intrinsic")
+      }
+      return Intrinsic(llvm: value)
+    }
+  }
+
 
   /// Searches for and retrieves an alias with the given name in this module
   /// if that name references an existing alias.
@@ -412,6 +478,16 @@ extension Module {
   ///   given name.
   public func metadata(named name: String) -> NamedMetadata {
     return NamedMetadata(module: self, llvm: LLVMGetOrInsertNamedMetadata(self.llvm, name, name.count))
+  }
+
+  /// Build a named function body with the given type.
+  ///
+  /// - parameter name: The name of the newly defined function.
+  /// - parameter type: The type of the newly defined function.
+  ///
+  /// - returns: A value representing the newly inserted function definition.
+  public func addFunction(_ name: String, type: FunctionType) -> Function {
+    return Function(llvm: LLVMAddFunction(self.llvm, name, type.asLLVM()))
   }
 
   /// Build a named global of the given type.
