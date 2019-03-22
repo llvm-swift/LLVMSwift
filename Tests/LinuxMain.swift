@@ -14,8 +14,7 @@ XCTMain([
   IRGlobalSpec.allTests,
   IRMetadataSpec.allTests,
   IROperationSpec.allTests,
-  // FIXME: These tests cannot run on Linux without SEGFAULT'ing.
-  // JITSpec.allTests,
+  JITSpec.allTests,
   ModuleLinkSpec.allTests,
   ModuleMetadataSpec.allTests,
 ])
