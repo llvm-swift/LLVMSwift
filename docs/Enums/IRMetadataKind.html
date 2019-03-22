@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>IRMetadataKind Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Enum/IRMetadataKind" class="dashAnchor"></a>
+    <a title="IRMetadataKind Enumeration Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">LLVM Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        IRMetadataKind Enumeration Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat.html">Comdat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat/SelectionKind.html">– SelectionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DIBuilder.html">DIBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Function.html">Function</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FunctionPassManager.html">FunctionPassManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Global.html">Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IRBuilder.html">IRBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT/TargetAddress.html">– TargetAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Target.html">Target</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TargetData.html">TargetData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TargetMachine.html">TargetMachine</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeIndex.html">AttributeIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CallingConvention.html">CallingConvention</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodeModel.html">CodeModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodegenFileType.html">CodegenFileType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIAttributeTypeEncoding.html">DIAttributeTypeEncoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFEmissionKind.html">DWARFEmissionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFExpression.html">DWARFExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFSourceLanguage.html">DWARFSourceLanguage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFTag.html">DWARFTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FunctionPass.html">FunctionPass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RealPredicate.html">RealPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6StructO">Struct</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ThreadLocalModel.html">ThreadLocalModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UnnamedAddressKind.html">UnnamedAddressKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM8UnsignedO">Unsigned</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6VectorO">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/LLVMValueRef.html">LLVMValueRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:4LLVM010initializeA0yyF">initializeLLVM()</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Attribute.html">Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DIType.html">DIType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRConstant.html">IRConstant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRType.html">IRType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRValue.html">IRValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/_IRMetadataInitializerHack.html">_IRMetadataInitializerHack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alignment.html">Alignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ArrayType.html">ArrayType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock/Address.html">– Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constant.html">Constant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIBasicType.html">DIBasicType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIFlags.html">DIFlags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DISubroutineType.html">DISubroutineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DebugLocation.html">DebugLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnumAttribute.html">EnumAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FileMetadata.html">FileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FloatType/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunctionMetadata.html">FunctionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunctionType.html">FunctionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Instruction.html">Instruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LabelType.html">LabelType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockFileMetadata.html">LexicalBlockFileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockMetadata.html">LexicalBlockMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MetadataType.html">MetadataType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ModuleMetadata.html">ModuleMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyAttribute.html">ObjectiveCPropertyAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyMetadata.html">ObjectiveCPropertyMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Parameter.html">Parameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PhiNode.html">PhiNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointerType.html">PointerType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringAttribute.html">StringAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructLayout.html">StructLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructType.html">StructType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Use.html">Use</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VectorType.html">VectorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoidType.html">VoidType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/X86MMXType.html">X86MMXType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>IRMetadataKind</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IRMetadataKind</span></code></pre>
+
+                </div>
+              </div>
+            <p>Enumerates the kind of metadata nodes.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO8mdStringyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/mdString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO8mdStringyA2CmF">mdString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a string.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">mdString</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO18constantAsMetadatayA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/constantAsMetadata" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO18constantAsMetadatayA2CmF">constantAsMetadata</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a constant-as-metadata node.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">constantAsMetadata</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO15localAsMetadatayA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/localAsMetadata" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO15localAsMetadatayA2CmF">localAsMetadata</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a local-as-metadata node.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">localAsMetadata</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO28distinctMDOperandPlaceholderyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/distinctMDOperandPlaceholder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO28distinctMDOperandPlaceholderyA2CmF">distinctMDOperandPlaceholder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a disctint metadata operand placeholder.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">distinctMDOperandPlaceholder</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO7mdTupleyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/mdTuple" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO7mdTupleyA2CmF">mdTuple</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a tuple.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">mdTuple</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO8locationyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/location" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO8locationyA2CmF">location</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a location.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">location</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO10expressionyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/expression" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO10expressionyA2CmF">expression</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is an expression.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">expression</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO24globalVariableExpressionyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/globalVariableExpression" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO24globalVariableExpressionyA2CmF">globalVariableExpression</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a global variable expression.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">globalVariableExpression</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO13genericDINodeyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/genericDINode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO13genericDINodeyA2CmF">genericDINode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a generic DI node.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">genericDINode</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO8subrangeyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/subrange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO8subrangeyA2CmF">subrange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a subrange.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">subrange</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO10enumeratoryA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/enumerator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO10enumeratoryA2CmF">enumerator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is an enumerator.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">enumerator</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO9basicTypeyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/basicType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO9basicTypeyA2CmF">basicType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a basic type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">basicType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO11derivedTypeyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/derivedType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO11derivedTypeyA2CmF">derivedType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a derived type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">derivedType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO13compositeTypeyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/compositeType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO13compositeTypeyA2CmF">compositeType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a composite type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">compositeType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO14subroutineTypeyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/subroutineType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO14subroutineTypeyA2CmF">subroutineType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a subroutine type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">subroutineType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO4fileyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/file" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO4fileyA2CmF">file</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">file</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO11compileUnityA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/compileUnit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO11compileUnityA2CmF">compileUnit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a compile unit.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">compileUnit</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO10subprogramyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/subprogram" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO10subprogramyA2CmF">subprogram</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a subprogram.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">subprogram</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO12lexicalBlockyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/lexicalBlock" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO12lexicalBlockyA2CmF">lexicalBlock</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a lexical block.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">lexicalBlock</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO16lexicalBlockFileyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/lexicalBlockFile" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO16lexicalBlockFileyA2CmF">lexicalBlockFile</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a lexical block file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">lexicalBlockFile</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO9namespaceyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/namespace" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO9namespaceyA2CmF">namespace</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a namespace.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">namespace</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO6moduleyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/module" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO6moduleyA2CmF">module</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a module.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">module</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO21templateTypeParameteryA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/templateTypeParameter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO21templateTypeParameteryA2CmF">templateTypeParameter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a template type parameter.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">templateTypeParameter</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO22templateValueParameteryA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/templateValueParameter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO22templateValueParameteryA2CmF">templateValueParameter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a template value parameter.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">templateValueParameter</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO14globalVariableyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/globalVariable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO14globalVariableyA2CmF">globalVariable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a global variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">globalVariable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO13localVariableyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/localVariable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO13localVariableyA2CmF">localVariable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a local variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">localVariable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO5labelyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/label" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO5labelyA2CmF">label</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a label.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">label</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO12objCPropertyyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/objCProperty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO12objCPropertyyA2CmF">objCProperty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is an Objective-C property.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">objCProperty</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO14importedEntityyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/importedEntity" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO14importedEntityyA2CmF">importedEntity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is an imported entity.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">importedEntity</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO5macroyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/macro" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO5macroyA2CmF">macro</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a macro.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">macro</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM14IRMetadataKindO9macroFileyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/macroFile" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM14IRMetadataKindO9macroFileyA2CmF">macroFile</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The metadata is a macro file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">macroFile</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

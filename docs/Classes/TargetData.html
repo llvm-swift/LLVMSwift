@@ -31,6 +31,15 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +64,15 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -68,6 +86,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
@@ -147,7 +168,13 @@
                 <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
@@ -183,7 +210,7 @@
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/RelocMode.html">RelocMode</a>
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -288,6 +315,9 @@
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -295,9 +325,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -310,6 +337,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
@@ -1276,377 +1306,11 @@ provided alignment with a skew value added</p>
                 </li>
               </ul>
             </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM10TargetDataC18preferredAlignment2ofSiAA6GlobalC_tF"></a>
-                    <a name="//apple_ref/swift/Method/preferredAlignment(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC18preferredAlignment2ofSiAA6GlobalC_tF">preferredAlignment(of:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Computes the preferred alignment of the given global for this target</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, message: "Prefer the overload of prefferedAlignment(of:﹚ that returns an Alignment")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">preferredAlignment</span><span class="p">(</span><span class="n">of</span> <span class="nv">global</span><span class="p">:</span> <span class="kt"><a href="../Classes/Global.html">Global</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>global</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The global variable</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The variable&rsquo;s preferred alignment in this target</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM10TargetDataC18preferredAlignment2ofSiAA6IRType_p_tF"></a>
-                    <a name="//apple_ref/swift/Method/preferredAlignment(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC18preferredAlignment2ofSiAA6IRType_p_tF">preferredAlignment(of:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Computes the preferred alignment of the given type for this target</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, message: "Prefer the overload of prefferedAlignment(of:﹚ that returns an Alignment")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">preferredAlignment</span><span class="p">(</span><span class="n">of</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type for which you&rsquo;re computing the alignment</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The type&rsquo;s preferred alignment in this target</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM10TargetDataC12abiAlignment2ofSiAA6IRType_p_tF"></a>
-                    <a name="//apple_ref/swift/Method/abiAlignment(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC12abiAlignment2ofSiAA6IRType_p_tF">abiAlignment(of:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Computes the minimum ABI-required alignment for the specified type.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, message: "Prefer the overload of abiAlignment(of:﹚ that returns an Alignment")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">abiAlignment</span><span class="p">(</span><span class="n">of</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type to whose ABI alignment you wish to compute.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The minimum ABI-required alignment for the specified type.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM10TargetDataC18callFrameAlignment2ofSiAA6IRType_p_tF"></a>
-                    <a name="//apple_ref/swift/Method/callFrameAlignment(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC18callFrameAlignment2ofSiAA6IRType_p_tF">callFrameAlignment(of:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Computes the minimum ABI-required alignment for the specified type.</p>
-
-<p>This function is equivalent to <code><a href="../Classes/TargetData.html#/s:4LLVM10TargetDataC12abiAlignment2ofAA0E0VAA6IRType_p_tF">TargetData.abiAlignment(of:)</a></code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, message: "Prefer the overload of callFrameAlignment(of:﹚ that returns an Alignment")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">callFrameAlignment</span><span class="p">(</span><span class="n">of</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type to whose ABI alignment you wish to compute.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The minimum ABI-required alignment for the specified type.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM10TargetDataC7abiSize2ofSiAA6IRType_p_tF"></a>
-                    <a name="//apple_ref/swift/Method/abiSize(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC7abiSize2ofSiAA6IRType_p_tF">abiSize(of:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Computes the ABI size of a type in bytes for a target.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, message: "Prefer the overload of abiSize(of:﹚ that returns a Size")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">abiSize</span><span class="p">(</span><span class="n">of</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type to whose ABI size you wish to compute.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The ABI size for the specified type.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM10TargetDataC9storeSize2ofSiAA6IRType_p_tF"></a>
-                    <a name="//apple_ref/swift/Method/storeSize(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC9storeSize2ofSiAA6IRType_p_tF">storeSize(of:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Computes the maximum number of bytes that may be overwritten by
-storing the specified type.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, message: "Prefer the overload of storeSize(of:﹚ that returns a Size")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">storeSize</span><span class="p">(</span><span class="n">of</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The type to whose store size you wish to compute.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The store size of the type in the given target.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM10TargetDataC11pointerSize12addressSpaceS2iSg_tF"></a>
-                    <a name="//apple_ref/swift/Method/pointerSize(addressSpace:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC11pointerSize12addressSpaceS2iSg_tF">pointerSize(addressSpace:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Computes the pointer size for the platform, optionally in a given
-address space.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, message: "Prefer the overload of pointerSize(addressSpace:﹚ that returns a Size")</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">pointerSize</span><span class="p">(</span><span class="nv">addressSpace</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>addressSpace</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The address space in which to compute
-                      pointer size.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The size of a pointer in the target address space.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

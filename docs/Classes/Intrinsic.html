@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Intrinsic Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Intrinsic" class="dashAnchor"></a>
+    <a title="Intrinsic Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">LLVM Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Intrinsic Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat.html">Comdat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat/SelectionKind.html">– SelectionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DIBuilder.html">DIBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Function.html">Function</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FunctionPassManager.html">FunctionPassManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Global.html">Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IRBuilder.html">IRBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT/TargetAddress.html">– TargetAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Target.html">Target</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TargetData.html">TargetData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TargetMachine.html">TargetMachine</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeIndex.html">AttributeIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CallingConvention.html">CallingConvention</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodeModel.html">CodeModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodegenFileType.html">CodegenFileType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIAttributeTypeEncoding.html">DIAttributeTypeEncoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFEmissionKind.html">DWARFEmissionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFExpression.html">DWARFExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFSourceLanguage.html">DWARFSourceLanguage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFTag.html">DWARFTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FunctionPass.html">FunctionPass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RealPredicate.html">RealPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6StructO">Struct</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ThreadLocalModel.html">ThreadLocalModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UnnamedAddressKind.html">UnnamedAddressKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM8UnsignedO">Unsigned</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6VectorO">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/LLVMValueRef.html">LLVMValueRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:4LLVM010initializeA0yyF">initializeLLVM()</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Attribute.html">Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DIType.html">DIType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRConstant.html">IRConstant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRType.html">IRType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRValue.html">IRValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/_IRMetadataInitializerHack.html">_IRMetadataInitializerHack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alignment.html">Alignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ArrayType.html">ArrayType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock/Address.html">– Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constant.html">Constant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIBasicType.html">DIBasicType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIFlags.html">DIFlags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DISubroutineType.html">DISubroutineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DebugLocation.html">DebugLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnumAttribute.html">EnumAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FileMetadata.html">FileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FloatType/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunctionMetadata.html">FunctionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunctionType.html">FunctionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Instruction.html">Instruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LabelType.html">LabelType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockFileMetadata.html">LexicalBlockFileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockMetadata.html">LexicalBlockMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MetadataType.html">MetadataType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ModuleMetadata.html">ModuleMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyAttribute.html">ObjectiveCPropertyAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyMetadata.html">ObjectiveCPropertyMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Parameter.html">Parameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PhiNode.html">PhiNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointerType.html">PointerType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringAttribute.html">StringAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructLayout.html">StructLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructType.html">StructType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Use.html">Use</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VectorType.html">VectorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoidType.html">VoidType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/X86MMXType.html">X86MMXType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Intrinsic</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Intrinsic</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Function.html">Function</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>An <code>Intrinsic</code> represents an intrinsic known to LLVM.</p>
+
+<p>Intrinsic functions have well known names and semantics and are required to
+follow certain restrictions. Overall, these intrinsics represent an
+extension mechanism for the LLVM language that does not require changing all
+of the transformations in LLVM when adding to the language (or the bitcode
+reader/writer, the parser, etc…).</p>
+
+<p>Intrinsic function names must all start with an <code>llvm.</code> prefix. This prefix
+is reserved in LLVM for intrinsic names; thus, function names may not begin
+with this prefix. Intrinsic functions must always be external functions: you
+cannot define the body of intrinsic functions. Intrinsic functions may only
+be used in call or invoke instructions: it is illegal to take the address of
+an intrinsic function.</p>
+
+<p>Some intrinsic functions can be overloaded, i.e., the intrinsic represents a
+family of functions that perform the same operation but on different data
+types. Because LLVM can represent over 8 million different integer types,
+overloading is used commonly to allow an intrinsic function to operate on
+any integer type. One or more of the argument types or the result type can
+be overloaded to accept any integer type. Argument types may also be defined
+as exactly matching a previous argument’s type or the result type. This
+allows an intrinsic function which accepts multiple arguments, but needs all
+of them to be of the same type, to only be overloaded with respect to a
+single argument or the result.</p>
+
+<p>Overloaded intrinsics will have the names of its overloaded argument types
+encoded into its function name, each preceded by a period. Only those types
+which are overloaded result in a name suffix. Arguments whose type is
+matched against another type do not. For example, the llvm.ctpop function
+can take an integer of any width and returns an integer of exactly the same
+integer width. This leads to a family of functions such as
+<code>i8 @llvm.ctpop.i8(i8 %val)</code> and <code>i29 @llvm.ctpop.i29(i29 %val)</code>. Only one
+type, the return type, is overloaded, and only one type suffix is required.
+Because the argument’s type is matched against the return type, it does not
+require its own name suffix.</p>
+<h1 id='dynamic-member-lookup-for-intrinsics' class='heading'>Dynamic Member Lookup For Intrinsics</h1>
+
+<p>This library provides a dynamic member lookup facility for retrieving
+intrinsic selectors.  For any LLVM intrinsic selector of the form
+<code>llvm.foo.bar.baz</code>, the name of the corresponding dynamic member is that
+name with any dots replaced by underscores.</p>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="n">llvm</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">baz</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_foo_bar_baz</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">stacksave</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_stacksave</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">x86</span><span class="o">.</span><span class="n">xsave64</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_x86_xsave64</span>
+</code></pre>
+
+<p>Any existing underscores do not need to be replaced, e.g.
+<code>llvm.va_copy</code> becomes <code>Intrinsic.ID.llvm_va_copy</code>.</p>
+
+<p>For overloaded intrinsics, the non-overloaded prefix excluding the explicit
+type parameters is used and normalized according to the convention above.</p>
+
+<p>For example:</p>
+<pre class="highlight swift"><code><span class="n">llvm</span><span class="o">.</span><span class="n">sinf64</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_sin</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">memcpy</span><span class="o">.</span><span class="n">p0i8</span><span class="o">.</span><span class="n">p0i8</span><span class="o">.</span><span class="n">i32</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_memcpy</span>
+<span class="n">llvm</span><span class="o">.</span><span class="n">bswap</span><span class="o">.</span><span class="n">v4i32</span> <span class="o">-&gt;</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt">ID</span><span class="o">.</span><span class="n">llvm_bswap</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC8SelectorV"></a>
+                    <a name="//apple_ref/swift/Struct/Selector" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC8SelectorV">Selector</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A wrapper type for an intrinsic selector.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Selector</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC07DynamicB8ResolverV"></a>
+                    <a name="//apple_ref/swift/Struct/DynamicIntrinsicResolver" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC07DynamicB8ResolverV">DynamicIntrinsicResolver</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This type provides a dynamic member lookup facility for LLVM intrinsics.</p>
+
+<p>It is not possible to create a <code>DynamicIntrinsicResolver</code> in user code.
+One is provided by <code><a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC2IDAC07DynamicB8ResolverVvpZ">Intrinsic.ID</a></code>.</p>
+
+                        <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@dynamicMemberLookup</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">DynamicIntrinsicResolver</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC2IDAC07DynamicB8ResolverVvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/ID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC2IDAC07DynamicB8ResolverVvpZ">ID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The default dynamic intrinsic resolver.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">ID</span><span class="p">:</span> <span class="kt">Intrinsic</span><span class="o">.</span><span class="kt"><a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">DynamicIntrinsicResolver</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC4nameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC4nameSSvp">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the name of this intrinsic if it is not overloaded.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC14overloadedName3forSSSayAA6IRType_pG_tF"></a>
+                    <a name="//apple_ref/swift/Method/overloadedName(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC14overloadedName3forSSSayAA6IRType_pG_tF">overloadedName(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the name of this intrinsic if it is overloaded, resolving it
+with the given parameter types.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">overloadedName</span><span class="p">(</span><span class="k">for</span> <span class="nv">parameterTypes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC4typeAA6IRType_pvp"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC4typeAA6IRType_pvp">type</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the type of this intrinsic if it is not overloaded.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC14overloadedType2in4withAA6IRType_pAA7ContextC_SayAaG_pGtF"></a>
+                    <a name="//apple_ref/swift/Method/overloadedType(in:with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC14overloadedType2in4withAA6IRType_pAA7ContextC_SayAaG_pGtF">overloadedType(in:with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resolves the type of an overloaded intrinsic using the given parameter
+types.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">overloadedType</span><span class="p">(</span><span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">global</span><span class="p">,</span> <span class="n">with</span> <span class="nv">parameterTypes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>context</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The context in which to create the type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parameterTypes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the parameters to the intrinsic.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The type of the intrinsic function with its overloaded
+parameter types resolved.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC12isOverloadedSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isOverloaded" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC12isOverloadedSbvp">isOverloaded</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves if this intrinsic is overloaded.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isOverloaded</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9IntrinsicC10identifiers6UInt32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/identifier" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9IntrinsicC10identifiers6UInt32Vvp">identifier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves the ID number of this intrinsic function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

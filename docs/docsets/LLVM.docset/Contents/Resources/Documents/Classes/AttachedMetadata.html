@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RelocMode Enumeration Reference</title>
+    <title>AttachedMetadata Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/RelocMode" class="dashAnchor"></a>
-    <a title="RelocMode Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Class/AttachedMetadata" class="dashAnchor"></a>
+    <a title="AttachedMetadata Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">LLVM Reference</a>
         <img id="carat" src="../img/carat.png" />
-        RelocMode Enumeration Reference
+        AttachedMetadata Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -30,6 +30,15 @@
           <li class="nav-group-name">
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
               </li>
@@ -55,6 +64,15 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -68,6 +86,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
@@ -147,7 +168,13 @@
                 <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
@@ -183,7 +210,7 @@
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/RelocMode.html">RelocMode</a>
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -288,6 +315,9 @@
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -295,9 +325,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -310,6 +337,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
@@ -464,14 +494,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>RelocMode</h1>
+            <h1>AttachedMetadata</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">RelocMode</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AttachedMetadata</span></code></pre>
 
                 </div>
               </div>
-            <p>The relocation model types supported by LLVM.</p>
+            <p>Represents a sequence of metadata entries attached to a global value that
+are uniqued by kind.</p>
 
           </section>
           <section class="section task-group-section">
@@ -480,9 +511,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9RelocModeO7defaultyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/default" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9RelocModeO7defaultyA2CmF">default</a>
+                    <a name="/s:4LLVM16AttachedMetadataC10PinnedKindO"></a>
+                    <a name="//apple_ref/swift/Enum/PinnedKind" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC10PinnedKindO">PinnedKind</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -490,14 +521,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Generated code will assume the default for a particular target architecture.</p>
+                        <p>Metadata kinds that are known to LLVM.</p>
 
+                        <a href="../Classes/AttachedMetadata/PinnedKind.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="p">`</span><span class="nv">default</span><span class="p">`</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PinnedKind</span> <span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
@@ -507,9 +539,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9RelocModeO6staticyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/static" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9RelocModeO6staticyA2CmF">static</a>
+                    <a name="/s:4LLVM16AttachedMetadataC5EntryV"></a>
+                    <a name="//apple_ref/swift/Struct/Entry" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC5EntryV">Entry</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -517,14 +549,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Generated code will exist at static offsets.</p>
+                        <p>Represents an entry in the module flags structure.</p>
 
+                        <a href="../Classes/AttachedMetadata/Entry.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="p">`</span><span class="nv">static</span><span class="p">`</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Entry</span></code></pre>
 
                         </div>
                       </div>
@@ -534,9 +567,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9RelocModeO3picyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/pic" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9RelocModeO3picyA2CmF">pic</a>
+                    <a name="/s:4LLVM16AttachedMetadataCfd"></a>
+                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataCfd">deinit</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -544,14 +577,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Generated code will be Position-Independent.</p>
+                        <p>Deinitialize this value and dispose of its resources.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">pic</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
 
                         </div>
                       </div>
@@ -561,9 +594,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9RelocModeO12dynamicNoPICyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/dynamicNoPIC" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9RelocModeO12dynamicNoPICyA2CmF">dynamicNoPIC</a>
+                    <a name="/s:4LLVM16AttachedMetadataCyAC5EntryVSicip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataCyAC5EntryVSicip">subscript(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -571,17 +604,39 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Generated code will not be Position-Independent and may be used in static
-or dynamic executables but not necessarily a shared library.</p>
+                        <p>Retrieves a flag at the given index.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">dynamicNoPIC</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AttachedMetadata/Entry.html">Entry</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index to retrieve.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An entry describing the flag at the given index.</p>
                       </div>
                     </section>
                   </div>
@@ -589,9 +644,9 @@ or dynamic executables but not necessarily a shared library.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9RelocModeO02asA0So09LLVMRelocC0ayF"></a>
-                    <a name="//apple_ref/swift/Method/asLLVM()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9RelocModeO02asA0So09LLVMRelocC0ayF">asLLVM()</a>
+                    <a name="/s:4LLVM16AttachedMetadataC5countSivp"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM16AttachedMetadataC5countSivp">count</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -599,15 +654,14 @@ or dynamic executables but not necessarily a shared library.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the underlying <code>LLVMRelocMode</code> associated with this
-relocation model.</p>
+                        <p>Returns the number of metadata entries.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asLLVM</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LLVMRelocMode</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -619,8 +673,8 @@ relocation model.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

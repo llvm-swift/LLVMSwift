@@ -31,6 +31,15 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +64,15 @@
                 <a href="../Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -68,6 +86,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
@@ -147,7 +168,13 @@
                 <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IntPredicate.html">IntPredicate</a>
@@ -183,7 +210,7 @@
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/RelocMode.html">RelocMode</a>
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -288,6 +315,9 @@
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -295,9 +325,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -310,6 +337,9 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
@@ -589,6 +619,490 @@ the form of LLVM metadata.  A <code>DIBuilder</code> is usually paired with an
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">finalize</span><span class="p">()</span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9DIBuilderCfd"></a>
+                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderCfd">deinit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deinitialize this value and dispose of its resources.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Declarations"></a>
+                <a name="//apple_ref/swift/Section/Declarations" class="dashAnchor"></a>
+                <a href="#/Declarations">
+                  <h3 class="section-name">Declarations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9DIBuilderC12buildDeclare2of6before8metadata4expr8locationyAA7IRValue_p_AA11InstructionVAA21LocalVariableMetadataVAA010ExpressionN0VAA13DebugLocationVtF"></a>
+                    <a name="//apple_ref/swift/Method/buildDeclare(of:before:metadata:expr:location:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC12buildDeclare2of6before8metadata4expr8locationyAA7IRValue_p_AA11InstructionVAA21LocalVariableMetadataVAA010ExpressionN0VAA13DebugLocationVtF">buildDeclare(of:before:metadata:expr:location:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to a debug intrinsic for declaring a local variable and
+inserts it before a given instruction.</p>
+
+<p>This intrinsic provides information about a local element
+(e.g. a variable) defined in some lexical scope.  The variable does not
+have to be physically represented in the source.</p>
+
+<p>Each variable may have at most one corresponding <code>llvm.dbg.declare</code>.  A
+variable declaration is not control-dependent: A variable is declared at
+most once, and that declaration remains in effect until the lifetime of
+that variable ends.</p>
+
+<p><code>lldb.dbg.declare</code> can make optimizing code that needs accurate debug info
+difficult because of these scoping constraints.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDeclare</span><span class="p">(</span>
+  <span class="n">of</span> <span class="nv">variable</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
+  <span class="nv">before</span><span class="p">:</span> <span class="kt"><a href="../Structs/Instruction.html">Instruction</a></span><span class="p">,</span>
+  <span class="nv">metadata</span><span class="p">:</span> <span class="kt"><a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a></span><span class="p">,</span>
+  <span class="nv">expr</span><span class="p">:</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span><span class="p">,</span>
+  <span class="nv">location</span><span class="p">:</span> <span class="kt"><a href="../Structs/DebugLocation.html">DebugLocation</a></span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>variable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The IRValue of a variable to declare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>before</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The instruction before which the intrinsic will be inserted.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metadata</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Local variable metadata.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <q>complex expression</q> that modifies the current
+  variable declaration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location of the variable in source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9DIBuilderC12buildDeclare2of7atEndOf8metadata4expr8locationyAA7IRValue_p_AA10BasicBlockVAA21LocalVariableMetadataVAA010ExpressionQ0VAA13DebugLocationVtF"></a>
+                    <a name="//apple_ref/swift/Method/buildDeclare(of:atEndOf:metadata:expr:location:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC12buildDeclare2of7atEndOf8metadata4expr8locationyAA7IRValue_p_AA10BasicBlockVAA21LocalVariableMetadataVAA010ExpressionQ0VAA13DebugLocationVtF">buildDeclare(of:atEndOf:metadata:expr:location:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to a debug intrinsic for declaring a local variable and
+inserts it at the end of a given basic block.</p>
+
+<p>This intrinsic provides information about a local element
+(e.g. a variable) defined in some lexical scope.  The variable does not
+have to be physically represented in the source.</p>
+
+<p>Each variable may have at most one corresponding <code>llvm.dbg.declare</code>.  A
+variable declaration is not control-dependent: A variable is declared at
+most once, and that declaration remains in effect until the lifetime of
+that variable ends.</p>
+
+<p><code>lldb.dbg.declare</code> can make optimizing code that needs accurate debug info
+difficult because of these scoping constraints.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDeclare</span><span class="p">(</span>
+  <span class="n">of</span> <span class="nv">variable</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
+  <span class="n">atEndOf</span> <span class="nv">block</span><span class="p">:</span> <span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="p">,</span>
+  <span class="nv">metadata</span><span class="p">:</span> <span class="kt"><a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a></span><span class="p">,</span>
+  <span class="nv">expr</span><span class="p">:</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span><span class="p">,</span>
+  <span class="nv">location</span><span class="p">:</span> <span class="kt"><a href="../Structs/DebugLocation.html">DebugLocation</a></span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>variable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The IRValue of a variable to declare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The block in which the intrinsic will be placed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metadata</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Local variable metadata.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <q>complex expression</q> that modifies the current
+  variable declaration.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location of the variable in source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9DIBuilderC13buildDbgValue2of2to6before4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA11InstructionVAA010ExpressionN0VAA13DebugLocationVtF"></a>
+                    <a name="//apple_ref/swift/Method/buildDbgValue(of:to:before:expr:location:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildDbgValue2of2to6before4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA11InstructionVAA010ExpressionN0VAA13DebugLocationVtF">buildDbgValue(of:to:before:expr:location:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to a debug intrinsic for providing information about the
+value of a local variable and inserts it before a given instruction.</p>
+
+<p>This intrinsic provides information to model the result of a source
+variable being set to a new value.</p>
+
+<p>This intrinsic is built to describe the value of a source variable
+<em>directly</em>.  That is, the source variable may be a value or an address,
+but the value for that variable provided to this intrinsic is considered
+without interpretation to be the value of the given variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDbgValue</span><span class="p">(</span>
+  <span class="n">of</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
+  <span class="n">to</span> <span class="nv">metadata</span><span class="p">:</span> <span class="kt"><a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a></span><span class="p">,</span>
+  <span class="nv">before</span><span class="p">:</span> <span class="kt"><a href="../Structs/Instruction.html">Instruction</a></span><span class="p">,</span>
+  <span class="nv">expr</span><span class="p">:</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span><span class="p">,</span>
+  <span class="nv">location</span><span class="p">:</span> <span class="kt"><a href="../Structs/DebugLocation.html">DebugLocation</a></span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to set the given variable to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metadata</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Metadata for the given local variable.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>before</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The instruction before which the intrinsic will be inserted.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <q>complex expression</q> that modifies the given value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location of the variable assignment in source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9DIBuilderC13buildDbgValue2of2to7atEndOf4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA10BasicBlockVAA010ExpressionP0VAA13DebugLocationVtF"></a>
+                    <a name="//apple_ref/swift/Method/buildDbgValue(of:to:atEndOf:expr:location:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildDbgValue2of2to7atEndOf4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA10BasicBlockVAA010ExpressionP0VAA13DebugLocationVtF">buildDbgValue(of:to:atEndOf:expr:location:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a call to a debug intrinsic for providing information about the
+value of a local variable and inserts it before a given instruction.</p>
+
+<p>This intrinsic provides information to model the result of a source
+variable being set to a new value.</p>
+
+<p>This intrinsic is built to describe the value of a source variable
+<em>directly</em>.  That is, the source variable may be a value or an address,
+but the value for that variable provided to this intrinsic is considered
+without interpretation to be the value of the given variable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDbgValue</span><span class="p">(</span>
+  <span class="n">of</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
+  <span class="n">to</span> <span class="nv">metadata</span><span class="p">:</span> <span class="kt"><a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a></span><span class="p">,</span>
+  <span class="n">atEndOf</span> <span class="nv">block</span><span class="p">:</span> <span class="kt"><a href="../Structs/BasicBlock.html">BasicBlock</a></span><span class="p">,</span>
+  <span class="nv">expr</span><span class="p">:</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span><span class="p">,</span>
+  <span class="nv">location</span><span class="p">:</span> <span class="kt"><a href="../Structs/DebugLocation.html">DebugLocation</a></span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to set the given variable to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metadata</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Metadata for the given local variable.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The block in which the intrinsic will be placed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <q>complex expression</q> that modifies the given value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The location of the variable assignment in source.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -2349,9 +2863,9 @@ the actual return type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9DIBuilderC14buildBasicType5named8encoding4sizeAA6DIType_pSS_AA011DIAttributeE8EncodingOAA4SizeVtF"></a>
-                    <a name="//apple_ref/swift/Method/buildBasicType(named:encoding:size:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildBasicType5named8encoding4sizeAA6DIType_pSS_AA011DIAttributeE8EncodingOAA4SizeVtF">buildBasicType(named:encoding:size:)</a>
+                    <a name="/s:4LLVM9DIBuilderC14buildBasicType5named8encoding5flags4sizeAA6DIType_pSS_AA011DIAttributeE8EncodingOAA7DIFlagsVAA4SizeVtF"></a>
+                    <a name="//apple_ref/swift/Method/buildBasicType(named:encoding:flags:size:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildBasicType5named8encoding5flags4sizeAA6DIType_pSS_AA011DIAttributeE8EncodingOAA7DIFlagsVAA4SizeVtF">buildBasicType(named:encoding:flags:size:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2367,7 +2881,7 @@ the actual return type.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildBasicType</span><span class="p">(</span>
-  <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt"><a href="../Enums/DIAttributeTypeEncoding.html">DIAttributeTypeEncoding</a></span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span>
+  <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt"><a href="../Enums/DIAttributeTypeEncoding.html">DIAttributeTypeEncoding</a></span><span class="p">,</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
 
                         </div>
@@ -4279,9 +4793,9 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9DIBuilderC24buildImportedDeclaration2in11declaration4file4line4nameAA0D14EntityMetadataVAA7DIScope_p_AA0L0_pAA04FileL0VSiSStF"></a>
+                    <a name="/s:4LLVM9DIBuilderC24buildImportedDeclaration2in11declaration4file4line4nameAA0D14EntityMetadataVAA7DIScope_p_AA10IRMetadata_pAA04FileL0VSiSStF"></a>
                     <a name="//apple_ref/swift/Method/buildImportedDeclaration(in:declaration:file:line:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC24buildImportedDeclaration2in11declaration4file4line4nameAA0D14EntityMetadataVAA7DIScope_p_AA0L0_pAA04FileL0VSiSStF">buildImportedDeclaration(in:declaration:file:line:name:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC24buildImportedDeclaration2in11declaration4file4line4nameAA0D14EntityMetadataVAA7DIScope_p_AA10IRMetadata_pAA04FileL0VSiSStF">buildImportedDeclaration(in:declaration:file:line:name:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4297,7 +4811,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildImportedDeclaration</span><span class="p">(</span>
-  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">declaration</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Metadata.html">Metadata</a></span><span class="p">,</span>
+  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">declaration</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRMetadata.html">IRMetadata</a></span><span class="p">,</span>
   <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a></span></code></pre>
 
@@ -4762,9 +5276,9 @@ address, but does have a constant value.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9DIBuilderC21buildGlobalExpression5named11linkageName4type5scope4file4line7isLocal10expression11declaration9alignmentAA0E8MetadataVSS_SSAA6DIType_pAA7DIScope_pAA04FileR0VSiSbAPSgAA0R0_pSgAA9AlignmentVtF"></a>
+                    <a name="/s:4LLVM9DIBuilderC21buildGlobalExpression5named11linkageName4type5scope4file4line7isLocal10expression11declaration9alignmentAA0E8MetadataVSS_SSAA6DIType_pAA7DIScope_pAA04FileR0VSiSbAPSgAA10IRMetadata_pSgAA9AlignmentVtF"></a>
                     <a name="//apple_ref/swift/Method/buildGlobalExpression(named:linkageName:type:scope:file:line:isLocal:expression:declaration:alignment:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC21buildGlobalExpression5named11linkageName4type5scope4file4line7isLocal10expression11declaration9alignmentAA0E8MetadataVSS_SSAA6DIType_pAA7DIScope_pAA04FileR0VSiSbAPSgAA0R0_pSgAA9AlignmentVtF">buildGlobalExpression(named:linkageName:type:scope:file:line:isLocal:expression:declaration:alignment:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC21buildGlobalExpression5named11linkageName4type5scope4file4line7isLocal10expression11declaration9alignmentAA0E8MetadataVSS_SSAA6DIType_pAA7DIScope_pAA04FileR0VSiSbAPSgAA10IRMetadata_pSgAA9AlignmentVtF">buildGlobalExpression(named:linkageName:type:scope:file:line:isLocal:expression:declaration:alignment:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4784,7 +5298,7 @@ address, but does have a constant value.</p>
   <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">isLocal</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
   <span class="nv">expression</span><span class="p">:</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-  <span class="nv">declaration</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Metadata.html">Metadata</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+  <span class="nv">declaration</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRMetadata.html">IRMetadata</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
   <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span></code></pre>
 
@@ -4928,8 +5442,8 @@ specified)</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -31,6 +31,15 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Comdat.html">Comdat</a>
               </li>
               <li class="nav-group-task">
@@ -55,6 +64,15 @@
                 <a href="Classes/IRBuilder.html">IRBuilder</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/JIT.html">JIT</a>
               </li>
               <li class="nav-group-task">
@@ -68,6 +86,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Module/Flags.html">– Flags</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/NamedMetadata.html">NamedMetadata</a>
@@ -147,7 +168,13 @@
                 <a href="Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/IntPredicate.html">IntPredicate</a>
@@ -183,7 +210,7 @@
                 <a href="Enums/RealPredicate.html">RealPredicate</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/RelocMode.html">RelocMode</a>
+                <a href="Enums/RelocationModel.html">RelocationModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums.html#/s:4LLVM6SignedO">Signed</a>
@@ -288,6 +315,9 @@
                 <a href="Protocols/IRGlobal.html">IRGlobal</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/IRType.html">IRType</a>
               </li>
               <li class="nav-group-task">
@@ -295,9 +325,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/Metadata.html">Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
@@ -310,6 +337,9 @@
           <li class="nav-group-name">
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/APInt.html">APInt</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Structs/Alias.html">Alias</a>
               </li>
@@ -507,6 +537,46 @@ corresponding metadata for an existing global value.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:4LLVM5APIntV"></a>
+                    <a name="//apple_ref/swift/Struct/APInt" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV">APInt</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A value implementing arbitrary precision integer arithmetic.</p>
+
+<p><code>APInt</code> is a functional replacement for common case unsigned integer type
+like <code>UInt</code> or <code>UInt64</code>, but also allows non-byte-width
+integer sizes and large integer value types such as 3-bits, 15-bits, or more
+than 64-bits of precision. <code>APInt</code> provides a variety of arithmetic
+operators and methods to manipulate integer values of any bit-width. It
+supports both the typical integer arithmetic and comparison operations as
+well as bitwise manipulation.</p>
+
+                        <a href="Structs/APInt.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">APInt</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRConstant.html">IRConstant</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:4LLVM9ArrayTypeV"></a>
                     <a name="//apple_ref/swift/Struct/ArrayType" class="dashAnchor"></a>
                     <a class="token" href="#/s:4LLVM9ArrayTypeV">ArrayType</a>
@@ -528,6 +598,67 @@ an underlying data type.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ArrayType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM11InstructionV"></a>
+                    <a name="//apple_ref/swift/Struct/Instruction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM11InstructionV">Instruction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An <code>Instruction</code> represents an instruction residing in a basic block.</p>
+
+                        <a href="Structs/Instruction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Instruction</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRValue.html">IRValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM21TerminatorInstructionV"></a>
+                    <a name="//apple_ref/swift/Struct/TerminatorInstruction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM21TerminatorInstructionV">TerminatorInstruction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>TerminatorInstruction</code> represents an instruction that terminates a 
+basic block.</p>
+
+                        <a href="Structs/TerminatorInstruction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TerminatorInstruction</span></code></pre>
 
                         </div>
                       </div>
@@ -845,135 +976,6 @@ and <code><a href="Structs/MetadataType.html">MetadataType</a></code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM11InstructionV"></a>
-                    <a name="//apple_ref/swift/Struct/Instruction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM11InstructionV">Instruction</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An <code>Instruction</code> represents an instruction residing in a basic block.</p>
-
-                        <a href="Structs/Instruction.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Instruction</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRValue.html">IRValue</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM21TerminatorInstructionV"></a>
-                    <a name="//apple_ref/swift/Struct/TerminatorInstruction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM21TerminatorInstructionV">TerminatorInstruction</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A <code>TerminatorInstruction</code> represents an instruction that terminates a 
-basic block.</p>
-
-                        <a href="Structs/TerminatorInstruction.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TerminatorInstruction</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM7IntTypeV"></a>
-                    <a name="//apple_ref/swift/Struct/IntType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM7IntTypeV">IntType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>IntType</code> represents an integral value of a specified bit width.</p>
-
-<p>The <code>IntType</code> is a very simple type that simply specifies an arbitrary bit
-width for the integer type desired. Any bit width from 1 bit to (2^23)-1
-(about 8 million) can be specified.</p>
-
-                        <a href="Structs/IntType.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">IntType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM9LabelTypeV"></a>
-                    <a name="//apple_ref/swift/Struct/LabelType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9LabelTypeV">LabelType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p><code>LabelType</code> represents code labels.</p>
-
-                        <a href="Structs/LabelType.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LabelType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:4LLVM13DebugLocationV"></a>
                     <a name="//apple_ref/swift/Struct/DebugLocation" class="dashAnchor"></a>
                     <a class="token" href="#/s:4LLVM13DebugLocationV">DebugLocation</a>
@@ -986,13 +988,17 @@ width for the integer type desired. Any bit width from 1 bit to (2^23)-1
                       <div class="abstract">
                         <p>A <code>DebugLocation</code> represents a location in source.</p>
 
+<p>Debug locations are de-duplicated by file and line.  If more than one
+location inside a given scope needs to share a line, a discriminator value
+must be set or those locations will be considered equivalent.</p>
+
                         <a href="Structs/DebugLocation.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">DebugLocation</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Metadata.html">Metadata</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">DebugLocation</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRMetadata.html">IRMetadata</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1219,7 +1225,7 @@ parameters in the source language.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LocalVariableMetadata</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Metadata.html">Metadata</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LocalVariableMetadata</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRMetadata.html">IRMetadata</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1247,7 +1253,7 @@ parameters in the source language.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ObjectiveCPropertyMetadata</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Metadata.html">Metadata</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ObjectiveCPropertyMetadata</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRMetadata.html">IRMetadata</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1400,7 +1406,75 @@ a very limited subset.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ExpressionMetadata</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Metadata.html">Metadata</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ExpressionMetadata</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRMetadata.html">IRMetadata</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM7IntTypeV"></a>
+                    <a name="//apple_ref/swift/Struct/IntType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM7IntTypeV">IntType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>IntType</code> represents an integral value of a specified bit width.</p>
+
+<p>The <code>IntType</code> is a very simple type that simply specifies an arbitrary bit
+width for the integer type desired. Any bit width from 1 bit to (2^23)-1
+(about 8 million) can be specified.</p>
+
+                        <a href="Structs/IntType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">IntType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9LabelTypeV"></a>
+                    <a name="//apple_ref/swift/Struct/LabelType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9LabelTypeV">LabelType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>LabelType</code> represents code labels.</p>
+
+                        <a href="Structs/LabelType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LabelType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRType.html">IRType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2055,8 +2129,8 @@ type. There are no arrays, vectors or constants of this type.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
