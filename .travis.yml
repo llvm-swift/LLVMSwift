@@ -12,7 +12,7 @@ matrix:
     - brew install llvm
     - sudo swift utils/make-pkgconfig.swift
     script:
-    - swift test
+    - swift test 
   - os: linux
     language: generic
     sudo: required
