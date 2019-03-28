@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:4.2
 
 import PackageDescription
 
@@ -21,16 +21,10 @@ let package = Package(
       ]),
     .target(
       name: "llvmshims",
-      dependencies: ["cllvm"],
-      linkerSettings: [
-        .unsafeFlags([ "-w" ], .when(platforms: [.macOS]))
-      ]),
+      dependencies: ["cllvm"]),
     .target(
       name: "LLVM",
-      dependencies: ["cllvm", "llvmshims"],
-      linkerSettings: [
-        .unsafeFlags([ "-w" ], .when(platforms: [.macOS]))
-      ]),
+      dependencies: ["cllvm", "llvmshims"]),
     .testTarget(
       name: "LLVMTests",
       dependencies: ["LLVM", "FileCheck"]),

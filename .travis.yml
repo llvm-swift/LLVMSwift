@@ -5,14 +5,14 @@ matrix:
   include:
   - os: osx
     language: objective-c
-    osx_image: xcode10.2
+    osx_image: xcode10
     before_install:
     - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
     - brew update
     - brew install llvm
     - sudo swift utils/make-pkgconfig.swift
     script:
-    - swift test 
+    - swift test -Xlinker -w
   - os: linux
     language: generic
     sudo: required
@@ -33,12 +33,12 @@ matrix:
     - sudo rm -f /usr/bin/llvm-config
     - sudo ln -s /usr/bin/llvm-config-${LLVM_API_VERSION} /usr/bin/llvm-config
     - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
-    - wget https://swift.org/builds/swift-5.0-release/ubuntu1404/swift-5.0-RELEASE/swift-5.0-RELEASE-ubuntu14.04.tar.gz
-    - tar xzf swift-5.0-RELEASE-ubuntu14.04.tar.gz
+    - wget https://swift.org/builds/swift-4.2-release/ubuntu1404/swift-4.2-RELEASE/swift-4.2-RELEASE-ubuntu14.04.tar.gz
+    - tar xzf swift-4.2-RELEASE-ubuntu14.04.tar.gz
     - export PATH=${PWD}/swift-4.2-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
-    - sudo ./swift-5.0-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
+    - sudo ./swift-4.2-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
     script:
-    - ./swift-5.0-RELEASE-ubuntu14.04/usr/bin/swift test
+    - swift test
 notifications:
   slack:
     secure: ek/+U+e44bqP8+QCHojy2LhrN9iwY3N/TNNqNG5FZrp09Vidrd5KXWJOXFxlGrpeWdgTpi089YbEdTfxpcDIudUqDqLwPzS7wePiG2cEC1OT6l3yrhI4AvOe7EsNSOX8gzkuEnmrZVHwLLGe7JeR7JIQKoHMZsBcPYDnO8kRP0Ei3zOh47YUn75SE87egAgZOVBDbZYO3GWRa4WX64s8gaQYQ9a7EoUY0oX9rQ48FJs3rmEIhvIXdcOj9bGX7+o0j7l+IFial/Qh+B6bp4XkZU/tUVP6cuNVI1vxE1weVGCBhgt5wLhXTMewzoE5D1IgMZHVuzIBcDbBthSzQRttLSlYar6xTjXtRtOnb8tqZMWfUj3HBYCFYqtz7PGnZ3IflEVsPJW6tgSsoeB6egjzb8APP9mvhm8+zb1jQG1dqXLWErMjWqhlyPVPmHrxU2w/OLWLAJPY94GVmLnSuOw2pSz41spuEY80JcVVzoRbAOQWrwAujq2S3k93yvKpGq4eaT72Mt8g1CyZesByvzcLk99LEJSpqOIxUqXBd4RwHhay/sq8LllyyqY8ORsxEgwQluOAjEhATO/t/HUsu2ndn1k38U1c4HqXW7FDs1hffYEzZ/PGxciCS6Vt1bfST+iq34pzqpanENQCnX6mSR+D+M7mHlCWdsUihmxEcs5knuM=
