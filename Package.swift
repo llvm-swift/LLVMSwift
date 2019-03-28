@@ -22,14 +22,14 @@ let package = Package(
     .target(
       name: "llvmshims",
       dependencies: ["cllvm"],
-      linkerSettings: [
-        .unsafeFlags([ "-w" ], .when(platforms: [.macOS]))
+      swiftSettings: [
+        .unsafeFlags([ "-Xlinker", "-w" ], .when(platforms: [.macOS]))
       ]),
     .target(
       name: "LLVM",
       dependencies: ["cllvm", "llvmshims"],
-      linkerSettings: [
-        .unsafeFlags([ "-w" ], .when(platforms: [.macOS]))
+      swiftSettings: [
+        .unsafeFlags([ "-Xlinker", "-w" ], .when(platforms: [.macOS]))
       ]),
     .testTarget(
       name: "LLVMTests",
