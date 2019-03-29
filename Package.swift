@@ -21,16 +21,10 @@ let package = Package(
       ]),
     .target(
       name: "llvmshims",
-      dependencies: ["cllvm"],
-      swiftSettings: [
-        .unsafeFlags([ "-Xlinker", "-w" ], .when(platforms: [.macOS]))
-      ]),
+      dependencies: ["cllvm"]),
     .target(
       name: "LLVM",
-      dependencies: ["cllvm", "llvmshims"],
-      swiftSettings: [
-        .unsafeFlags([ "-Xlinker", "-w" ], .when(platforms: [.macOS]))
-      ]),
+      dependencies: ["cllvm", "llvmshims"]),
     .testTarget(
       name: "LLVMTests",
       dependencies: ["LLVM", "FileCheck"]),

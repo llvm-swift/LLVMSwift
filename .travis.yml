@@ -12,7 +12,7 @@ matrix:
     - brew install llvm
     - sudo swift utils/make-pkgconfig.swift
     script:
-    - swift test
+    - swift test -Xlinker -w
   - os: linux
     language: generic
     sudo: required
@@ -35,7 +35,7 @@ matrix:
     - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
     - wget https://swift.org/builds/swift-5.0-release/ubuntu1404/swift-5.0-RELEASE/swift-5.0-RELEASE-ubuntu14.04.tar.gz
     - tar xzf swift-5.0-RELEASE-ubuntu14.04.tar.gz
-    - export PATH=${PWD}/swift-4.2-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
+    - export PATH=${PWD}/swift-5.0-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
     - sudo ./swift-5.0-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
     script:
     - ./swift-5.0-RELEASE-ubuntu14.04/usr/bin/swift test
