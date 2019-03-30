@@ -144,15 +144,8 @@ public class TargetMachine {
   /// The data layout semantics associated with this target machine.
   public let dataLayout: TargetData
 
-  /// A string representing the target triple for this target machine.  In the
-  /// form `<arch><sub>-<vendor>-<sys>-<abi>` where
-  ///
-  /// - arch = x86_64, i386, arm, thumb, mips, etc.
-  /// - sub = for ex. on ARM: v5, v6m, v7a, v7m, etc.
-  /// - vendor = pc, apple, nvidia, ibm, etc.
-  /// - sys = none, linux, win32, darwin, cuda, etc.
-  /// - abi = eabi, gnu, android, macho, elf, etc.
-  public let triple: String
+  /// The target triple for this target machine.
+  public let triple: Triple
 
   /// The CPU associated with this target machine.
   public var cpu: String {
@@ -190,24 +183,24 @@ public class TargetMachine {
   /// - parameter codeModel: The kind of code to produce for this target.  If
   ///   no model is provided, the default model for the target architecture is
   ///   assumed.
-  public init(triple: String? = nil, cpu: String = "", features: String = "",
+  public init(triple: Triple = .default, cpu: String = "", features: String = "",
               optLevel: CodeGenOptLevel = .default, relocations: RelocationModel = .default,
               codeModel: CodeModel = .default) throws {
 
     // Ensure the LLVM initializer is called when the first module is created
     initializeLLVM()
 
-    self.triple = triple ?? String(cString: LLVMGetDefaultTargetTriple()!)
+    self.triple = triple
     var target: LLVMTargetRef?
     var error: UnsafeMutablePointer<Int8>?
-    LLVMGetTargetFromTriple(self.triple, &target, &error)
+    LLVMGetTargetFromTriple(self.triple.data, &target, &error)
     if let error = error {
       defer { LLVMDisposeMessage(error) }
-      throw TargetMachineError.couldNotCreateTarget(self.triple,
+      throw TargetMachineError.couldNotCreateTarget(self.triple.data,
                                                     String(cString: error))
     }
     self.target = Target(llvm: target!)
-    self.llvm = LLVMCreateTargetMachine(target!, self.triple, cpu, features,
+    self.llvm = LLVMCreateTargetMachine(target!, self.triple.data, cpu, features,
                                         optLevel.asLLVM(),
                                         relocations.asLLVM(),
                                         codeModel.asLLVM())

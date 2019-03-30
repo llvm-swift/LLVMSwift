@@ -93,12 +93,12 @@ public final class Module: CustomStringConvertible {
   }
 
   /// Obtain the target triple for this module.
-  var targetTriple: String {
+  var targetTriple: Triple {
     get {
-      guard let id = LLVMGetTarget(llvm) else { return "" }
-      return String(cString: id)
+      guard let id = LLVMGetTarget(llvm) else { return Triple("") }
+      return Triple(String(cString: id))
     }
-    set { LLVMSetTarget(llvm, newValue) }
+    set { LLVMSetTarget(llvm, newValue.data) }
   }
 
   /// Returns the context associated with this module.
