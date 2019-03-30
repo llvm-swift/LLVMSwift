@@ -173,13 +173,15 @@ public class TargetData {
     return cachedLayout
   }
 
-  /// Returns the next integer (mod 2**64) that is greater than or equal to
-  /// \p Value and is a multiple of \p Align. \p Align must be non-zero.
+  /// Returns the next integer (mod 2^64) that is greater than or equal to
+  /// the given size value and is a multiple of the given alignment value.
+  /// The alignment must be non-zero.
   ///
-  /// If non-zero \p Skew is specified, the return value will be a minimal
-  /// integer that is greater than or equal to \p Value and equal to
-  /// \p Align * N + \p Skew for some integer N. If \p Skew is larger than
-  /// \p Align, its value is adjusted to '\p Skew mod \p Align'.
+  /// If a non-zero skew value is specified, the return value will be a minimal
+  /// integer that is greater than or equal to the given size value and equal to
+  /// `align * n + skew` for some integer `n`. If the given skew value is
+  /// larger than the given alignment value, its value is adjusted to
+  /// `skew mod alignment`.
   ///
   /// Computes the next size value that is greater than or equal to the given
   /// value and is a multiple of the given alignment.
