@@ -92,17 +92,17 @@ public final class Module: CustomStringConvertible {
     }
   }
 
+  /// Returns the context associated with this module.
+  public let context: Context
+
   /// Obtain the target triple for this module.
-  var targetTriple: Triple {
+  public var targetTriple: Triple {
     get {
       guard let id = LLVMGetTarget(llvm) else { return Triple("") }
       return Triple(String(cString: id))
     }
     set { LLVMSetTarget(llvm, newValue.data) }
   }
-
-  /// Returns the context associated with this module.
-  public let context: Context
 
   /// Obtain the data layout for this module.
   public var dataLayout: TargetData {
