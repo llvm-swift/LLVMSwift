@@ -25,7 +25,6 @@ typedef enum {
   LLVMBinaryTypeCOFFImportFile,
   // LLVM IR
   LLVMBinaryTypeIR,
-  LLVMBinaryTypeMinidump,
 
   // Windows resource (.res) file.
   LLVMBinaryTypeWinRes,

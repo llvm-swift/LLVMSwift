@@ -32,8 +32,6 @@ public class BinaryFile {
     case coffImportFile
     /// LLVM IR.
     case ir
-    /// A Windows Minidump file.
-    case minidump
     /// A Windows resource file.
     case winRes
     /// A COFF file.
@@ -63,7 +61,6 @@ public class BinaryFile {
       case LLVMBinaryTypeMachOUniversalBinary: self = .machOUniversalBinary
       case LLVMBinaryTypeCOFFImportFile: self = .coff
       case LLVMBinaryTypeIR: self = .ir
-      case LLVMBinaryTypeMinidump: self = .minidump
       case LLVMBinaryTypeWinRes: self = .winRes
       case LLVMBinaryTypeCOFF: self = .coff
       case LLVMBinaryTypeELF32L: self = .elf32L

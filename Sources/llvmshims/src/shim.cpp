@@ -30,7 +30,6 @@ extern "C" {
     LLVMBinaryTypeCOFFImportFile,
     // LLVM IR
     LLVMBinaryTypeIR,
-    LLVMBinaryTypeMinidump,
 
     // Windows resource (.res) file.
     LLVMBinaryTypeWinRes,
@@ -108,42 +107,46 @@ wrap(const symbol_iterator *SI) {
 }
 
 LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR) {
-  switch (unwrap(BR)->getType()) {
-  case 0: //ID_Archive:
-    return LLVMBinaryTypeArchive;
-  case 1: //ID_MachOUniversalBinary:
-    return LLVMBinaryTypeMachOUniversalBinary;
-  case 2: //ID_COFFImportFile:
-    return LLVMBinaryTypeCOFFImportFile;
-  case 3: //ID_IR:
-    return LLVMBinaryTypeIR;
-  case 4: //ID_Minidump:
-    return LLVMBinaryTypeMinidump;
-  case 5: //ID_WinRes:
-    return LLVMBinaryTypeWinRes;
-  case 7: //ID_COFF:
-    return LLVMBinaryTypeCOFF;
-  case 8: //ID_ELF32L:
-    return LLVMBinaryTypeELF32L;
-  case 9: //ID_ELF32B:
-    return LLVMBinaryTypeELF32B;
-  case 10: //ID_ELF64L:
-    return LLVMBinaryTypeELF64L;
-  case 11: //ID_ELF64B:
-    return LLVMBinaryTypeELF64B;
-  case 12: //ID_MachO32L:
-    return LLVMBinaryTypeMachO32L;
-  case 13: //ID_MachO32B:
-    return LLVMBinaryTypeMachO32B;
-  case 14: //ID_MachO64L:
-    return LLVMBinaryTypeMachO64L;
-  case 15: //ID_MachO64B:
-    return LLVMBinaryTypeMachO64B;
-  case 16: //ID_Wasm:
-    return LLVMBinaryTypeWasm;
-  default:
-    llvm_unreachable("Unknown binary kind!");
-  }
+  class BinaryTypeMapper : public Binary {
+  public:
+    static LLVMBinaryType mapBinaryTypeToLLVMBinaryType(unsigned Kind) {
+      switch (Kind) {
+      case ID_Archive:
+        return LLVMBinaryTypeArchive;
+      case ID_MachOUniversalBinary:
+        return LLVMBinaryTypeMachOUniversalBinary;
+      case ID_COFFImportFile:
+        return LLVMBinaryTypeCOFFImportFile;
+      case ID_IR:
+        return LLVMBinaryTypeIR;
+      case ID_WinRes:
+        return LLVMBinaryTypeWinRes;
+      case ID_COFF:
+        return LLVMBinaryTypeCOFF;
+      case ID_ELF32L:
+        return LLVMBinaryTypeELF32L;
+      case ID_ELF32B:
+        return LLVMBinaryTypeELF32B;
+      case ID_ELF64L:
+        return LLVMBinaryTypeELF64L;
+      case ID_ELF64B:
+        return LLVMBinaryTypeELF64B;
+      case ID_MachO32L:
+        return LLVMBinaryTypeMachO32L;
+      case ID_MachO32B:
+        return LLVMBinaryTypeMachO32B;
+      case ID_MachO64L:
+        return LLVMBinaryTypeMachO64L;
+      case ID_MachO64B:
+        return LLVMBinaryTypeMachO64B;
+      case ID_Wasm:
+        return LLVMBinaryTypeWasm;
+      default:
+        llvm_unreachable("Unknown binary kind!");
+      }
+    }
+  };
+  return BinaryTypeMapper::mapBinaryTypeToLLVMBinaryType(unwrap(BR)->getType());
 }
 
 LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage) {
