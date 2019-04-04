@@ -146,9 +146,8 @@ LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR) {
 }
 
 LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage) {
-  std::unique_ptr<llvm::MemoryBuffer> Buf(unwrap(MemBuf));
   Expected<std::unique_ptr<Binary>> ObjOrErr(
-    createBinary(Buf->getMemBufferRef(), unwrap(Context)));
+    createBinary(unwrap(MemBuf)->getMemBufferRef(), unwrap(Context)));
   if (!ObjOrErr) {
     *ErrorMessage = strdup(toString(ObjOrErr.takeError()).c_str());
     return nullptr;
