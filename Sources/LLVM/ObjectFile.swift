@@ -72,7 +72,7 @@ public class BinaryFile {
       case LLVMBinaryTypeMachO64L: self = .machO64L
       case LLVMBinaryTypeMachO64B: self = .machO64B
       case LLVMBinaryTypeWasm: self = .wasm
-      default: fatalError("unknown comdat selection kind \(llvm)")
+      default: fatalError("unknown binary type \(llvm)")
       }
     }
   }
@@ -186,7 +186,7 @@ public struct Section {
   /// The size of the contents of the section.
   public let size: Int
   /// The raw contents of the section.
-  public let contents: String
+  public let contents: UnsafeBufferPointer<CChar>
   /// The address of the section in the object file.
   public let address: Int
 
@@ -197,7 +197,7 @@ public struct Section {
     self.sectionIterator = si
     self.name = String(cString: LLVMGetSectionName(si))
     self.size = Int(LLVMGetSectionSize(si))
-    self.contents = String(cString: LLVMGetSectionContents(si))
+    self.contents = UnsafeBufferPointer<CChar>(start: LLVMGetSectionContents(si), count: self.size)
     self.address = Int(LLVMGetSectionAddress(si))
   }
 
