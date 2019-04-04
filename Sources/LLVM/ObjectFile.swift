@@ -15,6 +15,9 @@ public enum BinaryFileError: Error {
 public class BinaryFile {
   let llvm: LLVMBinaryRef
 
+  /// The backing buffer for this binary file.
+  public let buffer: MemoryBuffer
+
   /// The kind of this binary file.
   public let kind: Kind
 
@@ -77,9 +80,10 @@ public class BinaryFile {
     }
   }
 
-  init(llvm: LLVMBinaryRef) {
+  init(llvm: LLVMBinaryRef, buffer: MemoryBuffer) {
     self.llvm = llvm
     self.kind = Kind(llvm: LLVMBinaryGetType(llvm))
+    self.buffer = buffer
   }
 
   /// Creates a Binary File with the contents of a provided memory buffer.
@@ -96,6 +100,7 @@ public class BinaryFile {
       throw BinaryFileError.couldNotCreate(String(cString: error))
     }
     self.kind = Kind(llvm: LLVMBinaryGetType(self.llvm))
+    self.buffer = memoryBuffer
   }
 
   /// Creates an `ObjectFile` with the contents of the object file at
@@ -117,8 +122,8 @@ public class BinaryFile {
 
 /// An in-memory representation of a format-independent object file.
 public final class ObjectFile: BinaryFile {
-  override init(llvm: LLVMBinaryRef) {
-    super.init(llvm: llvm)
+  override init(llvm: LLVMBinaryRef, buffer: MemoryBuffer) {
+    super.init(llvm: llvm, buffer: buffer)
     precondition(self.kind != .machOUniversalBinary,
                  "File format is not an object file; use MachOUniversalBinaryFile instead")
   }
@@ -175,7 +180,8 @@ public final class MachOUniversalBinaryFile: BinaryFile {
       defer { LLVMDisposeMessage(error) }
       throw BinaryFileError.couldNotCreate(String(cString: error))
     }
-    return ObjectFile(llvm: archFile)
+    let buffer = MemoryBuffer(llvm: LLVMBinaryGetMemoryBuffer(archFile))
+    return ObjectFile(llvm: archFile, buffer: buffer)
   }
 }
 
