@@ -1,16 +1,17 @@
 #if SWIFT_PACKAGE
   import cllvm
+  import llvmshims
 #endif
 
 /// An in-memory representation of a format-independent object file.
 public class ObjectFile {
-  let llvm: LLVMObjectFileRef
+  let llvm: LLVMBinaryRef
 
   /// Creates an `ObjectFile` with the contents of a provided memory buffer.
   /// - parameter memoryBuffer: A memory buffer containing a valid binary
   ///                           object file.
-  public init?(memoryBuffer: MemoryBuffer) {
-    guard let file = LLVMCreateObjectFile(memoryBuffer.llvm) else {
+  public init?(memoryBuffer: MemoryBuffer, in context: Context = .global) {
+    guard let file = LLVMCreateBinary(memoryBuffer.llvm, context.llvm) else {
       return nil
     }
     self.llvm = file
@@ -20,7 +21,6 @@ public class ObjectFile {
   /// the provided path.
   /// - parameter path: The absolute file path on your filesystem.
   public convenience init?(path: String) {
-
     guard let memoryBuffer = try? MemoryBuffer(contentsOf: path) else {
       return nil
     }
@@ -29,17 +29,17 @@ public class ObjectFile {
 
   /// Returns a sequence of all the sections in this object file.
   public var sections: SectionSequence {
-    return SectionSequence(llvm: LLVMGetSections(llvm), object: self)
+    return SectionSequence(llvm: LLVMObjectFileGetSections(llvm), object: self)
   }
 
   /// Returns a sequence of all the symbols in this object file.
   public var symbols: SymbolSequence {
-    return SymbolSequence(llvm: LLVMGetSymbols(llvm), object: self)
+    return SymbolSequence(llvm: LLVMObjectFileGetSymbols(llvm), object: self)
   }
 
   /// Deinitialize this value and dispose of its resources.
   deinit {
-    LLVMDisposeObjectFile(llvm)
+    LLVMDisposeBinary(llvm)
   }
 }
 
@@ -93,7 +93,7 @@ public class SectionSequence: Sequence {
   /// Makes an iterator that iterates over the sections in an object file.
   public func makeIterator() -> AnyIterator<Section> {
     return AnyIterator {
-      if LLVMIsSectionIteratorAtEnd(self.objectFile.llvm, self.llvm) != 0 {
+      if LLVMObjectFileIsSectionIteratorAtEnd(self.objectFile.llvm, self.llvm) != 0 {
         return nil
       }
       defer { LLVMMoveToNextSection(self.llvm) }
@@ -193,7 +193,7 @@ public class SymbolSequence: Sequence {
   /// file.
   public func makeIterator() -> AnyIterator<Symbol> {
     return AnyIterator {
-      if LLVMIsSymbolIteratorAtEnd(self.object.llvm, self.llvm) != 0 {
+      if LLVMObjectFileIsSymbolIteratorAtEnd(self.object.llvm, self.llvm) != 0 {
         return nil
       }
       defer { LLVMMoveToNextSymbol(self.llvm) }
