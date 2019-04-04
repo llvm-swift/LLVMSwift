@@ -57,10 +57,10 @@ typedef enum {
 typedef struct LLVMOpaqueBinary *LLVMBinaryRef;
 
 LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR);
-LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context);
+LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage);
 void LLVMDisposeBinary(LLVMBinaryRef BR);
 
-LLVMBinaryRef LLVMUniversalBinaryGetObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen);
+LLVMBinaryRef LLVMUniversalBinaryCopyObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen, char **ErrorMessage);
 
 LLVMSectionIteratorRef LLVMObjectFileGetSections(LLVMBinaryRef BR);
 

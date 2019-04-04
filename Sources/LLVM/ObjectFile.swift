@@ -3,28 +3,136 @@
   import llvmshims
 #endif
 
-/// An in-memory representation of a format-independent object file.
-public class ObjectFile {
+/// Enumerates the possible failures that can be thrown initializing
+/// a MemoryBuffer.
+public enum BinaryFileError: Error {
+  /// The MemoryBuffer failed to be initialized for a specific reason.
+  case couldNotCreate(String)
+}
+
+/// A `BinaryFile` is a (mostly) architecture-independent representation of an
+/// in-memory image file.
+public class BinaryFile {
   let llvm: LLVMBinaryRef
 
-  /// Creates an `ObjectFile` with the contents of a provided memory buffer.
-  /// - parameter memoryBuffer: A memory buffer containing a valid binary
-  ///                           object file.
-  public init?(memoryBuffer: MemoryBuffer, in context: Context = .global) {
-    guard let file = LLVMCreateBinary(memoryBuffer.llvm, context.llvm) else {
-      return nil
+  /// The kind of this binary file.
+  public let kind: Kind
+
+  /// The kinds of binary files known to LLVM.
+  public enum Kind {
+    /// A static library archive file.
+    case archive
+    /// A universal Mach-O binary with multiple component object files for
+    /// different architectures.
+    case machOUniversalBinary
+    /// A COFF imports table file.
+    case coffImportFile
+    /// LLVM IR.
+    case ir
+    /// A Windows Minidump file.
+    case minidump
+    /// A Windows resource file.
+    case winRes
+    /// A COFF file.
+    case coff
+    /// A 32-bit little-endian ELF binary.
+    case elf32L
+    /// A 32-bit big-endian ELF binary.
+    case elf32B
+    /// A 64-bit little-endian ELF binary.
+    case elf64L
+    /// A 64-bit big-endian ELF binary.
+    case elf64B
+    /// A 32-bit little-endian Mach-O binary.
+    case machO32L
+    /// A 32-bit big-endian Mach-O binary.
+    case machO32B
+    /// A 64-bit little-endian Mach-O binary.
+    case machO64L
+    /// A 64-bit big-endian Mach-O binary.
+    case machO64B
+    /// A web assembly binary.
+    case wasm
+
+    internal init(llvm: LLVMBinaryType) {
+      switch llvm {
+      case LLVMBinaryTypeArchive: self = .archive
+      case LLVMBinaryTypeMachOUniversalBinary: self = .machOUniversalBinary
+      case LLVMBinaryTypeCOFFImportFile: self = .coff
+      case LLVMBinaryTypeIR: self = .ir
+      case LLVMBinaryTypeMinidump: self = .minidump
+      case LLVMBinaryTypeWinRes: self = .winRes
+      case LLVMBinaryTypeCOFF: self = .coff
+      case LLVMBinaryTypeELF32L: self = .elf32L
+      case LLVMBinaryTypeELF32B: self = .elf32B
+      case LLVMBinaryTypeELF64L: self = .elf64L
+      case LLVMBinaryTypeELF64B: self = .elf64B
+      case LLVMBinaryTypeMachO32L: self = .machO32L
+      case LLVMBinaryTypeMachO32B: self = .machO32B
+      case LLVMBinaryTypeMachO64L: self = .machO64L
+      case LLVMBinaryTypeMachO64B: self = .machO64B
+      case LLVMBinaryTypeWasm: self = .wasm
+      default: fatalError("unknown comdat selection kind \(llvm)")
+      }
     }
-    self.llvm = file
+  }
+
+  init(llvm: LLVMBinaryRef) {
+    self.llvm = llvm
+    self.kind = Kind(llvm: LLVMBinaryGetType(llvm))
+  }
+
+  /// Creates a Binary File with the contents of a provided memory buffer.
+  ///
+  /// - Parameters:
+  ///   - memoryBuffer: A memory buffer containing a valid binary file.
+  ///   - context: The context to allocate the given binary in.
+  /// - throws: `BinaryFileError` if there was an error on creation.
+  public init(memoryBuffer: MemoryBuffer, in context: Context = .global) throws {
+    var error: UnsafeMutablePointer<Int8>?
+    self.llvm = LLVMCreateBinary(memoryBuffer.llvm, context.llvm, &error)
+    if let error = error {
+      defer { LLVMDisposeMessage(error) }
+      throw BinaryFileError.couldNotCreate(String(cString: error))
+    }
+    self.kind = Kind(llvm: LLVMBinaryGetType(self.llvm))
   }
 
   /// Creates an `ObjectFile` with the contents of the object file at
   /// the provided path.
   /// - parameter path: The absolute file path on your filesystem.
-  public convenience init?(path: String) {
-    guard let memoryBuffer = try? MemoryBuffer(contentsOf: path) else {
-      return nil
-    }
-    self.init(memoryBuffer: memoryBuffer)
+  /// - throws: `MemoryBufferError` or `BinaryFileError` if there was an error
+  ///           on creation
+  public convenience init(path: String) throws {
+    let memoryBuffer = try MemoryBuffer(contentsOf: path)
+    try self.init(memoryBuffer: memoryBuffer)
+  }
+
+
+  /// Deinitialize this value and dispose of its resources.
+  deinit {
+    LLVMDisposeBinary(llvm)
+  }
+}
+
+/// An in-memory representation of a format-independent object file.
+public final class ObjectFile: BinaryFile {
+  override init(llvm: LLVMBinaryRef) {
+    super.init(llvm: llvm)
+    precondition(self.kind != .machOUniversalBinary,
+                 "File format is not an object file; use MachOUniversalBinaryFile instead")
+  }
+
+  /// Creates an object file with the contents of a provided memory buffer.
+  ///
+  /// - Parameters:
+  ///   - memoryBuffer: A memory buffer containing a valid object file.
+  ///   - context: The context to allocate the given binary in.
+  /// - throws: `BinaryFileError` if there was an error on creation.
+  public override init(memoryBuffer: MemoryBuffer, in context: Context = .global) throws {
+    try super.init(memoryBuffer: memoryBuffer, in: context)
+    precondition(self.kind != .machOUniversalBinary,
+                 "File format is not an object file; use MachOUniversalBinaryFile instead")
   }
 
   /// Returns a sequence of all the sections in this object file.
@@ -36,10 +144,38 @@ public class ObjectFile {
   public var symbols: SymbolSequence {
     return SymbolSequence(llvm: LLVMObjectFileGetSymbols(llvm), object: self)
   }
+}
 
-  /// Deinitialize this value and dispose of its resources.
-  deinit {
-    LLVMDisposeBinary(llvm)
+/// An in-memory representation of a Mach-O universal binary file.
+public final class MachOUniversalBinaryFile: BinaryFile {
+  /// Creates a Mach-O universal binary file with the contents of a provided
+  /// memory buffer.
+  ///
+  /// - Parameters:
+  ///   - memoryBuffer: A memory buffer containing a valid universal Mach-O file.
+  ///   - context: The context to allocate the given binary in.
+  /// - throws: `BinaryFileError` if there was an error on creation.
+  public override init(memoryBuffer: MemoryBuffer, in context: Context = .global) throws {
+    try super.init(memoryBuffer: memoryBuffer, in: context)
+    precondition(self.kind == .machOUniversalBinary)
+  }
+
+  /// Retrieves the object file for a specific architecture, if it exists.
+  ///
+  /// - Parameters:
+  ///   - architecture: The architecture of a Mach-O file contained in this
+  ///                   universal binary file.
+  /// - Returns: An object file for the given architecture if it exists.
+  /// - throws: `BinaryFileError` if there was an error on creation.
+  public func objectFile(for architecture: Triple.Architecture) throws -> ObjectFile {
+    var error: UnsafeMutablePointer<Int8>?
+    let archName = architecture.rawValue
+    let archFile: LLVMBinaryRef = LLVMUniversalBinaryCopyObjectForArchitecture(self.llvm, archName, archName.count, &error)
+    if let error = error {
+      defer { LLVMDisposeMessage(error) }
+      throw BinaryFileError.couldNotCreate(String(cString: error))
+    }
+    return ObjectFile(llvm: archFile)
   }
 }
 
