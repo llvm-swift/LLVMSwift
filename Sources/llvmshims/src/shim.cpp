@@ -60,10 +60,10 @@ extern "C" {
   } LLVMBinaryType;
 
   LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR);
-  LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context);
+  LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage);
   void LLVMDisposeBinary(LLVMBinaryRef BR);
 
-  LLVMBinaryRef LLVMUniversalBinaryGetObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen);
+  LLVMBinaryRef LLVMUniversalBinaryCopyObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen, char **ErrorMessage);
 
   LLVMSectionIteratorRef LLVMObjectFileGetSections(LLVMBinaryRef BR);
 
@@ -145,13 +145,12 @@ LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR) {
   }
 }
 
-LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context) {
+LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage) {
   std::unique_ptr<llvm::MemoryBuffer> Buf(unwrap(MemBuf));
   Expected<std::unique_ptr<Binary>> ObjOrErr(
     createBinary(Buf->getMemBufferRef(), unwrap(Context)));
   if (!ObjOrErr) {
-    // TODO: Actually report errors helpfully.
-    consumeError(ObjOrErr.takeError());
+    *ErrorMessage = strdup(toString(ObjOrErr.takeError()).c_str());
     return nullptr;
   }
 
@@ -162,14 +161,13 @@ void LLVMDisposeBinary(LLVMBinaryRef BR) {
   delete unwrap(BR);
 }
 
-LLVMBinaryRef LLVMUniversalBinaryGetObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen) {
+LLVMBinaryRef LLVMUniversalBinaryCopyObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen, char **ErrorMessage) {
   assert(LLVMBinaryGetType(BR) == LLVMBinaryTypeMachOUniversalBinary);
   auto universal = cast<MachOUniversalBinary>(unwrap(BR));
   Expected<std::unique_ptr<ObjectFile>> ObjOrErr(
     universal->getObjectForArch({Arch, ArchLen}));
   if (!ObjOrErr) {
-    // TODO: Actually report errors helpfully.
-    consumeError(ObjOrErr.takeError());
+    *ErrorMessage = strdup(toString(ObjOrErr.takeError()).c_str());
     return nullptr;
   }
   return wrap(ObjOrErr.get().release());
