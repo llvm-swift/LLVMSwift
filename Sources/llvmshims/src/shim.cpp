@@ -61,6 +61,7 @@ extern "C" {
 
   LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR);
   LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage);
+  LLVMMemoryBufferRef LLVMBinaryGetMemoryBuffer(LLVMBinaryRef BR);
   void LLVMDisposeBinary(LLVMBinaryRef BR);
 
   LLVMBinaryRef LLVMUniversalBinaryCopyObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen, char **ErrorMessage);
@@ -154,6 +155,13 @@ LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Contex
   }
 
   return wrap(ObjOrErr.get().release());
+}
+
+LLVMMemoryBufferRef LLVMBinaryGetMemoryBuffer(LLVMBinaryRef BR) {
+  auto Buf = unwrap(BR)->getMemoryBufferRef();
+  return wrap(llvm::MemoryBuffer::getMemBuffer(
+                Buf.getBuffer(), Buf.getBufferIdentifier(),
+                /*RequiresNullTerminator*/false).release());
 }
 
 void LLVMDisposeBinary(LLVMBinaryRef BR) {

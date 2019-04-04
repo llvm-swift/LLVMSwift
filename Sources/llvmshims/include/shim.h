@@ -58,6 +58,7 @@ typedef struct LLVMOpaqueBinary *LLVMBinaryRef;
 
 LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR);
 LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage);
+LLVMMemoryBufferRef LLVMBinaryGetMemoryBuffer(LLVMBinaryRef BR);
 void LLVMDisposeBinary(LLVMBinaryRef BR);
 
 LLVMBinaryRef LLVMUniversalBinaryCopyObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen, char **ErrorMessage);
