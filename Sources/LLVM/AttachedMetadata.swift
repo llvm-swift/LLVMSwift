@@ -52,7 +52,7 @@ extension IRGlobal {
   }
 }
 
-extension Instruction {
+extension IRInstruction {
   /// Retrieves all metadata entries attached to this instruction.
   public var metadata: AttachedMetadata {
     var count = 0

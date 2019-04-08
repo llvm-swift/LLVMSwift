@@ -61,13 +61,13 @@ public struct BasicBlock: IRValue {
   }
 
   /// Returns the first instruction in the basic block, if it exists.
-  public var firstInstruction: Instruction? {
+  public var firstInstruction: IRInstruction? {
     guard let val = LLVMGetFirstInstruction(llvm) else { return nil }
     return Instruction(llvm: val)
   }
 
   /// Returns the first instruction in the basic block, if it exists.
-  public var lastInstruction: Instruction? {
+  public var lastInstruction: IRInstruction? {
     guard let val = LLVMGetLastInstruction(llvm) else { return nil }
     return Instruction(llvm: val)
   }
@@ -98,10 +98,10 @@ public struct BasicBlock: IRValue {
   }
 
   /// Returns a sequence of the Instructions that make up this basic block.
-  public var instructions: AnySequence<Instruction> {
+  public var instructions: AnySequence<IRInstruction> {
     var current = firstInstruction
-    return AnySequence<Instruction> {
-      return AnyIterator<Instruction> {
+    return AnySequence<IRInstruction> {
+      return AnyIterator<IRInstruction> {
         defer { current = current?.next() }
         return current
       }

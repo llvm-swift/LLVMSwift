@@ -2,47 +2,38 @@
 import cllvm
 #endif
 
-/// An `Instruction` represents an instruction residing in a basic block.
-public struct Instruction: IRValue {
-  internal let llvm: LLVMValueRef
+/// An `IRInstruction` is a value that directly represents an instruction and
+/// in particular the result of the execution of that instruction.
+public protocol IRInstruction: IRValue { }
 
-  /// Creates an `Intruction` from an `LLVMValueRef` object.
-  public init(llvm: LLVMValueRef) {
-    self.llvm = llvm
-  }
-
-  /// Retrieves the underlying LLVM value object.
-  public func asLLVM() -> LLVMValueRef {
-    return llvm
-  }
-
+extension IRInstruction {
   /// Retrieves the opcode associated with this `Instruction`.
   public var opCode: OpCode {
-    return OpCode(rawValue: LLVMGetInstructionOpcode(llvm))
+    return OpCode(rawValue: LLVMGetInstructionOpcode(self.asLLVM()))
   }
 
   /// Obtain the instruction that occurs before this one, if it exists.
   public func previous() -> Instruction? {
-    guard let val = LLVMGetPreviousInstruction(llvm) else { return nil }
+    guard let val = LLVMGetPreviousInstruction(self.asLLVM()) else { return nil }
     return Instruction(llvm: val)
   }
 
   /// Obtain the instruction that occurs after this one, if it exists.
   public func next() -> Instruction? {
-    guard let val = LLVMGetNextInstruction(llvm) else { return nil }
+    guard let val = LLVMGetNextInstruction(self.asLLVM()) else { return nil }
     return Instruction(llvm: val)
   }
 
   /// Retrieves the parent basic block that contains this instruction, if it
   /// exists.
   public var parentBlock: BasicBlock? {
-    guard let parent = LLVMGetInstructionParent(self.llvm) else { return nil }
+    guard let parent = LLVMGetInstructionParent(self.asLLVM()) else { return nil }
     return BasicBlock(llvm: parent)
   }
 
   /// Retrieves the first use of this instruction.
   public var firstUse: Use? {
-    guard let use = LLVMGetFirstUse(llvm) else { return nil }
+    guard let use = LLVMGetFirstUse(self.asLLVM()) else { return nil }
     return Use(llvm: use)
   }
 
@@ -61,9 +52,25 @@ public struct Instruction: IRValue {
   /// Removes this instruction from a basic block but keeps it alive.
   ///
   /// - note: To ensure correct removal of the instruction, you must invalidate
-  ///         any references to its result values, if any.
+  ///         any remaining references to its result values.
   public func removeFromParent() {
-    LLVMInstructionRemoveFromParent(llvm)
+    LLVMInstructionRemoveFromParent(self.asLLVM())
+  }
+}
+
+
+/// An `Instruction` represents an instruction residing in a basic block.
+public struct Instruction: IRInstruction {
+  internal let llvm: LLVMValueRef
+
+  /// Creates an `Intruction` from an `LLVMValueRef` object.
+  public init(llvm: LLVMValueRef) {
+    self.llvm = llvm
+  }
+
+  /// Retrieves the underlying LLVM value object.
+  public func asLLVM() -> LLVMValueRef {
+    return llvm
   }
 
   /// Create a copy of 'this' instruction that is identical in all ways except
@@ -78,7 +85,7 @@ public struct Instruction: IRValue {
 
 /// A `TerminatorInstruction` represents an instruction that terminates a 
 /// basic block.
-public struct TerminatorInstruction {
+public struct TerminatorInstruction: IRInstruction {
   internal let llvm: LLVMValueRef
 
   /// Creates a `TerminatorInstruction` from an `LLVMValueRef` object.
@@ -100,5 +107,9 @@ public struct TerminatorInstruction {
   /// Updates the successor block at the specified index.
   public func setSuccessor(at idx: Int, to bb: BasicBlock) {
     LLVMSetSuccessor(llvm, UInt32(idx), bb.asLLVM())
+  }
+
+  public func asLLVM() -> LLVMValueRef {
+    return self.llvm
   }
 }

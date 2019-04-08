@@ -65,7 +65,7 @@ extension DIBuilder {
   ///   - location: The location of the variable in source.
   public func buildDeclare(
     of variable: IRValue,
-    before: Instruction,
+    before: IRInstruction,
     metadata: LocalVariableMetadata,
     expr: ExpressionMetadata,
     location: DebugLocation
@@ -133,7 +133,7 @@ extension DIBuilder {
   public func buildDbgValue(
     of value: IRValue,
     to metadata: LocalVariableMetadata,
-    before: Instruction,
+    before: IRInstruction,
     expr: ExpressionMetadata,
     location: DebugLocation
   ) {

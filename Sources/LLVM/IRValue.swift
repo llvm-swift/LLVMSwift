@@ -20,6 +20,11 @@ public extension IRValue {
     return LLVMIsConstant(asLLVM()) != 0
   }
 
+  /// Returns whether this value is an instruction.
+  var isInstruction: Bool {
+    return LLVMIsAInstruction(asLLVM()) != nil
+  }
+
   /// Returns whether this value has been initialized with the special `undef`
   /// value.
   ///
@@ -150,6 +155,12 @@ extension LLVMValueRef: IRValue {
     return self
   }
 }
+
+// N.B. This conformance is strictly not correct, but LLVM-C chooses to muddy
+// the difference between LLVMValueRef and a number of what should be refined
+// types.  What matters is that we verify any returned `IRInstruction` values
+// are actually instructions.
+extension LLVMValueRef: IRInstruction {}
 
 extension Int: IRValue {
   /// Retrieves the underlying LLVM value object.

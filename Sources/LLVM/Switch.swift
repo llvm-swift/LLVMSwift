@@ -6,7 +6,7 @@ import cllvm
 /// defines a jump table of values and destination basic blocks to pass the flow
 /// of control to if a condition value matches.  If no match is made, control
 /// flow passes to the default basic block.
-public struct Switch: IRValue {
+public struct Switch: IRInstruction {
   internal let llvm: LLVMValueRef
 
   /// Inserts a case with the given value and destination basic block in the
