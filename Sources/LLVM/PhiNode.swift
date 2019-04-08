@@ -32,7 +32,7 @@ import cllvm
 ///
 /// If the flow of control reaches `aCondTrue`, the value of `b` is `2`, else it
 /// is `1` and SSA semantics are preserved.
-public struct PhiNode: IRValue {
+public struct PhiNode: IRInstruction {
   internal let llvm: LLVMValueRef
 
   /// Adds a list of incoming value and their associated basic blocks to the end

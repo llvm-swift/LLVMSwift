@@ -556,7 +556,7 @@ extension IRBuilder {
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the value selected for by the condition.
-  public func buildSelect(_ cond: IRValue, then: IRValue, else: IRValue, name: String = "") -> IRValue {
+  public func buildSelect(_ cond: IRValue, then: IRValue, else: IRValue, name: String = "") -> IRInstruction {
     if let ty = cond.type as? IntType {
       precondition(ty.width == 1, "Switch statement condition must have bitwidth of 1, instead has bitwidth of \(ty.width)")
       return LLVMBuildSelect(llvm, cond.asLLVM(), then.asLLVM(), `else`.asLLVM(), name)
@@ -644,7 +644,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildBr(_ block: BasicBlock) -> IRValue {
+  public func buildBr(_ block: BasicBlock) -> IRInstruction {
     return LLVMBuildBr(llvm, block.llvm)
   }
 
@@ -665,7 +665,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildCondBr(condition: IRValue, then: BasicBlock, `else`: BasicBlock) -> IRValue {
+  public func buildCondBr(condition: IRValue, then: BasicBlock, `else`: BasicBlock) -> IRInstruction {
     return LLVMBuildCondBr(llvm, condition.asLLVM(), then.asLLVM(), `else`.asLLVM())
   }
 
@@ -686,7 +686,7 @@ extension IRBuilder {
   ///
   /// - returns: An IRValue representing `void`.
   @discardableResult
-  public func buildIndirectBr(address: BasicBlock.Address, destinations: [BasicBlock]) -> IRValue {
+  public func buildIndirectBr(address: BasicBlock.Address, destinations: [BasicBlock]) -> IRInstruction {
     guard let ret = LLVMBuildIndirectBr(llvm, address.asLLVM(), UInt32(destinations.count)) else {
       fatalError("Unable to build indirect branch to address \(address)")
     }
@@ -710,7 +710,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildRet(_ val: IRValue) -> IRValue {
+  public func buildRet(_ val: IRValue) -> IRInstruction {
     return LLVMBuildRet(llvm, val.asLLVM())
   }
 
@@ -725,7 +725,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildRetVoid() -> IRValue {
+  public func buildRetVoid() -> IRInstruction {
     return LLVMBuildRetVoid(llvm)
   }
 
@@ -738,18 +738,19 @@ extension IRBuilder {
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildUnreachable() -> IRValue {
+  public func buildUnreachable() -> IRInstruction {
     return LLVMBuildUnreachable(llvm)
   }
 
   /// Build a return from the current function back to the calling function with
   /// the given array of values as members of an aggregate.
   ///
-  /// - parameter values: The values to insert as members of the returned aggregate.
+  /// - parameter values: The values to insert as members of the returned
+  ///   aggregate.
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildRetAggregate(of values: [IRValue]) -> IRValue {
+  public func buildRetAggregate(of values: [IRValue]) -> IRInstruction {
     var values = values.map { $0.asLLVM() as Optional }
     return values.withUnsafeMutableBufferPointer { buf in
       return LLVMBuildAggregateRet(llvm, buf.baseAddress!, UInt32(buf.count))
@@ -842,10 +843,10 @@ extension IRBuilder {
   ///
   /// - returns: A value of the given type representing the result of matching
   ///   a clause during unwinding.
-  public func buildLandingPad(returning type: IRType, personalityFn: Function? = nil, clauses: [LandingPadClause], cleanup: Bool = false, name: String = "") -> IRValue {
+  public func buildLandingPad(returning type: IRType, personalityFn: Function? = nil, clauses: [LandingPadClause], cleanup: Bool = false, name: String = "") -> IRInstruction {
     precondition(cleanup || !clauses.isEmpty, "Landing pad must be created with clauses or as cleanup")
 
-    let lp : IRValue = LLVMBuildLandingPad(llvm, type.asLLVM(), personalityFn?.asLLVM(), UInt32(clauses.count), name)
+    let lp: IRInstruction = LLVMBuildLandingPad(llvm, type.asLLVM(), personalityFn?.asLLVM(), UInt32(clauses.count), name)
     for clause in clauses {
       LLVMAddClause(lp.asLLVM(), clause.asLLVM())
     }
@@ -911,7 +912,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing `void`.
   public func buildAlloca(type: IRType, count: IRValue? = nil,
-                          alignment: Alignment = .zero, name: String = "") -> IRValue {
+                          alignment: Alignment = .zero, name: String = "") -> IRInstruction {
     let allocaInst: LLVMValueRef
     if let count = count {
       allocaInst = LLVMBuildArrayAlloca(llvm, type.asLLVM(), count.asLLVM(), name)
@@ -934,7 +935,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildStore(_ val: IRValue, to ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero) -> IRValue {
+  public func buildStore(_ val: IRValue, to ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero) -> IRInstruction {
     let storeInst = LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())!
     LLVMSetOrdering(storeInst, ordering.llvm)
     LLVMSetVolatile(storeInst, volatile.llvm)
@@ -954,7 +955,7 @@ extension IRBuilder {
   ///
   /// - returns: A value representing the result of a load from the given
   ///   pointer value.
-  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero, name: String = "") -> IRValue {
+  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero, name: String = "") -> IRInstruction {
     let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
     LLVMSetOrdering(loadInst, ordering.llvm)
     LLVMSetVolatile(loadInst, volatile.llvm)
@@ -1258,6 +1259,31 @@ extension IRBuilder {
     }
   }
 
+  /// Build an expression that returns the difference between two pointer
+  /// values, dividing out the size of the pointed-to objects.
+  ///
+  /// This is intended to implement C-style pointer subtraction. As such, the 
+  /// pointers must be appropriately aligned for their element types and 
+  /// pointing into the same object.
+  ///
+  /// - parameter lhs: The first pointer (the minuend).
+  /// - parameter rhs: The second pointer (the subtrahend).
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A IRValue representing a 64-bit integer value of the difference
+  ///   of the two pointer values modulo the size of the pointed-to objects.
+  public func buildPointerDifference(_ lhs: IRValue, _ rhs: IRValue, name: String = "") -> IRValue {
+    precondition(
+      lhs.type is PointerType && rhs.type is PointerType,
+      "Cannot take pointer diff of \(lhs.type) and \(rhs.type)."
+    )
+    return LLVMBuildPtrDiff(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
+  }
+}
+
+// MARK: Type Information
+
+extension IRBuilder {
   /// Build a constant expression that returns the alignment of the given type
   /// in bytes.
   ///
@@ -1278,27 +1304,6 @@ extension IRBuilder {
   ///   bytes.
   public func buildSizeOf(_ val: IRType) -> IRValue {
     return LLVMSizeOf(val.asLLVM())
-  }
-
-  /// Build an expression that returns the difference between two pointer
-  /// values, dividing out the size of the pointed-to objects.
-  ///
-  /// This is intended to implement C-style pointer subtraction. As such, the 
-  /// pointers must be appropriately aligned for their element types and 
-  /// pointing into the same object.
-  ///
-  /// - parameter lhs: The first pointer (the minuend).
-  /// - parameter rhs: The second pointer (the subtrahend).
-  /// - parameter name: The name for the newly inserted instruction.
-  ///
-  /// - returns: A IRValue representing a 64-bit integer value of the difference
-  ///   of the two pointer values modulo the size of the pointed-to objects.
-  public func buildPointerDifference(_ lhs: IRValue, _ rhs: IRValue, name: String = "") -> IRValue {
-    precondition(
-      lhs.type is PointerType && rhs.type is PointerType,
-      "Cannot take pointer diff of \(lhs.type) and \(rhs.type)."
-    )
-    return LLVMBuildPtrDiff(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
   }
 }
 
@@ -1333,7 +1338,8 @@ extension IRBuilder {
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing `void`.
-  public func buildFence(ordering: AtomicOrdering, singleThreaded: Bool = false, name: String = "") -> IRValue {
+  @discardableResult
+  public func buildFence(ordering: AtomicOrdering, singleThreaded: Bool = false, name: String = "") -> IRInstruction {
     return LLVMBuildFence(llvm, ordering.llvm, singleThreaded.llvm, name)
   }
 
@@ -1424,7 +1430,7 @@ extension IRBuilder {
   ///                    C array.
   /// - parameter name: The intended name for the `malloc`'d value.
   public func buildMalloc(_ type: IRType, count: IRValue? = nil,
-                          name: String = "") -> IRValue {
+                          name: String = "") -> IRInstruction {
     if let count = count {
       return LLVMBuildArrayMalloc(llvm, type.asLLVM(), count.asLLVM(), name)
     } else {
@@ -1438,7 +1444,7 @@ extension IRBuilder {
   /// - parameter ptr: The pointer to `free`.
   /// - returns: The `free` instruction.
   @discardableResult
-  public func buildFree(_ ptr: IRValue) -> IRValue {
+  public func buildFree(_ ptr: IRValue) -> IRInstruction {
     return LLVMBuildFree(llvm, ptr.asLLVM())
   }
 }
@@ -1464,12 +1470,14 @@ extension IRBuilder {
   ///     relied upon to perform consistently.  For more information, see the
   ///     language reference's section on [Volatile Memory
   ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  @discardableResult
   public func buildMemset(
     to dest: IRValue, of value: IRValue, length: IRValue,
     alignment: Alignment, volatile: Bool = false
-  ) {
-    let instruction = LLVMBuildMemSet(self.llvm, dest.asLLVM(), value.asLLVM(), length.asLLVM(), alignment.rawValue)
+  ) -> IRInstruction {
+    let instruction = LLVMBuildMemSet(self.llvm, dest.asLLVM(), value.asLLVM(), length.asLLVM(), alignment.rawValue)!
     LLVMSetVolatile(instruction, volatile.llvm)
+    return instruction
   }
 
   /// Builds a call to the `llvm.memcpy.*` family of intrinsics to copy a block
@@ -1495,13 +1503,15 @@ extension IRBuilder {
   ///     relied upon to perform consistently.  For more information, see the
   ///     language reference's section on [Volatile Memory
   ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  @discardableResult
   public func buildMemCpy(
     to dest: IRValue, _ destAlign: Alignment,
     from src: IRValue, _ srcAlign: Alignment,
     length: IRValue, volatile: Bool = false
-  ) {
-    let instruction = LLVMBuildMemCpy(self.llvm, dest.asLLVM(), destAlign.rawValue, src.asLLVM(), srcAlign.rawValue, length.asLLVM())
+  ) -> IRInstruction {
+    let instruction = LLVMBuildMemCpy(self.llvm, dest.asLLVM(), destAlign.rawValue, src.asLLVM(), srcAlign.rawValue, length.asLLVM())!
     LLVMSetVolatile(instruction, volatile.llvm)
+    return instruction
   }
 
   /// Builds a call to the `llvm.memmove.*` family of intrinsics to move a
@@ -1527,13 +1537,15 @@ extension IRBuilder {
   ///     relied upon to perform consistently.  For more information, see the
   ///     language reference's section on [Volatile Memory
   ///     Access](http://llvm.org/docs/LangRef.html#volatile-memory-accesses).
+  @discardableResult
   public func buildMemMove(
     to dest: IRValue, _ destAlign: Alignment,
     from src: IRValue, _ srcAlign: Alignment,
     length: IRValue, volatile: Bool = false
-  ) {
-    let instruction = LLVMBuildMemMove(self.llvm, dest.asLLVM(), destAlign.rawValue, src.asLLVM(), srcAlign.rawValue, length.asLLVM())
+  ) -> IRInstruction {
+    let instruction = LLVMBuildMemMove(self.llvm, dest.asLLVM(), destAlign.rawValue, src.asLLVM(), srcAlign.rawValue, length.asLLVM())!
     LLVMSetVolatile(instruction, volatile.llvm)
+    return instruction
   }
 }
 

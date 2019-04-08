@@ -3,7 +3,7 @@ import cllvm
 #endif
 
 /// Represents a simple function call.
-public struct Call: IRValue {
+public struct Call: IRInstruction {
   let llvm: LLVMValueRef
 
   /// Retrieves the underlying LLVM value object.
@@ -43,7 +43,7 @@ public struct Call: IRValue {
 }
 
 /// Represents a function call that may transfer control to an exception handler.
-public struct Invoke: IRValue {
+public struct Invoke: IRInstruction {
   let llvm: LLVMValueRef
 
   /// Retrieves the underlying LLVM value object.

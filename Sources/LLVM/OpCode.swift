@@ -3,7 +3,7 @@ import cllvm
 #endif
 
 /// Enumerates the opcodes of instructions available in the LLVM IR language.
-public enum OpCode {
+public enum OpCode: CaseIterable {
   // MARK: Terminator Instructions
 
   /// The opcode for the `ret` instruction.
@@ -230,7 +230,7 @@ public enum OpCode {
 
 extension OpCode {
   /// `BinaryOperation` enumerates the subset of opcodes that are binary operations.
-  public enum Binary {
+  public enum Binary: CaseIterable {
     /// The `add` instruction.
     case add
     /// The `fadd` instruction.
@@ -281,10 +281,15 @@ extension OpCode {
     public var llvm: LLVMOpcode {
       return Binary.binaryOperationMap[self]!
     }
+
+    /// Retrieves the corresponding opcode for this binary operation.
+    public var opCode: OpCode {
+      return OpCode(rawValue: self.llvm)
+    }
   }
 
   /// `CastOperation` enumerates the subset of opcodes that are cast operations.
-  public enum Cast {
+  public enum Cast: CaseIterable {
     /// The `trunc` instruction.
     case trunc
     /// The `zext` instruction.
@@ -331,6 +336,11 @@ extension OpCode {
     /// Retrieves the corresponding `LLVMOpcode`.
     public var llvm: LLVMOpcode {
       return Cast.castOperationMap[self]!
+    }
+
+    /// Retrieves the corresponding opcode for this cast operation.
+    public var opCode: OpCode {
+      return OpCode(rawValue: self.llvm)
     }
   }
 }

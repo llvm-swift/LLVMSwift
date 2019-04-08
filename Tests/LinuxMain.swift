@@ -13,6 +13,7 @@ XCTMain([
   IRExceptionSpec.allTests,
   IRGlobalSpec.allTests,
   IRIntrinsicSpec.allTests,
+  IRInstructionSpec.allTests,
   IRMetadataSpec.allTests,
   IROperationSpec.allTests,
   JITSpec.allTests,
