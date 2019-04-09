@@ -57,16 +57,16 @@ typedef struct LLVMOpaqueBinary *LLVMBinaryRef;
 
 LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR);
 LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage);
-LLVMMemoryBufferRef LLVMBinaryGetMemoryBuffer(LLVMBinaryRef BR);
+LLVMMemoryBufferRef LLVMBinaryCopyMemoryBuffer(LLVMBinaryRef BR);
 void LLVMDisposeBinary(LLVMBinaryRef BR);
 
 LLVMBinaryRef LLVMUniversalBinaryCopyObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen, char **ErrorMessage);
 
-LLVMSectionIteratorRef LLVMObjectFileGetSections(LLVMBinaryRef BR);
+LLVMSectionIteratorRef LLVMObjectFileCopySectionIterator(LLVMBinaryRef BR);
 
 LLVMBool LLVMObjectFileIsSectionIteratorAtEnd(LLVMBinaryRef BR,
                                               LLVMSectionIteratorRef SI);
-LLVMSymbolIteratorRef LLVMObjectFileGetSymbols(LLVMBinaryRef BR);
+LLVMSymbolIteratorRef LLVMObjectFileCopySymbolIterator(LLVMBinaryRef BR);
 
 LLVMBool LLVMObjectFileIsSymbolIteratorAtEnd(LLVMBinaryRef BR,
                                              LLVMSymbolIteratorRef SI);

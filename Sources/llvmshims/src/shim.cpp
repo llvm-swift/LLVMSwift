@@ -10,9 +10,16 @@
 extern "C" {
   typedef struct LLVMOpaqueBinary *LLVMBinaryRef;
 
-  size_t LLVMSwiftCountIntrinsics(void);
-  const char *LLVMSwiftGetIntrinsicAtIndex(size_t index);
+  // https://reviews.llvm.org/D59697
   unsigned LLVMLookupIntrinsicID(const char *Name, size_t NameLen);
+
+  // Not to be upstreamed: They support the hacks that power our dynamic member
+  // lookup machinery for intrinsics.
+  const char *LLVMSwiftGetIntrinsicAtIndex(size_t index);
+  size_t LLVMSwiftCountIntrinsics(void);
+
+  // Not to be upstreamed: There's no value in this without a full Triple
+  // API.  And we have chosen to port instead of wrap.
   const char *LLVMGetARMCanonicalArchName(const char *Name, size_t NameLen);
 
   typedef enum {
@@ -25,6 +32,7 @@ extern "C" {
   LLVMARMProfileKind LLVMARMParseArchProfile(const char *Name, size_t NameLen);
   unsigned LLVMARMParseArchVersion(const char *Name, size_t NameLen);
 
+  // https://reviews.llvm.org/D60366
   typedef enum {
     LLVMBinaryTypeArchive,
     LLVMBinaryTypeMachOUniversalBinary,
@@ -60,17 +68,21 @@ extern "C" {
   } LLVMBinaryType;
 
   LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR);
+
+  // https://reviews.llvm.org/D60322
   LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Context, char **ErrorMessage);
-  LLVMMemoryBufferRef LLVMBinaryGetMemoryBuffer(LLVMBinaryRef BR);
+  LLVMMemoryBufferRef LLVMBinaryCopyMemoryBuffer(LLVMBinaryRef BR);
   void LLVMDisposeBinary(LLVMBinaryRef BR);
 
+  // https://reviews.llvm.org/D60378
   LLVMBinaryRef LLVMUniversalBinaryCopyObjectForArchitecture(LLVMBinaryRef BR, const char *Arch, size_t ArchLen, char **ErrorMessage);
 
-  LLVMSectionIteratorRef LLVMObjectFileGetSections(LLVMBinaryRef BR);
+  // https://reviews.llvm.org/D60407
+  LLVMSectionIteratorRef LLVMObjectFileCopySectionIterator(LLVMBinaryRef BR);
 
   LLVMBool LLVMObjectFileIsSectionIteratorAtEnd(LLVMBinaryRef BR,
                                                 LLVMSectionIteratorRef SI);
-  LLVMSymbolIteratorRef LLVMObjectFileGetSymbols(LLVMBinaryRef BR);
+  LLVMSymbolIteratorRef LLVMObjectFileCopySymbolIterator(LLVMBinaryRef BR);
 
   LLVMBool LLVMObjectFileIsSymbolIteratorAtEnd(LLVMBinaryRef BR,
                                                LLVMSymbolIteratorRef SI);
@@ -116,7 +128,7 @@ wrap(const symbol_iterator *SI) {
 }
 
 LLVMBinaryType LLVMBinaryGetType(LLVMBinaryRef BR) {
-  class BinaryTypeMapper : public Binary {
+  class BinaryTypeMapper final : public Binary {
   public:
     static LLVMBinaryType mapBinaryTypeToLLVMBinaryType(unsigned Kind) {
       switch (Kind) {
@@ -169,7 +181,7 @@ LLVMBinaryRef LLVMCreateBinary(LLVMMemoryBufferRef MemBuf, LLVMContextRef Contex
   return wrap(ObjOrErr.get().release());
 }
 
-LLVMMemoryBufferRef LLVMBinaryGetMemoryBuffer(LLVMBinaryRef BR) {
+LLVMMemoryBufferRef LLVMBinaryCopyMemoryBuffer(LLVMBinaryRef BR) {
   auto Buf = unwrap(BR)->getMemoryBufferRef();
   return wrap(llvm::MemoryBuffer::getMemBuffer(
                 Buf.getBuffer(), Buf.getBufferIdentifier(),
@@ -192,10 +204,12 @@ LLVMBinaryRef LLVMUniversalBinaryCopyObjectForArchitecture(LLVMBinaryRef BR, con
   return wrap(ObjOrErr.get().release());
 }
 
-LLVMSectionIteratorRef LLVMObjectFileGetSections(LLVMBinaryRef BR) {
+LLVMSectionIteratorRef LLVMObjectFileCopySectionIterator(LLVMBinaryRef BR) {
   auto OF = cast<ObjectFile>(unwrap(BR));
-  section_iterator SI = OF->section_begin();
-  return wrap(new section_iterator(SI));
+  auto sections = OF->sections();
+  if (sections.begin() == sections.end())
+    return nullptr;
+  return wrap(new section_iterator(sections.begin()));
 }
 
 LLVMBool LLVMObjectFileIsSectionIteratorAtEnd(LLVMBinaryRef BR,
@@ -204,10 +218,12 @@ LLVMBool LLVMObjectFileIsSectionIteratorAtEnd(LLVMBinaryRef BR,
   return (*unwrap(SI) == OF->section_end()) ? 1 : 0;
 }
 
-LLVMSymbolIteratorRef LLVMObjectFileGetSymbols(LLVMBinaryRef BR) {
+LLVMSymbolIteratorRef LLVMObjectFileCopySymbolIterator(LLVMBinaryRef BR) {
   auto OF = cast<ObjectFile>(unwrap(BR));
-  symbol_iterator SI = OF->symbol_begin();
-  return wrap(new symbol_iterator(SI));
+  auto symbols = OF->symbols();
+  if (symbols.begin() == symbols.end())
+    return nullptr;
+  return wrap(new symbol_iterator(symbols.begin()));
 }
 
 LLVMBool LLVMObjectFileIsSymbolIteratorAtEnd(LLVMBinaryRef BR,

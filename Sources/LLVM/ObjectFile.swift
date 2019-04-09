@@ -118,7 +118,7 @@ public class BinaryFile {
 }
 
 /// An in-memory representation of a format-independent object file.
-public final class ObjectFile: BinaryFile {
+public class ObjectFile: BinaryFile {
   override init(llvm: LLVMBinaryRef, buffer: MemoryBuffer) {
     super.init(llvm: llvm, buffer: buffer)
     precondition(self.kind != .machOUniversalBinary,
@@ -139,17 +139,27 @@ public final class ObjectFile: BinaryFile {
 
   /// Returns a sequence of all the sections in this object file.
   public var sections: SectionSequence {
-    return SectionSequence(llvm: LLVMObjectFileGetSections(llvm), object: self)
+    return SectionSequence(llvm: LLVMObjectFileCopySectionIterator(llvm), object: self)
   }
 
   /// Returns a sequence of all the symbols in this object file.
   public var symbols: SymbolSequence {
-    return SymbolSequence(llvm: LLVMObjectFileGetSymbols(llvm), object: self)
+    return SymbolSequence(llvm: LLVMObjectFileCopySymbolIterator(llvm), object: self)
   }
 }
 
 /// An in-memory representation of a Mach-O universal binary file.
 public final class MachOUniversalBinaryFile: BinaryFile {
+  /// Creates an `MachOUniversalBinaryFile` with the contents of the object file at
+  /// the provided path.
+  /// - parameter path: The absolute file path on your filesystem.
+  /// - throws: `MemoryBufferError` or `BinaryFileError` if there was an error
+  ///           on creation
+  public convenience init(path: String) throws {
+    let memoryBuffer = try MemoryBuffer(contentsOf: path)
+    try self.init(memoryBuffer: memoryBuffer)
+  }
+
   /// Creates a Mach-O universal binary file with the contents of a provided
   /// memory buffer.
   ///
@@ -159,7 +169,9 @@ public final class MachOUniversalBinaryFile: BinaryFile {
   /// - throws: `BinaryFileError` if there was an error on creation.
   public override init(memoryBuffer: MemoryBuffer, in context: Context = .global) throws {
     try super.init(memoryBuffer: memoryBuffer, in: context)
-    precondition(self.kind == .machOUniversalBinary)
+    guard self.kind == .machOUniversalBinary else {
+      throw BinaryFileError.couldNotCreate("File is not a Mach-O universal binary")
+    }
   }
 
   /// Retrieves the object file for a specific architecture, if it exists.
@@ -169,7 +181,7 @@ public final class MachOUniversalBinaryFile: BinaryFile {
   ///                   universal binary file.
   /// - Returns: An object file for the given architecture if it exists.
   /// - throws: `BinaryFileError` if there was an error on creation.
-  public func objectFile(for architecture: Triple.Architecture) throws -> ObjectFile {
+  public func objectFile(for architecture: Triple.Architecture) throws -> Slice {
     var error: UnsafeMutablePointer<Int8>?
     let archName = architecture.rawValue
     let archFile: LLVMBinaryRef = LLVMUniversalBinaryCopyObjectForArchitecture(self.llvm, archName, archName.count, &error)
@@ -177,8 +189,29 @@ public final class MachOUniversalBinaryFile: BinaryFile {
       defer { LLVMDisposeMessage(error) }
       throw BinaryFileError.couldNotCreate(String(cString: error))
     }
-    let buffer = MemoryBuffer(llvm: LLVMBinaryGetMemoryBuffer(archFile))
-    return ObjectFile(llvm: archFile, buffer: buffer)
+    let buffer = MemoryBuffer(llvm: LLVMBinaryCopyMemoryBuffer(archFile))
+    return Slice(parent: self, llvm: archFile, buffer: buffer)
+  }
+
+  /// Represents an architecture-specific slice of a Mach-O universal binary
+  /// file.
+  public final class Slice: ObjectFile {
+    // Maintain a strong reference to our parent binary so the backing buffer
+    // doesn't disappear on us.
+    private let parent: MachOUniversalBinaryFile
+
+    fileprivate init(parent: MachOUniversalBinaryFile, llvm: LLVMBinaryRef, buffer: MemoryBuffer) {
+      self.parent = parent
+      super.init(llvm: llvm, buffer: buffer)
+    }
+
+    private override init(llvm: LLVMBinaryRef, buffer: MemoryBuffer) {
+      fatalError()
+    }
+
+    private override init(memoryBuffer: MemoryBuffer, in context: Context = .global) throws {
+      fatalError()
+    }
   }
 }
 
@@ -221,10 +254,10 @@ public struct Section {
 
 /// A sequence for iterating over the sections in an object file.
 public class SectionSequence: Sequence {
-  let llvm: LLVMSectionIteratorRef
+  let llvm: LLVMSectionIteratorRef?
   let objectFile: ObjectFile
 
-  init(llvm: LLVMSectionIteratorRef, object: ObjectFile) {
+  init(llvm: LLVMSectionIteratorRef?, object: ObjectFile) {
     self.llvm = llvm
     self.objectFile = object
   }
@@ -232,11 +265,15 @@ public class SectionSequence: Sequence {
   /// Makes an iterator that iterates over the sections in an object file.
   public func makeIterator() -> AnyIterator<Section> {
     return AnyIterator {
-      if LLVMObjectFileIsSectionIteratorAtEnd(self.objectFile.llvm, self.llvm) != 0 {
+      guard let it = self.llvm else {
         return nil
       }
-      defer { LLVMMoveToNextSection(self.llvm) }
-      return Section(fromIterator: self.llvm)
+
+      if LLVMObjectFileIsSectionIteratorAtEnd(self.objectFile.llvm, it) != 0 {
+        return nil
+      }
+      defer { LLVMMoveToNextSection(it) }
+      return Section(fromIterator: it)
     }
   }
 
@@ -320,10 +357,10 @@ public class RelocationSequence: Sequence {
 
 /// A sequence for iterating over the symbols in an object file.
 public class SymbolSequence: Sequence {
-  let llvm: LLVMSymbolIteratorRef
+  let llvm: LLVMSymbolIteratorRef?
   let object: ObjectFile
 
-  init(llvm: LLVMSymbolIteratorRef, object: ObjectFile) {
+  init(llvm: LLVMSymbolIteratorRef?, object: ObjectFile) {
     self.llvm = llvm
     self.object = object
   }
@@ -332,11 +369,14 @@ public class SymbolSequence: Sequence {
   /// file.
   public func makeIterator() -> AnyIterator<Symbol> {
     return AnyIterator {
-      if LLVMObjectFileIsSymbolIteratorAtEnd(self.object.llvm, self.llvm) != 0 {
+      guard let it = self.llvm else {
         return nil
       }
-      defer { LLVMMoveToNextSymbol(self.llvm) }
-      return Symbol(fromIterator: self.llvm)
+      if LLVMObjectFileIsSymbolIteratorAtEnd(self.object.llvm, it) != 0 {
+        return nil
+      }
+      defer { LLVMMoveToNextSymbol(it) }
+      return Symbol(fromIterator: it)
     }
   }
 
