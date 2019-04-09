@@ -1,5 +1,6 @@
 #if SWIFT_PACKAGE
 import cllvm
+import llvmshims
 #endif
 
 /// An `IRBuilder` is a helper object that generates LLVM instructions.  IR
@@ -38,7 +39,7 @@ extension IRBuilder {
   /// Repositions the IR Builder before the start of the given instruction.
   ///
   /// - parameter inst: The instruction to reposition the IR Builder before.
-  public func positionBefore(_ inst: IRValue) {
+  public func positionBefore(_ inst: IRInstruction) {
     LLVMPositionBuilderBefore(llvm, inst.asLLVM())
   }
 
@@ -50,7 +51,7 @@ extension IRBuilder {
   ///
   /// - parameter inst: The instruction to reposition the IR Builder before.
   /// - parameter block: The basic block to reposition the IR builder in.
-  public func position(_ inst: IRValue, block: BasicBlock) {
+  public func position(_ inst: IRInstruction, block: BasicBlock) {
     LLVMPositionBuilder(llvm, block.llvm, inst.asLLVM())
   }
 
@@ -76,7 +77,7 @@ extension IRBuilder {
   ///
   /// - parameter inst: The instruction to insert.
   /// - parameter name: The name for the newly inserted instruction.
-  public func insert(_ inst: IRValue, name: String? = nil) {
+  public func insert(_ inst: IRInstruction, name: String? = nil) {
     if let name = name {
       LLVMInsertIntoBuilderWithName(llvm, inst.asLLVM(), name)
     } else {
@@ -89,9 +90,9 @@ extension IRBuilder {
 
 extension IRBuilder {
   /// Access location information used by debugging information.
-  public var currentDebugLocation: DebugLocation {
-    get { return DebugLocation(llvm: LLVMValueAsMetadata(LLVMGetCurrentDebugLocation(self.llvm))) }
-    set { LLVMSetCurrentDebugLocation(self.llvm, LLVMMetadataAsValue(self.module.context.llvm, newValue.asMetadata())) }
+  public var currentDebugLocation: DebugLocation? {
+    get { return LLVMGetCurrentDebugLocation2(self.llvm).map(DebugLocation.init(llvm:)) }
+    set { LLVMSetCurrentDebugLocation2(self.llvm, newValue?.asMetadata()) }
   }
 }
 

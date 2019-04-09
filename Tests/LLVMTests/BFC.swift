@@ -297,7 +297,7 @@ private func compileProgramBody(
       dibuilder.buildDbgValue(of: addressPointer, to: diVariable,
                               atEndOf: builder.insertBlock!,
                               expr: dibuilder.buildExpression([.deref]),
-                              location: builder.currentDebugLocation)
+                              location: builder.currentDebugLocation!)
     case "<":
       // Move left
       addressPointer = builder.buildGEP(addressPointer, indices: [ IntType.int32.constant(-1) ])
@@ -305,7 +305,7 @@ private func compileProgramBody(
       dibuilder.buildDbgValue(of: addressPointer, to: diVariable,
                               atEndOf: builder.insertBlock!,
                               expr: dibuilder.buildExpression([.deref]),
-                              location: builder.currentDebugLocation)
+                              location: builder.currentDebugLocation!)
     case "+":
       // Increment
       let value = builder.buildLoad(addressPointer)
@@ -315,7 +315,7 @@ private func compileProgramBody(
       dibuilder.buildDbgValue(of: value, to: diVariable,
                               atEndOf: builder.insertBlock!,
                               expr: dibuilder.buildExpression([.plus_uconst(1)]),
-                              location: builder.currentDebugLocation)
+                              location: builder.currentDebugLocation!)
     case "-":
       // Decrement
       let value = builder.buildLoad(addressPointer)
@@ -325,7 +325,7 @@ private func compileProgramBody(
       dibuilder.buildDbgValue(of: value, to: diVariable,
                               atEndOf: builder.insertBlock!,
                               expr: dibuilder.buildExpression([.constu(1), .minus]),
-                              location: builder.currentDebugLocation)
+                              location: builder.currentDebugLocation!)
     case ".":
       // Write
       let dataValue = builder.buildLoad(addressPointer)
