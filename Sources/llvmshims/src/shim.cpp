@@ -1,4 +1,6 @@
 #include "llvm-c/Object.h"
+#include "llvm/IR/DebugInfo.h"
+#include "llvm/IR/DIBuilder.h"
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/IRBuilder.h"
@@ -94,6 +96,12 @@ extern "C" {
   // https://reviews.llvm.org/D60484
   LLVMMetadataRef LLVMGetCurrentDebugLocation2(LLVMBuilderRef Builder);
   void LLVMSetCurrentDebugLocation2(LLVMBuilderRef Builder, LLVMMetadataRef Loc);
+
+  // https://reviews.llvm.org/D60489
+  LLVMMetadataRef LLVMDIScopeGetFile(LLVMMetadataRef Scope);
+  const char *LLVMDIFileGetDirectory(LLVMMetadataRef File, unsigned *Len);
+  const char *LLVMDIFileGetFilename(LLVMMetadataRef File, unsigned *Len);
+  const char *LLVMDIFileGetSource(LLVMMetadataRef File, unsigned *Len);
 }
 
 using namespace llvm;
@@ -276,4 +284,29 @@ void LLVMSetCurrentDebugLocation2(LLVMBuilderRef Builder, LLVMMetadataRef Loc) {
     unwrap(Builder)->SetCurrentDebugLocation(DebugLoc(unwrap<MDNode>(Loc)));
   else
     unwrap(Builder)->SetCurrentDebugLocation(DebugLoc());
+}
+
+const char *LLVMDIFileGetDirectory(LLVMMetadataRef File, unsigned *Len) {
+  auto Dir = unwrap<DIFile>(File)->getDirectory();
+  *Len = Dir.size();
+  return Dir.data();
+}
+
+const char *LLVMDIFileGetFilename(LLVMMetadataRef File, unsigned *Len) {
+  auto Dir = unwrap<DIFile>(File)->getFilename();
+  *Len = Dir.size();
+  return Dir.data();
+}
+
+const char *LLVMDIFileGetSource(LLVMMetadataRef File, unsigned *Len) {
+  if (auto Dir = unwrap<DIFile>(File)->getSource()) {
+    *Len = Dir->size();
+    return Dir->data();
+  }
+  *Len = 0;
+  return "";
+}
+
+LLVMMetadataRef LLVMDIScopeGetFile(LLVMMetadataRef Scope) {
+  return wrap(unwrap<DIScope>(Scope)->getFile());
 }

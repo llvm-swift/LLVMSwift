@@ -77,4 +77,9 @@ void LLVMInstructionSetDebugLoc(LLVMValueRef Inst, LLVMMetadataRef Loc);
 LLVMMetadataRef LLVMGetCurrentDebugLocation2(LLVMBuilderRef Builder);
 void LLVMSetCurrentDebugLocation2(LLVMBuilderRef Builder, LLVMMetadataRef Loc);
 
+LLVMMetadataRef LLVMDIScopeGetFile(LLVMMetadataRef Scope);
+const char *LLVMDIFileGetDirectory(LLVMMetadataRef File, unsigned *Len);
+const char *LLVMDIFileGetFilename(LLVMMetadataRef File, unsigned *Len);
+const char *LLVMDIFileGetSource(LLVMMetadataRef File, unsigned *Len);
+
 #endif /* LLVMSWIFT_LLVM_SHIM_H */

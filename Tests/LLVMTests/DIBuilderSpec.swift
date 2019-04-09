@@ -21,7 +21,6 @@ class DIBuilderSpec : XCTestCase {
       let file = debugBuilder.buildFile(named: "test.trill", in: "/")
       // DIBUILDER-DAG: !{{[0-9]+}} = distinct !DICompileUnit(language: DW_LANG_Swift, file: !{{[0-9]+}}, isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, enums: !{{[0-9]+}}, splitDebugInlining: false)
       _ = debugBuilder.buildCompileUnit(for: .swift, in: file, kind: .full, optimized: false, runtimeVersion: 0)
-
       debugBuilder.finalize()
       module.dump()
     })
@@ -78,9 +77,26 @@ class DIBuilderSpec : XCTestCase {
     })
   }
 
+  func testDIScopeAccessors() {
+    let module = Module(name: "DISCope")
+    let debugBuilder = DIBuilder(module: module)
+
+    let directory = "/some/long/directory/name"
+    let fileName = "test.trill"
+    let file = debugBuilder.buildFile(named: fileName, in: directory)
+    let cu = debugBuilder.buildCompileUnit(for: .swift, in: file, kind: .full, optimized: false, runtimeVersion: 0)
+
+    XCTAssertEqual(cu.file?.name, fileName)
+    XCTAssertEqual(cu.file?.directory, directory)
+    // FIXME: Empty, for now.  Need hashing and DWARF 5 source text bindings.
+    XCTAssertEqual(cu.file?.source, "")
+  }
+
   #if !os(macOS)
   static var allTests = testCase([
     ("testDIBuilder", testDIBuilder),
+    ("testDIExpression", testDIExpression),
+    ("testDIScopeAccessors", testDIScopeAccessors),
   ])
   #endif
 }
