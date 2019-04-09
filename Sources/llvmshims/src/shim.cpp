@@ -1,6 +1,7 @@
 #include "llvm-c/Object.h"
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/IR/Function.h"
+#include "llvm/IR/IRBuilder.h"
 #include "llvm/Support/ARMTargetParser.h"
 #include "llvm/Object/MachOUniversal.h"
 #include "llvm/Object/ObjectFile.h"
@@ -73,6 +74,14 @@ extern "C" {
 
   LLVMBool LLVMObjectFileIsSymbolIteratorAtEnd(LLVMBinaryRef BR,
                                                LLVMSymbolIteratorRef SI);
+
+  // https://reviews.llvm.org/D60481
+  LLVMMetadataRef LLVMInstructionGetDebugLoc(LLVMValueRef Inst);
+  void LLVMInstructionSetDebugLoc(LLVMValueRef Inst, LLVMMetadataRef Loc);
+
+  // https://reviews.llvm.org/D60484
+  LLVMMetadataRef LLVMGetCurrentDebugLocation2(LLVMBuilderRef Builder);
+  void LLVMSetCurrentDebugLocation2(LLVMBuilderRef Builder, LLVMMetadataRef Loc);
 }
 
 using namespace llvm;
@@ -231,4 +240,24 @@ const char *LLVMGetARMCanonicalArchName(const char *Name, size_t NameLen) {
   return llvm::ARM::getCanonicalArchName({Name, NameLen}).data();
 }
 
+LLVMMetadataRef LLVMInstructionGetDebugLoc(LLVMValueRef Inst) {
+  return wrap(unwrap<Instruction>(Inst)->getDebugLoc().getAsMDNode());
+}
 
+void LLVMInstructionSetDebugLoc(LLVMValueRef Inst, LLVMMetadataRef Loc) {
+  if (Loc)
+    unwrap<Instruction>(Inst)->setDebugLoc(DebugLoc(unwrap<MDNode>(Loc)));
+  else
+    unwrap<Instruction>(Inst)->setDebugLoc(DebugLoc());
+}
+
+LLVMMetadataRef LLVMGetCurrentDebugLocation2(LLVMBuilderRef Builder) {
+  return wrap(unwrap(Builder)->getCurrentDebugLocation().getAsMDNode());
+}
+
+void LLVMSetCurrentDebugLocation2(LLVMBuilderRef Builder, LLVMMetadataRef Loc) {
+  if (Loc)
+    unwrap(Builder)->SetCurrentDebugLocation(DebugLoc(unwrap<MDNode>(Loc)));
+  else
+    unwrap(Builder)->SetCurrentDebugLocation(DebugLoc());
+}

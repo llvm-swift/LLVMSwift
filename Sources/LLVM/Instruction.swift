@@ -1,5 +1,6 @@
 #if SWIFT_PACKAGE
 import cllvm
+import llvmshims
 #endif
 
 /// An `IRInstruction` is a value that directly represents an instruction and
@@ -10,6 +11,12 @@ extension IRInstruction {
   /// Retrieves the opcode associated with this `Instruction`.
   public var opCode: OpCode {
     return OpCode(rawValue: LLVMGetInstructionOpcode(self.asLLVM()))
+  }
+
+  /// Retrieves the current debug location of this instruction.
+  public var debugLocation: DebugLocation? {
+    get { return LLVMInstructionGetDebugLoc(self.asLLVM()).map(DebugLocation.init(llvm:)) }
+    set { LLVMInstructionSetDebugLoc(self.asLLVM(), newValue?.asMetadata()) }
   }
 
   /// Obtain the instruction that occurs before this one, if it exists.

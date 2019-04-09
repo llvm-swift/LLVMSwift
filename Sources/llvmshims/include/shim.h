@@ -71,4 +71,10 @@ LLVMSymbolIteratorRef LLVMObjectFileGetSymbols(LLVMBinaryRef BR);
 LLVMBool LLVMObjectFileIsSymbolIteratorAtEnd(LLVMBinaryRef BR,
                                              LLVMSymbolIteratorRef SI);
 
+LLVMMetadataRef LLVMInstructionGetDebugLoc(LLVMValueRef Inst);
+void LLVMInstructionSetDebugLoc(LLVMValueRef Inst, LLVMMetadataRef Loc);
+
+LLVMMetadataRef LLVMGetCurrentDebugLocation2(LLVMBuilderRef Builder);
+void LLVMSetCurrentDebugLocation2(LLVMBuilderRef Builder, LLVMMetadataRef Loc);
+
 #endif /* LLVMSWIFT_LLVM_SHIM_H */
