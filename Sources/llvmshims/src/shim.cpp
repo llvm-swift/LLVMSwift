@@ -1,6 +1,7 @@
 #include "llvm-c/Object.h"
 #include "llvm/IR/DebugInfo.h"
 #include "llvm/IR/DIBuilder.h"
+#include "llvm-c/Core.h"
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/IRBuilder.h"
@@ -102,6 +103,16 @@ extern "C" {
   const char *LLVMDIFileGetDirectory(LLVMMetadataRef File, unsigned *Len);
   const char *LLVMDIFileGetFilename(LLVMMetadataRef File, unsigned *Len);
   const char *LLVMDIFileGetSource(LLVMMetadataRef File, unsigned *Len);
+
+  void LLVMBuilderSetDefaultFPMathTag(LLVMBuilderRef Builder,
+                                      LLVMMetadataRef FPMathTag);
+  
+  LLVMMetadataRef LLVMBuilderGetDefaultFPMathTag(LLVMBuilderRef Builder);
+
+  LLVMMetadataRef LLVMMDNodeInContext2(LLVMContextRef C, LLVMMetadataRef *MDs,
+                                       unsigned Count);
+
+  uint64_t LLVMGlobalGetGUID(LLVMValueRef Global);
 }
 
 using namespace llvm;
@@ -309,4 +320,25 @@ const char *LLVMDIFileGetSource(LLVMMetadataRef File, unsigned *Len) {
 
 LLVMMetadataRef LLVMDIScopeGetFile(LLVMMetadataRef Scope) {
   return wrap(unwrap<DIScope>(Scope)->getFile());
+}
+
+void LLVMBuilderSetDefaultFPMathTag(LLVMBuilderRef Builder,
+                                    LLVMMetadataRef FPMathTag) {
+
+  unwrap(Builder)->setDefaultFPMathTag(FPMathTag
+                                       ? unwrap<MDNode>(FPMathTag)
+                                       : nullptr);
+}
+
+LLVMMetadataRef LLVMBuilderGetDefaultFPMathTag(LLVMBuilderRef Builder) {
+  return wrap(unwrap(Builder)->getDefaultFPMathTag());
+}
+
+LLVMMetadataRef LLVMMDNodeInContext2(LLVMContextRef C, LLVMMetadataRef *MDs,
+                                     unsigned Count) {
+  return wrap(MDNode::get(*unwrap(C), ArrayRef<Metadata*>(unwrap(MDs), Count)));
+}
+
+uint64_t LLVMGlobalGetGUID(LLVMValueRef Glob) {
+  return unwrap<GlobalValue>(Glob)->getGUID();
 }

@@ -388,6 +388,70 @@ public struct NameSpaceMetadata: DIScope {
   }
 }
 
+/// `MDString` nodes represent string constants in metadata nodes.
+public struct MDString: IRMetadata {
+  private let llvm: LLVMMetadataRef
+
+  public init(llvm: LLVMMetadataRef) {
+    self.llvm = llvm
+  }
+
+  public init(_ value: String) {
+    self.llvm = LLVMValueAsMetadata(LLVMMDString(value, UInt32(value.count)))
+  }
+
+  public func asMetadata() -> LLVMMetadataRef {
+    return llvm
+  }
+}
+
+/// `MDNode` nodes represent generic metadata nodes.
+public struct MDNode: IRMetadata {
+  private let llvm: LLVMMetadataRef
+
+  public init(llvm: LLVMMetadataRef) {
+    self.llvm = llvm
+  }
+
+  public init(in context: Context = .global, operands: [IRMetadata]) {
+    var operands = operands.map { $0.asMetadata() as Optional }
+    self.llvm = operands.withUnsafeMutableBufferPointer { buf in
+      return LLVMMDNodeInContext2(context.llvm, buf.baseAddress!, UInt32(buf.count))
+    }
+  }
+
+  public init(constant: IRConstant) {
+    self.llvm = LLVMValueAsMetadata(constant.asLLVM())
+  }
+
+  public func asMetadata() -> LLVMMetadataRef {
+    return llvm
+  }
+}
+
+public class TemporaryMDNode: IRMetadata {
+  private let llvm: LLVMMetadataRef
+
+  required public init(llvm: LLVMMetadataRef) {
+    self.llvm = llvm
+  }
+
+  public init(in context: Context = .global, operands: [IRMetadata]) {
+    var operands = operands.map { $0.asMetadata() as Optional }
+    self.llvm = operands.withUnsafeMutableBufferPointer { buf in
+      return LLVMTemporaryMDNode(context.llvm, buf.baseAddress!, buf.count)
+    }
+  }
+
+  deinit {
+    LLVMDisposeTemporaryMDNode(self.llvm)
+  }
+
+  public func asMetadata() -> LLVMMetadataRef {
+    return llvm
+  }
+}
+
 /// `ExpressionMetadata` nodes represent expressions that are inspired by the
 /// DWARF expression language. They are used in debug intrinsics (such as
 /// llvm.dbg.declare and llvm.dbg.value) to describe how the referenced LLVM

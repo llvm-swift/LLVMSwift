@@ -94,6 +94,13 @@ extension IRBuilder {
     get { return LLVMGetCurrentDebugLocation2(self.llvm).map(DebugLocation.init(llvm:)) }
     set { LLVMSetCurrentDebugLocation2(self.llvm, newValue?.asMetadata()) }
   }
+
+  /// Set the floating point math metadata to be used for floating-point
+  /// operations.
+  public var defaultFloatingPointMathTag: MDNode? {
+    get { return LLVMBuilderGetDefaultFPMathTag(self.llvm).map(MDNode.init(llvm:)) }
+    set { LLVMBuilderSetDefaultFPMathTag(self.llvm, newValue?.asMetadata()) }
+  }
 }
 
 // MARK: Convenience Instructions
@@ -666,8 +673,12 @@ extension IRBuilder {
   ///
   /// - returns: A value representing `void`.
   @discardableResult
-  public func buildCondBr(condition: IRValue, then: BasicBlock, `else`: BasicBlock) -> IRInstruction {
-    return LLVMBuildCondBr(llvm, condition.asLLVM(), then.asLLVM(), `else`.asLLVM())
+  public func buildCondBr(
+    condition: IRValue, then: BasicBlock, `else`: BasicBlock) -> IRInstruction {
+    guard let instr: IRInstruction = LLVMBuildCondBr(llvm, condition.asLLVM(), then.asLLVM(), `else`.asLLVM()) else {
+      fatalError("Unable to build conditional branch")
+    }
+    return instr
   }
 
   /// Build an indirect branch to a label within the current function.
