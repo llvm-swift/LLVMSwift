@@ -1,5 +1,6 @@
 #if SWIFT_PACKAGE
 import cllvm
+import llvmshims
 #endif
 
 /// An unfortunate artifact of the design of the metadata class hierarchy is
@@ -78,6 +79,13 @@ extension IRMetadata {
 
 /// Denotes a scope in which child metadata nodes can be inserted.
 public protocol DIScope: IRMetadata {}
+
+extension DIScope {
+  /// Retrieves the file metadata associated with this scope, if any.
+  public var file: FileMetadata? {
+    return LLVMDIScopeGetFile(self.asMetadata()).map(FileMetadata.init(llvm:))
+  }
+}
 
 /// Denotes metadata for a type.
 public protocol DIType: DIScope {}
@@ -205,6 +213,27 @@ public struct FileMetadata: DIScope {
 
   public init(llvm: LLVMMetadataRef) {
     self.llvm = llvm
+  }
+
+  /// Retrieves the name of this file
+  public var name: String {
+    var length: UInt32 = 0
+    let cstring = LLVMDIFileGetFilename(self.asMetadata(), &length)
+    return String(cString: cstring!)
+  }
+
+  /// Retrieves the directory of this file
+  public var directory: String {
+    var length: UInt32 = 0
+    let cstring = LLVMDIFileGetDirectory(self.asMetadata(), &length)
+    return String(cString: cstring!)
+  }
+
+  /// Retrieves the source text of this file.
+  public var source: String {
+    var length: UInt32 = 0
+    let cstring = LLVMDIFileGetSource(self.asMetadata(), &length)
+    return String(cString: cstring!)
   }
 }
 
