@@ -22,6 +22,9 @@ public protocol _IRMetadataInitializerHack {
 /// Metadata does not have a type, and is not a value. If referenced from a call
 /// instruction, it uses the metadata type.
 ///
+/// Debug Information
+/// =================
+///
 /// The idea of LLVM debugging information is to capture how the important
 /// pieces of the source-language’s Abstract Syntax Tree map onto LLVM code.
 /// LLVM takes a number of positions on the impact of the broader compilation
@@ -389,14 +392,24 @@ public struct NameSpaceMetadata: DIScope {
 }
 
 /// `MDString` nodes represent string constants in metadata nodes.
-public struct MDString: IRMetadata {
+public struct MDString: IRMetadata, ExpressibleByStringLiteral {
+  public typealias StringLiteralType = String
+
   private let llvm: LLVMMetadataRef
 
   public init(llvm: LLVMMetadataRef) {
     self.llvm = llvm
   }
 
+  /// Create an `MDString` node from the given string value.
+  ///
+  /// - Parameters:
+  ///   - value: The string value to assign to this metadata node.
   public init(_ value: String) {
+    self.llvm = LLVMValueAsMetadata(LLVMMDString(value, UInt32(value.count)))
+  }
+
+  public init(stringLiteral value: String) {
     self.llvm = LLVMValueAsMetadata(LLVMMDString(value, UInt32(value.count)))
   }
 
@@ -405,7 +418,11 @@ public struct MDString: IRMetadata {
   }
 }
 
-/// `MDNode` nodes represent generic metadata nodes.
+/// `MDNode` objects represent generic nodes in a metadata graph.
+///
+/// A metadata node is a tuple of references to other metadata.  In general,
+/// metadata graphs are acyclic and terminate in metadata nodes without
+/// operands.
 public struct MDNode: IRMetadata {
   private let llvm: LLVMMetadataRef
 
@@ -413,6 +430,11 @@ public struct MDNode: IRMetadata {
     self.llvm = llvm
   }
 
+  /// Create a metadata node in the given context with the given operands.
+  ///
+  /// - Parameters:
+  ///   - context: The context to allocate the node in.
+  ///   - operands: The operands to attach to the metadata node.
   public init(in context: Context = .global, operands: [IRMetadata]) {
     var operands = operands.map { $0.asMetadata() as Optional }
     self.llvm = operands.withUnsafeMutableBufferPointer { buf in
@@ -420,6 +442,10 @@ public struct MDNode: IRMetadata {
     }
   }
 
+  /// Create a metadata node with the value of a given constant.
+  ///
+  /// - Parameters:
+  ///   - constant: The constant value to attach to the node.
   public init(constant: IRConstant) {
     self.llvm = LLVMValueAsMetadata(constant.asLLVM())
   }
@@ -429,6 +455,35 @@ public struct MDNode: IRMetadata {
   }
 }
 
+/// Represents a temporary metadata node.
+///
+/// Temporary metadata nodes aid in the construction of cyclic metadata. The
+/// typical construction pattern is usually as follows:
+///
+///     // Allocate a temporary temp node
+///     let temp = TemporaryMDNode(in: context, operands: [])
+///     // Prepare the operands to the metadata node...
+///     var ops = [IRMetadata]()
+///     // ...
+///     // Create the real node
+///     let root = MDNode(in: context, operands: ops)
+///
+/// At this point we have the following metadata structure:
+///
+///     //   !0 = metadata !{}            <- temp
+///     //   !1 = metadata !{metadata !0} <- root
+///     // Replace the temp operand with the root node
+///
+/// The knot is tied by RAUW'ing the temporary node:
+///
+///     temp.replaceAllUses(with: root)
+///     // We now have
+///     //   !1 = metadata !{metadata !1} <- self-referential root
+///
+/// - Warning: It is critical that temporary metadata nodes be "RAUW'd"
+///   (replace-all-uses-with) before the metadata graph is finalized.  After
+///   that time, all remaining temporary metadata nodes will become unresolved
+///   metadata.
 public class TemporaryMDNode: IRMetadata {
   private let llvm: LLVMMetadataRef
 
@@ -436,6 +491,12 @@ public class TemporaryMDNode: IRMetadata {
     self.llvm = llvm
   }
 
+  /// Create a new temporary metadata node in the given context with the
+  /// given operands.
+  ///
+  /// - Parameters:
+  ///   - context: The context to allocate the node in.
+  ///   - operands: The operands to attach to the metadata node.
   public init(in context: Context = .global, operands: [IRMetadata]) {
     var operands = operands.map { $0.asMetadata() as Optional }
     self.llvm = operands.withUnsafeMutableBufferPointer { buf in
@@ -443,6 +504,7 @@ public class TemporaryMDNode: IRMetadata {
     }
   }
 
+  /// Deinitialize this value and dispose of its resources.
   deinit {
     LLVMDisposeTemporaryMDNode(self.llvm)
   }

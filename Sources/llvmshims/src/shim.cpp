@@ -104,14 +104,17 @@ extern "C" {
   const char *LLVMDIFileGetFilename(LLVMMetadataRef File, unsigned *Len);
   const char *LLVMDIFileGetSource(LLVMMetadataRef File, unsigned *Len);
 
+  // https://reviews.llvm.org/D60527
   void LLVMBuilderSetDefaultFPMathTag(LLVMBuilderRef Builder,
                                       LLVMMetadataRef FPMathTag);
-  
   LLVMMetadataRef LLVMBuilderGetDefaultFPMathTag(LLVMBuilderRef Builder);
 
+  // https://reviews.llvm.org/D60524
   LLVMMetadataRef LLVMMDNodeInContext2(LLVMContextRef C, LLVMMetadataRef *MDs,
                                        unsigned Count);
 
+  // Not to be upstreamed: It's not clear there's value in having this outside
+  // of PGO passes.
   uint64_t LLVMGlobalGetGUID(LLVMValueRef Global);
 }
 

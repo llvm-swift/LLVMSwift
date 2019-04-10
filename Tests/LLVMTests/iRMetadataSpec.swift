@@ -62,7 +62,7 @@ class IRMetadataSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       let MDB = MDBuilder()
       XCTAssertNil(builder.defaultFloatingPointMathTag)
-      builder.defaultFloatingPointMathTag = MDB.buildFPMath(0.1)
+      builder.defaultFloatingPointMathTag = MDB.buildFloatingPointMathTag(0.1)
 
       // IRFPMATHMETADATA: define float @test(float, float) {
       let main = builder.addFunction("test",
