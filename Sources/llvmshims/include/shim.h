@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include "llvm-c/Types.h"
 #include "llvm-c/Object.h"
+#include "llvm-c/DebugInfo.h"
 
 #ifndef LLVMSWIFT_LLVM_SHIM_H
 #define LLVMSWIFT_LLVM_SHIM_H
@@ -81,5 +82,15 @@ LLVMMetadataRef LLVMDIScopeGetFile(LLVMMetadataRef Scope);
 const char *LLVMDIFileGetDirectory(LLVMMetadataRef File, unsigned *Len);
 const char *LLVMDIFileGetFilename(LLVMMetadataRef File, unsigned *Len);
 const char *LLVMDIFileGetSource(LLVMMetadataRef File, unsigned *Len);
+
+void LLVMBuilderSetDefaultFPMathTag(LLVMBuilderRef Builder,
+                                    LLVMMetadataRef FPMathTag);
+
+LLVMMetadataRef LLVMBuilderGetDefaultFPMathTag(LLVMBuilderRef Builder);
+
+LLVMMetadataRef LLVMMDNodeInContext2(LLVMContextRef C, LLVMMetadataRef *MDs,
+                                     unsigned Count);
+
+uint64_t LLVMGlobalGetGUID(LLVMValueRef Global);
 
 #endif /* LLVMSWIFT_LLVM_SHIM_H */

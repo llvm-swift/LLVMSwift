@@ -1,5 +1,6 @@
 #if SWIFT_PACKAGE
 import cllvm
+import llvmshims
 #endif
 
 /// An `IRGlobal` is a value, alias, or function that exists at the top level of
@@ -64,6 +65,14 @@ extension IRGlobal {
       return String(cString: sname)
     }
     set { LLVMSetSection(asLLVM(), newValue) }
+  }
+
+  /// Retrieves a global unique identifier for this global value.
+  ///
+  /// This is a 64 bits hash that is used by PGO and ThinLTO to have a compact
+  /// unique way to identify a symbol.
+  public var guid: UInt64 {
+    return LLVMGlobalGetGUID(self.asLLVM())
   }
 
   /// Removes this global value from the module and deallocates it.
