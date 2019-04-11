@@ -219,10 +219,188 @@ public struct TBAAStructField {
   public let size: Size
   /// The type metadata node for this struct field.
   public let type: MDNode
+
+  /// Create a new TBAA struct field.
+  ///
+  /// - Parameters:
+  ///   - The offsset of this field relative to its parent in bytes.
+  ///   - The size of this field in bytes.
+  ///   - TBAA type metadata for the field.
+  public init(offset: Size, size: Size, type: MDNode) {
+    self.offset = offset
+    self.size = size
+    self.type = type
+  }
 }
 
 extension MDBuilder {
-  public func buildAARoot(_ name: String, _ extra: MDNode? = nil) -> MDNode {
+  /// Build a metadata node for the root of a TBAA hierarchy with the given name.
+  ///
+  /// - Parameters:
+  ///   - name: The name of the TBAA root node.
+  /// - Returns: A metadata node representing a TBAA hierarchy root.
+  public func buildTBAARoot(_ name: String = "") -> MDNode {
+    guard !name.isEmpty else {
+      return self.buildAnonymousAARoot()
+    }
+    return MDNode(in: self.context, operands: [ MDString(name) ])
+  }
+
+  /// Build a metadata node suitable for an `alias.scope` metadata attachment.
+  ///
+  /// When evaluating an aliasing query, if for some domain, the set of scopes
+  /// with that domain in one instruction’s alias.scope list is a subset of (or
+  /// equal to) the set of scopes for that domain in another instruction’s
+  /// noalias list, then the two memory accesses are assumed not to alias.
+  ///
+  /// Because scopes in one domain don’t affect scopes in other domains,
+  /// separate domains can be used to compose multiple independent noalias
+  /// sets. This is used for example during inlining. As the noalias function
+  /// parameters are turned into noalias scope metadata, a new domain is used
+  /// every time the function is inlined.
+  ///
+  /// - Parameters:
+  ///   - name: The name of the alias scope domain.
+  ///   - domain: The domain of the alias scope, if any.
+  /// - Returns: A metadata node representing a TBAA alias scope.
+  public func buildAliasScopeDomain(_ name: String = "", _ domain: MDNode? = nil) -> MDNode {
+    if name.isEmpty {
+      if let domain = domain {
+        return self.buildAnonymousAARoot(name, domain)
+      }
+      return self.buildAnonymousAARoot(name)
+    } else {
+      if let domain = domain {
+        return MDNode(in: self.context, operands: [ MDString(name), domain ])
+      }
+      return MDNode(in: self.context, operands: [ MDString(name) ])
+    }
+  }
+
+  /// Builds a metadata node suitable for a `tbaa.struct` metadata attachment.
+  ///
+  /// `tbaa.struct` metadata can describe which memory subregions in a
+  /// `memcpy` are padding and what the TBAA tags of the struct are.
+  ///
+  /// Note that the fields need not be contiguous. In the following example,
+  /// there is a 4 byte gap between the two fields. This gap represents padding
+  /// which does not carry useful data and need not be preserved.
+  ///
+  ///     !4 = !{ i64 0, i64 4, !1, i64 8, i64 4, !2 }
+  ///
+  /// - Parameters:
+  ///   - fields: The fields of the struct.
+  /// - Returns: A metadata node representing a TBAA struct descriptor.
+  public func buildTBAAStructNode(_ fields: [TBAAStructField]) -> MDNode {
+    var ops = [IRMetadata]()
+    ops.reserveCapacity(fields.count * 3)
+    let int64 = IntType(width: 64, in: self.context)
+    for field in fields {
+      ops.append(MDNode(constant: int64.constant(field.offset.rawValue)))
+      ops.append(MDNode(constant: int64.constant(field.size.rawValue)))
+      ops.append(field.type)
+    }
+    return MDNode(in: self.context, operands: ops)
+  }
+
+  /// Builds a TBAA Type Descriptor.
+  ///
+  /// Type descriptors describe the type system of the higher level language
+  /// being compiled. Scalar type descriptors describe types that do not
+  /// contain other types. Each scalar type has a parent type, which must also
+  /// be a scalar type or the TBAA root. Via this parent relation, scalar types
+  /// within a TBAA root form a tree. Struct type descriptors denote types that
+  /// contain a sequence of other type descriptors, at known offsets. These
+  /// contained type descriptors can either be struct type descriptors
+  /// themselves or scalar type descriptors.
+  ///
+  /// - Parameters:
+  ///   - parent: The parent type node of this type node or the TBAA root node
+  ///     if it is a top-level entity.
+  ///   - size: The size of the type in bytes.
+  ///   - id: The metadata node whose identity uniquely identifies this node as
+  ///     well.  These are often `MDString` values.
+  ///   - fields: The fields of the type, if any.
+  /// - Returns: A metadata node representing a TBAA type descriptor.
+  public func buildTBAATypeNode(
+    _ id: IRMetadata, parent: MDNode, size: Size, fields: [TBAAStructField] = []
+  ) -> MDNode {
+    var ops = [IRMetadata]()
+    ops.reserveCapacity(3 + fields.count * 3)
+    let int64 = IntType(width: 64, in: self.context)
+    ops.append(parent)
+    ops.append(MDNode(constant: int64.constant(size.rawValue)))
+    ops.append(id)
+    for field in fields {
+      ops.append(field.type)
+      ops.append(MDNode(constant: int64.constant(field.offset.rawValue)))
+      ops.append(MDNode(constant: int64.constant(field.size.rawValue)))
+    }
+    return MDNode(in: self.context, operands: ops)
+  }
+
+  /// Builds a TBAA Access Tag.
+  ///
+  /// Access tags are metadata nodes attached to `load` and `store`
+  /// instructions. Access tags use type descriptors to describe the
+  /// location being accessed in terms of the type system of the higher
+  /// level language. Access tags are tuples consisting of a base type,
+  /// an access type and an offset. The base type is a scalar type
+  /// descriptor or a struct type descriptor, the access type is a
+  /// scalar type descriptor, and the offset is a constant integer.
+  ///
+  /// Tag Structure
+  /// =============
+  ///
+  /// The access tag `(BaseTy, AccessTy, Offset)` can describe one of two
+  /// things:
+  ///
+  /// - If `BaseTy` is a struct type, the tag describes a memory access
+  ///   (`load` or `store`) of a value of type `AccessTy` contained in
+  ///   the struct type `BaseTy` at offset `Offset`.
+  /// - If `BaseTy` is a scalar type, `Offset` must be 0 and `BaseTy` and
+  ///   `AccessTy` must be the same; and the access tag describes a scalar
+  ///   access with scalar type `AccessTy`.
+  ///
+  /// - Parameters:
+  ///   - baseType: The base type of the access.  This is the structure or
+  ///     scalar type that corresponds to the type of the source value in a
+  ///     `load` instruction, or the type of the destination value in a `store`
+  ///     instruction.
+  ///   - accessType: The type of the accessed value.  This is the type that
+  ///     corresponds to the type of the destination value in a `load`
+  ///     instruction, or the type of the source value in a `store` instruction.
+  ///   - offset: The ofset of the memory accesss into the base type.  If the
+  ///     base type is scalar, this value must be 0.
+  ///   - size: The size of the access in bytes.
+  ///   - immutable: If true, accesses to this memory are never writes.
+  ///     This corresponds to the `const` memory qualifier in C and C++.
+  /// - Returns: A metadata node representing a TBAA accesss tag.
+  public func buildTBAAAccessTag(
+    baseType: MDNode, accessType: MDNode,
+    offset: Size, size: Size, immutable: Bool = false
+  ) -> MDNode {
+    let int64 = IntType(width: 64, in: self.context)
+    let offNode = MDNode(constant: int64.constant(offset.rawValue))
+    let sizeNode = MDNode(constant: int64.constant(size.rawValue))
+    if immutable {
+      return MDNode(in: self.context, operands: [
+        baseType,
+        accessType,
+        offNode,
+        sizeNode,
+        MDNode(constant: int64.constant(1)),
+      ])
+    }
+    return MDNode(in: self.context, operands: [
+      baseType,
+      accessType,
+      offNode,
+      sizeNode,
+    ])
+  }
+
+  private func buildAnonymousAARoot(_ name: String = "", _ extra: MDNode? = nil) -> MDNode {
     // To ensure uniqueness the root node is self-referential.
     let dummy = TemporaryMDNode(in: self.context, operands: [])
     var ops = [IRMetadata]()
@@ -241,119 +419,6 @@ extension MDBuilder {
     // We now have
     //   !1 = metadata !{metadata !1} <- self-referential root
     return root
-  }
-
-  public func buildTBAARoot(_ name: String) -> MDNode {
-    return MDNode(in: self.context, operands: [ MDString(name) ])
-  }
-
-  public func buildTBAANode(_ name: String, parent: MDNode, isConstant: Bool) -> MDNode {
-    if isConstant {
-      let flags = IntType(width: 64, in: self.context).constant(1)
-      return MDNode(in: self.context, operands: [
-        MDString(name),
-        parent,
-        MDNode(constant: flags)
-      ])
-    }
-    return MDNode(in: self.context, operands: [
-      MDString(name),
-      parent
-    ])
-  }
-
-  public func buildAliasScopeDomain(_ name: String, _ domain: MDNode? = nil) -> MDNode {
-    if let domain = domain {
-      return MDNode(in: self.context, operands: [ MDString(name), domain ])
-    }
-    return MDNode(in: self.context, operands: [ MDString(name) ])
-  }
-
-  public func buildTBAAStructNode(_ fields: [TBAAStructField]) -> MDNode {
-    var ops = [IRMetadata]()
-    ops.reserveCapacity(fields.count * 3)
-    let int64 = IntType(width: 64, in: self.context)
-    for field in fields {
-      ops.append(MDNode(constant: int64.constant(field.offset.rawValue)))
-      ops.append(MDNode(constant: int64.constant(field.size.rawValue)))
-      ops.append(field.type)
-    }
-    return MDNode(in: self.context, operands: ops)
-  }
-
-  public func buildTBAAStructTypeName(_ name: String, fields: [(MDNode, Size)]) -> MDNode {
-    var ops = [IRMetadata]()
-    ops.reserveCapacity(fields.count * 2 + 1)
-    let int64 = IntType(width: 64, in: self.context)
-    ops.append(MDString(name))
-    for (type, offset) in fields {
-      ops.append(type)
-      ops.append(MDNode(constant: int64.constant(offset.rawValue)))
-    }
-    return MDNode(in: self.context, operands: ops)
-  }
-
-  public func buildTBAAScalarTypeNode(_ name: String, _ parent: MDNode, _ offset: Size) -> MDNode {
-    let off = IntType(width: 64, in: self.context).constant(offset.rawValue)
-    return MDNode(in: self.context, operands: [
-      MDString(name),
-      parent,
-      MDNode(constant: off)
-    ])
-  }
-
-  public func buildTBAAStructTagNode(_ baseType: MDNode, _ accessType: MDNode, _ offset: Size, _ isConstant: Bool) -> MDNode {
-    let int64 = IntType(width: 64, in: self.context)
-    let off = int64.constant(offset.rawValue)
-    if isConstant {
-      return MDNode(in: self.context, operands: [
-        baseType,
-        accessType,
-        MDNode(constant: off),
-        MDNode(constant: int64.constant(1))
-      ])
-    }
-    return MDNode(in: self.context, operands: [
-      baseType,
-      accessType,
-      MDNode(constant: off),
-    ])
-  }
-
-  public func buildTBAATypeNode(_ parent: MDNode, _ size: Size, _ id: IRMetadata, _ fields: [TBAAStructField]) -> MDNode {
-    var ops = [IRMetadata]()
-    ops.reserveCapacity(3 + fields.count * 3)
-    let int64 = IntType(width: 64, in: self.context)
-    ops.append(parent)
-    ops.append(MDNode(constant: int64.constant(size.rawValue)))
-    ops.append(id)
-    for field in fields {
-      ops.append(field.type)
-      ops.append(MDNode(constant: int64.constant(field.offset.rawValue)))
-      ops.append(MDNode(constant: int64.constant(field.size.rawValue)))
-    }
-    return MDNode(in: self.context, operands: ops)
-  }
-
-  public func buildTBAAAccessTag(_ baseType: MDNode, _ accessType: MDNode, _ offset: Size, _ size: Size, _ isImmutable: Bool) -> MDNode {
-    let int64 = IntType(width: 64, in: self.context)
-    let off = MDNode(constant: int64.constant(offset.rawValue))
-    let siz = MDNode(constant: int64.constant(size.rawValue))
-    if isImmutable {
-      return MDNode(in: self.context, operands: [
-        baseType,
-        accessType,
-        off,
-        siz,
-        MDNode(constant: int64.constant(1)),
-      ])
-    }
-    return MDNode(in: self.context, operands: [
-      baseType,
-      accessType,
-      off,
-      siz,
-    ])
   }
 }
 
