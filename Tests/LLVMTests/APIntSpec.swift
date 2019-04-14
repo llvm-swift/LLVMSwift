@@ -133,9 +133,161 @@ class APIntSpec : XCTestCase {
     XCTAssertEqual(96, i96.trailingZeroBitCount)
   }
 
+  func testSetLowBits() {
+    var i64lo32 = APInt(width: 64, value: 0)
+    i64lo32.setBits(...32)
+    XCTAssertEqual(0, i64lo32.leadingNonZeroBitCount)
+    XCTAssertEqual(32, i64lo32.leadingZeroBitCount)
+    XCTAssertEqual(0, i64lo32.trailingZeroBitCount)
+    XCTAssertEqual(32, i64lo32.trailingNonZeroBitCount)
+    XCTAssertEqual(32, i64lo32.nonzeroBitCount)
+
+    var i128lo64 = APInt(width: 128, value: 0)
+    i128lo64.setBits(...64)
+    XCTAssertEqual(0, i128lo64.leadingNonZeroBitCount)
+    XCTAssertEqual(64, i128lo64.leadingZeroBitCount)
+    XCTAssertEqual(0, i128lo64.trailingZeroBitCount)
+    XCTAssertEqual(64, i128lo64.trailingNonZeroBitCount)
+    XCTAssertEqual(64, i128lo64.nonzeroBitCount)
+
+    var i128lo24 = APInt(width: 128, value: 0)
+    i128lo24.setBits(...24)
+    XCTAssertEqual(0, i128lo24.leadingNonZeroBitCount)
+    XCTAssertEqual(104, i128lo24.leadingZeroBitCount)
+    XCTAssertEqual(0, i128lo24.trailingZeroBitCount)
+    XCTAssertEqual(24, i128lo24.trailingNonZeroBitCount)
+    XCTAssertEqual(24, i128lo24.nonzeroBitCount)
+
+    var i128lo104 = APInt(width: 128, value: 0)
+    i128lo104.setBits(...104)
+    XCTAssertEqual(0, i128lo104.leadingNonZeroBitCount)
+    XCTAssertEqual(24, i128lo104.leadingZeroBitCount)
+    XCTAssertEqual(0, i128lo104.trailingZeroBitCount)
+    XCTAssertEqual(104, i128lo104.trailingNonZeroBitCount)
+    XCTAssertEqual(104, i128lo104.nonzeroBitCount)
+
+    var i128lo0 = APInt(width: 128, value: 0)
+    i128lo0.setBits(...0)
+    XCTAssertEqual(0, i128lo0.leadingNonZeroBitCount)
+    XCTAssertEqual(128, i128lo0.leadingZeroBitCount)
+    XCTAssertEqual(128, i128lo0.trailingZeroBitCount)
+    XCTAssertEqual(0, i128lo0.trailingNonZeroBitCount)
+    XCTAssertEqual(0, i128lo0.nonzeroBitCount)
+
+    var i80lo79 = APInt(width: 80, value: 0)
+    i80lo79.setBits(...79)
+    XCTAssertEqual(0, i80lo79.leadingNonZeroBitCount)
+    XCTAssertEqual(1, i80lo79.leadingZeroBitCount)
+    XCTAssertEqual(0, i80lo79.trailingZeroBitCount)
+    XCTAssertEqual(79, i80lo79.trailingNonZeroBitCount)
+    XCTAssertEqual(79, i80lo79.nonzeroBitCount)
+  }
+
+  func testSetHighBits() {
+    var i64hi32 = APInt(width: 64, value: 0)
+    i64hi32.setBits((i64hi32.bitWidth - 32)...)
+    XCTAssertEqual(32, i64hi32.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i64hi32.leadingZeroBitCount)
+    XCTAssertEqual(32, i64hi32.trailingZeroBitCount)
+    XCTAssertEqual(0, i64hi32.trailingNonZeroBitCount)
+    XCTAssertEqual(32, i64hi32.nonzeroBitCount)
+
+    var i128hi64 = APInt(width: 128, value: 0)
+    i128hi64.setBits((i128hi64.bitWidth - 64)...)
+    XCTAssertEqual(64, i128hi64.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i128hi64.leadingZeroBitCount)
+    XCTAssertEqual(64, i128hi64.trailingZeroBitCount)
+    XCTAssertEqual(0, i128hi64.trailingNonZeroBitCount)
+    XCTAssertEqual(64, i128hi64.nonzeroBitCount)
+
+    var i128hi24 = APInt(width: 128, value: 0)
+    i128hi24.setBits((i128hi24.bitWidth - 24)...)
+    XCTAssertEqual(24, i128hi24.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i128hi24.leadingZeroBitCount)
+    XCTAssertEqual(104, i128hi24.trailingZeroBitCount)
+    XCTAssertEqual(0, i128hi24.trailingNonZeroBitCount)
+    XCTAssertEqual(24, i128hi24.nonzeroBitCount)
+
+    var i128hi104 = APInt(width: 128, value: 0)
+    i128hi104.setBits((i128hi104.bitWidth - 104)...)
+    XCTAssertEqual(104, i128hi104.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i128hi104.leadingZeroBitCount)
+    XCTAssertEqual(24, i128hi104.trailingZeroBitCount)
+    XCTAssertEqual(0, i128hi104.trailingNonZeroBitCount)
+    XCTAssertEqual(104, i128hi104.nonzeroBitCount)
+
+    var i128hi0 = APInt(width: 128, value: 0)
+    i128hi0.setBits((i128hi0.bitWidth - 0)...)
+    XCTAssertEqual(0, i128hi0.leadingNonZeroBitCount)
+    XCTAssertEqual(128, i128hi0.leadingZeroBitCount)
+    XCTAssertEqual(128, i128hi0.trailingZeroBitCount)
+    XCTAssertEqual(0, i128hi0.trailingNonZeroBitCount)
+    XCTAssertEqual(0, i128hi0.nonzeroBitCount)
+
+    var i80hi1 = APInt(width: 80, value: 0)
+    i80hi1.setBits((i80hi1.bitWidth - 1)...)
+    XCTAssertEqual(1, i80hi1.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i80hi1.leadingZeroBitCount)
+    XCTAssertEqual(79, i80hi1.trailingZeroBitCount)
+    XCTAssertEqual(0, i80hi1.trailingNonZeroBitCount)
+    XCTAssertEqual(1, i80hi1.nonzeroBitCount)
+
+    var i32hi16 = APInt(width: 32, value: 0)
+    i32hi16.setBits((i32hi16.bitWidth - 16)...)
+    XCTAssertEqual(16, i32hi16.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i32hi16.leadingZeroBitCount)
+    XCTAssertEqual(16, i32hi16.trailingZeroBitCount)
+    XCTAssertEqual(0, i32hi16.trailingNonZeroBitCount)
+    XCTAssertEqual(16, i32hi16.nonzeroBitCount)
+  }
+
+  func testSetBitsFrom() {
+    var i64from63 = APInt(width: 64, value: 0)
+    i64from63.setBits(63...)
+    XCTAssertEqual(1, i64from63.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i64from63.leadingZeroBitCount)
+    XCTAssertEqual(63, i64from63.trailingZeroBitCount)
+    XCTAssertEqual(0, i64from63.trailingNonZeroBitCount)
+    XCTAssertEqual(1, i64from63.nonzeroBitCount)
+  }
+
+  func testSetAllBits() {
+    var i32 = APInt(width: 32, value: 0)
+    i32.setAllBits()
+    XCTAssertEqual(32, i32.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i32.leadingZeroBitCount)
+    XCTAssertEqual(0, i32.trailingZeroBitCount)
+    XCTAssertEqual(32, i32.trailingNonZeroBitCount)
+    XCTAssertEqual(32, i32.nonzeroBitCount)
+
+    var i64 = APInt(width: 64, value: 0)
+    i64.setAllBits()
+    XCTAssertEqual(64, i64.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i64.leadingZeroBitCount)
+    XCTAssertEqual(0, i64.trailingZeroBitCount)
+    XCTAssertEqual(64, i64.trailingNonZeroBitCount)
+    XCTAssertEqual(64, i64.nonzeroBitCount)
+
+    var i96 = APInt(width: 96, value: 0)
+    i96.setAllBits()
+    XCTAssertEqual(96, i96.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i96.leadingZeroBitCount)
+    XCTAssertEqual(0, i96.trailingZeroBitCount)
+    XCTAssertEqual(96, i96.trailingNonZeroBitCount)
+    XCTAssertEqual(96, i96.nonzeroBitCount)
+
+    var i128 = APInt(width: 128, value: 0)
+    i128.setAllBits()
+    XCTAssertEqual(128, i128.leadingNonZeroBitCount)
+    XCTAssertEqual(0, i128.leadingZeroBitCount)
+    XCTAssertEqual(0, i128.trailingZeroBitCount)
+    XCTAssertEqual(128, i128.trailingNonZeroBitCount)
+    XCTAssertEqual(128, i128.nonzeroBitCount)
+  }
+
   func testArbitraryIRGen() {
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["ARBITRARY"]) {
-      // ARBITRARY: ; ModuleID = '[[ModuleName:ArbitraryTest]]'
+      // ARBITRARY:  ModuleID = '[[ModuleName:ArbitraryTest]]'
       // ARBITRARY-NEXT: source_filename = "[[ModuleName]]"
       let module = Module(name: "ArbitraryTest")
       let builder = IRBuilder(module: module)

@@ -41,6 +41,7 @@ public struct APInt: IRConstant {
       self.value = .single(val & mask)
     case var .many(vals):
       vals[vals.endIndex - 1] &= mask
+      self.value = .many(vals)
     }
   }
 
@@ -537,7 +538,7 @@ extension APInt {
   public var signExtendedValue: Int64? {
     switch self.value {
     case let .single(val):
-      return Int64(bitPattern: val << (64 - self.bitWidth)) >> (64 - self.bitWidth);
+      return Int64(bitPattern: val << (64 - self.bitWidth)) >> (64 - self.bitWidth)
     case let .many(vals):
       guard (self.bitWidth - self.leadingZeroBitCount) <= 64 else {
         return nil
@@ -600,12 +601,42 @@ extension APInt {
           count += v.leadingZeroBitCount
           break
         }
-
         count += bitsPerWord
       }
       // Adjust for unused bits in the most significant word (they are zero).
       let mod = self.bitWidth % bitsPerWord
       count -= mod > 0 ? bitsPerWord - mod : 0
+      return count
+    }
+  }
+
+
+  /// The number of leading ones in this value’s binary representation.
+  public var leadingNonZeroBitCount: Int {
+    switch self.value {
+    case let .single(val):
+      return (~(val << (bitsPerWord - self.bitWidth))).leadingZeroBitCount
+    case let .many(vals):
+      var highWordBits = self.bitWidth % bitsPerWord
+      var shift: Int
+      if highWordBits == 0 {
+        highWordBits = bitsPerWord
+        shift = 0
+      } else {
+        shift = bitsPerWord - highWordBits
+      }
+      let tail = requiredWords(for: self.bitWidth) - 1
+      var count = (~(vals[tail] << shift)).leadingZeroBitCount
+      if count == highWordBits {
+        for j in (0..<tail).reversed() {
+          if vals[j] == .max {
+            count += bitsPerWord
+          } else {
+            count += (~vals[j]).leadingZeroBitCount
+            break
+          }
+        }
+      }
       return count
     }
   }
@@ -629,6 +660,25 @@ extension APInt {
     }
   }
 
+  /// The number of trailing ones in this value’s binary representation.
+  public var trailingNonZeroBitCount: Int {
+    switch self.value {
+    case let .single(val):
+      return (~val).trailingZeroBitCount
+    case let .many(vals):
+      var count = 0
+      var i = 0
+      while i < vals.count && vals[i] == .max {
+        defer { i += 1 }
+        count += bitsPerWord
+      }
+      if i < vals.count {
+        count += (~vals[i]).trailingZeroBitCount
+      }
+      return count
+    }
+  }
+
   /// The number of bits equal to 1 in this value’s binary representation.
   public var nonzeroBitCount: Int {
     switch self.value {
@@ -641,6 +691,159 @@ extension APInt {
       }
       return count
     }
+  }
+}
+
+// MARK: Bit Twiddling Operations
+
+extension APInt {
+  /// Sets all bits to one in this value's binary representation.
+  public mutating func setAllBits() {
+    switch self.value {
+    case .single(_):
+      self.value = .single(.max)
+    case .many(_):
+      self.value = .many([APInt.Word](repeating: .max, count: requiredWords(for: self.bitWidth)))
+    }
+    self.clearUnusedBits()
+  }
+
+  /// Sets the bit at the given position to one.
+  ///
+  /// - Parameters:
+  ///   - position: The position of the bit to set.
+  public mutating func setBit(at position: Int) {
+    precondition(0 <= position)
+    precondition(position < self.bitWidth)
+    let mask: Word = (1 as Word) << UInt64(position % bitsPerWord)
+    switch self.value {
+    case let .single(val):
+      self.value = .single(val | mask)
+    case var .many(vals):
+      vals[position % bitsPerWord] |= mask
+      self.value = .many(vals)
+    }
+  }
+
+  /// Sets the sign bit to one in this value's binary representation.
+  public mutating func setSignBit() {
+    self.setBit(at: self.bitWidth - 1)
+  }
+
+  /// Sets all bits in the given range to one in this value's binary
+  /// representation.
+  ///
+  /// - Parameters:
+  ///   - range: The range of bits to flip.
+  public mutating func setBits(_ range: ClosedRange<Int>) {
+    precondition(range.upperBound <= self.bitWidth)
+    precondition(range.lowerBound <= self.bitWidth)
+    precondition(range.lowerBound <= range.upperBound)
+    guard range.lowerBound != range.upperBound else {
+      return
+    }
+
+    var mask: Word = Word.max >> (bitsPerWord - (range.upperBound - range.lowerBound))
+    mask <<= range.lowerBound
+    switch self.value {
+    case let .single(val):
+      self.value = .single(val | mask)
+    case var .many(vals) where range.lowerBound < bitsPerWord && range.upperBound <= bitsPerWord:
+      vals[0] |= mask
+      self.value = .many(vals)
+    case var .many(vals):
+      let (loWord, loShift) = range.lowerBound.quotientAndRemainder(dividingBy: bitsPerWord)
+      let (hiWord, hiShift) = range.upperBound.quotientAndRemainder(dividingBy: bitsPerWord)
+
+      // If hiBit is not aligned, we need a high mask.
+      var loMask = Word.max << loShift
+      if hiShift != 0 {
+        let hiMask = Word.max >> (bitsPerWord - hiShift)
+        if hiWord == loWord {
+          loMask &= hiMask
+        } else {
+          vals[hiWord] |= hiMask
+        }
+      }
+      vals[loWord] |= loMask
+
+      // Fill any words between loWord and hiWord with all ones.
+      if loWord < hiWord {
+        for word in (loWord + 1)..<hiWord {
+          vals[word] = .max
+        }
+      }
+
+      self.value = .many(vals)
+    }
+  }
+
+  /// Sets all bits in the given range to one in this value's binary
+  /// representation.
+  ///
+  /// - Parameters:
+  ///   - range: The range of bits to flip.
+  public mutating func setBits(_ range: Range<Int>) {
+    self.setBits(range.lowerBound...range.upperBound - 1)
+  }
+
+  /// Sets all bits in the given range to one in this value's binary
+  /// representation.
+  ///
+  /// - Parameters:
+  ///   - range: The range of bits to flip.
+  public mutating func setBits(_ range: PartialRangeUpTo<Int>) {
+    self.setBits(0...range.upperBound - 1)
+  }
+
+  /// Sets all bits in the given range to one in this value's binary
+  /// representation.
+  ///
+  /// - Parameters:
+  ///   - range: The range of bits to flip.
+  public mutating func setBits(_ range: PartialRangeThrough<Int>) {
+    self.setBits(0...range.upperBound)
+  }
+
+  /// Sets all bits in the given range to one in this value's binary
+  /// representation.
+  ///
+  /// - Parameters:
+  ///   - range: The range of bits to flip.
+  public mutating func setBits(_ range: PartialRangeFrom<Int>) {
+    self.setBits(range.lowerBound...self.bitWidth)
+  }
+
+  /// Clears all bits to one in this value's binary representation.
+  public mutating func clearAllBits() {
+    switch self.value {
+    case .single(_):
+      self.value = .single(0)
+    case .many(_):
+      self.value = .many([Word](repeating: 0, count: requiredWords(for: self.bitWidth)))
+    }
+  }
+
+  /// Sets the bit at the given position to zero.
+  ///
+  /// - Parameters:
+  ///   - position: The position of the bit to zero.
+  public mutating func clearBit(_ position: Int) {
+    precondition(0 <= position)
+    precondition(position < self.bitWidth)
+    let mask: Word = ~((1 as Word) << UInt64(position % bitsPerWord))
+    switch self.value {
+    case let .single(val):
+      self.value = .single(val | mask)
+    case var .many(vals):
+      vals[position % bitsPerWord] |= mask
+      self.value = .many(vals)
+    }
+  }
+
+  /// Clears the sign bit in this value's binary representation.
+  public mutating func clearSignBit() {
+    self.clearBit(self.bitWidth - 1)
   }
 }
 
