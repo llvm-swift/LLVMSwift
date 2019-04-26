@@ -76,9 +76,31 @@ public class Target {
     self.llvm = llvm
   }
 
-  /// Returns `true` if this target has a JIT.
-  var hasJIT: Bool {
+  /// Returns `true` if this target supports just-in-time compilation.
+  ///
+  /// Attempting to create a JIT for a `Target` where this predicate is false
+  /// may lead to program instability or corruption.
+  public var hasJIT: Bool {
     return LLVMTargetHasJIT(self.llvm) != 0
+  }
+
+
+  /// Returns `true` if this target has a `TargetMachine` associated with it.
+  ///
+  /// Target machines are registered by the corresponding initializer functions
+  /// for each target.  LLVMSwift will ensure that these functions are invoked
+  /// when a TargetMachine is created, but not before.
+  public var hasTargetMachine: Bool {
+    return LLVMTargetHasTargetMachine(self.llvm) != 0
+  }
+
+  /// Returns `true` if this target has an ASM backend.
+  ///
+  /// ASM backends are registered by the corresponding iniailizer functions for
+  /// each target.  LLVMSwift will ensure that these functions are invoked
+  /// when a TargetMachine is created, but not before.
+  public var hasASMBackend: Bool {
+    return LLVMTargetHasAsmBackend(self.llvm) != 0
   }
 
   /// The name of this target.
@@ -95,16 +117,6 @@ public class Target {
       return ""
     }
     return String(validatingUTF8: UnsafePointer<CChar>(str)) ?? ""
-  }
-
-  /// Returns `true` if this target has a `TargetMachine` associated with it.
-  var hasTargetMachine: Bool {
-    return LLVMTargetHasTargetMachine(self.llvm) != 0
-  }
-
-  /// Returns `true` if this target has an ASM backend
-  var hasASMBackend: Bool {
-    return LLVMTargetHasTargetMachine(self.llvm) != 0
   }
 
   /// Returns a sequence of all targets in the global list of targets.
