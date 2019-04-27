@@ -2,98 +2,98 @@
 import cllvm
 #endif
 
-/// A `Context` represents execution states for the core LLVM IR system.
-public class Context {
-  internal let llvm: LLVMContextRef
-  internal let ownsContext: Bool
+/// A `Module` represents the top-level structure of an LLVM program. An LLVM
+/// module is effectively a translation unit or a collection of translation
+/// units merged together.
+///
+/// LLVM programs are composed of `Module`s consisting of functions, global
+/// variables, symbol table entries, and metadata. Modules may be combined
+/// together with the LLVM linker, which merges function (and global variable)
+/// definitions, resolves forward declarations, and merges symbol table entries.
+///
+/// Verifying a Module
+/// ==================
+///
+/// A module naturally grows to encompass a large amount of data during code
+/// generation.  To verify that the module is well-formed and suitable for
+/// submission to later phases of LLVM, call `Module.verify()`.  If the module
+/// does not pass verification, an error describing the cause will be thrown.
+///
+///     let module = Module(name: "Example")
+///     let builder = IRBuilder(module: module)
+///     let main = builder.addFunction("main",
+///                                    type: FunctionType(argTypes: [],
+///                                                       returnType: VoidType()))
+///     let entry = main.appendBasicBlock(named: "entry")
+///     builder.positionAtEnd(of: entry)
+///     builder.buildRet(main.address(of: entry)!)
+///
+///     try module.verify()
+///     // The following error is thrown:
+///     //   module did not pass verification: blockaddress may not be used with the entry block!
+///     //   Found return instr that returns non-void in Function of void return type!
+///
+/// The built-in verifier attempts to be correct at the cost of completeness.
+/// For strictest checking, invoke the `lli` tool on any IR that is generated.
+///
+/// Threading Considerations
+/// ========================
+///
+/// A module value is associated with exactly one LLVM context.  That context,
+/// and its creating thread, must be used to access and mutate this module as
+/// LLVM provides no locking or atomicity guarantees.
+///
+/// Printing The Contents of a Module
+/// =================================
+///
+/// The contents of a module are mostly machine-independent.  It is often useful
+/// while debugging to view this machine-independent IR.  A module responds to
+/// `Module.dump()` by printing this representation to standard output.  To
+/// dump the module to a file, use `Module.print(to:)`.  In general, a module
+/// must be associated with a `TargetMachine` and a target environment for its
+/// contents to be fully useful for export to later file formats such as object
+/// files or bitcode.  See `TargetMachine.emitToFile(module:type:path)` for more
+/// details.
+///
+/// Module Flags
+/// ============
+///
+/// To convey information about a module to LLVM's various subsystems, a module
+/// may have flags attached.  These flags are keyed by global strings, and
+/// attached as metadata to the module with the privileged `llvm.module.flags`
+/// metadata identifier.  Certain flags have hard-coded meanings in LLVM such as
+/// the Objective-C garbage collection flags or the linker options flags.  Most
+/// other flags are stripped from any resulting object files.
+public final class Module: CustomStringConvertible {
+  internal let llvm: LLVMModuleRef
+  internal var ownsContext: Bool = true
 
-  /// Retrieves the global context instance.
-  public static let global = Context(llvm: LLVMGetGlobalContext()!)
+  /// Returns the context associated with this module.
+  public let context: Context
 
-  /// Creates a `Context` object using `LLVMContextCreate`
-  public init() {
-    llvm = LLVMContextCreate()
-    ownsContext = true
-  }
 
-  /// Creates a `Context` object from an `LLVMContextRef` object.
-  public init(llvm: LLVMContextRef, ownsContext: Bool = false) {
-    self.llvm = llvm
-    self.ownsContext = ownsContext
-  }
-
-  /// Returns whether the given context is set to discard all value names.
+  /// Creates a `Module` with the given name.
   ///
-  /// If true, only the names of GlobalValue objects will be available in
-  /// the IR.  This can be used to save memory and runtime, especially in
-  /// release mode.
-  public var discardValueNames: Bool {
-    get { return LLVMContextShouldDiscardValueNames(self.llvm) != 0 }
-    set { LLVMContextSetDiscardValueNames(self.llvm, newValue.llvm) }
+  /// - parameter name: The name of the module.
+  /// - parameter context: The context to associate this module with.  If no
+  ///   context is provided, the global context is assumed.
+  public init(name: String, context: Context = .global) {
+
+    // Ensure the LLVM initializer is called when the first module is created
+    initializeLLVM()
+
+    self.llvm = LLVMModuleCreateWithNameInContext(name, context.llvm)
+    self.context = context
   }
+
 
   /// Deinitialize this value and dispose of its resources.
   deinit {
     guard self.ownsContext else {
       return
     }
-    LLVMContextDispose(self.llvm)
+    LLVMDisposeModule(llvm)
   }
-}
-
-/// Represents the possible errors that can be thrown while interacting with a
-/// `Module` object.
-public enum ModuleError: Error, CustomStringConvertible {
-  /// Thrown when a module does not pass the module verification process.
-  /// Includes the reason the module did not pass verification.
-  case didNotPassVerification(String)
-  /// Thrown when a module cannot be printed at a given path.  Provides the
-  /// erroneous path and a deeper reason why printing to that path failed.
-  case couldNotPrint(path: String, error: String)
-  /// Thrown when a module cannot emit bitcode because it contains erroneous
-  /// declarations.
-  case couldNotEmitBitCode(path: String)
-
-  public var description: String {
-    switch self {
-    case .didNotPassVerification(let message):
-      return "module did not pass verification: \(message)"
-    case .couldNotPrint(let path, let error):
-      return "could not print to file \(path): \(error)"
-    case .couldNotEmitBitCode(let path):
-      return "could not emit bitcode to file \(path) for an unknown reason"
-    }
-  }
-}
-
-/// A `Module` represents the top-level structure of an LLVM program. An LLVM
-/// module is effectively a translation unit or a collection of translation
-/// units merged together.
-public final class Module: CustomStringConvertible {
-  internal let llvm: LLVMModuleRef
-  internal var ownsContext: Bool = true
-
-  /// Creates a `Module` with the given name.
-  ///
-  /// - parameter name: The name of the module.
-  /// - parameter context: The context to associate this module with.  If no
-  ///   context is provided, one will be inferred.
-  public init(name: String, context: Context? = nil) {
-
-    // Ensure the LLVM initializer is called when the first module is created
-    initializeLLVM()
-
-    if let context = context {
-      llvm = LLVMModuleCreateWithNameInContext(name, context.llvm)
-      self.context = context
-    } else {
-      llvm = LLVMModuleCreateWithName(name)
-      self.context = Context(llvm: LLVMGetModuleContext(llvm)!)
-    }
-  }
-
-  /// Returns the context associated with this module.
-  public let context: Context
 
   /// Obtain the target triple for this module.
   public var targetTriple: Triple {
@@ -141,71 +141,6 @@ public final class Module: CustomStringConvertible {
     set {
       LLVMSetModuleInlineAsm2(llvm, newValue, newValue.utf8.count)
     }
-  }
-
-  /// Print a representation of a module to a file at the given path.
-  ///
-  /// If the provided path is not suitable for writing, this function will throw
-  /// `ModuleError.couldNotPrint`.
-  ///
-  /// - parameter path: The path to write the module's representation to.
-  public func print(to path: String) throws {
-    var err: UnsafeMutablePointer<Int8>?
-    path.withCString { cString in
-      let mutable = strdup(cString)
-      LLVMPrintModuleToFile(llvm, mutable, &err)
-      free(mutable)
-    }
-    if let err = err {
-      defer { LLVMDisposeMessage(err) }
-      throw ModuleError.couldNotPrint(path: path, error: String(cString: err))
-    }
-  }
-
-  /// Writes the bitcode of elements in this module to a file at the given path.
-  ///
-  /// If the provided path is not suitable for writing, this function will throw
-  /// `ModuleError.couldNotEmitBitCode`.
-  ///
-  /// - parameter path: The path to write the module's representation to.
-  public func emitBitCode(to path: String) throws {
-    let status = path.withCString { cString -> Int32 in
-      let mutable = strdup(cString)
-      defer { free(mutable) }
-      return LLVMWriteBitcodeToFile(llvm, mutable)
-    }
-
-    if status != 0 {
-      throw ModuleError.couldNotEmitBitCode(path: path)
-    }
-  }
-
-  /// Verifies that this module is valid, taking the specified action if not.
-  /// If this module did not pass verification, a description of any invalid
-  /// constructs is provided with the thrown
-  /// `ModuleError.didNotPassVerification` error.
-  public func verify() throws {
-    var message: UnsafeMutablePointer<Int8>?
-    let status = Int(LLVMVerifyModule(llvm, LLVMReturnStatusAction, &message))
-    if let message = message, status == 1 {
-      defer { LLVMDisposeMessage(message) }
-      throw ModuleError.didNotPassVerification(String(cString: message))
-    }
-  }
-
-  /// Links the given module with this module.  If the link succeeds, this
-  /// module will the composite of the two input modules.
-  ///
-  /// The result of this function is `true` if the link succeeds, or `false`
-  /// otherwise - unlike `llvm::Linker::linkModules`.
-  ///
-  /// - parameter other: The module to link with this module.
-  public func link(_ other: Module) -> Bool {
-    // First clone the other module; `LLVMLinkModules2` consumes the source
-    // module via a move and that module still owns its ModuleRef.
-    let otherClone = LLVMCloneModule(other.llvm)
-    // N.B. Returns `true` on error.
-    return LLVMLinkModules2(self.llvm, otherClone) == 0
   }
 
   /// Retrieves the sequence of functions that make up this module.
@@ -309,14 +244,28 @@ public final class Module: CustomStringConvertible {
   public var debugMetadataVersion: UInt32 {
     return LLVMGetModuleDebugMetadataVersion(self.llvm)
   }
+}
 
-  /// Strip debug info in the module if it exists.
+// MARK: Module Printing
+
+extension Module {
+  /// Print a representation of a module to a file at the given path.
   ///
-  /// To do this, we remove all calls to the debugger intrinsics and any named
-  /// metadata for debugging. We also remove debug locations for instructions.
-  /// Return true if module is modified.
-  public func stripDebugInfo() -> Bool {
-    return LLVMStripModuleDebugInfo(self.llvm) != 0
+  /// If the provided path is not suitable for writing, this function will throw
+  /// `ModuleError.couldNotPrint`.
+  ///
+  /// - parameter path: The path to write the module's representation to.
+  public func print(to path: String) throws {
+    var err: UnsafeMutablePointer<Int8>?
+    path.withCString { cString in
+      let mutable = strdup(cString)
+      LLVMPrintModuleToFile(llvm, mutable, &err)
+      free(mutable)
+    }
+    if let err = err {
+      defer { LLVMDisposeMessage(err) }
+      throw ModuleError.couldNotPrint(path: path, error: String(cString: err))
+    }
   }
 
   /// Dump a representation of this module to stderr.
@@ -330,13 +279,69 @@ public final class Module: CustomStringConvertible {
     defer { LLVMDisposeMessage(cStr) }
     return String(cString: cStr)
   }
+}
 
-  /// Deinitialize this value and dispose of its resources.
-  deinit {
-    guard self.ownsContext else {
-      return
+// MARK: Module Emission
+
+extension Module {
+  /// Writes the bitcode of elements in this module to a file at the given path.
+  ///
+  /// If the provided path is not suitable for writing, this function will throw
+  /// `ModuleError.couldNotEmitBitCode`.
+  ///
+  /// - parameter path: The path to write the module's representation to.
+  public func emitBitCode(to path: String) throws {
+    let status = path.withCString { cString -> Int32 in
+      let mutable = strdup(cString)
+      defer { free(mutable) }
+      return LLVMWriteBitcodeToFile(llvm, mutable)
     }
-    LLVMDisposeModule(llvm)
+
+    if status != 0 {
+      throw ModuleError.couldNotEmitBitCode(path: path)
+    }
+  }
+}
+
+// MARK: Module Actions
+
+extension Module {
+  /// Verifies that this module is valid, taking the specified action if not.
+  /// If this module did not pass verification, a description of any invalid
+  /// constructs is provided with the thrown
+  /// `ModuleError.didNotPassVerification` error.
+  public func verify() throws {
+    var message: UnsafeMutablePointer<Int8>?
+    let status = Int(LLVMVerifyModule(llvm, LLVMReturnStatusAction, &message))
+    if let message = message, status == 1 {
+      defer { LLVMDisposeMessage(message) }
+      throw ModuleError.didNotPassVerification(String(cString: message))
+    }
+  }
+
+  /// Links the given module with this module.  If the link succeeds, this
+  /// module will the composite of the two input modules.
+  ///
+  /// The result of this function is `true` if the link succeeds, or `false`
+  /// otherwise.
+  ///
+  /// - parameter other: The module to link with this module.
+  public func link(_ other: Module) -> Bool {
+    // First clone the other module; `LLVMLinkModules2` consumes the source
+    // module via a move and that module still owns its ModuleRef.
+    let otherClone = LLVMCloneModule(other.llvm)
+    // N.B. Returns `true` on error.
+    return LLVMLinkModules2(self.llvm, otherClone) == 0
+  }
+
+
+  /// Strip debug info in the module if it exists.
+  ///
+  /// To do this, we remove all calls to the debugger intrinsics and any named
+  /// metadata for debugging. We also remove debug locations for instructions.
+  /// Return true if module is modified.
+  public func stripDebugInfo() -> Bool {
+    return LLVMStripModuleDebugInfo(self.llvm) != 0
   }
 }
 
@@ -717,6 +722,33 @@ extension Module {
     var len = 0
     guard let raw = LLVMCopyModuleFlagsMetadata(llvm, &len) else { return nil }
     return Flags(llvm: raw, bounds: len)
+  }
+}
+
+// MARK: Module Errors
+
+/// Represents the possible errors that can be thrown while interacting with a
+/// `Module` object.
+public enum ModuleError: Error, CustomStringConvertible {
+  /// Thrown when a module does not pass the module verification process.
+  /// Includes the reason the module did not pass verification.
+  case didNotPassVerification(String)
+  /// Thrown when a module cannot be printed at a given path.  Provides the
+  /// erroneous path and a deeper reason why printing to that path failed.
+  case couldNotPrint(path: String, error: String)
+  /// Thrown when a module cannot emit bitcode because it contains erroneous
+  /// declarations.
+  case couldNotEmitBitCode(path: String)
+
+  public var description: String {
+    switch self {
+    case .didNotPassVerification(let message):
+      return "module did not pass verification: \(message)"
+    case .couldNotPrint(let path, let error):
+      return "could not print to file \(path): \(error)"
+    case .couldNotEmitBitCode(let path):
+      return "could not emit bitcode to file \(path) for an unknown reason"
+    }
   }
 }
 
