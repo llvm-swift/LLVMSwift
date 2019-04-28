@@ -1,10 +1,88 @@
 #if SWIFT_PACKAGE
 import cllvm
+import llvmshims
 #endif
 
 /// A `Function` represents a named function body in LLVM IR source.  Functions
 /// in LLVM IR encapsulate a list of parameters and a sequence of basic blocks
 /// and provide a way to append to that sequence to build out its body.
+///
+/// A LLVM function definition contains a list of basic blocks, starting with
+/// a privileged first block called the "entry block", and proceeding its
+/// terminating instruction to zero or more other basic blocks.  The path the
+/// flow of control can potentially take, from each block to its terminator
+/// and back again, forms the "Control Flow Graph" (CFG) for the function.
+///
+/// Additional basic blocks may be created and appended to the function at
+/// any time.
+///
+///     let module = Module(name: "Example")
+///     let builder = IRBuilder(module: module)
+///     let fun = builder.addFunction("example",
+///                                   type: FunctionType(argTypes: [],
+///                                                      returnType: VoidType()))
+///     // Create and append the entry block
+///     let entryBB = fun.appendBasicBlock(named: "entry")
+///     // Create and append a standalone basic block
+///     let freestanding = BasicBlock(name: "freestanding")
+///     fun.append(freestanding)
+///
+/// A LLVM function always has the type `FunctionType`.  This type is used to
+/// determine the number and kind of parameters to the function as well as its
+/// return value, if any.  The parameter values, which would normally enter
+/// the entry block, are instead attached to the function and are accessible
+/// via the `parameters` property.
+///
+/// Calling Convention
+/// ==================
+///
+/// By default, all functions in LLVM are invoked with the C calling convention
+/// but the exact calling convention of both a function declaration and a
+/// `call` instruction are fully configurable.
+///
+///     let module = Module(name: "Example")
+///     let builder = IRBuilder(module: module)
+///     let fun = builder.addFunction("example",
+///                                   type: FunctionType(argTypes: [],
+///                                                      returnType: VoidType()))
+///     // Switch to swiftcc
+///     fun.callingConvention = .swift
+///
+/// The calling convention of a function and a corresponding call instruction
+/// must match or the result is undefined.
+///
+/// Sections
+/// ========
+///
+/// A function may optionally state the section in the object file the function
+/// should reside in through the use of a metadata attachment.  This can be
+/// useful to satisfy target-specific data layout constraints, or to provide
+/// some hints to optimizers and linkers.  LLVMSwift provides a convenience
+/// object called an `MDBuilder` to assist in the creation of this metadata.
+///
+///     let mdBuilder = MDBuilder()
+///     // __attribute__((hot))
+///     let hotAttr = mdBuilder.buildFunctionSectionPrefix(".hot")
+///
+///     let module = Module(name: "Example")
+///     let builder = IRBuilder(module: module)
+///     let fun = builder.addFunction("example",
+///                                   type: FunctionType(argTypes: [],
+///                                                      returnType: VoidType()))
+///     // Attach the metadata
+///     fun.addMetadata(hotAttr, kind: .sectionPrefix)
+///
+/// For targets that support it, a function may also specify a COMDAT section.
+///
+///     fun.comdat = module.comdat(named: "example")
+///
+/// Debug Information
+/// =================
+///
+/// A function may also carry debug information through special subprogram
+/// nodes.  These nodes are intended to capture the structure of the function
+/// as it appears in the source so that it is available for inspection by a
+/// debugger.  See `DIBuilderr.buildFunction` for more information.
 public class Function: IRGlobal {
   internal let llvm: LLVMValueRef
   internal init(llvm: LLVMValueRef) {
@@ -26,17 +104,6 @@ public class Function: IRGlobal {
   }
 
   /// Retrieves the entry block of this function.
-  ///
-  /// The first basic block in a function is special in two ways: it is
-  /// immediately executed on entrance to the function, and it is not allowed to
-  /// have predecessor basic blocks (i.e. there can not be any branches to the
-  /// entry block of a function). Because the block can have no predecessors, it
-  /// also cannot have any PHI nodes.
-  ///
-  /// The entry block is also special in that any static allocas emitted into it
-  /// influence the layout of the stack frame of the function at code generation
-  /// time.  It is therefore often more efficient to emit static allocas in the
-  /// entry block than anywhere else in the function.
   public var entryBlock: BasicBlock? {
     guard let blockRef = LLVMGetEntryBasicBlock(llvm) else { return nil }
     return BasicBlock(llvm: blockRef)
@@ -78,7 +145,7 @@ public class Function: IRGlobal {
 
   /// Computes the address of the specified basic block in this function.
   ///
-  /// Taking the address of the entry block is illegal.
+  /// - WARNING: Taking the address of the entry block is illegal.
   ///
   /// This value only has defined behavior when used as an operand to the 
   /// `indirectbr` instruction, or for comparisons against null. Pointer 
@@ -168,6 +235,13 @@ public class Function: IRGlobal {
       block = LLVMAppendBasicBlock(llvm, name)
     }
     return BasicBlock(llvm: block)
+  }
+
+  /// Appends the named basic block to the body of this function.
+  ///
+  /// - parameter basicBlock: The block to append.
+  public func append(_ basicBlock: BasicBlock) {
+    LLVMAppendExistingBasicBlock(llvm, basicBlock.asLLVM())
   }
 
   /// Deletes the function from its containing module.

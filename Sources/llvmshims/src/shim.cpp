@@ -116,6 +116,10 @@ extern "C" {
   // Not to be upstreamed: It's not clear there's value in having this outside
   // of PGO passes.
   uint64_t LLVMGlobalGetGUID(LLVMValueRef Global);
+
+  // https://reviews.llvm.org/D59658
+  void LLVMAppendExistingBasicBlock(LLVMValueRef Fn,
+                                    LLVMBasicBlockRef BB);
 }
 
 using namespace llvm;
@@ -344,4 +348,9 @@ LLVMMetadataRef LLVMMDNodeInContext2(LLVMContextRef C, LLVMMetadataRef *MDs,
 
 uint64_t LLVMGlobalGetGUID(LLVMValueRef Glob) {
   return unwrap<GlobalValue>(Glob)->getGUID();
+}
+
+void LLVMAppendExistingBasicBlock(LLVMValueRef Fn,
+                                  LLVMBasicBlockRef BB) {
+  unwrap<Function>(Fn)->getBasicBlockList().push_back(unwrap(BB));
 }

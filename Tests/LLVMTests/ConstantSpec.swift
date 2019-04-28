@@ -4,6 +4,20 @@ import FileCheck
 import Foundation
 
 class ConstantSpec : XCTestCase {
+  func foo() {
+    let mdBuilder = MDBuilder()
+    let hotAttr = mdBuilder.buildFunctionSectionPrefix(".hot")
+
+    let module = Module(name: "Example")
+    let builder = IRBuilder(module: module)
+    let fun = builder.addFunction("example",
+                                  type: FunctionType(argTypes: [],
+                                                     returnType: VoidType()))
+    fun.appendBasicBlock(named: "entry")
+    let freestanding = BasicBlock(name: "freestanding")
+    fun.append(freestanding)
+    fun.addMetadata(hotAttr, kind: .sectionPrefix)
+  }
   func testConstants() {
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["SIGNEDCONST"]) {
       // SIGNEDCONST: ; ModuleID = '[[ModuleName:ConstantTest]]'

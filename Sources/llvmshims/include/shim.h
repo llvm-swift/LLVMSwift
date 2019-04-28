@@ -93,4 +93,7 @@ LLVMMetadataRef LLVMMDNodeInContext2(LLVMContextRef C, LLVMMetadataRef *MDs,
 
 uint64_t LLVMGlobalGetGUID(LLVMValueRef Global);
 
+void LLVMAppendExistingBasicBlock(LLVMValueRef Fn,
+                                  LLVMBasicBlockRef BB);
+
 #endif /* LLVMSWIFT_LLVM_SHIM_H */
