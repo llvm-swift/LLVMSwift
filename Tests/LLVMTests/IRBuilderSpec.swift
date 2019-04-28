@@ -12,8 +12,8 @@ class IRBuilderSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // IRBUILDER: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([],
+                                                        VoidType()))
       // IRBUILDER-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -44,12 +44,11 @@ class IRBuilderSpec : XCTestCase {
 
       // IRBUILDER-INLINE-ASM: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // IRBUILDER-INLINE-ASM-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
-      let ty = FunctionType(argTypes: [ PointerType(pointee: IntType.int32) ], returnType: VoidType())
+      let ty = FunctionType([ PointerType(pointee: IntType.int32) ], VoidType())
       let emptyASM = builder.buildInlineAssembly("", dialect: .att, type: ty, constraints: "=r,0", hasSideEffects: true, needsAlignedStack: true)
       // IRBUILDER-INLINE-ASM-NEXT: call void asm sideeffect alignstack "\00", "=r,0\00"(i32* @a)
       _ = builder.buildCall(emptyASM, args: [ g1 ])
@@ -82,8 +81,7 @@ class IRBuilderSpec : XCTestCase {
 
       // IRBUILDERARITH: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // IRBUILDERARITH-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -164,8 +162,7 @@ class IRBuilderSpec : XCTestCase {
 
       // IRBUILDERCMP: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // IRBUILDERCMP-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -218,8 +215,7 @@ class IRBuilderSpec : XCTestCase {
 
       // IRBUILDERFCMP: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // IRBUILDERFCMP-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -269,8 +265,7 @@ class IRBuilderSpec : XCTestCase {
 
       // CONTROLFLOW: define i32 @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: IntType.int32))
+                                     type: FunctionType([], IntType.int32))
 
       // CONTROLFLOW-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
@@ -327,8 +322,8 @@ class IRBuilderSpec : XCTestCase {
 
         // CAST: define i32 @main() {
         let main = builder.addFunction("main",
-                                       type: FunctionType(argTypes: [],
-                                                          returnType: IntType.int32))
+                                       type: FunctionType([],
+                                                          IntType.int32))
 
         // CAST-NEXT: entry:
         let entry = main.appendBasicBlock(named: "entry")

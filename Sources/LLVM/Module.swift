@@ -22,8 +22,7 @@ import cllvm
 ///     let module = Module(name: "Example")
 ///     let builder = IRBuilder(module: module)
 ///     let main = builder.addFunction("main",
-///                                    type: FunctionType(argTypes: [],
-///                                                       returnType: VoidType()))
+///                                    type: FunctionType([], VoidType()))
 ///     let entry = main.appendBasicBlock(named: "entry")
 ///     builder.positionAtEnd(of: entry)
 ///     builder.buildRet(main.address(of: entry)!)

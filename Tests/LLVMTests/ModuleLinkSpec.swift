@@ -13,8 +13,7 @@ class ModuleLinkSpec : XCTestCase {
       let builder1 = IRBuilder(module: module1)
       // MODULE-LINK: define void @moduleOne() {
       let mod1f = builder1.addFunction("moduleOne",
-                                       type: FunctionType(argTypes: [],
-                                                          returnType: VoidType()))
+                                       type: FunctionType([], VoidType()))
       // MODULE-LINK-NEXT: entry:
       let entry1 = mod1f.appendBasicBlock(named: "entry")
       builder1.positionAtEnd(of: entry1)
@@ -30,8 +29,7 @@ class ModuleLinkSpec : XCTestCase {
       let builder2 = IRBuilder(module: module2)
       // MODULE-LINK: define void @moduleTwo() {
       let mod2f = builder2.addFunction("moduleTwo",
-                                       type: FunctionType(argTypes: [],
-                                                          returnType: VoidType()))
+                                       type: FunctionType([], VoidType()))
       // MODULE-LINK-NEXT: entry:
       let entry2 = mod2f.appendBasicBlock(named: "entry")
       builder2.positionAtEnd(of: entry2)

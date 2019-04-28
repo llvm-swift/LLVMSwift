@@ -12,8 +12,7 @@ class ConstantSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // SIGNEDCONST: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       let constant = IntType.int64.constant(42)
 
       // SIGNEDCONST-NEXT: entry:
@@ -42,8 +41,7 @@ class ConstantSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // UNSIGNEDCONST: define i64 @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: IntType.int64))
+                                     type: FunctionType([], IntType.int64))
       let constant = IntType.int64.constant(UInt64(42))
 
       // UNSIGNEDCONST-NEXT: entry:
@@ -70,8 +68,7 @@ class ConstantSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // FLOATINGCONST: define i64 @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: IntType.int64))
+                                     type: FunctionType([], IntType.int64))
       let constant = FloatType.double.constant(42.0)
 
       // FLOATINGCONST-NEXT: entry:
@@ -98,8 +95,7 @@ class ConstantSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // STRUCTCONST: define i64 @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: IntType.int64))
+                                     type: FunctionType([], IntType.int64))
 
       let constant = StructType(elementTypes: [IntType.int64])
         .constant(values: [42])
@@ -121,8 +117,7 @@ class ConstantSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // STRUCTCONSTGETELEMENT: define i64 @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: IntType.int64))
+                                     type: FunctionType([], IntType.int64))
 
       let constant = StructType(elementTypes: [IntType.int64])
         .constant(values: [42])
@@ -148,8 +143,7 @@ class ConstantSpec : XCTestCase {
       let vecTy = VectorType(elementType: IntType.int32, count: 4)
       // VECTORCONSTSHUFFLE-IDENTITY: define <4 x i32> @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: vecTy))
+                                     type: FunctionType([], vecTy))
 
       let vec1 = vecTy.constant([ 1, 2, 3, 4 ] as [Int32])
       let mask = vecTy.constant([ 0, 1, 2, 3 ] as [Int32])
@@ -175,8 +169,7 @@ class ConstantSpec : XCTestCase {
       let maskTy = VectorType(elementType: IntType.int32, count: 8)
       // VECTORCONSTSHUFFLE: define <8 x i32> @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: maskTy))
+                                     type: FunctionType([], maskTy))
 
       let vecTy = VectorType(elementType: IntType.int32, count: 4)
       let vec1 = vecTy.constant([ 1, 2, 3, 4 ] as [Int32])

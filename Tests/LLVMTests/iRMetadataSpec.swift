@@ -37,8 +37,7 @@ class IRMetadataSpec : XCTestCase {
 
       // IRINSTRMETADATA: define i32 @test() {
       let main = builder.addFunction("test",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: IntType.int32))
+                                     type: FunctionType([], IntType.int32))
       // IRINSTRMETADATA-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -66,8 +65,9 @@ class IRMetadataSpec : XCTestCase {
 
       // IRFPMATHMETADATA: define float @test(float, float) {
       let main = builder.addFunction("test",
-                                     type: FunctionType(argTypes: [FloatType.float, FloatType.float],
-                                                        returnType: FloatType.float))
+                                     type: FunctionType([
+                                       FloatType.float, FloatType.float
+                                     ], FloatType.float))
       // IRFPMATHMETADATA-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -93,8 +93,10 @@ class IRMetadataSpec : XCTestCase {
 
       // IRBWMETADATA: define float @test(i1, float, float) {
       let main = builder.addFunction("test",
-                                     type: FunctionType(argTypes: [IntType.int1, FloatType.float, FloatType.float],
-                                                        returnType: FloatType.float))
+                                     type: FunctionType([
+                                       IntType.int1,
+                                       FloatType.float, FloatType.float
+                                     ], FloatType.float))
       // IRBWMETADATA-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -149,7 +151,7 @@ class IRMetadataSpec : XCTestCase {
       let MDB = MDBuilder()
 
       // IRSIMPLETBAA: define void @main() {
-      let F = module.addFunction("main", type: FunctionType(argTypes: [], returnType: VoidType()))
+      let F = module.addFunction("main", type: FunctionType([], VoidType()))
       // IRSIMPLETBAA-NEXT: entry:
       let bb = F.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: bb)
@@ -225,7 +227,7 @@ class IRMetadataSpec : XCTestCase {
       let MDB = MDBuilder()
 
       // IRMEMTRANSFERTBAA: define void @main(i8*) {
-      let F = module.addFunction("main", type: FunctionType(argTypes: [PointerType.toVoid], returnType: VoidType()))
+      let F = module.addFunction("main", type: FunctionType([PointerType.toVoid], VoidType()))
       // IRMEMTRANSFERTBAA-NEXT: entry:
       let bb = F.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: bb)

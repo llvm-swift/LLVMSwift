@@ -15,9 +15,9 @@ class IRIntrinsicSpec : XCTestCase {
 
       // IRINTRINSIC: define i32 @readOneArg(i32, ...) {
       let main = builder.addFunction("readOneArg",
-                                     type: FunctionType(argTypes: [IntType.int32],
-                                                        returnType: IntType.int32,
-                                                        isVarArg: true))
+                                     type: FunctionType([IntType.int32],
+                                                        IntType.int32,
+                                                        variadic: true))
       // IRINTRINSIC-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -69,8 +69,7 @@ class IRIntrinsicSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // VIRTUALOVERLOAD-IRINTRINSIC: define i32 @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: IntType.int32))
+                                     type: FunctionType([], IntType.int32))
       // VIRTUALOVERLOAD-IRINTRINSIC-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -104,8 +103,7 @@ class IRIntrinsicSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // INTRINSIC-FAMILY-RESOLVE: define i32 @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: IntType.int32))
+                                     type: FunctionType([], IntType.int32))
       // INTRINSIC-FAMILY-RESOLVE-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)

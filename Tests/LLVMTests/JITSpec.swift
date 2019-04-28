@@ -29,15 +29,13 @@ class JITSpec : XCTestCase {
 
     var llvmSwiftFn = builder.addFunction(
       "calculateSwiftFibs",
-      type: FunctionType(argTypes: [IntType.int1],
-                         returnType: FloatType.double)
+      type: FunctionType([IntType.int1], FloatType.double)
     )
     llvmSwiftFn.linkage = .external
 
     let function = builder.addFunction(
       "calculateFibs",
-      type: FunctionType(argTypes: [IntType.int1],
-                         returnType: FloatType.double)
+      type: FunctionType([IntType.int1], FloatType.double)
     )
     let entryBB = function.appendBasicBlock(named: "entry")
     builder.positionAtEnd(of: entryBB)
@@ -82,7 +80,7 @@ class JITSpec : XCTestCase {
     let ret = builder.buildLoad(local, name: "ret")
     builder.buildRet(ret)
 
-    let main = builder.addFunction("main", type: FunctionType(argTypes: [], returnType: VoidType()))
+    let main = builder.addFunction("main", type: FunctionType([], VoidType()))
     let mainEntry = main.appendBasicBlock(named: "entry")
     builder.positionAtEnd(of: mainEntry)
     _ = builder.buildCall(llvmSwiftFn, args: [ IntType.int1.constant(1) ])

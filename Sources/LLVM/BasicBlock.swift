@@ -24,8 +24,7 @@ import cllvm
 ///
 ///     let module = Module(name: "Example")
 ///     let fun = builder.addFunction("example",
-///                                   type: FunctionType(argTypes: [],
-///                                                      returnType: VoidType()))
+///                                   type: FunctionType([], VoidType()))
 ///
 ///     // This basic block is "floating" outside of a function.
 ///     let floatingBB = BasicBlock(name: "floating")
@@ -37,8 +36,7 @@ import cllvm
 ///
 ///     let module = Module(name: "Example")
 ///     let fun = builder.addFunction("example",
-///                                   type: FunctionType(argTypes: [],
-///                                                      returnType: VoidType()))
+///                                   type: FunctionType([], VoidType()))
 ///
 ///     // This basic block is "attached" to the example function.
 ///     let attachedBB = fun.appendBasicBlock(named: "attached")

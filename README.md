@@ -20,11 +20,8 @@ Defining a function and moving the cursor to a point where we can begin insertin
 ```swift
 let builder = IRBuilder(module: module)
 
-let main = builder.addFunction(
-             "main",
-             type: FunctionType(argTypes: [],
-             returnType: IntType.int64)
-           )
+let main = builder.addFunction("main",
+                               type: FunctionType([], IntType.int64))
 let entry = main.appendBasicBlock(named: "entry")
 builder.positionAtEnd(of: entry)
 ```
@@ -95,11 +92,9 @@ func calculateFibs(_ backward : Bool) -> Double {
 Notice that the value of `retVal` depends on the path the flow of control takes through this program, so we must emit a PHI node to properly initialize it:
 
 ```swift
-let function = builder.addFunction(
-                 "calculateFibs", 
-                 type: FunctionType(argTypes: [IntType.int1], 
-                 returnType: FloatType.double)
-               )
+let function = builder.addFunction("calculateFibs", 
+                                   type: FunctionType([IntType.int1], 
+                                                      FloatType.double))
 let entryBB = function.appendBasicBlock(named: "entry")
 builder.positionAtEnd(of: entryBB)
 

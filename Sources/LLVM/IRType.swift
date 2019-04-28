@@ -71,7 +71,7 @@ internal func convertType(_ type: LLVMTypeRef) -> IRType {
     }
     let ret = convertType(LLVMGetReturnType(type))
     let isVarArg = LLVMIsFunctionVarArg(type) != 0
-    return FunctionType(argTypes: params, returnType: ret, isVarArg: isVarArg)
+    return FunctionType(params, ret, variadic: isVarArg)
   case LLVMStructTypeKind:
     return StructType(llvm: type)
   case LLVMArrayTypeKind:
