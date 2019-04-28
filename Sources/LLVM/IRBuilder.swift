@@ -3,9 +3,132 @@ import cllvm
 import llvmshims
 #endif
 
-/// An `IRBuilder` is a helper object that generates LLVM instructions.  IR
-/// Builders keep track of a position within a function or basic block and has
-/// methods to insert instructions at that position.
+/// An `IRBuilder` is a helper object that generates LLVM instructions.
+///
+/// IR builders keep track of a position (the "insertion point") within a
+/// module, function, or basic block and has methods to insert instructions at
+/// that position.  Other features include conveniences to insert calls to
+/// C standard library functions like `malloc` and `free`, the creation of
+/// global entities like (C) strings, and inline assembly.
+///
+/// Threading Considerations
+/// ========================
+///
+/// An `IRBuilder` object is not thread safe.  It is associated with a single
+/// module which is, in turn, associated with a single LLVM context object.
+/// In concurrent environments, exactly one IRBuilder should be created per
+/// thread, and that thread should be the one that ultimately created its parent
+/// module and context.  Inserting instructions into the same IR builder object
+/// in a concurrent manner will result in malformed IR being generated in
+/// non-deterministic ways.  If concurrent codegen is needed, a separate LLVM
+/// context, module, and IRBuilder should be created on each thread.
+/// Once each thread has finished generating code, the resulting modules should
+/// be merged together.  See `Module.link(_:)` for more information.
+///
+/// IR Navigation
+/// =============
+///
+/// By default, the insertion point of a builder is undefined.  To move the
+/// IR builder's cursor, a basic block must be created, but not necessarily
+/// inserted into a function.
+///
+///     let module = Module(name: "Example")
+///     let builder = IRBuilder(module: module)
+///     // Create a freestanding basic block and insert an `ret`
+///     // instruction into it.
+///     let freestanding = BasicBlock(name: "freestanding")
+///     // Move the IR builder to the end of the block's instruction list.
+///     builder.positionAtEnd(of: freestanding)
+///     let ret = builder.buildRetVoid()
+///
+/// Instructions serve as a way to position the IR builder to a point before
+/// their creation.  This allows for instructions to be inserted *before* a
+/// given instruction rather than at the very end of a basic block.
+///
+///     // Move before the `ret` instruction
+///     builder.positionBefore(ret)
+///     // Insert an `alloca` instruction before the `ret`.
+///     let intAlloca = builder.buildAlloca(type: IntType.int8)
+///     // Move before the `alloca`
+///     builder.positionBefore(intAlloca)
+///     // Insert an `malloc` call before the `alloca`.
+///     let intMalloc = builder.buildMalloc(IntType.int8)
+///
+/// To insert this block into a function, see `Function.append`.
+///
+/// Sometimes it is necessary to reset the insertion point.  When the insertion
+/// point is reset, instructions built with the IR builder are still created,
+/// but are not inserted into a basic block.  To clear the insertion point, call
+/// `IRBuilder.clearInsertionPosition()`.
+///
+/// Building LLVM IR
+/// ================
+///
+/// All functions that build instructions are prefixed with `build`.  Invoking
+/// these functions inserts the appropriate LLVM instruction at the insertion
+/// point, assuming it points to a valid location.
+///
+///     let module = Module(name: "Example")
+///     let builder = IRBuilder(module: module)
+///     let fun = builder.addFunction("test",
+///                                   type: FunctionType(argTypes: [
+///                                           IntType.int8,
+///                                           IntType.int8,
+///                                   ], returnType: FloatType.float))
+///     let entry = fun.appendBasicBlock(named: "entry")
+///     // Set the insertion point to the entry block of this function
+///     builder.positionAtEnd(of: entry)
+///     // Build an `add` instruction at the insertion point
+///     let result = builder.buildAdd(fun.parameters[0], fun.parameters[1])
+///
+/// Customizing LLVM IR
+/// ===================
+///
+/// To be well-formed, certain instructions may involve more setup than just
+/// being built.  In such cases, LLVMSwift will yield a specific instance of
+/// `IRInstruction` that will allow for this kind of configuration.
+///
+/// A prominent example of this is the PHI node.  Building a PHI node produces
+/// an empty PHI node - this is not a well-formed instruction. A PHI node must
+/// have its incoming basic blocks attached. To do so, `PhiNode.addIncoming(_:)`
+/// is called with a list of pairs of incoming values and their enclosing
+/// basic blocks.
+///
+///     // Build a function that selects one of two floating parameters based
+///     // on a given boolean value.
+///     let module = Module(name: "Example")
+///     let builder = IRBuilder(module: module)
+///     let select = builder.addFunction("select",
+///                                      type: FunctionType(argTypes: [
+///                                              IntType.int1,
+///                                              FloatType.float,
+///                                              FloatType.float,
+///                                      ], returnType: FloatType.float))
+///     let entry = select.appendBasicBlock(named: "entry")
+///     builder.positionAtEnd(of: entry)
+///
+///     let thenBlock = select.appendBasicBlock(named: "then")
+///     let elseBlock = select.appendBasicBlock(named: "else")
+///     let mergeBB = select.appendBasicBlock(named: "merge")
+///     let branch = builder.buildCondBr(condition: select.parameters[0],
+///                                      then: thenBlock,
+///                                      else: elseBlock)
+///     builder.positionAtEnd(of: thenBlock)
+///     let opThen = builder.buildAdd(select.parameters[1], select.parameters[2])
+///     builder.buildBr(mergeBB)
+///     builder.positionAtEnd(of: elseBlock)
+///     let opElse = builder.buildSub(select.parameters[1], select.parameters[2])
+///     builder.buildBr(mergeBB)
+///     builder.positionAtEnd(of: mergeBB)
+///
+///     // Build the PHI node
+///     let phi = builder.buildPhi(FloatType.float)
+///     // Attach the incoming blocks.
+///     phi.addIncoming([
+///       (opThen, thenBlock),
+///       (opElse, elseBlock),
+///     ])
+///     builder.buildRet(phi)
 public class IRBuilder {
   internal let llvm: LLVMBuilderRef
 
