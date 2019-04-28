@@ -12,7 +12,7 @@ class DIBuilderSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       let debugBuilder = DIBuilder(module: module)
 
-      let f = builder.addFunction("foo", type: FunctionType(argTypes: [], returnType: VoidType()))
+      let f = builder.addFunction("foo", type: FunctionType([], VoidType()))
       let bb = f.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: bb)
       _ = builder.buildAlloca(type: IntType.int8)

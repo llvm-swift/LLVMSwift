@@ -17,8 +17,7 @@ class IRExceptionSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // IRRESUME: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // IRRESUME-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -39,8 +38,7 @@ class IRExceptionSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       // IRCLEANUP: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // IRCLEANUP-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -66,8 +64,7 @@ class IRExceptionSpec : XCTestCase {
 
       // IRCATCH: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // IRCATCH-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -95,8 +92,7 @@ class IRExceptionSpec : XCTestCase {
 
       // IRCATCHFILTER: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // IRCATCHFILTER-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)

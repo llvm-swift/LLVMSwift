@@ -22,8 +22,7 @@ import llvmshims
 ///     let module = Module(name: "Example")
 ///     let builder = IRBuilder(module: module)
 ///     let fun = builder.addFunction("example",
-///                                   type: FunctionType(argTypes: [],
-///                                                      returnType: VoidType()))
+///                                   type: FunctionType([], VoidType()))
 ///     // Create and append the entry block
 ///     let entryBB = fun.appendBasicBlock(named: "entry")
 ///     // Create and append a standalone basic block
@@ -46,8 +45,7 @@ import llvmshims
 ///     let module = Module(name: "Example")
 ///     let builder = IRBuilder(module: module)
 ///     let fun = builder.addFunction("example",
-///                                   type: FunctionType(argTypes: [],
-///                                                      returnType: VoidType()))
+///                                   type: FunctionType([], VoidType()))
 ///     // Switch to swiftcc
 ///     fun.callingConvention = .swift
 ///
@@ -70,8 +68,7 @@ import llvmshims
 ///     let module = Module(name: "Example")
 ///     let builder = IRBuilder(module: module)
 ///     let fun = builder.addFunction("example",
-///                                   type: FunctionType(argTypes: [],
-///                                                      returnType: VoidType()))
+///                                   type: FunctionType([], VoidType()))
 ///     // Attach the metadata
 ///     fun.addMetadata(hotAttr, kind: .sectionPrefix)
 ///

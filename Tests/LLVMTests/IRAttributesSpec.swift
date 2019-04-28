@@ -11,8 +11,8 @@ class IRAttributesSpec : XCTestCase {
       let module = Module(name: "IRBuilderTest")
       let builder = IRBuilder(module: module)
       let fn = builder.addFunction("fn",
-                                   type: FunctionType(argTypes: [IntType.int32, IntType.int32],
-                                                      returnType: IntType.int32))
+                                   type: FunctionType([IntType.int32, IntType.int32],
+                                                      IntType.int32))
 
       // FNATTR: define i32 @fn(i32, i32) #0 {
       fn.addAttribute(.nounwind, to: .function)
@@ -33,8 +33,8 @@ class IRAttributesSpec : XCTestCase {
       let module = Module(name: "IRBuilderTest")
       let builder = IRBuilder(module: module)
       let fn = builder.addFunction("fn",
-                                   type: FunctionType(argTypes: [IntType.int32, IntType.int32],
-                                                      returnType: IntType.int32))
+                                   type: FunctionType([IntType.int32, IntType.int32],
+                                                      IntType.int32))
 
       // RVATTR: define signext i32 @fn(i32, i32) {
       fn.addAttribute(.signext, to: .returnValue)
@@ -55,8 +55,8 @@ class IRAttributesSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       let i8ptr = PointerType(pointee: IntType.int8)
       let fn = builder.addFunction("fn",
-                                   type: FunctionType(argTypes: [IntType.int32, i8ptr],
-                                                      returnType: IntType.int32))
+                                   type: FunctionType([IntType.int32, i8ptr],
+                                                      IntType.int32))
 
       // ARGATTR: define i32 @fn(i32 zeroext, i8* align 8) {
       fn.addAttribute(.zeroext, to: .argument(0))
@@ -78,7 +78,7 @@ class IRAttributesSpec : XCTestCase {
 
     let i8ptr = PointerType(pointee: IntType.int8)
     let fn = builder.addFunction("fn",
-                                 type: FunctionType(argTypes: [i8ptr], returnType: i8ptr))
+                                 type: FunctionType([i8ptr], i8ptr))
 
     // MARK: Enum attributes
 
@@ -163,7 +163,7 @@ class IRAttributesSpec : XCTestCase {
 
     let i8ptr = PointerType(pointee: IntType.int8)
     let fn = builder.addFunction("fn",
-                                 type: FunctionType(argTypes: [i8ptr], returnType: i8ptr))
+                                 type: FunctionType([i8ptr], i8ptr))
 
     // MARK: Enum attributes
 

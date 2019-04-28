@@ -153,11 +153,11 @@ private enum Externs {
     switch self {
     case .getchar:
       let f = builder.addFunction("readchar",
-                                  type: FunctionType(argTypes: [],
-                                                     returnType: cellType))
+                                  type: FunctionType([],
+                                                     cellType))
       let getCharExtern = builder.addFunction("getchar",
-                                              type: FunctionType(argTypes: [],
-                                                                 returnType: cellType))
+                                              type: FunctionType([],
+                                                                 cellType))
       let entry = f.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
       let charValue = builder.buildCall(getCharExtern, args: [])
@@ -167,19 +167,18 @@ private enum Externs {
       return f
     case .putchar:
       return builder.addFunction("putchar",
-                                 type: FunctionType(argTypes: [
-                                    cellType
-                                 ], returnType: VoidType()))
+                                 type: FunctionType([
+                                   cellType
+                                 ], VoidType()))
     case .flush:
       let f = builder.addFunction("flush",
-                                  type: FunctionType(argTypes: [],
-                                                     returnType: VoidType()))
+                                  type: FunctionType([], VoidType()))
       let entry = f.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
       let ptrTy = PointerType(pointee: IntType.int8)
       let fflushExtern = builder.addFunction("fflush",
-                                             type: FunctionType(argTypes: [ ptrTy ],
-                                                                returnType: IntType.int32))
+                                             type: FunctionType([ ptrTy ],
+                                                                IntType.int32))
       _ = builder.buildCall(fflushExtern, args: [ ptrTy.constPointerNull() ])
       builder.buildRetVoid()
       return f
@@ -194,8 +193,8 @@ private func compile(at column: Int = #column, line: Int = #line, _ program: Str
   let cellTape = module.addGlobal("tape", initializer: cellTapeType.null())
 
   let main = builder.addFunction("main",
-                                 type: FunctionType(argTypes: [],
-                                                    returnType: IntType.int32))
+                                 type: FunctionType([],
+                                                    IntType.int32))
 
   let sourceFile = #file.components(separatedBy: "/").last!
   let sourceDir = #file.components(separatedBy: "/").dropLast().joined(separator: "/")

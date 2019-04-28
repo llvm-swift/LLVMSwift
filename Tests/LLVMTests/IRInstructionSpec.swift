@@ -16,13 +16,13 @@ class IRInstructionSpec : XCTestCase {
     let global = module.addGlobal("type_info", type: structTy)
 
     let f = module.addFunction("test",
-                               type: FunctionType(argTypes: [
+                               type: FunctionType([
                                   IntType.int1,
                                   FloatType.float,
                                   PointerType.toVoid,
                                   structTy,
                                   VectorType(elementType: IntType.int32, count: 42),
-                                ], returnType: VoidType()))
+                               ], VoidType()))
     let entry = f.appendBasicBlock(named: "entry")
     let landing = f.appendBasicBlock(named: "landing")
     builder.positionAtEnd(of: landing)

@@ -27,8 +27,7 @@ class IROperationSpec : XCTestCase {
 
       // BINARYOP: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // BINARYOP-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)
@@ -105,8 +104,7 @@ class IROperationSpec : XCTestCase {
 
       // CASTOP: define void @main() {
       let main = builder.addFunction("main",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: VoidType()))
+                                     type: FunctionType([], VoidType()))
       // CASTOP-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)

@@ -294,8 +294,7 @@ class APIntSpec : XCTestCase {
       let intType = IntType(width: 420)
       // ARBITRARY: define i420 @test() {
       let main = builder.addFunction("test",
-                                     type: FunctionType(argTypes: [],
-                                                        returnType: intType))
+                                     type: FunctionType([], intType))
       // ARBITRARY-NEXT: entry:
       let entry = main.appendBasicBlock(named: "entry")
       builder.positionAtEnd(of: entry)

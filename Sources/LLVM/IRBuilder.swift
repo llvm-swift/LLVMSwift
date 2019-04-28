@@ -71,10 +71,10 @@ import llvmshims
 ///     let module = Module(name: "Example")
 ///     let builder = IRBuilder(module: module)
 ///     let fun = builder.addFunction("test",
-///                                   type: FunctionType(argTypes: [
+///                                   type: FunctionType([
 ///                                           IntType.int8,
 ///                                           IntType.int8,
-///                                   ], returnType: FloatType.float))
+///                                   ], FloatType.float))
 ///     let entry = fun.appendBasicBlock(named: "entry")
 ///     // Set the insertion point to the entry block of this function
 ///     builder.positionAtEnd(of: entry)
@@ -99,11 +99,11 @@ import llvmshims
 ///     let module = Module(name: "Example")
 ///     let builder = IRBuilder(module: module)
 ///     let select = builder.addFunction("select",
-///                                      type: FunctionType(argTypes: [
+///                                      type: FunctionType([
 ///                                              IntType.int1,
 ///                                              FloatType.float,
 ///                                              FloatType.float,
-///                                      ], returnType: FloatType.float))
+///                                      ], FloatType.float))
 ///     let entry = select.appendBasicBlock(named: "entry")
 ///     builder.positionAtEnd(of: entry)
 ///
