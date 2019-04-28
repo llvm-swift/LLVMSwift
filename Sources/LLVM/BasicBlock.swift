@@ -5,16 +5,72 @@ import cllvm
 /// A `BasicBlock` represents a basic block in an LLVM IR program.  A basic
 /// block contains a sequence of instructions, a pointer to its parent block and
 /// its follower block, and an optional label that gives the basic block an
-/// entry in the symbol table.
+/// entry in the symbol table.  Because of this label, the type of every basic
+/// block is `LabelType`.
 ///
 /// A basic block can be thought of as a sequence of instructions, and indeed
-/// its member instructions may be iterated over with a `for-in` loop.
+/// its member instructions may be iterated over with a `for-in` loop.  A well-
+/// formed basic block has as its last instruction a "terminator" that produces
+/// a transfer of control flow and possibly yields a value.  All other
+/// instructions in the middle of the basic block may not be "terminator"
+/// instructions.  Basic blocks are not required to be well-formed until
+/// code generation is complete.
 ///
-/// The first basic block in a function is special in two ways: it is
-/// immediately executed on entrance to the function, and it is not allowed to
-/// have predecessor basic blocks (i.e. there can not be any branches to the
-/// entry block of a function). Because the block can have no predecessors, it
-/// also cannot have any PHI nodes.
+/// Creating a Basic Block
+/// ======================
+///
+/// By default, the initializer for a basic block merely creates the block but
+/// does not associate it with a function.
+///
+///     let module = Module(name: "Example")
+///     let fun = builder.addFunction("example",
+///                                   type: FunctionType(argTypes: [],
+///                                                      returnType: VoidType()))
+///
+///     // This basic block is "floating" outside of a function.
+///     let floatingBB = BasicBlock(name: "floating")
+///     // Until we associate it with a function by calling `Function.append(_:)`.
+///     fun.append(floatingBB)
+///
+/// A basic block may be created and automatically inserted at the end of a
+/// function by calling `Function.appendBasicBlock(named:in:)`.
+///
+///     let module = Module(name: "Example")
+///     let fun = builder.addFunction("example",
+///                                   type: FunctionType(argTypes: [],
+///                                                      returnType: VoidType()))
+///
+///     // This basic block is "attached" to the example function.
+///     let attachedBB = fun.appendBasicBlock(named: "attached")
+///
+/// The Address of a Basic Block
+/// ============================
+///
+/// Basic blocks (except the entry block) may have their labels appear in the
+/// symbol table.  Naturally, these labels are associated with address values
+/// in the final object file.  The value of that address may be accessed for the
+/// purpose of an indirect call or a direct comparisson by calling
+/// `Function.address(of:)` and providing one of the function's child blocks as
+/// an argument.  Providing any other basic block outside of the function as an
+/// argument value is undefined.
+///
+/// The Entry Block
+/// ===============
+///
+/// The first basic block (the entry block) in a `Function` is special:
+///
+/// - The entry block is immediately executed when the flow of control enters
+///   its parent function.
+/// - The entry block is not allowed to have predecessor basic blocks
+///   (i.e. there cannot be any branches to the entry block of a function).
+/// - The address of the entry block is not a well-defined value.
+/// - The entry block cannot have PHI nodes.  This is enforced structurally,
+///   as the entry block can have no predecessor blocks to serve as operands
+///   to the PHI node.
+/// - Static `alloca` instructions situated in the entry block are treated
+///   specially by most LLVM backends.  For example, FastISel keeps track of
+///   static `alloca` values in the entry block to more efficiently reference
+///   them from the base pointer of the stack frame.
 public struct BasicBlock: IRValue {
   internal let llvm: LLVMBasicBlockRef
 
