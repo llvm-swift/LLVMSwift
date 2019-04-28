@@ -59,7 +59,7 @@ import cllvm
 ///
 /// The first basic block (the entry block) in a `Function` is special:
 ///
-/// - The entry block is immediately executed when the flo wof control enters
+/// - The entry block is immediately executed when the flow of control enters
 ///   its parent function.
 /// - The entry block is not allowed to have predecessor basic blocks
 ///   (i.e. there cannot be any branches to the entry block of a function).

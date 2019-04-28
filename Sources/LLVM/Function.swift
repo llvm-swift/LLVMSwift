@@ -8,10 +8,13 @@ import llvmshims
 /// and provide a way to append to that sequence to build out its body.
 ///
 /// A LLVM function definition contains a list of basic blocks, starting with
-/// a privileged first block called the "entry block", and proceeding its
-/// terminating instruction to zero or more other basic blocks.  The path the
+/// a privileged first block called the "entry block". After the entry blocks'
+/// terminating instruction come zero or more other basic blocks.  The path the
 /// flow of control can potentially take, from each block to its terminator
-/// and back again, forms the "Control Flow Graph" (CFG) for the function.
+/// and on to other blocks, forms the "Control Flow Graph" (CFG) for the
+/// function.  The nodes of the CFG are the basic blocks, and the edges are
+/// directed from the terminator instruction of one block to any number of
+/// potential target blocks.
 ///
 /// Additional basic blocks may be created and appended to the function at
 /// any time.
@@ -27,7 +30,7 @@ import llvmshims
 ///     let freestanding = BasicBlock(name: "freestanding")
 ///     fun.append(freestanding)
 ///
-/// A LLVM function always has the type `FunctionType`.  This type is used to
+/// An LLVM function always has the type `FunctionType`.  This type is used to
 /// determine the number and kind of parameters to the function as well as its
 /// return value, if any.  The parameter values, which would normally enter
 /// the entry block, are instead attached to the function and are accessible
@@ -54,7 +57,7 @@ import llvmshims
 /// Sections
 /// ========
 ///
-/// A function may optionally state the section in the object file the function
+/// A function may optionally state the section in the object file it
 /// should reside in through the use of a metadata attachment.  This can be
 /// useful to satisfy target-specific data layout constraints, or to provide
 /// some hints to optimizers and linkers.  LLVMSwift provides a convenience
