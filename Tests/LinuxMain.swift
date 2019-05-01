@@ -17,6 +17,7 @@ XCTMain([
   IRInstructionSpec.allTests,
   IRMetadataSpec.allTests,
   IROperationSpec.allTests,
+  IRPassManagerSpec.allTests,
   JITSpec.allTests,
   ModuleLinkSpec.allTests,
   ModuleMetadataSpec.allTests,

@@ -3,7 +3,7 @@ import cllvm
 #endif
 
 /// A subset of supported LLVM IR optimizer passes.
-public enum FunctionPass {
+public enum Pass {
   ///  This pass uses the SSA based Aggressive DCE algorithm.  This algorithm
   /// assumes instructions are dead until proven otherwise, which makes
   /// it more successful are removing non-obviously dead instructions.
@@ -106,8 +106,6 @@ public enum FunctionPass {
   case scalarReplAggregates
   /// Replace aggregates or pieces of aggregates with scalar SSA values.
   case scalarReplAggregatesSSA
-  /// Tries to inline the fast path of library calls such as sqrt.
-  case simplifyLibCalls
   /// This pass eliminates call instructions to the current function which occur
   /// immediately before return instructions.
   case tailCallElimination
@@ -186,68 +184,9 @@ public enum FunctionPass {
 /// A `FunctionPassManager` is an object that collects a sequence of passes
 /// which run over a particular IR construct, and runs each of them in sequence
 /// over each such construct.
+@available(*, deprecated, message: "Use the PassPipeliner instead")
 public class FunctionPassManager {
   internal let llvm: LLVMPassManagerRef
-
-  private static let passMapping: [FunctionPass: (LLVMPassManagerRef) -> Void] = [
-    .aggressiveDCE: LLVMAddAggressiveDCEPass,
-    .bitTrackingDCE: LLVMAddBitTrackingDCEPass,
-    .alignmentFromAssumptions: LLVMAddAlignmentFromAssumptionsPass,
-    .cfgSimplification: LLVMAddCFGSimplificationPass,
-    .deadStoreElimination: LLVMAddDeadStoreEliminationPass,
-    .scalarizer: LLVMAddScalarizerPass,
-    .mergedLoadStoreMotion: LLVMAddMergedLoadStoreMotionPass,
-    .gvn: LLVMAddGVNPass,
-    .indVarSimplify: LLVMAddIndVarSimplifyPass,
-    .instructionCombining: LLVMAddInstructionCombiningPass,
-    .jumpThreading: LLVMAddJumpThreadingPass,
-    .licm: LLVMAddLICMPass,
-    .loopDeletion: LLVMAddLoopDeletionPass,
-    .loopIdiom: LLVMAddLoopIdiomPass,
-    .loopRotate: LLVMAddLoopRotatePass,
-    .loopReroll: LLVMAddLoopRerollPass,
-    .loopUnroll: LLVMAddLoopUnrollPass,
-    .loopUnrollAndJam: LLVMAddLoopUnrollAndJamPass,
-    .loopUnswitch: LLVMAddLoopUnswitchPass,
-    .lowerAtomic: LLVMAddLowerAtomicPass,
-    .memCpyOpt: LLVMAddMemCpyOptPass,
-    .partiallyInlineLibCalls: LLVMAddPartiallyInlineLibCallsPass,
-    .lowerSwitch: LLVMAddLowerSwitchPass,
-    .promoteMemoryToRegister: LLVMAddPromoteMemoryToRegisterPass,
-    .reassociate: LLVMAddReassociatePass,
-    .sccp: LLVMAddSCCPPass,
-    .scalarReplAggregates: LLVMAddScalarReplAggregatesPass,
-    .scalarReplAggregatesSSA: LLVMAddScalarReplAggregatesPassSSA,
-    .simplifyLibCalls: LLVMAddSimplifyLibCallsPass,
-    .tailCallElimination: LLVMAddTailCallEliminationPass,
-    .constantPropagation: LLVMAddConstantPropagationPass,
-    .demoteMemoryToRegister: LLVMAddDemoteMemoryToRegisterPass,
-    .verifier: LLVMAddVerifierPass,
-    .correlatedValuePropagation: LLVMAddCorrelatedValuePropagationPass,
-    .earlyCSE: LLVMAddEarlyCSEPass,
-    .lowerExpectIntrinsic: LLVMAddLowerExpectIntrinsicPass,
-    .typeBasedAliasAnalysis: LLVMAddTypeBasedAliasAnalysisPass,
-    .scopedNoAliasAA: LLVMAddScopedNoAliasAAPass,
-    .basicAliasAnalysis: LLVMAddBasicAliasAnalysisPass,
-    .unifyFunctionExitNodes: LLVMAddUnifyFunctionExitNodesPass,
-    .alwaysInliner: LLVMAddAlwaysInlinerPass,
-    .argumentPromotion: LLVMAddArgumentPromotionPass,
-    .constantMerge: LLVMAddConstantMergePass,
-    .deadArgElimination: LLVMAddDeadArgEliminationPass,
-    .functionAttrs: LLVMAddFunctionAttrsPass,
-    .functionInlining: LLVMAddFunctionInliningPass,
-    .globalDCE: LLVMAddGlobalDCEPass,
-    .globalOptimizer: LLVMAddGlobalOptimizerPass,
-    .ipConstantPropagation: LLVMAddIPConstantPropagationPass,
-    .ipscc: LLVMAddIPSCCPPass,
-    .pruneEH: LLVMAddPruneEHPass,
-    .stripDeadPrototypes: LLVMAddStripDeadPrototypesPass,
-    .stripSymbols: LLVMAddStripSymbolsPass,
-    .loopVectorize: LLVMAddLoopVectorizePass,
-    .slpVectorize: LLVMAddSLPVectorizePass,
-    //    .internalize: LLVMAddInternalizePass,
-    //    .sroaWithThreshhold: LLVMAddScalarReplAggregatesPassWithThreshold,
-  ]
 
   /// Creates a `FunctionPassManager` bound to the given module's IR.
   public init(module: Module) {
@@ -259,9 +198,9 @@ public class FunctionPassManager {
   ///
   /// - parameter passes: A list of function passes to add to the pass manager's
   ///   list of passes to run.
-  public func add(_ passes: FunctionPass...) {
+  public func add(_ passes: Pass...) {
     for pass in passes {
-      FunctionPassManager.passMapping[pass]!(llvm)
+      PassPipeliner.passMapping[pass]!(llvm)
     }
   }
 
@@ -272,3 +211,7 @@ public class FunctionPassManager {
     LLVMRunFunctionPassManager(llvm, function.asLLVM())
   }
 }
+
+@available(*, deprecated, renamed: "Pass")
+public typealias FunctionPass = Pass
+
