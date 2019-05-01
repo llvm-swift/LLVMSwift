@@ -13,7 +13,7 @@ import cllvm
 /// pipeline might consist of "mandatory" passes such as Jump Threading, LICM,
 /// and DCE in one pipeline and "diagnostic" passes in another.
 public final class PassPipeliner {
-  private enum Pipeline {
+  private enum PipelinePlan {
     case builtinPasses([Pass])
     case functionPassManager(LLVMPassManagerRef)
     case modulePassManager(LLVMPassManagerRef)
@@ -24,7 +24,7 @@ public final class PassPipeliner {
   /// The pipeline stages registered with this pass pipeliner.
   public private(set) var stages: [String]
 
-  private var stageMapping: [String: Pipeline]
+  private var stageMapping: [String: PipelinePlan]
   private var frozen: Bool = false
 
   public final class Builder {
@@ -92,13 +92,20 @@ public final class PassPipeliner {
   ///
   /// The same pipeline may be repeatedly re-executed, but pipeline execution
   /// is not re-entrancy safe.
-  public func execute() {
+  ///
+  /// - Parameter pipelineMask: Describes the subset of pipelines that should
+  ///   be executed.  If the mask is empty, all pipelines will be executed.
+  public func execute(mask pipelineMask: Set<String> = []) {
     precondition(!self.frozen, "Cannot execute a frozen pipeline!")
 
     self.frozen = true
     defer { self.frozen = false }
 
     stageLoop: for stage in self.stages {
+      guard pipelineMask.isEmpty || pipelineMask.contains(stage) else {
+        continue
+      }
+
       guard let pipeline = self.stageMapping[stage] else {
         fatalError("Unregistered pass stage?")
       }
@@ -261,24 +268,4 @@ extension PassPipeliner {
     //    .internalize: LLVMAddInternalizePass,
     //    .sroaWithThreshhold: LLVMAddScalarReplAggregatesPassWithThreshold,
   ]
-}
-
-extension Pass {
-  var isModulePass: Bool {
-    switch self {
-    case .stripSymbols,
-         .stripDeadPrototypes,
-         .constantMerge,
-         .globalOptimizer,
-         .globalDCE,
-         .deadArgElimination,
-         .ipConstantPropagation,
-         .ipscc,
-         .functionAttrs,
-         .functionInlining:
-      return true
-    default:
-      return false
-    }
-  }
 }
