@@ -44,6 +44,20 @@ public enum Pass {
   /// %Z = add int 2, %X
   /// ```
   case instructionCombining
+  /// Working in conjunction with the linker, iterate through all functions and
+  /// global values in the module and attempt to change their linkage from
+  /// external to internal.
+  ///
+  /// To preserve the linkage of a global value, return `true` from the given
+  /// callback.
+  case internalize(mustPreserve: (IRGlobal) -> Bool)
+  /// Working in conjunction with the linker, iterate through all functions and
+  /// global values in the module and attempt to change their linkage from
+  /// external to internal.
+  ///
+  /// When a function with the name "main" is encountered, if the value of
+  /// `preserveMain` is `true`, "main" will not be internalized.
+  case internalizeAll(preserveMain: Bool)
   /// Thread control through mult-pred/multi-succ blocks where some preds
   /// always go to some succ. Thresholds other than minus one override the
   /// internal BB duplication default threshold.
@@ -92,6 +106,10 @@ public enum Pass {
   /// ret i32 42
   /// ```
   case promoteMemoryToRegister
+  /// Adds DWARF discriminators to the IR.  Discriminators are
+  /// used to decide what CFG path was taken inside sub-graphs whose instructions
+  /// share the same line and column number information.
+  case addDiscriminators
   /// This pass reassociates commutative expressions in an order that
   /// is designed to promote better constant propagation, GCSE, LICM, PRE, etc.
   ///
