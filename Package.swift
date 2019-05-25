@@ -4,6 +4,9 @@ import PackageDescription
 
 let package = Package(
   name: "LLVM",
+  platforms: [
+    .macOS(.v10_14),
+  ],
   products: [
     .library(
       name: "LLVM",
