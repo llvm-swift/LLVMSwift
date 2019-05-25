@@ -3,7 +3,7 @@ import cllvm
 #endif
 
 /// A subset of supported LLVM IR optimizer passes.
-public enum FunctionPass {
+public enum Pass {
   ///  This pass uses the SSA based Aggressive DCE algorithm.  This algorithm
   /// assumes instructions are dead until proven otherwise, which makes
   /// it more successful are removing non-obviously dead instructions.
@@ -44,6 +44,20 @@ public enum FunctionPass {
   /// %Z = add int 2, %X
   /// ```
   case instructionCombining
+  /// Working in conjunction with the linker, iterate through all functions and
+  /// global values in the module and attempt to change their linkage from
+  /// external to internal.
+  ///
+  /// To preserve the linkage of a global value, return `true` from the given
+  /// callback.
+  case internalize(mustPreserve: (IRGlobal) -> Bool)
+  /// Working in conjunction with the linker, iterate through all functions and
+  /// global values in the module and attempt to change their linkage from
+  /// external to internal.
+  ///
+  /// When a function with the name "main" is encountered, if the value of
+  /// `preserveMain` is `true`, "main" will not be internalized.
+  case internalizeAll(preserveMain: Bool)
   /// Thread control through mult-pred/multi-succ blocks where some preds
   /// always go to some succ. Thresholds other than minus one override the
   /// internal BB duplication default threshold.
@@ -75,7 +89,7 @@ public enum FunctionPass {
   /// This pass converts SwitchInst instructions into a sequence of chained
   /// binary branch instructions.
   case lowerSwitch
-  ///  This pass is used to promote memory references to
+  /// This pass is used to promote memory references to
   /// be register references. A simple example of the transformation performed
   /// by this pass is going from code like this:
   ///
@@ -92,6 +106,10 @@ public enum FunctionPass {
   /// ret i32 42
   /// ```
   case promoteMemoryToRegister
+  /// Adds DWARF discriminators to the IR.  Discriminators are
+  /// used to decide what CFG path was taken inside sub-graphs whose instructions
+  /// share the same line and column number information.
+  case addDiscriminators
   /// This pass reassociates commutative expressions in an order that
   /// is designed to promote better constant propagation, GCSE, LICM, PRE, etc.
   ///
@@ -102,12 +120,6 @@ public enum FunctionPass {
   case reassociate
   /// Sparse conditional constant propagation.
   case sccp
-  /// Replace aggregates or pieces of aggregates with scalar SSA values.
-  case scalarReplAggregates
-  /// Replace aggregates or pieces of aggregates with scalar SSA values.
-  case scalarReplAggregatesSSA
-  /// Tries to inline the fast path of library calls such as sqrt.
-  case simplifyLibCalls
   /// This pass eliminates call instructions to the current function which occur
   /// immediately before return instructions.
   case tailCallElimination
@@ -170,6 +182,8 @@ public enum FunctionPass {
   /// Return a new pass object which transforms invoke instructions into calls,
   /// if the callee can *not* unwind the stack.
   case pruneEH
+
+  case scalarReplacementOfAggregates
   /// This pass removes any function declarations (prototypes) that are not used.
   case stripDeadPrototypes
   /// These functions removes symbols from functions and modules without
@@ -181,73 +195,26 @@ public enum FunctionPass {
   /// This pass performs a superword-level parallelism pass to combine
   /// similar independent instructions into vector instructions.
   case slpVectorize
+  /// An invalid pass that crashes when added to the pass manager.
+  case invalid(reason: String)
+}
+
+extension Pass {
+  @available(*, deprecated, message: "Pass has been removed")
+  static let simplifyLibCalls: Pass = .invalid(reason: "Pass has been removed")
+  @available(*, deprecated, message: "Use the scalarReplacementOfAggregates instead")
+  static let scalarReplAggregates: Pass = .invalid(reason: "Pass has been renamed to 'scalarReplacementOfAggregates'")
+  @available(*, deprecated, message: "Use the scalarReplacementOfAggregates instead")
+  static let scalarReplAggregatesSSA: Pass = .invalid(reason: "Pass has been renamed to 'scalarReplacementOfAggregates'")
 }
 
 /// A `FunctionPassManager` is an object that collects a sequence of passes
 /// which run over a particular IR construct, and runs each of them in sequence
 /// over each such construct.
+@available(*, deprecated, message: "Use the PassPipeliner instead")
 public class FunctionPassManager {
   internal let llvm: LLVMPassManagerRef
-
-  private static let passMapping: [FunctionPass: (LLVMPassManagerRef) -> Void] = [
-    .aggressiveDCE: LLVMAddAggressiveDCEPass,
-    .bitTrackingDCE: LLVMAddBitTrackingDCEPass,
-    .alignmentFromAssumptions: LLVMAddAlignmentFromAssumptionsPass,
-    .cfgSimplification: LLVMAddCFGSimplificationPass,
-    .deadStoreElimination: LLVMAddDeadStoreEliminationPass,
-    .scalarizer: LLVMAddScalarizerPass,
-    .mergedLoadStoreMotion: LLVMAddMergedLoadStoreMotionPass,
-    .gvn: LLVMAddGVNPass,
-    .indVarSimplify: LLVMAddIndVarSimplifyPass,
-    .instructionCombining: LLVMAddInstructionCombiningPass,
-    .jumpThreading: LLVMAddJumpThreadingPass,
-    .licm: LLVMAddLICMPass,
-    .loopDeletion: LLVMAddLoopDeletionPass,
-    .loopIdiom: LLVMAddLoopIdiomPass,
-    .loopRotate: LLVMAddLoopRotatePass,
-    .loopReroll: LLVMAddLoopRerollPass,
-    .loopUnroll: LLVMAddLoopUnrollPass,
-    .loopUnrollAndJam: LLVMAddLoopUnrollAndJamPass,
-    .loopUnswitch: LLVMAddLoopUnswitchPass,
-    .lowerAtomic: LLVMAddLowerAtomicPass,
-    .memCpyOpt: LLVMAddMemCpyOptPass,
-    .partiallyInlineLibCalls: LLVMAddPartiallyInlineLibCallsPass,
-    .lowerSwitch: LLVMAddLowerSwitchPass,
-    .promoteMemoryToRegister: LLVMAddPromoteMemoryToRegisterPass,
-    .reassociate: LLVMAddReassociatePass,
-    .sccp: LLVMAddSCCPPass,
-    .scalarReplAggregates: LLVMAddScalarReplAggregatesPass,
-    .scalarReplAggregatesSSA: LLVMAddScalarReplAggregatesPassSSA,
-    .simplifyLibCalls: LLVMAddSimplifyLibCallsPass,
-    .tailCallElimination: LLVMAddTailCallEliminationPass,
-    .constantPropagation: LLVMAddConstantPropagationPass,
-    .demoteMemoryToRegister: LLVMAddDemoteMemoryToRegisterPass,
-    .verifier: LLVMAddVerifierPass,
-    .correlatedValuePropagation: LLVMAddCorrelatedValuePropagationPass,
-    .earlyCSE: LLVMAddEarlyCSEPass,
-    .lowerExpectIntrinsic: LLVMAddLowerExpectIntrinsicPass,
-    .typeBasedAliasAnalysis: LLVMAddTypeBasedAliasAnalysisPass,
-    .scopedNoAliasAA: LLVMAddScopedNoAliasAAPass,
-    .basicAliasAnalysis: LLVMAddBasicAliasAnalysisPass,
-    .unifyFunctionExitNodes: LLVMAddUnifyFunctionExitNodesPass,
-    .alwaysInliner: LLVMAddAlwaysInlinerPass,
-    .argumentPromotion: LLVMAddArgumentPromotionPass,
-    .constantMerge: LLVMAddConstantMergePass,
-    .deadArgElimination: LLVMAddDeadArgEliminationPass,
-    .functionAttrs: LLVMAddFunctionAttrsPass,
-    .functionInlining: LLVMAddFunctionInliningPass,
-    .globalDCE: LLVMAddGlobalDCEPass,
-    .globalOptimizer: LLVMAddGlobalOptimizerPass,
-    .ipConstantPropagation: LLVMAddIPConstantPropagationPass,
-    .ipscc: LLVMAddIPSCCPPass,
-    .pruneEH: LLVMAddPruneEHPass,
-    .stripDeadPrototypes: LLVMAddStripDeadPrototypesPass,
-    .stripSymbols: LLVMAddStripSymbolsPass,
-    .loopVectorize: LLVMAddLoopVectorizePass,
-    .slpVectorize: LLVMAddSLPVectorizePass,
-    //    .internalize: LLVMAddInternalizePass,
-    //    .sroaWithThreshhold: LLVMAddScalarReplAggregatesPassWithThreshold,
-  ]
+  var alivePassObjects = [Any]()
 
   /// Creates a `FunctionPassManager` bound to the given module's IR.
   public init(module: Module) {
@@ -259,9 +226,9 @@ public class FunctionPassManager {
   ///
   /// - parameter passes: A list of function passes to add to the pass manager's
   ///   list of passes to run.
-  public func add(_ passes: FunctionPass...) {
+  public func add(_ passes: Pass...) {
     for pass in passes {
-      FunctionPassManager.passMapping[pass]!(llvm)
+      PassPipeliner.configurePass(pass, passManager: llvm, keepalive: &alivePassObjects)
     }
   }
 
@@ -272,3 +239,7 @@ public class FunctionPassManager {
     LLVMRunFunctionPassManager(llvm, function.asLLVM())
   }
 }
+
+@available(*, deprecated, renamed: "Pass")
+public typealias FunctionPass = Pass
+

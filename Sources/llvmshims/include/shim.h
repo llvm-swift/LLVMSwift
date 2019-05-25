@@ -96,4 +96,10 @@ uint64_t LLVMGlobalGetGUID(LLVMValueRef Global);
 void LLVMAppendExistingBasicBlock(LLVMValueRef Fn,
                                   LLVMBasicBlockRef BB);
 
+void LLVMAddAddDiscriminatorsPass(LLVMPassManagerRef PM);
+
+void LLVMAddInternalizePassWithMustPreservePredicate(
+  LLVMPassManagerRef PM, void *Context,
+  LLVMBool (*MustPreserve)(LLVMValueRef, void *));
+
 #endif /* LLVMSWIFT_LLVM_SHIM_H */
