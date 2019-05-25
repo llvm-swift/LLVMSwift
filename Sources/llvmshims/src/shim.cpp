@@ -5,10 +5,13 @@
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Support/ARMTargetParser.h"
 #include "llvm/Object/MachOUniversal.h"
 #include "llvm/Object/ObjectFile.h"
 #include "llvm/ADT/SmallVector.h"
+#include "llvm/Transforms/Utils.h"
+#include "llvm/Transforms/IPO.h"
 
 extern "C" {
   typedef struct LLVMOpaqueBinary *LLVMBinaryRef;
@@ -120,6 +123,14 @@ extern "C" {
   // https://reviews.llvm.org/D59658
   void LLVMAppendExistingBasicBlock(LLVMValueRef Fn,
                                     LLVMBasicBlockRef BB);
+
+  // https://reviews.llvm.org/D58624
+  void LLVMAddAddDiscriminatorsPass(LLVMPassManagerRef PM);
+
+  // https://reviews.llvm.org/D62456
+  void LLVMAddInternalizePassWithMustPreservePredicate(
+   LLVMPassManagerRef PM, void *Context,
+   LLVMBool (*MustPreserve)(LLVMValueRef, void *));
 }
 
 using namespace llvm;
@@ -353,4 +364,16 @@ uint64_t LLVMGlobalGetGUID(LLVMValueRef Glob) {
 void LLVMAppendExistingBasicBlock(LLVMValueRef Fn,
                                   LLVMBasicBlockRef BB) {
   unwrap<Function>(Fn)->getBasicBlockList().push_back(unwrap(BB));
+}
+
+void LLVMAddAddDiscriminatorsPass(LLVMPassManagerRef PM) {
+  unwrap(PM)->add(createAddDiscriminatorsPass());
+}
+
+void LLVMAddInternalizePassWithMustPreservePredicate(
+  LLVMPassManagerRef PM, void *Context,
+  LLVMBool (*Pred)(LLVMValueRef, void *)) {
+  unwrap(PM)->add(createInternalizePass([=](const GlobalValue &GV) {
+    return Pred(wrap(&GV), Context) == 0 ? false : true;
+  }));
 }

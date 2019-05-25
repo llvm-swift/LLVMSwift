@@ -89,7 +89,7 @@ public enum Pass {
   /// This pass converts SwitchInst instructions into a sequence of chained
   /// binary branch instructions.
   case lowerSwitch
-  ///  This pass is used to promote memory references to
+  /// This pass is used to promote memory references to
   /// be register references. A simple example of the transformation performed
   /// by this pass is going from code like this:
   ///
@@ -120,10 +120,6 @@ public enum Pass {
   case reassociate
   /// Sparse conditional constant propagation.
   case sccp
-  /// Replace aggregates or pieces of aggregates with scalar SSA values.
-  case scalarReplAggregates
-  /// Replace aggregates or pieces of aggregates with scalar SSA values.
-  case scalarReplAggregatesSSA
   /// This pass eliminates call instructions to the current function which occur
   /// immediately before return instructions.
   case tailCallElimination
@@ -186,6 +182,8 @@ public enum Pass {
   /// Return a new pass object which transforms invoke instructions into calls,
   /// if the callee can *not* unwind the stack.
   case pruneEH
+
+  case scalarReplacementOfAggregates
   /// This pass removes any function declarations (prototypes) that are not used.
   case stripDeadPrototypes
   /// These functions removes symbols from functions and modules without
@@ -197,6 +195,17 @@ public enum Pass {
   /// This pass performs a superword-level parallelism pass to combine
   /// similar independent instructions into vector instructions.
   case slpVectorize
+  /// An invalid pass that crashes when added to the pass manager.
+  case invalid(reason: String)
+}
+
+extension Pass {
+  @available(*, deprecated, message: "Pass has been removed")
+  static let simplifyLibCalls: Pass = .invalid(reason: "Pass has been removed")
+  @available(*, deprecated, message: "Use the scalarReplacementOfAggregates instead")
+  static let scalarReplAggregates: Pass = .invalid(reason: "Pass has been renamed to 'scalarReplacementOfAggregates'")
+  @available(*, deprecated, message: "Use the scalarReplacementOfAggregates instead")
+  static let scalarReplAggregatesSSA: Pass = .invalid(reason: "Pass has been renamed to 'scalarReplacementOfAggregates'")
 }
 
 /// A `FunctionPassManager` is an object that collects a sequence of passes
@@ -205,6 +214,7 @@ public enum Pass {
 @available(*, deprecated, message: "Use the PassPipeliner instead")
 public class FunctionPassManager {
   internal let llvm: LLVMPassManagerRef
+  var alivePassObjects = [Any]()
 
   /// Creates a `FunctionPassManager` bound to the given module's IR.
   public init(module: Module) {
@@ -218,7 +228,7 @@ public class FunctionPassManager {
   ///   list of passes to run.
   public func add(_ passes: Pass...) {
     for pass in passes {
-      PassPipeliner.passMapping[pass]!(llvm)
+      PassPipeliner.configurePass(pass, passManager: llvm, keepalive: &alivePassObjects)
     }
   }
 
