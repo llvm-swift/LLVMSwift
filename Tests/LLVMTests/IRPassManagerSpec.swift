@@ -245,6 +245,83 @@ class IRPassManagerSpec : XCTestCase {
     })
   }
 
+  func testIdempotentInternalize() {
+    let module = Module(name: "Internalize")
+    let builder = IRBuilder(module: module)
+    let addFunction: (String) -> Void = { (name) in
+      var fun = module.addFunction(name, type: FunctionType([], VoidType()))
+      fun.linkage = .external
+      let block = fun.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: block)
+      builder.buildRetVoid()
+    }
+    for name in [ "a", "b", "c", "d", "e", "f", "g" ] {
+      addFunction(name)
+    }
+    let pipeliner = PassPipeliner(module: module)
+    pipeliner.addStage("Internalize") { builder in
+      builder.add(.internalize { g in
+        print("Internalizing: \(g.name)")
+        return true
+      })
+    }
+
+    XCTAssertTrue(fileCheckOutput(of: .stdout, withPrefixes: [ "CHECK-IDEMPOTENT-INTERNALIZE" ]) {
+      for function in module.functions {
+        XCTAssertTrue(function.linkage == .external)
+      }
+      // CHECK-IDEMPOTENT-INTERNALIZE: Internalizing: a
+      // CHECK-IDEMPOTENT-INTERNALIZE: Internalizing: b
+      // CHECK-IDEMPOTENT-INTERNALIZE: Internalizing: c
+      // CHECK-IDEMPOTENT-INTERNALIZE: Internalizing: d
+      // CHECK-IDEMPOTENT-INTERNALIZE: Internalizing: e
+      // CHECK-IDEMPOTENT-INTERNALIZE: Internalizing: f
+      // CHECK-IDEMPOTENT-INTERNALIZE: Internalizing: g
+      pipeliner.execute()
+      for function in module.functions {
+        XCTAssertTrue(function.linkage == .external)
+      }
+    })
+  }
+
+  func testInternalizeCallback() {
+    let module = Module(name: "Internalize")
+    let builder = IRBuilder(module: module)
+    let addFunction: (String) -> Void = { (name) in
+      var fun = module.addFunction(name, type: FunctionType([], VoidType()))
+      fun.linkage = .external
+      let block = fun.appendBasicBlock(named: "entry")
+      builder.positionAtEnd(of: block)
+      builder.buildRetVoid()
+    }
+    for name in [ "a", "b", "c", "d", "e", "f", "g" ] {
+      addFunction(name)
+    }
+    let pipeliner = PassPipeliner(module: module)
+    pipeliner.addStage("Internalize") { builder in
+      builder.add(.internalize { g in
+        print("Internalizing: \(g.name)")
+        return false
+      })
+    }
+
+    XCTAssertTrue(fileCheckOutput(of: .stdout, withPrefixes: [ "CHECK-INTERNALIZE" ]) {
+      for function in module.functions {
+        XCTAssertTrue(function.linkage == .external)
+      }
+      // CHECK-INTERNALIZE: Internalizing: a
+      // CHECK-INTERNALIZE: Internalizing: b
+      // CHECK-INTERNALIZE: Internalizing: c
+      // CHECK-INTERNALIZE: Internalizing: d
+      // CHECK-INTERNALIZE: Internalizing: e
+      // CHECK-INTERNALIZE: Internalizing: f
+      // CHECK-INTERNALIZE: Internalizing: g
+      pipeliner.execute()
+      for function in module.functions {
+        XCTAssertTrue(function.linkage == .internal)
+      }
+    })
+  }
 
   private func createModule() -> Module {
     let module = Module(name: "Test")
@@ -298,7 +375,9 @@ class IRPassManagerSpec : XCTestCase {
     ("testAppendStages", testAppendStages),
     ("testAppendStandardStages", testAppendStandardStages),
     ("testExecute", testExecute),
-    ("testExecuteWithMask", testExecuteWithMask)
+    ("testExecuteWithMask", testExecuteWithMask),
+    ("testIdempotentInternalize", testIdempotentInternalize),
+    ("testInternalizeCallback", testInternalizeCallback),
   ])
   #endif
 }
