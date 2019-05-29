@@ -265,7 +265,7 @@ public final class JIT {
 
     switch LLVMGetErrorTypeId(err)! {
     case LLVMGetStringErrorTypeId():
-      guard let msg = LLVMGetErrorMessage(self.llvm) else {
+      guard let msg = LLVMGetErrorMessage(err) else {
         fatalError("Couldn't get the error message?")
       }
       throw JITError.generic(String(cString: msg))
