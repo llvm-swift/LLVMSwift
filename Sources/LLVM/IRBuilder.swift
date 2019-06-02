@@ -1153,6 +1153,22 @@ extension IRBuilder {
     return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
   }
 
+  /// Build a GEP (Get Element Pointer) instruction suitable for indexing into
+  /// a struct. This uses LLVMBuildStructGEP2 from cllvm
+  ///
+  /// - parameter ptr: The base address for the index calculation.
+  /// - parameter type: The type of the struct to index into. If nil is specified, the
+  ///   type property of the pointer is used.
+  /// - parameter index: The offset from the base for the index calculation.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the address of a subelement of the given
+  ///   struct value.
+  public func buildStructGEP2(_ ptr: IRValue, type: IRType? = nil, index: Int, name: String = "") -> IRValue {
+    let structType = type ?? ptr.type
+    return LLVMBuildStructGEP2(llvm, structType.asLLVM(), ptr.asLLVM(), UInt32(index), name)
+  }
+  
   /// Build an ExtractValue instruction to retrieve an indexed value from a
   /// struct or array value.
   ///
