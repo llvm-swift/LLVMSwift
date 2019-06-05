@@ -174,7 +174,7 @@ class IRMetadataSpec : XCTestCase {
       // IRSIMPLETBAA-NEXT:  %0 = alloca { i32, { i16 } }
       let alloca = builder.buildAlloca(type: structTyB)
       // IRSIMPLETBAA-NEXT:  %1 = getelementptr inbounds { i32, { i16 } }, { i32, { i16 } }* %0, i64 0, i32 1, i32 0
-      let field = builder.buildInBoundsGEP(alloca, indices: [
+      let field = builder.buildInBoundsGEP(alloca, type: structTyB, indices: [
         IntType.int64.constant(0), // (*this)
         IntType.int32.constant(1), // .a
         IntType.int32.constant(0), // .s

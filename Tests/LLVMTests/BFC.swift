@@ -247,8 +247,8 @@ private func compileProgramBody(
   let flushExtern = Externs.flush.resolve(builder)
 
   var addressPointer: IRValue = cellTape.constGEP(indices: [
-    IntType.int32.zero(),
-    IntType.int32.zero()
+    IntType.int32.zero(), // (*self)
+    IntType.int32.zero()  //   [0]
   ])
 
   /// Create an artificial typedef and variable for the current
@@ -291,7 +291,7 @@ private func compileProgramBody(
     switch c {
     case ">":
       // Move right
-      addressPointer = builder.buildGEP(addressPointer, indices: [ IntType.int32.constant(1) ])
+      addressPointer = builder.buildGEP(addressPointer, type: cellTapeType, indices: [ IntType.int32.constant(1) ])
       builder.currentDebugLocation = dibuilder.buildDebugLocation(at: (sourceLine, sourceColumn), in: scope)
       dibuilder.buildDbgValue(of: addressPointer, to: diVariable,
                               atEndOf: builder.insertBlock!,
@@ -299,7 +299,7 @@ private func compileProgramBody(
                               location: builder.currentDebugLocation!)
     case "<":
       // Move left
-      addressPointer = builder.buildGEP(addressPointer, indices: [ IntType.int32.constant(-1) ])
+      addressPointer = builder.buildGEP(addressPointer, type: cellTapeType, indices: [ IntType.int32.constant(-1) ])
       builder.currentDebugLocation = dibuilder.buildDebugLocation(at: (sourceLine, sourceColumn), in: scope)
       dibuilder.buildDbgValue(of: addressPointer, to: diVariable,
                               atEndOf: builder.insertBlock!,
@@ -307,7 +307,7 @@ private func compileProgramBody(
                               location: builder.currentDebugLocation!)
     case "+":
       // Increment
-      let value = builder.buildLoad(addressPointer)
+      let value = builder.buildLoad(addressPointer, type: cellType)
       let ptrUp = builder.buildAdd(value, cellType.constant(1))
       builder.buildStore(ptrUp, to: addressPointer)
       builder.currentDebugLocation = dibuilder.buildDebugLocation(at: (sourceLine, sourceColumn), in: scope)
@@ -317,7 +317,7 @@ private func compileProgramBody(
                               location: builder.currentDebugLocation!)
     case "-":
       // Decrement
-      let value = builder.buildLoad(addressPointer)
+      let value = builder.buildLoad(addressPointer, type: cellType)
       let ptrDown = builder.buildSub(value, cellType.constant(1))
       builder.buildStore(ptrDown, to: addressPointer)
       builder.currentDebugLocation = dibuilder.buildDebugLocation(at: (sourceLine, sourceColumn), in: scope)
@@ -327,7 +327,7 @@ private func compileProgramBody(
                               location: builder.currentDebugLocation!)
     case ".":
       // Write
-      let dataValue = builder.buildLoad(addressPointer)
+      let dataValue = builder.buildLoad(addressPointer, type: cellType)
       _ = builder.buildCall(putCharExtern, args: [dataValue])
       builder.currentDebugLocation = dibuilder.buildDebugLocation(at: (sourceLine, sourceColumn), in: scope)
     case ",":
@@ -343,7 +343,7 @@ private func compileProgramBody(
       let loopExit = function.appendBasicBlock(named: "exit")
 
       // If zero
-      let cond = builder.buildIsNotNull(builder.buildLoad(addressPointer))
+      let cond = builder.buildIsNotNull(builder.buildLoad(addressPointer, type: cellType))
       builder.buildCondBr(condition: cond, then: loopBody, else: loopExit)
 
       // Build a PHI for any address pointer changes in the exit block.
@@ -387,7 +387,7 @@ private func compileProgramBody(
       loop.exitDestination.addIncoming([ (addressPointer, builder.insertBlock!) ])
 
       // If not zero.
-      let cond = builder.buildIsNotNull(builder.buildLoad(addressPointer))
+      let cond = builder.buildIsNotNull(builder.buildLoad(addressPointer, type: cellType))
       builder.buildCondBr(condition: cond, then: loop.body, else: loop.exit)
 
       // Move the exit block after the loop body.

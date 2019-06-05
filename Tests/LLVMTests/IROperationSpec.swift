@@ -33,14 +33,14 @@ class IROperationSpec : XCTestCase {
       builder.positionAtEnd(of: entry)
 
       // BINARYOP-NEXT: %0 = load i32, i32* @a
-      let vgi1 = builder.buildLoad(gi1)
+      let vgi1 = builder.buildLoad(gi1, type: IntType.int32)
       // BINARYOP-NEXT: %1 = load i32, i32* @b
-      let vgi2 = builder.buildLoad(gi2)
+      let vgi2 = builder.buildLoad(gi2, type: IntType.int32)
 
       // BINARYOP-NEXT: %2 = load float, float* @c
-      let vgf1 = builder.buildLoad(gf1)
+      let vgf1 = builder.buildLoad(gf1, type: FloatType.float)
       // BINARYOP-NEXT: %3 = load float, float* @d
-      let vgf2 = builder.buildLoad(gf2)
+      let vgf2 = builder.buildLoad(gf2, type: FloatType.float)
 
       // BINARYOP-NEXT: %4 = add i32 %0, %1
       _ = builder.buildBinaryOperation(.add, vgi1, vgi2)
@@ -110,9 +110,9 @@ class IROperationSpec : XCTestCase {
       builder.positionAtEnd(of: entry)
 
       // CASTOP-NEXT: %0 = load i32, i32* @a
-      let vgi = builder.buildLoad(gi)
+      let vgi = builder.buildLoad(gi, type: IntType.int32)
       // CASTOP-NEXT: %1 = load float, float* @f
-      let vgf = builder.buildLoad(gf)
+      let vgf = builder.buildLoad(gf, type: FloatType.float)
 
       // CASTOP-NEXT: %2 = trunc i32 %0 to i16
       _ = builder.buildCast(.trunc, value: vgi, type: IntType.int16)

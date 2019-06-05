@@ -1082,27 +1082,6 @@ extension IRBuilder {
   /// given value.
   ///
   /// - parameter ptr: The pointer value to load from.
-  /// - parameter ordering: The ordering effect of the fence for this load,
-  ///   if any.  Defaults to a nonatomic load.
-  /// - parameter volatile: Whether this is a load from a volatile memory location.
-  /// - parameter alignment: The alignment of the access.
-  /// - parameter name: The name for the newly inserted instruction.
-  ///
-  /// - returns: A value representing the result of a load from the given
-  ///   pointer value.
-  @available(*, deprecated, message: "Use buildLoad(type:ptr:ordering:volatile:alignment:name) instead")
-  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero, name: String = "") -> IRInstruction {
-    let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
-    LLVMSetOrdering(loadInst, ordering.llvm)
-    LLVMSetVolatile(loadInst, volatile.llvm)
-    LLVMSetAlignment(loadInst, alignment.rawValue)
-    return loadInst
-  }
-  
-  /// Build a load instruction that loads a value from the location in the
-  /// given value.
-  ///
-  /// - parameter ptr: The pointer value to load from.
   /// - parameter type: The type of value loaded from the given pointer.
   /// - parameter ordering: The ordering effect of the fence for this load,
   ///   if any.  Defaults to a nonatomic load.
@@ -1119,29 +1098,7 @@ extension IRBuilder {
     LLVMSetAlignment(loadInst, alignment.rawValue)
     return loadInst
   }
-  
-  /// Build a `GEP` (Get Element Pointer) instruction with a resultant value
-  /// that is undefined if the address is outside the actual underlying
-  /// allocated object and not the address one-past-the-end.
-  ///
-  /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
-  /// document](http://llvm.org/docs/GetElementPtr.html) to answer questions
-  /// around its semantics and correct usage.
-  ///
-  /// - parameter ptr: The base address for the index calculation.
-  /// - parameter indices: A list of indices that indicate which of the elements
-  ///   of the aggregate object are indexed.
-  /// - parameter name: The name for the newly inserted instruction.
-  ///
-  /// - returns: A value representing the address of a subelement of the given
-  ///   aggregate data structure value.
-  @available(*, deprecated, message: "Use buildInBoundsGEP(type:ptr:indices:name) instead")
-  public func buildInBoundsGEP(_ ptr: IRValue, indices: [IRValue], name: String = "") -> IRValue {
-    var vals = indices.map { $0.asLLVM() as Optional }
-    return vals.withUnsafeMutableBufferPointer { buf in
-      return LLVMBuildInBoundsGEP(llvm, ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
-    }
-  }
+
   
   /// Build a `GEP` (Get Element Pointer) instruction with a resultant value
   /// that is undefined if the address is outside the actual underlying
@@ -1173,27 +1130,6 @@ extension IRBuilder {
   /// around its semantics and correct usage.
   ///
   /// - parameter ptr: The base address for the index calculation.
-  /// - parameter indices: A list of indices that indicate which of the elements
-  ///   of the aggregate object are indexed.
-  /// - parameter name: The name for the newly inserted instruction.
-  ///
-  /// - returns: A value representing the address of a subelement of the given
-  ///   aggregate data structure value.
-  @available(*, deprecated, message: "Use buildGEP(type:ptr:indices:name) instead")
-  public func buildGEP(_ ptr: IRValue, indices: [IRValue], name: String = "") -> IRValue {
-    var vals = indices.map { $0.asLLVM() as Optional }
-    return vals.withUnsafeMutableBufferPointer { buf in
-      return LLVMBuildGEP(llvm, ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
-    }
-  }
-
-  /// Build a GEP (Get Element Pointer) instruction.
-  ///
-  /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
-  /// document](http://llvm.org/docs/GetElementPtr.html) to answer questions
-  /// around its semantics and correct usage.
-  ///
-  /// - parameter ptr: The base address for the index calculation.
   /// - parameter type: The type used to calculate pointer offsets.
   /// - parameter indices: A list of indices that indicate which of the elements
   ///   of the aggregate object are indexed.
@@ -1206,20 +1142,6 @@ extension IRBuilder {
     return vals.withUnsafeMutableBufferPointer { buf in
       return LLVMBuildGEP2(llvm, type.asLLVM(), ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
     }
-  }
-  
-  /// Build a GEP (Get Element Pointer) instruction suitable for indexing into
-  /// a struct.
-  ///
-  /// - parameter ptr: The base address for the index calculation.
-  /// - parameter index: The offset from the base for the index calculation.
-  /// - parameter name: The name for the newly inserted instruction.
-  ///
-  /// - returns: A value representing the address of a subelement of the given
-  ///   struct value.
-  @available(*, deprecated, message: "Use buildStructGEP(type:ptr:index:name) instead")
-  public func buildStructGEP(_ ptr: IRValue, index: Int, name: String = "") -> IRValue {
-    return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
   }
 
   /// Build a GEP (Get Element Pointer) instruction suitable for indexing into
@@ -1989,6 +1911,89 @@ extension IRBuilder {
                                 hasSideEffects.llvm, needsAlignedStack.llvm,
                                 dialect.llvm)
       }
+    }
+  }
+}
+
+// MARK: Deprecated APIs
+
+extension IRBuilder {
+  /// Build a load instruction that loads a value from the location in the
+  /// given value.
+  ///
+  /// - parameter ptr: The pointer value to load from.
+  /// - parameter ordering: The ordering effect of the fence for this load,
+  ///   if any.  Defaults to a nonatomic load.
+  /// - parameter volatile: Whether this is a load from a volatile memory location.
+  /// - parameter alignment: The alignment of the access.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the result of a load from the given
+  ///   pointer value.
+  @available(*, deprecated, message: "Use buildLoad(_:type:ordering:volatile:alignment:name) instead")
+  public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero, name: String = "") -> IRInstruction {
+    let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
+    LLVMSetOrdering(loadInst, ordering.llvm)
+    LLVMSetVolatile(loadInst, volatile.llvm)
+    LLVMSetAlignment(loadInst, alignment.rawValue)
+    return loadInst
+  }
+
+  /// Build a GEP (Get Element Pointer) instruction suitable for indexing into
+  /// a struct.
+  ///
+  /// - parameter ptr: The base address for the index calculation.
+  /// - parameter index: The offset from the base for the index calculation.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the address of a subelement of the given
+  ///   struct value.
+  @available(*, deprecated, message: "Use buildStructGEP(_:type:index:name) instead")
+  public func buildStructGEP(_ ptr: IRValue, index: Int, name: String = "") -> IRValue {
+    return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
+  }
+
+  /// Build a GEP (Get Element Pointer) instruction.
+  ///
+  /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
+  /// document](http://llvm.org/docs/GetElementPtr.html) to answer questions
+  /// around its semantics and correct usage.
+  ///
+  /// - parameter ptr: The base address for the index calculation.
+  /// - parameter indices: A list of indices that indicate which of the elements
+  ///   of the aggregate object are indexed.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the address of a subelement of the given
+  ///   aggregate data structure value.
+  @available(*, deprecated, message: "Use buildGEP(_:type:indices:name) instead")
+  public func buildGEP(_ ptr: IRValue, indices: [IRValue], name: String = "") -> IRValue {
+    var vals = indices.map { $0.asLLVM() as Optional }
+    return vals.withUnsafeMutableBufferPointer { buf in
+      return LLVMBuildGEP(llvm, ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
+    }
+  }
+
+  /// Build a `GEP` (Get Element Pointer) instruction with a resultant value
+  /// that is undefined if the address is outside the actual underlying
+  /// allocated object and not the address one-past-the-end.
+  ///
+  /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
+  /// document](http://llvm.org/docs/GetElementPtr.html) to answer questions
+  /// around its semantics and correct usage.
+  ///
+  /// - parameter ptr: The base address for the index calculation.
+  /// - parameter indices: A list of indices that indicate which of the elements
+  ///   of the aggregate object are indexed.
+  /// - parameter name: The name for the newly inserted instruction.
+  ///
+  /// - returns: A value representing the address of a subelement of the given
+  ///   aggregate data structure value.
+  @available(*, deprecated, message: "Use buildInBoundsGEP(_:type:indices:name) instead")
+  public func buildInBoundsGEP(_ ptr: IRValue, indices: [IRValue], name: String = "") -> IRValue {
+    var vals = indices.map { $0.asLLVM() as Optional }
+    return vals.withUnsafeMutableBufferPointer { buf in
+      return LLVMBuildInBoundsGEP(llvm, ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
     }
   }
 }

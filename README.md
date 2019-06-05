@@ -133,7 +133,7 @@ phi.addIncoming([
   (elseVal, elseBB),
 ])
 builder.buildStore(phi, to: local)
-let ret = builder.buildLoad(local, name: "ret")
+let ret = builder.buildLoad(local, type: FloatType.double, name: "ret")
 builder.buildRet(ret)
 ```
 
