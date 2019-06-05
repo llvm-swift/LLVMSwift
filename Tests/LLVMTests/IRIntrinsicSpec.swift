@@ -85,7 +85,7 @@ class IRIntrinsicSpec : XCTestCase {
       let cpyVar = builder.buildCall(intrinsic, args: [variable])
 
       // VIRTUALOVERLOAD-IRINTRINSIC-NEXT: [[LOAD_VAR:%[0-9]+]] = load i32, i32* [[COPY_PTR]]
-      let loadVar = builder.buildLoad(cpyVar)
+      let loadVar = builder.buildLoad(cpyVar, type: IntType.int32)
 
       // VIRTUALOVERLOAD-IRINTRINSIC-NEXT:  ret i32 [[LOAD_VAR]]
       builder.buildRet(loadVar)
@@ -110,15 +110,15 @@ class IRIntrinsicSpec : XCTestCase {
 
       let doubleAlloca = builder.buildAlloca(type: FloatType.double)
       builder.buildStore(FloatType.double.constant(1.0), to: doubleAlloca)
-      let double = builder.buildLoad(doubleAlloca)
+      let double = builder.buildLoad(doubleAlloca, type: FloatType.double)
 
       let floatAlloca = builder.buildAlloca(type: FloatType.float)
       builder.buildStore(FloatType.float.constant(1.0), to: floatAlloca)
-      let float = builder.buildLoad(floatAlloca)
+      let float = builder.buildLoad(floatAlloca, type: FloatType.float)
 
       let halfAlloca = builder.buildAlloca(type: FloatType.half)
       builder.buildStore(FloatType.half.constant(1.0), to: halfAlloca)
-      let half = builder.buildLoad(halfAlloca)
+      let half = builder.buildLoad(halfAlloca, type: FloatType.half)
 
       // INTRINSIC-FAMILY-RESOLVE: call double @llvm.sin.f64(double
       let sinf64 = module.intrinsic(Intrinsic.ID.llvm_sin, parameters: [ FloatType.double ])!

@@ -344,26 +344,26 @@ class IRPassManagerSpec : XCTestCase {
     builder.buildStore(fun.parameters[0], to: val1)
     builder.buildStore(fun.parameters[1], to: val2)
     builder.buildStore(IntType.int32.constant(4), to: val3)
-    let reloadVal1 = builder.buildLoad(val1, alignment: Alignment(4))
+    let reloadVal1 = builder.buildLoad(val1, type: IntType.int32, alignment: Alignment(4))
     let cmpVal = builder.buildICmp(reloadVal1, IntType.int32.constant(1), .equal)
     builder.buildCondBr(condition: cmpVal, then: block1, else: block2)
 
     builder.positionAtEnd(of: block1)
-    let reloadVal2 = builder.buildLoad(val1, alignment: Alignment(4))
-    let reloadVal3 = builder.buildLoad(val3, alignment: Alignment(4))
+    let reloadVal2 = builder.buildLoad(val1, type: IntType.int32, alignment: Alignment(4))
+    let reloadVal3 = builder.buildLoad(val3, type: IntType.int32, alignment: Alignment(4))
     let sum1 = builder.buildAdd(reloadVal2, reloadVal3, overflowBehavior: .noSignedWrap)
     builder.buildStore(sum1, to: val3)
     builder.buildBr(merge)
 
     builder.positionAtEnd(of: block2)
-    let reloadVal4 = builder.buildLoad(val2, alignment: Alignment(4))
-    let reloadVal5 = builder.buildLoad(val3, alignment: Alignment(4))
+    let reloadVal4 = builder.buildLoad(val2, type: IntType.int32, alignment: Alignment(4))
+    let reloadVal5 = builder.buildLoad(val3, type: IntType.int32, alignment: Alignment(4))
     let sum2 = builder.buildAdd(reloadVal4, reloadVal5, overflowBehavior: .noSignedWrap)
     builder.buildStore(sum2, to: val3)
     builder.buildBr(merge)
 
     builder.positionAtEnd(of: merge)
-    let reloadVal6 = builder.buildLoad(val3, alignment: Alignment(4))
+    let reloadVal6 = builder.buildLoad(val3, type: IntType.int32, alignment: Alignment(4))
     builder.buildRet(reloadVal6)
 
     return module
