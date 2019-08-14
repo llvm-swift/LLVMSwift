@@ -187,7 +187,7 @@ public struct Triple: Equatable {
 
   /// Normalizes a target triple format string.
   ///
-  /// The normalization processs converts an arbitrary machine specification
+  /// The normalization process converts an arbitrary machine specification
   /// into the canonical triple form.  In particular, it handles the
   /// common case in which otherwise valid components are in the wrong order.
   ///

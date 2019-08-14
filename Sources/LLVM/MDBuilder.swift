@@ -413,12 +413,12 @@ extension MDBuilder {
   ///   - accessType: The type of the accessed value.  This is the type that
   ///     corresponds to the type of the destination value in a `load`
   ///     instruction, or the type of the source value in a `store` instruction.
-  ///   - offset: The ofset of the memory accesss into the base type.  If the
+  ///   - offset: The ofset of the memory access into the base type.  If the
   ///     base type is scalar, this value must be 0.
   ///   - size: The size of the access in bytes.
   ///   - immutable: If true, accesses to this memory are never writes.
   ///     This corresponds to the `const` memory qualifier in C and C++.
-  /// - Returns: A metadata node representing a TBAA accesss tag.
+  /// - Returns: A metadata node representing a TBAA access tag.
   public func buildTBAAAccessTag(
     baseType: MDNode, accessType: MDNode,
     offset: Size, size: Size, immutable: Bool = false
