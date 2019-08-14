@@ -104,4 +104,14 @@ void LLVMAddInternalizePassWithMustPreservePredicate(
   LLVMPassManagerRef PM, void *Context,
   LLVMBool (*MustPreserve)(LLVMValueRef, void *));
 
+typedef enum {
+  LLVMTailCallKindNone,
+  LLVMTailCallKindTail,
+  LLVMTailCallKindMustTail,
+  LLVMTailCallKindNoTail
+} LLVMTailCallKind;
+
+LLVMTailCallKind LLVMGetTailCallKind(LLVMValueRef CallInst);
+void LLVMSetTailCallKind(LLVMValueRef CallInst, LLVMTailCallKind TCK);
+
 #endif /* LLVMSWIFT_LLVM_SHIM_H */

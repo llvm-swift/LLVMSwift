@@ -135,6 +135,17 @@ extern "C" {
   void LLVMAddInternalizePassWithMustPreservePredicate(
    LLVMPassManagerRef PM, void *Context,
    LLVMBool (*MustPreserve)(LLVMValueRef, void *));
+
+  // https://reviews.llvm.org/D66061
+  typedef enum {
+    LLVMTailCallKindNone,
+    LLVMTailCallKindTail,
+    LLVMTailCallKindMustTail,
+    LLVMTailCallKindNoTail
+  } LLVMTailCallKind;
+
+  LLVMTailCallKind LLVMGetTailCallKind(LLVMValueRef CallInst);
+  void LLVMSetTailCallKind(LLVMValueRef CallInst, LLVMTailCallKind TCK);
 }
 
 using namespace llvm;
@@ -385,3 +396,37 @@ void LLVMAddInternalizePassWithMustPreservePredicate(
 void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM) {
   unwrap(PM)->add(createGlobalsAAWrapperPass());
 }
+
+LLVMTailCallKind LLVMGetTailCallKind(LLVMValueRef Call) {
+  switch (unwrap<CallInst>(Call)->getTailCallKind()) {
+  case CallInst::TailCallKind::TCK_None:
+    return LLVMTailCallKindNone;
+  case CallInst::TailCallKind::TCK_Tail:
+    return LLVMTailCallKindTail;
+  case CallInst::TailCallKind::TCK_MustTail:
+    return LLVMTailCallKindMustTail;
+  case CallInst::TailCallKind::TCK_NoTail:
+    return LLVMTailCallKindNoTail;
+  }
+}
+
+void LLVMSetTailCallKind(LLVMValueRef Call, LLVMTailCallKind TCK) {
+  CallInst::TailCallKind kind;
+  switch (TCK) {
+  case LLVMTailCallKindNone:
+    kind = CallInst::TailCallKind::TCK_None;
+    break;
+  case LLVMTailCallKindTail:
+    kind = CallInst::TailCallKind::TCK_Tail;
+    break;
+  case LLVMTailCallKindMustTail:
+    kind = CallInst::TailCallKind::TCK_MustTail;
+    break;
+  case LLVMTailCallKindNoTail:
+    kind = CallInst::TailCallKind::TCK_NoTail;
+    break;
+  }
+
+  unwrap<CallInst>(Call)->setTailCallKind(kind);
+}
+
