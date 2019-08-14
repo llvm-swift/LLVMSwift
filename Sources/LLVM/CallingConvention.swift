@@ -419,7 +419,7 @@ public enum CallingConvention {
     .amdGPULS : LLVMAMDGPULSCallConv, .amdGPUES : LLVMAMDGPUESCallConv,
   ]
 
-  /// Retrieves the corresponding `LLVMDWARFSourceLanguage`.
+  /// Retrieves the corresponding `LLVMCallConv`.
   public var llvm: LLVMCallConv {
     return CallingConvention.conventionMapping[self]!
   }
