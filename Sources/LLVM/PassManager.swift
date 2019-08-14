@@ -141,6 +141,12 @@ public enum Pass {
   case scopedNoAliasAA
   /// LLVM's primary stateless and local alias analysis.
   case basicAliasAnalysis
+  /// Performs alias and mod/ref analysis for internal global values that
+  /// do not have their address taken.
+  ///
+  /// Internal global variables that are only loaded from may be marked as
+  /// constants.
+  case globalsAliasAnalysis
   /// This pass is used to ensure that functions have at most one return
   /// instruction in them.  Additionally, it keeps track of which node is
   /// the new exit node of the CFG.

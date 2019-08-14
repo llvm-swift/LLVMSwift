@@ -98,6 +98,8 @@ void LLVMAppendExistingBasicBlock(LLVMValueRef Fn,
 
 void LLVMAddAddDiscriminatorsPass(LLVMPassManagerRef PM);
 
+void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM);
+
 void LLVMAddInternalizePassWithMustPreservePredicate(
   LLVMPassManagerRef PM, void *Context,
   LLVMBool (*MustPreserve)(LLVMValueRef, void *));

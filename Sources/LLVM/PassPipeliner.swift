@@ -321,6 +321,8 @@ extension PassPipeliner {
       LLVMAddScopedNoAliasAAPass(passManager)
     case .basicAliasAnalysis:
       LLVMAddBasicAliasAnalysisPass(passManager)
+    case .globalsAliasAnalysis:
+      LLVMAddGlobalsAAWrapperPass(passManager)
     case .unifyFunctionExitNodes:
       LLVMAddUnifyFunctionExitNodesPass(passManager)
     case .alwaysInliner:

@@ -127,6 +127,9 @@ extern "C" {
   // https://reviews.llvm.org/D58624
   void LLVMAddAddDiscriminatorsPass(LLVMPassManagerRef PM);
 
+  // https://reviews.llvm.org/D66237
+  void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM);
+
   // https://reviews.llvm.org/D62456
   void LLVMAddInternalizePassWithMustPreservePredicate(
    LLVMPassManagerRef PM, void *Context,
@@ -376,4 +379,8 @@ void LLVMAddInternalizePassWithMustPreservePredicate(
   unwrap(PM)->add(createInternalizePass([=](const GlobalValue &GV) {
     return Pred(wrap(&GV), Context) == 0 ? false : true;
   }));
+}
+
+void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM) {
+  unwrap(PM)->add(createGlobalsAAWrapperPass());
 }
