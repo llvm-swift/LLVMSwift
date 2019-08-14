@@ -163,6 +163,14 @@ public enum AttributeKind: String {
   /// argument or return value are not also accessed, during the execution of
   /// the function, via pointer values not based on the argument or return
   /// value.
+  ///
+  /// The `noalias` attribute may appear in one of two location: on arguments
+  /// types or on return types. On argument types, `noalias` acts like the
+  /// `restrict` keyword in C and C++ and implies that no other pointer value
+  /// points to this object.  On return types, `noalias` implies that the
+  /// returned pointer is not aliased by any other pointer in the program.
+  ///
+  /// Practically, this allows LLVM to reorder accesses to this memory.
   case noalias
   /// This indicates that the callee does not make any copies of the pointer
   /// that outlive the callee itself.
