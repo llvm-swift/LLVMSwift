@@ -9,7 +9,7 @@ import llvmshims
 /// A `PassPipeliner` handles the creation of a related set of optimization
 /// passes called a "pipeline".  Grouping passes is done for multiple reasons,
 /// chief among them is that optimizer passes are extremely sensitive to their
-/// ordering relative to other passses.  In addition, pass groupings allow for
+/// ordering relative to other passes.  In addition, pass groupings allow for
 /// the clean segregation of otherwise unrelated passes.  For example, a
 /// pipeline might consist of "mandatory" passes such as Jump Threading, LICM,
 /// and DCE in one pipeline and "diagnostic" passes in another.
