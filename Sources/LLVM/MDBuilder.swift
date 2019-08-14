@@ -234,7 +234,12 @@ public struct TBAAStructField {
 }
 
 extension MDBuilder {
-  /// Build a metadata node for the root of a TBAA hierarchy with the given name.
+  /// Build a metadata node for the root of a TBAA hierarchy with the given
+  /// name.
+  ///
+  /// The root node of a TBAA hierarchy describes a boundary for a source
+  /// language's type system.  For the purposes of optimization, a TBAA analysis
+  /// pass must consider ancestors of two different root systems `mayalias`.
   ///
   /// - Parameters:
   ///   - name: The name of the TBAA root node.
@@ -306,13 +311,51 @@ extension MDBuilder {
   /// Builds a TBAA Type Descriptor.
   ///
   /// Type descriptors describe the type system of the higher level language
-  /// being compiled. Scalar type descriptors describe types that do not
-  /// contain other types. Each scalar type has a parent type, which must also
-  /// be a scalar type or the TBAA root. Via this parent relation, scalar types
-  /// within a TBAA root form a tree. Struct type descriptors denote types that
-  /// contain a sequence of other type descriptors, at known offsets. These
-  /// contained type descriptors can either be struct type descriptors
-  /// themselves or scalar type descriptors.
+  /// being compiled and come in two variants:
+  ///
+  /// Scalar Type Descriptors
+  /// =======================
+  ///
+  /// Scalar type descriptors describe types that do not contain other types,
+  /// such as fixed-width integral and floating-point types.  A scalar type
+  /// has a single parent, which is required to be another scalar type or
+  /// the TBAA root node.  For example, in C, `int32_t` would be described be
+  /// a scalar type node with a parent pointer to `unsigned char` which, in
+  /// turn, points to the root for C.
+  ///
+  /// ```
+  /// +----------+   +------+   +-----------+
+  /// |          |   |      |   |           |
+  /// | uint32_t +---> char +---> TBAA Root |
+  /// |          |   |      |   |           |
+  /// +----------+   +------+   +-----------+
+  /// ```
+  ///
+  /// Struct Type Descriptors
+  /// =======================
+  ///
+  /// Struct type descriptors describe types that contain a sequence of other
+  /// type descriptors, at known offsets, as fields. These field type
+  /// descriptors can either be struct type descriptors themselves or scalar
+  /// type descriptors.
+  ///
+  /// ```
+  ///               +----------+
+  ///               |          |
+  ///       +-------> uint32_t +----+
+  ///       |       |          |    |
+  ///       |       +----------+    |
+  /// +------------+            +---v--+   +-----------+
+  /// |            |            |      |   |           |
+  /// | SomeStruct |            | char +---> TBAA Root |
+  /// |            |            |      |   |           |
+  /// +------------+            +---^--+   +-----------+
+  ///       |          +-------+    |
+  ///       |          |       |    |
+  ///       +----------> float +----+
+  ///                  |       |
+  ///                  +-------+
+  /// ```
   ///
   /// - Parameters:
   ///   - parent: The parent type node of this type node or the TBAA root node
