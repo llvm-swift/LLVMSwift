@@ -134,13 +134,43 @@ public enum Pass {
   case earlyCSE
   ///  Removes `llvm.expect` intrinsics and creates "block_weights" metadata.
   case lowerExpectIntrinsic
-  /// Adds metadata to LLVM IR types and performs metadata-based TBAA.
+  /// Adds metadata to LLVM IR types and performs metadata-based
+  /// Type-Based Alias Analysis (TBAA).
+  ///
+  /// TBAA requires that two pointers to objects of different types must never
+  /// alias.  Because memory in LLVM is typeless, TBAA is performed using
+  /// special metadata nodes describing aliasing relationships between types
+  /// in the source language(s).
+  ///
+  /// To construct this metadata, see `MDBuilder`.
   case typeBasedAliasAnalysis
   /// Adds metadata to LLVM IR types and performs metadata-based scoped no-alias
   /// analysis.
   case scopedNoAliasAA
   /// LLVM's primary stateless and local alias analysis.
+  ///
+  /// Given a pointer value, walk the use-def chain to find out how that
+  /// pointer is used.  The traversal terminates at global variables and
+  /// aliases, stack allocations, and values of non-pointer types - referred
+  /// to as "underlying objects". Analysis may reach multiple underlying object
+  /// values because of branching control flow.  If the set of underlying
+  /// objects for one pointer has a non-empty intersection with another, those
+  /// two pointers are deemed `mayalias`.  Else, an empty intersection deems
+  /// those pointers `noalias`.
+  ///
+  /// Basic Alias Analysis should generally be scheduled ahead of other
+  /// AA passes.  This is because it is more conservative than other passes
+  /// about declaring two pointers `mustalias`, and does so fairly efficiently.
+  /// For example, loads through two members of a union with distinct types are
+  /// declared by TBAA to be `noalias`, where BasicAA considers them
+  /// `mustalias`.
   case basicAliasAnalysis
+  /// Performs alias and mod/ref analysis for internal global values that
+  /// do not have their address taken.
+  ///
+  /// Internal global variables that are only loaded from may be marked as
+  /// constants.
+  case globalsAliasAnalysis
   /// This pass is used to ensure that functions have at most one return
   /// instruction in them.  Additionally, it keeps track of which node is
   /// the new exit node of the CFG.

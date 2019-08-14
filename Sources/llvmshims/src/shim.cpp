@@ -1,15 +1,16 @@
+#include "llvm-c/Core.h"
 #include "llvm-c/Object.h"
+#include "llvm/ADT/SmallVector.h"
+#include "llvm/Analysis/GlobalsModRef.h"
 #include "llvm/IR/DebugInfo.h"
 #include "llvm/IR/DIBuilder.h"
-#include "llvm-c/Core.h"
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/LegacyPassManager.h"
-#include "llvm/Support/ARMTargetParser.h"
 #include "llvm/Object/MachOUniversal.h"
 #include "llvm/Object/ObjectFile.h"
-#include "llvm/ADT/SmallVector.h"
+#include "llvm/Support/ARMTargetParser.h"
 #include "llvm/Transforms/Utils.h"
 #include "llvm/Transforms/IPO.h"
 
@@ -126,6 +127,9 @@ extern "C" {
 
   // https://reviews.llvm.org/D58624
   void LLVMAddAddDiscriminatorsPass(LLVMPassManagerRef PM);
+
+  // https://reviews.llvm.org/D66237
+  void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM);
 
   // https://reviews.llvm.org/D62456
   void LLVMAddInternalizePassWithMustPreservePredicate(
@@ -376,4 +380,8 @@ void LLVMAddInternalizePassWithMustPreservePredicate(
   unwrap(PM)->add(createInternalizePass([=](const GlobalValue &GV) {
     return Pred(wrap(&GV), Context) == 0 ? false : true;
   }));
+}
+
+void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM) {
+  unwrap(PM)->add(createGlobalsAAWrapperPass());
 }

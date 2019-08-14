@@ -21,7 +21,7 @@ public struct FunctionType: IRType {
   /// - parameter isVarArg: Indicates whether this function type is variadic.
   ///   Defaults to `false`.
   /// - note: The context of this type is taken from it's `returnType`
-  @available(*, deprecated, message: "Use the more concise initializer instead")
+  @available(*, deprecated, message: "Use the more concise initializer instead", renamed: "FunctionType.init(_:_:variadic:)")
   public init(argTypes: [IRType], returnType: IRType, isVarArg: Bool = false) {
     self.parameterTypes = argTypes
     self.returnType = returnType

@@ -22,8 +22,10 @@ public struct Call: IRInstruction {
     set { LLVMSetInstructionCallConv(self.llvm, newValue.llvm.rawValue) }
   }
 
-  /// Returns whether this function call is a tail call.  That is, if the callee
-  /// may reuse the stack memory of the caller.
+  /// Returns whether this function call is a tail call.
+  ///
+  /// A tail call may not reference memory in the stack frame of the calling
+  /// function.  Therefore, the callee may reuse the stack memory of the caller.
   ///
   /// This attribute requires support from the target architecture.
   public var isTailCall: Bool {
