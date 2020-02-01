@@ -16,7 +16,7 @@ public struct PointerType: IRType {
   /// Retrieves the type of the value being pointed to.
   public let pointee: IRType
   /// Retrieves the address space where the pointed-to object resides.
-  public let addressSpace: Int
+  public let addressSpace: AddressSpace
 
   /// Creates a `PointerType` from a pointee type and an optional address space.
   ///
@@ -24,7 +24,7 @@ public struct PointerType: IRType {
   /// - parameter addressSpace: The optional address space where the pointed-to
   ///   object resides.
   /// - note: The context of this type is taken from it's pointee
-  public init(pointee: IRType, addressSpace: Int = 0) {
+  public init(pointee: IRType, addressSpace: AddressSpace = .zero) {
     // FIXME: This class of invalid reference is not caught by Module.verify(),
     // only `lli`.
     if pointee is VoidType {
@@ -40,7 +40,7 @@ public struct PointerType: IRType {
 
   /// Retrieves the underlying LLVM type object.
   public func asLLVM() -> LLVMTypeRef {
-    return LLVMPointerType(pointee.asLLVM(), UInt32(addressSpace))
+    return LLVMPointerType(pointee.asLLVM(), UInt32(addressSpace.rawValue))
   }
 }
 

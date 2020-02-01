@@ -438,7 +438,7 @@ public struct MDNode: IRMetadata {
   public init(in context: Context = .global, operands: [IRMetadata]) {
     var operands = operands.map { $0.asMetadata() as Optional }
     self.llvm = operands.withUnsafeMutableBufferPointer { buf in
-      return LLVMMDNodeInContext2(context.llvm, buf.baseAddress!, UInt32(buf.count))
+      return LLVMMDNodeInContext2(context.llvm, buf.baseAddress!, buf.count)
     }
   }
 

@@ -5,40 +5,43 @@ matrix:
   include:
   - os: osx
     language: objective-c
-    osx_image: xcode10.2
+    osx_image: xcode11.5
     before_install:
     - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
     - brew update
-    - brew install llvm
+    - brew install llvm@9
+    - echo 'export PATH="/usr/local/opt/llvm@9/bin:$PATH"' >> /Users/travis/.bash_profile
+    - source /Users/travis/.bash_profile
     - sudo swift utils/make-pkgconfig.swift
     script:
     - swift test -Xlinker -w
   - os: linux
     language: generic
     sudo: required
-    dist: trusty
+    dist: focal
     env:
-    - LLVM_API_VERSION=8
+    - LLVM_API_VERSION=9
     before_install:
     - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:"${PKG_CONFIG_PATH}"
     - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-    - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-${LLVM_API_VERSION} main"
+    - sudo apt-add-repository "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-${LLVM_API_VERSION} main"
     - sudo apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
     - sudo apt-get update
-    - sudo apt-get install -y llvm-${LLVM_API_VERSION} libc++1
+    - sudo apt-get install -y binutils git gnupg2 libc6-dev libcurl4 libedit2 libgcc-9-dev libpython2.7 libsqlite3-0 libstdc++-9-dev libxml2 libz3-dev pkg-config tzdata zlib1g-dev
+    - sudo apt-get install -y llvm-${LLVM_API_VERSION} llvm-${LLVM_API_VERSION}-dev libc++1 libtinfo5 libncurses5
     - sudo cp /usr/lib/x86_64-linux-gnu/libc++.so.1.0 /usr/lib/
     - sudo ln -sf /usr/lib/libc++.so.1.0 /usr/lib/libc++.so
     - sudo rm -rf /usr/local/clang-*/bin/llvm-config
-    - ls -l /usr/bin/llvm-config*
     - sudo rm -f /usr/bin/llvm-config
     - sudo ln -s /usr/bin/llvm-config-${LLVM_API_VERSION} /usr/bin/llvm-config
+    - ls /usr/lib/llvm-9/include/llvm-c
     - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
-    - wget https://swift.org/builds/swift-5.0-release/ubuntu1404/swift-5.0-RELEASE/swift-5.0-RELEASE-ubuntu14.04.tar.gz
-    - tar xzf swift-5.0-RELEASE-ubuntu14.04.tar.gz
-    - export PATH=${PWD}/swift-5.0-RELEASE-ubuntu14.04/usr/bin:"${PATH}"
-    - sudo ./swift-5.0-RELEASE-ubuntu14.04/usr/bin/swift utils/make-pkgconfig.swift
+    - wget https://swift.org/builds/swift-5.2.5-release/ubuntu1804/swift-5.2.5-RELEASE/swift-5.2.5-RELEASE-ubuntu18.04.tar.gz
+    - tar xzf swift-5.2.5-RELEASE-ubuntu18.04.tar.gz
+    - export PATH=${PWD}/swift-5.2.5-RELEASE-ubuntu18.04/usr/bin:"${PATH}"
+    - sudo ./swift-5.2.5-RELEASE-ubuntu18.04/usr/bin/swift utils/make-pkgconfig.swift
     script:
-    - ./swift-5.0-RELEASE-ubuntu14.04/usr/bin/swift test
+    - sudo ./swift-5.2.5-RELEASE-ubuntu18.04/usr/bin/swift test
 notifications:
   slack:
     secure: ek/+U+e44bqP8+QCHojy2LhrN9iwY3N/TNNqNG5FZrp09Vidrd5KXWJOXFxlGrpeWdgTpi089YbEdTfxpcDIudUqDqLwPzS7wePiG2cEC1OT6l3yrhI4AvOe7EsNSOX8gzkuEnmrZVHwLLGe7JeR7JIQKoHMZsBcPYDnO8kRP0Ei3zOh47YUn75SE87egAgZOVBDbZYO3GWRa4WX64s8gaQYQ9a7EoUY0oX9rQ48FJs3rmEIhvIXdcOj9bGX7+o0j7l+IFial/Qh+B6bp4XkZU/tUVP6cuNVI1vxE1weVGCBhgt5wLhXTMewzoE5D1IgMZHVuzIBcDbBthSzQRttLSlYar6xTjXtRtOnb8tqZMWfUj3HBYCFYqtz7PGnZ3IflEVsPJW6tgSsoeB6egjzb8APP9mvhm8+zb1jQG1dqXLWErMjWqhlyPVPmHrxU2w/OLWLAJPY94GVmLnSuOw2pSz41spuEY80JcVVzoRbAOQWrwAujq2S3k93yvKpGq4eaT72Mt8g1CyZesByvzcLk99LEJSpqOIxUqXBd4RwHhay/sq8LllyyqY8ORsxEgwQluOAjEhATO/t/HUsu2ndn1k38U1c4HqXW7FDs1hffYEzZ/PGxciCS6Vt1bfST+iq34pzqpanENQCnX6mSR+D+M7mHlCWdsUihmxEcs5knuM=

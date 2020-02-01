@@ -336,6 +336,9 @@ public class AttachedMetadata {
     /// attribute may only be applied to pointer typed parameters. This is not
     /// checked or enforced by LLVM; if the parameter or return pointer is null,
     /// the behavior is undefined.
+    ///
+    /// Note that the concept of a "null" pointer is address space dependent.  it is
+    /// not necessarily the 0 bit-pattern.
     case nonnull = 11
     /// Dereferenceable metadata.
     ///

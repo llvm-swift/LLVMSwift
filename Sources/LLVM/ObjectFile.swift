@@ -184,7 +184,7 @@ public final class MachOUniversalBinaryFile: BinaryFile {
   public func objectFile(for architecture: Triple.Architecture) throws -> Slice {
     var error: UnsafeMutablePointer<Int8>?
     let archName = architecture.rawValue
-    let archFile: LLVMBinaryRef = LLVMUniversalBinaryCopyObjectForArchitecture(self.llvm, archName, archName.count, &error)
+    let archFile: LLVMBinaryRef = LLVMMachOUniversalBinaryCopyObjectForArch(self.llvm, archName, archName.count, &error)
     if let error = error {
       defer { LLVMDisposeMessage(error) }
       throw BinaryFileError.couldNotCreate(String(cString: error))

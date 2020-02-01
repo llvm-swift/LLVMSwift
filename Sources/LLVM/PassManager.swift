@@ -212,7 +212,8 @@ public enum Pass {
   /// Return a new pass object which transforms invoke instructions into calls,
   /// if the callee can *not* unwind the stack.
   case pruneEH
-
+  /// This transformation attempts to discovery `alloca` allocations of aggregates that can be
+  /// broken down into component scalar values.  
   case scalarReplacementOfAggregates
   /// This pass removes any function declarations (prototypes) that are not used.
   case stripDeadPrototypes

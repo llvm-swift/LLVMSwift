@@ -496,8 +496,6 @@ public struct DIFlags : OptionSet {
   public static let bitField            = DIFlags(rawValue: LLVMDIFlagBitField.rawValue)
   /// Denotes a `noreturn` function.
   public static let noReturn            = DIFlags(rawValue: LLVMDIFlagNoReturn.rawValue)
-  /// Denotes the subprogram for main.
-  public static let mainSubprogram      = DIFlags(rawValue: LLVMDIFlagMainSubprogram.rawValue)
   /// Denotes a parameter that is passed by value according to the target's
   /// calling convention.
   public static let passByValue         = DIFlags(rawValue: LLVMDIFlagTypePassByValue.rawValue)
@@ -508,9 +506,8 @@ public struct DIFlags : OptionSet {
   public static let enumClass           = DIFlags(rawValue: LLVMDIFlagEnumClass.rawValue)
   /// Denotes a thunk function.
   public static let thunk               = DIFlags(rawValue: LLVMDIFlagThunk.rawValue)
-  /// Denotes a class that has a trivial default constructor and is trivially
-  /// copiable.
-  public static let trivial             = DIFlags(rawValue: LLVMDIFlagTrivial.rawValue)
+  /// Denotes a class that has a non-trivial default constructor or is not trivially copiable.
+  public static let nonTrivial          = DIFlags(rawValue: LLVMDIFlagNonTrivial.rawValue)
   /// Denotes an indirect virtual base class.
   public static let indirectVirtualBase = DIFlags(rawValue: LLVMDIFlagIndirectVirtualBase.rawValue)
   /// The mask for `public`, `private`, and `protected` accessibility.

@@ -664,17 +664,17 @@ extension DIBuilder {
   ///   - pointee: Type pointed by this pointer.
   ///   - size: The size of the pointer value.
   ///   - alignment: The alignment of the pointer.
-  ///   - addressSpace: DWARF address space.
+  ///   - addressSpace: The address space the pointer type reside in.
   ///   - name: The name of the pointer type.
   public func buildPointerType(
     pointee: DIType, size: Size, alignment: Alignment = .zero,
-    addressSpace: UInt32 = 0, name: String = ""
+    addressSpace: AddressSpace = .zero, name: String = ""
   ) -> DIType {
     let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreatePointerType(
       self.llvm, pointee.asMetadata(),
       size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
-      addressSpace, name, name.count)
+      UInt32(addressSpace.rawValue), name, name.count)
     else {
       fatalError("Failed to allocate metadata")
     }
