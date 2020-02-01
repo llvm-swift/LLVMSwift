@@ -107,6 +107,8 @@ public enum IRValueKind {
   /// The value is a constant floating pointer value.
   case constantFloat
   /// The value is a constant pointer to null.
+  ///
+  /// Note that this pointer is a zero bit-value pointer.  Its semantics are dependent upon the address space.
   case constantPointerNull
   /// The value is a constant none-token value.
   case constantTokenNone

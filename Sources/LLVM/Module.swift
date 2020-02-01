@@ -502,12 +502,9 @@ extension Module {
   ///   variable resides.
   ///
   /// - returns: A value representing the newly inserted global variable.
-  public func addGlobal(_ name: String, type: IRType, addressSpace: Int? = nil) -> Global {
-    let val: LLVMValueRef
-    if let addressSpace = addressSpace {
-      val = LLVMAddGlobalInAddressSpace(llvm, type.asLLVM(), name, UInt32(addressSpace))
-    } else {
-      val = LLVMAddGlobal(llvm, type.asLLVM(), name)
+  public func addGlobal(_ name: String, type: IRType, addressSpace: AddressSpace = .zero) -> Global {
+    guard let val = LLVMAddGlobalInAddressSpace(llvm, type.asLLVM(), name, UInt32(addressSpace.rawValue)) else {
+      fatalError()
     }
     return Global(llvm: val)
   }
@@ -520,7 +517,7 @@ extension Module {
   ///   variable resides.
   ///
   /// - returns: A value representing the newly inserted global variable.
-  public func addGlobal(_ name: String, initializer: IRValue, addressSpace: Int? = nil) -> Global {
+  public func addGlobal(_ name: String, initializer: IRValue, addressSpace: AddressSpace = .zero) -> Global {
     let global = addGlobal(name, type: initializer.type)
     global.initializer = initializer
     return global

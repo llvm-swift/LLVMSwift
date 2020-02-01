@@ -17,7 +17,7 @@ public class TargetData {
   /// Computes the byte offset of the indexed struct element for a target.
   ///
   /// - parameter element: The index of the element in the given structure to
-  //    compute.
+  ///    compute.
   /// - parameter type: The type of the structure to compute the offset with.
   ///
   /// - returns: The offset of the given element within the structure.
@@ -66,17 +66,9 @@ public class TargetData {
   ///   - addressSpace: The address space in which to derive the type.
   /// - returns: An IntegerType that is the same size as the pointer type
   ///            on this target.
-  public func intPointerType(context: Context? = nil, addressSpace: Int? = nil) -> IntType {
-    let type: LLVMTypeRef
-    switch (context, addressSpace) {
-    case let (context?, addressSpace?):
-      type = LLVMIntPtrTypeForASInContext(context.llvm, llvm, UInt32(addressSpace))
-    case let (nil, addressSpace?):
-      type = LLVMIntPtrTypeForAS(llvm, UInt32(addressSpace))
-    case let (context?, nil):
-      type = LLVMIntPtrTypeInContext(context.llvm, llvm)
-    case (nil, nil):
-      type = LLVMIntPtrType(llvm)
+  public func intPointerType(context: Context = .global, addressSpace: AddressSpace = .zero) -> IntType {
+    guard let type = LLVMIntPtrTypeForASInContext(context.llvm, llvm, UInt32(addressSpace.rawValue)) else {
+      fatalError()
     }
     return convertType(type) as! IntType // Guaranteed to succeed
   }
@@ -137,12 +129,8 @@ public class TargetData {
   /// - parameter addressSpace: The address space in which to compute
   ///                           pointer size.
   /// - returns: The size of a pointer in the target address space.
-  public func pointerSize(addressSpace: Int? = nil) -> Size {
-    if let addressSpace = addressSpace {
-      return Size(UInt64(LLVMPointerSizeForAS(llvm, UInt32(addressSpace))))
-    } else {
-      return Size(UInt64(LLVMPointerSize(llvm)))
-    }
+  public func pointerSize(addressSpace: AddressSpace = .zero) -> Size {
+    return Size(UInt64(LLVMPointerSizeForAS(llvm, UInt32(addressSpace.rawValue))))
   }
 
   /// Returns the offset in bytes between successive objects of the

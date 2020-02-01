@@ -1038,6 +1038,9 @@ extension IRBuilder {
   /// choose to align the allocation on any convenient boundary compatible with
   /// the type.
   ///
+  /// The returned value is allocated in the address space specified in the data layout string for the target. If
+  /// no such value is specified, the value is allocated in the default address space.
+  ///
   /// - parameter type: The sized type used to determine the amount of stack
   ///   memory to allocate.
   /// - parameter count: An optional number of slots to allocate, to simulate a
@@ -1276,6 +1279,9 @@ extension IRBuilder {
   /// conversions within the same address space must be performed with the
   /// `bitcast` instruction. Note that if the address space conversion is legal
   /// then both result and operand refer to the same memory location.
+  ///
+  /// This instruction must be used in lieu of a `bitcast` even if the cast is between
+  /// types of the same size.
   ///
   /// The address spaces of the value and the destination pointer types must
   /// be distinct.
@@ -1791,7 +1797,7 @@ extension IRBuilder {
   ///   variable resides.
   ///
   /// - returns: A value representing the newly inserted global variable.
-  public func addGlobal(_ name: String, type: IRType, addressSpace: Int? = nil) -> Global {
+  public func addGlobal(_ name: String, type: IRType, addressSpace: AddressSpace = .zero) -> Global {
     return self.module.addGlobal(name, type: type, addressSpace: addressSpace)
   }
 
@@ -1803,7 +1809,7 @@ extension IRBuilder {
   ///   variable resides.
   ///
   /// - returns: A value representing the newly inserted global variable.
-  public func addGlobal(_ name: String, initializer: IRValue, addressSpace: Int? = nil) -> Global {
+  public func addGlobal(_ name: String, initializer: IRValue, addressSpace: AddressSpace = .zero) -> Global {
     return self.module.addGlobal(name, initializer: initializer, addressSpace: addressSpace)
   }
 
