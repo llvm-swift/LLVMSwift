@@ -197,6 +197,8 @@ extension DIBuilder {
   ///     by third-party tools.
   ///   - splitDWARFPath: The path to the split DWARF file.
   ///   - identity: The identity of the tool that is compiling this source file.
+  ///   - sysRoot: The Clang system root (the value of the `-isysroot` that's passed to clang).
+  ///   - sdkRoot: The SDK root -- on Darwin platforms, this is the last component of the sysroot.
   /// - Returns: A value representing a compilation-unit level scope.
   public func buildCompileUnit(
     for language: DWARFSourceLanguage,
@@ -208,7 +210,9 @@ extension DIBuilder {
     flags: [String] = [],
     runtimeVersion: Int = 0,
     splitDWARFPath: String = "",
-    identity: String = ""
+    identity: String = "",
+    sysRoot: String = "",
+    sdkRoot: String = ""
   ) -> CompileUnitMetadata {
     let allFlags = flags.joined(separator: " ")
     guard let cu = LLVMDIBuilderCreateCompileUnit(
@@ -220,7 +224,11 @@ extension DIBuilder {
       kind.llvm,
       /*DWOId*/0,
       splitDebugInlining.llvm,
-      debugInfoForProfiling.llvm
+      debugInfoForProfiling.llvm,
+      sysRoot,
+      sysRoot.count,
+      sdkRoot,
+      sdkRoot.count
     ) else {
       fatalError()
     }
@@ -860,15 +868,22 @@ extension DIBuilder {
   /// - Parameters:
   ///   - type: Original type.
   ///   - name: Typedef name.
+  ///   - alignment: Alignment of the type
   ///   - scope: The surrounding context for the typedef.
   ///   - file: File where this type is defined.
   ///   - line: Line number.
   public func buildTypedef(
-    of type: DIType, name: String, scope: DIScope, file: FileMetadata, line: Int
+    of type: DIType,
+    name: String,
+    alignment: Alignment = .one,
+    scope: DIScope,
+    file: FileMetadata,
+    line: Int
   ) -> DIType {
     guard let ty = LLVMDIBuilderCreateTypedef(
       self.llvm, type.asMetadata(), name, name.count,
-      file.asMetadata(), UInt32(line), scope.asMetadata())
+      file.asMetadata(), UInt32(line), scope.asMetadata(),
+      alignment.rawValue * 8)
     else {
       fatalError("Failed to allocate metadata")
     }
