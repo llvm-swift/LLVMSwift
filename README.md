@@ -185,7 +185,7 @@ There are a couple annoying steps you need to accomplish before building
 LLVMSwift:
 
 - Install LLVM 8.0+ using your favorite package manager. For example:
-  - `brew install llvm`
+  - `brew install llvm@11`
 - Ensure `llvm-config` is in your `PATH`
   - That will reside in the `/bin` folder wherever your package manager
     installed LLVM.
@@ -198,7 +198,7 @@ compiler projects!
 ### Installation with Swift Package Manager
 
 ```swift
-.package(url: "https://github.com/llvm-swift/LLVMSwift.git", from: "0.4.0")
+.package(url: "https://github.com/llvm-swift/LLVMSwift.git", from: "0.8.0")
 ```
 
 ### Installation without Swift Package Manager

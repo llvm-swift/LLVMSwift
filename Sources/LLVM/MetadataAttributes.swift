@@ -455,9 +455,6 @@ public struct DIFlags : OptionSet {
   public static let forwardDeclaration  = DIFlags(rawValue: LLVMDIFlagFwdDecl.rawValue)
   /// Denotes a block object.
   public static let appleBlock          = DIFlags(rawValue: LLVMDIFlagAppleBlock.rawValue)
-  /// Denotes the structure containing a variable captured by reference in a
-  /// block object.
-  public static let blockByrefStruct    = DIFlags(rawValue: LLVMDIFlagBlockByrefStruct.rawValue)
   /// Denotes a virtual function or dynamic dispatch.
   public static let virtual             = DIFlags(rawValue: LLVMDIFlagVirtual.rawValue)
   /// Denotes a compiler-generated declaration that may not appear in source.
