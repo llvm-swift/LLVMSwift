@@ -41,11 +41,6 @@ extern "C" {
   // https://reviews.llvm.org/D66237
   void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM);
 
-  // https://reviews.llvm.org/D62456
-  void LLVMAddInternalizePassWithMustPreservePredicate(
-   LLVMPassManagerRef PM, void *Context,
-   LLVMBool (*MustPreserve)(LLVMValueRef, void *));
-
   // https://reviews.llvm.org/D66061
   typedef enum {
     LLVMTailCallKindNone,
@@ -83,14 +78,6 @@ const char *LLVMGetARMCanonicalArchName(const char *Name, size_t NameLen) {
 
 uint64_t LLVMGlobalGetGUID(LLVMValueRef Glob) {
   return unwrap<GlobalValue>(Glob)->getGUID();
-}
-
-void LLVMAddInternalizePassWithMustPreservePredicate(
-  LLVMPassManagerRef PM, void *Context,
-  LLVMBool (*Pred)(LLVMValueRef, void *)) {
-  unwrap(PM)->add(createInternalizePass([=](const GlobalValue &GV) {
-    return Pred(wrap(&GV), Context) == 0 ? false : true;
-  }));
 }
 
 void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM) {
