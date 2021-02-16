@@ -1057,7 +1057,9 @@ extension IRBuilder {
     } else {
       allocaInst = LLVMBuildAlloca(llvm, type.asLLVM(), name)!
     }
-    LLVMSetAlignment(allocaInst, alignment.rawValue)
+    if !alignment.isZero {
+      LLVMSetAlignment(allocaInst, alignment.rawValue)
+    }
     return allocaInst
   }
 
@@ -1077,7 +1079,9 @@ extension IRBuilder {
     let storeInst = LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())!
     LLVMSetOrdering(storeInst, ordering.llvm)
     LLVMSetVolatile(storeInst, volatile.llvm)
-    LLVMSetAlignment(storeInst, alignment.rawValue)
+    if !alignment.isZero {
+      LLVMSetAlignment(storeInst, alignment.rawValue)
+    }
     return storeInst
   }
 
@@ -1098,7 +1102,9 @@ extension IRBuilder {
     let loadInst = LLVMBuildLoad2(llvm, type.asLLVM(), ptr.asLLVM(), name)!
     LLVMSetOrdering(loadInst, ordering.llvm)
     LLVMSetVolatile(loadInst, volatile.llvm)
-    LLVMSetAlignment(loadInst, alignment.rawValue)
+    if !alignment.isZero {
+      LLVMSetAlignment(loadInst, alignment.rawValue)
+    }
     return loadInst
   }
 
@@ -1941,7 +1947,9 @@ extension IRBuilder {
     let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
     LLVMSetOrdering(loadInst, ordering.llvm)
     LLVMSetVolatile(loadInst, volatile.llvm)
-    LLVMSetAlignment(loadInst, alignment.rawValue)
+    if !alignment.isZero {
+      LLVMSetAlignment(loadInst, alignment.rawValue)
+    }
     return loadInst
   }
 

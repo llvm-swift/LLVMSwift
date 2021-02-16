@@ -180,7 +180,7 @@ class IRMetadataSpec : XCTestCase {
         IntType.int32.constant(0), // .s
       ])
       // B->a.s = 42
-      // IRSIMPLETBAA-NEXT:  store i16 42, i16* %1, !tbaa [[AccessTag:![0-9]+]]
+      // IRSIMPLETBAA-NEXT:  store i16 42, i16* %1, align 2, !tbaa [[AccessTag:![0-9]+]]
       let si = builder.buildStore(IntType.int16.constant(42), to: field)
       // IRSIMPLETBAA-NEXT:  ret void
       builder.buildRetVoid()
