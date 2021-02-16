@@ -13,7 +13,7 @@ class IRIntrinsicSpec : XCTestCase {
       let module = Module(name: "IRIntrinsicTest")
       let builder = IRBuilder(module: module)
 
-      // IRINTRINSIC: define i32 @readOneArg(i32, ...) {
+      // IRINTRINSIC: define i32 @readOneArg(i32 %0, ...) {
       let main = builder.addFunction("readOneArg",
                                      type: FunctionType([IntType.int32],
                                                         IntType.int32,
@@ -53,13 +53,13 @@ class IRIntrinsicSpec : XCTestCase {
       module.dump()
 
       // IRINTRINSIC: ; Function Attrs: nounwind
-      // IRINTRINSIC-NEXT: declare void @llvm.va_start(i8*) #0
+      // IRINTRINSIC-NEXT: declare void @llvm.va_start(i8* %0) #0
 
       // IRINTRINSIC: ; Function Attrs: nounwind
-      // IRINTRINSIC-NEXT: declare void @llvm.va_copy(i8*, i8*) #0
+      // IRINTRINSIC-NEXT: declare void @llvm.va_copy(i8* %0, i8* %1) #0
 
       // IRINTRINSIC: ; Function Attrs: nounwind
-      // IRINTRINSIC-NEXT: declare void @llvm.va_end(i8*) #0
+      // IRINTRINSIC-NEXT: declare void @llvm.va_end(i8* %0) #0
     })
 
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["VIRTUALOVERLOAD-IRINTRINSIC"]) {
@@ -93,7 +93,7 @@ class IRIntrinsicSpec : XCTestCase {
       module.dump()
 
       // VIRTUALOVERLOAD-IRINTRINSIC: ; Function Attrs: nounwind readnone
-      // VIRTUALOVERLOAD-IRINTRINSIC-NEXT: declare i32* @llvm.ssa.copy.p0i32(i32* returned) #0
+      // VIRTUALOVERLOAD-IRINTRINSIC-NEXT: declare i32* @llvm.ssa.copy.p0i32(i32* returned %0) #0
     })
 
     XCTAssert(fileCheckOutput(of: .stderr, withPrefixes: ["INTRINSIC-FAMILY-RESOLVE"]) {
