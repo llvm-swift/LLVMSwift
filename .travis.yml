@@ -5,12 +5,12 @@ matrix:
   include:
   - os: osx
     language: objective-c
-    osx_image: xcode11.5
+    osx_image: xcode12.2
     before_install:
     - export PATH=/usr/local/opt/llvm/bin:"${PATH}"
     - brew update
-    - brew install llvm@9
-    - echo 'export PATH="/usr/local/opt/llvm@9/bin:$PATH"' >> /Users/travis/.bash_profile
+    - brew install llvm@11
+    - echo 'export PATH="/usr/local/opt/llvm@11/bin:$PATH"' >> /Users/travis/.bash_profile
     - source /Users/travis/.bash_profile
     - sudo swift utils/make-pkgconfig.swift
     script:
@@ -20,7 +20,7 @@ matrix:
     sudo: required
     dist: focal
     env:
-    - LLVM_API_VERSION=9
+    - LLVM_API_VERSION=11
     before_install:
     - export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:"${PKG_CONFIG_PATH}"
     - wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
@@ -34,7 +34,7 @@ matrix:
     - sudo rm -rf /usr/local/clang-*/bin/llvm-config
     - sudo rm -f /usr/bin/llvm-config
     - sudo ln -s /usr/bin/llvm-config-${LLVM_API_VERSION} /usr/bin/llvm-config
-    - ls /usr/lib/llvm-9/include/llvm-c
+    - ls /usr/lib/llvm-11/include/llvm-c
     - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
     - wget https://swift.org/builds/swift-5.2.5-release/ubuntu1804/swift-5.2.5-RELEASE/swift-5.2.5-RELEASE-ubuntu18.04.tar.gz
     - tar xzf swift-5.2.5-RELEASE-ubuntu18.04.tar.gz
