@@ -23,10 +23,6 @@ uint64_t LLVMGlobalGetGUID(LLVMValueRef Global);
 
 void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM);
 
-void LLVMAddInternalizePassWithMustPreservePredicate(
-  LLVMPassManagerRef PM, void *Context,
-  LLVMBool (*MustPreserve)(LLVMValueRef, void *));
-
 typedef enum {
   LLVMTailCallKindNone,
   LLVMTailCallKindTail,
