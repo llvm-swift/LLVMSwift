@@ -1034,9 +1034,8 @@ extension IRBuilder {
   /// allocated, otherwise `count` is defaulted to be one. If a constant
   /// alignment is specified, the value result of the allocation is guaranteed
   /// to be aligned to at least that boundary. The alignment may not be
-  /// greater than `1 << 29`. If not specified, or if zero, the target can
-  /// choose to align the allocation on any convenient boundary compatible with
-  /// the type.
+  /// greater than `1 << 29`. If not specified, or if zero, the target will
+  /// choose a default value that is convenient and compatible with the type.
   ///
   /// The returned value is allocated in the address space specified in the data layout string for the target. If
   /// no such value is specified, the value is allocated in the default address space.
@@ -1066,6 +1065,9 @@ extension IRBuilder {
   /// Build a store instruction that stores the first value into the location
   /// given in the second value.
   ///
+  /// If alignment is not specified, or if zero, the target will choose a default
+  /// value that is convenient and compatible with the type.
+  ///
   /// - parameter val: The source value.
   /// - parameter ptr: The destination pointer to store into.
   /// - parameter ordering: The ordering effect of the fence for this store,
@@ -1087,6 +1089,9 @@ extension IRBuilder {
 
   /// Build a load instruction that loads a value from the location in the
   /// given value.
+  ///
+  /// If alignment is not specified, or if zero, the target will choose a default
+  /// value that is convenient and compatible with the type.
   ///
   /// - parameter ptr: The pointer value to load from.
   /// - parameter type: The type of value loaded from the given pointer.
@@ -1932,6 +1937,9 @@ extension IRBuilder {
 extension IRBuilder {
   /// Build a load instruction that loads a value from the location in the
   /// given value.
+  ///
+  /// If alignment is not specified, or if zero, the target will choose a default
+  /// value that is convenient and compatible with the type.
   ///
   /// - parameter ptr: The pointer value to load from.
   /// - parameter ordering: The ordering effect of the fence for this load,
