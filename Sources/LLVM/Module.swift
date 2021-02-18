@@ -11,6 +11,19 @@ import cllvm
 /// together with the LLVM linker, which merges function (and global variable)
 /// definitions, resolves forward declarations, and merges symbol table entries.
 ///
+/// Creating a Module
+/// ==================
+///
+/// A module can be created using `init(name:context:)`.
+/// Note that the default target triple is bare metal and there is no default data layout.
+/// If you require these to be specified (e.g. to increase the correctness of default alignment values),
+/// be sure to set them yourself.
+///
+///     if let machine = try? TargetMachine() {
+///         module.targetTriple = machine.triple
+///         module.dataLayout = machine.dataLayout
+///     }
+///
 /// Verifying a Module
 /// ==================
 ///

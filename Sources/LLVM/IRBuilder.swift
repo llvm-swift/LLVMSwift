@@ -1034,9 +1034,8 @@ extension IRBuilder {
   /// allocated, otherwise `count` is defaulted to be one. If a constant
   /// alignment is specified, the value result of the allocation is guaranteed
   /// to be aligned to at least that boundary. The alignment may not be
-  /// greater than `1 << 29`. If not specified, or if zero, the target can
-  /// choose to align the allocation on any convenient boundary compatible with
-  /// the type.
+  /// greater than `1 << 29`. If not specified, or if zero, the target will
+  /// choose a default value that is convenient and compatible with the type.
   ///
   /// The returned value is allocated in the address space specified in the data layout string for the target. If
   /// no such value is specified, the value is allocated in the default address space.
@@ -1057,12 +1056,17 @@ extension IRBuilder {
     } else {
       allocaInst = LLVMBuildAlloca(llvm, type.asLLVM(), name)!
     }
-    LLVMSetAlignment(allocaInst, alignment.rawValue)
+    if !alignment.isZero {
+      LLVMSetAlignment(allocaInst, alignment.rawValue)
+    }
     return allocaInst
   }
 
   /// Build a store instruction that stores the first value into the location
   /// given in the second value.
+  ///
+  /// If alignment is not specified, or if zero, the target will choose a default
+  /// value that is convenient and compatible with the type.
   ///
   /// - parameter val: The source value.
   /// - parameter ptr: The destination pointer to store into.
@@ -1077,12 +1081,17 @@ extension IRBuilder {
     let storeInst = LLVMBuildStore(llvm, val.asLLVM(), ptr.asLLVM())!
     LLVMSetOrdering(storeInst, ordering.llvm)
     LLVMSetVolatile(storeInst, volatile.llvm)
-    LLVMSetAlignment(storeInst, alignment.rawValue)
+    if !alignment.isZero {
+      LLVMSetAlignment(storeInst, alignment.rawValue)
+    }
     return storeInst
   }
 
   /// Build a load instruction that loads a value from the location in the
   /// given value.
+  ///
+  /// If alignment is not specified, or if zero, the target will choose a default
+  /// value that is convenient and compatible with the type.
   ///
   /// - parameter ptr: The pointer value to load from.
   /// - parameter type: The type of value loaded from the given pointer.
@@ -1098,7 +1107,9 @@ extension IRBuilder {
     let loadInst = LLVMBuildLoad2(llvm, type.asLLVM(), ptr.asLLVM(), name)!
     LLVMSetOrdering(loadInst, ordering.llvm)
     LLVMSetVolatile(loadInst, volatile.llvm)
-    LLVMSetAlignment(loadInst, alignment.rawValue)
+    if !alignment.isZero {
+      LLVMSetAlignment(loadInst, alignment.rawValue)
+    }
     return loadInst
   }
 
@@ -1927,6 +1938,9 @@ extension IRBuilder {
   /// Build a load instruction that loads a value from the location in the
   /// given value.
   ///
+  /// If alignment is not specified, or if zero, the target will choose a default
+  /// value that is convenient and compatible with the type.
+  ///
   /// - parameter ptr: The pointer value to load from.
   /// - parameter ordering: The ordering effect of the fence for this load,
   ///   if any.  Defaults to a nonatomic load.
@@ -1941,7 +1955,9 @@ extension IRBuilder {
     let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
     LLVMSetOrdering(loadInst, ordering.llvm)
     LLVMSetVolatile(loadInst, volatile.llvm)
-    LLVMSetAlignment(loadInst, alignment.rawValue)
+    if !alignment.isZero {
+      LLVMSetAlignment(loadInst, alignment.rawValue)
+    }
     return loadInst
   }
 

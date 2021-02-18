@@ -63,7 +63,7 @@ class IRMetadataSpec : XCTestCase {
       XCTAssertNil(builder.defaultFloatingPointMathTag)
       builder.defaultFloatingPointMathTag = MDB.buildFloatingPointMathTag(0.1)
 
-      // IRFPMATHMETADATA: define float @test(float, float) {
+      // IRFPMATHMETADATA: define float @test(float %0, float %1) {
       let main = builder.addFunction("test",
                                      type: FunctionType([
                                        FloatType.float, FloatType.float
@@ -91,7 +91,7 @@ class IRMetadataSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       let MDB = MDBuilder()
 
-      // IRBWMETADATA: define float @test(i1, float, float) {
+      // IRBWMETADATA: define float @test(i1 %0, float %1, float %2) {
       let main = builder.addFunction("test",
                                      type: FunctionType([
                                        IntType.int1,
@@ -180,7 +180,7 @@ class IRMetadataSpec : XCTestCase {
         IntType.int32.constant(0), // .s
       ])
       // B->a.s = 42
-      // IRSIMPLETBAA-NEXT:  store i16 42, i16* %1, !tbaa [[AccessTag:![0-9]+]]
+      // IRSIMPLETBAA-NEXT:  store i16 42, i16* %1, align 2, !tbaa [[AccessTag:![0-9]+]]
       let si = builder.buildStore(IntType.int16.constant(42), to: field)
       // IRSIMPLETBAA-NEXT:  ret void
       builder.buildRetVoid()
@@ -226,7 +226,7 @@ class IRMetadataSpec : XCTestCase {
       let builder = IRBuilder(module: module)
       let MDB = MDBuilder()
 
-      // IRMEMTRANSFERTBAA: define void @main(i8*) {
+      // IRMEMTRANSFERTBAA: define void @main(i8* %0) {
       let F = module.addFunction("main", type: FunctionType([PointerType.toVoid], VoidType()))
       // IRMEMTRANSFERTBAA-NEXT: entry:
       let bb = F.appendBasicBlock(named: "entry")

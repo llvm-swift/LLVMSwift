@@ -109,7 +109,7 @@ class IRPassManagerSpec : XCTestCase {
       // CHECK-EXECUTE-STDOPT:  ; ModuleID = 'Test'
       // CHECK-EXECUTE-STDOPT:  source_filename = "Test"
 
-      // CHECK-EXECUTE-STDOPT:  define i32 @fun(i32, i32) {
+      // CHECK-EXECUTE-STDOPT:  define i32 @fun(i32 %0, i32 %1) {
       // CHECK-EXECUTE-STDOPT:    entry:
       // CHECK-EXECUTE-STDOPT:    %2 = alloca i32, align 4
       // CHECK-EXECUTE-STDOPT:    %3 = alloca i32, align 4
@@ -148,7 +148,7 @@ class IRPassManagerSpec : XCTestCase {
       // CHECK-EXECUTE-STDOPT: source_filename = "Test"
 
       // CHECK-EXECUTE-STDOPT: ; Function Attrs: norecurse nounwind readnone
-      // CHECK-EXECUTE-STDOPT: define i32 @fun(i32, i32) local_unnamed_addr #0 {
+      // CHECK-EXECUTE-STDOPT: define i32 @fun(i32 %0, i32 %1) local_unnamed_addr #0 {
       // CHECK-EXECUTE-STDOPT:   entry:
       // CHECK-EXECUTE-STDOPT:   %2 = icmp eq i32 %0, 1
       // CHECK-EXECUTE-STDOPT:   %3 = add nsw i32 %1, 4
@@ -174,7 +174,7 @@ class IRPassManagerSpec : XCTestCase {
       // CHECK-EXECUTE-MASK:  ; ModuleID = 'Test'
       // CHECK-EXECUTE-MASK:  source_filename = "Test"
 
-      // CHECK-EXECUTE-MASK:  define i32 @fun(i32, i32) {
+      // CHECK-EXECUTE-MASK:  define i32 @fun(i32 %0, i32 %1) {
       // CHECK-EXECUTE-MASK:    entry:
       // CHECK-EXECUTE-MASK:    %2 = alloca i32, align 4
       // CHECK-EXECUTE-MASK:    %3 = alloca i32, align 4
@@ -212,7 +212,7 @@ class IRPassManagerSpec : XCTestCase {
       // CHECK-EXECUTE-MASK:  ; ModuleID = 'Test'
       // CHECK-EXECUTE-MASK:  source_filename = "Test"
 
-      // CHECK-EXECUTE-MASK:  define i32 @fun(i32, i32) {
+      // CHECK-EXECUTE-MASK:  define i32 @fun(i32 %0, i32 %1) {
       // CHECK-EXECUTE-MASK:    entry:
       // CHECK-EXECUTE-MASK:    %2 = alloca i32, align 4
       // CHECK-EXECUTE-MASK:    %3 = alloca i32, align 4

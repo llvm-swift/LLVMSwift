@@ -14,7 +14,7 @@ class IRAttributesSpec : XCTestCase {
                                    type: FunctionType([IntType.int32, IntType.int32],
                                                       IntType.int32))
 
-      // FNATTR: define i32 @fn(i32, i32) #0 {
+      // FNATTR: define i32 @fn(i32 %0, i32 %1) #0 {
       fn.addAttribute(.nounwind, to: .function)
 
       // FNATTR-NEXT: entry:
@@ -36,7 +36,7 @@ class IRAttributesSpec : XCTestCase {
                                    type: FunctionType([IntType.int32, IntType.int32],
                                                       IntType.int32))
 
-      // RVATTR: define signext i32 @fn(i32, i32) {
+      // RVATTR: define signext i32 @fn(i32 %0, i32 %1) {
       fn.addAttribute(.signext, to: .returnValue)
 
       // RVATTR-NEXT: entry:
@@ -58,7 +58,7 @@ class IRAttributesSpec : XCTestCase {
                                    type: FunctionType([IntType.int32, i8ptr],
                                                       IntType.int32))
 
-      // ARGATTR: define i32 @fn(i32 zeroext, i8* align 8) {
+      // ARGATTR: define i32 @fn(i32 zeroext %0, i8* align 8 %1) {
       fn.addAttribute(.zeroext, to: .argument(0))
       fn.addAttribute(.align, value: 8, to: .argument(1))
 
