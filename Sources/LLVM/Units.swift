@@ -261,7 +261,7 @@ extension Size: UnsignedInteger {
   }
 
   public static func |= (lhs: inout Size, rhs: Size) {
-    lhs = Size(lhs.rawValue & rhs.rawValue)
+    lhs = Size(lhs.rawValue | rhs.rawValue)
   }
 
   public static func ^= (lhs: inout Size, rhs: Size) {
@@ -273,7 +273,7 @@ extension Size: UnsignedInteger {
   }
 
   public static func <<= <RHS: BinaryInteger>(lhs: inout Size, rhs: RHS) {
-    lhs = Size(lhs.rawValue >> rhs)
+    lhs = Size(lhs.rawValue << rhs)
   }
 
   public static prefix func ~ (x: Size) -> Size {
