@@ -261,7 +261,7 @@ private func compileProgramBody(
                                           encoding: .signed, flags: [],
                                           size: builder.module.dataLayout.abiSize(of: cellType))
   let diPtrTy = dibuilder.buildPointerType(pointee: diDataTy,
-                                            size: builder.module.dataLayout.pointerSize(),
+                                           size: builder.module.dataLayout.pointerSize(),
                                            alignment: .one)
   let diVariable = dibuilder.buildLocalVariable(named: "this",
                                                 scope: entryScope,
