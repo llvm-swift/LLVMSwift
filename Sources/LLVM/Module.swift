@@ -142,7 +142,27 @@ public final class Module: CustomStringConvertible {
       LLVMSetModuleIdentifier(llvm, newValue, newValue.utf8.count)
     }
   }
-
+  
+  /// The source filename of this module.
+  ///
+  /// The source filename appears at the top of an IR module:
+  ///
+  ///     source_filename = "/path/to/source.c"
+  ///
+  /// Local functions used in profile data prepend the source file name to the local function name.
+  ///
+  /// If not otherwise set, `name` is used.
+  public var sourceFileName: String {
+    get {
+      var count = 0
+      guard let fn = LLVMGetSourceFileName(llvm, &count) else { return "" }
+      return String(cString: fn)
+    }
+    set {
+      LLVMSetSourceFileName(llvm, newValue, newValue.utf8.count)
+    }
+  }
+  
   /// Retrieves the inline assembly for this module, if any.
   public var inlineAssembly: String {
     get {
