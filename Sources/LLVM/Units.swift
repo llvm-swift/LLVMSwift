@@ -27,6 +27,7 @@ public struct Alignment: Comparable, Hashable {
   ///
   /// An n-byte alignment contains log-base-two-many least-significant zeros.
   public func log2() -> UInt32 {
+    guard !isZero else { return 0 }
     return 31 - UInt32(self.rawValue.leadingZeroBitCount)
   }
 
@@ -34,7 +35,9 @@ public struct Alignment: Comparable, Hashable {
   ///
   /// An n-byte alignment contains log-base-two-many least-significant zeros.
   public func log2() -> UInt64 {
-    return 63 - UInt64(self.rawValue.leadingZeroBitCount)
+    guard !isZero else { return 0 }
+    // rawValue is only 32 bits
+    return 31 - UInt64(self.rawValue.leadingZeroBitCount)
   }
   
   /// Returns the alignment of a pointer which points to the given number of
