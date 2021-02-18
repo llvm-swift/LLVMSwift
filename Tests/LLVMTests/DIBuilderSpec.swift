@@ -47,7 +47,7 @@ class DIBuilderSpec : XCTestCase {
       // DIEXPRESSION: !{{[0-9]+}} = !DIGlobalVariableExpression(var: !{{[0-9]+}}, expr: !{{[0-9]+}})
       let expr = debugBuilder.buildGlobalExpression(
         named: "global", linkageName: "global", type: globalTy,
-        scope: cu, file: file, line: 42)
+        scope: cu, file: file, line: 42, alignment: global.alignment)
       // DIEXPRESSION: !{{[0-9]+}} = distinct !DIGlobalVariable(name: "unattached", linkageName: "unattached", scope: !0, file: !{{[0-9]+}}, line: 42, type: !{{[0-9]+}}, isLocal: true, isDefinition: true)
       _ = debugBuilder.buildGlobalExpression(
         named: "unattached", linkageName: "unattached",

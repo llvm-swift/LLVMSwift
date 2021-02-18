@@ -394,7 +394,7 @@ extension DIBuilder {
     named name: String,
     scope: DIScope, file: FileMetadata, line: Int,
     type: DIType, alwaysPreserve: Bool = false,
-    flags: DIFlags = [], alignment: Alignment = .zero
+    flags: DIFlags = [], alignment: Alignment
   ) -> LocalVariableMetadata {
     let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let variable = LLVMDIBuilderCreateAutoVariable(
@@ -502,7 +502,7 @@ extension DIBuilder {
   ///   - file: File where this member is defined.
   ///   - line: Line number.
   ///   - size: Member size.
-  ///   - alignmemnt: Member alignment.
+  ///   - alignment: Member alignment.
   ///   - elements: Enumeration elements.
   ///   - numElements: Number of enumeration elements.
   ///   - underlyingType: Underlying type of a C++11/ObjC fixed enum.
@@ -675,7 +675,7 @@ extension DIBuilder {
   ///   - addressSpace: The address space the pointer type reside in.
   ///   - name: The name of the pointer type.
   public func buildPointerType(
-    pointee: DIType, size: Size, alignment: Alignment = .zero,
+    pointee: DIType, size: Size, alignment: Alignment,
     addressSpace: AddressSpace = .zero, name: String = ""
   ) -> DIType {
     let radix = UInt32(self.module.dataLayout.intPointerType().width)
@@ -1258,15 +1258,14 @@ extension DIBuilder {
   ///   - expression: The location of the global relative to the attached
   ///     GlobalVariable.
   ///   - declaration: Reference to the corresponding declaration.
-  ///   - alignment: Variable alignment(or 0 if no alignment attr was
-  ///     specified)
+  ///   - alignment: Variable alignment
   public func buildGlobalExpression(
     named name: String, linkageName: String, type: DIType,
     scope: DIScope, file: FileMetadata, line: Int,
     isLocal: Bool = true,
     expression: ExpressionMetadata? = nil,
     declaration: IRMetadata? = nil,
-    alignment: Alignment = .zero
+    alignment: Alignment
   ) -> ExpressionMetadata {
     let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateGlobalVariableExpression(
