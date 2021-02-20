@@ -22,10 +22,14 @@ class ModuleLinkSpec : XCTestCase {
       // MODULE-LINK-NEXT: }
       module1.dump()
 
-      // MODULE-LINK: ; ModuleID = '[[ModuleName2:ModuleLinkModuleTwo]]'
-      // MODULE-LINK-NEXT: source_filename = "[[ModuleName2]]"
+      // MODULE-LINK: ; ModuleID = 'ModuleLinkModuleTwo'
+      // MODULE-LINK-NEXT: source_filename = "/Users/user/Developer/Project/file.ext"
       let module2 = Module(name: "ModuleLinkModuleTwo")
       XCTAssertEqual(module2.name, "ModuleLinkModuleTwo")
+      XCTAssertEqual(module2.sourceFileName, "ModuleLinkModuleTwo")
+      module2.sourceFileName = "/Users/user/Developer/Project/file.ext"
+      XCTAssertEqual(module2.sourceFileName, "/Users/user/Developer/Project/file.ext")
+      
       let builder2 = IRBuilder(module: module2)
       // MODULE-LINK: define void @moduleTwo() {
       let mod2f = builder2.addFunction("moduleTwo",
