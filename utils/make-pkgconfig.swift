@@ -46,21 +46,21 @@ extension String: Error {
 }
 
 func makeFile() throws {
-  let pkgConfigPath = "/usr/local/lib/pkgconfig"
+  let brewPrefix = {
+    guard let brew = which("brew") else { return nil }
+    return run(brew, args: ["--prefix"])
+  }() ?? "/usr/local"
+    
+  let pkgConfigPath = "\(brewPrefix)/lib/pkgconfig"
   let pkgConfigDir = URL(fileURLWithPath: pkgConfigPath)
 
-  // Make /usr/local/lib/pkgconfig if it doesn't already exist
+  // Make <brew-prefix>/lib/pkgconfig if it doesn't already exist
   if !FileManager.default.fileExists(atPath: pkgConfigPath) {
     try FileManager.default.createDirectory(at: pkgConfigDir,
                                             withIntermediateDirectories: true)
   }
   let cllvmPath = pkgConfigDir.appendingPathComponent("cllvm.pc")
-
-  let brewLLVMConfig: () -> String? = {
-    guard let brew = which("brew") else { return nil }
-    guard let brewPrefix = run(brew, args: ["--prefix"]) else { return nil }
-    return which(brewPrefix + "/opt/llvm/bin/llvm-config")
-  }
+  let brewLLVMConfig = { which("\(brewPrefix)/opt/llvm/bin/llvm-config") }
 
   /// Ensure we have llvm-config in the PATH
   guard let llvmConfig = which("llvm-config-11") ?? which("llvm-config") ?? brewLLVMConfig() else {
