@@ -184,7 +184,7 @@ print(fn(false)) // 0.0112359550561798...
 There are a couple annoying steps you need to accomplish before building
 LLVMSwift:
 
-- Install LLVM 8.0+ using your favorite package manager. For example:
+- Install LLVM 11.0+ using your favorite package manager. For example:
   - `brew install llvm@11`
 - Ensure `llvm-config` is in your `PATH`
   - That will reside in the `/bin` folder wherever your package manager
