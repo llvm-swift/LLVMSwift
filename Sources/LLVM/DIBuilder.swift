@@ -868,7 +868,7 @@ extension DIBuilder {
   /// - Parameters:
   ///   - type: Original type.
   ///   - name: Typedef name.
-  ///   - alignment: Alignment of the type
+  ///   - alignment: Alignment of the type.
   ///   - scope: The surrounding context for the typedef.
   ///   - file: File where this type is defined.
   ///   - line: Line number.
@@ -880,10 +880,11 @@ extension DIBuilder {
     file: FileMetadata,
     line: Int
   ) -> DIType {
+    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateTypedef(
       self.llvm, type.asMetadata(), name, name.count,
       file.asMetadata(), UInt32(line), scope.asMetadata(),
-      alignment.rawValue * 8)
+      alignment.rawValue * radix)
     else {
       fatalError("Failed to allocate metadata")
     }
