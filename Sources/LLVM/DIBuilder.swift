@@ -875,7 +875,7 @@ extension DIBuilder {
   public func buildTypedef(
     of type: DIType,
     name: String,
-    alignment: Alignment = .one,
+    alignment: Alignment,
     scope: DIScope,
     file: FileMetadata,
     line: Int
