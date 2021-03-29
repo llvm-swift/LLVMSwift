@@ -271,6 +271,7 @@ public class FunctionPassManager {
   }
 }
 
+/// A subset of supported LLVM IR optimizer passes.
 @available(*, deprecated, renamed: "Pass")
 public typealias FunctionPass = Pass
 

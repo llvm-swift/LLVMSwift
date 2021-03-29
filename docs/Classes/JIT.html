@@ -8,13 +8,21 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/JIT" class="dashAnchor"></a>
     <a title="JIT Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="../Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="../Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="../Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Use.html">Use</a>
@@ -489,6 +560,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -497,6 +576,7 @@
             <h1>JIT</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">JIT</span></code></pre>
 
                 </div>
@@ -574,7 +654,7 @@ physically in the execution environment.</p>
                     <code>
                     <a name="/s:4LLVM3JITC7machineAcA13TargetMachineC_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(machine:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC7machineAcA13TargetMachineC_tcfc">init(machine:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC7machineAcA13TargetMachineC_tcfc">init(machine:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -589,34 +669,7 @@ physically in the execution environment.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">machine</span><span class="p">:</span> <span class="kt"><a href="../Classes/TargetMachine.html">TargetMachine</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM3JITCfd"></a>
-                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITCfd">deinit</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Deinitialize this value and dispose of its resources.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">machine</span><span class="p">:</span> <span class="kt"><a href="../Classes/TargetMachine.html">TargetMachine</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -629,9 +682,11 @@ physically in the execution environment.</p>
               <div class="task-name-container">
                 <a name="/Symbols"></a>
                 <a name="//apple_ref/swift/Section/Symbols" class="dashAnchor"></a>
-                <a href="#/Symbols">
-                  <h3 class="section-name">Symbols</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Symbols"></a>
+                  <h3 class="section-name"><p>Symbols</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -639,7 +694,7 @@ physically in the execution environment.</p>
                     <code>
                     <a name="/s:4LLVM3JITC6mangle6symbolS2S_tF"></a>
                     <a name="//apple_ref/swift/Method/mangle(symbol:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC6mangle6symbolS2S_tF">mangle(symbol:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC6mangle6symbolS2S_tF">mangle(symbol:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -690,7 +745,7 @@ target machine.</p>
                     <code>
                     <a name="/s:4LLVM3JITC7address2of2inAC13TargetAddressVSS_AC12ModuleHandleVSgtKF"></a>
                     <a name="//apple_ref/swift/Method/address(of:in:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC7address2of2inAC13TargetAddressVSS_AC12ModuleHandleVSgtKF">address(of:in:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC7address2of2inAC13TargetAddressVSS_AC12ModuleHandleVSgtKF">address(of:<wbr>in:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -756,9 +811,11 @@ restrict the search, if any.</p>
               <div class="task-name-container">
                 <a name="/Lazy%20Compilation"></a>
                 <a name="//apple_ref/swift/Section/Lazy Compilation" class="dashAnchor"></a>
-                <a href="#/Lazy%20Compilation">
-                  <h3 class="section-name">Lazy Compilation</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Lazy%20Compilation"></a>
+                  <h3 class="section-name"><p>Lazy Compilation</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -766,7 +823,7 @@ restrict the search, if any.</p>
                     <code>
                     <a name="/s:4LLVM3JITC19registerLazyCompileyAC13TargetAddressVAfCcKF"></a>
                     <a name="//apple_ref/swift/Method/registerLazyCompile(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC19registerLazyCompileyAC13TargetAddressVAfCcKF">registerLazyCompile(_:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC19registerLazyCompileyAC13TargetAddressVAfCcKF">registerLazyCompile(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -827,9 +884,11 @@ forces the given compilation callback to fire.</p>
               <div class="task-name-container">
                 <a name="/Stubs"></a>
                 <a name="//apple_ref/swift/Section/Stubs" class="dashAnchor"></a>
-                <a href="#/Stubs">
-                  <h3 class="section-name">Stubs</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Stubs"></a>
+                  <h3 class="section-name"><p>Stubs</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -837,7 +896,7 @@ forces the given compilation callback to fire.</p>
                     <code>
                     <a name="/s:4LLVM3JITC18createIndirectStub5named7addressySS_AC13TargetAddressVtKF"></a>
                     <a name="//apple_ref/swift/Method/createIndirectStub(named:address:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC18createIndirectStub5named7addressySS_AC13TargetAddressVtKF">createIndirectStub(named:address:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC18createIndirectStub5named7addressySS_AC13TargetAddressVtKF">createIndirectStub(named:<wbr>address:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -898,7 +957,7 @@ invoking <code>JIT.setIndirectStubPointer</code>.</p>
                     <code>
                     <a name="/s:4LLVM3JITC22setIndirectStubPointer5named7addressySS_AC13TargetAddressVtKF"></a>
                     <a name="//apple_ref/swift/Method/setIndirectStubPointer(named:address:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC22setIndirectStubPointer5named7addressySS_AC13TargetAddressVtKF">setIndirectStubPointer(named:address:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC22setIndirectStubPointer5named7addressySS_AC13TargetAddressVtKF">setIndirectStubPointer(named:<wbr>address:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -964,9 +1023,11 @@ behavior.</p>
               <div class="task-name-container">
                 <a name="/Adding%20Code%20to%20the%20JIT"></a>
                 <a name="//apple_ref/swift/Section/Adding Code to the JIT" class="dashAnchor"></a>
-                <a href="#/Adding%20Code%20to%20the%20JIT">
-                  <h3 class="section-name">Adding Code to the JIT</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Adding%20Code%20to%20the%20JIT"></a>
+                  <h3 class="section-name"><p>Adding Code to the JIT</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -974,7 +1035,7 @@ behavior.</p>
                     <code>
                     <a name="/s:4LLVM3JITC20addEagerlyCompiledIRyAC12ModuleHandleVAA0G0C_AC13TargetAddressVSSctKF"></a>
                     <a name="//apple_ref/swift/Method/addEagerlyCompiledIR(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC20addEagerlyCompiledIRyAC12ModuleHandleVAA0G0C_AC13TargetAddressVSSctKF">addEagerlyCompiledIR(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC20addEagerlyCompiledIRyAC12ModuleHandleVAA0G0C_AC13TargetAddressVSSctKF">addEagerlyCompiledIR(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1050,7 +1111,7 @@ address of symbols.</p>
                     <code>
                     <a name="/s:4LLVM3JITC19addLazilyCompiledIRyAC12ModuleHandleVAA0G0C_AC13TargetAddressVSSctKF"></a>
                     <a name="//apple_ref/swift/Method/addLazilyCompiledIR(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC19addLazilyCompiledIRyAC12ModuleHandleVAA0G0C_AC13TargetAddressVSSctKF">addLazilyCompiledIR(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC19addLazilyCompiledIRyAC12ModuleHandleVAA0G0C_AC13TargetAddressVSSctKF">addLazilyCompiledIR(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1125,7 +1186,7 @@ address of symbols.</p>
                     <code>
                     <a name="/s:4LLVM3JITC13addObjectFileyAC12ModuleHandleVAA12MemoryBufferC_AC13TargetAddressVSSctKF"></a>
                     <a name="//apple_ref/swift/Method/addObjectFile(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC13addObjectFileyAC12ModuleHandleVAA12MemoryBufferC_AC13TargetAddressVSSctKF">addObjectFile(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC13addObjectFileyAC12ModuleHandleVAA12MemoryBufferC_AC13TargetAddressVSSctKF">addObjectFile(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1197,7 +1258,7 @@ address of symbols.</p>
                     <code>
                     <a name="/s:4LLVM3JITC12removeModuleyyAC0D6HandleVKF"></a>
                     <a name="//apple_ref/swift/Method/removeModule(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM3JITC12removeModuleyyAC0D6HandleVKF">removeModule(_:)</a>
+                    <a class="token" href="#/s:4LLVM3JITC12removeModuleyyAC0D6HandleVKF">removeModule(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1249,8 +1310,8 @@ the handle will then result in undefined behavior.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

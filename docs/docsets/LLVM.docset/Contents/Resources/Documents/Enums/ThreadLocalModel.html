@@ -8,13 +8,21 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Enum/ThreadLocalModel" class="dashAnchor"></a>
     <a title="ThreadLocalModel Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="../Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="../Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="../Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Use.html">Use</a>
@@ -489,6 +560,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -497,11 +576,12 @@
             <h1>ThreadLocalModel</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ThreadLocalModel</span></code></pre>
 
                 </div>
               </div>
-            <p>Enumerates the supported models of reference of thread-local variables. </p>
+            <p>Enumerates the supported models of reference of thread-local variables.</p>
 
 <p>These models are listed from the most general, but least optimized, to the
 fastest, but most restrictive in general, as architectural differences
@@ -568,9 +648,9 @@ a cost of restrictions on which modules can access variables.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Allows reference of all thread-local variables, from either a shared 
-object or a dynamic executable. This model also supports the deferred 
-allocation of a block of thread-local storage when the block is first 
+                        <p>Allows reference of all thread-local variables, from either a shared
+object or a dynamic executable. This model also supports the deferred
+allocation of a block of thread-local storage when the block is first
 referenced from a specific thread.  Note that the linker is free to
 optimize accesses using this model to one of the more specific models
 below which may ultimately defeat lazy allocation of the TLS storagee
@@ -615,7 +695,7 @@ might determine that a variable is bound locally, or protected, within the
 object being built. In this case, the compiler instructs the linker
 to statically bind the dynamic offset of the variable and use this model.</p>
 
-<p>This model provides a performance benefit over the General Dynamic model. 
+<p>This model provides a performance benefit over the General Dynamic model.
 Only one call to <code>__tls_get_addr</code> is required per function, to determine
 the starting address of the variable within the TLS block for its
 parent module.  Additional accesses can add an offset to this address
@@ -654,19 +734,19 @@ to the local dynamic model.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This model can only reference thread-local variables which are available 
-as part of the initial static thread-local template. This template is 
-composed of all thread-local storage blocks that are available at process 
-startup, plus a small backup reservation. </p>
+                        <p>This model can only reference thread-local variables which are available
+as part of the initial static thread-local template. This template is
+composed of all thread-local storage blocks that are available at process
+startup, plus a small backup reservation.</p>
 
 <p>In this model, the thread pointer-relative offset for a given variable <code>x</code>
 is stored in the GOT entry for x.</p>
 
-<p>This model can reference a limited number of thread-local variables from 
+<p>This model can reference a limited number of thread-local variables from
 shared libraries loaded after initial process startup, such as by means of
-lazy loading, filters, or <code>dlopen()</code>. This access is satisfied from a 
-fixed backup reservation. This reservation can only provide storage for 
-uninitialized thread-local data items. For maximum flexibility, shared 
+lazy loading, filters, or <code>dlopen()</code>. This access is satisfied from a
+fixed backup reservation. This reservation can only provide storage for
+uninitialized thread-local data items. For maximum flexibility, shared
 objects should reference thread-local variables using a dynamic model of
 thread-local storage.</p>
 
@@ -699,9 +779,9 @@ thread-local storage.</p>
 
 <p>This model can only reference thread-local variables which are part of the
 thread-local storage block of the dynamic executable. The linker
-calculates the thread pointer-relative offsets statically, without the 
-need for dynamic relocations, or the extra reference to the GOT. This 
-model can not be used to reference variables outside of the dynamic 
+calculates the thread pointer-relative offsets statically, without the
+need for dynamic relocations, or the extra reference to the GOT. This
+model can not be used to reference variables outside of the dynamic
 executable.</p>
 
                       </div>
@@ -748,8 +828,8 @@ executable.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

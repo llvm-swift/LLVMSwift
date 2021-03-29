@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MDBuilder Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/MDBuilder" class="dashAnchor"></a>
+    <a title="MDBuilder Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">LLVM Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MDBuilder Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata.html">AttachedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/PinnedKind.html">– PinnedKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat.html">Comdat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comdat/SelectionKind.html">– SelectionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DIBuilder.html">DIBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Function.html">Function</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FunctionPassManager.html">FunctionPassManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Global.html">Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IRBuilder.html">IRBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html">Intrinsic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic.html#/s:4LLVM9IntrinsicC8SelectorV">– Selector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Intrinsic/DynamicIntrinsicResolver.html">– DynamicIntrinsicResolver</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html">JIT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT/TargetAddress.html">– TargetAddress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module.html">Module</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Module/Flags.html">– Flags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NamedMetadata.html">NamedMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner/Builder.html">– Builder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SectionSequence.html">SectionSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SymbolSequence.html">SymbolSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Target.html">Target</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TargetData.html">TargetData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TargetMachine.html">TargetMachine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicOrdering.html">AtomicOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AtomicReadModifyWriteOperation.html">AtomicReadModifyWriteOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeIndex.html">AttributeIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinaryFileError.html">BinaryFileError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CallingConvention.html">CallingConvention</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodeGenOptLevel.html">CodeGenOptLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodeModel.html">CodeModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CodegenFileType.html">CodegenFileType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIAttributeTypeEncoding.html">DIAttributeTypeEncoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFEmissionKind.html">DWARFEmissionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFExpression.html">DWARFExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFSourceLanguage.html">DWARFSourceLanguage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DWARFTag.html">DWARFTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IRValueKind.html">IRValueKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InlineAssemblyDialect.html">InlineAssemblyDialect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/IntPredicate.html">IntPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JITError.html">JITError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LandingPadClause.html">LandingPadClause</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Linkage.html">Linkage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MemoryBufferError.html">MemoryBufferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ModuleError.html">ModuleError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode.html">OpCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Binary.html">– Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpCode/Cast.html">– Cast</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pass.html">Pass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RealPredicate.html">RealPredicate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RelocationModel.html">RelocationModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6SignedO">Signed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StorageClass.html">StorageClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6StructO">Struct</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TargetMachineError.html">TargetMachineError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ThreadLocalModel.html">ThreadLocalModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UnnamedAddressKind.html">UnnamedAddressKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM8UnsignedO">Unsigned</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:4LLVM6VectorO">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visibility.html">Visibility</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/LLVMValueRef.html">LLVMValueRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:4LLVM010initializeA0yyF">initializeLLVM()</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Attribute.html">Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DIScope.html">DIScope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DIType.html">DIType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRConstant.html">IRConstant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRInstruction.html">IRInstruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRMetadata.html">IRMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRType.html">IRType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRValue.html">IRValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM30IntegralConstantRepresentationP">IntegralConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:4LLVM31NumericalConstantRepresentationP">NumericalConstantRepresentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/_IRMetadataInitializerHack.html">_IRMetadataInitializerHack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/APInt.html">APInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alias.html">Alias</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Alignment.html">Alignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ArrayType.html">ArrayType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock.html">BasicBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BasicBlock/Address.html">– Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call/TailCallKind.html">– TailCallKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constant.html">Constant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIBasicType.html">DIBasicType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DIFlags.html">DIFlags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DISubroutineType.html">DISubroutineType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DebugLocation.html">DebugLocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnumAttribute.html">EnumAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FileMetadata.html">FileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FloatType/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunctionMetadata.html">FunctionMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunctionType.html">FunctionType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Instruction.html">Instruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/IntType.html">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Invoke.html">Invoke</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LabelType.html">LabelType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockFileMetadata.html">LexicalBlockFileMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LexicalBlockMetadata.html">LexicalBlockMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MetadataType.html">MetadataType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ModuleMetadata.html">ModuleMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyAttribute.html">ObjectiveCPropertyAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObjectiveCPropertyMetadata.html">ObjectiveCPropertyMetadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Parameter.html">Parameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PhiNode.html">PhiNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointerType.html">PointerType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Relocation.html">Relocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringAttribute.html">StringAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructLayout.html">StructLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StructType.html">StructType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Use.html">Use</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VectorType.html">VectorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoidType.html">VoidType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/X86MMXType.html">X86MMXType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MDBuilder</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">MDBuilder</span></code></pre>
+
+                </div>
+              </div>
+            <p>An <code>MDBuilder</code> object provides a convenient way to build common metadata
+nodes.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC7contextAA7ContextCvp"></a>
+                    <a name="//apple_ref/swift/Property/context" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC7contextAA7ContextCvp">context</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The context used to intialize this metadata builder.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC2inAcA7ContextC_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC2inAcA7ContextC_tcfc">init(in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a metadata builder with the given context.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">global</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>context</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The context in which to create metadata.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Floating%20Point%20Accuracy%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/Floating Point Accuracy Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Floating%20Point%20Accuracy%20Metadata"></a>
+                  <h3 class="section-name"><p>Floating Point Accuracy Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC25buildFloatingPointMathTagyAA6MDNodeVSgSfF"></a>
+                    <a name="//apple_ref/swift/Method/buildFloatingPointMathTag(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC25buildFloatingPointMathTagyAA6MDNodeVSgSfF">buildFloatingPointMathTag(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds metadata describing the accuracy of a floating-point computation
+using the given accuracy value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildFloatingPointMathTag</span><span class="p">(</span><span class="n">_</span> <span class="nv">accuracy</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accuracy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The accuracy value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node describing the accuracy of a floating-point
+computation.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Branch%20Prediction%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/Branch Prediction Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Branch%20Prediction%20Metadata"></a>
+                  <h3 class="section-name"><p>Branch Prediction Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC18buildBranchWeightsyAA6MDNodeVSaySiGF"></a>
+                    <a name="//apple_ref/swift/Method/buildBranchWeights(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC18buildBranchWeightsyAA6MDNodeVSaySiGF">buildBranchWeights(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds branch weight metadata for a set of branch targets of a <code>branch</code>,
+<code>select,</code> <code>switch</code>, or <code>call</code> instruction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildBranchWeights</span><span class="p">(</span><span class="n">_</span> <span class="nv">weights</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>weights</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The weights of the branches.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node containing the given branch-weight information.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC18buildUnpredictableAA6MDNodeVyF"></a>
+                    <a name="//apple_ref/swift/Method/buildUnpredictable()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC18buildUnpredictableAA6MDNodeVyF">buildUnpredictable()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds branch metadata that expresses that the flow of control is
+unpredictable in a given <code>branch</code> or <code>switch</code> instruction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildUnpredictable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing unpredictable branch metadata.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Section%20Prefix%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/Section Prefix Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Section%20Prefix%20Metadata"></a>
+                  <h3 class="section-name"><p>Section Prefix Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC26buildFunctionSectionPrefixyAA6MDNodeVSSF"></a>
+                    <a name="//apple_ref/swift/Method/buildFunctionSectionPrefix(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC26buildFunctionSectionPrefixyAA6MDNodeVSSF">buildFunctionSectionPrefix(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds section prefix metadata.</p>
+
+<p>LLVM allows an explicit section to be specified for functions. If the
+target supports it, it will emit functions to the section specified.
+Additionally, the function can be placed in a COMDAT.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildFunctionSectionPrefix</span><span class="p">(</span><span class="n">_</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>section</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The section into which functions annotated with this
+metadata should be emitted.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing the section prefix metadata.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Range%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/Range Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Range%20Metadata"></a>
+                  <h3 class="section-name"><p>Range Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC10buildRangeyAA6MDNodeVSgAA5APIntV_AItF"></a>
+                    <a name="//apple_ref/swift/Method/buildRange(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC10buildRangeyAA6MDNodeVSgAA5APIntV_AItF">buildRange(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds range metadata.</p>
+
+<p>Range metadata may be attached only to load, call and invoke of integer
+types. It expresses the possible ranges the loaded value or the value
+returned by the called function at this call site is in. If the loaded
+or returned value is not in the specified range, the behavior is
+undefined.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildRange</span><span class="p">(</span><span class="n">_</span> <span class="nv">lo</span><span class="p">:</span> <span class="kt"><a href="../Structs/APInt.html">APInt</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">hi</span><span class="p">:</span> <span class="kt"><a href="../Structs/APInt.html">APInt</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The lower bound on the range.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hi</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The upper bound on the range.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing the newly created range metadata.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Callee%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/Callee Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Callee%20Metadata"></a>
+                  <h3 class="section-name"><p>Callee Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC12buildCalleesyAA6MDNodeVSayAA8FunctionCGF"></a>
+                    <a name="//apple_ref/swift/Method/buildCallees(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC12buildCalleesyAA6MDNodeVSayAA8FunctionCGF">buildCallees(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build callees metadata.</p>
+
+<p>Callees metadata may be attached to indirect call sites. If callees
+metadata is attached to a call site, and any callee is not among the
+set of functions provided by the metadata, the behavior is undefined.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildCallees</span><span class="p">(</span><span class="n">_</span> <span class="nv">callees</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Function.html">Function</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callees</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of callee function values.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing the newly created callees metadata.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Callback%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/Callback Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Callback%20Metadata"></a>
+                  <h3 class="section-name"><p>Callback Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC21buildCallbackEncoding__21passVariadicArgumentsAA6MDNodeVSu_SaySiGSbtF"></a>
+                    <a name="//apple_ref/swift/Method/buildCallbackEncoding(_:_:passVariadicArguments:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC21buildCallbackEncoding__21passVariadicArgumentsAA6MDNodeVSu_SaySiGSbtF">buildCallbackEncoding(_:<wbr>_:<wbr>passVariadicArguments:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build Callback metadata.</p>
+
+<p>Callback metadata may be attached to a function declaration, or
+definition. The metadata describes how the arguments of a call to a
+function are in turn passed to the callback function specified by the
+metadata. Thus, the callback metadata provides a partial description of
+a call site inside the function with regards to the arguments of a call
+to the function. The only semantic restriction on the function itself is
+that it is not allowed to inspect or modify arguments referenced in the
+callback metadata as pass-through to the callback function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildCallbackEncoding</span><span class="p">(</span>
+  <span class="n">_</span> <span class="nv">callbackIndex</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="n">_</span> <span class="nv">argumentIndices</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">],</span>
+  <span class="nv">passVariadicArguments</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callbackIndex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The argument index of the callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>argumentIndices</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of argument indices in the caller that
+are passed to the callback function.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>passVariadicArguments</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If true, denotes that all variadic arguments
+of the function are passed to the callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing the newly created callees metadata.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Function%20Entry%20Count%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/Function Entry Count Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Function%20Entry%20Count%20Metadata"></a>
+                  <h3 class="section-name"><p>Function Entry Count Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC23buildFunctionEntryCount_7imports9syntheticAA6MDNodeVSu_Shys6UInt64VGSbtF"></a>
+                    <a name="//apple_ref/swift/Method/buildFunctionEntryCount(_:imports:synthetic:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC23buildFunctionEntryCount_7imports9syntheticAA6MDNodeVSu_Shys6UInt64VGSbtF">buildFunctionEntryCount(_:<wbr>imports:<wbr>synthetic:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build function entry count metadata.</p>
+
+<p>Function entry count metadata can be attached to function definitions to
+record the number of times the function is called. Used with
+block frequency information, it is also used to derive the basic block
+profile count.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildFunctionEntryCount</span><span class="p">(</span>
+  <span class="n">_</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="nv">imports</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">UInt64</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">synthetic</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>count</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The number of times a function is called.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>imports</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The GUID of global values that should be imported along with
+this function when running PGO.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>synthetic</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the entry count is synthetic.  User-created
+metadata should not be synthetic outside of PGO passes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing the newly created entry count metadata.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/TBAA%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/TBAA Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/TBAA%20Metadata"></a>
+                  <h3 class="section-name"><p>TBAA Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC13buildTBAARootyAA6MDNodeVSSF"></a>
+                    <a name="//apple_ref/swift/Method/buildTBAARoot(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC13buildTBAARootyAA6MDNodeVSSF">buildTBAARoot(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a metadata node for the root of a TBAA hierarchy with the given
+name.</p>
+
+<p>The root node of a TBAA hierarchy describes a boundary for a source
+language&rsquo;s type system.  For the purposes of optimization, a TBAA analysis
+pass must consider ancestors of two different root systems <code>mayalias</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildTBAARoot</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the TBAA root node.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing a TBAA hierarchy root.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC21buildAliasScopeDomainyAA6MDNodeVSS_AFSgtF"></a>
+                    <a name="//apple_ref/swift/Method/buildAliasScopeDomain(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC21buildAliasScopeDomainyAA6MDNodeVSS_AFSgtF">buildAliasScopeDomain(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build a metadata node suitable for an <code>alias.scope</code> metadata attachment.</p>
+
+<p>When evaluating an aliasing query, if for some domain, the set of scopes
+with that domain in one instruction’s alias.scope list is a subset of (or
+equal to) the set of scopes for that domain in another instruction’s
+noalias list, then the two memory accesses are assumed not to alias.</p>
+
+<p>Because scopes in one domain don’t affect scopes in other domains,
+separate domains can be used to compose multiple independent noalias
+sets. This is used for example during inlining. As the noalias function
+parameters are turned into noalias scope metadata, a new domain is used
+every time the function is inlined.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildAliasScopeDomain</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span> <span class="n">_</span> <span class="nv">domain</span><span class="p">:</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the alias scope domain.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>domain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The domain of the alias scope, if any.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing a TBAA alias scope.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC19buildTBAAStructNodeyAA6MDNodeVSayAA0D5FieldVGF"></a>
+                    <a name="//apple_ref/swift/Method/buildTBAAStructNode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC19buildTBAAStructNodeyAA6MDNodeVSayAA0D5FieldVGF">buildTBAAStructNode(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a metadata node suitable for a <code>tbaa.struct</code> metadata attachment.</p>
+
+<p><code>tbaa.struct</code> metadata can describe which memory subregions in a
+<code>memcpy</code> are padding and what the TBAA tags of the struct are.</p>
+
+<p>Note that the fields need not be contiguous. In the following example,
+there is a 4 byte gap between the two fields. This gap represents padding
+which does not carry useful data and need not be preserved.</p>
+<pre class="highlight swift"><code><span class="o">!</span><span class="mi">4</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span> <span class="n">i64</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="mi">1</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">8</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">4</span><span class="p">,</span> <span class="o">!</span><span class="mi">2</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildTBAAStructNode</span><span class="p">(</span><span class="n">_</span> <span class="nv">fields</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/TBAAStructField.html">TBAAStructField</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fields</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The fields of the struct.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing a TBAA struct descriptor.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC17buildTBAATypeNode_6parent4size6fieldsAA6MDNodeVAA10IRMetadata_p_AiA4SizeVSayAA15TBAAStructFieldVGtF"></a>
+                    <a name="//apple_ref/swift/Method/buildTBAATypeNode(_:parent:size:fields:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC17buildTBAATypeNode_6parent4size6fieldsAA6MDNodeVAA10IRMetadata_p_AiA4SizeVSayAA15TBAAStructFieldVGtF">buildTBAATypeNode(_:<wbr>parent:<wbr>size:<wbr>fields:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a TBAA Type Descriptor.</p>
+
+<p>Type descriptors describe the type system of the higher level language
+being compiled and come in two variants:</p>
+<h1 id='scalar-type-descriptors' class='heading'>Scalar Type Descriptors</h1>
+
+<p>Scalar type descriptors describe types that do not contain other types,
+such as fixed-width integral and floating-point types.  A scalar type
+has a single parent, which is required to be another scalar type or
+the TBAA root node.  For example, in C, <code>int32_t</code> would be described be
+a scalar type node with a parent pointer to <code>unsigned char</code> which, in
+turn, points to the root for C.</p>
+<pre class="highlight swift"><code><span class="o">+----------+</span>   <span class="o">+------+</span>   <span class="o">+-----------+</span>
+<span class="o">|</span>          <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>           <span class="o">|</span>
+<span class="o">|</span> <span class="n">uint32_t</span> <span class="o">+---&gt;</span> <span class="n">char</span> <span class="o">+---&gt;</span> <span class="kt">TBAA</span> <span class="kt">Root</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="o">|</span>   <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>           <span class="o">|</span>
+<span class="o">+----------+</span>   <span class="o">+------+</span>   <span class="o">+-----------+</span>
+</code></pre>
+<h1 id='struct-type-descriptors' class='heading'>Struct Type Descriptors</h1>
+
+<p>Struct type descriptors describe types that contain a sequence of other
+type descriptors, at known offsets, as fields. These field type
+descriptors can either be struct type descriptors themselves or scalar
+type descriptors.</p>
+<pre class="highlight swift"><code>              <span class="o">+----------+</span>
+              <span class="o">|</span>          <span class="o">|</span>
+      <span class="o">+-------&gt;</span> <span class="n">uint32_t</span> <span class="o">+----+</span>
+      <span class="o">|</span>       <span class="o">|</span>          <span class="o">|</span>    <span class="o">|</span>
+      <span class="o">|</span>       <span class="o">+----------+</span>    <span class="o">|</span>
+<span class="o">+------------+</span>            <span class="o">+---</span><span class="n">v</span><span class="o">--+</span>   <span class="o">+-----------+</span>
+<span class="o">|</span>            <span class="o">|</span>            <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>           <span class="o">|</span>
+<span class="o">|</span> <span class="kt">SomeStruct</span> <span class="o">|</span>            <span class="o">|</span> <span class="n">char</span> <span class="o">+---&gt;</span> <span class="kt">TBAA</span> <span class="kt">Root</span> <span class="o">|</span>
+<span class="o">|</span>            <span class="o">|</span>            <span class="o">|</span>      <span class="o">|</span>   <span class="o">|</span>           <span class="o">|</span>
+<span class="o">+------------+</span>            <span class="o">+---^--+</span>   <span class="o">+-----------+</span>
+      <span class="o">|</span>          <span class="o">+-------+</span>    <span class="o">|</span>
+      <span class="o">|</span>          <span class="o">|</span>       <span class="o">|</span>    <span class="o">|</span>
+      <span class="o">+----------&gt;</span> <span class="n">float</span> <span class="o">+----+</span>
+                 <span class="o">|</span>       <span class="o">|</span>
+                 <span class="o">+-------+</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildTBAATypeNode</span><span class="p">(</span>
+  <span class="n">_</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRMetadata.html">IRMetadata</a></span><span class="p">,</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">fields</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/TBAAStructField.html">TBAAStructField</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parent type node of this type node or the TBAA root node
+if it is a top-level entity.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the type in bytes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The metadata node whose identity uniquely identifies this node as
+well.  These are often <code><a href="../Structs/MDString.html">MDString</a></code> values.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fields</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The fields of the type, if any.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing a TBAA type descriptor.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC18buildTBAAAccessTag8baseType06accessG06offset4size9immutableAA6MDNodeVAK_AkA4SizeVAMSbtF"></a>
+                    <a name="//apple_ref/swift/Method/buildTBAAAccessTag(baseType:accessType:offset:size:immutable:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC18buildTBAAAccessTag8baseType06accessG06offset4size9immutableAA6MDNodeVAK_AkA4SizeVAMSbtF">buildTBAAAccessTag(baseType:<wbr>accessType:<wbr>offset:<wbr>size:<wbr>immutable:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds a TBAA Access Tag.</p>
+
+<p>Access tags are metadata nodes attached to <code>load</code> and <code>store</code>
+instructions. Access tags use type descriptors to describe the
+location being accessed in terms of the type system of the higher
+level language. Access tags are tuples consisting of a base type,
+an access type and an offset. The base type is a scalar type
+descriptor or a struct type descriptor, the access type is a
+scalar type descriptor, and the offset is a constant integer.</p>
+<h1 id='tag-structure' class='heading'>Tag Structure</h1>
+
+<p>The access tag <code>(BaseTy, AccessTy, Offset)</code> can describe one of two
+things:</p>
+
+<ul>
+<li>If <code>BaseTy</code> is a struct type, the tag describes a memory access
+(<code>load</code> or <code>store</code>) of a value of type <code>AccessTy</code> contained in
+the struct type <code>BaseTy</code> at offset <code>Offset</code>.</li>
+<li><p>If <code>BaseTy</code> is a scalar type, <code>Offset</code> must be 0 and <code>BaseTy</code> and
+<code>AccessTy</code> must be the same; and the access tag describes a scalar
+access with scalar type <code>AccessTy</code>.</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildTBAAAccessTag</span><span class="p">(</span>
+  <span class="nv">baseType</span><span class="p">:</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span><span class="p">,</span> <span class="nv">accessType</span><span class="p">:</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span><span class="p">,</span>
+  <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">immutable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>baseType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The base type of the access.  This is the structure or
+scalar type that corresponds to the type of the source value in a
+<code>load</code> instruction, or the type of the destination value in a <code>store</code>
+instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accessType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the accessed value.  This is the type that
+corresponds to the type of the destination value in a <code>load</code>
+instruction, or the type of the source value in a <code>store</code> instruction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>offset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ofset of the memory access into the base type.  If the
+base type is scalar, this value must be 0.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the access in bytes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>immutable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If true, accesses to this memory are never writes.
+This corresponds to the <code>const</code> memory qualifier in C and C++.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing a TBAA access tag.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Irreducible%20Loop%20Metadata"></a>
+                <a name="//apple_ref/swift/Section/Irreducible Loop Metadata" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Irreducible%20Loop%20Metadata"></a>
+                  <h3 class="section-name"><p>Irreducible Loop Metadata</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC32buildIrreducibleLoopHeaderWeightyAA6MDNodeVSuF"></a>
+                    <a name="//apple_ref/swift/Method/buildIrreducibleLoopHeaderWeight(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC32buildIrreducibleLoopHeaderWeightyAA6MDNodeVSuF">buildIrreducibleLoopHeaderWeight(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds irreducible loop metadata.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildIrreducibleLoopHeaderWeight</span><span class="p">(</span><span class="n">_</span> <span class="nv">weight</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/MDNode.html">MDNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>weight</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The weight of a loop header.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A metadata node representing the newly created
+irreducible loop metadata.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

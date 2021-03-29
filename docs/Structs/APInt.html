@@ -8,13 +8,21 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Struct/APInt" class="dashAnchor"></a>
     <a title="APInt Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="../Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="../Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="../Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Use.html">Use</a>
@@ -489,6 +560,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -497,7 +576,10 @@
             <h1>APInt</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">APInt</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/IRConstant.html">IRConstant</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">APInt</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">APInt</span><span class="p">:</span> <span class="kt">Numeric</span></code></pre>
 
                 </div>
               </div>
@@ -562,9 +644,7 @@ well as bitwise manipulation.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">bitWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
-  <span class="k">get</span>
-  <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">bitWidth</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -597,10 +677,6 @@ well as bitwise manipulation.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -634,7 +710,7 @@ of zero.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV5width5value6signedACSi_s6UInt64VSbtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(width:value:signed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV5width5value6signedACSi_s6UInt64VSbtcfc">init(width:value:signed:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV5width5value6signedACSi_s6UInt64VSbtcfc">init(width:<wbr>value:<wbr>signed:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -706,7 +782,7 @@ signedness.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV5width6valuesACSi_Says6UInt64VGtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(width:values:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV5width6valuesACSi_Says6UInt64VGtcfc">init(width:values:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV5width6valuesACSi_Says6UInt64VGtcfc">init(width:<wbr>values:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -766,9 +842,11 @@ array of word values.</p>
               <div class="task-name-container">
                 <a name="/Comparisons"></a>
                 <a name="//apple_ref/swift/Section/Comparisons" class="dashAnchor"></a>
-                <a href="#/Comparisons">
-                  <h3 class="section-name">Comparisons</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Comparisons"></a>
+                  <h3 class="section-name"><p>Comparisons</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -776,7 +854,7 @@ array of word values.</p>
                     <code>
                     <a name="/s:SQ2eeoiySbx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -802,7 +880,7 @@ array of word values.</p>
                     <code>
                     <a name="/s:SL1loiySbx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SL1loiySbx_xtFZ">&lt;(_:_:)</a>
+                    <a class="token" href="#/s:SL1loiySbx_xtFZ"><(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -829,9 +907,11 @@ array of word values.</p>
               <div class="task-name-container">
                 <a name="/Arithmetic%20Operations"></a>
                 <a name="//apple_ref/swift/Section/Arithmetic Operations" class="dashAnchor"></a>
-                <a href="#/Arithmetic%20Operations">
-                  <h3 class="section-name">Arithmetic Operations</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Arithmetic%20Operations"></a>
+                  <h3 class="section-name"><p>Arithmetic Operations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -891,7 +971,7 @@ array of word values.</p>
                     <code>
                     <a name="/s:s27ExpressibleByIntegerLiteralP07integerD0x0cD4TypeQz_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(integerLiteral:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s27ExpressibleByIntegerLiteralP07integerD0x0cD4TypeQz_tcfc">init(integerLiteral:)</a>
+                    <a class="token" href="#/s:s27ExpressibleByIntegerLiteralP07integerD0x0cD4TypeQz_tcfc">init(integerLiteral:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -917,7 +997,7 @@ array of word values.</p>
                     <code>
                     <a name="/s:Sj7exactlyxSgqd___tcSzRd__lufc"></a>
                     <a name="//apple_ref/swift/Method/init(exactly:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sj7exactlyxSgqd___tcSzRd__lufc">init(exactly:)</a>
+                    <a class="token" href="#/s:Sj7exactlyxSgqd___tcSzRd__lufc">init(exactly:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -943,7 +1023,7 @@ array of word values.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV1aoiyA2C_ACtFZ"></a>
                     <a name="//apple_ref/swift/Method/&amp;(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV1aoiyA2C_ACtFZ">&amp;(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV1aoiyA2C_ACtFZ">&(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -971,7 +1051,7 @@ given values.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV2aeoiyyACz_ACtFZ"></a>
                     <a name="//apple_ref/swift/Method/&amp;=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV2aeoiyyACz_ACtFZ">&amp;=(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV2aeoiyyACz_ACtFZ">&=(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -999,7 +1079,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV1ooiyA2C_ACtFZ"></a>
                     <a name="//apple_ref/swift/Method/|(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV1ooiyA2C_ACtFZ">|(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV1ooiyA2C_ACtFZ">|(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1027,7 +1107,7 @@ given values.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV2oeoiyyACz_ACtFZ"></a>
                     <a name="//apple_ref/swift/Method/|=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV2oeoiyyACz_ACtFZ">|=(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV2oeoiyyACz_ACtFZ">|=(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1055,7 +1135,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV1xoiyA2C_ACtFZ"></a>
                     <a name="//apple_ref/swift/Method/^(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV1xoiyA2C_ACtFZ">^(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV1xoiyA2C_ACtFZ">^(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1083,7 +1163,7 @@ given values.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV2xeoiyyACz_ACtFZ"></a>
                     <a name="//apple_ref/swift/Method/^=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV2xeoiyyACz_ACtFZ">^=(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV2xeoiyyACz_ACtFZ">^=(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1111,7 +1191,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:s18AdditiveArithmeticP1poiyxx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/+(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s18AdditiveArithmeticP1poiyxx_xtFZ">+(_:_:)</a>
+                    <a class="token" href="#/s:s18AdditiveArithmeticP1poiyxx_xtFZ">+(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1137,7 +1217,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:s18AdditiveArithmeticP2peoiyyxz_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/+=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s18AdditiveArithmeticP2peoiyyxz_xtFZ">+=(_:_:)</a>
+                    <a class="token" href="#/s:s18AdditiveArithmeticP2peoiyyxz_xtFZ">+=(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1163,7 +1243,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:s18AdditiveArithmeticP1soiyxx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/-(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s18AdditiveArithmeticP1soiyxx_xtFZ">-(_:_:)</a>
+                    <a class="token" href="#/s:s18AdditiveArithmeticP1soiyxx_xtFZ">-(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1189,7 +1269,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:s18AdditiveArithmeticP2seoiyyxz_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/-=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s18AdditiveArithmeticP2seoiyyxz_xtFZ">-=(_:_:)</a>
+                    <a class="token" href="#/s:s18AdditiveArithmeticP2seoiyyxz_xtFZ">-=(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1241,7 +1321,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:Sj1moiyxx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/*(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sj1moiyxx_xtFZ">*(_:_:)</a>
+                    <a class="token" href="#/s:Sj1moiyxx_xtFZ">*(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1267,7 +1347,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:Sj2meoiyyxz_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/*=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sj2meoiyyxz_xtFZ">*=(_:_:)</a>
+                    <a class="token" href="#/s:Sj2meoiyyxz_xtFZ">*=(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1293,7 +1373,7 @@ values in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV2lloiyA2C_s6UInt64VtFZ"></a>
                     <a name="//apple_ref/swift/Method/&lt;&lt;(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV2lloiyA2C_s6UInt64VtFZ">&lt;&lt;(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV2lloiyA2C_s6UInt64VtFZ"><<(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1321,7 +1401,7 @@ specified number of digits to the left.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV3lleoiyyACz_s6UInt64VtFZ"></a>
                     <a name="//apple_ref/swift/Method/&lt;&lt;=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV3lleoiyyACz_s6UInt64VtFZ">&lt;&lt;=(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV3lleoiyyACz_s6UInt64VtFZ"><<=(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1349,7 +1429,7 @@ specified number of digits to the left in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV21logicallyShiftedRight2byACs6UInt64V_tF"></a>
                     <a name="//apple_ref/swift/Method/logicallyShiftedRight(by:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV21logicallyShiftedRight2byACs6UInt64V_tF">logicallyShiftedRight(by:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV21logicallyShiftedRight2byACs6UInt64V_tF">logicallyShiftedRight(by:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1400,7 +1480,7 @@ specified number of digits to the left in the left-hand-side variable.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV19logicallyShiftRight2byys6UInt64V_tF"></a>
                     <a name="//apple_ref/swift/Method/logicallyShiftRight(by:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV19logicallyShiftRight2byys6UInt64V_tF">logicallyShiftRight(by:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV19logicallyShiftRight2byys6UInt64V_tF">logicallyShiftRight(by:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1441,17 +1521,6 @@ specified number of digits to the left in the left-hand-side variable.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Arithmetic%20Operations2"></a>
-                <a name="//apple_ref/swift/Section/Arithmetic Operations" class="dashAnchor"></a>
-                <a href="#/Arithmetic%20Operations2">
-                  <h3 class="section-name">Arithmetic Operations</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1510,17 +1579,6 @@ faithfully in 64 bits, the result is <code>nil</code>.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Arithmetic%20Operations3"></a>
-                <a name="//apple_ref/swift/Section/Arithmetic Operations" class="dashAnchor"></a>
-                <a href="#/Arithmetic%20Operations3">
-                  <h3 class="section-name">Arithmetic Operations</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1608,6 +1666,33 @@ faithfully in 64 bits, the result is <code>nil</code>.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:4LLVM5APIntV22leadingNonZeroBitCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/leadingNonZeroBitCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV22leadingNonZeroBitCountSivp">leadingNonZeroBitCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of leading ones in this value’s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">leadingNonZeroBitCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:4LLVM5APIntV20trailingZeroBitCountSivp"></a>
                     <a name="//apple_ref/swift/Property/trailingZeroBitCount" class="dashAnchor"></a>
                     <a class="token" href="#/s:4LLVM5APIntV20trailingZeroBitCountSivp">trailingZeroBitCount</a>
@@ -1626,6 +1711,33 @@ faithfully in 64 bits, the result is <code>nil</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">trailingZeroBitCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV23trailingNonZeroBitCountSivp"></a>
+                    <a name="//apple_ref/swift/Property/trailingNonZeroBitCount" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV23trailingNonZeroBitCountSivp">trailingNonZeroBitCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of trailing ones in this value’s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">trailingNonZeroBitCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1663,19 +1775,456 @@ faithfully in 64 bits, the result is <code>nil</code>.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Arithmetic%20Operations4"></a>
-                <a name="//apple_ref/swift/Section/Arithmetic Operations" class="dashAnchor"></a>
-                <a href="#/Arithmetic%20Operations4">
-                  <h3 class="section-name">Arithmetic Operations</h3>
-                </a>
+                <a name="/Bit%20Twiddling%20Operations"></a>
+                <a name="//apple_ref/swift/Section/Bit Twiddling Operations" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Bit%20Twiddling%20Operations"></a>
+                  <h3 class="section-name"><p>Bit Twiddling Operations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:4LLVM5APIntV10setAllBitsyyF"></a>
+                    <a name="//apple_ref/swift/Method/setAllBits()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV10setAllBitsyyF">setAllBits()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets all bits to one in this value&rsquo;s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setAllBits</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV6setBit2atySi_tF"></a>
+                    <a name="//apple_ref/swift/Method/setBit(at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV6setBit2atySi_tF">setBit(at:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the bit at the given position to one.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setBit</span><span class="p">(</span><span class="n">at</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position of the bit to set.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV10setSignBityyF"></a>
+                    <a name="//apple_ref/swift/Method/setSignBit()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV10setSignBityyF">setSignBit()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the sign bit to one in this value&rsquo;s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setSignBit</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV7setBitsyySNySiGF"></a>
+                    <a name="//apple_ref/swift/Method/setBits(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV7setBitsyySNySiGF">setBits(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets all bits in the given range to one in this value&rsquo;s binary
+representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setBits</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>range</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The range of bits to flip.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV7setBitsyySnySiGF"></a>
+                    <a name="//apple_ref/swift/Method/setBits(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV7setBitsyySnySiGF">setBits(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets all bits in the given range to one in this value&rsquo;s binary
+representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setBits</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>range</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The range of bits to flip.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV7setBitsyys16PartialRangeUpToVySiGF"></a>
+                    <a name="//apple_ref/swift/Method/setBits(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV7setBitsyys16PartialRangeUpToVySiGF">setBits(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets all bits in the given range to one in this value&rsquo;s binary
+representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setBits</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeUpTo</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>range</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The range of bits to flip.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV7setBitsyys19PartialRangeThroughVySiGF"></a>
+                    <a name="//apple_ref/swift/Method/setBits(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV7setBitsyys19PartialRangeThroughVySiGF">setBits(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets all bits in the given range to one in this value&rsquo;s binary
+representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setBits</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeThrough</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>range</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The range of bits to flip.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV7setBitsyys16PartialRangeFromVySiGF"></a>
+                    <a name="//apple_ref/swift/Method/setBits(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV7setBitsyys16PartialRangeFromVySiGF">setBits(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets all bits in the given range to one in this value&rsquo;s binary
+representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">setBits</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeFrom</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>range</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The range of bits to flip.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV12clearAllBitsyyF"></a>
+                    <a name="//apple_ref/swift/Method/clearAllBits()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV12clearAllBitsyyF">clearAllBits()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Clears all bits to one in this value&rsquo;s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">clearAllBits</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV8clearBityySiF"></a>
+                    <a name="//apple_ref/swift/Method/clearBit(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV8clearBityySiF">clearBit(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the bit at the given position to zero.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">clearBit</span><span class="p">(</span><span class="n">_</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position of the bit to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM5APIntV12clearSignBityyF"></a>
+                    <a name="//apple_ref/swift/Method/clearSignBit()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM5APIntV12clearSignBityyF">clearSignBit()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Clears the sign bit in this value&rsquo;s binary representation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">clearSignBit</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:4LLVM5APIntV8truncate2toACSi_tF"></a>
                     <a name="//apple_ref/swift/Method/truncate(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV8truncate2toACSi_tF">truncate(to:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV8truncate2toACSi_tF">truncate(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1726,7 +2275,7 @@ faithfully in 64 bits, the result is <code>nil</code>.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV10zeroExtend2toACSi_tF"></a>
                     <a name="//apple_ref/swift/Method/zeroExtend(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV10zeroExtend2toACSi_tF">zeroExtend(to:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV10zeroExtend2toACSi_tF">zeroExtend(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1778,7 +2327,7 @@ faithfully in 64 bits, the result is <code>nil</code>.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV10signExtend2toACSi_tF"></a>
                     <a name="//apple_ref/swift/Method/signExtend(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV10signExtend2toACSi_tF">signExtend(to:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV10signExtend2toACSi_tF">signExtend(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1830,7 +2379,7 @@ faithfully in 64 bits, the result is <code>nil</code>.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV20zeroExtendOrTruncate2toACSi_tF"></a>
                     <a name="//apple_ref/swift/Method/zeroExtendOrTruncate(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV20zeroExtendOrTruncate2toACSi_tF">zeroExtendOrTruncate(to:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV20zeroExtendOrTruncate2toACSi_tF">zeroExtendOrTruncate(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1888,7 +2437,7 @@ a no-op.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV20signExtendOrTruncate2toACSi_tF"></a>
                     <a name="//apple_ref/swift/Method/signExtendOrTruncate(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV20signExtendOrTruncate2toACSi_tF">signExtendOrTruncate(to:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV20signExtendOrTruncate2toACSi_tF">signExtendOrTruncate(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1973,7 +2522,7 @@ a no-op.</p>
                     <code>
                     <a name="/s:4LLVM5APIntV1topyA2CFZ"></a>
                     <a name="//apple_ref/swift/Method/~(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM5APIntV1topyA2CFZ">~(_:)</a>
+                    <a class="token" href="#/s:4LLVM5APIntV1topyA2CFZ">~(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2023,8 +2572,8 @@ a no-op.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
