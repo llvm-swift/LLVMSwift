@@ -28,6 +28,9 @@ public final class PassPipeliner {
   private var stageMapping: [String: PipelinePlan]
   private var frozen: Bool = false
 
+  /// A helper object that can add passes to a pipeline.
+  ///
+  /// To add a new pass, call `add(_:)`.
   public final class Builder {
     fileprivate var passes: [Pass] = []
 

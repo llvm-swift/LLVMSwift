@@ -8,13 +8,21 @@
     <script src="../../js/jquery.min.js" defer></script>
     <script src="../../js/jazzy.js" defer></script>
     
+    <script src="../../js/lunr.min.js" defer></script>
+    <script src="../../js/typeahead.jquery.js" defer></script>
+    <script src="../../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Enum/PinnedKind" class="dashAnchor"></a>
     <a title="PinnedKind Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="../../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="../../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="../../Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="../../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="../../Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="../../Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="../../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="../../Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Use.html">Use</a>
@@ -489,6 +560,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -497,6 +576,7 @@
             <h1>PinnedKind</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PinnedKind</span> <span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                 </div>
@@ -1048,6 +1128,9 @@ attribute may only be applied to pointer typed parameters. This is not
 checked or enforced by LLVM; if the parameter or return pointer is null,
 the behavior is undefined.</p>
 
+<p>Note that the concept of a &ldquo;null&rdquo; pointer is address space dependent.  it is
+not necessarily the 0 bit-pattern.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -1247,24 +1330,24 @@ are considered the same.</p>
 <span class="o">...</span>
 <span class="o">%</span><span class="n">ptr</span> <span class="o">=</span> <span class="n">alloca</span> <span class="n">i8</span>
 <span class="n">store</span> <span class="n">i8</span> <span class="mi">42</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span>
-<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo(i8* %ptr)</span>
+<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">)</span>
 
 <span class="o">%</span><span class="n">a</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span> <span class="p">;</span> <span class="kt">Can</span> <span class="n">assume</span> <span class="n">that</span> <span class="n">value</span> <span class="n">under</span> <span class="o">%</span><span class="n">ptr</span> <span class="n">didn</span><span class="err">'</span><span class="n">t</span> <span class="n">change</span>
-<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo(i8* %ptr)</span>
+<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">)</span>
 
-<span class="o">%</span><span class="n">newPtr</span> <span class="o">=</span> <span class="n">call</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@getPointer(i8* %ptr)</span>
+<span class="o">%</span><span class="n">newPtr</span> <span class="o">=</span> <span class="n">call</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@getPointer</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">)</span>
 <span class="o">%</span><span class="n">c</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">newPtr</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span> <span class="p">;</span> <span class="kt">Can</span><span class="err">'</span><span class="n">t</span> <span class="n">assume</span> <span class="n">anything</span><span class="p">,</span> <span class="n">because</span> <span class="n">we</span> <span class="n">only</span> <span class="n">have</span> <span class="n">information</span> <span class="n">about</span> <span class="o">%</span><span class="n">ptr</span>
 
 <span class="o">%</span><span class="n">unknownValue</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@unknownPtr</span>
 <span class="n">store</span> <span class="n">i8</span> <span class="o">%</span><span class="n">unknownValue</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span> <span class="p">;</span> <span class="kt">Can</span> <span class="n">assume</span> <span class="n">that</span> <span class="o">%</span><span class="n">unknownValue</span> <span class="o">==</span> <span class="mi">42</span>
 
-<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo(i8* %ptr)</span>
+<span class="n">call</span> <span class="n">void</span> <span class="kd">@foo</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">)</span>
 <span class="o">%</span><span class="n">newPtr2</span> <span class="o">=</span> <span class="n">call</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@llvm</span><span class="o">.</span><span class="n">launder</span><span class="o">.</span><span class="n">invariant</span><span class="o">.</span><span class="nf">group</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">ptr</span><span class="p">)</span>
 <span class="o">%</span><span class="n">d</span> <span class="o">=</span> <span class="n">load</span> <span class="n">i8</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="o">%</span><span class="n">newPtr2</span><span class="p">,</span> <span class="o">!</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="o">!</span><span class="mi">0</span>  <span class="p">;</span> <span class="kt">Can</span><span class="err">'</span><span class="n">t</span> <span class="n">step</span> <span class="n">through</span> <span class="n">launder</span><span class="o">.</span><span class="n">invariant</span><span class="o">.</span><span class="n">group</span> <span class="n">to</span> <span class="k">get</span> <span class="n">value</span> <span class="n">of</span> <span class="o">%</span><span class="n">ptr</span>
 
 <span class="o">...</span>
-<span class="n">declare</span> <span class="n">void</span> <span class="kd">@foo(i8*)</span>
-<span class="n">declare</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@getPointer(i8*)</span>
+<span class="n">declare</span> <span class="n">void</span> <span class="kd">@foo</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span><span class="p">)</span>
+<span class="n">declare</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@getPointer</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span><span class="p">)</span>
 <span class="n">declare</span> <span class="n">i8</span><span class="o">*</span> <span class="kd">@llvm</span><span class="o">.</span><span class="n">launder</span><span class="o">.</span><span class="n">invariant</span><span class="o">.</span><span class="nf">group</span><span class="p">(</span><span class="n">i8</span><span class="o">*</span><span class="p">)</span>
 
 <span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{}</span>
@@ -1734,7 +1817,7 @@ only one callback encoding, namely <code>!2</code>, associated with it. This
 encoding identifies the callback function as the second argument
 <code>(i64 2)</code> and the sole argument of the callback function
 as the third <code>(i64 3)</code>.</p>
-<pre class="highlight swift"><code><span class="n">declare</span> <span class="o">!</span><span class="n">callback</span> <span class="o">!</span><span class="mi">1</span> <span class="n">dso_local</span> <span class="n">i32</span> <span class="kd">@pthread_create(i64*, %union.pthread_attr_t*, i8* (i8*)</span><span class="o">*</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">declare</span> <span class="o">!</span><span class="n">callback</span> <span class="o">!</span><span class="mi">1</span> <span class="n">dso_local</span> <span class="n">i32</span> <span class="kd">@pthread_create</span><span class="p">(</span><span class="n">i64</span><span class="o">*</span><span class="p">,</span> <span class="o">%</span><span class="n">union</span><span class="o">.</span><span class="n">pthread_attr_t</span><span class="o">*</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span> <span class="p">(</span><span class="n">i8</span><span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="p">,</span> <span class="n">i8</span><span class="o">*</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="o">!</span><span class="mi">2</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i64</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i64</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i1</span> <span class="kc">false</span><span class="p">}</span>
 <span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">2</span><span class="p">}</span>
@@ -1745,7 +1828,7 @@ argument of the <code>__kmpc_fork_call</code> function <code>(i64 2)</code>. The
 given two unknown values (each identified by a <code>i64 -1</code>) and afterwards
 all variadic arguments that are passed to the <code>__kmpc_fork_call</code> call
 (due to the final i1 true).</p>
-<pre class="highlight swift"><code><span class="n">declare</span> <span class="o">!</span><span class="n">callback</span> <span class="o">!</span><span class="mi">0</span> <span class="n">dso_local</span> <span class="n">void</span> <span class="kd">@__kmpc_fork_call(%struct.ident_t*, i32, void (i32*, i32*, ...)</span><span class="o">*</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">declare</span> <span class="o">!</span><span class="n">callback</span> <span class="o">!</span><span class="mi">0</span> <span class="n">dso_local</span> <span class="n">void</span> <span class="kd">@__kmpc_fork_call</span><span class="p">(</span><span class="o">%</span><span class="kd">struct</span><span class="o">.</span><span class="n">ident_t</span><span class="o">*</span><span class="p">,</span> <span class="n">i32</span><span class="p">,</span> <span class="nf">void</span> <span class="p">(</span><span class="n">i32</span><span class="o">*</span><span class="p">,</span> <span class="n">i32</span><span class="o">*</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span><span class="o">*</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="o">!</span><span class="mi">1</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="n">i64</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i64</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i64</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i1</span> <span class="kc">true</span><span class="p">}</span>
 <span class="o">!</span><span class="mi">0</span> <span class="o">=</span> <span class="o">!</span><span class="p">{</span><span class="o">!</span><span class="mi">1</span><span class="p">}</span>
@@ -1768,8 +1851,8 @@ all variadic arguments that are passed to the <code>__kmpc_fork_call</code> call
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

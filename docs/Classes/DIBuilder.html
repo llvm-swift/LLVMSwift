@@ -8,13 +8,21 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/DIBuilder" class="dashAnchor"></a>
     <a title="DIBuilder Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="../Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="../Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="../Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Use.html">Use</a>
@@ -489,6 +560,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -497,6 +576,7 @@
             <h1>DIBuilder</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">DIBuilder</span></code></pre>
 
                 </div>
@@ -541,7 +621,7 @@ the form of LLVM metadata.  A <code>DIBuilder</code> is usually paired with an
                     <code>
                     <a name="/s:4LLVM9DIBuilderC6module15allowUnresolvedAcA6ModuleC_Sbtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(module:allowUnresolved:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC6module15allowUnresolvedAcA6ModuleC_Sbtcfc">init(module:allowUnresolved:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC6module15allowUnresolvedAcA6ModuleC_Sbtcfc">init(module:<wbr>allowUnresolved:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -623,50 +703,25 @@ the form of LLVM metadata.  A <code>DIBuilder</code> is usually paired with an
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM9DIBuilderCfd"></a>
-                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderCfd">deinit</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Deinitialize this value and dispose of its resources.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/Declarations"></a>
                 <a name="//apple_ref/swift/Section/Declarations" class="dashAnchor"></a>
-                <a href="#/Declarations">
-                  <h3 class="section-name">Declarations</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Declarations"></a>
+                  <h3 class="section-name"><p>Declarations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9DIBuilderC12buildDeclare2of6before8metadata4expr8locationyAA7IRValue_p_AA11InstructionVAA21LocalVariableMetadataVAA010ExpressionN0VAA13DebugLocationVtF"></a>
+                    <a name="/s:4LLVM9DIBuilderC12buildDeclare2of6before8metadata4expr8locationyAA7IRValue_p_AA13IRInstruction_pAA21LocalVariableMetadataVAA010ExpressionN0VAA13DebugLocationVtF"></a>
                     <a name="//apple_ref/swift/Method/buildDeclare(of:before:metadata:expr:location:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC12buildDeclare2of6before8metadata4expr8locationyAA7IRValue_p_AA11InstructionVAA21LocalVariableMetadataVAA010ExpressionN0VAA13DebugLocationVtF">buildDeclare(of:before:metadata:expr:location:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC12buildDeclare2of6before8metadata4expr8locationyAA7IRValue_p_AA13IRInstruction_pAA21LocalVariableMetadataVAA010ExpressionN0VAA13DebugLocationVtF">buildDeclare(of:<wbr>before:<wbr>metadata:<wbr>expr:<wbr>location:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -696,7 +751,7 @@ difficult because of these scoping constraints.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDeclare</span><span class="p">(</span>
   <span class="n">of</span> <span class="nv">variable</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
-  <span class="nv">before</span><span class="p">:</span> <span class="kt"><a href="../Structs/Instruction.html">Instruction</a></span><span class="p">,</span>
+  <span class="nv">before</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRInstruction.html">IRInstruction</a></span><span class="p">,</span>
   <span class="nv">metadata</span><span class="p">:</span> <span class="kt"><a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a></span><span class="p">,</span>
   <span class="nv">expr</span><span class="p">:</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span><span class="p">,</span>
   <span class="nv">location</span><span class="p">:</span> <span class="kt"><a href="../Structs/DebugLocation.html">DebugLocation</a></span>
@@ -752,7 +807,7 @@ difficult because of these scoping constraints.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A <q>complex expression</q> that modifies the current
+                                  <p>A &ldquo;complex expression&rdquo; that modifies the current
   variable declaration.</p>
                                 </div>
                               </td>
@@ -780,7 +835,7 @@ difficult because of these scoping constraints.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC12buildDeclare2of7atEndOf8metadata4expr8locationyAA7IRValue_p_AA10BasicBlockVAA21LocalVariableMetadataVAA010ExpressionQ0VAA13DebugLocationVtF"></a>
                     <a name="//apple_ref/swift/Method/buildDeclare(of:atEndOf:metadata:expr:location:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC12buildDeclare2of7atEndOf8metadata4expr8locationyAA7IRValue_p_AA10BasicBlockVAA21LocalVariableMetadataVAA010ExpressionQ0VAA13DebugLocationVtF">buildDeclare(of:atEndOf:metadata:expr:location:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC12buildDeclare2of7atEndOf8metadata4expr8locationyAA7IRValue_p_AA10BasicBlockVAA21LocalVariableMetadataVAA010ExpressionQ0VAA13DebugLocationVtF">buildDeclare(of:<wbr>atEndOf:<wbr>metadata:<wbr>expr:<wbr>location:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -866,7 +921,7 @@ difficult because of these scoping constraints.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A <q>complex expression</q> that modifies the current
+                                  <p>A &ldquo;complex expression&rdquo; that modifies the current
   variable declaration.</p>
                                 </div>
                               </td>
@@ -892,9 +947,9 @@ difficult because of these scoping constraints.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9DIBuilderC13buildDbgValue2of2to6before4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA11InstructionVAA010ExpressionN0VAA13DebugLocationVtF"></a>
+                    <a name="/s:4LLVM9DIBuilderC13buildDbgValue2of2to6before4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA13IRInstruction_pAA010ExpressionN0VAA13DebugLocationVtF"></a>
                     <a name="//apple_ref/swift/Method/buildDbgValue(of:to:before:expr:location:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildDbgValue2of2to6before4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA11InstructionVAA010ExpressionN0VAA13DebugLocationVtF">buildDbgValue(of:to:before:expr:location:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildDbgValue2of2to6before4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA13IRInstruction_pAA010ExpressionN0VAA13DebugLocationVtF">buildDbgValue(of:<wbr>to:<wbr>before:<wbr>expr:<wbr>location:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -921,7 +976,7 @@ without interpretation to be the value of the given variable.</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDbgValue</span><span class="p">(</span>
   <span class="n">of</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span>
   <span class="n">to</span> <span class="nv">metadata</span><span class="p">:</span> <span class="kt"><a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a></span><span class="p">,</span>
-  <span class="nv">before</span><span class="p">:</span> <span class="kt"><a href="../Structs/Instruction.html">Instruction</a></span><span class="p">,</span>
+  <span class="nv">before</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRInstruction.html">IRInstruction</a></span><span class="p">,</span>
   <span class="nv">expr</span><span class="p">:</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span><span class="p">,</span>
   <span class="nv">location</span><span class="p">:</span> <span class="kt"><a href="../Structs/DebugLocation.html">DebugLocation</a></span>
 <span class="p">)</span></code></pre>
@@ -976,7 +1031,7 @@ without interpretation to be the value of the given variable.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A <q>complex expression</q> that modifies the given value.</p>
+                                  <p>A &ldquo;complex expression&rdquo; that modifies the given value.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1003,7 +1058,7 @@ without interpretation to be the value of the given variable.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC13buildDbgValue2of2to7atEndOf4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA10BasicBlockVAA010ExpressionP0VAA13DebugLocationVtF"></a>
                     <a name="//apple_ref/swift/Method/buildDbgValue(of:to:atEndOf:expr:location:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildDbgValue2of2to7atEndOf4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA10BasicBlockVAA010ExpressionP0VAA13DebugLocationVtF">buildDbgValue(of:to:atEndOf:expr:location:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildDbgValue2of2to7atEndOf4expr8locationyAA7IRValue_p_AA21LocalVariableMetadataVAA10BasicBlockVAA010ExpressionP0VAA13DebugLocationVtF">buildDbgValue(of:<wbr>to:<wbr>atEndOf:<wbr>expr:<wbr>location:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1085,7 +1140,7 @@ without interpretation to be the value of the given variable.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A <q>complex expression</q> that modifies the given value.</p>
+                                  <p>A &ldquo;complex expression&rdquo; that modifies the given value.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1113,17 +1168,19 @@ without interpretation to be the value of the given variable.</p>
               <div class="task-name-container">
                 <a name="/Scope%20Entities"></a>
                 <a name="//apple_ref/swift/Section/Scope Entities" class="dashAnchor"></a>
-                <a href="#/Scope%20Entities">
-                  <h3 class="section-name">Scope Entities</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Scope%20Entities"></a>
+                  <h3 class="section-name"><p>Scope Entities</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9DIBuilderC16buildCompileUnit3for2in4kind9optimized18splitDebugInlining21debugInfoForProfiling5flags14runtimeVersion0J9DWARFPath8identityAA0dE8MetadataVAA19DWARFSourceLanguageO_AA04FileV0VAA17DWARFEmissionKindOS3bSaySSGSiS2StF"></a>
-                    <a name="//apple_ref/swift/Method/buildCompileUnit(for:in:kind:optimized:splitDebugInlining:debugInfoForProfiling:flags:runtimeVersion:splitDWARFPath:identity:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC16buildCompileUnit3for2in4kind9optimized18splitDebugInlining21debugInfoForProfiling5flags14runtimeVersion0J9DWARFPath8identityAA0dE8MetadataVAA19DWARFSourceLanguageO_AA04FileV0VAA17DWARFEmissionKindOS3bSaySSGSiS2StF">buildCompileUnit(for:in:kind:optimized:splitDebugInlining:debugInfoForProfiling:flags:runtimeVersion:splitDWARFPath:identity:)</a>
+                    <a name="/s:4LLVM9DIBuilderC16buildCompileUnit3for2in4kind9optimized18splitDebugInlining21debugInfoForProfiling5flags14runtimeVersion0J9DWARFPath8identity7sysRoot03sdkW0AA0dE8MetadataVAA19DWARFSourceLanguageO_AA04FileY0VAA17DWARFEmissionKindOS3bSaySSGSiS4StF"></a>
+                    <a name="//apple_ref/swift/Method/buildCompileUnit(for:in:kind:optimized:splitDebugInlining:debugInfoForProfiling:flags:runtimeVersion:splitDWARFPath:identity:sysRoot:sdkRoot:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC16buildCompileUnit3for2in4kind9optimized18splitDebugInlining21debugInfoForProfiling5flags14runtimeVersion0J9DWARFPath8identity7sysRoot03sdkW0AA0dE8MetadataVAA19DWARFSourceLanguageO_AA04FileY0VAA17DWARFEmissionKindOS3bSaySSGSiS4StF">buildCompileUnit(for:<wbr>in:<wbr>kind:<wbr>optimized:<wbr>splitDebugInlining:<wbr>debugInfoForProfiling:<wbr>flags:<wbr>runtimeVersion:<wbr>splitDWARFPath:<wbr>identity:<wbr>sysRoot:<wbr>sdkRoot:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1149,7 +1206,9 @@ during this instance of compilation.</p>
   <span class="nv">flags</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
   <span class="nv">runtimeVersion</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
   <span class="nv">splitDWARFPath</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
-  <span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
+  <span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
+  <span class="nv">sysRoot</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
+  <span class="nv">sdkRoot</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a></span></code></pre>
 
                         </div>
@@ -1271,6 +1330,30 @@ by third-party tools.</p>
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sysRoot</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Clang system root (the value of the <code>-isysroot</code> that&rsquo;s passed to clang).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sdkRoot</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The SDK root &ndash; on Darwin platforms, this is the last component of the sysroot.</p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -1286,7 +1369,7 @@ by third-party tools.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC9buildFile5named2inAA0D8MetadataVSS_SStF"></a>
                     <a name="//apple_ref/swift/Method/buildFile(named:in:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC9buildFile5named2inAA0D8MetadataVSS_SStF">buildFile(named:in:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC9buildFile5named2inAA0D8MetadataVSS_SStF">buildFile(named:<wbr>in:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1354,7 +1437,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC11buildModule5named5scope6macros11includePath0H10SystemRootAA0D8MetadataVSS_AA7DIScope_pSaySSGS2StF"></a>
                     <a name="//apple_ref/swift/Method/buildModule(named:scope:macros:includePath:includeSystemRoot:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC11buildModule5named5scope6macros11includePath0H10SystemRootAA0D8MetadataVSS_AA7DIScope_pSaySSGS2StF">buildModule(named:scope:macros:includePath:includeSystemRoot:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC11buildModule5named5scope6macros11includePath0H10SystemRootAA0D8MetadataVSS_AA7DIScope_pSaySSGS2StF">buildModule(named:<wbr>scope:<wbr>macros:<wbr>includePath:<wbr>includeSystemRoot:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1371,7 +1454,7 @@ correspondence.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildModule</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span>
   <span class="nv">macros</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
   <span class="nv">includePath</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
   <span class="nv">includeSystemRoot</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
@@ -1455,7 +1538,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC14buildNameSpace5named5scope14exportsSymbolsAA0dE8MetadataVSS_AA7DIScope_pSbtF"></a>
                     <a name="//apple_ref/swift/Method/buildNameSpace(named:scope:exportsSymbols:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildNameSpace5named5scope14exportsSymbolsAA0dE8MetadataVSS_AA7DIScope_pSbtF">buildNameSpace(named:scope:exportsSymbols:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildNameSpace5named5scope14exportsSymbolsAA0dE8MetadataVSS_AA7DIScope_pSbtF">buildNameSpace(named:<wbr>scope:<wbr>exportsSymbols:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1471,7 +1554,7 @@ correspondence.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildNameSpace</span><span class="p">(</span>
-  <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">exportsSymbols</span><span class="p">:</span> <span class="kt">Bool</span>
+  <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">exportsSymbols</span><span class="p">:</span> <span class="kt">Bool</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a></span></code></pre>
 
                         </div>
@@ -1528,7 +1611,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC13buildFunction5named11linkageName5scope4file4line0H4Line4type5flags7isLocal0N10Definition0N9OptimizedAA0D8MetadataVSS_SSAA7DIScope_pAA04FileR0VS2iAA16DISubroutineTypeVAA7DIFlagsVS3btF"></a>
                     <a name="//apple_ref/swift/Method/buildFunction(named:linkageName:scope:file:line:scopeLine:type:flags:isLocal:isDefinition:isOptimized:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildFunction5named11linkageName5scope4file4line0H4Line4type5flags7isLocal0N10Definition0N9OptimizedAA0D8MetadataVSS_SSAA7DIScope_pAA04FileR0VS2iAA16DISubroutineTypeVAA7DIFlagsVS3btF">buildFunction(named:linkageName:scope:file:line:scopeLine:type:flags:isLocal:isDefinition:isOptimized:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildFunction5named11linkageName5scope4file4line0H4Line4type5flags7isLocal0N10Definition0N9OptimizedAA0D8MetadataVSS_SSAA7DIScope_pAA04FileR0VS2iAA16DISubroutineTypeVAA7DIFlagsVS3btF">buildFunction(named:<wbr>linkageName:<wbr>scope:<wbr>file:<wbr>line:<wbr>scopeLine:<wbr>type:<wbr>flags:<wbr>isLocal:<wbr>isDefinition:<wbr>isOptimized:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1545,7 +1628,7 @@ correspondence.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildFunction</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">linkageName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">scopeLine</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">scopeLine</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Structs/DISubroutineType.html">DISubroutineType</a></span><span class="p">,</span>
   <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span><span class="p">,</span>
   <span class="nv">isLocal</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">isDefinition</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
@@ -1701,7 +1784,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC17buildLexicalBlock5scope4file4line6columnAA0dE8MetadataVAA7DIScope_p_AA04FileJ0VS2itF"></a>
                     <a name="//apple_ref/swift/Method/buildLexicalBlock(scope:file:line:column:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC17buildLexicalBlock5scope4file4line6columnAA0dE8MetadataVAA7DIScope_p_AA04FileJ0VS2itF">buildLexicalBlock(scope:file:line:column:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC17buildLexicalBlock5scope4file4line6columnAA0dE8MetadataVAA7DIScope_p_AA04FileJ0VS2itF">buildLexicalBlock(scope:<wbr>file:<wbr>line:<wbr>column:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1717,7 +1800,7 @@ correspondence.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildLexicalBlock</span><span class="p">(</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/LexicalBlockMetadata.html">LexicalBlockMetadata</a></span></code></pre>
 
                         </div>
@@ -1785,7 +1868,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC21buildLexicalBlockFile5scope4file13discriminatorAA0deF8MetadataVAA7DIScope_p_AA0fJ0VSitF"></a>
                     <a name="//apple_ref/swift/Method/buildLexicalBlockFile(scope:file:discriminator:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC21buildLexicalBlockFile5scope4file13discriminatorAA0deF8MetadataVAA7DIScope_p_AA0fJ0VSitF">buildLexicalBlockFile(scope:file:discriminator:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC21buildLexicalBlockFile5scope4file13discriminatorAA0deF8MetadataVAA7DIScope_p_AA0fJ0VSitF">buildLexicalBlockFile(scope:<wbr>file:<wbr>discriminator:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1801,7 +1884,7 @@ correspondence.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildLexicalBlockFile</span><span class="p">(</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">discriminator</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">discriminator</span><span class="p">:</span> <span class="kt">Int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/LexicalBlockFileMetadata.html">LexicalBlockFileMetadata</a></span></code></pre>
 
                         </div>
@@ -1858,9 +1941,11 @@ correspondence.</p>
               <div class="task-name-container">
                 <a name="/Local%20Variables"></a>
                 <a name="//apple_ref/swift/Section/Local Variables" class="dashAnchor"></a>
-                <a href="#/Local%20Variables">
-                  <h3 class="section-name">Local Variables</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Local%20Variables"></a>
+                  <h3 class="section-name"><p>Local Variables</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -1868,7 +1953,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC18buildLocalVariable5named5scope4file4line4type14alwaysPreserve5flags9alignmentAA0dE8MetadataVSS_AA7DIScope_pAA04FileO0VSiAA6DIType_pSbAA7DIFlagsVAA9AlignmentVtF"></a>
                     <a name="//apple_ref/swift/Method/buildLocalVariable(named:scope:file:line:type:alwaysPreserve:flags:alignment:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC18buildLocalVariable5named5scope4file4line4type14alwaysPreserve5flags9alignmentAA0dE8MetadataVSS_AA7DIScope_pAA04FileO0VSiAA6DIType_pSbAA7DIFlagsVAA9AlignmentVtF">buildLocalVariable(named:scope:file:line:type:alwaysPreserve:flags:alignment:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC18buildLocalVariable5named5scope4file4line4type14alwaysPreserve5flags9alignmentAA0dE8MetadataVSS_AA7DIScope_pAA04FileO0VSiAA6DIType_pSbAA7DIFlagsVAA9AlignmentVtF">buildLocalVariable(named:<wbr>scope:<wbr>file:<wbr>line:<wbr>type:<wbr>alwaysPreserve:<wbr>flags:<wbr>alignment:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1885,9 +1970,9 @@ correspondence.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildLocalVariable</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">alwaysPreserve</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span>
+  <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a></span></code></pre>
 
                         </div>
@@ -2003,7 +2088,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC22buildParameterVariable5named5index5scope4file4line4type14alwaysPreserve5flagsAA05LocalE8MetadataVSS_SiAA7DIScope_pAA04FileP0VSiAA6DIType_pSbAA7DIFlagsVtF"></a>
                     <a name="//apple_ref/swift/Method/buildParameterVariable(named:index:scope:file:line:type:alwaysPreserve:flags:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC22buildParameterVariable5named5index5scope4file4line4type14alwaysPreserve5flagsAA05LocalE8MetadataVSS_SiAA7DIScope_pAA04FileP0VSiAA6DIType_pSbAA7DIFlagsVtF">buildParameterVariable(named:index:scope:file:line:type:alwaysPreserve:flags:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC22buildParameterVariable5named5index5scope4file4line4type14alwaysPreserve5flagsAA05LocalE8MetadataVSS_SiAA7DIScope_pAA04FileP0VSiAA6DIType_pSbAA7DIFlagsVtF">buildParameterVariable(named:<wbr>index:<wbr>scope:<wbr>file:<wbr>line:<wbr>type:<wbr>alwaysPreserve:<wbr>flags:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2020,7 +2105,7 @@ correspondence.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildParameterVariable</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">alwaysPreserve</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
   <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span> <span class="o">=</span> <span class="p">[]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a></span></code></pre>
@@ -2139,9 +2224,11 @@ correspondence.</p>
               <div class="task-name-container">
                 <a name="/Debug%20Locations"></a>
                 <a name="//apple_ref/swift/Section/Debug Locations" class="dashAnchor"></a>
-                <a href="#/Debug%20Locations">
-                  <h3 class="section-name">Debug Locations</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Debug%20Locations"></a>
+                  <h3 class="section-name"><p>Debug Locations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -2149,7 +2236,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC18buildDebugLocation2at2in9inlinedAtAA0dE0VSi4line_Si6columnt_AA7DIScope_pAaL_pSgtF"></a>
                     <a name="//apple_ref/swift/Method/buildDebugLocation(at:in:inlinedAt:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC18buildDebugLocation2at2in9inlinedAtAA0dE0VSi4line_Si6columnt_AA7DIScope_pAaL_pSgtF">buildDebugLocation(at:in:inlinedAt:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC18buildDebugLocation2at2in9inlinedAtAA0dE0VSi4line_Si6columnt_AA7DIScope_pAaL_pSgtF">buildDebugLocation(at:<wbr>in:<wbr>inlinedAt:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2166,8 +2253,8 @@ correspondence.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildDebugLocation</span><span class="p">(</span>
   <span class="n">at</span> <span class="nv">location</span> <span class="p">:</span> <span class="p">(</span><span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">Int</span><span class="p">),</span>
-  <span class="k">in</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span>
-  <span class="nv">inlinedAt</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+  <span class="k">in</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span>
+  <span class="nv">inlinedAt</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/DebugLocation.html">DebugLocation</a></span></code></pre>
 
                         </div>
@@ -2225,23 +2312,12 @@ correspondence.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Debug%20Locations2"></a>
-                <a name="//apple_ref/swift/Section/Debug Locations" class="dashAnchor"></a>
-                <a href="#/Debug%20Locations2">
-                  <h3 class="section-name">Debug Locations</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC19buildSubroutineType2in14parameterTypes06returnE05flagsAA012DISubroutineE0VAA12FileMetadataV_SayAA6DIType_pGAaM_pSgAA7DIFlagsVtF"></a>
                     <a name="//apple_ref/swift/Method/buildSubroutineType(in:parameterTypes:returnType:flags:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildSubroutineType2in14parameterTypes06returnE05flagsAA012DISubroutineE0VAA12FileMetadataV_SayAA6DIType_pGAaM_pSgAA7DIFlagsVtF">buildSubroutineType(in:parameterTypes:returnType:flags:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildSubroutineType2in14parameterTypes06returnE05flagsAA012DISubroutineE0VAA12FileMetadataV_SayAA6DIType_pGAaM_pSgAA7DIFlagsVtF">buildSubroutineType(in:<wbr>parameterTypes:<wbr>returnType:<wbr>flags:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2327,7 +2403,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC20buildEnumerationType5named5scope4file4line4size9alignment8elements010underlyingE0AA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVSayAaM_pGAaM_ptF"></a>
                     <a name="//apple_ref/swift/Method/buildEnumerationType(named:scope:file:line:size:alignment:elements:underlyingType:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC20buildEnumerationType5named5scope4file4line4size9alignment8elements010underlyingE0AA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVSayAaM_pGAaM_ptF">buildEnumerationType(named:scope:file:line:size:alignment:elements:underlyingType:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC20buildEnumerationType5named5scope4file4line4size9alignment8elements010underlyingE0AA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVSayAaM_pGAaM_ptF">buildEnumerationType(named:<wbr>scope:<wbr>file:<wbr>line:<wbr>size:<wbr>alignment:<wbr>elements:<wbr>underlyingType:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2344,7 +2420,7 @@ correspondence.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildEnumerationType</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span>
   <span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">],</span> <span class="nv">underlyingType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
@@ -2418,7 +2494,7 @@ correspondence.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>alignmemnt</em>
+                                <em>alignment</em>
                                 </code>
                               </td>
                               <td>
@@ -2474,7 +2550,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC14buildUnionType5named5scope4file4line4size9alignment5flags8elements14runtimeVersion8uniqueIDAA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVSayAaO_pGSiSStF"></a>
                     <a name="//apple_ref/swift/Method/buildUnionType(named:scope:file:line:size:alignment:flags:elements:runtimeVersion:uniqueID:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildUnionType5named5scope4file4line4size9alignment5flags8elements14runtimeVersion8uniqueIDAA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVSayAaO_pGSiSStF">buildUnionType(named:scope:file:line:size:alignment:flags:elements:runtimeVersion:uniqueID:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildUnionType5named5scope4file4line4size9alignment5flags8elements14runtimeVersion8uniqueIDAA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVSayAaO_pGSiSStF">buildUnionType(named:<wbr>scope:<wbr>file:<wbr>line:<wbr>size:<wbr>alignment:<wbr>flags:<wbr>elements:<wbr>runtimeVersion:<wbr>uniqueID:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2491,7 +2567,7 @@ correspondence.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildUnionType</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span><span class="p">,</span>
   <span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">],</span>
   <span class="nv">runtimeVersion</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">uniqueID</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
@@ -2634,7 +2710,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC14buildArrayType2of4size9alignment10subscriptsAA6DIType_pAaI_p_AA4SizeVAA9AlignmentVSaySnySiGGtF"></a>
                     <a name="//apple_ref/swift/Method/buildArrayType(of:size:alignment:subscripts:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildArrayType2of4size9alignment10subscriptsAA6DIType_pAaI_p_AA4SizeVAA9AlignmentVSaySnySiGGtF">buildArrayType(of:size:alignment:subscripts:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildArrayType2of4size9alignment10subscriptsAA6DIType_pAaI_p_AA4SizeVAA9AlignmentVSaySnySiGGtF">buildArrayType(of:<wbr>size:<wbr>alignment:<wbr>subscripts:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2721,7 +2797,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC15buildVectorType2of4size9alignment10subscriptsAA6DIType_pAaI_p_AA4SizeVAA9AlignmentVSaySnySiGGtF"></a>
                     <a name="//apple_ref/swift/Method/buildVectorType(of:size:alignment:subscripts:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC15buildVectorType2of4size9alignment10subscriptsAA6DIType_pAaI_p_AA4SizeVAA9AlignmentVSaySnySiGGtF">buildVectorType(of:size:alignment:subscripts:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC15buildVectorType2of4size9alignment10subscriptsAA6DIType_pAaI_p_AA4SizeVAA9AlignmentVSaySnySiGGtF">buildVectorType(of:<wbr>size:<wbr>alignment:<wbr>subscripts:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2808,7 +2884,7 @@ correspondence.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC20buildUnspecifiedType5namedAA6DIType_pSS_tF"></a>
                     <a name="//apple_ref/swift/Method/buildUnspecifiedType(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC20buildUnspecifiedType5namedAA6DIType_pSS_tF">buildUnspecifiedType(named:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC20buildUnspecifiedType5namedAA6DIType_pSS_tF">buildUnspecifiedType(named:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2865,7 +2941,7 @@ the actual return type.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC14buildBasicType5named8encoding5flags4sizeAA6DIType_pSS_AA011DIAttributeE8EncodingOAA7DIFlagsVAA4SizeVtF"></a>
                     <a name="//apple_ref/swift/Method/buildBasicType(named:encoding:flags:size:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildBasicType5named8encoding5flags4sizeAA6DIType_pSS_AA011DIAttributeE8EncodingOAA7DIFlagsVAA4SizeVtF">buildBasicType(named:encoding:flags:size:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildBasicType5named8encoding5flags4sizeAA6DIType_pSS_AA011DIAttributeE8EncodingOAA7DIFlagsVAA4SizeVtF">buildBasicType(named:<wbr>encoding:<wbr>flags:<wbr>size:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2935,9 +3011,9 @@ the actual return type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9DIBuilderC16buildPointerType7pointee4size9alignment12addressSpace4nameAA6DIType_pAaJ_p_AA4SizeVAA9AlignmentVs6UInt32VSStF"></a>
+                    <a name="/s:4LLVM9DIBuilderC16buildPointerType7pointee4size9alignment12addressSpace4nameAA6DIType_pAaJ_p_AA4SizeVAA9AlignmentVAA07AddressJ0VSStF"></a>
                     <a name="//apple_ref/swift/Method/buildPointerType(pointee:size:alignment:addressSpace:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC16buildPointerType7pointee4size9alignment12addressSpace4nameAA6DIType_pAaJ_p_AA4SizeVAA9AlignmentVs6UInt32VSStF">buildPointerType(pointee:size:alignment:addressSpace:name:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC16buildPointerType7pointee4size9alignment12addressSpace4nameAA6DIType_pAaJ_p_AA4SizeVAA9AlignmentVAA07AddressJ0VSStF">buildPointerType(pointee:<wbr>size:<wbr>alignment:<wbr>addressSpace:<wbr>name:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2953,8 +3029,8 @@ the actual return type.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildPointerType</span><span class="p">(</span>
-  <span class="nv">pointee</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span>
-  <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
+  <span class="nv">pointee</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span>
+  <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt"><a href="../Structs/AddressSpace.html">AddressSpace</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
 
                         </div>
@@ -3007,7 +3083,7 @@ the actual return type.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>DWARF address space.</p>
+                                  <p>The address space the pointer type reside in.</p>
                                 </div>
                               </td>
                             </tr>
@@ -3034,7 +3110,7 @@ the actual return type.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC15buildStructType5named5scope4file4line4size9alignment5flags04baseE08elements12vtableHolder14runtimeVersion8uniqueIDAA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVAaQ_pSgSayAaQ_pGA_SiSStF"></a>
                     <a name="//apple_ref/swift/Method/buildStructType(named:scope:file:line:size:alignment:flags:baseType:elements:vtableHolder:runtimeVersion:uniqueID:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC15buildStructType5named5scope4file4line4size9alignment5flags04baseE08elements12vtableHolder14runtimeVersion8uniqueIDAA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVAaQ_pSgSayAaQ_pGA_SiSStF">buildStructType(named:scope:file:line:size:alignment:flags:baseType:elements:vtableHolder:runtimeVersion:uniqueID:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC15buildStructType5named5scope4file4line4size9alignment5flags04baseE08elements12vtableHolder14runtimeVersion8uniqueIDAA6DIType_pSS_AA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVAaQ_pSgSayAaQ_pGA_SiSStF">buildStructType(named:<wbr>scope:<wbr>file:<wbr>line:<wbr>size:<wbr>alignment:<wbr>flags:<wbr>baseType:<wbr>elements:<wbr>vtableHolder:<wbr>runtimeVersion:<wbr>uniqueID:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3051,7 +3127,7 @@ the actual return type.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildStructType</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span> <span class="o">=</span> <span class="p">[],</span>
   <span class="nv">baseType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
   <span class="nv">vtableHolder</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">runtimeVersion</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">uniqueID</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
@@ -3206,7 +3282,7 @@ the actual return type.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC15buildMemberType2of5scope4name4file4line4size9alignment6offset5flagsAA6DIType_pAaN_p_AA7DIScope_pSSAA12FileMetadataVSiAA4SizeVAA9AlignmentVAsA7DIFlagsVtF"></a>
                     <a name="//apple_ref/swift/Method/buildMemberType(of:scope:name:file:line:size:alignment:offset:flags:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC15buildMemberType2of5scope4name4file4line4size9alignment6offset5flagsAA6DIType_pAaN_p_AA7DIScope_pSSAA12FileMetadataVSiAA4SizeVAA9AlignmentVAsA7DIFlagsVtF">buildMemberType(of:scope:name:file:line:size:alignment:offset:flags:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC15buildMemberType2of5scope4name4file4line4size9alignment6offset5flagsAA6DIType_pAaN_p_AA7DIScope_pSSAA12FileMetadataVSiAA4SizeVAA9AlignmentVAsA7DIFlagsVtF">buildMemberType(of:<wbr>scope:<wbr>name:<wbr>file:<wbr>line:<wbr>size:<wbr>alignment:<wbr>offset:<wbr>flags:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3222,7 +3298,7 @@ the actual return type.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildMemberType</span><span class="p">(</span>
-  <span class="n">of</span> <span class="nv">parentType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+  <span class="n">of</span> <span class="nv">parentType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
   <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span> <span class="o">=</span> <span class="p">[]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
@@ -3352,7 +3428,7 @@ the actual return type.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC21buildStaticMemberType2of5scope4name4file4line9alignment5flags12initialValueAA6DIType_pAaM_p_AA7DIScope_pSSAA12FileMetadataVSiAA9AlignmentVAA7DIFlagsVAA10IRConstant_pSgtF"></a>
                     <a name="//apple_ref/swift/Method/buildStaticMemberType(of:scope:name:file:line:alignment:flags:initialValue:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC21buildStaticMemberType2of5scope4name4file4line9alignment5flags12initialValueAA6DIType_pAaM_p_AA7DIScope_pSSAA12FileMetadataVSiAA9AlignmentVAA7DIFlagsVAA10IRConstant_pSgtF">buildStaticMemberType(of:scope:name:file:line:alignment:flags:initialValue:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC21buildStaticMemberType2of5scope4name4file4line9alignment5flags12initialValueAA6DIType_pAaM_p_AA7DIScope_pSSAA12FileMetadataVSiAA9AlignmentVAA7DIFlagsVAA10IRConstant_pSgtF">buildStaticMemberType(of:<wbr>scope:<wbr>name:<wbr>file:<wbr>line:<wbr>alignment:<wbr>flags:<wbr>initialValue:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3368,7 +3444,7 @@ the actual return type.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildStaticMemberType</span><span class="p">(</span>
-  <span class="n">of</span> <span class="nv">parentType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span>
+  <span class="n">of</span> <span class="nv">parentType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span>
   <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span> <span class="o">=</span> <span class="p">[],</span>
   <span class="nv">initialValue</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRConstant.html">IRConstant</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
@@ -3486,7 +3562,7 @@ the actual return type.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC22buildMemberPointerType7pointee04baseF04size9alignment5flagsAA6DIType_pAaJ_p_AaJ_pAA4SizeVAA9AlignmentVAA7DIFlagsVtF"></a>
                     <a name="//apple_ref/swift/Method/buildMemberPointerType(pointee:baseType:size:alignment:flags:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC22buildMemberPointerType7pointee04baseF04size9alignment5flagsAA6DIType_pAaJ_p_AaJ_pAA4SizeVAA9AlignmentVAA7DIFlagsVtF">buildMemberPointerType(pointee:baseType:size:alignment:flags:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC22buildMemberPointerType7pointee04baseF04size9alignment5flagsAA6DIType_pAaJ_p_AaJ_pAA4SizeVAA9AlignmentVAA7DIFlagsVtF">buildMemberPointerType(pointee:<wbr>baseType:<wbr>size:<wbr>alignment:<wbr>flags:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3584,7 +3660,7 @@ the actual return type.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC22buildObjectPointerType7pointeeAA6DIType_pAaF_p_tF"></a>
                     <a name="//apple_ref/swift/Method/buildObjectPointerType(pointee:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC22buildObjectPointerType7pointeeAA6DIType_pAaF_p_tF">buildObjectPointerType(pointee:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC22buildObjectPointerType7pointeeAA6DIType_pAaF_p_tF">buildObjectPointerType(pointee:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3631,7 +3707,7 @@ FlagArtificial set.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC18buildQualifiedTypeyAA6DIType_pAA8DWARFTagO_AaE_ptF"></a>
                     <a name="//apple_ref/swift/Method/buildQualifiedType(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC18buildQualifiedTypeyAA6DIType_pAA8DWARFTagO_AaE_ptF">buildQualifiedType(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC18buildQualifiedTypeyAA6DIType_pAA8DWARFTagO_AaE_ptF">buildQualifiedType(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3689,7 +3765,7 @@ FlagArtificial set.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC18buildReferenceTypeyAA6DIType_pAA8DWARFTagO_AaE_ptF"></a>
                     <a name="//apple_ref/swift/Method/buildReferenceType(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC18buildReferenceTypeyAA6DIType_pAA8DWARFTagO_AaE_ptF">buildReferenceType(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC18buildReferenceTypeyAA6DIType_pAA8DWARFTagO_AaE_ptF">buildReferenceType(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3770,23 +3846,12 @@ reference type.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Debug%20Locations3"></a>
-                <a name="//apple_ref/swift/Section/Debug Locations" class="dashAnchor"></a>
-                <a href="#/Debug%20Locations3">
-                  <h3 class="section-name">Debug Locations</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM9DIBuilderC12buildTypedef2of4name5scope4file4lineAA6DIType_pAaJ_p_SSAA7DIScope_pAA12FileMetadataVSitF"></a>
-                    <a name="//apple_ref/swift/Method/buildTypedef(of:name:scope:file:line:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC12buildTypedef2of4name5scope4file4lineAA6DIType_pAaJ_p_SSAA7DIScope_pAA12FileMetadataVSitF">buildTypedef(of:name:scope:file:line:)</a>
+                    <a name="/s:4LLVM9DIBuilderC12buildTypedef2of4name9alignment5scope4file4lineAA6DIType_pAaK_p_SSAA9AlignmentVAA7DIScope_pAA12FileMetadataVSitF"></a>
+                    <a name="//apple_ref/swift/Method/buildTypedef(of:name:alignment:scope:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC12buildTypedef2of4name9alignment5scope4file4lineAA6DIType_pAaK_p_SSAA9AlignmentVAA7DIScope_pAA12FileMetadataVSitF">buildTypedef(of:<wbr>name:<wbr>alignment:<wbr>scope:<wbr>file:<wbr>line:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3802,7 +3867,12 @@ reference type.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildTypedef</span><span class="p">(</span>
-  <span class="n">of</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="n">of</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span>
+  <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+  <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span>
+  <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span>
+  <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
 
                         </div>
@@ -3832,6 +3902,18 @@ reference type.</p>
                               <td>
                                 <div>
                                   <p>Typedef name.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alignment</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Alignment of the type.</p>
                                 </div>
                               </td>
                             </tr>
@@ -3882,7 +3964,7 @@ reference type.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC16buildInheritance2of2to10baseOffset018virtualBasePointerH05flagsAA6DIType_pAaJ_p_AaJ_pAA4SizeVAlA7DIFlagsVtF"></a>
                     <a name="//apple_ref/swift/Method/buildInheritance(of:to:baseOffset:virtualBasePointerOffset:flags:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC16buildInheritance2of2to10baseOffset018virtualBasePointerH05flagsAA6DIType_pAaJ_p_AaJ_pAA4SizeVAlA7DIFlagsVtF">buildInheritance(of:to:baseOffset:virtualBasePointerOffset:flags:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC16buildInheritance2of2to10baseOffset018virtualBasePointerH05flagsAA6DIType_pAaJ_p_AaJ_pAA4SizeVAlA7DIFlagsVtF">buildInheritance(of:<wbr>to:<wbr>baseOffset:<wbr>virtualBasePointerOffset:<wbr>flags:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3980,7 +4062,7 @@ between two types.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC23buildForwardDeclaration5named3tag5scope4file4line4size9alignment15runtimeLanguage8uniqueIDAA6DIType_pSS_AA8DWARFTagOAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVSiSStF"></a>
                     <a name="//apple_ref/swift/Method/buildForwardDeclaration(named:tag:scope:file:line:size:alignment:runtimeLanguage:uniqueID:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC23buildForwardDeclaration5named3tag5scope4file4line4size9alignment15runtimeLanguage8uniqueIDAA6DIType_pSS_AA8DWARFTagOAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVSiSStF">buildForwardDeclaration(named:tag:scope:file:line:size:alignment:runtimeLanguage:uniqueID:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC23buildForwardDeclaration5named3tag5scope4file4line4size9alignment15runtimeLanguage8uniqueIDAA6DIType_pSS_AA8DWARFTagOAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVSiSStF">buildForwardDeclaration(named:<wbr>tag:<wbr>scope:<wbr>file:<wbr>line:<wbr>size:<wbr>alignment:<wbr>runtimeLanguage:<wbr>uniqueID:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3997,7 +4079,7 @@ between two types.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildForwardDeclaration</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">tag</span><span class="p">:</span> <span class="kt"><a href="../Enums/DWARFTag.html">DWARFTag</a></span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span>
   <span class="nv">runtimeLanguage</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">uniqueID</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
@@ -4128,7 +4210,7 @@ Objective-C.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC29buildReplaceableCompositeType5named3tag5scope4file4line4size9alignment5flags14runtimeVersion8uniqueIDAA6DIType_pSS_AA8DWARFTagOAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVSiSStF"></a>
                     <a name="//apple_ref/swift/Method/buildReplaceableCompositeType(named:tag:scope:file:line:size:alignment:flags:runtimeVersion:uniqueID:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC29buildReplaceableCompositeType5named3tag5scope4file4line4size9alignment5flags14runtimeVersion8uniqueIDAA6DIType_pSS_AA8DWARFTagOAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVSiSStF">buildReplaceableCompositeType(named:tag:scope:file:line:size:alignment:flags:runtimeVersion:uniqueID:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC29buildReplaceableCompositeType5named3tag5scope4file4line4size9alignment5flags14runtimeVersion8uniqueIDAA6DIType_pSS_AA8DWARFTagOAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAA7DIFlagsVSiSStF">buildReplaceableCompositeType(named:<wbr>tag:<wbr>scope:<wbr>file:<wbr>line:<wbr>size:<wbr>alignment:<wbr>flags:<wbr>runtimeVersion:<wbr>uniqueID:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4145,7 +4227,7 @@ Objective-C.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildReplaceableCompositeType</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">tag</span><span class="p">:</span> <span class="kt"><a href="../Enums/DWARFTag.html">DWARFTag</a></span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span> <span class="o">=</span> <span class="p">[],</span>
   <span class="nv">runtimeVersion</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">uniqueID</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
@@ -4288,7 +4370,7 @@ Objective-C.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC23buildBitFieldMemberType5named4type5scope4file4line4size6offset13storageOffset5flagsAA6DIType_pSS_AaN_pAA7DIScope_pAA12FileMetadataVSiAA4SizeVA2sA7DIFlagsVtF"></a>
                     <a name="//apple_ref/swift/Method/buildBitFieldMemberType(named:type:scope:file:line:size:offset:storageOffset:flags:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC23buildBitFieldMemberType5named4type5scope4file4line4size6offset13storageOffset5flagsAA6DIType_pSS_AaN_pAA7DIScope_pAA12FileMetadataVSiAA4SizeVA2sA7DIFlagsVtF">buildBitFieldMemberType(named:type:scope:file:line:size:offset:storageOffset:flags:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC23buildBitFieldMemberType5named4type5scope4file4line4size6offset13storageOffset5flagsAA6DIType_pSS_AaN_pAA7DIScope_pAA12FileMetadataVSiAA4SizeVA2sA7DIFlagsVtF">buildBitFieldMemberType(named:<wbr>type:<wbr>scope:<wbr>file:<wbr>line:<wbr>size:<wbr>offset:<wbr>storageOffset:<wbr>flags:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4305,7 +4387,7 @@ Objective-C.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildBitFieldMemberType</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">storageOffset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span>
   <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span> <span class="o">=</span> <span class="p">[]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span></code></pre>
@@ -4435,7 +4517,7 @@ Objective-C.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC14buildClassType5named11derivedFrom5scope4file4line4size9alignment6offset5flags8elements12vtableHolder8uniqueIDAA6DIType_pSS_AaQ_pSgAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAwA7DIFlagsVSayAaQ_pGARSStF"></a>
                     <a name="//apple_ref/swift/Method/buildClassType(named:derivedFrom:scope:file:line:size:alignment:offset:flags:elements:vtableHolder:uniqueID:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildClassType5named11derivedFrom5scope4file4line4size9alignment6offset5flags8elements12vtableHolder8uniqueIDAA6DIType_pSS_AaQ_pSgAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAwA7DIFlagsVSayAaQ_pGARSStF">buildClassType(named:derivedFrom:scope:file:line:size:alignment:offset:flags:elements:vtableHolder:uniqueID:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC14buildClassType5named11derivedFrom5scope4file4line4size9alignment6offset5flags8elements12vtableHolder8uniqueIDAA6DIType_pSS_AaQ_pSgAA7DIScope_pAA12FileMetadataVSiAA4SizeVAA9AlignmentVAwA7DIFlagsVSayAaQ_pGARSStF">buildClassType(named:<wbr>derivedFrom:<wbr>scope:<wbr>file:<wbr>line:<wbr>size:<wbr>alignment:<wbr>offset:<wbr>flags:<wbr>elements:<wbr>vtableHolder:<wbr>uniqueID:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4468,7 +4550,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildClassType</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">derivedFrom</span> <span class="nv">baseType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">?,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">flags</span><span class="p">:</span> <span class="kt"><a href="../Structs/DIFlags.html">DIFlags</a></span><span class="p">,</span>
   <span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
   <span class="nv">vtableHolder</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">uniqueID</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
@@ -4484,7 +4566,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC19buildArtificialTypeyAA6DIType_pAaE_pF"></a>
                     <a name="//apple_ref/swift/Method/buildArtificialType(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildArtificialTypeyAA6DIType_pAaE_pF">buildArtificialType(_:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildArtificialTypeyAA6DIType_pAaE_pF">buildArtificialType(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4531,9 +4613,11 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
               <div class="task-name-container">
                 <a name="/Imported%20Entities"></a>
                 <a name="//apple_ref/swift/Section/Imported Entities" class="dashAnchor"></a>
-                <a href="#/Imported%20Entities">
-                  <h3 class="section-name">Imported Entities</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Imported%20Entities"></a>
+                  <h3 class="section-name"><p>Imported Entities</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -4541,7 +4625,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC19buildImportedModule2in9namespace4file4lineAA0D14EntityMetadataVAA7DIScope_p_AA09NameSpaceK0VAA04FileK0VSitF"></a>
                     <a name="//apple_ref/swift/Method/buildImportedModule(in:namespace:file:line:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildImportedModule2in9namespace4file4lineAA0D14EntityMetadataVAA7DIScope_p_AA09NameSpaceK0VAA04FileK0VSitF">buildImportedModule(in:namespace:file:line:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildImportedModule2in9namespace4file4lineAA0D14EntityMetadataVAA7DIScope_p_AA09NameSpaceK0VAA04FileK0VSitF">buildImportedModule(in:<wbr>namespace:<wbr>file:<wbr>line:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4557,7 +4641,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildImportedModule</span><span class="p">(</span>
-  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">namespace</span><span class="p">:</span> <span class="kt"><a href="../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a></span><span class="p">,</span>
+  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">namespace</span><span class="p">:</span> <span class="kt"><a href="../Structs/NameSpaceMetadata.html">NameSpaceMetadata</a></span><span class="p">,</span>
   <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a></span></code></pre>
 
@@ -4626,7 +4710,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC19buildImportedModule2in7aliasee4file4lineAA0D14EntityMetadataVAA7DIScope_p_AjA04FileK0VSitF"></a>
                     <a name="//apple_ref/swift/Method/buildImportedModule(in:aliasee:file:line:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildImportedModule2in7aliasee4file4lineAA0D14EntityMetadataVAA7DIScope_p_AjA04FileK0VSitF">buildImportedModule(in:aliasee:file:line:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildImportedModule2in7aliasee4file4lineAA0D14EntityMetadataVAA7DIScope_p_AjA04FileK0VSitF">buildImportedModule(in:<wbr>aliasee:<wbr>file:<wbr>line:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4642,7 +4726,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildImportedModule</span><span class="p">(</span>
-  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">aliasee</span><span class="p">:</span> <span class="kt"><a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a></span><span class="p">,</span>
+  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">aliasee</span><span class="p">:</span> <span class="kt"><a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a></span><span class="p">,</span>
   <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a></span></code></pre>
 
@@ -4711,7 +4795,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC19buildImportedModule2in6module4file4lineAA0D14EntityMetadataVAA7DIScope_p_AA0eK0VAA04FileK0VSitF"></a>
                     <a name="//apple_ref/swift/Method/buildImportedModule(in:module:file:line:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildImportedModule2in6module4file4lineAA0D14EntityMetadataVAA7DIScope_p_AA0eK0VAA04FileK0VSitF">buildImportedModule(in:module:file:line:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC19buildImportedModule2in6module4file4lineAA0D14EntityMetadataVAA7DIScope_p_AA0eK0VAA04FileK0VSitF">buildImportedModule(in:<wbr>module:<wbr>file:<wbr>line:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4727,7 +4811,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildImportedModule</span><span class="p">(</span>
-  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">module</span><span class="p">:</span> <span class="kt"><a href="../Structs/ModuleMetadata.html">ModuleMetadata</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span>
+  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">module</span><span class="p">:</span> <span class="kt"><a href="../Structs/ModuleMetadata.html">ModuleMetadata</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a></span></code></pre>
 
                         </div>
@@ -4795,7 +4879,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC24buildImportedDeclaration2in11declaration4file4line4nameAA0D14EntityMetadataVAA7DIScope_p_AA10IRMetadata_pAA04FileL0VSiSStF"></a>
                     <a name="//apple_ref/swift/Method/buildImportedDeclaration(in:declaration:file:line:name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC24buildImportedDeclaration2in11declaration4file4line4nameAA0D14EntityMetadataVAA7DIScope_p_AA10IRMetadata_pAA04FileL0VSiSStF">buildImportedDeclaration(in:declaration:file:line:name:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC24buildImportedDeclaration2in11declaration4file4line4nameAA0D14EntityMetadataVAA7DIScope_p_AA10IRMetadata_pAA04FileL0VSiSStF">buildImportedDeclaration(in:<wbr>declaration:<wbr>file:<wbr>line:<wbr>name:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4811,7 +4895,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildImportedDeclaration</span><span class="p">(</span>
-  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">declaration</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRMetadata.html">IRMetadata</a></span><span class="p">,</span>
+  <span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">declaration</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRMetadata.html">IRMetadata</a></span><span class="p">,</span>
   <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ImportedEntityMetadata.html">ImportedEntityMetadata</a></span></code></pre>
 
@@ -4894,9 +4978,11 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
               <div class="task-name-container">
                 <a name="/Objective-C"></a>
                 <a name="//apple_ref/swift/Section/Objective-C" class="dashAnchor"></a>
-                <a href="#/Objective-C">
-                  <h3 class="section-name">Objective-C</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Objective-C"></a>
+                  <h3 class="section-name"><p>Objective-C</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -4904,7 +4990,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC13buildObjCIVar3for4name4type4file4line4size9alignment6offset5flagsAA6DIType_pAA26ObjectiveCPropertyMetadataV_SSAaN_pAA04FileR0VSiAA4SizeVAA9AlignmentVAtA7DIFlagsVtF"></a>
                     <a name="//apple_ref/swift/Method/buildObjCIVar(for:name:type:file:line:size:alignment:offset:flags:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildObjCIVar3for4name4type4file4line4size9alignment6offset5flagsAA6DIType_pAA26ObjectiveCPropertyMetadataV_SSAaN_pAA04FileR0VSiAA4SizeVAA9AlignmentVAtA7DIFlagsVtF">buildObjCIVar(for:name:type:file:line:size:alignment:offset:flags:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC13buildObjCIVar3for4name4type4file4line4size9alignment6offset5flagsAA6DIType_pAA26ObjectiveCPropertyMetadataV_SSAaN_pAA04FileR0VSiAA4SizeVAA9AlignmentVAtA7DIFlagsVtF">buildObjCIVar(for:<wbr>name:<wbr>type:<wbr>file:<wbr>line:<wbr>size:<wbr>alignment:<wbr>offset:<wbr>flags:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5050,7 +5136,7 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC17buildObjCProperty5named4type4file4line6getter6setter18propertyAttributesAA09ObjectiveE8MetadataVSS_AA6DIType_pAA04FileO0VSiS2SAA0nE9AttributeVtF"></a>
                     <a name="//apple_ref/swift/Method/buildObjCProperty(named:type:file:line:getter:setter:propertyAttributes:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC17buildObjCProperty5named4type4file4line6getter6setter18propertyAttributesAA09ObjectiveE8MetadataVSS_AA6DIType_pAA04FileO0VSiS2SAA0nE9AttributeVtF">buildObjCProperty(named:type:file:line:getter:setter:propertyAttributes:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC17buildObjCProperty5named4type4file4line6getter6setter18propertyAttributesAA09ObjectiveE8MetadataVSS_AA6DIType_pAA04FileO0VSiS2SAA0nE9AttributeVtF">buildObjCProperty(named:<wbr>type:<wbr>file:<wbr>line:<wbr>getter:<wbr>setter:<wbr>propertyAttributes:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5168,23 +5254,12 @@ for this type. This is used in <code>DW_AT_containing_type</code>.</li>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Objective-C2"></a>
-                <a name="//apple_ref/swift/Section/Objective-C" class="dashAnchor"></a>
-                <a href="#/Objective-C2">
-                  <h3 class="section-name">Objective-C</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC15buildExpressionyAA0D8MetadataVSayAA15DWARFExpressionOGF"></a>
                     <a name="//apple_ref/swift/Method/buildExpression(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC15buildExpressionyAA0D8MetadataVSayAA15DWARFExpressionOGF">buildExpression(_:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC15buildExpressionyAA0D8MetadataVSayAA15DWARFExpressionOGF">buildExpression(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5231,7 +5306,7 @@ address expression for its address.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC22buildConstantExpresionyAA18ExpressionMetadataVSiF"></a>
                     <a name="//apple_ref/swift/Method/buildConstantExpresion(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC22buildConstantExpresionyAA18ExpressionMetadataVSiF">buildConstantExpresion(_:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC22buildConstantExpresionyAA18ExpressionMetadataVSiF">buildConstantExpresion(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5278,7 +5353,7 @@ address, but does have a constant value.</p>
                     <code>
                     <a name="/s:4LLVM9DIBuilderC21buildGlobalExpression5named11linkageName4type5scope4file4line7isLocal10expression11declaration9alignmentAA0E8MetadataVSS_SSAA6DIType_pAA7DIScope_pAA04FileR0VSiSbAPSgAA10IRMetadata_pSgAA9AlignmentVtF"></a>
                     <a name="//apple_ref/swift/Method/buildGlobalExpression(named:linkageName:type:scope:file:line:isLocal:expression:declaration:alignment:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM9DIBuilderC21buildGlobalExpression5named11linkageName4type5scope4file4line7isLocal10expression11declaration9alignmentAA0E8MetadataVSS_SSAA6DIType_pAA7DIScope_pAA04FileR0VSiSbAPSgAA10IRMetadata_pSgAA9AlignmentVtF">buildGlobalExpression(named:linkageName:type:scope:file:line:isLocal:expression:declaration:alignment:)</a>
+                    <a class="token" href="#/s:4LLVM9DIBuilderC21buildGlobalExpression5named11linkageName4type5scope4file4line7isLocal10expression11declaration9alignmentAA0E8MetadataVSS_SSAA6DIType_pAA7DIScope_pAA04FileR0VSiSbAPSgAA10IRMetadata_pSgAA9AlignmentVtF">buildGlobalExpression(named:<wbr>linkageName:<wbr>type:<wbr>scope:<wbr>file:<wbr>line:<wbr>isLocal:<wbr>expression:<wbr>declaration:<wbr>alignment:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5295,11 +5370,11 @@ address, but does have a constant value.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildGlobalExpression</span><span class="p">(</span>
   <span class="n">named</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">linkageName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIType.html">DIType</a></span><span class="p">,</span>
-  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+  <span class="nv">scope</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DIScope.html">DIScope</a></span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileMetadata.html">FileMetadata</a></span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
   <span class="nv">isLocal</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
   <span class="nv">expression</span><span class="p">:</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
   <span class="nv">declaration</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRMetadata.html">IRMetadata</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-  <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span>
+  <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Structs/Alignment.html">Alignment</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ExpressionMetadata.html">ExpressionMetadata</a></span></code></pre>
 
                         </div>
@@ -5426,8 +5501,7 @@ GlobalVariable.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Variable alignment(or 0 if no alignment attr was
-specified)</p>
+                                  <p>Variable alignment</p>
                                 </div>
                               </td>
                             </tr>
@@ -5442,8 +5516,8 @@ specified)</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

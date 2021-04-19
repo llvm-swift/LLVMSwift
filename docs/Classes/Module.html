@@ -8,13 +8,21 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/Module" class="dashAnchor"></a>
     <a title="Module Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="../Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="../Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="../Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Use.html">Use</a>
@@ -489,6 +560,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -497,6 +576,7 @@
             <h1>Module</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
@@ -505,6 +585,67 @@
 module is effectively a translation unit or a collection of translation
 units merged together.</p>
 
+<p>LLVM programs are composed of <code>Module</code>s consisting of functions, global
+variables, symbol table entries, and metadata. Modules may be combined
+together with the LLVM linker, which merges function (and global variable)
+definitions, resolves forward declarations, and merges symbol table entries.</p>
+<h1 id='creating-a-module' class='heading'>Creating a Module</h1>
+
+<p>A module can be created using <code>init(name:context:)</code>.
+Note that the default target triple is bare metal and there is no default data layout.
+If you require these to be specified (e.g. to increase the correctness of default alignment values),
+be sure to set them yourself.</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">machine</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">TargetMachine</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">targetTriple</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">triple</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">dataLayout</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">dataLayout</span>
+<span class="p">}</span>
+</code></pre>
+<h1 id='verifying-a-module' class='heading'>Verifying a Module</h1>
+
+<p>A module naturally grows to encompass a large amount of data during code
+generation.  To verify that the module is well-formed and suitable for
+submission to later phases of LLVM, call <code><a href="../Classes/Module.html#/s:4LLVM6ModuleC6verifyyyKF">Module.verify()</a></code>.  If the module
+does not pass verification, an error describing the cause will be thrown.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">module</span> <span class="o">=</span> <span class="kt">Module</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">IRBuilder</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">main</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span><span class="s">"main"</span><span class="p">,</span>
+                               <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">([],</span> <span class="kt">VoidType</span><span class="p">()))</span>
+<span class="k">let</span> <span class="nv">entry</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"entry"</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">buildRet</span><span class="p">(</span><span class="n">main</span><span class="o">.</span><span class="nf">address</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+
+<span class="k">try</span> <span class="n">module</span><span class="o">.</span><span class="nf">verify</span><span class="p">()</span>
+<span class="c1">// The following error is thrown:</span>
+<span class="c1">//   module did not pass verification: blockaddress may not be used with the entry block!</span>
+<span class="c1">//   Found return instr that returns non-void in Function of void return type!</span>
+</code></pre>
+
+<p>The built-in verifier attempts to be correct at the cost of completeness.
+For strictest checking, invoke the <code>lli</code> tool on any IR that is generated.</p>
+<h1 id='threading-considerations' class='heading'>Threading Considerations</h1>
+
+<p>A module value is associated with exactly one LLVM context.  That context,
+and its creating thread, must be used to access and mutate this module as
+LLVM provides no locking or atomicity guarantees.</p>
+<h1 id='printing-the-contents-of-a-module' class='heading'>Printing The Contents of a Module</h1>
+
+<p>The contents of a module are mostly machine-independent.  It is often useful
+while debugging to view this machine-independent IR.  A module responds to
+<code><a href="../Classes/Module.html#/s:4LLVM6ModuleC4dumpyyF">Module.dump()</a></code> by printing this representation to standard output.  To
+dump the module to a file, use <code><a href="../Classes/Module.html#/s:4LLVM6ModuleC5print2toySS_tKF">Module.print(to:)</a></code>.  In general, a module
+must be associated with a <code><a href="../Classes/TargetMachine.html">TargetMachine</a></code> and a target environment for its
+contents to be fully useful for export to later file formats such as object
+files or bitcode.  See <code>TargetMachine.emitToFile(module:type:path)</code> for more
+details.</p>
+<h1 id='module-flags' class='heading'>Module Flags</h1>
+
+<p>To convey information about a module to LLVM&rsquo;s various subsystems, a module
+may have flags attached.  These flags are keyed by global strings, and
+attached as metadata to the module with the privileged <code>llvm.module.flags</code>
+metadata identifier.  Certain flags have hard-coded meanings in LLVM such as
+the Objective-C garbage collection flags or the linker options flags.  Most
+other flags are stripped from any resulting object files.</p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -512,9 +653,36 @@ units merged together.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM6ModuleC4name7contextACSS_AA7ContextCSgtcfc"></a>
+                    <a name="/s:4LLVM6ModuleC7contextAA7ContextCvp"></a>
+                    <a name="//apple_ref/swift/Property/context" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC7contextAA7ContextCvp">context</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the context associated with this module.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC4name7contextACSS_AA7ContextCtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(name:context:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC4name7contextACSS_AA7ContextCSgtcfc">init(name:context:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC4name7contextACSS_AA7ContextCtcfc">init(name:<wbr>context:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -529,7 +697,7 @@ units merged together.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">global</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -558,7 +726,7 @@ units merged together.</p>
                               <td>
                                 <div>
                                   <p>The context to associate this module with.  If no
-context is provided, one will be inferred.</p>
+context is provided, the global context is assumed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -571,9 +739,9 @@ context is provided, one will be inferred.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM6ModuleC7contextAA7ContextCvp"></a>
-                    <a name="//apple_ref/swift/Property/context" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC7contextAA7ContextCvp">context</a>
+                    <a name="/s:4LLVM6ModuleC12targetTripleAA0D0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/targetTriple" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC12targetTripleAA0D0Vvp">targetTriple</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -581,14 +749,14 @@ context is provided, one will be inferred.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the context associated with this module.</p>
+                        <p>Obtain the target triple for this module.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">targetTriple</span><span class="p">:</span> <span class="kt"><a href="../Structs/Triple.html">Triple</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -679,6 +847,41 @@ context is provided, one will be inferred.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:4LLVM6ModuleC14sourceFileNameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/sourceFileName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC14sourceFileNameSSvp">sourceFileName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The source filename of this module.</p>
+
+<p>The source filename appears at the top of an IR module:</p>
+<pre class="highlight swift"><code><span class="n">source_filename</span> <span class="o">=</span> <span class="s">"/path/to/source.c"</span>
+</code></pre>
+
+<p>Local functions used in profile data prepend the source file name to the local function name.</p>
+
+<p>If not otherwise set, <code><a href="../Classes/Module.html#/s:4LLVM6ModuleC4nameSSvp">name</a></code> is used.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sourceFileName</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:4LLVM6ModuleC14inlineAssemblySSvp"></a>
                     <a name="//apple_ref/swift/Property/inlineAssembly" class="dashAnchor"></a>
                     <a class="token" href="#/s:4LLVM6ModuleC14inlineAssemblySSvp">inlineAssembly</a>
@@ -699,184 +902,6 @@ context is provided, one will be inferred.</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">inlineAssembly</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6ModuleC5print2toySS_tKF"></a>
-                    <a name="//apple_ref/swift/Method/print(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC5print2toySS_tKF">print(to:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Print a representation of a module to a file at the given path.</p>
-
-<p>If the provided path is not suitable for writing, this function will throw
-<code>ModuleError.couldNotPrint</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">print</span><span class="p">(</span><span class="n">to</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>path</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The path to write the module&rsquo;s representation to.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6ModuleC11emitBitCode2toySS_tKF"></a>
-                    <a name="//apple_ref/swift/Method/emitBitCode(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC11emitBitCode2toySS_tKF">emitBitCode(to:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Writes the bitcode of elements in this module to a file at the given path.</p>
-
-<p>If the provided path is not suitable for writing, this function will throw
-<code>ModuleError.couldNotEmitBitCode</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">emitBitCode</span><span class="p">(</span><span class="n">to</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>path</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The path to write the module&rsquo;s representation to.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6ModuleC6verifyyyKF"></a>
-                    <a name="//apple_ref/swift/Method/verify()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC6verifyyyKF">verify()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Verifies that this module is valid, taking the specified action if not.
-If this module did not pass verification, a description of any invalid
-constructs is provided with the thrown
-<code>ModuleError.didNotPassVerification</code> error.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">verify</span><span class="p">()</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6ModuleC4linkySbACF"></a>
-                    <a name="//apple_ref/swift/Method/link(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC4linkySbACF">link(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Links the given module with this module.  If the link succeeds, this
-module will the composite of the two input modules.</p>
-
-<p>The result of this function is <code>true</code> if the link succeeds, or <code>false</code>
-otherwise - unlike <code>llvm::Linker::linkModules</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">link</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">Module</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>other</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The module to link with this module.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>
@@ -1259,12 +1284,25 @@ otherwise - unlike <code>llvm::Linker::linkModules</code>.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Module%20Printing"></a>
+                <a name="//apple_ref/swift/Section/Module Printing" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Module%20Printing"></a>
+                  <h3 class="section-name"><p>Module Printing</p>
+</h3>
+                </div>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM6ModuleC14stripDebugInfoSbyF"></a>
-                    <a name="//apple_ref/swift/Method/stripDebugInfo()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC14stripDebugInfoSbyF">stripDebugInfo()</a>
+                    <a name="/s:4LLVM6ModuleC5print2toySS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/print(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC5print2toySS_tKF">print(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1272,20 +1310,38 @@ otherwise - unlike <code>llvm::Linker::linkModules</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Strip debug info in the module if it exists.</p>
+                        <p>Print a representation of a module to a file at the given path.</p>
 
-<p>To do this, we remove all calls to the debugger intrinsics and any named
-metadata for debugging. We also remove debug locations for instructions.
-Return true if module is modified.</p>
+<p>If the provided path is not suitable for writing, this function will throw
+<code>ModuleError.couldNotPrint</code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stripDebugInfo</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">print</span><span class="p">(</span><span class="n">to</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path to write the module&rsquo;s representation to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -1344,12 +1400,25 @@ Return true if module is modified.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Module%20Emission"></a>
+                <a name="//apple_ref/swift/Section/Module Emission" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Module%20Emission"></a>
+                  <h3 class="section-name"><p>Module Emission</p>
+</h3>
+                </div>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM6ModuleCfd"></a>
-                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleCfd">deinit</a>
+                    <a name="/s:4LLVM6ModuleC11emitBitCode2toySS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/emitBitCode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC11emitBitCode2toySS_tKF">emitBitCode(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1357,14 +1426,160 @@ Return true if module is modified.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Deinitialize this value and dispose of its resources.</p>
+                        <p>Writes the bitcode of elements in this module to a file at the given path.</p>
+
+<p>If the provided path is not suitable for writing, this function will throw
+<code>ModuleError.couldNotEmitBitCode</code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">emitBitCode</span><span class="p">(</span><span class="n">to</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path to write the module&rsquo;s representation to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Module%20Actions"></a>
+                <a name="//apple_ref/swift/Section/Module Actions" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Module%20Actions"></a>
+                  <h3 class="section-name"><p>Module Actions</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC6verifyyyKF"></a>
+                    <a name="//apple_ref/swift/Method/verify()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC6verifyyyKF">verify()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Verifies that this module is valid, taking the specified action if not.
+If this module did not pass verification, a description of any invalid
+constructs is provided with the thrown
+<code>ModuleError.didNotPassVerification</code> error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">verify</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC4linkySbACF"></a>
+                    <a name="//apple_ref/swift/Method/link(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC4linkySbACF">link(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Links the given module with this module.  If the link succeeds, this
+module will the composite of the two input modules.</p>
+
+<p>The result of this function is <code>true</code> if the link succeeds, or <code>false</code>
+otherwise.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">link</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">Module</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>other</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The module to link with this module.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC14stripDebugInfoSbyF"></a>
+                    <a name="//apple_ref/swift/Method/stripDebugInfo()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC14stripDebugInfoSbyF">stripDebugInfo()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Strip debug info in the module if it exists.</p>
+
+<p>To do this, we remove all calls to the debugger intrinsics and any named
+metadata for debugging. We also remove debug locations for instructions.
+Return true if module is modified.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stripDebugInfo</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -1377,9 +1592,11 @@ Return true if module is modified.</p>
               <div class="task-name-container">
                 <a name="/Global%20Declarations"></a>
                 <a name="//apple_ref/swift/Section/Global Declarations" class="dashAnchor"></a>
-                <a href="#/Global%20Declarations">
-                  <h3 class="section-name">Global Declarations</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Global%20Declarations"></a>
+                  <h3 class="section-name"><p>Global Declarations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -1387,7 +1604,7 @@ Return true if module is modified.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC6global5namedAA6GlobalCSgSS_tF"></a>
                     <a name="//apple_ref/swift/Method/global(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC6global5namedAA6GlobalCSgSS_tF">global(named:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC6global5namedAA6GlobalCSgSS_tF">global(named:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1438,7 +1655,7 @@ module if that name references an existing global variable.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC4type5namedAA6IRType_pSgSS_tF"></a>
                     <a name="//apple_ref/swift/Method/type(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC4type5namedAA6IRType_pSgSS_tF">type(named:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC4type5namedAA6IRType_pSgSS_tF">type(named:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1490,7 +1707,7 @@ or nil if such a representation could not be created.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC8function5namedAA8FunctionCSgSS_tF"></a>
                     <a name="//apple_ref/swift/Method/function(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC8function5namedAA8FunctionCSgSS_tF">function(named:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC8function5namedAA8FunctionCSgSS_tF">function(named:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1542,7 +1759,7 @@ name or nil if such a representation could not be created.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC9intrinsic5named10parametersAA9IntrinsicCSgSS_SayAA6IRType_pGtF"></a>
                     <a name="//apple_ref/swift/Method/intrinsic(named:parameters:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC9intrinsic5named10parametersAA9IntrinsicCSgSS_SayAA6IRType_pGtF">intrinsic(named:parameters:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC9intrinsic5named10parametersAA9IntrinsicCSgSS_SayAA6IRType_pGtF">intrinsic(named:<wbr>parameters:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1607,7 +1824,7 @@ if such an intrinsic could not be found.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC9intrinsic_10parametersAA9IntrinsicCSgAG8SelectorV_SayAA6IRType_pGtF"></a>
                     <a name="//apple_ref/swift/Method/intrinsic(_:parameters:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC9intrinsic_10parametersAA9IntrinsicCSgAG8SelectorV_SayAA6IRType_pGtF">intrinsic(_:parameters:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC9intrinsic_10parametersAA9IntrinsicCSgAG8SelectorV_SayAA6IRType_pGtF">intrinsic(_:<wbr>parameters:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1688,7 +1905,7 @@ if such an intrinsic could not be found.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC5alias5namedAA5AliasVSgSS_tF"></a>
                     <a name="//apple_ref/swift/Method/alias(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC5alias5namedAA5AliasVSgSS_tF">alias(named:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC5alias5namedAA5AliasVSgSS_tF">alias(named:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1740,7 +1957,7 @@ name or nil if no such named alias exists.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC6comdat5namedAA6ComdatCSS_tF"></a>
                     <a name="//apple_ref/swift/Method/comdat(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC6comdat5namedAA6ComdatCSS_tF">comdat(named:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC6comdat5namedAA6ComdatCSS_tF">comdat(named:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1792,7 +2009,7 @@ given name.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC8metadata5namedAA13NamedMetadataCSS_tF"></a>
                     <a name="//apple_ref/swift/Method/metadata(named:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC8metadata5namedAA13NamedMetadataCSS_tF">metadata(named:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC8metadata5namedAA13NamedMetadataCSS_tF">metadata(named:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1845,7 +2062,7 @@ given name.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC11addFunction_4typeAA0D0CSS_AA0D4TypeVtF"></a>
                     <a name="//apple_ref/swift/Method/addFunction(_:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC11addFunction_4typeAA0D0CSS_AA0D4TypeVtF">addFunction(_:type:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC11addFunction_4typeAA0D0CSS_AA0D4TypeVtF">addFunction(_:<wbr>type:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1905,9 +2122,9 @@ given name.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM6ModuleC9addGlobal_4type12addressSpaceAA0D0CSS_AA6IRType_pSiSgtF"></a>
+                    <a name="/s:4LLVM6ModuleC9addGlobal_4type12addressSpaceAA0D0CSS_AA6IRType_pAA07AddressG0VtF"></a>
                     <a name="//apple_ref/swift/Method/addGlobal(_:type:addressSpace:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC9addGlobal_4type12addressSpaceAA0D0CSS_AA6IRType_pSiSgtF">addGlobal(_:type:addressSpace:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC9addGlobal_4type12addressSpaceAA0D0CSS_AA6IRType_pAA07AddressG0VtF">addGlobal(_:<wbr>type:<wbr>addressSpace:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1922,7 +2139,7 @@ given name.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addGlobal</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Global.html">Global</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addGlobal</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRType.html">IRType</a></span><span class="p">,</span> <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt"><a href="../Structs/AddressSpace.html">AddressSpace</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Global.html">Global</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1980,9 +2197,9 @@ variable resides.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM6ModuleC9addGlobal_11initializer12addressSpaceAA0D0CSS_AA7IRValue_pSiSgtF"></a>
+                    <a name="/s:4LLVM6ModuleC9addGlobal_11initializer12addressSpaceAA0D0CSS_AA7IRValue_pAA07AddressG0VtF"></a>
                     <a name="//apple_ref/swift/Method/addGlobal(_:initializer:addressSpace:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC9addGlobal_11initializer12addressSpaceAA0D0CSS_AA7IRValue_pSiSgtF">addGlobal(_:initializer:addressSpace:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC9addGlobal_11initializer12addressSpaceAA0D0CSS_AA7IRValue_pAA07AddressG0VtF">addGlobal(_:<wbr>initializer:<wbr>addressSpace:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1997,7 +2214,7 @@ variable resides.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addGlobal</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">initializer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Global.html">Global</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addGlobal</span><span class="p">(</span><span class="n">_</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">initializer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IRValue.html">IRValue</a></span><span class="p">,</span> <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt"><a href="../Structs/AddressSpace.html">AddressSpace</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Global.html">Global</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2057,7 +2274,7 @@ variable resides.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC15addGlobalString4name5valueAA0D0CSS_SStF"></a>
                     <a name="//apple_ref/swift/Method/addGlobalString(name:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC15addGlobalString4name5valueAA0D0CSS_SStF">addGlobalString(name:value:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC15addGlobalString4name5valueAA0D0CSS_SStF">addGlobalString(name:<wbr>value:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2120,7 +2337,7 @@ with the nul terminated string value.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC8addAlias4name2to4typeAA0D0VSS_AA8IRGlobal_pAA6IRType_ptF"></a>
                     <a name="//apple_ref/swift/Method/addAlias(name:to:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC8addAlias4name2to4typeAA0D0VSS_AA8IRGlobal_pAA6IRType_ptF">addAlias(name:to:type:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC8addAlias4name2to4typeAA0D0VSS_AA8IRGlobal_pAA6IRType_ptF">addAlias(name:<wbr>to:<wbr>type:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2197,7 +2414,7 @@ just a new symbol and metadata for an existing position.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC20appendInlineAssemblyyySSF"></a>
                     <a name="//apple_ref/swift/Method/appendInlineAssembly(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC20appendInlineAssemblyyySSF">appendInlineAssembly(_:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC20appendInlineAssemblyyySSF">appendInlineAssembly(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2246,9 +2463,11 @@ just a new symbol and metadata for an existing position.</p>
               <div class="task-name-container">
                 <a name="/Module%20Flags"></a>
                 <a name="//apple_ref/swift/Section/Module Flags" class="dashAnchor"></a>
-                <a href="#/Module%20Flags">
-                  <h3 class="section-name">Module Flags</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Module%20Flags"></a>
+                  <h3 class="section-name"><p>Module Flags</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -2293,7 +2512,7 @@ Objective-C.
                     <code>
                     <a name="/s:4LLVM6ModuleC7addFlag5named5value8behaviorySS_AA10IRMetadata_pAC5FlagsC8BehaviorOtF"></a>
                     <a name="//apple_ref/swift/Method/addFlag(named:value:behavior:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC7addFlag5named5value8behaviorySS_AA10IRMetadata_pAC5FlagsC8BehaviorOtF">addFlag(named:value:behavior:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC7addFlag5named5value8behaviorySS_AA10IRMetadata_pAC5FlagsC8BehaviorOtF">addFlag(named:<wbr>value:<wbr>behavior:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2364,7 +2583,7 @@ flag conflict with an existing flag.</p>
                     <code>
                     <a name="/s:4LLVM6ModuleC7addFlag5named8constant8behaviorySS_AA10IRConstant_pAC5FlagsC8BehaviorOtF"></a>
                     <a name="//apple_ref/swift/Method/addFlag(named:constant:behavior:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC7addFlag5named8constant8behaviorySS_AA10IRConstant_pAC5FlagsC8BehaviorOtF">addFlag(named:constant:behavior:)</a>
+                    <a class="token" href="#/s:4LLVM6ModuleC7addFlag5named8constant8behaviorySS_AA10IRConstant_pAC5FlagsC8BehaviorOtF">addFlag(named:<wbr>constant:<wbr>behavior:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2462,8 +2681,8 @@ flag conflict with an existing flag.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -8,13 +8,21 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/TargetData" class="dashAnchor"></a>
     <a title="TargetData Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="../Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="../Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="../Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Use.html">Use</a>
@@ -489,6 +560,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -497,6 +576,7 @@
             <h1>TargetData</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TargetData</span></code></pre>
 
                 </div>
@@ -514,7 +594,7 @@ sizes and offsets of types with respect to this target.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC4llvmACs13OpaquePointerV_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(llvm:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC4llvmACs13OpaquePointerV_tcfc">init(llvm:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC4llvmACs13OpaquePointerV_tcfc">init(llvm:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -541,7 +621,7 @@ sizes and offsets of types with respect to this target.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC15offsetOfElement2at4typeS2i_AA10StructTypeVtF"></a>
                     <a name="//apple_ref/swift/Method/offsetOfElement(at:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC15offsetOfElement2at4typeS2i_AA10StructTypeVtF">offsetOfElement(at:type:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC15offsetOfElement2at4typeS2i_AA10StructTypeVtF">offsetOfElement(at:<wbr>type:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -549,7 +629,8 @@ sizes and offsets of types with respect to this target.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Computes the byte offset of the indexed struct element for a target.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -563,6 +644,19 @@ sizes and offsets of types with respect to this target.</p>
                         <h4>Parameters</h4>
                         <table class="graybox">
                           <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>element</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of the element in the given structure to
+compute.</p>
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
                               <td>
                                 <code>
@@ -590,7 +684,7 @@ sizes and offsets of types with respect to this target.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC15elementAtOffset_4typeS2i_AA10StructTypeVtF"></a>
                     <a name="//apple_ref/swift/Method/elementAtOffset(_:type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC15elementAtOffset_4typeS2i_AA10StructTypeVtF">elementAtOffset(_:type:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC15elementAtOffset_4typeS2i_AA10StructTypeVtF">elementAtOffset(_:<wbr>type:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -639,7 +733,7 @@ sizes and offsets of types with respect to this target.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC16sizeOfTypeInBitsySiAA6IRType_pF"></a>
                     <a name="//apple_ref/swift/Method/sizeOfTypeInBits(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC16sizeOfTypeInBitsySiAA6IRType_pF">sizeOfTypeInBits(_:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC16sizeOfTypeInBitsySiAA6IRType_pF">sizeOfTypeInBits(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -742,9 +836,9 @@ for this target environment.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM10TargetDataC14intPointerType7context12addressSpaceAA03IntF0VAA7ContextCSg_SiSgtF"></a>
+                    <a name="/s:4LLVM10TargetDataC14intPointerType7context12addressSpaceAA03IntF0VAA7ContextC_AA07AddressI0VtF"></a>
                     <a name="//apple_ref/swift/Method/intPointerType(context:addressSpace:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC14intPointerType7context12addressSpaceAA03IntF0VAA7ContextCSg_SiSgtF">intPointerType(context:addressSpace:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC14intPointerType7context12addressSpaceAA03IntF0VAA7ContextC_AA07AddressI0VtF">intPointerType(context:<wbr>addressSpace:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -760,7 +854,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">intPointerType</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/IntType.html">IntType</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">intPointerType</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/Context.html">Context</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">global</span><span class="p">,</span> <span class="nv">addressSpace</span><span class="p">:</span> <span class="kt"><a href="../Structs/AddressSpace.html">AddressSpace</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/IntType.html">IntType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -808,7 +902,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC18preferredAlignment2ofAA0E0VAA6GlobalC_tF"></a>
                     <a name="//apple_ref/swift/Method/preferredAlignment(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC18preferredAlignment2ofAA0E0VAA6GlobalC_tF">preferredAlignment(of:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC18preferredAlignment2ofAA0E0VAA6GlobalC_tF">preferredAlignment(of:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -858,7 +952,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC18preferredAlignment2ofAA0E0VAA6IRType_p_tF"></a>
                     <a name="//apple_ref/swift/Method/preferredAlignment(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC18preferredAlignment2ofAA0E0VAA6IRType_p_tF">preferredAlignment(of:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC18preferredAlignment2ofAA0E0VAA6IRType_p_tF">preferredAlignment(of:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -908,7 +1002,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC12abiAlignment2ofAA0E0VAA6IRType_p_tF"></a>
                     <a name="//apple_ref/swift/Method/abiAlignment(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC12abiAlignment2ofAA0E0VAA6IRType_p_tF">abiAlignment(of:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC12abiAlignment2ofAA0E0VAA6IRType_p_tF">abiAlignment(of:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -958,7 +1052,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC18callFrameAlignment2ofAA0F0VAA6IRType_p_tF"></a>
                     <a name="//apple_ref/swift/Method/callFrameAlignment(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC18callFrameAlignment2ofAA0F0VAA6IRType_p_tF">callFrameAlignment(of:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC18callFrameAlignment2ofAA0F0VAA6IRType_p_tF">callFrameAlignment(of:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1010,7 +1104,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC7abiSize2ofAA0E0VAA6IRType_p_tF"></a>
                     <a name="//apple_ref/swift/Method/abiSize(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC7abiSize2ofAA0E0VAA6IRType_p_tF">abiSize(of:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC7abiSize2ofAA0E0VAA6IRType_p_tF">abiSize(of:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1060,7 +1154,7 @@ This is analoguous to the <code>intptr_t</code> type in C++.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC9storeSize2ofAA0E0VAA6IRType_p_tF"></a>
                     <a name="//apple_ref/swift/Method/storeSize(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC9storeSize2ofAA0E0VAA6IRType_p_tF">storeSize(of:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC9storeSize2ofAA0E0VAA6IRType_p_tF">storeSize(of:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1109,9 +1203,9 @@ storing the specified type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4LLVM10TargetDataC11pointerSize12addressSpaceAA0E0VSiSg_tF"></a>
+                    <a name="/s:4LLVM10TargetDataC11pointerSize12addressSpaceAA0E0VAA07AddressG0V_tF"></a>
                     <a name="//apple_ref/swift/Method/pointerSize(addressSpace:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC11pointerSize12addressSpaceAA0E0VSiSg_tF">pointerSize(addressSpace:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC11pointerSize12addressSpaceAA0E0VAA07AddressG0V_tF">pointerSize(addressSpace:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1127,7 +1221,7 @@ address space.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">pointerSize</span><span class="p">(</span><span class="nv">addressSpace</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">pointerSize</span><span class="p">(</span><span class="nv">addressSpace</span><span class="p">:</span> <span class="kt"><a href="../Structs/AddressSpace.html">AddressSpace</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1163,7 +1257,7 @@ address space.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC14allocationSize2ofAA0E0VAA6IRType_p_tF"></a>
                     <a name="//apple_ref/swift/Method/allocationSize(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC14allocationSize2ofAA0E0VAA6IRType_p_tF">allocationSize(of:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC14allocationSize2ofAA0E0VAA6IRType_p_tF">allocationSize(of:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1217,7 +1311,7 @@ returns 12 or 16 for x86_fp80, depending on alignment.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC6layout2ofAA12StructLayoutVAA0F4TypeV_tF"></a>
                     <a name="//apple_ref/swift/Method/layout(of:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC6layout2ofAA12StructLayoutVAA0F4TypeV_tF">layout(of:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC6layout2ofAA12StructLayoutVAA0F4TypeV_tF">layout(of:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1269,7 +1363,7 @@ data layout.</p>
                     <code>
                     <a name="/s:4LLVM10TargetDataC5align_2to4skewAA4SizeVAH_AA9AlignmentVAHtFZ"></a>
                     <a name="//apple_ref/swift/Method/align(_:to:skew:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM10TargetDataC5align_2to4skewAA4SizeVAH_AA9AlignmentVAHtFZ">align(_:to:skew:)</a>
+                    <a class="token" href="#/s:4LLVM10TargetDataC5align_2to4skewAA4SizeVAH_AA9AlignmentVAHtFZ">align(_:<wbr>to:<wbr>skew:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1277,13 +1371,15 @@ data layout.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the next integer (mod 2**64) that is greater than or equal to
-\p Value and is a multiple of \p Align. \p Align must be non-zero.</p>
+                        <p>Returns the next integer (mod 2^64) that is greater than or equal to
+the given size value and is a multiple of the given alignment value.
+The alignment must be non-zero.</p>
 
-<p>If non-zero \p Skew is specified, the return value will be a minimal
-integer that is greater than or equal to \p Value and equal to
-\p Align * N + \p Skew for some integer N. If \p Skew is larger than
-\p Align, its value is adjusted to &lsquo;\p Skew mod \p Align&rsquo;.</p>
+<p>If a non-zero skew value is specified, the return value will be a minimal
+integer that is greater than or equal to the given size value and equal to
+<code>align * n + skew</code> for some integer <code>n</code>. If the given skew value is
+larger than the given alignment value, its value is adjusted to
+<code>skew mod alignment</code>.</p>
 
 <p>Computes the next size value that is greater than or equal to the given
 value and is a multiple of the given alignment.</p>
@@ -1309,8 +1405,8 @@ provided alignment with a skew value added</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

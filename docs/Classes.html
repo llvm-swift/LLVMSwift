@@ -8,13 +8,21 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Use.html">Use</a>
@@ -486,6 +557,14 @@
               </li>
               <li class="nav-group-task">
                 <a href="Structs/X86MMXType.html">X86MMXType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
               </li>
             </ul>
           </li>
@@ -514,7 +593,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A <code>Context</code> represents execution states for the core LLVM IR system.</p>
+                        <p>A <code>Context</code> is an LLVM compilation session environment.</p>
+
+<p>A <code>Context</code> is a container for the global state of an execution of the
+LLVM environment and tooling.  It contains independent copies of global and
+module-level entities like types, metadata attachments, and constants.</p>
+
+<p>An LLVM context is needed for interacting with LLVM in a concurrent
+environment. Because a context maintains state independent of any other
+context, it is recommended that each thread of execution be assigned a unique
+context.  LLVM&rsquo;s core infrastructure and API provides no locking guarantees
+and no atomicity guarantees.</p>
 
                         <a href="Classes/Context.html" class="slightly-smaller">See more</a>
                       </div>
@@ -529,40 +618,6 @@
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:4LLVM6ModuleC"></a>
-                    <a name="//apple_ref/swift/Class/Module" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM6ModuleC">Module</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A <code>Module</code> represents the top-level structure of an LLVM program. An LLVM
-module is effectively a translation unit or a collection of translation
-units merged together.</p>
-
-                        <a href="Classes/Module.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -592,10 +647,6 @@ are uniqued by kind.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -617,7 +668,7 @@ sections at link time.</p>
 
 <p>COMDAT sections are typically used by languages where multiple translation
 units may define the same symbol, but where
-<q>One-Definition-Rule</q> (ODR)-like concepts apply (perhaps because taking the
+&ldquo;One-Definition-Rule&rdquo; (ODR)-like concepts apply (perhaps because taking the
 address of the object referenced by the symbol is defined behavior).  For
 example, a C++ header file may define an inline function that cannot be
 successfully inlined at all call sites.  The C++ compiler would then emit
@@ -670,10 +721,6 @@ represented by sections.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -704,10 +751,6 @@ the form of LLVM metadata.  A <code>DIBuilder</code> is usually paired with an
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -725,6 +768,77 @@ the form of LLVM metadata.  A <code>DIBuilder</code> is usually paired with an
 in LLVM IR encapsulate a list of parameters and a sequence of basic blocks
 and provide a way to append to that sequence to build out its body.</p>
 
+<p>A LLVM function definition contains a list of basic blocks, starting with
+a privileged first block called the &ldquo;entry block&rdquo;. After the entry blocks&rsquo;
+terminating instruction come zero or more other basic blocks.  The path the
+flow of control can potentially take, from each block to its terminator
+and on to other blocks, forms the &ldquo;Control Flow Graph&rdquo; (CFG) for the
+function.  The nodes of the CFG are the basic blocks, and the edges are
+directed from the terminator instruction of one block to any number of
+potential target blocks.</p>
+
+<p>Additional basic blocks may be created and appended to the function at
+any time.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">module</span> <span class="o">=</span> <span class="kt">Module</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">IRBuilder</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">fun</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span>
+                              <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">([],</span> <span class="kt">VoidType</span><span class="p">()))</span>
+<span class="c1">// Create and append the entry block</span>
+<span class="k">let</span> <span class="nv">entryBB</span> <span class="o">=</span> <span class="n">fun</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"entry"</span><span class="p">)</span>
+<span class="c1">// Create and append a standalone basic block</span>
+<span class="k">let</span> <span class="nv">freestanding</span> <span class="o">=</span> <span class="kt">BasicBlock</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"freestanding"</span><span class="p">)</span>
+<span class="n">fun</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="n">freestanding</span><span class="p">)</span>
+</code></pre>
+
+<p>An LLVM function always has the type <code><a href="Structs/FunctionType.html">FunctionType</a></code>.  This type is used to
+determine the number and kind of parameters to the function as well as its
+return value, if any.  The parameter values, which would normally enter
+the entry block, are instead attached to the function and are accessible
+via the <code>parameters</code> property.</p>
+<h1 id='calling-convention' class='heading'>Calling Convention</h1>
+
+<p>By default, all functions in LLVM are invoked with the C calling convention
+but the exact calling convention of both a function declaration and a
+<code>call</code> instruction are fully configurable.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">module</span> <span class="o">=</span> <span class="kt">Module</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">IRBuilder</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">fun</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span>
+                              <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">([],</span> <span class="kt">VoidType</span><span class="p">()))</span>
+<span class="c1">// Switch to swiftcc</span>
+<span class="n">fun</span><span class="o">.</span><span class="n">callingConvention</span> <span class="o">=</span> <span class="o">.</span><span class="n">swift</span>
+</code></pre>
+
+<p>The calling convention of a function and a corresponding call instruction
+must match or the result is undefined.</p>
+<h1 id='sections' class='heading'>Sections</h1>
+
+<p>A function may optionally state the section in the object file it
+should reside in through the use of a metadata attachment.  This can be
+useful to satisfy target-specific data layout constraints, or to provide
+some hints to optimizers and linkers.  LLVMSwift provides a convenience
+object called an <code><a href="Classes/MDBuilder.html">MDBuilder</a></code> to assist in the creation of this metadata.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">mdBuilder</span> <span class="o">=</span> <span class="kt">MDBuilder</span><span class="p">()</span>
+<span class="c1">// __attribute__((hot))</span>
+<span class="k">let</span> <span class="nv">hotAttr</span> <span class="o">=</span> <span class="n">mdBuilder</span><span class="o">.</span><span class="nf">buildFunctionSectionPrefix</span><span class="p">(</span><span class="s">".hot"</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">module</span> <span class="o">=</span> <span class="kt">Module</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">IRBuilder</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">fun</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span><span class="s">"example"</span><span class="p">,</span>
+                              <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">([],</span> <span class="kt">VoidType</span><span class="p">()))</span>
+<span class="c1">// Attach the metadata</span>
+<span class="n">fun</span><span class="o">.</span><span class="nf">addMetadata</span><span class="p">(</span><span class="n">hotAttr</span><span class="p">,</span> <span class="nv">kind</span><span class="p">:</span> <span class="o">.</span><span class="n">sectionPrefix</span><span class="p">)</span>
+</code></pre>
+
+<p>For targets that support it, a function may also specify a COMDAT section.</p>
+<pre class="highlight swift"><code><span class="n">fun</span><span class="o">.</span><span class="n">comdat</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="nf">comdat</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"example"</span><span class="p">)</span>
+</code></pre>
+<h1 id='debug-information' class='heading'>Debug Information</h1>
+
+<p>A function may also carry debug information through special subprogram
+nodes.  These nodes are intended to capture the structure of the function
+as it appears in the source so that it is available for inspection by a
+debugger.  See <code>DIBuilderr.buildFunction</code> for more information.</p>
+
                         <a href="Classes/Function.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -738,10 +852,6 @@ and provide a way to append to that sequence to build out its body.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -772,10 +882,6 @@ reference to an external definition that has an initializer.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -789,9 +895,124 @@ reference to an external definition that has an initializer.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An <code>IRBuilder</code> is a helper object that generates LLVM instructions.  IR
-Builders keep track of a position within a function or basic block and has
-methods to insert instructions at that position.</p>
+                        <p>An <code>IRBuilder</code> is a helper object that generates LLVM instructions.</p>
+
+<p>IR builders keep track of a position (the &ldquo;insertion point&rdquo;) within a
+module, function, or basic block and has methods to insert instructions at
+that position.  Other features include conveniences to insert calls to
+C standard library functions like <code>malloc</code> and <code>free</code>, the creation of
+global entities like &copy; strings, and inline assembly.</p>
+<h1 id='threading-considerations' class='heading'>Threading Considerations</h1>
+
+<p>An <code>IRBuilder</code> object is not thread safe.  It is associated with a single
+module which is, in turn, associated with a single LLVM context object.
+In concurrent environments, exactly one IRBuilder should be created per
+thread, and that thread should be the one that ultimately created its parent
+module and context.  Inserting instructions into the same IR builder object
+in a concurrent manner will result in malformed IR being generated in
+non-deterministic ways.  If concurrent codegen is needed, a separate LLVM
+context, module, and IRBuilder should be created on each thread.
+Once each thread has finished generating code, the resulting modules should
+be merged together.  See <code><a href="Classes/Module.html#/s:4LLVM6ModuleC4linkySbACF">Module.link(_:)</a></code> for more information.</p>
+<h1 id='ir-navigation' class='heading'>IR Navigation</h1>
+
+<p>By default, the insertion point of a builder is undefined.  To move the
+IR builder&rsquo;s cursor, a basic block must be created, but not necessarily
+inserted into a function.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">module</span> <span class="o">=</span> <span class="kt">Module</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">IRBuilder</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">)</span>
+<span class="c1">// Create a freestanding basic block and insert an `ret`</span>
+<span class="c1">// instruction into it.</span>
+<span class="k">let</span> <span class="nv">freestanding</span> <span class="o">=</span> <span class="kt">BasicBlock</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"freestanding"</span><span class="p">)</span>
+<span class="c1">// Move the IR builder to the end of the block's instruction list.</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">freestanding</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">ret</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">buildRetVoid</span><span class="p">()</span>
+</code></pre>
+
+<p>Instructions serve as a way to position the IR builder to a point before
+their creation.  This allows for instructions to be inserted <em>before</em> a
+given instruction rather than at the very end of a basic block.</p>
+<pre class="highlight swift"><code><span class="c1">// Move before the `ret` instruction</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionBefore</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+<span class="c1">// Insert an `alloca` instruction before the `ret`.</span>
+<span class="k">let</span> <span class="nv">intAlloca</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">buildAlloca</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">IntType</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<span class="c1">// Move before the `alloca`</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionBefore</span><span class="p">(</span><span class="n">intAlloca</span><span class="p">)</span>
+<span class="c1">// Insert an `malloc` call before the `alloca`.</span>
+<span class="k">let</span> <span class="nv">intMalloc</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">buildMalloc</span><span class="p">(</span><span class="kt">IntType</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+</code></pre>
+
+<p>To insert this block into a function, see <code>Function.append</code>.</p>
+
+<p>Sometimes it is necessary to reset the insertion point.  When the insertion
+point is reset, instructions built with the IR builder are still created,
+but are not inserted into a basic block.  To clear the insertion point, call
+<code><a href="Classes/IRBuilder.html#/s:4LLVM9IRBuilderC22clearInsertionPositionyyF">IRBuilder.clearInsertionPosition()</a></code>.</p>
+<h1 id='building-llvm-ir' class='heading'>Building LLVM IR</h1>
+
+<p>All functions that build instructions are prefixed with <code>build</code>.  Invoking
+these functions inserts the appropriate LLVM instruction at the insertion
+point, assuming it points to a valid location.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">module</span> <span class="o">=</span> <span class="kt">Module</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">IRBuilder</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">fun</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span><span class="s">"test"</span><span class="p">,</span>
+                              <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">([</span>
+                                      <span class="kt">IntType</span><span class="o">.</span><span class="n">int8</span><span class="p">,</span>
+                                      <span class="kt">IntType</span><span class="o">.</span><span class="n">int8</span><span class="p">,</span>
+                              <span class="p">],</span> <span class="kt">FloatType</span><span class="o">.</span><span class="n">float</span><span class="p">))</span>
+<span class="k">let</span> <span class="nv">entry</span> <span class="o">=</span> <span class="n">fun</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"entry"</span><span class="p">)</span>
+<span class="c1">// Set the insertion point to the entry block of this function</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span>
+<span class="c1">// Build an `add` instruction at the insertion point</span>
+<span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">buildAdd</span><span class="p">(</span><span class="n">fun</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fun</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre>
+<h1 id='customizing-llvm-ir' class='heading'>Customizing LLVM IR</h1>
+
+<p>To be well-formed, certain instructions may involve more setup than just
+being built.  In such cases, LLVMSwift will yield a specific instance of
+<code><a href="Protocols/IRInstruction.html">IRInstruction</a></code> that will allow for this kind of configuration.</p>
+
+<p>A prominent example of this is the PHI node.  Building a PHI node produces
+an empty PHI node - this is not a well-formed instruction. A PHI node must
+have its incoming basic blocks attached. To do so, <code><a href="Structs/PhiNode.html#/s:4LLVM7PhiNodeV11addIncomingyySayAA7IRValue_p_AA10BasicBlockVtGF">PhiNode.addIncoming(_:)</a></code>
+is called with a list of pairs of incoming values and their enclosing
+basic blocks.</p>
+<pre class="highlight swift"><code><span class="c1">// Build a function that selects one of two floating parameters based</span>
+<span class="c1">// on a given boolean value.</span>
+<span class="k">let</span> <span class="nv">module</span> <span class="o">=</span> <span class="kt">Module</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">IRBuilder</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">select</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span><span class="s">"select"</span><span class="p">,</span>
+                                 <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">([</span>
+                                         <span class="kt">IntType</span><span class="o">.</span><span class="n">int1</span><span class="p">,</span>
+                                         <span class="kt">FloatType</span><span class="o">.</span><span class="n">float</span><span class="p">,</span>
+                                         <span class="kt">FloatType</span><span class="o">.</span><span class="n">float</span><span class="p">,</span>
+                                 <span class="p">],</span> <span class="kt">FloatType</span><span class="o">.</span><span class="n">float</span><span class="p">))</span>
+<span class="k">let</span> <span class="nv">entry</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"entry"</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">thenBlock</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"then"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">elseBlock</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"else"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">mergeBB</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"merge"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">branch</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">buildCondBr</span><span class="p">(</span><span class="nv">condition</span><span class="p">:</span> <span class="n">select</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                 <span class="nv">then</span><span class="p">:</span> <span class="n">thenBlock</span><span class="p">,</span>
+                                 <span class="nv">else</span><span class="p">:</span> <span class="n">elseBlock</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">thenBlock</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">opThen</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">buildAdd</span><span class="p">(</span><span class="n">select</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">select</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">buildBr</span><span class="p">(</span><span class="n">mergeBB</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">elseBlock</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">opElse</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">buildSub</span><span class="p">(</span><span class="n">select</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">select</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">buildBr</span><span class="p">(</span><span class="n">mergeBB</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">mergeBB</span><span class="p">)</span>
+
+<span class="c1">// Build the PHI node</span>
+<span class="k">let</span> <span class="nv">phi</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">buildPhi</span><span class="p">(</span><span class="kt">FloatType</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="c1">// Attach the incoming blocks.</span>
+<span class="n">phi</span><span class="o">.</span><span class="nf">addIncoming</span><span class="p">([</span>
+  <span class="p">(</span><span class="n">opThen</span><span class="p">,</span> <span class="n">thenBlock</span><span class="p">),</span>
+  <span class="p">(</span><span class="n">opElse</span><span class="p">,</span> <span class="n">elseBlock</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">buildRet</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/IRBuilder.html" class="slightly-smaller">See more</a>
                       </div>
@@ -806,10 +1027,65 @@ methods to insert instructions at that position.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM15TemporaryMDNodeC"></a>
+                    <a name="//apple_ref/swift/Class/TemporaryMDNode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM15TemporaryMDNodeC">TemporaryMDNode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents a temporary metadata node.</p>
+
+<p>Temporary metadata nodes aid in the construction of cyclic metadata. The
+typical construction pattern is usually as follows:</p>
+<pre class="highlight swift"><code><span class="c1">// Allocate a temporary temp node</span>
+<span class="k">let</span> <span class="nv">temp</span> <span class="o">=</span> <span class="kt">TemporaryMDNode</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span> <span class="nv">operands</span><span class="p">:</span> <span class="p">[])</span>
+<span class="c1">// Prepare the operands to the metadata node...</span>
+<span class="k">var</span> <span class="nv">ops</span> <span class="o">=</span> <span class="p">[</span><span class="kt">IRMetadata</span><span class="p">]()</span>
+<span class="c1">// ...</span>
+<span class="c1">// Create the real node</span>
+<span class="k">let</span> <span class="nv">root</span> <span class="o">=</span> <span class="kt">MDNode</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span> <span class="nv">operands</span><span class="p">:</span> <span class="n">ops</span><span class="p">)</span>
+</code></pre>
+
+<p>At this point we have the following metadata structure:</p>
+<pre class="highlight swift"><code><span class="c1">//   !0 = metadata !{}            &lt;- temp</span>
+<span class="c1">//   !1 = metadata !{metadata !0} &lt;- root</span>
+<span class="c1">// Replace the temp operand with the root node</span>
+</code></pre>
+
+<p>The knot is tied by RAUW&#39;ing the temporary node:</p>
+<pre class="highlight swift"><code><span class="n">temp</span><span class="o">.</span><span class="nf">replaceAllUses</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">root</span><span class="p">)</span>
+<span class="c1">// We now have</span>
+<span class="c1">//   !1 = metadata !{metadata !1} &lt;- self-referential root</span>
+</code></pre>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    It is critical that temporary metadata nodes be &ldquo;RAUW&rsquo;d&rdquo;
+(replace-all-uses-with) before the metadata graph is finalized.  After
+that time, all remaining temporary metadata nodes will become unresolved
+metadata.
+
+</div>
+
+                        <a href="Classes/TemporaryMDNode.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TemporaryMDNode</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IRMetadata.html">IRMetadata</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -897,10 +1173,6 @@ type parameters is used and normalized according to the convention above.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -935,10 +1207,35 @@ are resolved.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM9MDBuilderC"></a>
+                    <a name="//apple_ref/swift/Class/MDBuilder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM9MDBuilderC">MDBuilder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An <code>MDBuilder</code> object provides a convenient way to build common metadata
+nodes.</p>
+
+                        <a href="Classes/MDBuilder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">MDBuilder</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -976,10 +1273,97 @@ position to see if it has reached the end of the file.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM6ModuleC"></a>
+                    <a name="//apple_ref/swift/Class/Module" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM6ModuleC">Module</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>Module</code> represents the top-level structure of an LLVM program. An LLVM
+module is effectively a translation unit or a collection of translation
+units merged together.</p>
+
+<p>LLVM programs are composed of <code>Module</code>s consisting of functions, global
+variables, symbol table entries, and metadata. Modules may be combined
+together with the LLVM linker, which merges function (and global variable)
+definitions, resolves forward declarations, and merges symbol table entries.</p>
+<h1 id='creating-a-module' class='heading'>Creating a Module</h1>
+
+<p>A module can be created using <code>init(name:context:)</code>.
+Note that the default target triple is bare metal and there is no default data layout.
+If you require these to be specified (e.g. to increase the correctness of default alignment values),
+be sure to set them yourself.</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">machine</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">TargetMachine</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">targetTriple</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">triple</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">dataLayout</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">dataLayout</span>
+<span class="p">}</span>
+</code></pre>
+<h1 id='verifying-a-module' class='heading'>Verifying a Module</h1>
+
+<p>A module naturally grows to encompass a large amount of data during code
+generation.  To verify that the module is well-formed and suitable for
+submission to later phases of LLVM, call <code><a href="Classes/Module.html#/s:4LLVM6ModuleC6verifyyyKF">Module.verify()</a></code>.  If the module
+does not pass verification, an error describing the cause will be thrown.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">module</span> <span class="o">=</span> <span class="kt">Module</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Example"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">builder</span> <span class="o">=</span> <span class="kt">IRBuilder</span><span class="p">(</span><span class="nv">module</span><span class="p">:</span> <span class="n">module</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">main</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="nf">addFunction</span><span class="p">(</span><span class="s">"main"</span><span class="p">,</span>
+                               <span class="nv">type</span><span class="p">:</span> <span class="kt">FunctionType</span><span class="p">([],</span> <span class="kt">VoidType</span><span class="p">()))</span>
+<span class="k">let</span> <span class="nv">entry</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="nf">appendBasicBlock</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"entry"</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">positionAtEnd</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="nf">buildRet</span><span class="p">(</span><span class="n">main</span><span class="o">.</span><span class="nf">address</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">entry</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+
+<span class="k">try</span> <span class="n">module</span><span class="o">.</span><span class="nf">verify</span><span class="p">()</span>
+<span class="c1">// The following error is thrown:</span>
+<span class="c1">//   module did not pass verification: blockaddress may not be used with the entry block!</span>
+<span class="c1">//   Found return instr that returns non-void in Function of void return type!</span>
+</code></pre>
+
+<p>The built-in verifier attempts to be correct at the cost of completeness.
+For strictest checking, invoke the <code>lli</code> tool on any IR that is generated.</p>
+<h1 id='threading-considerations' class='heading'>Threading Considerations</h1>
+
+<p>A module value is associated with exactly one LLVM context.  That context,
+and its creating thread, must be used to access and mutate this module as
+LLVM provides no locking or atomicity guarantees.</p>
+<h1 id='printing-the-contents-of-a-module' class='heading'>Printing The Contents of a Module</h1>
+
+<p>The contents of a module are mostly machine-independent.  It is often useful
+while debugging to view this machine-independent IR.  A module responds to
+<code><a href="Classes/Module.html#/s:4LLVM6ModuleC4dumpyyF">Module.dump()</a></code> by printing this representation to standard output.  To
+dump the module to a file, use <code><a href="Classes/Module.html#/s:4LLVM6ModuleC5print2toySS_tKF">Module.print(to:)</a></code>.  In general, a module
+must be associated with a <code><a href="Classes/TargetMachine.html">TargetMachine</a></code> and a target environment for its
+contents to be fully useful for export to later file formats such as object
+files or bitcode.  See <code>TargetMachine.emitToFile(module:type:path)</code> for more
+details.</p>
+<h1 id='module-flags' class='heading'>Module Flags</h1>
+
+<p>To convey information about a module to LLVM&rsquo;s various subsystems, a module
+may have flags attached.  These flags are keyed by global strings, and
+attached as metadata to the module with the privileged <code>llvm.module.flags</code>
+metadata identifier.  Certain flags have hard-coded meanings in LLVM such as
+the Objective-C garbage collection flags or the linker options flags.  Most
+other flags are stripped from any resulting object files.</p>
+
+                        <a href="Classes/Module.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Module</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -1010,10 +1394,35 @@ are attached.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM10BinaryFileC"></a>
+                    <a name="//apple_ref/swift/Class/BinaryFile" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM10BinaryFileC">BinaryFile</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>BinaryFile</code> is a (mostly) architecture-independent representation of an
+in-memory image file.</p>
+
+                        <a href="Classes/BinaryFile.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">BinaryFile</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -1035,7 +1444,35 @@ are attached.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ObjectFile</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ObjectFile</span> <span class="p">:</span> <span class="kt"><a href="Classes/BinaryFile.html">BinaryFile</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM24MachOUniversalBinaryFileC"></a>
+                    <a name="//apple_ref/swift/Class/MachOUniversalBinaryFile" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM24MachOUniversalBinaryFileC">MachOUniversalBinaryFile</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An in-memory representation of a Mach-O universal binary file.</p>
+
+                        <a href="Classes/MachOUniversalBinaryFile.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">MachOUniversalBinaryFile</span> <span class="p">:</span> <span class="kt"><a href="Classes/BinaryFile.html">BinaryFile</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1126,10 +1563,6 @@ are attached.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1153,17 +1586,51 @@ over each such construct.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FunctionPassManager</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="s">"Use the PassPipeliner instead"</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">FunctionPassManager</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4LLVM13PassPipelinerC"></a>
+                    <a name="//apple_ref/swift/Class/PassPipeliner" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4LLVM13PassPipelinerC">PassPipeliner</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Implements a pass manager, pipeliner, and executor for a set of
+user-provided optimization passes.</p>
+
+<p>A <code>PassPipeliner</code> handles the creation of a related set of optimization
+passes called a &ldquo;pipeline&rdquo;.  Grouping passes is done for multiple reasons,
+chief among them is that optimizer passes are extremely sensitive to their
+ordering relative to other passes.  In addition, pass groupings allow for
+the clean segregation of otherwise unrelated passes.  For example, a
+pipeline might consist of &ldquo;mandatory&rdquo; passes such as Jump Threading, LICM,
+and DCE in one pipeline and &ldquo;diagnostic&rdquo; passes in another.</p>
+
+                        <a href="Classes/PassPipeliner.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PassPipeliner</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -1194,10 +1661,6 @@ sizes and offsets of types with respect to this target.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1262,8 +1725,8 @@ environment.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

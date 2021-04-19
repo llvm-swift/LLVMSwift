@@ -8,13 +8,21 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Enum/DWARFExpression" class="dashAnchor"></a>
     <a title="DWARFExpression Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">LLVM Docs</a> (100% documented)</p>
+        <p><a href="../index.html">LLVM 0.8 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -38,6 +46,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AttachedMetadata/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile.html">BinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryFile/Kind.html">– Kind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comdat.html">Comdat</a>
@@ -82,6 +96,15 @@
                 <a href="../Classes/JIT.html#/s:4LLVM3JITC12ModuleHandleV">– ModuleHandle</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/MDBuilder.html">MDBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html">MachOUniversalBinaryFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MachOUniversalBinaryFile.html#/s:4LLVM24MachOUniversalBinaryFileC5SliceC">– Slice</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/MemoryBuffer.html">MemoryBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -95,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ObjectFile.html">ObjectFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner.html">PassPipeliner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PassPipeliner/Builder.html">– Builder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RelocationSequence.html">RelocationSequence</a>
@@ -114,6 +143,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/TargetMachine.html">TargetMachine</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TemporaryMDNode.html">TemporaryMDNode</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -130,6 +162,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/AttributeKind.html">AttributeKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinaryFileError.html">BinaryFileError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ByteOrder.html">ByteOrder</a>
@@ -163,9 +198,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums.html#/s:4LLVM8FloatingO">Floating</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/FunctionPass.html">FunctionPass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/IRMetadataKind.html">IRMetadataKind</a>
@@ -205,6 +237,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/OverflowBehavior.html">OverflowBehavior</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pass.html">Pass</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/RealPredicate.html">RealPredicate</a>
@@ -303,7 +338,7 @@
                 <a href="../Protocols.html#/s:4LLVM22ConstantRepresentationP">ConstantRepresentation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:4LLVM7DIScopeP">DIScope</a>
+                <a href="../Protocols/DIScope.html">DIScope</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/DIType.html">DIType</a>
@@ -313,6 +348,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRGlobal.html">IRGlobal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IRInstruction.html">IRInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/IRMetadata.html">IRMetadata</a>
@@ -341,6 +379,9 @@
                 <a href="../Structs/APInt.html">APInt</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/AddressSpace.html">AddressSpace</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Alias.html">Alias</a>
               </li>
               <li class="nav-group-task">
@@ -357,6 +398,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Call.html">Call</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Call/TailCallKind.html">– TailCallKind</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/CompileUnitMetadata.html">CompileUnitMetadata</a>
@@ -422,6 +466,12 @@
                 <a href="../Structs/LocalVariableMetadata.html">LocalVariableMetadata</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/MDNode.html">MDNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MDString.html">MDString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/MetadataType.html">MetadataType</a>
               </li>
               <li class="nav-group-task">
@@ -470,10 +520,31 @@
                 <a href="../Structs/Symbol.html">Symbol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/TBAAStructField.html">TBAAStructField</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/TerminatorInstruction.html">TerminatorInstruction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/TokenType.html">TokenType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple.html">Triple</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Architecture.html">– Architecture</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Vendor.html">– Vendor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/OS.html">– OS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/Environment.html">– Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Triple/ObjectFormat.html">– ObjectFormat</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Use.html">Use</a>
@@ -489,6 +560,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:4LLVM12FunctionPassa">FunctionPass</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -497,6 +576,7 @@
             <h1>DWARFExpression</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">DWARFExpression</span></code></pre>
 
                 </div>
@@ -514,9 +594,11 @@ an opcode followed by zero or more literal operands.</p>
               <div class="task-name-container">
                 <a name="/Literals"></a>
                 <a name="//apple_ref/swift/Section/Literals" class="dashAnchor"></a>
-                <a href="#/Literals">
-                  <h3 class="section-name">Literals</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Literals"></a>
+                  <h3 class="section-name"><p>Literals</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -524,7 +606,7 @@ an opcode followed by zero or more literal operands.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO4addryACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/addr(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO4addryACs6UInt64VcACmF">addr(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO4addryACs6UInt64VcACmF">addr(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1416,7 +1498,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7const1uyACs5UInt8VcACmF"></a>
                     <a name="//apple_ref/swift/Element/const1u(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const1uyACs5UInt8VcACmF">const1u(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const1uyACs5UInt8VcACmF">const1u(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1443,7 +1525,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7const1syACs4Int8VcACmF"></a>
                     <a name="//apple_ref/swift/Element/const1s(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const1syACs4Int8VcACmF">const1s(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const1syACs4Int8VcACmF">const1s(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1470,7 +1552,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7const2uyACs6UInt16VcACmF"></a>
                     <a name="//apple_ref/swift/Element/const2u(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const2uyACs6UInt16VcACmF">const2u(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const2uyACs6UInt16VcACmF">const2u(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1497,7 +1579,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7const2syACs5Int16VcACmF"></a>
                     <a name="//apple_ref/swift/Element/const2s(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const2syACs5Int16VcACmF">const2s(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const2syACs5Int16VcACmF">const2s(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1524,7 +1606,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7const4uyACs6UInt32VcACmF"></a>
                     <a name="//apple_ref/swift/Element/const4u(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const4uyACs6UInt32VcACmF">const4u(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const4uyACs6UInt32VcACmF">const4u(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1551,7 +1633,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7const4syACs5Int32VcACmF"></a>
                     <a name="//apple_ref/swift/Element/const4s(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const4syACs5Int32VcACmF">const4s(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const4syACs5Int32VcACmF">const4s(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1578,7 +1660,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7const8uyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/const8u(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const8uyACs6UInt64VcACmF">const8u(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const8uyACs6UInt64VcACmF">const8u(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1605,7 +1687,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7const8syACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/const8s(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const8syACs5Int64VcACmF">const8s(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7const8syACs5Int64VcACmF">const8s(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1632,7 +1714,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6constuyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/constu(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6constuyACs6UInt64VcACmF">constu(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6constuyACs6UInt64VcACmF">constu(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1659,7 +1741,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6constsyACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/consts(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6constsyACs5Int64VcACmF">consts(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6constsyACs5Int64VcACmF">consts(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1686,7 +1768,7 @@ address on the target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5addrxyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/addrx(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5addrxyACs6UInt64VcACmF">addrx(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5addrxyACs6UInt64VcACmF">addrx(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1716,7 +1798,7 @@ of the associated compilation unit.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6constxyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/constx(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6constxyACs6UInt64VcACmF">constx(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6constxyACs6UInt64VcACmF">constx(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1751,9 +1833,11 @@ for example, offsets to thread-local storage).</p>
               <div class="task-name-container">
                 <a name="/Register%20Values"></a>
                 <a name="//apple_ref/swift/Section/Register Values" class="dashAnchor"></a>
-                <a href="#/Register%20Values">
-                  <h3 class="section-name">Register Values</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Register%20Values"></a>
+                  <h3 class="section-name"><p>Register Values</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -1761,7 +1845,7 @@ for example, offsets to thread-local storage).</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5fbregyACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/fbreg(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5fbregyACs5Int64VcACmF">fbreg(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5fbregyACs5Int64VcACmF">fbreg(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1790,7 +1874,7 @@ of the current function.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg0yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg0(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg0yACs5Int64VcACmF">breg0(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg0yACs5Int64VcACmF">breg0(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1818,7 +1902,7 @@ base-128 offset from the contents of register 0.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg1yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg1(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg1yACs5Int64VcACmF">breg1(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg1yACs5Int64VcACmF">breg1(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1846,7 +1930,7 @@ base-128 offset from the contents of register 1.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg2yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg2(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg2yACs5Int64VcACmF">breg2(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg2yACs5Int64VcACmF">breg2(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1874,7 +1958,7 @@ base-128 offset from the contents of register 2.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg3yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg3(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg3yACs5Int64VcACmF">breg3(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg3yACs5Int64VcACmF">breg3(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1902,7 +1986,7 @@ base-128 offset from the contents of register 3.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg4yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg4(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg4yACs5Int64VcACmF">breg4(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg4yACs5Int64VcACmF">breg4(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1930,7 +2014,7 @@ base-128 offset from the contents of register 4.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg5yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg5(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg5yACs5Int64VcACmF">breg5(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg5yACs5Int64VcACmF">breg5(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1958,7 +2042,7 @@ base-128 offset from the contents of register 5.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg6yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg6(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg6yACs5Int64VcACmF">breg6(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg6yACs5Int64VcACmF">breg6(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1986,7 +2070,7 @@ base-128 offset from the contents of register 6.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg7yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg7(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg7yACs5Int64VcACmF">breg7(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg7yACs5Int64VcACmF">breg7(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2014,7 +2098,7 @@ base-128 offset from the contents of register 7.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg8yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg8(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg8yACs5Int64VcACmF">breg8(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg8yACs5Int64VcACmF">breg8(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2042,7 +2126,7 @@ base-128 offset from the contents of register 8.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5breg9yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg9(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg9yACs5Int64VcACmF">breg9(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5breg9yACs5Int64VcACmF">breg9(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2070,7 +2154,7 @@ base-128 offset from the contents of register 9.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg10yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg10(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg10yACs5Int64VcACmF">breg10(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg10yACs5Int64VcACmF">breg10(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2098,7 +2182,7 @@ base-128 offset from the contents of register 10.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg11yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg11(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg11yACs5Int64VcACmF">breg11(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg11yACs5Int64VcACmF">breg11(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2126,7 +2210,7 @@ base-128 offset from the contents of register 11.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg12yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg12(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg12yACs5Int64VcACmF">breg12(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg12yACs5Int64VcACmF">breg12(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2154,7 +2238,7 @@ base-128 offset from the contents of register 12.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg13yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg13(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg13yACs5Int64VcACmF">breg13(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg13yACs5Int64VcACmF">breg13(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2182,7 +2266,7 @@ base-128 offset from the contents of register 13.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg14yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg14(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg14yACs5Int64VcACmF">breg14(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg14yACs5Int64VcACmF">breg14(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2210,7 +2294,7 @@ base-128 offset from the contents of register 14.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg15yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg15(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg15yACs5Int64VcACmF">breg15(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg15yACs5Int64VcACmF">breg15(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2238,7 +2322,7 @@ base-128 offset from the contents of register 15.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg16yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg16(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg16yACs5Int64VcACmF">breg16(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg16yACs5Int64VcACmF">breg16(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2266,7 +2350,7 @@ base-128 offset from the contents of register 16.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg17yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg17(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg17yACs5Int64VcACmF">breg17(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg17yACs5Int64VcACmF">breg17(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2294,7 +2378,7 @@ base-128 offset from the contents of register 17.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg18yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg18(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg18yACs5Int64VcACmF">breg18(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg18yACs5Int64VcACmF">breg18(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2322,7 +2406,7 @@ base-128 offset from the contents of register 18.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg19yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg19(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg19yACs5Int64VcACmF">breg19(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg19yACs5Int64VcACmF">breg19(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2350,7 +2434,7 @@ base-128 offset from the contents of register 19.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg20yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg20(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg20yACs5Int64VcACmF">breg20(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg20yACs5Int64VcACmF">breg20(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2378,7 +2462,7 @@ base-128 offset from the contents of register 20.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg21yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg21(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg21yACs5Int64VcACmF">breg21(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg21yACs5Int64VcACmF">breg21(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2406,7 +2490,7 @@ base-128 offset from the contents of register 21.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg22yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg22(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg22yACs5Int64VcACmF">breg22(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg22yACs5Int64VcACmF">breg22(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2434,7 +2518,7 @@ base-128 offset from the contents of register 22.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg23yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg23(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg23yACs5Int64VcACmF">breg23(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg23yACs5Int64VcACmF">breg23(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2462,7 +2546,7 @@ base-128 offset from the contents of register 23.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg24yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg24(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg24yACs5Int64VcACmF">breg24(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg24yACs5Int64VcACmF">breg24(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2490,7 +2574,7 @@ base-128 offset from the contents of register 24.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg25yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg25(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg25yACs5Int64VcACmF">breg25(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg25yACs5Int64VcACmF">breg25(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2518,7 +2602,7 @@ base-128 offset from the contents of register 25.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg26yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg26(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg26yACs5Int64VcACmF">breg26(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg26yACs5Int64VcACmF">breg26(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2546,7 +2630,7 @@ base-128 offset from the contents of register 26.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg27yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg27(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg27yACs5Int64VcACmF">breg27(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg27yACs5Int64VcACmF">breg27(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2574,7 +2658,7 @@ base-128 offset from the contents of register 27.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg28yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg28(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg28yACs5Int64VcACmF">breg28(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg28yACs5Int64VcACmF">breg28(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2602,7 +2686,7 @@ base-128 offset from the contents of register 28.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg29yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg29(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg29yACs5Int64VcACmF">breg29(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg29yACs5Int64VcACmF">breg29(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2630,7 +2714,7 @@ base-128 offset from the contents of register 29.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg30yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg30(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg30yACs5Int64VcACmF">breg30(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg30yACs5Int64VcACmF">breg30(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2658,7 +2742,7 @@ base-128 offset from the contents of register 30.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO6breg31yACs5Int64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/breg31(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg31yACs5Int64VcACmF">breg31(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO6breg31yACs5Int64VcACmF">breg31(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2686,7 +2770,7 @@ base-128 offset from the contents of register 31.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5bregxyACs6UInt64V_s5Int64VtcACmF"></a>
                     <a name="//apple_ref/swift/Element/bregx(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5bregxyACs6UInt64V_s5Int64VtcACmF">bregx(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5bregxyACs6UInt64V_s5Int64VtcACmF">bregx(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2716,7 +2800,7 @@ base-128 form.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO9constTypeyAcA011DIAttributeD8EncodingO_s5UInt8VSayAHGtcACmF"></a>
                     <a name="//apple_ref/swift/Element/constType(_:_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO9constTypeyAcA011DIAttributeD8EncodingO_s5UInt8VSayAHGtcACmF">constType(_:_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO9constTypeyAcA011DIAttributeD8EncodingO_s5UInt8VSayAHGtcACmF">constType(_:<wbr>_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2750,7 +2834,7 @@ of the given size that is interpreted as a value of the referenced type.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO10regvalTypeyACs6UInt64V_AA011DIAttributeD8EncodingOtcACmF"></a>
                     <a name="//apple_ref/swift/Element/regvalType(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO10regvalTypeyACs6UInt64V_AA011DIAttributeD8EncodingOtcACmF">regvalType(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO10regvalTypeyACs6UInt64V_AA011DIAttributeD8EncodingOtcACmF">regvalType(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2783,9 +2867,11 @@ compilation unit which must have base type.</p>
               <div class="task-name-container">
                 <a name="/Stack%20Operations"></a>
                 <a name="//apple_ref/swift/Section/Stack Operations" class="dashAnchor"></a>
-                <a href="#/Stack%20Operations">
-                  <h3 class="section-name">Stack Operations</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Stack%20Operations"></a>
+                  <h3 class="section-name"><p>Stack Operations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -2848,7 +2934,7 @@ stack.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO4pickyACs5UInt8VcACmF"></a>
                     <a name="//apple_ref/swift/Element/pick(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO4pickyACs5UInt8VcACmF">pick(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO4pickyACs5UInt8VcACmF">pick(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2998,7 +3084,7 @@ target machine.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO9derefSizeyACs5UInt8VcACmF"></a>
                     <a name="//apple_ref/swift/Element/derefSize(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO9derefSizeyACs5UInt8VcACmF">derefSize(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO9derefSizeyACs5UInt8VcACmF">derefSize(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3032,7 +3118,7 @@ before being pushed onto the expression stack.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO9derefTypeyACs5UInt8V_s6UInt64VtcACmF"></a>
                     <a name="//apple_ref/swift/Element/derefType(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO9derefTypeyACs5UInt8V_s6UInt64VtcACmF">derefType(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO9derefTypeyACs5UInt8V_s6UInt64VtcACmF">derefType(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3079,7 +3165,7 @@ have a base type entry that provides the type of the data pushed.</p>
                         <p>Provides an extended dereference mechanism.</p>
 
 <p>The entry at the top of the stack is treated as an address.  The second
-stack entry is treated as an <q>address space identifier</q> for those
+stack entry is treated as an &ldquo;address space identifier&rdquo; for those
 architectures that support multiple address spaces.  Both of these
 entries must have integral type identifiers.</p>
 
@@ -3106,7 +3192,7 @@ generic type.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO10xderefSizeyACs5UInt8VcACmF"></a>
                     <a name="//apple_ref/swift/Element/xderefSize(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO10xderefSizeyACs5UInt8VcACmF">xderefSize(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO10xderefSizeyACs5UInt8VcACmF">xderefSize(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3117,7 +3203,7 @@ generic type.</p>
                         <p>Provides an extended dereference mechanism.</p>
 
 <p>The entry at the top of the stack is treated as an address.  The second
-stack entry is treated as an <q>address space identifier</q> for those
+stack entry is treated as an &ldquo;address space identifier&rdquo; for those
 architectures that support multiple address spaces.  Both of these
 entries must have integral type identifiers.</p>
 
@@ -3146,7 +3232,7 @@ before being pushed onto the expression stack.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO10xderefTypeyACs5UInt8V_s6UInt64VtcACmF"></a>
                     <a name="//apple_ref/swift/Element/xderefType(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO10xderefTypeyACs5UInt8V_s6UInt64VtcACmF">xderefType(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO10xderefTypeyACs5UInt8V_s6UInt64VtcACmF">xderefType(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3276,9 +3362,11 @@ Call Frame Information.</p>
               <div class="task-name-container">
                 <a name="/Arithmetic%20and%20Logical%20Operations"></a>
                 <a name="//apple_ref/swift/Section/Arithmetic and Logical Operations" class="dashAnchor"></a>
-                <a href="#/Arithmetic%20and%20Logical%20Operations">
-                  <h3 class="section-name">Arithmetic and Logical Operations</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Arithmetic%20and%20Logical%20Operations"></a>
+                  <h3 class="section-name"><p>Arithmetic and Logical Operations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -3565,7 +3653,7 @@ two, and pushes the result.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO11plus_uconstyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/plus_uconst(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO11plus_uconstyACs6UInt64VcACmF">plus_uconst(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO11plus_uconstyACs6UInt64VcACmF">plus_uconst(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3711,9 +3799,11 @@ on the two, and pushes the result.</p>
               <div class="task-name-container">
                 <a name="/Control%20Flow%20Operations"></a>
                 <a name="//apple_ref/swift/Section/Control Flow Operations" class="dashAnchor"></a>
-                <a href="#/Control%20Flow%20Operations">
-                  <h3 class="section-name">Control Flow Operations</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Control%20Flow%20Operations"></a>
+                  <h3 class="section-name"><p>Control Flow Operations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -3901,7 +3991,7 @@ true, else pushes the constnat value 0 if the result is false.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO4skipyACs5Int16VcACmF"></a>
                     <a name="//apple_ref/swift/Element/skip(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO4skipyACs5Int16VcACmF">skip(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO4skipyACs5Int16VcACmF">skip(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3929,7 +4019,7 @@ specified in its operand.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO3brayACs5Int16VcACmF"></a>
                     <a name="//apple_ref/swift/Element/bra(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO3brayACs5Int16VcACmF">bra(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO3brayACs5Int16VcACmF">bra(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3959,7 +4049,7 @@ performed.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5call2yACs6UInt16VcACmF"></a>
                     <a name="//apple_ref/swift/Element/call2(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5call2yACs6UInt16VcACmF">call2(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5call2yACs6UInt16VcACmF">call2(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3997,7 +4087,7 @@ is reached.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5call4yACs6UInt32VcACmF"></a>
                     <a name="//apple_ref/swift/Element/call4(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5call4yACs6UInt32VcACmF">call4(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5call4yACs6UInt32VcACmF">call4(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4035,7 +4125,7 @@ is reached.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7callRefyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/callRef(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7callRefyACs6UInt64VcACmF">callRef(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7callRefyACs6UInt64VcACmF">callRef(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4076,9 +4166,11 @@ is reached.</p>
               <div class="task-name-container">
                 <a name="/Type%20Conversions"></a>
                 <a name="//apple_ref/swift/Section/Type Conversions" class="dashAnchor"></a>
-                <a href="#/Type%20Conversions">
-                  <h3 class="section-name">Type Conversions</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Type%20Conversions"></a>
+                  <h3 class="section-name"><p>Type Conversions</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -4086,7 +4178,7 @@ is reached.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO7convertyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/convert(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7convertyACs6UInt64VcACmF">convert(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO7convertyACs6UInt64VcACmF">convert(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4120,7 +4212,7 @@ type to which the value is converted.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO11reinterpretyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/reinterpret(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO11reinterpretyACs6UInt64VcACmF">reinterpret(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO11reinterpretyACs6UInt64VcACmF">reinterpret(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4155,9 +4247,11 @@ type to which the value is converted.</p>
               <div class="task-name-container">
                 <a name="/Special%20Operations"></a>
                 <a name="//apple_ref/swift/Section/Special Operations" class="dashAnchor"></a>
-                <a href="#/Special%20Operations">
-                  <h3 class="section-name">Special Operations</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Special%20Operations"></a>
+                  <h3 class="section-name"><p>Special Operations</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -4192,7 +4286,7 @@ type to which the value is converted.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO10entryValueyACs6UInt64V_ACtcACmF"></a>
                     <a name="//apple_ref/swift/Element/entryValue(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO10entryValueyACs6UInt64V_ACtcACmF">entryValue(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO10entryValueyACs6UInt64V_ACtcACmF">entryValue(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4224,9 +4318,11 @@ location description.</p>
               <div class="task-name-container">
                 <a name="/Location%20Descriptions"></a>
                 <a name="//apple_ref/swift/Section/Location Descriptions" class="dashAnchor"></a>
-                <a href="#/Location%20Descriptions">
-                  <h3 class="section-name">Location Descriptions</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Location%20Descriptions"></a>
+                  <h3 class="section-name"><p>Location Descriptions</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -5098,7 +5194,7 @@ location description.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO4regxyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/regx(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO4regxyACs6UInt64VcACmF">regx(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO4regxyACs6UInt64VcACmF">regx(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5127,9 +5223,11 @@ encodes the name of a register.</p>
               <div class="task-name-container">
                 <a name="/Implicit%20Location%20Descriptionos"></a>
                 <a name="//apple_ref/swift/Section/Implicit Location Descriptionos" class="dashAnchor"></a>
-                <a href="#/Implicit%20Location%20Descriptionos">
-                  <h3 class="section-name">Implicit Location Descriptionos</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Implicit%20Location%20Descriptionos"></a>
+                  <h3 class="section-name"><p>Implicit Location Descriptionos</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -5137,7 +5235,7 @@ encodes the name of a register.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO13implicitValueyACs6UInt64V_Says5UInt8VGtcACmF"></a>
                     <a name="//apple_ref/swift/Element/implicitValue(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO13implicitValueyACs6UInt64V_Says5UInt8VGtcACmF">implicitValue(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO13implicitValueyACs6UInt64V_Says5UInt8VGtcACmF">implicitValue(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5199,9 +5297,11 @@ actual value of the object, rather than its location.</p>
               <div class="task-name-container">
                 <a name="/Composite%20Location%20Descriptions"></a>
                 <a name="//apple_ref/swift/Section/Composite Location Descriptions" class="dashAnchor"></a>
-                <a href="#/Composite%20Location%20Descriptions">
-                  <h3 class="section-name">Composite Location Descriptions</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Composite%20Location%20Descriptions"></a>
+                  <h3 class="section-name"><p>Composite Location Descriptions</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -5209,7 +5309,7 @@ actual value of the object, rather than its location.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO5pieceyACs6UInt64VcACmF"></a>
                     <a name="//apple_ref/swift/Element/piece(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5pieceyACs6UInt64VcACmF">piece(_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO5pieceyACs6UInt64VcACmF">piece(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5240,7 +5340,7 @@ the piece within that register is defined by the ABI.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO8bitPieceyACs6UInt64V_AFtcACmF"></a>
                     <a name="//apple_ref/swift/Element/bitPiece(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO8bitPieceyACs6UInt64V_AFtcACmF">bitPiece(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO8bitPieceyACs6UInt64V_AFtcACmF">bitPiece(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5286,7 +5386,7 @@ bits using the least significant bits of that value.</p>
                     <code>
                     <a name="/s:4LLVM15DWARFExpressionO15implicitPointeryACs6UInt64V_s5Int64VtcACmF"></a>
                     <a name="//apple_ref/swift/Element/implicitPointer(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4LLVM15DWARFExpressionO15implicitPointeryACs6UInt64V_s5Int64VtcACmF">implicitPointer(_:_:)</a>
+                    <a class="token" href="#/s:4LLVM15DWARFExpressionO15implicitPointeryACs6UInt64V_s5Int64VtcACmF">implicitPointer(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -5327,8 +5427,8 @@ relocation must be performed by the consumer.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-03-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
