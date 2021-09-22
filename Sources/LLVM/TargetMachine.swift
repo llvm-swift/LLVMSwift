@@ -239,7 +239,7 @@ public class TargetMachine {
     var err: UnsafeMutablePointer<Int8>?
     let status = path.withCString { cStr -> LLVMBool in
       let mutable = strdup(cStr)
-      defer { free(mutable) }
+      defer { free(mutable!) }
       return LLVMTargetMachineEmitToFile(llvm, module.llvm, mutable, type.asLLVM(), &err)
     }
     if let err = err, status != 0 {
