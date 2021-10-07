@@ -88,12 +88,8 @@ extension Comdat {
     /// The linker chooses the identically-keyed COMDAT section with the largest
     /// size, ignoring content.
     case largest
-    /// The COMDAT section with this key is unique.
-    ///
-    /// This selection requires that no other COMDAT section have the same key
-    /// as this section, making the choice of selection unambiguous.  Inclusion
-    /// of any other COMDAT section with the same key is an error.
-    case noDuplicates
+    /// No deduplication is performed.
+    case noDeduplicate
     /// The linker may choose any identically-keyed COMDAT section and requires
     /// all other sections to have the same size as its selection.
     case sameSize
@@ -103,7 +99,7 @@ extension Comdat {
       case LLVMAnyComdatSelectionKind: self = .any
       case LLVMExactMatchComdatSelectionKind: self = .exactMatch
       case LLVMLargestComdatSelectionKind: self = .largest
-      case LLVMNoDuplicatesComdatSelectionKind: self = .noDuplicates
+      case LLVMNoDeduplicateComdatSelectionKind: self = .noDeduplicate
       case LLVMSameSizeComdatSelectionKind: self = .sameSize
       default: fatalError("unknown comdat selection kind \(llvm)")
       }
@@ -113,7 +109,7 @@ extension Comdat {
       .any: LLVMAnyComdatSelectionKind,
       .exactMatch: LLVMExactMatchComdatSelectionKind,
       .largest: LLVMLargestComdatSelectionKind,
-      .noDuplicates: LLVMNoDuplicatesComdatSelectionKind,
+      .noDeduplicate: LLVMNoDeduplicateComdatSelectionKind,
       .sameSize: LLVMSameSizeComdatSelectionKind,
     ]
 

@@ -1910,13 +1910,15 @@ extension IRBuilder {
   ///   side effects.  Defaults to `false`.
   /// - parameter needsAlignedStack: Whether the function containing the
   ///   asm needs to align its stack conservatively.  Defaults to `true`.
+  /// - parameter canThrow: Whether the function containing the
+  ///   asm can throw.  Defaults to `false`.
   ///
   /// - returns: A representation of the newly created inline assembly
   ///   expression.
   public func buildInlineAssembly(
     _ asm: String, dialect: InlineAssemblyDialect, type: FunctionType,
     constraints: String = "",
-    hasSideEffects: Bool = true, needsAlignedStack: Bool = true
+    hasSideEffects: Bool = true, needsAlignedStack: Bool = true, canThrow: Bool = false
   ) -> IRValue {
     var asm = asm.utf8CString
     var constraints = constraints.utf8CString
@@ -1926,7 +1928,7 @@ extension IRBuilder {
                                 asm.baseAddress, asm.count,
                                 constraints.baseAddress, constraints.count,
                                 hasSideEffects.llvm, needsAlignedStack.llvm,
-                                dialect.llvm)
+                                dialect.llvm, canThrow.llvm)
       }
     }
   }

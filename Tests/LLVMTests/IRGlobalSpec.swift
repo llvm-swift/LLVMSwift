@@ -43,9 +43,9 @@ class IRGlobalSpec : XCTestCase {
       let comdatLargestSec = module.comdat(named: "test_largest")
       comdatLargestSec.selectionKind = .largest
 
-      // IRCOMDATGLOBAL: $test_no_dupes = comdat noduplicates
-      let comdatNoDupesSec = module.comdat(named: "test_no_dupes")
-      comdatNoDupesSec.selectionKind = .noDuplicates
+      // IRCOMDATGLOBAL: $test_no_deduplicate = comdat nodeduplicate
+      let comdatNoDeduplicateSec = module.comdat(named: "test_no_deduplicate")
+      comdatNoDeduplicateSec.selectionKind = .noDeduplicate
 
       // IRCOMDATGLOBAL: $test_same_size = comdat samesize
       let comdatSameSizeSec = module.comdat(named: "test_same_size")
@@ -65,9 +65,9 @@ class IRGlobalSpec : XCTestCase {
       var comdatGlobalLargest = builder.addGlobal("comdat_global_largest", initializer: i)
       comdatGlobalLargest.comdat = comdatLargestSec
 
-      // IRCOMDATGLOBAL: @comdat_global_no_dupes = global i8 42, comdat($test_no_dupes)
-      var comdatGlobalNoDupes = builder.addGlobal("comdat_global_no_dupes", initializer: i)
-      comdatGlobalNoDupes.comdat = comdatNoDupesSec
+      // IRCOMDATGLOBAL: @comdat_global_no_deduplicate = global i8 42, comdat($test_no_deduplicate)
+      var comdatGlobalNoDuduplicate = builder.addGlobal("comdat_global_no_deduplicate", initializer: i)
+      comdatGlobalNoDuduplicate.comdat = comdatNoDeduplicateSec
 
       // IRCOMDATGLOBAL: @comdat_global_same_size = global i8 42, comdat($test_same_size)
       var comdatGlobalSameSize = builder.addGlobal("comdat_global_same_size", initializer: i)

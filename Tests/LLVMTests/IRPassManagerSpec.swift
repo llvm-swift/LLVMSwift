@@ -147,7 +147,7 @@ class IRPassManagerSpec : XCTestCase {
       // CHECK-EXECUTE-STDOPT: ; ModuleID = 'Test'
       // CHECK-EXECUTE-STDOPT: source_filename = "Test"
 
-      // CHECK-EXECUTE-STDOPT: ; Function Attrs: norecurse nounwind readnone
+      // CHECK-EXECUTE-STDOPT: ; Function Attrs: mustprogress nofree norecurse nosync nounwind readnone willreturn
       // CHECK-EXECUTE-STDOPT: define i32 @fun(i32 %0, i32 %1) local_unnamed_addr #0 {
       // CHECK-EXECUTE-STDOPT:   entry:
       // CHECK-EXECUTE-STDOPT:   %2 = icmp eq i32 %0, 1

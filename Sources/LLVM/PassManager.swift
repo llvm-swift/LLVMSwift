@@ -123,8 +123,6 @@ public enum Pass {
   /// This pass eliminates call instructions to the current function which occur
   /// immediately before return instructions.
   case tailCallElimination
-  /// A worklist driven constant propagation pass.
-  case constantPropagation
   /// This pass is used to demote registers to memory references. It basically
   /// undoes the `.promoteMemoryToRegister` pass to make CFG hacking easier.
   case demoteMemoryToRegister
@@ -203,9 +201,6 @@ public enum Pass {
   /// globals.
   case globalOptimizer
   /// This pass propagates constants from call sites into the bodies of
-  /// functions.
-  case ipConstantPropagation
-  /// This pass propagates constants from call sites into the bodies of
   /// functions, and keeps track of whether basic blocks are executable in the
   /// process.
   case ipscc
@@ -213,7 +208,7 @@ public enum Pass {
   /// if the callee can *not* unwind the stack.
   case pruneEH
   /// This transformation attempts to discovery `alloca` allocations of aggregates that can be
-  /// broken down into component scalar values.  
+  /// broken down into component scalar values.
   case scalarReplacementOfAggregates
   /// This pass removes any function declarations (prototypes) that are not used.
   case stripDeadPrototypes

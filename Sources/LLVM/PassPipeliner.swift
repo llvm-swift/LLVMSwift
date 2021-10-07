@@ -306,8 +306,6 @@ extension PassPipeliner {
       LLVMAddSCCPPass(passManager)
     case .tailCallElimination:
       LLVMAddTailCallEliminationPass(passManager)
-    case .constantPropagation:
-      LLVMAddConstantPropagationPass(passManager)
     case .demoteMemoryToRegister:
       LLVMAddDemoteMemoryToRegisterPass(passManager)
     case .verifier:
@@ -344,8 +342,6 @@ extension PassPipeliner {
       LLVMAddGlobalDCEPass(passManager)
     case .globalOptimizer:
       LLVMAddGlobalOptimizerPass(passManager)
-    case .ipConstantPropagation:
-      LLVMAddIPConstantPropagationPass(passManager)
     case .ipscc:
       LLVMAddIPSCCPPass(passManager)
     case .pruneEH:

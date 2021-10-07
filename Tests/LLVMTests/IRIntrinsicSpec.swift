@@ -52,13 +52,13 @@ class IRIntrinsicSpec : XCTestCase {
       // IRINTRINSIC-NEXT: }
       module.dump()
 
-      // IRINTRINSIC: ; Function Attrs: nounwind
+      // IRINTRINSIC: ; Function Attrs: nofree nosync nounwind willreturn
       // IRINTRINSIC-NEXT: declare void @llvm.va_start(i8* %0) #0
 
-      // IRINTRINSIC: ; Function Attrs: nounwind
+      // IRINTRINSIC: ; Function Attrs: nofree nosync nounwind willreturn
       // IRINTRINSIC-NEXT: declare void @llvm.va_copy(i8* %0, i8* %1) #0
 
-      // IRINTRINSIC: ; Function Attrs: nounwind
+      // IRINTRINSIC: ; Function Attrs: nofree nosync nounwind willreturn
       // IRINTRINSIC-NEXT: declare void @llvm.va_end(i8* %0) #0
     })
 
@@ -92,7 +92,7 @@ class IRIntrinsicSpec : XCTestCase {
       // VIRTUALOVERLOAD-IRINTRINSIC-NEXT:  }
       module.dump()
 
-      // VIRTUALOVERLOAD-IRINTRINSIC: ; Function Attrs: nounwind readnone
+      // VIRTUALOVERLOAD-IRINTRINSIC: ; Function Attrs: nofree nosync nounwind readnone willreturn
       // VIRTUALOVERLOAD-IRINTRINSIC-NEXT: declare i32* @llvm.ssa.copy.p0i32(i32* returned %0) #0
     })
 
