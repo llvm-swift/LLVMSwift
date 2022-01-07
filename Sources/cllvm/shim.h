@@ -17,7 +17,7 @@
 #include <llvm-c/Linker.h>
 #include <llvm-c/lto.h>
 #include <llvm-c/Object.h>
-#include <llvm-c/Orc.h>
+#include <llvm-c/LLJIT.h>
 #include <llvm-c/Support.h>
 #include <llvm-c/Target.h>
 #include <llvm-c/TargetMachine.h>
