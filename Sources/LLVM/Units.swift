@@ -22,6 +22,11 @@ public struct Alignment: Comparable, Hashable {
   public var isZero: Bool {
     return self.rawValue == 0
   }
+    
+  /// Returns this alignment value in bits
+  public var valueInBits: UInt32 {
+    return self.rawValue * 8
+  }
 
   /// Returns the log-base-two value of this alignment as a 32-bit integer.
   ///
