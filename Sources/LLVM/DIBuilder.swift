@@ -400,7 +400,7 @@ extension DIBuilder {
       self.llvm, scope.asMetadata(),
       name, name.count, file.asMetadata(), UInt32(line),
       type.asMetadata(), alwaysPreserve.llvm,
-      flags.llvm, alignment.valueInBits)
+      flags.llvm, alignment.valueInBits())
     else {
       fatalError("Failed to allocate metadata for a local variable")
     }
@@ -516,7 +516,7 @@ extension DIBuilder {
       guard let ty = LLVMDIBuilderCreateEnumerationType(
         self.llvm, scope.asMetadata(),
         name, name.count, file.asMetadata(), UInt32(line),
-        size.valueInBits(), alignment.valueInBits,
+        size.valueInBits(), alignment.valueInBits(),
         buf.baseAddress!, UInt32(buf.count),
         underlyingType.asMetadata())
       else {
@@ -551,7 +551,7 @@ extension DIBuilder {
       guard let ty = LLVMDIBuilderCreateUnionType(
         self.llvm, scope.asMetadata(),
         name, name.count, file.asMetadata(), UInt32(line),
-        size.valueInBits(), alignment.valueInBits,
+        size.valueInBits(), alignment.valueInBits(),
         flags.llvm, buf.baseAddress!, UInt32(buf.count),
         UInt32(runtimeVersion), uniqueID, uniqueID.count)
       else {
@@ -580,7 +580,7 @@ extension DIBuilder {
     }
     return diSubs.withUnsafeMutableBufferPointer { buf in
       guard let ty = LLVMDIBuilderCreateArrayType(
-        self.llvm, size.rawValue, alignment.valueInBits,
+        self.llvm, size.rawValue, alignment.valueInBits(),
         elementType.asMetadata(),
         buf.baseAddress!, UInt32(buf.count))
       else {
@@ -609,7 +609,7 @@ extension DIBuilder {
     }
     return diSubs.withUnsafeMutableBufferPointer { buf in
       guard let ty = LLVMDIBuilderCreateVectorType(
-        self.llvm, size.rawValue, alignment.valueInBits,
+        self.llvm, size.rawValue, alignment.valueInBits(),
         elementType.asMetadata(),
         buf.baseAddress!, UInt32(buf.count))
       else {
@@ -674,7 +674,7 @@ extension DIBuilder {
   ) -> DIType {
     guard let ty = LLVMDIBuilderCreatePointerType(
       self.llvm, pointee.asMetadata(),
-      size.valueInBits(), alignment.valueInBits,
+      size.valueInBits(), alignment.valueInBits(),
       UInt32(addressSpace.rawValue), name, name.count)
     else {
       fatalError("Failed to allocate metadata")
@@ -708,7 +708,7 @@ extension DIBuilder {
       guard let ty = LLVMDIBuilderCreateStructType(
         self.llvm, scope.asMetadata(), name, name.count,
         file.asMetadata(), UInt32(line),
-        size.valueInBits(), alignment.valueInBits,
+        size.valueInBits(), alignment.valueInBits(),
         flags.llvm,
         baseType?.asMetadata(),
         buf.baseAddress!, UInt32(buf.count), UInt32(runtimeVersion),
@@ -740,7 +740,7 @@ extension DIBuilder {
     guard let ty = LLVMDIBuilderCreateMemberType(
       self.llvm, scope.asMetadata(), name, name.count, file.asMetadata(),
       UInt32(line),
-      size.valueInBits(), alignment.valueInBits,
+      size.valueInBits(), alignment.valueInBits(),
       offset.rawValue,
       flags.llvm, parentType.asMetadata())
     else {
@@ -769,7 +769,7 @@ extension DIBuilder {
       self.llvm, scope.asMetadata(), name, name.count,
       file.asMetadata(), UInt32(line),
       parentType.asMetadata(), flags.llvm,
-      initialValue?.asLLVM(), alignment.valueInBits)
+      initialValue?.asLLVM(), alignment.valueInBits())
     else {
       fatalError("Failed to allocate metadata")
     }
@@ -791,7 +791,7 @@ extension DIBuilder {
   ) -> DIType {
     guard let ty = LLVMDIBuilderCreateMemberPointerType(
       self.llvm, pointee.asMetadata(), baseType.asMetadata(),
-      size.valueInBits(), alignment.valueInBits,
+      size.valueInBits(), alignment.valueInBits(),
       flags.llvm)
     else {
       fatalError("Failed to allocate metadata")
@@ -872,7 +872,7 @@ extension DIBuilder {
     guard let ty = LLVMDIBuilderCreateTypedef(
       self.llvm, type.asMetadata(), name, name.count,
       file.asMetadata(), UInt32(line), scope.asMetadata(),
-      alignment.valueInBits)
+      alignment.valueInBits())
     else {
       fatalError("Failed to allocate metadata")
     }
@@ -927,7 +927,7 @@ extension DIBuilder {
       self.llvm, tag.rawValue, name, name.count,
       scope.asMetadata(), file.asMetadata(), UInt32(line),
       UInt32(runtimeLanguage),
-      size.valueInBits(), alignment.valueInBits,
+      size.valueInBits(), alignment.valueInBits(),
       uniqueID, uniqueID.count) else {
       fatalError("Failed to allocate metadata")
     }
@@ -958,7 +958,7 @@ extension DIBuilder {
       self.llvm, tag.rawValue, name, name.count,
       scope.asMetadata(), file.asMetadata(), UInt32(line),
       UInt32(runtimeVersion),
-      size.valueInBits(), alignment.valueInBits,
+      size.valueInBits(), alignment.valueInBits(),
       flags.llvm,
       uniqueID, uniqueID.count)
     else {
@@ -1024,7 +1024,7 @@ extension DIBuilder {
       guard let ty = LLVMDIBuilderCreateClassType(
         self.llvm, scope.asMetadata(), name, name.count,
         file.asMetadata(), UInt32(line),
-        size.valueInBits(), alignment.valueInBits,
+        size.valueInBits(), alignment.valueInBits(),
         offset.rawValue, flags.llvm,
         baseType?.asMetadata(),
         buf.baseAddress!, UInt32(buf.count),
@@ -1158,7 +1158,7 @@ extension DIBuilder {
   ) -> DIType {
     guard let ty = LLVMDIBuilderCreateObjCIVar(
       self.llvm, name, name.count, file.asMetadata(), UInt32(line),
-      size.valueInBits(), alignment.valueInBits,
+      size.valueInBits(), alignment.valueInBits(),
       offset.rawValue, flags.llvm, type.asMetadata(), property.asMetadata())
     else {
       fatalError("Failed to allocate metadata")
@@ -1257,7 +1257,7 @@ extension DIBuilder {
       type.asMetadata(),
       isLocal.llvm,
       expression?.asMetadata(), declaration?.asMetadata(),
-      alignment.valueInBits)
+      alignment.valueInBits())
     else {
       fatalError("Failed to allocate metadata")
     }
