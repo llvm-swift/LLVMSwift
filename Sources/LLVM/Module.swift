@@ -292,7 +292,7 @@ extension Module {
     path.withCString { cString in
       let mutable = strdup(cString)
       LLVMPrintModuleToFile(llvm, mutable, &err)
-      free(mutable)
+      free(mutable!)
     }
     if let err = err {
       defer { LLVMDisposeMessage(err) }
@@ -325,7 +325,7 @@ extension Module {
   public func emitBitCode(to path: String) throws {
     let status = path.withCString { cString -> Int32 in
       let mutable = strdup(cString)
-      defer { free(mutable) }
+      defer { free(mutable!) }
       return LLVMWriteBitcodeToFile(llvm, mutable)
     }
 
