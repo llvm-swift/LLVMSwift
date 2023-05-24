@@ -396,12 +396,11 @@ extension DIBuilder {
     type: DIType, alwaysPreserve: Bool = false,
     flags: DIFlags = [], alignment: Alignment
   ) -> LocalVariableMetadata {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let variable = LLVMDIBuilderCreateAutoVariable(
       self.llvm, scope.asMetadata(),
       name, name.count, file.asMetadata(), UInt32(line),
       type.asMetadata(), alwaysPreserve.llvm,
-      flags.llvm, alignment.rawValue * radix)
+      flags.llvm, alignment.valueInBits())
     else {
       fatalError("Failed to allocate metadata for a local variable")
     }
@@ -512,13 +511,12 @@ extension DIBuilder {
     size: Size, alignment: Alignment,
     elements: [DIType], underlyingType: DIType
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     var diTypes = elements.map { $0.asMetadata() as Optional }
     return diTypes.withUnsafeMutableBufferPointer { buf in
       guard let ty = LLVMDIBuilderCreateEnumerationType(
         self.llvm, scope.asMetadata(),
         name, name.count, file.asMetadata(), UInt32(line),
-        size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+        size.valueInBits(), alignment.valueInBits(),
         buf.baseAddress!, UInt32(buf.count),
         underlyingType.asMetadata())
       else {
@@ -548,13 +546,12 @@ extension DIBuilder {
     elements: [DIType],
     runtimeVersion: Int = 0, uniqueID: String = ""
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     var diTypes = elements.map { $0.asMetadata() as Optional }
     return diTypes.withUnsafeMutableBufferPointer { buf in
       guard let ty = LLVMDIBuilderCreateUnionType(
         self.llvm, scope.asMetadata(),
         name, name.count, file.asMetadata(), UInt32(line),
-        size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+        size.valueInBits(), alignment.valueInBits(),
         flags.llvm, buf.baseAddress!, UInt32(buf.count),
         UInt32(runtimeVersion), uniqueID, uniqueID.count)
       else {
@@ -577,14 +574,13 @@ extension DIBuilder {
     size: Size, alignment: Alignment,
     subscripts: [Range<Int>] = []
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     var diSubs = subscripts.map {
       LLVMDIBuilderGetOrCreateSubrange(self.llvm,
                                        Int64($0.lowerBound), Int64($0.count))
     }
     return diSubs.withUnsafeMutableBufferPointer { buf in
       guard let ty = LLVMDIBuilderCreateArrayType(
-        self.llvm, size.rawValue, alignment.rawValue * radix,
+        self.llvm, size.rawValue, alignment.valueInBits(),
         elementType.asMetadata(),
         buf.baseAddress!, UInt32(buf.count))
       else {
@@ -607,14 +603,13 @@ extension DIBuilder {
     size: Size, alignment: Alignment,
     subscripts: [Range<Int>] = []
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     var diSubs = subscripts.map {
       LLVMDIBuilderGetOrCreateSubrange(self.llvm,
                                        Int64($0.lowerBound), Int64($0.count))
     }
     return diSubs.withUnsafeMutableBufferPointer { buf in
       guard let ty = LLVMDIBuilderCreateVectorType(
-        self.llvm, size.rawValue, alignment.rawValue * radix,
+        self.llvm, size.rawValue, alignment.valueInBits(),
         elementType.asMetadata(),
         buf.baseAddress!, UInt32(buf.count))
       else {
@@ -656,10 +651,9 @@ extension DIBuilder {
   public func buildBasicType(
     named name: String, encoding: DIAttributeTypeEncoding, flags: DIFlags, size: Size
   ) -> DIType {
-    let radix = UInt64(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateBasicType(
       self.llvm, name, name.count,
-      size.valueInBits(radix: radix), encoding.llvm, flags.llvm)
+      size.valueInBits(), encoding.llvm, flags.llvm)
     else {
       fatalError("Failed to allocate metadata")
     }
@@ -678,10 +672,9 @@ extension DIBuilder {
     pointee: DIType, size: Size, alignment: Alignment,
     addressSpace: AddressSpace = .zero, name: String = ""
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreatePointerType(
       self.llvm, pointee.asMetadata(),
-      size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+      size.valueInBits(), alignment.valueInBits(),
       UInt32(addressSpace.rawValue), name, name.count)
     else {
       fatalError("Failed to allocate metadata")
@@ -710,13 +703,12 @@ extension DIBuilder {
     baseType: DIType? = nil, elements: [DIType] = [],
     vtableHolder: DIType? = nil, runtimeVersion: Int = 0, uniqueID: String = ""
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     var diEls = elements.map { $0.asMetadata() as Optional }
     return diEls.withUnsafeMutableBufferPointer { buf in
       guard let ty = LLVMDIBuilderCreateStructType(
         self.llvm, scope.asMetadata(), name, name.count,
         file.asMetadata(), UInt32(line),
-        size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+        size.valueInBits(), alignment.valueInBits(),
         flags.llvm,
         baseType?.asMetadata(),
         buf.baseAddress!, UInt32(buf.count), UInt32(runtimeVersion),
@@ -745,11 +737,10 @@ extension DIBuilder {
     file: FileMetadata, line: Int,
     size: Size, alignment: Alignment, offset: Size, flags: DIFlags = []
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateMemberType(
       self.llvm, scope.asMetadata(), name, name.count, file.asMetadata(),
       UInt32(line),
-      size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+      size.valueInBits(), alignment.valueInBits(),
       offset.rawValue,
       flags.llvm, parentType.asMetadata())
     else {
@@ -774,12 +765,11 @@ extension DIBuilder {
     line: Int, alignment: Alignment, flags: DIFlags = [],
     initialValue: IRConstant? = nil
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateStaticMemberType(
       self.llvm, scope.asMetadata(), name, name.count,
       file.asMetadata(), UInt32(line),
       parentType.asMetadata(), flags.llvm,
-      initialValue?.asLLVM(), alignment.rawValue * radix)
+      initialValue?.asLLVM(), alignment.valueInBits())
     else {
       fatalError("Failed to allocate metadata")
     }
@@ -799,10 +789,9 @@ extension DIBuilder {
     size: Size, alignment: Alignment,
     flags: DIFlags = []
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateMemberPointerType(
       self.llvm, pointee.asMetadata(), baseType.asMetadata(),
-      size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+      size.valueInBits(), alignment.valueInBits(),
       flags.llvm)
     else {
       fatalError("Failed to allocate metadata")
@@ -880,11 +869,10 @@ extension DIBuilder {
     file: FileMetadata,
     line: Int
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateTypedef(
       self.llvm, type.asMetadata(), name, name.count,
       file.asMetadata(), UInt32(line), scope.asMetadata(),
-      alignment.rawValue * radix)
+      alignment.valueInBits())
     else {
       fatalError("Failed to allocate metadata")
     }
@@ -904,12 +892,11 @@ extension DIBuilder {
     of derived: DIType, to base: DIType,
     baseOffset: Size, virtualBasePointerOffset: Size, flags: DIFlags = []
   ) -> DIType {
-    let radix = UInt64(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateInheritance(
       self.llvm, derived.asMetadata(),
       base.asMetadata(),
-      baseOffset.valueInBits(radix: radix),
-      UInt32(virtualBasePointerOffset.valueInBits(radix: radix)),
+      baseOffset.valueInBits(),
+      UInt32(virtualBasePointerOffset.valueInBits()),
       flags.llvm)
     else {
       fatalError("Failed to allocate metadata")
@@ -936,12 +923,11 @@ extension DIBuilder {
     size: Size, alignment: Alignment,
     runtimeLanguage: Int = 0, uniqueID: String = ""
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateForwardDecl(
       self.llvm, tag.rawValue, name, name.count,
       scope.asMetadata(), file.asMetadata(), UInt32(line),
       UInt32(runtimeLanguage),
-      size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+      size.valueInBits(), alignment.valueInBits(),
       uniqueID, uniqueID.count) else {
       fatalError("Failed to allocate metadata")
     }
@@ -968,12 +954,11 @@ extension DIBuilder {
     size: Size, alignment: Alignment, flags: DIFlags = [],
     runtimeVersion: Int = 0, uniqueID: String = ""
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateReplaceableCompositeType(
       self.llvm, tag.rawValue, name, name.count,
       scope.asMetadata(), file.asMetadata(), UInt32(line),
       UInt32(runtimeVersion),
-      size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+      size.valueInBits(), alignment.valueInBits(),
       flags.llvm,
       uniqueID, uniqueID.count)
     else {
@@ -1000,12 +985,11 @@ extension DIBuilder {
     size: Size, offset: Size, storageOffset: Size,
     flags: DIFlags = []
   ) -> DIType {
-    let radix = UInt64(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateBitFieldMemberType(
       self.llvm, scope.asMetadata(), name, name.count,
       file.asMetadata(), UInt32(line),
-      size.valueInBits(radix: radix), offset.valueInBits(radix: radix),
-      storageOffset.valueInBits(radix: radix),
+      size.valueInBits(), offset.valueInBits(),
+      storageOffset.valueInBits(),
       flags.llvm, type.asMetadata())
     else {
       fatalError("Failed to allocate metadata")
@@ -1035,13 +1019,12 @@ extension DIBuilder {
     elements: [DIType] = [],
     vtableHolder: DIType? = nil, uniqueID: String = ""
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     var diEls = elements.map { $0.asMetadata() as Optional }
     return diEls.withUnsafeMutableBufferPointer { buf in
       guard let ty = LLVMDIBuilderCreateClassType(
         self.llvm, scope.asMetadata(), name, name.count,
         file.asMetadata(), UInt32(line),
-        size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+        size.valueInBits(), alignment.valueInBits(),
         offset.rawValue, flags.llvm,
         baseType?.asMetadata(),
         buf.baseAddress!, UInt32(buf.count),
@@ -1173,10 +1156,9 @@ extension DIBuilder {
     file: FileMetadata, line: Int,
     size: Size, alignment: Alignment, offset: Size, flags: DIFlags = []
   ) -> DIType {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateObjCIVar(
       self.llvm, name, name.count, file.asMetadata(), UInt32(line),
-      size.valueInBits(radix: UInt64(radix)), alignment.rawValue * radix,
+      size.valueInBits(), alignment.valueInBits(),
       offset.rawValue, flags.llvm, type.asMetadata(), property.asMetadata())
     else {
       fatalError("Failed to allocate metadata")
@@ -1268,7 +1250,6 @@ extension DIBuilder {
     declaration: IRMetadata? = nil,
     alignment: Alignment
   ) -> ExpressionMetadata {
-    let radix = UInt32(self.module.dataLayout.intPointerType().width)
     guard let ty = LLVMDIBuilderCreateGlobalVariableExpression(
       self.llvm, scope.asMetadata(),
       name, name.count, linkageName, linkageName.count,
@@ -1276,7 +1257,7 @@ extension DIBuilder {
       type.asMetadata(),
       isLocal.llvm,
       expression?.asMetadata(), declaration?.asMetadata(),
-      alignment.rawValue * radix)
+      alignment.valueInBits())
     else {
       fatalError("Failed to allocate metadata")
     }

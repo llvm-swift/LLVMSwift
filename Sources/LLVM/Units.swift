@@ -23,6 +23,14 @@ public struct Alignment: Comparable, Hashable {
     return self.rawValue == 0
   }
 
+  /// Returns the value of this alignment in bits according to a given radix.
+  ///
+  /// - parameter radix: The radix value. Defaults to 8 bits per alignment unit.
+  /// - returns: A value in bits.
+  public func valueInBits(radix: UInt32 = 8) -> UInt32 {
+    return self.rawValue * radix
+  }
+
   /// Returns the log-base-two value of this alignment as a 32-bit integer.
   ///
   /// An n-byte alignment contains log-base-two-many least-significant zeros.
