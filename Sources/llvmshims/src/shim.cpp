@@ -10,7 +10,6 @@
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Object/MachOUniversal.h"
 #include "llvm/Object/ObjectFile.h"
-#include "llvm/Support/ARMTargetParser.h"
 #include "llvm/Transforms/Utils.h"
 #include "llvm/Transforms/IPO.h"
 
@@ -41,14 +40,6 @@ extern "C" {
   // https://reviews.llvm.org/D66237
   void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM);
 
-  // https://reviews.llvm.org/D66061
-  typedef enum {
-    LLVMTailCallKindNone,
-    LLVMTailCallKindTail,
-    LLVMTailCallKindMustTail,
-    LLVMTailCallKindNoTail
-  } LLVMTailCallKind;
-
   LLVMTailCallKind LLVMGetTailCallKind(LLVMValueRef CallInst);
   void LLVMSetTailCallKind(LLVMValueRef CallInst, LLVMTailCallKind TCK);
 }
@@ -62,18 +53,6 @@ size_t LLVMSwiftCountIntrinsics(void) {
 
 const char *LLVMSwiftGetIntrinsicAtIndex(size_t index) {
   return llvm::Intrinsic::getName(static_cast<llvm::Intrinsic::ID>(index)).data();
-}
-
-LLVMARMProfileKind LLVMARMParseArchProfile(const char *Name, size_t NameLen) {
-  return static_cast<LLVMARMProfileKind>(llvm::ARM::parseArchProfile({Name, NameLen}));
-}
-
-unsigned LLVMARMParseArchVersion(const char *Name, size_t NameLen) {
-  return llvm::ARM::parseArchVersion({Name, NameLen});
-}
-
-const char *LLVMGetARMCanonicalArchName(const char *Name, size_t NameLen) {
-  return llvm::ARM::getCanonicalArchName({Name, NameLen}).data();
 }
 
 uint64_t LLVMGlobalGetGUID(LLVMValueRef Glob) {

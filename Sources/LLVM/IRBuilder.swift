@@ -322,16 +322,20 @@ extension IRBuilder {
   /// - parameter name: The name for the newly inserted instruction.
   ///
   /// - returns: A value representing the negation of the given value.
-  public func buildNeg(_ value: IRValue,
-                       overflowBehavior: OverflowBehavior = .default,
-                       name: String = "") -> IRValue {
+  public func buildNeg(
+    _ value: IRValue,
+    overflowBehavior: OverflowBehavior = .default,
+    name: String = ""
+  ) -> IRValue {
     let val = value.asLLVM()
     if value.type is IntType {
       switch overflowBehavior {
       case .noSignedWrap:
         return LLVMBuildNSWNeg(llvm, val, name)
       case .noUnsignedWrap:
-        return LLVMBuildNUWNeg(llvm, val, name)
+        let negInst = LLVMBuildNeg(llvm, val, name)
+        LLVMSetNUW(negInst, 1)
+        return negInst!
       case .default:
         return LLVMBuildNeg(llvm, val, name)
       }
@@ -903,7 +907,7 @@ extension IRBuilder {
   public func buildCall(_ fn: IRValue, args: [IRValue], name: String = "") -> Call {
     var args = args.map { $0.asLLVM() as Optional }
     return args.withUnsafeMutableBufferPointer { buf in
-      return Call(llvm: LLVMBuildCall(llvm, fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), name))
+      return Call(llvm: LLVMBuildCall2(llvm, LLVMTypeOf(fn.asLLVM()), fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), name))
     }
   }
 }
@@ -940,7 +944,7 @@ extension IRBuilder {
 
     var args = args.map { $0.asLLVM() as Optional }
     return args.withUnsafeMutableBufferPointer { buf in
-      return Invoke(llvm: LLVMBuildInvoke(llvm, fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), next.llvm, `catch`.llvm, name))
+      return Invoke(llvm: LLVMBuildInvoke2(llvm, LLVMTypeOf(fn.asLLVM()), fn.asLLVM(), buf.baseAddress!, UInt32(buf.count), next.llvm, `catch`.llvm, name))
     }
   }
 
@@ -1434,7 +1438,7 @@ extension IRBuilder {
       lhs.type is PointerType && rhs.type is PointerType,
       "Cannot take pointer diff of \(lhs.type) and \(rhs.type)."
     )
-    return LLVMBuildPtrDiff(llvm, lhs.asLLVM(), rhs.asLLVM(), name)
+    return LLVMBuildPtrDiff2(llvm, LLVMTypeOf(lhs.asLLVM()), lhs.asLLVM(), rhs.asLLVM(), name)
   }
 }
 
@@ -1926,7 +1930,7 @@ extension IRBuilder {
                                 asm.baseAddress, asm.count,
                                 constraints.baseAddress, constraints.count,
                                 hasSideEffects.llvm, needsAlignedStack.llvm,
-                                dialect.llvm)
+                                dialect.llvm, 0)
       }
     }
   }
@@ -1952,7 +1956,7 @@ extension IRBuilder {
   ///   pointer value.
   @available(*, deprecated, message: "Use buildLoad(_:type:ordering:volatile:alignment:name) instead")
   public func buildLoad(_ ptr: IRValue, ordering: AtomicOrdering = .notAtomic, volatile: Bool = false, alignment: Alignment = .zero, name: String = "") -> IRInstruction {
-    let loadInst = LLVMBuildLoad(llvm, ptr.asLLVM(), name)!
+    let loadInst = LLVMBuildLoad2(llvm, LLVMTypeOf(ptr.asLLVM()), ptr.asLLVM(), name)!
     LLVMSetOrdering(loadInst, ordering.llvm)
     LLVMSetVolatile(loadInst, volatile.llvm)
     if !alignment.isZero {
@@ -1972,7 +1976,7 @@ extension IRBuilder {
   ///   struct value.
   @available(*, deprecated, message: "Use buildStructGEP(_:type:index:name) instead")
   public func buildStructGEP(_ ptr: IRValue, index: Int, name: String = "") -> IRValue {
-    return LLVMBuildStructGEP(llvm, ptr.asLLVM(), UInt32(index), name)
+    return LLVMBuildStructGEP2(llvm, LLVMTypeOf(ptr.asLLVM()), ptr.asLLVM(), UInt32(index), name)
   }
 
   /// Build a GEP (Get Element Pointer) instruction.
@@ -1992,7 +1996,7 @@ extension IRBuilder {
   public func buildGEP(_ ptr: IRValue, indices: [IRValue], name: String = "") -> IRValue {
     var vals = indices.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
-      return LLVMBuildGEP(llvm, ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
+      return LLVMBuildGEP2(llvm, LLVMTypeOf(ptr.asLLVM()), ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
     }
   }
 
@@ -2015,7 +2019,7 @@ extension IRBuilder {
   public func buildInBoundsGEP(_ ptr: IRValue, indices: [IRValue], name: String = "") -> IRValue {
     var vals = indices.map { $0.asLLVM() as Optional }
     return vals.withUnsafeMutableBufferPointer { buf in
-      return LLVMBuildInBoundsGEP(llvm, ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
+      return LLVMBuildInBoundsGEP2(llvm, LLVMTypeOf(ptr.asLLVM()), ptr.asLLVM(), buf.baseAddress, UInt32(buf.count), name)
     }
   }
 }

@@ -1,4 +1,5 @@
 #if SWIFT_PACKAGE
+import Glibc
 import cllvm
 #endif
 

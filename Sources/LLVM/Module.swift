@@ -1,4 +1,5 @@
 #if SWIFT_PACKAGE
+import Glibc
 import cllvm
 #endif
 
@@ -83,7 +84,6 @@ public final class Module: CustomStringConvertible {
   /// Returns the context associated with this module.
   public let context: Context
 
-
   /// Creates a `Module` with the given name.
   ///
   /// - parameter name: The name of the module.
@@ -97,7 +97,6 @@ public final class Module: CustomStringConvertible {
     self.llvm = LLVMModuleCreateWithNameInContext(name, context.llvm)
     self.context = context
   }
-
 
   /// Deinitialize this value and dispose of its resources.
   deinit {
@@ -586,7 +585,7 @@ extension Module {
   ///
   /// - returns: A value representing the newly created alias.
   public func addAlias(name: String, to aliasee: IRGlobal, type: IRType) -> Alias {
-    return Alias(llvm: LLVMAddAlias(llvm, type.asLLVM(), aliasee.asLLVM(), name))
+    return Alias(llvm: LLVMAddAlias2(llvm, type.asLLVM(), 0, aliasee.asLLVM(), name))
   }
 
   /// Append to the module-scope inline assembly blocks.

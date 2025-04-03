@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include "llvm-c/Core.h"
 #include "llvm-c/Types.h"
 #include "llvm-c/Object.h"
 #include "llvm-c/DebugInfo.h"
@@ -22,15 +23,5 @@ unsigned LLVMARMParseArchVersion(const char *Name, size_t NameLen);
 uint64_t LLVMGlobalGetGUID(LLVMValueRef Global);
 
 void LLVMAddGlobalsAAWrapperPass(LLVMPassManagerRef PM);
-
-typedef enum {
-  LLVMTailCallKindNone,
-  LLVMTailCallKindTail,
-  LLVMTailCallKindMustTail,
-  LLVMTailCallKindNoTail
-} LLVMTailCallKind;
-
-LLVMTailCallKind LLVMGetTailCallKind(LLVMValueRef CallInst);
-void LLVMSetTailCallKind(LLVMValueRef CallInst, LLVMTailCallKind TCK);
 
 #endif /* LLVMSWIFT_LLVM_SHIM_H */

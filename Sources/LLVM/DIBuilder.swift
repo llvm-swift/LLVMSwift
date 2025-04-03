@@ -70,11 +70,6 @@ extension DIBuilder {
     expr: ExpressionMetadata,
     location: DebugLocation
   ) {
-    guard let _ = LLVMDIBuilderInsertDeclareBefore(
-      self.llvm, variable.asLLVM(), metadata.asMetadata(),
-      expr.asMetadata(), location.asMetadata(), before.asLLVM()) else {
-        fatalError()
-    }
   }
 
   /// Builds a call to a debug intrinsic for declaring a local variable and
@@ -106,11 +101,6 @@ extension DIBuilder {
     expr: ExpressionMetadata,
     location: DebugLocation
   ) {
-    guard let _ = LLVMDIBuilderInsertDeclareAtEnd(
-      self.llvm, variable.asLLVM(), metadata.asMetadata(),
-      expr.asMetadata(), location.asMetadata(), block.asLLVM()) else {
-        fatalError()
-    }
   }
 
   /// Builds a call to a debug intrinsic for providing information about the
@@ -137,11 +127,6 @@ extension DIBuilder {
     expr: ExpressionMetadata,
     location: DebugLocation
   ) {
-    guard let _ = LLVMDIBuilderInsertDbgValueBefore(
-      self.llvm, value.asLLVM(), metadata.asMetadata(),
-      expr.asMetadata(), location.asMetadata(), before.asLLVM()) else {
-        fatalError()
-    }
   }
 
   /// Builds a call to a debug intrinsic for providing information about the
@@ -168,11 +153,6 @@ extension DIBuilder {
     expr: ExpressionMetadata,
     location: DebugLocation
   ) {
-    guard let _ = LLVMDIBuilderInsertDbgValueAtEnd(
-      self.llvm, value.asLLVM(), metadata.asMetadata(),
-      expr.asMetadata(), location.asMetadata(), block.asLLVM()) else {
-        fatalError()
-    }
   }
 }
 
@@ -1093,47 +1073,6 @@ extension DIBuilder {
     return ImportedEntityMetadata(llvm: mod)
   }
 
-  /// Create a descriptor for an imported module.
-  ///
-  /// - Parameters:
-  ///   - context: The scope this module is imported into.
-  ///   - module: The module being imported here
-  ///   - file: File where the declaration is located.
-  ///   - line: Line number of the declaration.
-  public func buildImportedModule(
-    in context: DIScope, module: ModuleMetadata, file: FileMetadata, line: Int
-  ) -> ImportedEntityMetadata {
-    guard let mod = LLVMDIBuilderCreateImportedModuleFromModule(
-      self.llvm, context.asMetadata(), module.asMetadata(),
-      file.asMetadata(), UInt32(line))
-    else {
-      fatalError("Failed to allocate metadata")
-    }
-    return ImportedEntityMetadata(llvm: mod)
-  }
-  
-  /// Create a descriptor for an imported function.
-  ///
-  /// - Parameters:
-  ///   - context: The scope this module is imported into.
-  ///   - declaration: The declaration (or definition) of a function, type, or
-  ///                   variable.
-  ///   - file: File where the declaration is located.
-  ///   - line: Line number of the declaration.
-  ///   - name: The name of the imported declaration.
-  public func buildImportedDeclaration(
-    in context: DIScope, declaration: IRMetadata,
-    file: FileMetadata, line: Int, name: String = ""
-  ) -> ImportedEntityMetadata {
-    guard let mod = LLVMDIBuilderCreateImportedDeclaration(
-      self.llvm, context.asMetadata(),
-      declaration.asMetadata(), 
-      file.asMetadata(), UInt32(line), name, name.count)
-    else {
-      fatalError("Failed to allocate metadata")
-    }
-    return ImportedEntityMetadata(llvm: mod)
-  }
 }
 
 // MARK: Objective-C
@@ -1220,7 +1159,7 @@ extension DIBuilder {
   ///   - value: The constant value.
   public func buildConstantExpresion(_ value: Int) -> ExpressionMetadata {
     guard let expr = LLVMDIBuilderCreateConstantValueExpression(
-      self.llvm, Int64(value))
+      self.llvm, UInt64(value))
     else {
       fatalError("Failed to allocate metadata")
     }

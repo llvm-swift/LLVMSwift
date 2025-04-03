@@ -103,7 +103,7 @@ extension Comdat {
       case LLVMAnyComdatSelectionKind: self = .any
       case LLVMExactMatchComdatSelectionKind: self = .exactMatch
       case LLVMLargestComdatSelectionKind: self = .largest
-      case LLVMNoDuplicatesComdatSelectionKind: self = .noDuplicates
+      case LLVMNoDeduplicateComdatSelectionKind: self = .noDuplicates
       case LLVMSameSizeComdatSelectionKind: self = .sameSize
       default: fatalError("unknown comdat selection kind \(llvm)")
       }
@@ -113,7 +113,7 @@ extension Comdat {
       .any: LLVMAnyComdatSelectionKind,
       .exactMatch: LLVMExactMatchComdatSelectionKind,
       .largest: LLVMLargestComdatSelectionKind,
-      .noDuplicates: LLVMNoDuplicatesComdatSelectionKind,
+      .noDuplicates: LLVMNoDeduplicateComdatSelectionKind,
       .sameSize: LLVMSameSizeComdatSelectionKind,
     ]
 

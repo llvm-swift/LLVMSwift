@@ -169,14 +169,6 @@ extension PassPipeliner {
     optimization: CodeGenOptLevel = .`default`,
     size: CodeGenOptLevel = .none
   ) {
-    let passBuilder = self.configurePassBuilder(optimization, size)
-    let functionPasses =
-      LLVMCreateFunctionPassManagerForModule(self.module.llvm)!
-    LLVMPassManagerBuilderPopulateFunctionPassManager(passBuilder,
-                                                      functionPasses)
-    LLVMPassManagerBuilderDispose(passBuilder)
-    self.stages.append(name)
-    self.stageMapping[name] = .functionPassManager(functionPasses)
   }
 
   /// Adds a pipeline stage populated with module passes that LLVM considers
@@ -193,45 +185,9 @@ extension PassPipeliner {
     optimization: CodeGenOptLevel = .`default`,
     size: CodeGenOptLevel = .none
   ) {
-    let passBuilder = self.configurePassBuilder(optimization, size)
-    let modulePasses = LLVMCreatePassManager()!
-    LLVMPassManagerBuilderPopulateModulePassManager(passBuilder, modulePasses)
-    LLVMPassManagerBuilderDispose(passBuilder)
-    self.stages.append(name)
-    self.stageMapping[name] = .modulePassManager(modulePasses)
-  }
-
-  private func configurePassBuilder(
-    _ opt: CodeGenOptLevel,
-    _ size: CodeGenOptLevel
-  ) -> LLVMPassManagerBuilderRef {
-    let passBuilder = LLVMPassManagerBuilderCreate()!
-    switch opt {
-    case .none:
-      LLVMPassManagerBuilderSetOptLevel(passBuilder, 0)
-    case .less:
-      LLVMPassManagerBuilderSetOptLevel(passBuilder, 1)
-    case .default:
-      LLVMPassManagerBuilderSetOptLevel(passBuilder, 2)
-    case .aggressive:
-      LLVMPassManagerBuilderSetOptLevel(passBuilder, 3)
-    }
-
-    switch size {
-    case .none:
-      LLVMPassManagerBuilderSetSizeLevel(passBuilder, 0)
-    case .less:
-      LLVMPassManagerBuilderSetSizeLevel(passBuilder, 1)
-    case .default:
-      LLVMPassManagerBuilderSetSizeLevel(passBuilder, 2)
-    case .aggressive:
-      LLVMPassManagerBuilderSetSizeLevel(passBuilder, 3)
-    }
-
-    return passBuilder
+    _ = LLVMCreatePassManager()!
   }
 }
-
 
 extension PassPipeliner {
   /// Configures and adds a pass to the given pass manager.
@@ -246,142 +202,13 @@ extension PassPipeliner {
   static func configurePass(
     _ pass: Pass,
     passManager: LLVMPassManagerRef,
-    keepalive: inout [Any]) {
+    keepalive: inout [Any]
+  ) {
     switch pass {
     case .invalid(let reason):
       fatalError("Cannot configure pass: \(reason)")
-    case .aggressiveDCE:
-      LLVMAddAggressiveDCEPass(passManager)
-    case .bitTrackingDCE:
-      LLVMAddBitTrackingDCEPass(passManager)
-    case .alignmentFromAssumptions:
-      LLVMAddAlignmentFromAssumptionsPass(passManager)
-    case .cfgSimplification:
-      LLVMAddCFGSimplificationPass(passManager)
-    case .deadStoreElimination:
-      LLVMAddDeadStoreEliminationPass(passManager)
-    case .scalarizer:
-      LLVMAddScalarizerPass(passManager)
-    case .mergedLoadStoreMotion:
-      LLVMAddMergedLoadStoreMotionPass(passManager)
-    case .gvn:
-      LLVMAddGVNPass(passManager)
-    case .indVarSimplify:
-      LLVMAddIndVarSimplifyPass(passManager)
-    case .instructionCombining:
-      LLVMAddInstructionCombiningPass(passManager)
-    case .jumpThreading:
-      LLVMAddJumpThreadingPass(passManager)
-    case .licm:
-      LLVMAddLICMPass(passManager)
-    case .loopDeletion:
-      LLVMAddLoopDeletionPass(passManager)
-    case .loopIdiom:
-      LLVMAddLoopIdiomPass(passManager)
-    case .loopRotate:
-      LLVMAddLoopRotatePass(passManager)
-    case .loopReroll:
-      LLVMAddLoopRerollPass(passManager)
-    case .loopUnroll:
-      LLVMAddLoopUnrollPass(passManager)
-    case .loopUnrollAndJam:
-      LLVMAddLoopUnrollAndJamPass(passManager)
-    case .loopUnswitch:
-      LLVMAddLoopUnswitchPass(passManager)
-    case .lowerAtomic:
-      LLVMAddLowerAtomicPass(passManager)
-    case .memCpyOpt:
-      LLVMAddMemCpyOptPass(passManager)
-    case .partiallyInlineLibCalls:
-      LLVMAddPartiallyInlineLibCallsPass(passManager)
-    case .lowerSwitch:
-      LLVMAddLowerSwitchPass(passManager)
-    case .promoteMemoryToRegister:
-      LLVMAddPromoteMemoryToRegisterPass(passManager)
-    case .addDiscriminators:
-      LLVMAddAddDiscriminatorsPass(passManager)
-    case .reassociate:
-      LLVMAddReassociatePass(passManager)
-    case .sccp:
-      LLVMAddSCCPPass(passManager)
-    case .tailCallElimination:
-      LLVMAddTailCallEliminationPass(passManager)
-    case .constantPropagation:
-      LLVMAddConstantPropagationPass(passManager)
-    case .demoteMemoryToRegister:
-      LLVMAddDemoteMemoryToRegisterPass(passManager)
-    case .verifier:
-      LLVMAddVerifierPass(passManager)
-    case .correlatedValuePropagation:
-      LLVMAddCorrelatedValuePropagationPass(passManager)
-    case .earlyCSE:
-      LLVMAddEarlyCSEPass(passManager)
-    case .lowerExpectIntrinsic:
-      LLVMAddLowerExpectIntrinsicPass(passManager)
-    case .typeBasedAliasAnalysis:
-      LLVMAddTypeBasedAliasAnalysisPass(passManager)
-    case .scopedNoAliasAA:
-      LLVMAddScopedNoAliasAAPass(passManager)
-    case .basicAliasAnalysis:
-      LLVMAddBasicAliasAnalysisPass(passManager)
-    case .globalsAliasAnalysis:
-      LLVMAddGlobalsAAWrapperPass(passManager)
-    case .unifyFunctionExitNodes:
-      LLVMAddUnifyFunctionExitNodesPass(passManager)
-    case .alwaysInliner:
-      LLVMAddAlwaysInlinerPass(passManager)
-    case .argumentPromotion:
-      LLVMAddArgumentPromotionPass(passManager)
-    case .constantMerge:
-      LLVMAddConstantMergePass(passManager)
-    case .deadArgElimination:
-      LLVMAddDeadArgEliminationPass(passManager)
-    case .functionAttrs:
-      LLVMAddFunctionAttrsPass(passManager)
-    case .functionInlining:
-      LLVMAddFunctionInliningPass(passManager)
-    case .globalDCE:
-      LLVMAddGlobalDCEPass(passManager)
-    case .globalOptimizer:
-      LLVMAddGlobalOptimizerPass(passManager)
-    case .ipConstantPropagation:
-      LLVMAddIPConstantPropagationPass(passManager)
-    case .ipscc:
-      LLVMAddIPSCCPPass(passManager)
-    case .pruneEH:
-      LLVMAddPruneEHPass(passManager)
-    case .stripDeadPrototypes:
-      LLVMAddStripDeadPrototypesPass(passManager)
-    case .stripSymbols:
-      LLVMAddStripSymbolsPass(passManager)
-    case .loopVectorize:
-      LLVMAddLoopVectorizePass(passManager)
-    case .slpVectorize:
-      LLVMAddSLPVectorizePass(passManager)
-    case .internalizeAll(let preserveMain):
-      LLVMAddInternalizePass(passManager, preserveMain == false ? 0 : 1)
-    case .internalize(let pred):
-      // The lifetime of this callback is must be manually managed to ensure
-      // it remains alive across the execution of the given pass manager.
-
-      // Create a callback context at +1
-      let callbackContext = InternalizeCallbackContext(pred)
-      // Stick it in the keepalive array, now at +2
-      keepalive.append(callbackContext)
-      // Pass it unmanaged at +2
-      let contextPtr = Unmanaged<InternalizeCallbackContext>.passUnretained(callbackContext).toOpaque()
-      LLVMAddInternalizePassWithMustPreservePredicate(passManager, contextPtr) { globalValue, callbackCtx in
-        guard let globalValue = globalValue, let callbackCtx = callbackCtx else {
-          fatalError("Global value and context must be non-nil")
-        }
-
-        let callback = Unmanaged<InternalizeCallbackContext>.fromOpaque(callbackCtx).takeUnretainedValue()
-        return callback.block(realizeGlobalValue(globalValue)).llvm
-      }
-      // Context dropped, now at +1
-      // When the keepalive array is dropped by the caller, it will drop to +0.
-    case .scalarReplacementOfAggregates:
-      LLVMAddScalarReplAggregatesPassWithThreshold(passManager, /*ignored*/ 0)
+    default:
+      fatalError("Cannot configure pass)")
     }
   }
 }

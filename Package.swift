@@ -1,27 +1,25 @@
-// swift-tools-version:5.2
+// swift-tools-version:6.0.2
 
 import PackageDescription
 
 let package = Package(
   name: "LLVM",
   platforms: [
-    .macOS(.v10_14),
+    .macOS(.v10_14)
   ],
   products: [
     .library(
       name: "LLVM",
-      targets: ["LLVM"]),
+      targets: ["LLVM"])
   ],
   dependencies: [
-    .package(url: "https://github.com/llvm-swift/FileCheck.git", from: "0.0.3"),
+    .package(url: "https://github.com/llvm-swift/FileCheck.git", from: "0.0.3")
   ],
   targets: [
     .systemLibrary(
       name: "cllvm",
-      pkgConfig: "cllvm",
-      providers: [
-          .brew(["llvm"]),
-      ]),
+      pkgConfig: "llvm"
+    ),
     .target(
       name: "llvmshims",
       dependencies: ["cllvm"]),
@@ -32,5 +30,7 @@ let package = Package(
       name: "LLVMTests",
       dependencies: ["LLVM", "FileCheck"]),
   ],
-  cxxLanguageStandard: .cxx14
+  swiftLanguageModes: [.v5],
+  cxxLanguageStandard: .cxx17
+
 )

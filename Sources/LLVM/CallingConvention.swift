@@ -348,7 +348,6 @@ public enum CallingConvention {
     case LLVMColdCallConv: self = .cold
     case LLVMGHCCallConv: self = .ghc
     case LLVMHiPECallConv: self = .hiPE
-    case LLVMWebKitJSCallConv: self = .webKitJS
     case LLVMAnyRegCallConv: self = .anyReg
     case LLVMPreserveMostCallConv: self = .preserveMost
     case LLVMPreserveAllCallConv: self = .preserveAll
@@ -392,7 +391,7 @@ public enum CallingConvention {
   private static let conventionMapping: [CallingConvention: LLVMCallConv] = [
     .c : LLVMCCallConv, .fast : LLVMFastCallConv, .cold : LLVMColdCallConv,
     .ghc : LLVMGHCCallConv, .hiPE : LLVMHiPECallConv,
-    .webKitJS : LLVMWebKitJSCallConv, .anyReg : LLVMAnyRegCallConv,
+    .anyReg : LLVMAnyRegCallConv,
     .preserveMost : LLVMPreserveMostCallConv,
     .preserveAll : LLVMPreserveAllCallConv, .swift : LLVMSwiftCallConv,
     .cxxFastThreadLocalStorage : LLVMCXXFASTTLSCallConv,

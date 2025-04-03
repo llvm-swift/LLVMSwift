@@ -18,7 +18,7 @@ extension IRConstant {
   public func constGEP(indices: [IRConstant]) -> IRConstant {
     var idxs = indices.map { $0.asLLVM() as Optional }
     return idxs.withUnsafeMutableBufferPointer { buf in
-      return Constant<Struct>(llvm: LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count)))
+      return Constant<Struct>(llvm: LLVMConstGEP2(LLVMTypeOf(asLLVM()), asLLVM(), buf.baseAddress, UInt32(buf.count)))
     }
   }
 
@@ -79,106 +79,18 @@ public struct Constant<Repr: ConstantRepresentation>: IRConstant {
 
 extension Constant where Repr: IntegralConstantRepresentation {
 
-  /// Creates a constant cast to a given integral type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   integral type.
-  public func cast(to type: IntType) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstIntCast(llvm, type.asLLVM(), /*signed:*/ true.llvm))
-  }
-
-  /// Creates a constant cast to a given integral type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   integral type.
-  public func cast(to type: IntType) -> Constant<Unsigned> {
-    return Constant<Unsigned>(llvm: LLVMConstIntCast(llvm, type.asLLVM(), /*signed:*/ false.llvm))
-  }
 }
 
 extension Constant where Repr == Unsigned {
 
-  /// Creates a constant cast to a given floating type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   floating type.
-  public func cast(to type: FloatType) -> Constant<Floating> {
-    return Constant<Floating>(llvm: LLVMConstUIToFP(llvm, type.asLLVM()))
-  }
 }
 
 extension Constant where Repr == Signed {
 
-  /// Creates a constant cast to a given integral type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   integral type.
-  public func cast(to type: IntType) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstIntCast(llvm, type.asLLVM(), /*signed:*/ true.llvm))
-  }
-
-  /// Creates a constant cast to a given integral type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   integral type.
-  public func cast(to type: IntType) -> Constant<Unsigned> {
-    return Constant<Unsigned>(llvm: LLVMConstIntCast(llvm, type.asLLVM(), /*signed:*/ false.llvm))
-  }
-
-  /// Creates a constant cast to a given floating type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   floating type.
-  public func cast(to type: FloatType) -> Constant<Floating> {
-    let val = self.asLLVM()
-    return Constant<Floating>(llvm: LLVMConstSIToFP(val, type.asLLVM()))
-  }
 }
 
 extension Constant where Repr == Floating {
 
-  /// Creates a constant cast to a given integral type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   integral type.
-  public func cast(to type: IntType) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstFPToSI(llvm, type.asLLVM()))
-  }
-
-  /// Creates a constant cast to a given integral type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   integral type.
-  public func cast(to type: IntType) -> Constant<Unsigned> {
-    return Constant<Unsigned>(llvm: LLVMConstFPToUI(llvm, type.asLLVM()))
-  }
-
-  /// Creates a constant cast to a given floating type.
-  ///
-  /// - parameter type: The type to cast towards.
-  ///
-  /// - returns: A const value representing this value cast to the given
-  ///   floating type.
-  public func cast(to type: FloatType) -> Constant<Floating> {
-    let val = self.asLLVM()
-    return Constant<Floating>(llvm: LLVMConstFPCast(val, type.asLLVM()))
-  }
 }
 
 
@@ -224,25 +136,6 @@ extension Constant where Repr == Unsigned {
 }
 
 extension Constant where Repr == Floating {
-  /// Creates a constant truncated to a given floating type.
-  ///
-  /// - parameter type: The type to truncate towards.
-  ///
-  /// - returns: A const value representing this value truncated to the given
-  ///   floating type's bitwidth.
-  public func truncate(to type: FloatType) -> Constant<Floating> {
-    return Constant<Floating>(llvm: LLVMConstFPTrunc(llvm, type.asLLVM()))
-  }
-
-  /// Creates a constant extended to a given floating type.
-  ///
-  /// - parameter type: The type to extend towards.
-  ///
-  /// - returns: A const value representing this value extended to the given
-  ///   floating type's bitwidth.
-  public func extend(to type: FloatType) -> Constant<Floating> {
-    return Constant<Floating>(llvm: LLVMConstFPExt(llvm, type.asLLVM()))
-  }
 }
 
 // MARK: Arithmetic Operations
@@ -258,27 +151,20 @@ extension Constant {
   ///   behavior of the resulting constant value.
   ///
   /// - returns: A constant value representing the negation of the given constant.
-  public static func negate(_ lhs: Constant<Signed>, overflowBehavior: OverflowBehavior = .default) -> Constant<Signed> {
-
+  public static func negate(_ lhs: Constant<Signed>, overflowBehavior: OverflowBehavior = .default)
+    -> Constant<Signed>
+  {
     let lhsVal = lhs.asLLVM()
     switch overflowBehavior {
     case .noSignedWrap:
       return Constant<Signed>(llvm: LLVMConstNSWNeg(lhsVal))
     case .noUnsignedWrap:
-      return Constant<Signed>(llvm: LLVMConstNUWNeg(lhsVal))
+      return Constant<Signed>(llvm: LLVMConstNull(LLVMTypeOf(lhsVal)))
     case .default:
       return Constant<Signed>(llvm: LLVMConstNeg(lhsVal))
     }
   }
 
-  /// Creates a constant negate operation to negate a value.
-  ///
-  /// - parameter lhs: The operand to negate.
-  ///
-  /// - returns: A constant value representing the negation of the given constant.
-  public static func negate(_ lhs: Constant<Floating>) -> Constant<Floating> {
-    return Constant<Floating>(llvm: LLVMConstFNeg(lhs.llvm))
-  }
 }
 
 extension Constant where Repr == Signed {
@@ -293,12 +179,6 @@ extension Constant where Repr == Signed {
 
 extension Constant where Repr == Floating {
 
-  /// Creates a constant negate operation to negate a value.
-  ///
-  /// - returns: A constant value representing the negation of the given constant.
-  public func negate() -> Constant {
-    return Constant.negate(self)
-  }
 }
 
 // MARK: Addition
@@ -345,16 +225,6 @@ extension Constant {
     }
   }
 
-  /// Creates a constant add operation to add two homogenous constants together.
-  ///
-  /// - parameter lhs: The first summand value (the augend).
-  /// - parameter rhs: The second summand value (the addend).
-  ///
-  /// - returns: A constant value representing the sum of the two operands.
-  public static func add(_ lhs: Constant<Floating>, _ rhs: Constant<Floating>) -> Constant<Floating> {
-
-    return Constant<Floating>(llvm: LLVMConstFAdd(lhs.llvm, rhs.llvm))
-  }
 }
 
 extension Constant where Repr == Signed {
@@ -387,14 +257,6 @@ extension Constant where Repr == Unsigned {
 
 extension Constant where Repr == Floating {
 
-  /// Creates a constant add operation to add two homogenous constants together.
-  ///
-  /// - parameter rhs: The second summand value (the addend).
-  ///
-  /// - returns: A constant value representing the sum of the two operands.
-  public func adding(_ rhs: Constant) -> Constant {
-    return Constant.add(self, rhs)
-  }
 }
 
 // MARK: Subtraction
@@ -441,15 +303,6 @@ extension Constant {
     }
   }
 
-  /// Creates a constant sub operation to subtract two homogenous constants.
-  ///
-  /// - parameter lhs: The first value (the minuend).
-  /// - parameter rhs: The second value (the subtrahend).
-  ///
-  /// - returns: A constant value representing the difference of the two operands.
-  public static func subtract(_ lhs: Constant<Floating>, _ rhs: Constant<Floating>) -> Constant<Floating> {
-    return Constant<Floating>(llvm: LLVMConstFSub(lhs.llvm, rhs.llvm))
-  }
 }
 
 extension Constant where Repr == Unsigned {
@@ -482,14 +335,6 @@ extension Constant where Repr == Signed {
 
 extension Constant where Repr == Floating {
 
-  /// Creates a constant sub operation to subtract two homogenous constants.
-  ///
-  /// - parameter rhs: The second value (the subtrahend).
-  ///
-  /// - returns: A constant value representing the difference of the two operands.
-  public func subtracting(_ rhs: Constant) -> Constant {
-    return Constant.subtract(self, rhs)
-  }
 }
 
 // MARK: Multiplication
@@ -536,15 +381,6 @@ extension Constant {
     }
   }
 
-  /// Creates a constant multiply operation with the given values as operands.
-  ///
-  /// - parameter lhs: The first factor value (the multiplier).
-  /// - parameter rhs: The second factor value (the multiplicand).
-  ///
-  /// - returns: A constant value representing the product of the two operands.
-  public static func multiply(_ lhs: Constant<Floating>, _ rhs: Constant<Floating>) -> Constant<Floating> {
-    return Constant<Floating>(llvm: LLVMConstFMul(lhs.llvm, rhs.llvm))
-  }
 }
 
 extension Constant where Repr == Unsigned {
@@ -577,349 +413,60 @@ extension Constant where Repr == Signed {
 
 extension Constant where Repr == Floating {
 
-  /// Creates a constant multiply operation with the given values as operands.
-  ///
-  /// - parameter lhs: The first factor value (the multiplier).
-  /// - parameter rhs: The second factor value (the multiplicand).
-  ///
-  /// - returns: A constant value representing the product of the two operands.
-  public func multiplying(_ rhs: Constant) -> Constant {
-    return Constant.multiply(self, rhs)
-  }
 }
 
 // MARK: Divide
 
 extension Constant {
 
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public static func divide(_ lhs: Constant<Unsigned>, _ rhs: Constant<Unsigned>) -> Constant<Unsigned> {
-    return Constant<Unsigned>(llvm: LLVMConstUDiv(lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public static func divide(_ lhs: Constant<Signed>, _ rhs: Constant<Signed>) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstSDiv(lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public static func divide(_ lhs: Constant<Floating>, _ rhs: Constant<Floating>) -> Constant<Floating> {
-    return Constant<Floating>(llvm: LLVMConstFDiv(lhs.llvm, rhs.llvm))
-  }
 }
 
 extension Constant where Repr == Unsigned {
 
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public func dividing(by rhs: Constant) -> Constant {
-    return Constant.divide(self, rhs)
-  }
 }
 
 extension Constant where Repr == Signed {
 
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public func dividing(by rhs: Constant) -> Constant {
-    return Constant.divide(self, rhs)
-  }
 }
 
 extension Constant where Repr == Floating {
 
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public func dividing(by rhs: Constant) -> Constant {
-    return Constant.divide(self, rhs)
-  }
 }
 
 // MARK: Remainder
 
 extension Constant {
 
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public static func remainder(_ lhs: Constant<Unsigned>, _ rhs: Constant<Unsigned>) -> Constant<Unsigned> {
-    return Constant<Unsigned>(llvm: LLVMConstURem(lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public static func remainder(_ lhs: Constant<Signed>, _ rhs: Constant<Signed>) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstSRem(lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public static func remainder(_ lhs: Constant<Floating>, _ rhs: Constant<Floating>) -> Constant<Floating> {
-    return Constant<Floating>(llvm: LLVMConstFRem(lhs.llvm, rhs.llvm))
-  }
 }
 
 extension Constant where Repr == Unsigned {
 
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public func remainder(_ rhs: Constant) -> Constant {
-    return Constant.remainder(self, rhs)
-  }
 }
 
 extension Constant where Repr == Signed {
 
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public func remainder(_ rhs: Constant) -> Constant {
-    return Constant.remainder(self, rhs)
-  }
 }
 
 extension Constant where Repr == Floating {
 
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public func remainder(_ rhs: Constant) -> Constant {
-    return Constant.remainder(self, rhs)
-  }
 }
 
 // MARK: Comparison Operations
 
 extension Constant where Repr: IntegralConstantRepresentation {
 
-  /// A constant equality comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func equals(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.equal.llvm, lhs.llvm, rhs.llvm))
-  }
 }
 
 extension Constant where Repr == Signed {
 
-  /// A constant less-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func lessThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThan.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant greater-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func greaterThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedGreaterThan.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant less-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func lessThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant greater-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func greaterThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.signedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-  }
 }
 
 extension Constant where Repr == Unsigned {
 
-  /// A constant less-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func lessThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThan.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant greater-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func greaterThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThan.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant less-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func lessThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant greater-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func greaterThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstICmp(IntPredicate.unsignedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-  }
 }
 
 extension Constant where Repr == Floating {
 
-  /// A constant equality comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func equals(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedEqual.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant less-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func lessThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThan.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant greater-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func greaterThan(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThan.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant less-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func lessThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedLessThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant greater-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func greaterThanOrEqual(_ lhs: Constant, _ rhs: Constant) -> Constant<Signed> {
-    return Constant<Signed>(llvm: LLVMConstFCmp(RealPredicate.orderedGreaterThanOrEqual.llvm, lhs.llvm, rhs.llvm))
-  }
 }
 
 
@@ -937,81 +484,10 @@ extension Constant {
     return Constant<T>(llvm: LLVMConstNot(lhs.llvm))
   }
 
-  /// A constant bitwise logical AND with the given values as operands.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  /// - parameter name: The name for the newly inserted instruction.
-  ///
-  /// - returns: A constant value representing the logical OR of the values of
-  ///   the two given operands.
-  public static func and<T: IntegralConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<T> {
-    return Constant<T>(llvm: LLVMConstAnd(lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant bitwise logical OR with the given values as operands.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  /// - parameter name: The name for the newly inserted instruction.
-  ///
-  /// - returns: A constant value representing the logical OR of the values of
-  ///   the two given operands.
-  public static func or<T: IntegralConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<T> {
-    return Constant<T>(llvm: LLVMConstOr(lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant bitwise logical exclusive OR with the given values as operands.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the exclusive OR of the values of
-  ///   the two given operands.
-  public static func xor<T: IntegralConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<T> {
-    return Constant<T>(llvm: LLVMConstXor(lhs.llvm, rhs.llvm))
-  }
-
   // MARK: Bitshifting Operations
-
-  /// A constant left-shift of the first value by the second amount.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the value of the first operand
-  ///   shifted left by the number of bits specified in the second operand.
-  public static func leftShift<T: IntegralConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>) -> Constant<T> {
-    return Constant<T>(llvm: LLVMConstShl(lhs.llvm, rhs.llvm))
-  }
-
-  /// A constant right-shift of the first value by the second amount.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  /// - parameter arithmetic: Should the shift be arithmetic or logical (defaults to true)
-  ///
-  /// - returns: A constant value representing the value of the first operand
-  ///   shifted left by the number of bits specified in the second operand.
-  public static func rightShift<T: IntegralConstantRepresentation>(_ lhs: Constant<T>, _ rhs: Constant<T>, arithmetic: Bool = true) -> Constant<T> {
-    return Constant<T>(llvm: arithmetic ? LLVMConstAShr(lhs.llvm, rhs.llvm) : LLVMConstLShr(lhs.llvm, rhs.llvm))
-  }
 
   // MARK: Conditional Operations
 
-  /// A constant select using the given condition to select among two values.
-  ///
-  /// - parameter cond: The condition to evaluate.  It must have type `i1` or
-  ///   be a vector of `i1`.
-  /// - parameter then: The value to select if the given condition is true.
-  /// - parameter else: The value to select if the given condition is false.
-  ///
-  /// - returns: A constant value representing the constant value selected for
-  ///   by the condition.
-  public static func select<T: IntegralConstantRepresentation, U>(_ cond: Constant<T>, then: Constant<U>, else: Constant<U>) -> Constant<U> {
-    assert((cond.type as! IntType).width == 1)
-    return Constant<U>(llvm: LLVMConstSelect(cond.llvm, then.llvm, `else`.llvm))
-  }
 }
 
 // MARK: Constant Pointer To Integer
@@ -1035,18 +511,6 @@ extension Constant where Repr: IntegralConstantRepresentation {
 
 extension Constant where Repr == Struct {
 
-  /// Creates a constant operation retrieving the element at the index.
-  ///
-  /// - parameter indices: A list of indices that indicate which of the elements
-  ///   of the aggregate object are indexed.
-  ///
-  /// - returns: The value in the struct at the provided index.
-  public func getElement(indices: [Int]) -> IRConstant {
-    var indices = indices.map({ UInt32($0) })
-    return indices.withUnsafeMutableBufferPointer { buf in
-      return Constant<Struct>(llvm: LLVMConstExtractValue(asLLVM(), buf.baseAddress, UInt32(buf.count)))
-    }
-  }
 
   /// Build a constant `GEP` (Get Element Pointer) instruction with a resultant
   /// value that is undefined if the address is outside the actual underlying
@@ -1064,27 +528,10 @@ extension Constant where Repr == Struct {
   public func getElementPointer(indices: [IRConstant]) -> IRConstant {
     var indices = indices.map({ $0.asLLVM() as LLVMValueRef? })
     return indices.withUnsafeMutableBufferPointer { buf in
-      return Constant<Struct>(llvm: LLVMConstGEP(asLLVM(), buf.baseAddress, UInt32(buf.count)))
+      return Constant<Struct>(llvm: LLVMConstGEP2(LLVMTypeOf(asLLVM()), asLLVM(), buf.baseAddress, UInt32(buf.count)))
     }
   }
 
-  /// Build a GEP (Get Element Pointer) instruction.
-  ///
-  /// The `GEP` instruction is often the source of confusion.  LLVM [provides a
-  /// document](http://llvm.org/docs/GetElementPtr.html) to answer questions
-  /// around its semantics and correct usage.
-  ///
-  /// - parameter indices: A list of indices that indicate which of the elements
-  ///   of the aggregate object are indexed.
-  ///
-  /// - returns: A value representing the address of a subelement of the given
-  ///   aggregate data structure value.
-  public func inBoundsGetElementPointer(indices: [IRConstant]) -> IRConstant {
-    var indices = indices.map({ $0.asLLVM() as LLVMValueRef? })
-    return indices.withUnsafeMutableBufferPointer { buf in
-      return Constant<Struct>(llvm: LLVMConstInBoundsGEP(asLLVM(), buf.baseAddress, UInt32(buf.count)))
-    }
-  }
 }
 
 // MARK: Vector Operations
@@ -1113,114 +560,6 @@ extension Constant where Repr == Vector {
 
 extension Constant where Repr == Floating {
 
-  /// Creates a constant add operation to add two homogenous constants together.
-  ///
-  /// - parameter lhs: The first summand value (the augend).
-  /// - parameter rhs: The second summand value (the addend).
-  ///
-  /// - returns: A constant value representing the sum of the two operands.
-  public static func +(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.adding(rhs)
-  }
-
-  /// Creates a constant sub operation to subtract two homogenous constants.
-  ///
-  /// - parameter lhs: The first value (the minuend).
-  /// - parameter rhs: The second value (the subtrahend).
-  ///
-  /// - returns: A constant value representing the difference of the two operands.
-  public static func -(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.subtracting(rhs)
-  }
-
-  /// Creates a constant multiply operation with the given values as operands.
-  ///
-  /// - parameter lhs: The first factor value (the multiplier).
-  /// - parameter rhs: The second factor value (the multiplicand).
-  ///
-  /// - returns: A constant value representing the product of the two operands.
-  public static func *(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.multiplying(rhs)
-  }
-
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public static func /(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.dividing(by: rhs)
-  }
-
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public static func %(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.remainder(rhs)
-  }
-
-  /// A constant equality comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func ==(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.equals(lhs, rhs)
-  }
-
-  /// A constant less-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func <(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.lessThan(lhs, rhs)
-  }
-
-  /// A constant greater-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func >(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.greaterThan(lhs, rhs)
-  }
-
-  /// A constant less-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func <=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.lessThanOrEqual(lhs, rhs)
-  }
-
-  /// A constant greater-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func >=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.greaterThanOrEqual(lhs, rhs)
-  }
 }
 
 extension Constant where Repr == Signed {
@@ -1255,128 +594,6 @@ extension Constant where Repr == Signed {
     return lhs.multiplying(rhs)
   }
 
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public static func /(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.dividing(by: rhs)
-  }
-
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public static func %(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.remainder(rhs)
-  }
-
-  /// A constant equality comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func ==(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.equals(lhs, rhs)
-  }
-
-  /// A constant less-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func <(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.lessThan(lhs, rhs)
-  }
-
-  /// A constant greater-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func >(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.greaterThan(lhs, rhs)
-  }
-
-  /// A constant less-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func <=(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.lessThanOrEqual(lhs, rhs)
-  }
-
-  /// A constant greater-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func >=(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.greaterThanOrEqual(lhs, rhs)
-  }
-
-  /// A constant bitwise logical OR with the given values as operands.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the logical OR of the values of
-  ///   the two given operands.
-  public static func |(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.or(lhs, rhs)
-  }
-
-  /// A constant bitwise logical AND with the given values as operands.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the logical OR of the values of
-  ///   the two given operands.
-  public static func &(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.and(lhs, rhs)
-  }
-
-  /// A constant left-shift of the first value by the second amount.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the value of the first operand
-  ///   shifted left by the number of bits specified in the second operand.
-  public static func <<(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.leftShift(lhs, rhs)
-  }
-
-  /// A constant right-shift of the first value by the second amount.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the value of the first operand
-  ///   shifted left by the number of bits specified in the second operand.
-  public static func >>(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.rightShift(lhs, rhs)
-  }
 }
 
 extension Constant where Repr == Unsigned {
@@ -1411,129 +628,7 @@ extension Constant where Repr == Unsigned {
     return lhs.multiplying(rhs)
   }
 
-  /// A constant divide operation that provides the remainder after divison of
-  /// the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the quotient of the first and
-  ///   second operands.
-  public static func /(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.dividing(by: rhs)
-  }
-
-  /// A constant remainder operation that provides the remainder after divison
-  /// of the first value by the second value.
-  ///
-  /// - parameter lhs: The first value (the dividend).
-  /// - parameter rhs: The second value (the divisor).
-  ///
-  /// - returns: A constant value representing the remainder of division of the
-  ///   first operand by the second operand.
-  public static func %(lhs: Constant, rhs: Constant) -> Constant {
-    return lhs.remainder(rhs)
-  }
-
-  /// A constant equality comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func ==(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.equals(lhs, rhs)
-  }
-
-  /// A constant less-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func <(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.lessThan(lhs, rhs)
-  }
-
-  /// A constant greater-than comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func >(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.greaterThan(lhs, rhs)
-  }
-
-  /// A constant less-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func <=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.lessThanOrEqual(lhs, rhs)
-  }
-
-  /// A constant greater-than-or-equal comparison between two values.
-  ///
-  /// - parameter lhs: The first value to compare.
-  /// - parameter rhs: The second value to compare.
-  ///
-  /// - returns: A constant integral value (i1) representing the result of the
-  ///   comparision of the given operands.
-  public static func >=(lhs: Constant, rhs: Constant) -> Constant<Signed> {
-    return Constant.greaterThanOrEqual(lhs, rhs)
-  }
-
-  /// A constant bitwise logical OR with the given values as operands.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the logical OR of the values of
-  ///   the two given operands.
-  public static func |(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.or(lhs, rhs)
-  }
-
-  /// A constant bitwise logical AND with the given values as operands.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the logical OR of the values of
-  ///   the two given operands.
-  public static func &(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.and(lhs, rhs)
-  }
-
-  /// A constant left-shift of the first value by the second amount.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the value of the first operand
-  ///   shifted left by the number of bits specified in the second operand.
-  public static func <<(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.leftShift(lhs, rhs)
-  }
-
-  /// A constant right-shift of the first value by the second amount.
-  ///
-  /// - parameter lhs: The first operand.
-  /// - parameter rhs: The second operand.
-  ///
-  /// - returns: A constant value representing the value of the first operand
-  ///   shifted left by the number of bits specified in the second operand.
-  public static func >>(lhs: Constant, rhs: Constant) -> Constant {
-    return Constant.rightShift(lhs, rhs)
-  }
-}
+ }
 
 extension Constant where Repr: IntegralConstantRepresentation {
 

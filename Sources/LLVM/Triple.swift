@@ -530,113 +530,6 @@ extension Triple {
         }
       }
 
-      func parseARMArch(_ ArchName: Substring) -> Architecture {
-        enum ARMISA {
-          case invalid
-          case arm
-          case thumb
-          case aarch64
-        }
-        func parseISA(_ Arch: Substring) -> ARMISA {
-          switch Arch {
-          case let x where x.starts(with: "aarch64"):
-            return .aarch64
-          case let x where x.starts(with: "arm64"):
-            return .aarch64
-          case let x where x.starts(with: "thumb"):
-            return .thumb
-          case let x where x.starts(with: "arm"):
-            return .arm
-          default:
-            return .invalid
-          }
-        }
-
-        enum EndianKind {
-          case invalid
-          case little
-          case big
-        }
-
-        func parseArchEndian(_ Arch: Substring) -> EndianKind {
-          if (Arch.starts(with: "armeb") || Arch.starts(with: "thumbeb") ||
-            Arch.starts(with: "aarch64_be")) {
-            return .big
-          }
-
-          if Arch.starts(with: "arm") || Arch.starts(with: "thumb") {
-            if Arch.hasSuffix("eb") {
-              return .big
-            } else {
-              return .little
-            }
-          }
-
-          if Arch.starts(with: "aarch64") {
-            return .little
-          }
-
-          return .invalid
-        }
-
-        let isa = parseISA(archName)
-        let endian = parseArchEndian(archName)
-
-        var arch = Architecture.unknown
-        switch endian {
-        case .little:
-          switch isa {
-          case .arm:
-            arch = .arm
-          case .thumb:
-            arch = .thumb
-          case .aarch64:
-            arch = .aarch64
-          case .invalid:
-            break
-          }
-        case .big:
-          switch isa {
-          case .arm:
-            arch = .armeb
-          case .thumb:
-            arch = .thumbeb
-          case .aarch64:
-            arch = .aarch64_be
-          case .invalid:
-            break
-          }
-        case .invalid:
-          break
-        }
-
-        let ownedStr = String(archName)
-        guard let rawArch = LLVMGetARMCanonicalArchName(ownedStr, ownedStr.count) else {
-          fatalError()
-        }
-        let archName = String(cString: rawArch)
-        guard !archName.isEmpty else {
-          return .unknown
-        }
-        // Thumb only exists in v4+
-        if isa == .thumb && (ArchName.starts(with: "v2") || ArchName.starts(with: "v3")) {
-          return .unknown
-        }
-
-        // Thumb only for v6m
-        let Profile = LLVMARMParseArchProfile(archName, archName.count)
-        let Version = LLVMARMParseArchVersion(archName, archName.count)
-        if Profile == LLVMARMProfileKindM && Version == 6 {
-          if endian == .big {
-            return .thumbeb
-          } else {
-            return .thumb
-          }
-        }
-
-        return arch
-      }
-
       switch archName {
       case "i386", "i486", "i586", "i686":
         self = .x86
@@ -743,7 +636,7 @@ extension Triple {
         self = .renderscript64
       default:
         if archName.starts(with: "arm") || archName.starts(with: "thumb") || archName.starts(with: "aarch64") {
-          self = parseARMArch(archName)
+          self = .unknown
         } else if archName.starts(with: "bpf") {
           self = parseBPFArch(archName)
         } else {
